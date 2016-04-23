@@ -105,18 +105,21 @@ public class MyManage {
 
     public void updateStayLogin(String username) {
 
-        Cursor cursor = readSqLiteDatabase.query(userTABLE,column_userTABLE,null,null,null,null,null);
+        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE, "User =?", new String[]{String.valueOf(username)}, null, null, null);
+
         cursor.moveToFirst();
 
 
         String id = cursor.getString(0);
 
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(ucolumn_Stay,"1");
 
-        writeSqLiteDatabase.update(userTABLE, contentValues, null,null);
+        writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?",new String[]{String.valueOf(id)});
 
     }
+
 
 
 

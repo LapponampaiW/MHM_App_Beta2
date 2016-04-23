@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -62,6 +63,9 @@ public class SignUpActivity extends AppCompatActivity {
                         Toast t = Toast.makeText(SignUpActivity.this, "addValue _id,User,Password,Stay,Email", Toast.LENGTH_SHORT);
                         t.show();
                         myManage.addValueSignUp(string_rev_Username,string_rev_RePassword,"0",string_rev_Email);
+                        startActivity(new Intent(SignUpActivity.this,MainActivity.class));
+                        finish();
+
                     }
                 }
             }

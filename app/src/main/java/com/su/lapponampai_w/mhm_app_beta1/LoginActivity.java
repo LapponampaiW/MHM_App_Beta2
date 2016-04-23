@@ -65,8 +65,11 @@ public class LoginActivity extends AppCompatActivity {
         String[] strUsername = myManage.readSQLite_userTABLE(1);
         String[] strPassword = myManage.readSQLite_userTABLE(2);
 
-        final String arrayIndexStringUsername = myManage.getArrayStringIndex(strUsername, stringUser);
-        final String arrayIndexStringPassword = myManage.getArrayStringIndex(strPassword, stringPassword);
+        String arrayIndexStringUsername = myManage.getArrayStringIndex(strUsername, stringUser);
+        String arrayIndexStringPassword = myManage.getArrayStringIndex(strPassword, stringPassword);
+
+
+
 
         if (arrayIndexStringUsername.equals("-555") || arrayIndexStringPassword.equals("-555")) {
             Toast t = Toast.makeText(LoginActivity.this, "ไม่มี Username หรือ Password (-555)", Toast.LENGTH_SHORT);
@@ -76,17 +79,15 @@ public class LoginActivity extends AppCompatActivity {
             t.show();
         } else if (arrayIndexStringUsername.equals(arrayIndexStringPassword)) {
 
-            //gotoMainActivity
-            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+             if (checkBoxlogin.isChecked()) {
 
-            if (checkBoxlogin.isChecked()) {
-                //ลอง Toast
-                Toast t = Toast.makeText(LoginActivity.this, "checkBoxlogin.isChecked", Toast.LENGTH_SHORT);
-                t.show();
                 //ทำการเพิ่มค่า Stay เป็น 1
-                myManage.updateStayLogin(arrayIndexStringUsername);
+                myManage.updateStayLogin(stringUser);
 
-            }
+             }
+
+                //gotoMainActivity
+                startActivity(new Intent(LoginActivity.this,MainActivity.class));
 
 
 

@@ -44,7 +44,14 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:hint="Password" />
+            android:hint="Password"
+            android:layout_marginBottom="@dimen/z2_margin_smallgap" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New CheckBox"
+            android:id="@+id/checkBox" />
 
         <Button
             android:layout_width="match_parent"

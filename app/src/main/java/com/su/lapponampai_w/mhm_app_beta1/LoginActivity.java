@@ -72,8 +72,11 @@ public class LoginActivity extends AppCompatActivity {
             Toast t = Toast.makeText(LoginActivity.this, "Username ไม่สัมพันธ์กับ password", Toast.LENGTH_SHORT);
             t.show();
         } else if (arrayIndexStringUsername.equals(arrayIndexStringPassword)) {
-            Toast t = Toast.makeText(LoginActivity.this, "One process Goto Next Activity", Toast.LENGTH_SHORT);
-            t.show();
+
+
+
+
+
         } else {
             Toast t = Toast.makeText(LoginActivity.this, "Cannot Define What's Happen!!!!!", Toast.LENGTH_SHORT);
             t.show();

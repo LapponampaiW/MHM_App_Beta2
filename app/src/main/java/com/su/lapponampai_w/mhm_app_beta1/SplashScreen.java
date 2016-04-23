@@ -28,6 +28,15 @@ public class SplashScreen extends AppCompatActivity {
                 anInt = myManage.check_null_userTABLE();
 
                 if (anInt == 1) {
+
+                    // ต้องแยก Stay ว่า 0 หรือ 1
+                    String[] strings = myManage.readSQLite_userTABLE(3);
+                    if (strings.equals("0")) {
+
+                    }
+
+
+
                     startActivity(new Intent(SplashScreen.this, LoginActivity.class));
                     Toast t = Toast.makeText(SplashScreen.this, Integer.toString(anInt), Toast.LENGTH_LONG); // ลบภายหลัง
                     t.show();

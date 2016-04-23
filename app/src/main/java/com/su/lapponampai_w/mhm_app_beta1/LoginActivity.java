@@ -1,10 +1,12 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     //ปุ่มต่างๆจาก activity_login.xml
     Button buttonLogin;
     EditText editTextUser, editTextPassword;
+    CheckBox checkBoxlogin;
 
     //ค่า String ของ editText
     String stringUser, stringPassword;
@@ -73,7 +76,17 @@ public class LoginActivity extends AppCompatActivity {
             t.show();
         } else if (arrayIndexStringUsername.equals(arrayIndexStringPassword)) {
 
+            //gotoMainActivity
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
 
+            if (checkBoxlogin.isChecked()) {
+                //ลอง Toast
+                Toast t = Toast.makeText(LoginActivity.this, "checkBoxlogin.isChecked", Toast.LENGTH_SHORT);
+                t.show();
+                //ทำการเพิ่มค่า Stay เป็น 1
+                myManage.updateStayLogin(arrayIndexStringUsername);
+
+            }
 
 
 
@@ -88,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         editTextUser = (EditText) findViewById(R.id.editTextLoginUser);
         editTextPassword = (EditText) findViewById(R.id.editTextLoginPassword);
+        checkBoxlogin = (CheckBox) findViewById(R.id.checkBox_login);
     } // bindWidget Method
 
 

@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 //gotoMainActivity
                 startActivity(new Intent(LoginActivity.this,MainActivity.class));
-
+                finish();
 
 
         } else {

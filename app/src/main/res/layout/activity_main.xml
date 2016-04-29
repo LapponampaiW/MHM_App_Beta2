@@ -7,10 +7,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.su.lapponampai_w.mhm_app_beta1.MainActivity">
+    tools:context="com.su.lapponampai_w.mhm_app_beta1.MainActivity"
+    android:background="@drawable/mainbg">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is the Main_Activity. What can it do for you?" />
+        android:text="Add medicine"
+        android:id="@+id/buttonAddMedicine"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

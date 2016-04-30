@@ -46,13 +46,13 @@ public class MyAdaptor extends BaseAdapter {
         LayoutInflater layoutInflater = (LayoutInflater) objContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.my_filter_listview, parent, false);
 
-        TextView tradenameTextView = (TextView) view.findViewById(R.id.textView_Tradename);
+        TextView tradenameTextView = (TextView) view.findViewById(R.id.textViewTradename);
         tradenameTextView.setText(tradenameStrings[position]);
 
-        TextView gname12TextView = (TextView) view.findViewById(R.id.textView_Gname12);
+        TextView gname12TextView = (TextView) view.findViewById(R.id.textViewGname12);
         gname12TextView.setText(gname12Strings[position]);
 
-        TextView gname34TextView = (TextView) view.findViewById(R.id.textView_Gname34);
+        TextView gname34TextView = (TextView) view.findViewById(R.id.textViewGname34);
         gname34TextView.setText(gname34Strings[position]);
 
         ImageView iconImageView = (ImageView) view.findViewById(R.id.imageViewicon);

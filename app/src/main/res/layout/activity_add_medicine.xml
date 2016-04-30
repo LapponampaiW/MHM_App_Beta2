@@ -43,7 +43,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
+            android:id="@+id/editText_Add_TG"
             android:layout_marginBottom="@dimen/z2_margin_space"
             android:hint="Trade name / Generic name" />
 
@@ -56,7 +56,7 @@
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/listView"
+            android:id="@+id/listView_Add_TG"
             android:layout_marginLeft="@dimen/z2_margin_smallgap"
             android:layout_marginRight="@dimen/z2_margin_smallgap" />
     </LinearLayout>

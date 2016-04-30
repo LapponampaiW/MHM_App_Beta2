@@ -23,6 +23,39 @@ public class MyManage {
     private static final String ucolumn_Email = "Email";
     private static final String[] column_userTABLE = {ucolumn_id,ucolumn_User,ucolumn_Password,ucolumn_Stay,ucolumn_Email};
 
+    //medTABLE
+    private static final String medTABLE = "medTABLE";
+    private static final String mcolumn_id = "_id";
+    private static final String mcolumn_trade_name = "Trade_name";
+    private static final String mcolumn_generic_name1 = "Generic_name1";
+    private static final String mcolumn_dosage1 = "Dosage1";
+    private static final String mcolumn_uom1 = "UOM1";
+    private static final String mcolumn_generic_name2 = "Generic_name2";
+    private static final String mcolumn_dosage2 = "Dosage2";
+    private static final String mcolumn_uom2 = "UOM2";
+    private static final String mcolumn_generic_name3 = "Generic_name3";
+    private static final String mcolumn_dosage3 = "Dosage3";
+    private static final String mcolumn_uom3 = "UOM3";
+    private static final String mcolumn_generic_name4 = "Generic_name4";
+    private static final String mcolumn_dosage4 = "Dosage4";
+    private static final String mcolumn_uom4 = "UOM4";
+    private static final String mcolumn_which_date_d = "Which_Date_D";
+    private static final String mcolumn_appearance = "Appearance";
+    private static final String mcolumn_pharmaco = "Pharmaco";
+    private static final String mcolumn_t1 = "T1";
+    private static final String mcolumn_t2 = "T2";
+    private static final String mcolumn_t3 = "T3";
+    private static final String mcolumn_t4 = "T4";
+    private static final String mcolumn_t5 = "T5";
+    private static final String mcolumn_t6 = "T6";
+    private static final String mcolumn_t7 = "T7";
+    private static final String mcolumn_t8 = "T8";
+    private static final String[] column_medTABLE = {mcolumn_id,mcolumn_trade_name,mcolumn_generic_name1,mcolumn_dosage1,
+                                    mcolumn_uom1,mcolumn_generic_name2,mcolumn_dosage2,mcolumn_uom2,mcolumn_generic_name3,
+                                    mcolumn_dosage3,mcolumn_uom3,mcolumn_generic_name4,mcolumn_dosage4,mcolumn_uom4,
+                                    mcolumn_which_date_d,mcolumn_appearance,mcolumn_pharmaco,mcolumn_t1,mcolumn_t2,
+                                    mcolumn_t3,mcolumn_t4,mcolumn_t5,mcolumn_t6,mcolumn_t7,mcolumn_t8};
+
 
     public MyManage(Context context) {
         helper = new MyHelper(context);
@@ -88,7 +121,6 @@ public class MyManage {
         return strAllFood;
     }
 
-
     public String getArrayStringIndex(String[] strAry,String keyWord_String) {
 
         int fake = -500;
@@ -118,6 +150,102 @@ public class MyManage {
 
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?",new String[]{String.valueOf(id)});
 
+    }
+
+    public String[] filterAddMed(int intColumn,String strWord) {
+        String[] strread = null;
+
+        Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"Trade_name =?",new String[]{String.valueOf(strWord)},null,null,null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            strread = new String[cursor.getCount()];
+
+            for (int i = 0; i < cursor.getCount(); i++) {
+                switch (intColumn) {
+                    case 0:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
+                        break;
+                    case 1:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_trade_name));  //ใส่ใน listViewAddTG
+                        break;
+                    case 2:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name1));  //ใส่ใน listViewAddTG
+                        break;
+                    case 3:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage1));
+                        break;
+                    case 4:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_uom1));
+                        break;
+                    case 5:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name2));  //ใส่ใน listViewAddTG
+                        break;
+                    case 6:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage2));
+                        break;
+                    case 7:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_uom2));
+                        break;
+                    case 8:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name3));  //ใส่ใน listViewAdTG
+                        break;
+                    case 9:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage3));
+                        break;
+                    case 10:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_uom3));
+                        break;
+                    case 11:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name4));
+                        break;
+                    case 12:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage4));
+                        break;
+                    case 13:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_uom4));
+                        break;
+                    case 14:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_which_date_d));
+                        break;
+                    case 15:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_appearance));
+                        break;
+                    case 16:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_pharmaco));
+                        break;
+                    case 17:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t1));
+                        break;
+                    case 18:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t2));
+                        break;
+                    case 19:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t3));
+                        break;
+                    case 20:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t4));
+                        break;
+                    case 21:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t5));
+                        break;
+                    case 22:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t6));
+                        break;
+                    case 23:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t7));
+                        break;
+                    case 24:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t8));
+                        break;
+                    default:
+                        break;
+                }
+                cursor.moveToNext();
+            }
+
+        }
+
+        return strread;
     }
 
 

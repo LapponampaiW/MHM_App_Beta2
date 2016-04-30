@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="horizontal" android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bglistview">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="250dp"
+        android:layout_width="187dp"
         android:layout_height="wrap_content">
 
         <TextView
@@ -14,7 +15,6 @@
             android:text="Trade Name"
             android:id="@+id/textViewTradename"
             android:layout_marginTop="@dimen/z2_margin_smallgap"
-            android:layout_marginLeft="@dimen/z2_margin_smallgap"
             android:textSize="@dimen/heading3" />
 
         <TextView
@@ -22,16 +22,14 @@
             android:layout_height="wrap_content"
             android:text="Generic Name 1/2"
             android:id="@+id/textViewGname12"
-            android:layout_marginTop="@dimen/z2_margin_space"
-            android:layout_marginLeft="@dimen/z2_margin_smallgap" />
+            android:layout_marginTop="@dimen/z2_margin_space" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Generic Name 3/4"
             android:id="@+id/textViewGname34"
-            android:layout_marginTop="@dimen/z2_margin_space"
-            android:layout_marginLeft="@dimen/z2_margin_smallgap" />
+            android:layout_marginTop="@dimen/z2_margin_space" />
     </LinearLayout>
 
     <ImageView

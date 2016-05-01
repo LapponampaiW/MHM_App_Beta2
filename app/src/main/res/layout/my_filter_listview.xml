@@ -19,22 +19,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Generic Name 1/2"
-            android:id="@+id/textViewGname12"
+            android:text="Generic Name"
+            android:id="@+id/textViewGname"
             android:layout_marginTop="@dimen/z2_margin_space" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Generic Name 3/4"
-            android:id="@+id/textViewGname34"
-            android:layout_marginTop="@dimen/z2_margin_space" />
     </LinearLayout>
 
     <ImageView
         android:layout_width="@dimen/z1_linearlayout_icon"
         android:layout_height="@dimen/z1_linearlayout_icon"
         android:id="@+id/imageViewicon"
-        android:layout_margin="@dimen/z2_margin_space" />
+        android:layout_margin="@dimen/z2_margin_space"
+        android:layout_gravity="center_vertical" />
 
 </LinearLayout>

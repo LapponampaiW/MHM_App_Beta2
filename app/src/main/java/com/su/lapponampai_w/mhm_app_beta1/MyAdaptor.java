@@ -14,6 +14,54 @@ import android.widget.TextView;
 public class MyAdaptor extends BaseAdapter {
 
     Context objContext;
+    String[] tradenameStrings, gnameStrings;
+    int[] iconInts;
+
+    public MyAdaptor(Context objContext, String[] tradenameStrings, String[] gnameStrings, int[] iconInts) {
+        this.objContext = objContext;
+        this.tradenameStrings = tradenameStrings;
+        this.gnameStrings = gnameStrings;
+        this.iconInts = iconInts;
+    }
+
+    @Override
+    public int getCount() {
+        return tradenameStrings.length;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        LayoutInflater layoutInflater = (LayoutInflater) objContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.my_filter_listview, parent, false);
+
+        TextView tradenameTextView = (TextView) view.findViewById(R.id.textViewTradename);
+        tradenameTextView.setText(tradenameStrings[position]);
+
+        TextView gnameTextView = (TextView) view.findViewById(R.id.textViewGname);
+        gnameTextView.setText(gnameStrings[position]);
+
+        ImageView iconImageView = (ImageView) view.findViewById(R.id.imageViewicon);
+        iconImageView.setBackgroundResource(iconInts[position]);
+
+        return view;
+    }
+}  //main method
+
+    /*
+    public class MyAdaptor extends BaseAdapter {
+
+    Context objContext;
     String[] tradenameStrings, gname12Strings, gname34Strings;
     int[] iconInts;
 
@@ -60,4 +108,6 @@ public class MyAdaptor extends BaseAdapter {
 
         return view;
     }
-}
+}  //main method
+
+     */

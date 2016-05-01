@@ -81,13 +81,23 @@ public class AddMedicineActivity extends AppCompatActivity {
                 //ทำ String ยาวๆ ของ 2 บรรทัด
                 String[] stringsGenericLine1 = new String[stringsGeneric1.length];
                 for(int i = 0;i < stringsGeneric1.length;i++) {
-                    if (!stringsGeneric2.equals("")) {
+                    if (!stringsGeneric4.equals("")) {
                         stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
                                 " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
                                 stringsDosage2[i] + " " + stringsUOM2[i] + " / " +
                                 stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
                                 stringsUOM3[i] + " / " + stringsGeneric4[i] + " " +
                                 stringsDosage4[i] + " " + stringsUOM4[i];
+                    } else if (!stringsGeneric3.equals("")){
+                        stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
+                                " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
+                                stringsDosage2[i] + " " + stringsUOM2[i] + " / " +
+                                stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
+                                stringsUOM3[i];
+                    } else if (!stringsGeneric2.equals("")) {
+                        stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
+                                " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
+                                stringsDosage2[i] + " " + stringsUOM2[i];
                     } else {
                         stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] + " " + stringsUOM1[i];
                     }
@@ -97,7 +107,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                 int[] intsIndex = myData.translate_Appearance(stringsappearance);
 
 
-                MyAdaptor myAdaptor = new MyAdaptor(AddMedicineActivity.this, stringsTradename, stringsGenericLine1, stringsGeneric3, intsIndex);
+                MyAdaptor myAdaptor = new MyAdaptor(AddMedicineActivity.this, stringsTradename, stringsGenericLine1, intsIndex);
                 listViewAddTG.setAdapter(myAdaptor);
 
             }
@@ -131,7 +141,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                     }
                 }
 
-                MyAdaptor myAdaptor = new MyAdaptor(AddMedicineActivity.this, stringsTradename, stringsGeneric1, stringsGeneric3, intsIndex);
+                MyAdaptor myAdaptor = new MyAdaptor(AddMedicineActivity.this, stringsTradename, stringsGeneric1, intsIndex);
                 listViewAddTG.setAdapter(myAdaptor);
 
 

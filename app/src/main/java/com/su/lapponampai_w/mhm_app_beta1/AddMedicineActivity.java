@@ -15,7 +15,7 @@ public class AddMedicineActivity extends AppCompatActivity {
     String stringeditTextAddTG;
     MyManage myManage;
 
-    //นำค่าจาก filterAddMed มาเก็บในค่า String[] และ int[] .... ลองเดี่ยวต้องลบ
+    //นำค่าจาก filterAddMed
     String[] stringsTradename,stringsappearance, stringsGeneric1, stringsGeneric3, stringsGeneric4,
             stringsDosage1, stringsDosage2, stringsDosage3, stringsDosage4, stringsUOM1,
             stringsUOM2, stringsUOM3, stringsUOM4, stringsGeneric2;

@@ -161,7 +161,9 @@ public class MyManage {
     public String[] filterAddMed(int intColumn,String strWord) {
         String[] strread = null;
 
-        Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"Trade_name =?",new String[]{String.valueOf(strWord)},null,null,null);
+       //Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"Trade_name =?",new String[]{String.valueOf(strWord)},null,null,null);
+        //ทำ Search ตัวอักษรแบบไม่ต้องเขียนครบก็ได้
+       Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"Trade_name" + " LIKE '%" + strWord + "%'",null,null,null,null);
         if (cursor != null) {
             cursor.moveToFirst();
             strread = new String[cursor.getCount()];

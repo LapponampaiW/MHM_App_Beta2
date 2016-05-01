@@ -40,18 +40,24 @@
             android:textSize="@dimen/heading3"
             android:layout_marginBottom="@dimen/z2_margin_smallgap" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText_Add_TG"
-            android:layout_marginBottom="@dimen/z2_margin_space"
-            android:hint="Trade name / Generic name" />
-
-        <Button
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="filter"
-            android:id="@+id/buttonFilterListView" />
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_Add_TG"
+                android:layout_marginBottom="@dimen/z2_margin_space"
+                android:hint="Trade name / Generic name" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="filter"
+                android:id="@+id/buttonFilterListView" />
+        </LinearLayout>
 
         <ListView
             android:layout_width="wrap_content"
@@ -59,5 +65,6 @@
             android:id="@+id/listView_Add_TG"
             android:layout_marginLeft="@dimen/z2_margin_smallgap"
             android:layout_marginRight="@dimen/z2_margin_smallgap" />
+
     </LinearLayout>
 </RelativeLayout>

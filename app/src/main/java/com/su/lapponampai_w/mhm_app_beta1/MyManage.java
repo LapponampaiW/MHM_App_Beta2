@@ -56,6 +56,12 @@ public class MyManage {
                                     mcolumn_which_date_d,mcolumn_appearance,mcolumn_pharmaco,mcolumn_t1,mcolumn_t2,
                                     mcolumn_t3,mcolumn_t4,mcolumn_t5,mcolumn_t6,mcolumn_t7,mcolumn_t8};
 
+    //nameGenericTABLE
+    private static final String nameGenericTABLE = "nameGenericTABLE";
+    private static final String gcolumn_id = "_id";
+    private static final String gcolumn_generic_name = "Generic_name";
+    private static final String[] column_nameGenericTABLE = {gcolumn_id,gcolumn_generic_name};
+
 
     public MyManage(Context context) {
         helper = new MyHelper(context);
@@ -248,8 +254,22 @@ public class MyManage {
         return strread;
     }
 
+    public String[] translate_GenericName(String[] genericname) {
 
+        String[] strRead = new String[genericname.length];
 
+        for (int i = 0; i < genericname.length; i++) {
+            Cursor cursor = readSqLiteDatabase.query(nameGenericTABLE,column_nameGenericTABLE,"_id =?",new String[]{String.valueOf(genericname[i])},null,null,null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                strRead[i] = cursor.getString(cursor.getColumnIndex(gcolumn_generic_name));
+            } else {
+                strRead[i] = null;
+            }
+        }
+
+        return strRead;
+    } //translate_GenericName
 
 
 } //Main class

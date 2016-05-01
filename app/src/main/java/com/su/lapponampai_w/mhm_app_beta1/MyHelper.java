@@ -24,6 +24,10 @@ public class MyHelper extends SQLiteOpenHelper {
             "Which_Date_D text, Appearance text, Pharmaco text, T1 time, T2 time," +
             "T3 time, T4 time,T5 time, T6 time,T7 time, T8 time);";
 
+    //Create table nameGenericTABLE
+    private static final String CREATE_nameGenericTABLE = "create table nameGenericTABLE" +
+            "(_id integer primary key, Generic_name text);";
+
 
 
     public MyHelper(Context context) {
@@ -36,6 +40,7 @@ public class MyHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_userTABLE);
         db.execSQL(CREATE_medTABLE);
+        db.execSQL(CREATE_nameGenericTABLE);
 
     }
 

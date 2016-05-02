@@ -11,6 +11,8 @@ public class MyHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "MHM.db";
     private static final int DATABASE_VERSION = 1;
+
+    //Create userTABLE
     private static final String CREATE_userTABLE = "create table userTABLE" +
             "(_id integer primary key, User text, Password text, Stay text, Email text);";
 
@@ -21,8 +23,8 @@ public class MyHelper extends SQLiteOpenHelper {
             "Generic_name2 integer, Dosage2 text, UOM2 text, " +
             "Generic_name3 integer, Dosage3 text, UOM3 text, " +
             "Generic_name4 integer, Dosage4 text, UOM4 text, " +
-            "Which_Date_D text, Appearance text, Pharmaco text, T1 time, T2 time," +
-            "T3 time, T4 time,T5 time, T6 time,T7 time, T8 time);";
+            "Which_Date_D text, Appearance text, Pharmaco text, T1 integer, T2 integer," +
+            "T3 integer, T4 integer,T5 integer, T6 integer,T7 integer, T8 integer);";
 
     //Create table nameGenericTABLE
     private static final String CREATE_nameGenericTABLE = "create table nameGenericTABLE" +

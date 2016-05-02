@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
+import java.sql.Time;
+
 /**
  * Created by apple on 4/20/16.
  */
@@ -272,6 +274,86 @@ public class MyManage {
 
         return strRead;
     } //translate_GenericName
+
+
+    public double addMedTABLE(String s_trade_name,
+                              int s_generic_name1, String s_dosage1, String s_uom1,
+                              int s_generic_name2, String s_dosage2, String s_uom2,
+                              int s_generic_name3, String s_dosage3, String s_uom3,
+                              int s_generic_name4, String s_dosage4, String s_uom4,
+                              String s_which_date_d, String s_appearance, String s_pharmaco,
+                              int s_t1, int s_t2, int s_t3, int s_t4,
+                              int s_t5, int s_t6, int s_t7, int s_t8) {
+
+        ContentValues contentValues = new ContentValues();
+        double adddouble = 0;
+        contentValues.put(mcolumn_trade_name,s_trade_name);
+        contentValues.put(mcolumn_generic_name1,s_generic_name1);
+        contentValues.put(mcolumn_dosage1,s_dosage1);
+        contentValues.put(mcolumn_uom1,s_uom1);
+        contentValues.put(mcolumn_generic_name2,s_generic_name2);
+        contentValues.put(mcolumn_dosage2,s_dosage2);
+        contentValues.put(mcolumn_uom2,s_uom2);
+        contentValues.put(mcolumn_generic_name3,s_generic_name3);
+        contentValues.put(mcolumn_dosage3,s_dosage3);
+        contentValues.put(mcolumn_uom3,s_uom3);
+        contentValues.put(mcolumn_generic_name4,s_generic_name4);
+        contentValues.put(mcolumn_dosage4,s_dosage4);
+        contentValues.put(mcolumn_uom4,s_uom4);
+        contentValues.put(mcolumn_which_date_d,s_which_date_d);
+        contentValues.put(mcolumn_appearance,s_appearance);
+        contentValues.put(mcolumn_pharmaco,s_pharmaco);
+        contentValues.put(mcolumn_t1,s_t1);
+        contentValues.put(mcolumn_t2,s_t2);
+        contentValues.put(mcolumn_t3,s_t3);
+        contentValues.put(mcolumn_t4,s_t4);
+        contentValues.put(mcolumn_t5,s_t5);
+        contentValues.put(mcolumn_t6,s_t6);
+        contentValues.put(mcolumn_t7,s_t7);
+        contentValues.put(mcolumn_t7,s_t8);
+
+        adddouble = writeSqLiteDatabase.insert(medTABLE, null, contentValues);
+
+
+        return adddouble;
+    }
+
+
+
+
+
+
+    /*public long addValue(int intTable,
+                         String strColumn2,
+                         String strColumn3,
+                         String strColumn4,
+                         String strColumn5) {
+        ContentValues contentValues = new ContentValues();
+
+        long mylong = 0;
+
+        switch (intTable) {
+            case 1:
+                contentValues.put("User",strColumn2);
+                contentValues.put("Password",strColumn3);
+                contentValues.put("Name",strColumn4);
+
+                mylong = writeSqLiteDatabase.insert("userTABLE", null, contentValues);
+
+                break;
+            case 2:
+                contentValues.put("officer",strColumn2);
+                contentValues.put("Dest",strColumn3);
+                contentValues.put("Food",strColumn4);
+                contentValues.put("Item", strColumn5);
+
+                mylong = writeSqLiteDatabase.insert("orderTABLE", null, contentValues);
+            default:
+                break;
+
+        }
+        return mylong;
+    }   */
 
 
 } //Main class

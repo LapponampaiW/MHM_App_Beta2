@@ -5,6 +5,8 @@ package com.su.lapponampai_w.mhm_app_beta1;
  */
 public class MyData {
 
+
+
     public String[] translate_uom(String[] uom) {
 
         String[] strRead = new String[uom.length];
@@ -34,6 +36,9 @@ public class MyData {
         }
         return intsRead;
     }
+
+
+
 
 } //Main class
 

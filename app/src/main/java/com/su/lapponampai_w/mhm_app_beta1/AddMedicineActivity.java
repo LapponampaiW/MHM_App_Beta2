@@ -16,7 +16,7 @@ public class AddMedicineActivity extends AppCompatActivity {
     MyManage myManage;
 
     //นำค่าจาก filterAddMed
-    String[] stringsTradename,stringsappearance, stringsGeneric1, stringsGeneric3, stringsGeneric4,
+    String[] stringsTradename, stringsappearance, stringsGeneric1, stringsGeneric3, stringsGeneric4,
             stringsDosage1, stringsDosage2, stringsDosage3, stringsDosage4, stringsUOM1,
             stringsUOM2, stringsUOM3, stringsUOM4, stringsGeneric2;
 
@@ -121,7 +121,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                 stringeditTextAddTG = editTextAddTG.getText().toString().trim();
 
                 //ลอง เดี่ยวต้องลบ
-                stringsTradename = myManage.filterAddMed(1,stringeditTextAddTG);
+                stringsTradename = myManage.filterAddMed(1, stringeditTextAddTG);
                 stringsGeneric1 = myManage.filterAddMed(2, stringeditTextAddTG);
                 stringsGeneric3 = myManage.filterAddMed(8, stringeditTextAddTG);
                 stringsappearance = myManage.filterAddMed(15, stringeditTextAddTG);
@@ -129,7 +129,6 @@ public class AddMedicineActivity extends AppCompatActivity {
 
 
 
-                int[] ints = {R.drawable.addmedicine, R.drawable.mainbg};
                 int[] intsIndex = new int[stringsTradename.length];
 
 
@@ -143,10 +142,6 @@ public class AddMedicineActivity extends AppCompatActivity {
 
                 MyAdaptor myAdaptor = new MyAdaptor(AddMedicineActivity.this, stringsTradename, stringsGeneric1, intsIndex);
                 listViewAddTG.setAdapter(myAdaptor);
-
-
-
-
 
             }
         });

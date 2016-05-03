@@ -310,50 +310,14 @@ public class MyManage {
         contentValues.put(mcolumn_t5,s_t5);
         contentValues.put(mcolumn_t6,s_t6);
         contentValues.put(mcolumn_t7,s_t7);
-        contentValues.put(mcolumn_t7,s_t8);
+        contentValues.put(mcolumn_t7,System.currentTimeMillis());
+        contentValues.put(mcolumn_t8,s_t8);
 
         adddouble = writeSqLiteDatabase.insert(medTABLE, null, contentValues);
 
 
         return adddouble;
     }
-
-
-
-
-
-
-    /*public long addValue(int intTable,
-                         String strColumn2,
-                         String strColumn3,
-                         String strColumn4,
-                         String strColumn5) {
-        ContentValues contentValues = new ContentValues();
-
-        long mylong = 0;
-
-        switch (intTable) {
-            case 1:
-                contentValues.put("User",strColumn2);
-                contentValues.put("Password",strColumn3);
-                contentValues.put("Name",strColumn4);
-
-                mylong = writeSqLiteDatabase.insert("userTABLE", null, contentValues);
-
-                break;
-            case 2:
-                contentValues.put("officer",strColumn2);
-                contentValues.put("Dest",strColumn3);
-                contentValues.put("Food",strColumn4);
-                contentValues.put("Item", strColumn5);
-
-                mylong = writeSqLiteDatabase.insert("orderTABLE", null, contentValues);
-            default:
-                break;
-
-        }
-        return mylong;
-    }   */
 
 
 } //Main class

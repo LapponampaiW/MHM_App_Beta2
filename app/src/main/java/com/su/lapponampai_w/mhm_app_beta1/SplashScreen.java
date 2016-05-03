@@ -20,7 +20,9 @@ public class SplashScreen extends AppCompatActivity {
 
         myManage = new MyManage(this);
 
-        //myManage.addMedTABLE("Truvada", 1, "100", "1", 0, null, null,0,null,null,0,null,null,null,"1",null,0,0,0,0,0,0,0,0);
+
+
+
 
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -61,5 +63,9 @@ public class SplashScreen extends AppCompatActivity {
 
             }
         },2000); // 2 วินาที
+
+        myManage.nameGenericTABLEData();
+        myManage.medTABLEData();
+
     }  //Main Method
 }  //Main Class

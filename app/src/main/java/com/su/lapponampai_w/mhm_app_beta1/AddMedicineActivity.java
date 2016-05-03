@@ -72,15 +72,22 @@ public class AddMedicineActivity extends AppCompatActivity {
                 stringsGeneric4 = myManage.translate_GenericName(stringsGeneric4);
 
                 stringsUOM1 = myData.translate_uom(stringsUOM1);
+
+                //มีปัญหาตรงนี้
+
                 if (stringsUOM2!=null) {
                     stringsUOM2 = myData.translate_uom(stringsUOM2);
                 }
                 if (stringsUOM3!=null) {
                     stringsUOM3 = myData.translate_uom(stringsUOM3);
                 }
-                if (stringsUOM4!=null) {
+
+                if (stringsUOM4.length==0) {
                     stringsUOM4 = myData.translate_uom(stringsUOM4);
                 }
+
+
+
 
                 String[] stringsGenericLine1 = new String[stringsGeneric1.length];
                 for(int i = 0;i < stringsGeneric1.length;i++) {
@@ -106,8 +113,9 @@ public class AddMedicineActivity extends AppCompatActivity {
                     }
 
                 } //for
-                int[] intsIndex = myData.translate_Appearance(stringsappearance);
 
+                //ใส่ภาพเข้าไป
+                int[] intsIndex = myData.translate_Appearance(stringsappearance);
 
                 MyAdaptor myAdaptor = new MyAdaptor(AddMedicineActivity.this, stringsTradename, stringsGenericLine1, intsIndex);
                 listViewAddTG.setAdapter(myAdaptor);

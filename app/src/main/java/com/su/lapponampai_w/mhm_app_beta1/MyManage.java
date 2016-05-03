@@ -282,8 +282,7 @@ public class MyManage {
         return strRead;
     } //translate_GenericName
 
-
-    public double addMedTABLE(String s_trade_name, String s_key_search,
+    public double addMedTABLEValue(String s_trade_name, String s_key_search,
                               int s_generic_name1, String s_dosage1, String s_uom1,
                               int s_generic_name2, String s_dosage2, String s_uom2,
                               int s_generic_name3, String s_dosage3, String s_uom3,
@@ -318,7 +317,6 @@ public class MyManage {
         contentValues.put(mcolumn_t5,s_t5);
         contentValues.put(mcolumn_t6,s_t6);
         contentValues.put(mcolumn_t7,s_t7);
-        contentValues.put(mcolumn_t7,System.currentTimeMillis());
         contentValues.put(mcolumn_t8,s_t8);
 
         adddouble = writeSqLiteDatabase.insert(medTABLE, null, contentValues);
@@ -326,6 +324,41 @@ public class MyManage {
 
         return adddouble;
     } //addMedTABLE
+
+    public long addnameGenericTABLEValue(String s_generic_name) {
+        ContentValues contentValues = new ContentValues();
+        long addlong = 0;
+        contentValues.put(gcolumn_generic_name,s_generic_name);
+
+        return writeSqLiteDatabase.insert(nameGenericTABLE, null, contentValues);
+    }
+
+
+
+    //ทำการ add ค่าเข้าไปถ้า table มันว่างอะนะ
+    public void medTABLEData() {
+
+        Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
+
+        if (cursor.getCount()==0) {
+            addMedTABLEValue("GPO vir S", ";f;asjf", 2, "100", "1", 3, "100", "1", 4, "100", "1", 1, null, null, null, "1", null, 0, 0, 0, 0, 0, 0, 0, 0);
+            addMedTABLEValue("GPO vir Z", ";lsfj;sj", 5, "250", "1", 3, "100", "1", 4, "100", "1", 1, null, null, null, "1", null, 0, 0, 0, 0, 0, 0, 0, 0);
+        }
+
+    } //medTABLEDate
+
+    public void nameGenericTABLEData() {
+        Cursor cursor = readSqLiteDatabase.query(nameGenericTABLE, column_nameGenericTABLE, null, null, null, null, null);
+
+        if (cursor.getCount()==0) {
+
+            addnameGenericTABLEValue("N/A"); //1
+            addnameGenericTABLEValue("Stavudine"); //2
+            addnameGenericTABLEValue("Lamivudine"); //3
+            addnameGenericTABLEValue("Nevirapine"); //4
+            addnameGenericTABLEValue("Zidovudine"); //5
+        }
+    }
 
 
 } //Main class

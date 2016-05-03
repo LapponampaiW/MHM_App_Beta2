@@ -35,12 +35,89 @@ public class AddMedicineActivity extends AppCompatActivity {
 
         bindWidget();
 
+
         //pressbuttonfilterListView1();
         pressbuttonfilterListView();
+
 
     }
 
     private void pressbuttonfilterListView() {
+        buttonFilterListView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringeditTextAddTG = editTextAddTG.getText().toString().trim();
+                //รับค่า
+                stringsTradename = myManage.filterAddMed(1, stringeditTextAddTG);
+                stringsGeneric1 = myManage.filterAddMed(3, stringeditTextAddTG);
+                stringsDosage1 = myManage.filterAddMed(4, stringeditTextAddTG);
+                stringsUOM1 = myManage.filterAddMed(5, stringeditTextAddTG);
+                stringsGeneric2 = myManage.filterAddMed(6, stringeditTextAddTG);
+                stringsDosage2 = myManage.filterAddMed(7, stringeditTextAddTG);
+                stringsUOM2 = myManage.filterAddMed(8, stringeditTextAddTG);
+                stringsGeneric3 = myManage.filterAddMed(9, stringeditTextAddTG);
+                stringsDosage3 = myManage.filterAddMed(10, stringeditTextAddTG);
+                stringsUOM3 = myManage.filterAddMed(11, stringeditTextAddTG);
+                stringsGeneric4 = myManage.filterAddMed(12, stringeditTextAddTG);
+                stringsDosage4 = myManage.filterAddMed(13, stringeditTextAddTG);
+                stringsUOM4 = myManage.filterAddMed(14, stringeditTextAddTG);
+                stringsappearance = myManage.filterAddMed(16, stringeditTextAddTG);
+
+                //แปลค่า
+                MyData myData = new MyData();
+
+                stringsGeneric1 = myManage.translate_GenericName(stringsGeneric1);
+                stringsGeneric2 = myManage.translate_GenericName(stringsGeneric2);
+                stringsGeneric3 = myManage.translate_GenericName(stringsGeneric3);
+                stringsGeneric4 = myManage.translate_GenericName(stringsGeneric4);
+
+                stringsUOM1 = myData.translate_uom(stringsUOM1);
+                if (stringsUOM2!=null) {
+                    stringsUOM2 = myData.translate_uom(stringsUOM2);
+                }
+                if (stringsUOM3!=null) {
+                    stringsUOM3 = myData.translate_uom(stringsUOM3);
+                }
+                if (stringsUOM4!=null) {
+                    stringsUOM4 = myData.translate_uom(stringsUOM4);
+                }
+
+                String[] stringsGenericLine1 = new String[stringsGeneric1.length];
+                for(int i = 0;i < stringsGeneric1.length;i++) {
+                    if (stringsGeneric2[i].equals("N/A")) {
+                        stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] + " " + stringsUOM1[i];
+                    } else if (stringsGeneric3[i].equals("N/A")) {
+                        stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
+                                " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
+                                stringsDosage2[i] + " " + stringsUOM2[i];
+                    } else if (stringsGeneric4[i].equals("N/A")) {
+                        stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
+                                " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
+                                stringsDosage2[i] + " " + stringsUOM2[i] + " / " +
+                                stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
+                                stringsUOM3[i];
+                    } else {
+                        stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
+                                " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
+                                stringsDosage2[i] + " " + stringsUOM2[i] + " / " +
+                                stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
+                                stringsUOM3[i] + " / " + stringsGeneric4[i] + " " +
+                                stringsDosage4[i] + " " + stringsUOM4[i];
+                    }
+
+                } //for
+                int[] intsIndex = myData.translate_Appearance(stringsappearance);
+
+
+                MyAdaptor myAdaptor = new MyAdaptor(AddMedicineActivity.this, stringsTradename, stringsGenericLine1, intsIndex);
+                listViewAddTG.setAdapter(myAdaptor);
+
+
+            }
+        });
+    }
+
+    private void pressbuttonfilterListView1() {
 
         buttonFilterListView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,19 +126,19 @@ public class AddMedicineActivity extends AppCompatActivity {
                 stringeditTextAddTG = editTextAddTG.getText().toString().trim();
                 //รับค่า
                 stringsTradename = myManage.filterAddMed(1, stringeditTextAddTG);
-                stringsGeneric1 = myManage.filterAddMed(2, stringeditTextAddTG);
-                stringsDosage1 = myManage.filterAddMed(3, stringeditTextAddTG);
-                stringsUOM1 = myManage.filterAddMed(4, stringeditTextAddTG);
-                stringsGeneric2 = myManage.filterAddMed(5, stringeditTextAddTG);
-                stringsDosage2 = myManage.filterAddMed(6, stringeditTextAddTG);
-                stringsUOM2 = myManage.filterAddMed(7, stringeditTextAddTG);
-                stringsGeneric3 = myManage.filterAddMed(8, stringeditTextAddTG);
-                stringsDosage3 = myManage.filterAddMed(9, stringeditTextAddTG);
-                stringsUOM3 = myManage.filterAddMed(10, stringeditTextAddTG);
-                stringsGeneric4 = myManage.filterAddMed(11, stringeditTextAddTG);
-                stringsDosage4 = myManage.filterAddMed(12, stringeditTextAddTG);
-                stringsUOM4 = myManage.filterAddMed(13, stringeditTextAddTG);
-                stringsappearance = myManage.filterAddMed(15, stringeditTextAddTG);
+                stringsGeneric1 = myManage.filterAddMed(3, stringeditTextAddTG);
+                stringsDosage1 = myManage.filterAddMed(4, stringeditTextAddTG);
+                stringsUOM1 = myManage.filterAddMed(5, stringeditTextAddTG);
+                stringsGeneric2 = myManage.filterAddMed(6, stringeditTextAddTG);
+                stringsDosage2 = myManage.filterAddMed(7, stringeditTextAddTG);
+                stringsUOM2 = myManage.filterAddMed(8, stringeditTextAddTG);
+                stringsGeneric3 = myManage.filterAddMed(9, stringeditTextAddTG);
+                stringsDosage3 = myManage.filterAddMed(10, stringeditTextAddTG);
+                stringsUOM3 = myManage.filterAddMed(11, stringeditTextAddTG);
+                stringsGeneric4 = myManage.filterAddMed(12, stringeditTextAddTG);
+                stringsDosage4 = myManage.filterAddMed(13, stringeditTextAddTG);
+                stringsUOM4 = myManage.filterAddMed(14, stringeditTextAddTG);
+                stringsappearance = myManage.filterAddMed(16, stringeditTextAddTG);
 
 
                 //แปลค่า
@@ -114,39 +191,7 @@ public class AddMedicineActivity extends AppCompatActivity {
         });
     }
 
-    private void pressbuttonfilterListView1() {
-        buttonFilterListView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stringeditTextAddTG = editTextAddTG.getText().toString().trim();
 
-                //ลอง เดี่ยวต้องลบ
-                stringsTradename = myManage.filterAddMed(1, stringeditTextAddTG);
-                stringsGeneric1 = myManage.filterAddMed(2, stringeditTextAddTG);
-                stringsGeneric3 = myManage.filterAddMed(8, stringeditTextAddTG);
-                stringsappearance = myManage.filterAddMed(15, stringeditTextAddTG);
-                stringsGeneric4 = myManage.filterAddMed(24, stringeditTextAddTG);
-
-
-
-                int[] intsIndex = new int[stringsTradename.length];
-
-
-                for (int i = 0; i < stringsTradename.length; i++) {
-                    if (stringsappearance[i].equals("1")) {
-                        intsIndex[i] = R.drawable.exampletablet;
-                    } else if (stringsappearance[i].equals("2")) {
-                        intsIndex[i] = R.drawable.mainbg;
-                    }
-                }
-
-                MyAdaptor myAdaptor = new MyAdaptor(AddMedicineActivity.this, stringsTradename, stringsGeneric1, intsIndex);
-                listViewAddTG.setAdapter(myAdaptor);
-
-            }
-        });
-
-    }
 
     private void bindWidget() {
         editTextAddTG = (EditText) findViewById(R.id.editText_Add_TG);

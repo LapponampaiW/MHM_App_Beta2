@@ -18,7 +18,7 @@ public class MyHelper extends SQLiteOpenHelper {
 
     //Create table medTABLE
     private static final String CREATE_medTABLE = "create table medTABLE" +
-            "(_id integer primary key, Trade_name text, " +
+            "(_id integer primary key, Trade_name text, Key_search text, " +
             "Generic_name1 integer, Dosage1 text, UOM1 text, " +
             "Generic_name2 integer, Dosage2 text, UOM2 text, " +
             "Generic_name3 integer, Dosage3 text, UOM3 text, " +

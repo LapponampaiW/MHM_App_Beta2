@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddMedicineActivity extends AppCompatActivity {
@@ -20,11 +21,17 @@ public class AddMedicineActivity extends AppCompatActivity {
             stringsDosage1, stringsDosage2, stringsDosage3, stringsDosage4, stringsUOM1,
             stringsUOM2, stringsUOM3, stringsUOM4, stringsGeneric2;
 
+    //รับค่าจาก stringUOM2-4
+    String[] stringsUOM2t, stringsUOM3t, stringsUOM4t;
+
 
     //widget
     EditText editTextAddTG;
     ListView listViewAddTG;
     Button buttonFilterListView;
+
+
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,23 +78,56 @@ public class AddMedicineActivity extends AppCompatActivity {
                 stringsGeneric3 = myManage.translate_GenericName(stringsGeneric3);
                 stringsGeneric4 = myManage.translate_GenericName(stringsGeneric4);
 
-                stringsUOM1 = myData.translate_uom(stringsUOM1);
+
+                stringsUOM1 = myData.translate_uomArray(stringsUOM1);
+                stringsUOM2t = new String[stringsUOM2.length];
+                stringsUOM3t = new String[stringsUOM3.length];
+                stringsUOM4t = new String[stringsUOM4.length];
+
+                for(int x = 0; x <stringsUOM2.length;x++) {
+                    if (stringsUOM2[x] == null) {
+                        stringsUOM2t[x] = "N/A";
+                    } else {
+                        stringsUOM2t[x] = myData.translate_uom(stringsUOM2[x]);
+                    }
+
+                }
+                for(int x = 0; x <stringsUOM3.length;x++) {
+                    if (stringsUOM3[x] == null) {
+                        stringsUOM3t[x] = "N/A";
+                    } else {
+                        stringsUOM3t[x] = myData.translate_uom(stringsUOM3[x]);
+                    }
+
+                }
+                for(int x = 0; x <stringsUOM4.length;x++) {
+                    if (stringsUOM4[x] == null) {
+                        stringsUOM4t[x] = "N/A";
+                    } else {
+                        stringsUOM4t[x] = myData.translate_uom(stringsUOM4[x]);
+                    }
+
+                }
+
+
 
                 //มีปัญหาตรงนี้
 
-                if (stringsUOM2!=null) {
-                    stringsUOM2 = myData.translate_uom(stringsUOM2);
+                //ลอง
+                StringBuilder builder = new StringBuilder("ข้อมูลที่บันทึกไว้  : \n");
+
+                String[] strings = new String[stringsUOM2.length];
+                strings = stringsUOM2;
+
+                for(int x = 0 ;x < strings.length;x++ ) {
+                    builder.append(stringsUOM2t[x]).append("\n");
                 }
-                if (stringsUOM3!=null) {
-                    stringsUOM3 = myData.translate_uom(stringsUOM3);
-                }
 
-                if (stringsUOM4.length==0) {
-                    stringsUOM4 = myData.translate_uom(stringsUOM4);
-                }
+                textView.setText(builder);
 
 
 
+                //จบตรงนี้!!!
 
                 String[] stringsGenericLine1 = new String[stringsGeneric1.length];
                 for(int i = 0;i < stringsGeneric1.length;i++) {
@@ -96,20 +136,21 @@ public class AddMedicineActivity extends AppCompatActivity {
                     } else if (stringsGeneric3[i].equals("N/A")) {
                         stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
                                 " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
-                                stringsDosage2[i] + " " + stringsUOM2[i];
+                                stringsDosage2[i] + " " + stringsUOM2t[i];
                     } else if (stringsGeneric4[i].equals("N/A")) {
+
                         stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
                                 " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
-                                stringsDosage2[i] + " " + stringsUOM2[i] + " / " +
+                                stringsDosage2[i] + " " + stringsUOM2t[i] + " / " +
                                 stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
-                                stringsUOM3[i];
+                                stringsUOM3t[i];
                     } else {
                         stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
                                 " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
-                                stringsDosage2[i] + " " + stringsUOM2[i] + " / " +
+                                stringsDosage2[i] + " " + stringsUOM2t[i] + " / " +
                                 stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
-                                stringsUOM3[i] + " / " + stringsGeneric4[i] + " " +
-                                stringsDosage4[i] + " " + stringsUOM4[i];
+                                stringsUOM3t[i] + " / " + stringsGeneric4[i] + " " +
+                                stringsDosage4[i] + " " + stringsUOM4t[i];
                     }
 
                 } //for
@@ -158,10 +199,10 @@ public class AddMedicineActivity extends AppCompatActivity {
                 stringsGeneric3 = myManage.translate_GenericName(stringsGeneric3);
                 stringsGeneric4 = myManage.translate_GenericName(stringsGeneric4);
 
-                stringsUOM1 = myData.translate_uom(stringsUOM1);
-                stringsUOM2 = myData.translate_uom(stringsUOM2);
-                stringsUOM3 = myData.translate_uom(stringsUOM3);
-                stringsUOM4 = myData.translate_uom(stringsUOM4);
+                stringsUOM1 = myData.translate_uomArray(stringsUOM1);
+                stringsUOM2 = myData.translate_uomArray(stringsUOM2);
+                stringsUOM3 = myData.translate_uomArray(stringsUOM3);
+                stringsUOM4 = myData.translate_uomArray(stringsUOM4);
 
                 //ทำ String ยาวๆ ของ 2 บรรทัด
                 String[] stringsGenericLine1 = new String[stringsGeneric1.length];
@@ -205,5 +246,7 @@ public class AddMedicineActivity extends AppCompatActivity {
         editTextAddTG = (EditText) findViewById(R.id.editText_Add_TG);
         listViewAddTG = (ListView) findViewById(R.id.listView_Add_TG);
         buttonFilterListView = (Button) findViewById(R.id.buttonFilterListView);
+
+        textView = (TextView) findViewById(R.id.textView9);
     }
 }

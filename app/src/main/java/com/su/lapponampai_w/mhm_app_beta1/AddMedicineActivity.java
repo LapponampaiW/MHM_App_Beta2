@@ -31,7 +31,6 @@ public class AddMedicineActivity extends AppCompatActivity {
     Button buttonFilterListView;
 
 
-    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,24 +109,6 @@ public class AddMedicineActivity extends AppCompatActivity {
                 }
 
 
-
-                //มีปัญหาตรงนี้
-
-                //ลอง
-                StringBuilder builder = new StringBuilder("ข้อมูลที่บันทึกไว้  : \n");
-
-                String[] strings = new String[stringsUOM2.length];
-                strings = stringsUOM2;
-
-                for(int x = 0 ;x < strings.length;x++ ) {
-                    builder.append(stringsUOM2t[x]).append("\n");
-                }
-
-                textView.setText(builder);
-
-
-
-                //จบตรงนี้!!!
 
                 String[] stringsGenericLine1 = new String[stringsGeneric1.length];
                 for(int i = 0;i < stringsGeneric1.length;i++) {
@@ -247,6 +228,5 @@ public class AddMedicineActivity extends AppCompatActivity {
         listViewAddTG = (ListView) findViewById(R.id.listView_Add_TG);
         buttonFilterListView = (Button) findViewById(R.id.buttonFilterListView);
 
-        textView = (TextView) findViewById(R.id.textView9);
     }
 }

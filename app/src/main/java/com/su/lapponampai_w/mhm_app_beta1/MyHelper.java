@@ -26,6 +26,15 @@ public class MyHelper extends SQLiteOpenHelper {
             "Which_Date_D text, Appearance text, Pharmaco text, T1 integer, T2 integer," +
             "T3 integer, T4 integer,T5 integer, T6 integer,T7 integer, T8 integer);";
 
+
+    //Create table mainTABLE
+    private static final String CREATE_mainTABLE = "create table mainTABLE" +
+            "(_id integer primary key, Med_id integer, Trade_name text, " +
+            "Generic_line text, Which_Date_D text, Appearance text, pharmaco text, " +
+            "T1 integer, T2 integer, T3 integer, T4 integer,T5 integer, T6 integer, " +
+            "T7 integer, T8 integer);";
+
+
     //Create table nameGenericTABLE
     private static final String CREATE_nameGenericTABLE = "create table nameGenericTABLE" +
             "(_id integer primary key, Generic_name text);";
@@ -43,6 +52,7 @@ public class MyHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_userTABLE);
         db.execSQL(CREATE_medTABLE);
         db.execSQL(CREATE_nameGenericTABLE);
+        db.execSQL(CREATE_mainTABLE);
 
     }
 

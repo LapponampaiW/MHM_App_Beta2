@@ -266,6 +266,45 @@ public class MyManage {
         return strread;
     }
 
+    //รับค่าจาก id
+    public String[] searchById(String id) {
+        String[] strread = null;
+        Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, "_id =?", new String[]{String.valueOf(id)}, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            strread = new String[26];
+                strread[0] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
+                strread[1] = cursor.getString(cursor.getColumnIndex(mcolumn_trade_name));
+                strread[2] = cursor.getString(cursor.getColumnIndex(mcolumn_key_search));
+                strread[3] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name1));
+                strread[4] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage1));
+                strread[5] = cursor.getString(cursor.getColumnIndex(mcolumn_uom1));
+                strread[6] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name2));
+                strread[7] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage2));
+                strread[8] = cursor.getString(cursor.getColumnIndex(mcolumn_uom2));
+                strread[9] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name3));
+                strread[10] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage3));
+                strread[11] = cursor.getString(cursor.getColumnIndex(mcolumn_uom3));
+                strread[12] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name4));
+                strread[13] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage4));
+                strread[14] = cursor.getString(cursor.getColumnIndex(mcolumn_uom4));
+                strread[15] = cursor.getString(cursor.getColumnIndex(mcolumn_which_date_d));
+                strread[16] = cursor.getString(cursor.getColumnIndex(mcolumn_appearance));
+                strread[17] = cursor.getString(cursor.getColumnIndex(mcolumn_pharmaco));
+                strread[18] = cursor.getString(cursor.getColumnIndex(mcolumn_t1));
+                strread[19] = cursor.getString(cursor.getColumnIndex(mcolumn_t2));
+                strread[20] = cursor.getString(cursor.getColumnIndex(mcolumn_t3));
+                strread[21] = cursor.getString(cursor.getColumnIndex(mcolumn_t4));
+                strread[22] = cursor.getString(cursor.getColumnIndex(mcolumn_t5));
+                strread[23] = cursor.getString(cursor.getColumnIndex(mcolumn_t6));
+                strread[24] = cursor.getString(cursor.getColumnIndex(mcolumn_t7));
+                strread[25] = cursor.getString(cursor.getColumnIndex(mcolumn_t8));
+        }
+        return strread;
+    }
+
+
+
     public String[] translate_GenericName(String[] genericname) {
 
         String[] strRead = new String[genericname.length];

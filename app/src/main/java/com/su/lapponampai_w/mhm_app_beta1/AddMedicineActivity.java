@@ -1,9 +1,11 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.content.Intent;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -19,10 +21,15 @@ public class AddMedicineActivity extends AppCompatActivity {
     //นำค่าจาก filterAddMed
     String[] stringsTradename, stringsappearance, stringsGeneric1, stringsGeneric3, stringsGeneric4,
             stringsDosage1, stringsDosage2, stringsDosage3, stringsDosage4, stringsUOM1,
-            stringsUOM2, stringsUOM3, stringsUOM4, stringsGeneric2;
+            stringsUOM2, stringsUOM3, stringsUOM4, stringsGeneric2, stringsId;
 
     //รับค่าจาก stringUOM2-4
     String[] stringsUOM2t, stringsUOM3t, stringsUOM4t;
+
+    //รับค่านำไปใช้สร้าง จาก id
+    String stringGenericLine;
+    String[] strings_receiver;
+
 
 
     //widget
@@ -54,6 +61,7 @@ public class AddMedicineActivity extends AppCompatActivity {
             public void onClick(View v) {
                 stringeditTextAddTG = editTextAddTG.getText().toString().trim();
                 //รับค่า
+                stringsId = myManage.filterAddMed(0, stringeditTextAddTG);
                 stringsTradename = myManage.filterAddMed(1, stringeditTextAddTG);
                 stringsGeneric1 = myManage.filterAddMed(3, stringeditTextAddTG);
                 stringsDosage1 = myManage.filterAddMed(4, stringeditTextAddTG);
@@ -110,7 +118,7 @@ public class AddMedicineActivity extends AppCompatActivity {
 
 
 
-                String[] stringsGenericLine1 = new String[stringsGeneric1.length];
+                final String[] stringsGenericLine1 = new String[stringsGeneric1.length];
                 for(int i = 0;i < stringsGeneric1.length;i++) {
                     if (stringsGeneric2[i].equals("N/A")) {
                         stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] + " " + stringsUOM1[i];
@@ -141,6 +149,39 @@ public class AddMedicineActivity extends AppCompatActivity {
 
                 MyAdaptor myAdaptor = new MyAdaptor(AddMedicineActivity.this, stringsTradename, stringsGenericLine1, intsIndex);
                 listViewAddTG.setAdapter(myAdaptor);
+
+
+                //ทำการ Click listViewAddTG
+                listViewAddTG.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        String stringSearchId = stringsId[position];
+                        stringGenericLine = stringsGenericLine1[position];
+                        strings_receiver = myManage.searchById(stringSearchId);
+                        //Toast.makeText(AddMedicineActivity.this,stringGenericLine,Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(AddMedicineActivity.this,AddMedicine2Activity.class);
+
+                        intent.putExtra("Med_id",strings_receiver[0]);
+                        intent.putExtra("Trade_name", strings_receiver[1]);
+                        intent.putExtra("Generic_line", stringGenericLine);
+                        intent.putExtra("Which_Date_D", strings_receiver[15]);
+                        intent.putExtra("Appearance", strings_receiver[16]);
+                        intent.putExtra("Pharmaco", strings_receiver[17]);
+                        intent.putExtra("T1",strings_receiver[18]);
+                        intent.putExtra("T2",strings_receiver[19]);
+                        intent.putExtra("T3",strings_receiver[20]);
+                        intent.putExtra("T4",strings_receiver[21]);
+                        intent.putExtra("T5",strings_receiver[22]);
+                        intent.putExtra("T6",strings_receiver[23]);
+                        intent.putExtra("T7",strings_receiver[24]);
+                        intent.putExtra("T8",strings_receiver[25]);
+
+                        startActivity(intent);
+
+                    }
+                });
 
 
             }

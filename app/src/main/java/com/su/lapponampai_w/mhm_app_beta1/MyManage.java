@@ -381,11 +381,11 @@ public class MyManage {
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
 
         if (cursor.getCount()==0) {
-            addMedTABLEValue("Antivir","Zidovudine", 5, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", "1", null, 0, 0, 0, 0, 0, 0, 0, 0);
-            addMedTABLEValue("GPO vir S",null, 2, "100", "1", 3, "100", "1", 4, "100", "1", 1, null, null, "1", "1", null, 0, 0, 0, 0, 0, 0, 0, 0);
-            addMedTABLEValue("Curam", null, 6, "1", "2", 7, "100", "1", 2, "1000", "1", 3, "100", "1", "1", "1", null, 0, 0, 0, 0, 0, 0, 0, 0);
-            addMedTABLEValue("GPO vir Z",null, 5, "250", "1", 3, "100", "1", 4, "100", "1", 1, null, null, "1", "1", null, 0, 0, 0, 0, 0, 0, 0, 0);
-            addMedTABLEValue("Augmentin", "Amoxicillin", 6, "1", "2", 7, "125", "1", 1, null, null, 1, null, null, "1", "1", "1", 0, 0, 0, 0, 0, 0, 0, 0);
+            addMedTABLEValue("Antivir","Zidovudine", 5, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", "1", null, 800, 0, 0, 0, 0, 0, 0, 0);
+            addMedTABLEValue("GPO vir S",null, 2, "100", "1", 3, "100", "1", 4, "100", "1", 1, null, null, "1", "1", null, 1030, 0, 0, 0, 0, 0, 0, 0);
+            addMedTABLEValue("Curam", null, 6, "1", "2", 7, "100", "1", 2, "1000", "1", 3, "100", "1", "1", "1", null, 2020, 0, 0, 0, 0, 0, 0, 0);
+            addMedTABLEValue("GPO vir Z",null, 5, "250", "1", 3, "100", "1", 4, "100", "1", 1, null, null, "1", "1", null, 203, 0, 0, 0, 0, 0, 0, 0);
+            addMedTABLEValue("Augmentin", "Amoxicillin", 6, "1", "2", 7, "125", "1", 1, null, null, 1, null, null, "1", "1", "1", 518, 0, 0, 0, 0, 0, 0, 0);
 
 
         }

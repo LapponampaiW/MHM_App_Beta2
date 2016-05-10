@@ -12,13 +12,36 @@ import android.widget.Toast;
  */
 public class DailyUpdateReceiver extends BroadcastReceiver{
 
+    //Explicit
+    private String[] mainIDStrings, timeRefStrings;
+    private String dateString;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        Toast.makeText(context, "Update sumTABLE Success", Toast.LENGTH_LONG).show();
 
+        dateString = intent.getStringExtra("Date");
+
+        Toast.makeText(context, "Update sumTABLE Success", Toast.LENGTH_LONG).show();
         Log.d("10MayV1", "Receive ทำงาน");
+        Log.d("10MayV1", "Date ที่ได้ ==>" + dateString);
+
+        MyManage myManage = new MyManage(context);
+        mainIDStrings = myManage.readAllMainTABLE(0);
+        timeRefStrings = myManage.readAllMainTABLE(1);
+
+        for(int i=0; i < mainIDStrings.length;i++) {
+            Log.d("10MayV1", "id = " + mainIDStrings[i]);
+            Log.d("10MayV1", "id = " + timeRefStrings[i]);
+
+            myManage.addValueToSumTable(mainIDStrings[i], dateString, timeRefStrings[i], "", "", "");
+
+
+
+        } //for
+
+
+
 
     }
 }  //Main Class

@@ -10,7 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,16 +47,34 @@ public class MainActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();  //ค้นหาเวลาในเครื่อง
         Calendar myCalendar1 = (Calendar) calendar.clone(); //clone เวลาในเครื่องเข้ามาใช้
 
-        myCalendar1.set(Calendar.HOUR_OF_DAY, 0);
-        myCalendar1.set(Calendar.MINUTE, 6);
-        myCalendar1.set(Calendar.SECOND, 0);
+
+        //myCalendar1.set(calendar.DAY_OF_MONTH,15);
+        myCalendar1.set(Calendar.HOUR_OF_DAY, 23);
+        myCalendar1.set(Calendar.MINUTE, 59);
+        myCalendar1.set(Calendar.SECOND, 59);
         myCalendar1.set(Calendar.MILLISECOND, 0);
 
         Log.d("10MayV1", "myCaledar ==> " + myCalendar1.getTime().toString()); //กำหนดค่าค่าเวลาในการเตือน
 
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String currentDate = dateFormat.format(date);
+
         Intent intent = new Intent(getBaseContext(),DailyUpdateReceiver.class);
+
+
+
+        //Date
+        //intent.putExtra("intDay",calendar.get(Calendar.DAY_OF_MONTH) );
+
+        intent.putExtra("Date", currentDate);
+
+        Random random = new Random();
+        int myRandom = random.nextInt(1000);
+
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
-                1005,intent,0);
+                myRandom,intent,0);
+
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.RTC_WAKEUP, myCalendar1.getTimeInMillis(),pendingIntent); //Wakeuppppppp
 

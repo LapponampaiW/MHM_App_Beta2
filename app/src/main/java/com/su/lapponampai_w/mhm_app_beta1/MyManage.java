@@ -83,6 +83,28 @@ public class MyManage {
 
     } //Constructor
 
+    // Read All mainTABLE
+    public String[] readAllMainTABLE(int intColumn) { //0 หมายถึง ==> _id , 1 ==>T1
+
+        String[] resultStrings = null;
+        Cursor cursor = readSqLiteDatabase.query("mainTABLE",
+                new String[]{"_id", "T1"},
+                null,null,null,null,null);
+
+        resultStrings = new String[cursor.getCount()];
+
+        cursor.moveToFirst();
+        for (int i=0; i<cursor.getCount();i++) {
+
+            resultStrings[i] = cursor.getString(intColumn);
+            cursor.moveToNext();
+
+        } //for
+        cursor.close();
+
+            return resultStrings;
+    }
+
 
     public long addValueTomainTABLE(String strMed_id,
                                     String strTrade_name,

@@ -22,11 +22,16 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".AddMedicineActivity" />
-        <activity android:name=".AddMedicine2Activity"></activity>
+        <activity android:name=".AddMedicine2Activity" />
 
+        <receiver
+            android:name=".DailyUpdateReceiver"
+            android:process=":remote" />
+        <receiver
+            android:name=".AlarmReceiver"
+            android:process=":remote" />
 
-        <receiver android:name=".DailyUpdateReceiver" android:process=":remote"/>
-
+        <activity android:name=".Calendartest"></activity>
     </application>
 
 </manifest>

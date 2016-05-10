@@ -20,6 +20,10 @@ public class SplashScreen extends AppCompatActivity {
 
         myManage = new MyManage(this);
 
+        //Test Add Value to sumTABLE
+        //myManage.addValueToSumTable("Main_id", "DateRef", "TimeRef", "DateCheck",
+          //      "TimeCheck", "SkipHold");
+
 
 
 

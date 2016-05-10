@@ -65,13 +65,78 @@ public class MyManage {
     private static final String gcolumn_generic_name = "Generic_name";
     private static final String[] column_nameGenericTABLE = {gcolumn_id,gcolumn_generic_name};
 
+    //sumTABLE
+    private static final String sum_table = "sumTABLE";
+    private static final String column_Main_id = "Main_id";
+    private static final String column_DateRef = "DateRef";
+    private static final String column_TimeRef = "TimeRef";
+    private static final String column_DateCheck = "DateCheck";
+    private static final String column_TimeCheck = "TimeCheck";
+    private static final String column_SkipHold = " SkipHold";
+
 
     public MyManage(Context context) {
         helper = new MyHelper(context);
 
         readSqLiteDatabase = helper.getReadableDatabase();
         writeSqLiteDatabase = helper.getWritableDatabase();
+    } //Constructor
+
+
+    public long addValueTomainTABLE(String strMed_id,
+                                    String strTrade_name,
+                                    String strGeneric_line,
+                                    String strWhich_Date_D,
+                                    String strAppearance,
+                                    String strPharmaco,
+                                    String strT1,
+                                    String strT2,
+                                    String strT3,
+                                    String strT4,
+                                    String strT5,
+                                    String strT6,
+                                    String strT7,
+                                    String strT8) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Med_id", strMed_id);
+        contentValues.put("Trade_name", strTrade_name);
+        contentValues.put("Generic_line", strGeneric_line);
+        contentValues.put("Which_Date_D", strWhich_Date_D);
+        contentValues.put("Appearance", strAppearance);
+        contentValues.put("Pharmaco", strPharmaco);
+        contentValues.put("T1", strT1);
+        contentValues.put("T2", strT2);
+        contentValues.put("T3", strT3);
+        contentValues.put("T4", strT4);
+        contentValues.put("T5", strT5);
+        contentValues.put("T6", strT6);
+        contentValues.put("T7", strT7);
+        contentValues.put("T8", strT8);
+
+
+        return writeSqLiteDatabase.insert("mainTABLE", null, contentValues);
     }
+
+    public long addValueToSumTable(String strMain_id,
+                                   String strDateRef,
+                                   String strTimeRef,
+                                   String strDateCheck,
+                                   String strTimeCheck,
+                                   String strSkipHold) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(column_Main_id, strMain_id);
+        contentValues.put(column_DateRef, strDateRef);
+        contentValues.put(column_TimeRef, strTimeRef);
+        contentValues.put(column_DateCheck, strDateCheck);
+        contentValues.put(column_TimeCheck, strTimeCheck);
+        contentValues.put(column_SkipHold, strSkipHold); // ใช้ Clrl + Enter
+
+        return writeSqLiteDatabase.insert(sum_table, null, contentValues);
+    }
+
+
 
 
     public int check_null_userTABLE() {

@@ -80,6 +80,7 @@ public class MyManage {
 
         readSqLiteDatabase = helper.getReadableDatabase();
         writeSqLiteDatabase = helper.getWritableDatabase();
+
     } //Constructor
 
 

@@ -23,6 +23,10 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".AddMedicineActivity" />
         <activity android:name=".AddMedicine2Activity"></activity>
+
+
+        <receiver android:name=".DailyUpdateReceiver" android:process=":remote"/>
+
     </application>
 
 </manifest>

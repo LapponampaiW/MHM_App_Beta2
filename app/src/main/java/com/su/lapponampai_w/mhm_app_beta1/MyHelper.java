@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class MyHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "MHM.db";
+    public static final String DATABASE_NAME = "MHM.db";
     private static final int DATABASE_VERSION = 1;
 
     //Create userTABLE

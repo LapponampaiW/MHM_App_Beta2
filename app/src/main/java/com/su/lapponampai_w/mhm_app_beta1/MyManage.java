@@ -416,8 +416,8 @@ public class MyManage {
                               int s_generic_name3, String s_dosage3, String s_uom3,
                               int s_generic_name4, String s_dosage4, String s_uom4,
                               String s_which_date_d, String s_appearance, String s_pharmaco,
-                              int s_t1, int s_t2, int s_t3, int s_t4,
-                              int s_t5, int s_t6, int s_t7, int s_t8) {
+                              String s_t1, String s_t2, String s_t3, String s_t4,
+                              String s_t5, String s_t6, String s_t7, String s_t8) {
 
         ContentValues contentValues = new ContentValues();
         double adddouble = 0;
@@ -469,11 +469,11 @@ public class MyManage {
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
 
         if (cursor.getCount()==0) {
-            addMedTABLEValue("Antivir","Zidovudine", 5, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", "1", null, 800, 0, 0, 0, 0, 0, 0, 0);
-            addMedTABLEValue("GPO vir S",null, 2, "100", "1", 3, "100", "1", 4, "100", "1", 1, null, null, "1", "1", null, 1030, 0, 0, 0, 0, 0, 0, 0);
-            addMedTABLEValue("Curam", null, 6, "1", "2", 7, "100", "1", 2, "1000", "1", 3, "100", "1", "1", "1", null, 2020, 0, 0, 0, 0, 0, 0, 0);
-            addMedTABLEValue("GPO vir Z",null, 5, "250", "1", 3, "100", "1", 4, "100", "1", 1, null, null, "1", "1", null, 203, 0, 0, 0, 0, 0, 0, 0);
-            addMedTABLEValue("Augmentin", "Amoxicillin", 6, "1", "2", 7, "125", "1", 1, null, null, 1, null, null, "1", "1", "1", 518, 0, 0, 0, 0, 0, 0, 0);
+            addMedTABLEValue("Antivir","Zidovudine", 5, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", "1", null, "8:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("GPO vir S",null, 2, "100", "1", 3, "100", "1", 4, "100", "1", 1, null, null, "1", "1", null, "9:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Curam", null, 6, "1", "2", 7, "100", "1", 2, "1000", "1", 3, "100", "1", "1", "1", null, "10:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("GPO vir Z",null, 5, "250", "1", 3, "100", "1", 4, "100", "1", 1, null, null, "1", "1", null, "11:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Augmentin", "Amoxicillin", 6, "1", "2", 7, "125", "1", 1, null, null, 1, null, null, "1", "1", "1", "11:30", "", "", "", "", "", "", "");
 
 
         }

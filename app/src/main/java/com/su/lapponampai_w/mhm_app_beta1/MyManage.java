@@ -78,6 +78,14 @@ public class MyManage {
     private static final String[] column_drugInteractionTABLE = {dcolumn_id,dcolumn_medicine1,dcolumn_medicine2,
             dcolumn_type_interaction,dcolumn_message,dcolumn_timeMedicine1_2,dcolumn_timeMedicine2_1};
 
+    //mainTABLE
+    //ใช้ ตัวแปรเดียวกับ medTABLE
+    private static final String mainTABLE = "mainTABLE";
+    private static final String mcolumn_Med_id = "Med_id";
+    private static final String mcolumn_generic_line = "Generic_line";
+    private static final String[] column_mainTABLE = {mcolumn_id,mcolumn_Med_id,mcolumn_trade_name,
+            mcolumn_generic_line,mcolumn_which_date_d,mcolumn_appearance,mcolumn_pharmaco,mcolumn_t1,
+            mcolumn_t2,mcolumn_t3,mcolumn_t4,mcolumn_t5,mcolumn_t6,mcolumn_t7,mcolumn_t8};
 
     //sumTABLE
     private static final String sum_table = "sumTABLE";
@@ -369,7 +377,6 @@ public class MyManage {
         return strread;
     }
 
-
     public String[] filter_medTABLE_by_id(String id) {
         Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"_id =?",new String[]{String.valueOf(id)},null,null,null);
         String[] strREAD = new String[4];
@@ -388,6 +395,7 @@ public class MyManage {
         return strREAD;
     }
 
+
     //เริ่มค้นหา Drug Interaction ของยาแต่ละตัวที่มีอยู่แล้วใน Database
     public void checkDrugInteraction(String drugName) {
 
@@ -401,6 +409,13 @@ public class MyManage {
         String[] stringsMessage = null;
         String[] stringsTimeMedicine1_2 = null;
         String[] stringsTimeMedicine2_1 = null;
+
+        String[] stringsMed_id = null;
+
+        String[] stringsGeneric1 = null;
+        String[] stringsGeneric2 = null;
+        String[] stringsGeneric3 = null;
+        String[] stringsGeneric4 = null;
 
 
         for(int i = 0; i < 4; i++) {
@@ -430,13 +445,54 @@ public class MyManage {
                     } //for inner
 
                     //ไปอ่านค่าจากตาราง mainTABLE ว่ามี ยาอะไรบ้าง (ไปดูใน _id แล้วไป filter จาก medTABLE อีกทีจะได้ค่า generic name ทั้งหมดที่ ผู้ป่วยกิน)
-                    // เอา generic name ทั้งหมด มาเทียบกับMedication2[w] ถ้าตรงกันแปลว่ามี Drug Interaction
+                    Cursor cursormainTABLE = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null, null);
+                    stringsMed_id = new String[cursormainTABLE.getCount()];
+                    stringsGeneric1 = new String[cursormainTABLE.getCount()];
+                    stringsGeneric2 = new String[cursormainTABLE.getCount()];
+                    stringsGeneric3 = new String[cursormainTABLE.getCount()];
+                    stringsGeneric4 = new String[cursormainTABLE.getCount()];
+
+                    if (cursormainTABLE != null) {
+                        cursormainTABLE.moveToFirst();
+                        for (int x = 0; x < cursormainTABLE.getCount(); x++) {
+                            stringsMed_id[x] = cursormainTABLE.getString(cursormainTABLE.getColumnIndex(mcolumn_Med_id));
+
+
+                            Cursor cursormedTABLE = readSqLiteDatabase.query(medTABLE,column_medTABLE,"_id =?",new String[]{String.valueOf(stringsMed_id[x])},null,null,null);
+                            if (cursormedTABLE != null) {
+                                cursormedTABLE.moveToFirst();
+                                stringsGeneric1[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name1));
+                                stringsGeneric2[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name2));
+                                stringsGeneric3[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name3));
+                                stringsGeneric4[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name4));
+                            } //if medTABLE
+                            Log.d("checkDrugInteraction", stringsMed_id[x] + stringsGeneric1[x] + stringsGeneric2[x] + stringsGeneric3[x] + stringsGeneric4[x]);
+                            cursormainTABLE.moveToNext();
+                        } //for mainTABLE
+
+
+                        // เอา generic name ทั้งหมด มาเทียบกับMedication2[w] ถ้าตรงกันแปลว่ามี Drug
+                        for(int y = 0; y<stringsMedicine2.length; y++) {
+
+                            for (int z = 0; z < stringsGeneric1.length; z++) {
+                                if (stringsMedicine2[y].equals(stringsGeneric1[z])) {
+                                    Log.d("DI", stringsMedicine2[y] + stringsGeneric1[z]);
+                                } else if (stringsGeneric2[y].equals(stringsGeneric2[z])) {
+                                    Log.d("DI", stringsMedicine2[y] + stringsGeneric2[z]);
+                                } else if (stringsGeneric2[y].equals(stringsGeneric3[z])) {
+                                    Log.d("DI", stringsMedicine2[y] + stringsGeneric3[z]);
+                                } else if (stringsGeneric2[y].equals(stringsGeneric4[z])) {
+                                    Log.d("DI", stringsMedicine2[y] + stringsGeneric4[z]);
+                                }
+
+                            }
+
+                        } //Check DrugInteraction ของ 2 อัน
+
+
+                    }// if mainTABLE
+
                     // เอาทุกอันมาดูก่อนแล้วค่อย ตั้ง Alert ทีเดียวคือ เทียบว่ามี 1 > 2 > 3 ok นะ แล้วทำ Dialog box ด้วย
-
-
-
-
-
 
                 } //if inner
 
@@ -611,7 +667,6 @@ public class MyManage {
             adddrugInteractionTABLEValue(2, 3, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
             adddrugInteractionTABLEValue(2, 4, "2", "แค่ระมัดระวังในการทานร่วมกัน", 0, 0);
             adddrugInteractionTABLEValue(2, 5, "3", "Atazanavir ต้องกินก่อน Antacid 4 ชั่วโมงหรือ หลัง Antacid 2 ชั่วโมง", 4, 2);
-
 
         }
     }

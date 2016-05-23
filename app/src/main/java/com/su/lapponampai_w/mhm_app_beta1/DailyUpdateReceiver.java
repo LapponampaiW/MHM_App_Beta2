@@ -12,6 +12,9 @@ import android.widget.Toast;
  */
 public class DailyUpdateReceiver extends BroadcastReceiver{
 
+    //เมื่อถึงเวลาตามที่กำหนดจะ Saveข้อมูลเข้าตาราง SumTable อัตโนมัติ
+
+
     //Explicit
     private String[] mainIDStrings, timeRefStrings;
     private String dateString;

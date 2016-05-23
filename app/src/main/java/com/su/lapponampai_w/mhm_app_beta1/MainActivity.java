@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         updatesumTABLE00();
 
         //Notification from SQLite
-        notificationFormSQLite();
+        notificationFormSQLite();  //เปิดในมือถือแล้วใช้ไม่ได้
 
 
         buttonAddMedicine.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     } //Main Method
+
+
+
+
 
     public void clickCalendar(View view) {
         startActivity(new Intent(MainActivity.this,Calendartest.class));
@@ -81,8 +85,6 @@ public class MainActivity extends AppCompatActivity {
             minStrings[i] = strings1[1];
 
         }
-
-
 
         cursor.close();
 

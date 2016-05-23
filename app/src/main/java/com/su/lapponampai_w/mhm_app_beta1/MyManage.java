@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.sql.Time;
@@ -368,6 +369,82 @@ public class MyManage {
         return strread;
     }
 
+
+
+    //เริ่มค้นหา Drug Interaction ของยาแต่ละตัวที่มีอยู่แล้วใน Database
+    public void checkDrugInteraction(String drugName) {
+        Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"_id =?",new String[]{String.valueOf(drugName)},null,null,null);
+
+        String[] strREAD = new String[4];
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            strREAD[0] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name1));
+            strREAD[1] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name2));
+            strREAD[2] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name3));
+            strREAD[3] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name4));
+
+        } else {
+            strREAD = null;
+        }
+
+        Log.d("checkDrugInteraction", strREAD[0] + strREAD[1]+strREAD[2]+strREAD[3]);
+
+
+
+
+        for(int i = 0; i < 4; i++) {
+            if (!strREAD[i].equals("1")) {
+                Log.d("checkDrugInteraction", strREAD[i]);
+                //เริ่ม
+                //Cursor cursorInteraction1 = readSqLiteDatabase.query(drugInteractionTABLE,column_drugInteractionTABLE,"Medicine1" + " LIKE '" + strREAD[i] + "'",null,null,null,null);
+
+
+            }
+        }
+
+        /*
+
+        //ลองทำ cursorInteraction
+
+        Cursor cursorInteraction = readSqLiteDatabase.query(drugInteractionTABLE, column_drugInteractionTABLE, null, null, null, null, null);
+        //Cursor cursorInteraction = readSqLiteDatabase.query(drugInteractionTABLE,column_drugInteractionTABLE,"Generic_name1" + " LIKE '" + drugName + "'" + " or " + "Generic_name2" + " LIKE '" + drugName + "'" + " or " + "Generic_name3" + " LIKE '" + drugName + "'" + " or " + "Generic_name4" + " LIKE '" + drugName + "'",null,null,null,null);
+        //Cursor cursorInteraction = readSqLiteDatabase.query(drugInteractionTABLE,column_drugInteractionTABLE,"Medicine1" + " LIKE '" + drugName + "'",null,null,null,null);
+
+        String[] stringsMedicine1 = null;
+        String[] stringsMedicine2 = null;
+        String[] stringsType_interaction = null;
+        String[] stringsMessage = null;
+        String[] stringsTimeMedicine1_2 = null;
+        String[] stringsTimeMedicine2_1 = null;
+
+        if (cursorInteraction != null) {
+            cursorInteraction.moveToFirst();
+            stringsMedicine1 = new String[cursorInteraction.getCount()];
+            stringsMedicine2 = new String[cursorInteraction.getCount()];
+            stringsType_interaction = new String[cursorInteraction.getCount()];
+            stringsMessage = new String[cursorInteraction.getCount()];
+            stringsTimeMedicine1_2 = new String[cursorInteraction.getCount()];
+            stringsTimeMedicine2_1 = new String[cursorInteraction.getCount()];
+
+            for (int i = 0; i < cursorInteraction.getCount(); i++) {
+                stringsMedicine1[i] = cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_medicine1));
+                stringsMedicine2[i] = cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_medicine2));
+                stringsType_interaction[i] = cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_type_interaction));
+                stringsMessage[i] = cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_message));
+                stringsTimeMedicine1_2[i] = cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_timeMedicine1_2));
+                stringsTimeMedicine2_1[i] = cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_timeMedicine2_1));
+
+                Log.d("Result", stringsMedicine1[i] + " " + stringsMedicine2[i] + " " + stringsType_interaction[i] + " " + stringsMessage[i] + " " + stringsTimeMedicine1_2[i] + " " + stringsTimeMedicine2_1[i]);
+                cursorInteraction.moveToNext();
+            }
+
+        }
+
+        */
+
+    }
+
     //รับค่าจาก id
     public String[] searchById(String id) {
         String[] strread = null;
@@ -404,8 +481,6 @@ public class MyManage {
         }
         return strread;
     }
-
-
 
     public String[] translate_GenericName(String[] genericname) {
 
@@ -501,9 +576,9 @@ public class MyManage {
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
 
         if (cursor.getCount()==0) {
-            addMedTABLEValue("Antivir","Zidovudine", 5, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", "1", null, "8:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("GPO vir S",null, 2, "100", "1", 3, "100", "1", 4, "100", "1", 1, null, null, "1", "1", null, "9:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Curam", null, 6, "1", "2", 7, "100", "1", 2, "1000", "1", 3, "100", "1", "1", "1", null, "10:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Antivir","Zidovudine", 2, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", "1", null, "8:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("GPO vir S",null, 3, "100", "1", 4, "100", "1", 5, "100", "1", 1, null, null, "1", "1", null, "9:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Curam", null, 4, "1", "2", 6, "100", "1", 7, "1000", "1", 7, "100", "1", "1", "1", null, "10:00", "", "", "", "", "", "", "");
             addMedTABLEValue("GPO vir Z",null, 5, "250", "1", 3, "100", "1", 4, "100", "1", 1, null, null, "1", "1", null, "11:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Augmentin", "Amoxicillin", 6, "1", "2", 7, "125", "1", 1, null, null, 1, null, null, "1", "1", "1", "11:30", "", "", "", "", "", "", "");
 
@@ -532,9 +607,9 @@ public class MyManage {
 
         if (cursor.getCount() == 0) {
 
-            adddrugInteractionTABLEValue(1, 2, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
-            adddrugInteractionTABLEValue(1, 3, "2", "แค่ระมัดระวังในการทานร่วมกัน", 0, 0);
-            adddrugInteractionTABLEValue(1, 4, "3", "Atazanavir ต้องกินก่อน Antacid 4 ชั่วโมงหรือ หลัง Antacid 2 ชั่วโมง", 4, 2);
+            adddrugInteractionTABLEValue(2, 3, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(2, 4, "2", "แค่ระมัดระวังในการทานร่วมกัน", 0, 0);
+            adddrugInteractionTABLEValue(2, 5, "3", "Atazanavir ต้องกินก่อน Antacid 4 ชั่วโมงหรือ หลัง Antacid 2 ชั่วโมง", 4, 2);
 
 
         }

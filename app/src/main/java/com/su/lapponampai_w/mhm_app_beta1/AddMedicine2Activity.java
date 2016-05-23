@@ -2,6 +2,7 @@ package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -105,11 +106,21 @@ public class AddMedicine2Activity extends AppCompatActivity {
     public void clickSaveAddMedicine(View view) {
 
         MyManage myManage = new MyManage(this);
+
+        //เริ่มจากตรงนี้นะ
+        myManage.checkDrugInteraction(string1);
+
+
+
+
+        /*  ปิดไว้ก่อนเดี๋ยวค่อยใช้
         myManage.addValueTomainTABLE(string1,string2,string3,string4,string5,string6,string7,string8,string9,string10,string11,string12,string13,string14);
 
         Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);
         startActivity(intent);
         finish();
+
+        */
 
     } //clickSave
 

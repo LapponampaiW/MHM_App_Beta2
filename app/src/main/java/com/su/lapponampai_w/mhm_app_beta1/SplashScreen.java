@@ -70,6 +70,7 @@ public class SplashScreen extends AppCompatActivity {
 
         myManage.nameGenericTABLEData();
         myManage.medTABLEData();
+        myManage.drugInteractionTABLEData();
 
     }  //Main Method
 }  //Main Class

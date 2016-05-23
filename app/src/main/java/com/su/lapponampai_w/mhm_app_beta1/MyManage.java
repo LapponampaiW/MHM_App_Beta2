@@ -65,6 +65,19 @@ public class MyManage {
     private static final String gcolumn_generic_name = "Generic_name";
     private static final String[] column_nameGenericTABLE = {gcolumn_id,gcolumn_generic_name};
 
+    //drugInteractionTABLE
+    private static final String drugInteractionTABLE = "drugInteractionTABLE";
+    private static final String dcolumn_id = "_id";
+    private static final String dcolumn_medicine1 = "Medicine1";
+    private static final String dcolumn_medicine2 = "Medicine2";
+    private static final String dcolumn_type_interaction = "Type_interaction";
+    private static final String dcolumn_message = "Message";
+    private static final String dcolumn_timeMedicine1_2 = "TimeMedicine1_2";
+    private static final String dcolumn_timeMedicine2_1 = "TimeMedicine2_1";
+    private static final String[] column_drugInteractionTABLE = {dcolumn_id,dcolumn_medicine1,dcolumn_medicine2,
+            dcolumn_type_interaction,dcolumn_message,dcolumn_timeMedicine1_2,dcolumn_timeMedicine2_1};
+
+
     //sumTABLE
     private static final String sum_table = "sumTABLE";
     private static final String column_Main_id = "Main_id";
@@ -73,6 +86,7 @@ public class MyManage {
     private static final String column_DateCheck = "DateCheck";
     private static final String column_TimeCheck = "TimeCheck";
     private static final String column_SkipHold = " SkipHold";
+
 
 
     public MyManage(Context context) {
@@ -410,6 +424,24 @@ public class MyManage {
         return strRead;
     } //translate_GenericName
 
+
+    public long adddrugInteractionTABLEValue(int d_medicine1, int d_medicine2, String d_type_interaction,
+                                            String d_message,int d_timemedicine1_2, int d_timemedicine2_1) {
+
+        ContentValues contentValues = new ContentValues();
+        long addlong = 0;
+        contentValues.put(dcolumn_medicine1,d_medicine1);
+        contentValues.put(dcolumn_medicine2,d_medicine2);
+        contentValues.put(dcolumn_type_interaction,d_type_interaction);
+        contentValues.put(dcolumn_message,d_message);
+        contentValues.put(dcolumn_timeMedicine1_2,d_timemedicine1_2);
+        contentValues.put(dcolumn_timeMedicine2_1,d_timemedicine2_1);
+
+        addlong = writeSqLiteDatabase.insert(drugInteractionTABLE, null, contentValues);
+        return addlong;
+
+    } //adddrugInteractionTABLEValue
+
     public double addMedTABLEValue(String s_trade_name, String s_key_search,
                               int s_generic_name1, String s_dosage1, String s_uom1,
                               int s_generic_name2, String s_dosage2, String s_uom2,
@@ -492,6 +524,19 @@ public class MyManage {
             addnameGenericTABLEValue("Zidovudine"); //5
             addnameGenericTABLEValue("Amoxicillin"); //6
             addnameGenericTABLEValue("Clavulanic"); //7
+        }
+    }  //nameGenericTABLEData
+
+    public void drugInteractionTABLEData() {
+        Cursor cursor = readSqLiteDatabase.query(drugInteractionTABLE, column_drugInteractionTABLE, null, null, null, null, null);
+
+        if (cursor.getCount() == 0) {
+
+            adddrugInteractionTABLEValue(1, 2, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(1, 3, "2", "แค่ระมัดระวังในการทานร่วมกัน", 0, 0);
+            adddrugInteractionTABLEValue(1, 4, "3", "Atazanavir ต้องกินก่อน Antacid 4 ชั่วโมงหรือ หลัง Antacid 2 ชั่วโมง", 4, 2);
+
+
         }
     }
 

@@ -370,11 +370,8 @@ public class MyManage {
     }
 
 
-
-    //เริ่มค้นหา Drug Interaction ของยาแต่ละตัวที่มีอยู่แล้วใน Database
-    public void checkDrugInteraction(String drugName) {
-        Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"_id =?",new String[]{String.valueOf(drugName)},null,null,null);
-
+    public String[] filter_medTABLE_by_id(String id) {
+        Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"_id =?",new String[]{String.valueOf(id)},null,null,null);
         String[] strREAD = new String[4];
         if (cursor != null) {
             cursor.moveToFirst();
@@ -388,28 +385,15 @@ public class MyManage {
             strREAD = null;
         }
 
+        return strREAD;
+    }
+
+    //เริ่มค้นหา Drug Interaction ของยาแต่ละตัวที่มีอยู่แล้วใน Database
+    public void checkDrugInteraction(String drugName) {
+
+        String[] strREAD = filter_medTABLE_by_id(drugName);
+
         Log.d("checkDrugInteraction", strREAD[0] + strREAD[1]+strREAD[2]+strREAD[3]);
-
-
-
-
-        for(int i = 0; i < 4; i++) {
-            if (!strREAD[i].equals("1")) {
-                Log.d("checkDrugInteraction", strREAD[i]);
-                //เริ่ม
-                //Cursor cursorInteraction1 = readSqLiteDatabase.query(drugInteractionTABLE,column_drugInteractionTABLE,"Medicine1" + " LIKE '" + strREAD[i] + "'",null,null,null,null);
-
-
-            }
-        }
-
-        /*
-
-        //ลองทำ cursorInteraction
-
-        Cursor cursorInteraction = readSqLiteDatabase.query(drugInteractionTABLE, column_drugInteractionTABLE, null, null, null, null, null);
-        //Cursor cursorInteraction = readSqLiteDatabase.query(drugInteractionTABLE,column_drugInteractionTABLE,"Generic_name1" + " LIKE '" + drugName + "'" + " or " + "Generic_name2" + " LIKE '" + drugName + "'" + " or " + "Generic_name3" + " LIKE '" + drugName + "'" + " or " + "Generic_name4" + " LIKE '" + drugName + "'",null,null,null,null);
-        //Cursor cursorInteraction = readSqLiteDatabase.query(drugInteractionTABLE,column_drugInteractionTABLE,"Medicine1" + " LIKE '" + drugName + "'",null,null,null,null);
 
         String[] stringsMedicine1 = null;
         String[] stringsMedicine2 = null;
@@ -418,32 +402,49 @@ public class MyManage {
         String[] stringsTimeMedicine1_2 = null;
         String[] stringsTimeMedicine2_1 = null;
 
-        if (cursorInteraction != null) {
-            cursorInteraction.moveToFirst();
-            stringsMedicine1 = new String[cursorInteraction.getCount()];
-            stringsMedicine2 = new String[cursorInteraction.getCount()];
-            stringsType_interaction = new String[cursorInteraction.getCount()];
-            stringsMessage = new String[cursorInteraction.getCount()];
-            stringsTimeMedicine1_2 = new String[cursorInteraction.getCount()];
-            stringsTimeMedicine2_1 = new String[cursorInteraction.getCount()];
 
-            for (int i = 0; i < cursorInteraction.getCount(); i++) {
-                stringsMedicine1[i] = cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_medicine1));
-                stringsMedicine2[i] = cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_medicine2));
-                stringsType_interaction[i] = cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_type_interaction));
-                stringsMessage[i] = cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_message));
-                stringsTimeMedicine1_2[i] = cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_timeMedicine1_2));
-                stringsTimeMedicine2_1[i] = cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_timeMedicine2_1));
+        for(int i = 0; i < 4; i++) {
+            if (!strREAD[i].equals("1")) {
+                Log.d("checkDrugInteraction", strREAD[i]);
+                //เริ่ม
+                Cursor cursorInteraction1 = readSqLiteDatabase.query(drugInteractionTABLE,column_drugInteractionTABLE,"Medicine1" + " LIKE '" + strREAD[i] + "'",null,null,null,null);
+                if (cursorInteraction1 != null) {
+                    cursorInteraction1.moveToFirst();
+                    stringsMedicine1 = new String[cursorInteraction1.getCount()];
+                    stringsMedicine2 = new String[cursorInteraction1.getCount()];
+                    stringsType_interaction = new String[cursorInteraction1.getCount()];
+                    stringsMessage = new String[cursorInteraction1.getCount()];
+                    stringsTimeMedicine1_2 = new String[cursorInteraction1.getCount()];
+                    stringsTimeMedicine2_1 = new String[cursorInteraction1.getCount()];
 
-                Log.d("Result", stringsMedicine1[i] + " " + stringsMedicine2[i] + " " + stringsType_interaction[i] + " " + stringsMessage[i] + " " + stringsTimeMedicine1_2[i] + " " + stringsTimeMedicine2_1[i]);
-                cursorInteraction.moveToNext();
-            }
+                    for (int w = 0; w < cursorInteraction1.getCount(); w++) {
+                        stringsMedicine1[w] = cursorInteraction1.getString(cursorInteraction1.getColumnIndex(dcolumn_medicine1));
+                        stringsMedicine2[w] = cursorInteraction1.getString(cursorInteraction1.getColumnIndex(dcolumn_medicine2));
+                        stringsType_interaction[w] = cursorInteraction1.getString(cursorInteraction1.getColumnIndex(dcolumn_type_interaction));
+                        stringsMessage[w] = cursorInteraction1.getString(cursorInteraction1.getColumnIndex(dcolumn_message));
+                        stringsTimeMedicine1_2[w] = cursorInteraction1.getString(cursorInteraction1.getColumnIndex(dcolumn_timeMedicine1_2));
+                        stringsTimeMedicine2_1[w] = cursorInteraction1.getString(cursorInteraction1.getColumnIndex(dcolumn_timeMedicine2_1));
 
-        }
+                        Log.d("checkDrugInteraction", stringsMedicine1[w] + " " + stringsMedicine2[w] + " " + stringsType_interaction[w] + " " + stringsMessage[w] + " " + stringsTimeMedicine1_2[w] + " " + stringsTimeMedicine2_1[w]);
+                        cursorInteraction1.moveToNext();
+                    } //for inner
 
-        */
+                    //ไปอ่านค่าจากตาราง mainTABLE ว่ามี ยาอะไรบ้าง (ไปดูใน _id แล้วไป filter จาก medTABLE อีกทีจะได้ค่า generic name ทั้งหมดที่ ผู้ป่วยกิน)
+                    // เอา generic name ทั้งหมด มาเทียบกับMedication2[w] ถ้าตรงกันแปลว่ามี Drug Interaction
+                    // เอาทุกอันมาดูก่อนแล้วค่อย ตั้ง Alert ทีเดียวคือ เทียบว่ามี 1 > 2 > 3 ok นะ แล้วทำ Dialog box ด้วย
 
-    }
+
+
+
+
+
+                } //if inner
+
+            } //if
+        } //for
+
+
+    } //checkDrugInteraction
 
     //รับค่าจาก id
     public String[] searchById(String id) {

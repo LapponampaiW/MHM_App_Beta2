@@ -5,11 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.AvoidXfermode;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.StringBuilderPrinter;
 import android.widget.Toast;
 
 import java.sql.Time;
+import java.util.ArrayList;
 
 /**
  * Created by apple on 4/20/16.
@@ -79,6 +82,20 @@ public class MyManage {
     private static final String dcolumn_timeMedicine2_1 = "TimeMedicine2_1";
     private static final String[] column_drugInteractionTABLE = {dcolumn_id,dcolumn_medicine1,dcolumn_medicine2,
             dcolumn_type_interaction,dcolumn_message,dcolumn_timeMedicine1_2,dcolumn_timeMedicine2_1};
+
+
+    //drugInteractionTABLE_For_Query
+    private static final String drugInteractionTABLE_For_Query = "drugInteractionTABLE_For_Query";
+    private static final String qcolumn_id = "_id";
+    private static final String qcolumn_medicine1 = "Medicine1";
+    private static final String qcolumn_medicine2 = "Medicine2";
+    private static final String qcolumn_type_interaction = "Type_interaction";
+    private static final String qcolumn_message = "Message";
+    private static final String qcolumn_timeMedicine1_2 = "TimeMedicine1_2";
+    private static final String qcolumn_timeMedicine2_1 = "TimeMedicine2_1";
+    private static final String[] column_drugInteractionTABLE_For_Query = {qcolumn_id,qcolumn_medicine1,qcolumn_medicine2,
+            qcolumn_type_interaction,qcolumn_message,qcolumn_timeMedicine1_2,qcolumn_timeMedicine2_1};
+
 
     //mainTABLE
     //ใช้ ตัวแปรเดียวกับ medTABLE
@@ -184,7 +201,23 @@ public class MyManage {
         return writeSqLiteDatabase.insert(sum_table, null, contentValues);
     }
 
+    public long addValueTodrugInteractionTABLE_For_Query(int d_medicine1, int d_medicine2, String d_type_interaction,
+                                                              String d_message,int d_timemedicine1_2, int d_timemedicine2_1) {
 
+        ContentValues contentValues = new ContentValues();
+        long addlong = 0;
+        contentValues.put(qcolumn_medicine1,d_medicine1);
+        contentValues.put(qcolumn_medicine2,d_medicine2);
+        contentValues.put(qcolumn_type_interaction,d_type_interaction);
+        contentValues.put(qcolumn_message,d_message);
+        contentValues.put(qcolumn_timeMedicine1_2,d_timemedicine1_2);
+        contentValues.put(qcolumn_timeMedicine2_1,d_timemedicine2_1);
+
+        addlong = writeSqLiteDatabase.insert(drugInteractionTABLE_For_Query, null, contentValues);
+        return addlong;
+
+
+    }
 
 
     public int check_null_userTABLE() {
@@ -399,6 +432,8 @@ public class MyManage {
 
     //Drug Interaction2
     public void checkDrugInteraction(String drugname) {
+
+
         String[] strREAD = filter_medTABLE_by_id(drugname);
 
         Log.d("checkDrugInteraction", strREAD[0] + strREAD[1]+strREAD[2]+strREAD[3]);
@@ -424,6 +459,8 @@ public class MyManage {
                 //mainTABLE
                 if (cursormainTABLE != null) {
                     cursormainTABLE.moveToFirst();
+
+
                     for (int x = 0; x < cursormainTABLE.getCount(); x++) {
                         stringsMed_id[x] = cursormainTABLE.getString(cursormainTABLE.getColumnIndex(mcolumn_Med_id));
 
@@ -440,6 +477,8 @@ public class MyManage {
                         cursormainTABLE.moveToNext();
                     }
 
+
+
                     for (int y = 0; y < stringsMed_id.length; y++) {
                         Cursor cursorInteraction = readSqLiteDatabase.query(drugInteractionTABLE,column_drugInteractionTABLE,
                                 "(Medicine1" + " LIKE '" + strREAD[i] + "'" + " and " + "Medicine2" +
@@ -449,12 +488,29 @@ public class MyManage {
                                         strREAD[i] + "'" + " and " + "Medicine2" +
                                         " LIKE '" + stringsGeneric3[y] + "')" + " or " + "(Medicine1" +" LIKE '" +
                                         strREAD[i] + "'" + " and " + "Medicine2" +
+                                        " LIKE '" + stringsGeneric4[y] + "')" + " or " + "(Medicine2" + " LIKE '" + strREAD[i] + "'" + " and " + "Medicine1" +
+                                        " LIKE '" + stringsGeneric1[y] + "')" + " or " + "(Medicine2" + " LIKE '" +
+                                        strREAD[i] + "'" + " and " + "Medicine1" +
+                                        " LIKE '" + stringsGeneric2[y] + "')" + " or " + "(Medicine2" + " LIKE '" +
+                                        strREAD[i] + "'" + " and " + "Medicine1" +
+                                        " LIKE '" + stringsGeneric3[y] + "')" + " or " + "(Medicine2" +" LIKE '" +
+                                        strREAD[i] + "'" + " and " + "Medicine1" +
                                         " LIKE '" + stringsGeneric4[y] + "')",null,null,null,null);
 
 
                         if (cursorInteraction != null) {
-
                             Log.d("checkDrugInteraction", "cursorInteraction count :" + cursorInteraction.getCount());
+                            cursorInteraction.moveToFirst();
+                            String[] strings = new String[cursorInteraction.getCount()];
+                            for(int z = 0; z < cursorInteraction.getCount(); z++) {
+                                addValueTodrugInteractionTABLE_For_Query(cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_medicine1)),
+                                        cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_medicine2)), cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_type_interaction)),
+                                        cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_message)),
+                                        cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_timeMedicine1_2)),
+                                        cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_timeMedicine2_1)));
+                                cursorInteraction.moveToNext();
+                            }
+
                         }
                     }
 

@@ -472,34 +472,44 @@ public class MyManage {
 
 
                         // เอา generic name ทั้งหมด มาเทียบกับMedication2[w] ถ้าตรงกันแปลว่ามี Drug
-                        for(int y = 0; y<stringsMedicine2.length; y++) {
 
+                        String[][] strResultInteraction = new String[stringsMedicine2.length][stringsGeneric1.length];
+                        for(int y = 0; y<stringsMedicine2.length; y++) {
                             for (int z = 0; z < stringsGeneric1.length; z++) {
                                 if (stringsMedicine2[y].equals(stringsGeneric1[z])) {
-                                    Log.d("DI", stringsMedicine2[y] + stringsGeneric1[z]);
-                                } else if (stringsGeneric2[y].equals(stringsGeneric2[z])) {
-                                    Log.d("DI", stringsMedicine2[y] + stringsGeneric2[z]);
-                                } else if (stringsGeneric2[y].equals(stringsGeneric3[z])) {
-                                    Log.d("DI", stringsMedicine2[y] + stringsGeneric3[z]);
-                                } else if (stringsGeneric2[y].equals(stringsGeneric4[z])) {
-                                    Log.d("DI", stringsMedicine2[y] + stringsGeneric4[z]);
+                                    strResultInteraction[y][z] = strREAD[i] + "/" + stringsGeneric1[z];
+                                } else if (stringsMedicine2[y].equals(stringsGeneric2[z])) {
+                                    strResultInteraction[y][z] = strREAD[i] + "/" + stringsGeneric2[z];
+                                } else if (stringsMedicine2[y].equals(stringsGeneric3[z])) {
+                                    strResultInteraction[y][z] = strREAD[i] + "/" + stringsGeneric3[z];
+                                } else if (stringsMedicine2[y].equals(stringsGeneric4[z])) {
+                                    strResultInteraction[y][z] = strREAD[i] + "/" + stringsGeneric4[z];
+
                                 }
 
+                                if (strResultInteraction[y][z] != null) {
+                                    Log.d("checkDrugInteraction", strResultInteraction[y][z]);
+                                    //Cursor cursorInteraction2 = readSqLiteDatabase.query(drugInteractionTABLE,column_drugInteractionTABLE,"Medicine1" + " LIKE '" + strREAD[i] + "'" + " and " + "Medicine2" + " LIKE '" + stringsMedicine2[y] + "'" + " and " + "Type_interaction" + " NOT LIKE '3'"  ,null,null,null,null);
+                                    Cursor cursorInteraction2 = readSqLiteDatabase.query(drugInteractionTABLE,column_drugInteractionTABLE,"Medicine1" + " LIKE '" + strREAD[i] + "'" + " and " + "Medicine2" + " LIKE '" + stringsMedicine2[y] + "'",null,null,null,null);
+                                    if (cursorInteraction2 != null) {
+                                        cursorInteraction2.moveToFirst();
+                                        String[] strings = new String[cursorInteraction2.getCount()];
+
+
+
+
+
+
+
+                                    }
+                                }
                             }
-
                         } //Check DrugInteraction ของ 2 อัน
-
-
                     }// if mainTABLE
-
                     // เอาทุกอันมาดูก่อนแล้วค่อย ตั้ง Alert ทีเดียวคือ เทียบว่ามี 1 > 2 > 3 ok นะ แล้วทำ Dialog box ด้วย
-
                 } //if inner
-
             } //if
         } //for
-
-
     } //checkDrugInteraction
 
     //รับค่าจาก id

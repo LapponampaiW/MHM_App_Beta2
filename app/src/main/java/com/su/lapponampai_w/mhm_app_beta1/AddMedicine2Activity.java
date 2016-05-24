@@ -112,14 +112,13 @@ public class AddMedicine2Activity extends AppCompatActivity {
 
 
 
+        /*ปิดชั่วคราว for Testing
 
-        /*  ปิดไว้ก่อนเดี๋ยวค่อยใช้
         myManage.addValueTomainTABLE(string1,string2,string3,string4,string5,string6,string7,string8,string9,string10,string11,string12,string13,string14);
 
         Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);
         startActivity(intent);
         finish();
-
         */
 
     } //clickSave

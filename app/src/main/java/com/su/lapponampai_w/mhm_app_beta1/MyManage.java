@@ -2,9 +2,11 @@ package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.util.StringBuilderPrinter;
 import android.widget.Toast;
 
 import java.sql.Time;
@@ -395,13 +397,190 @@ public class MyManage {
         return strREAD;
     }
 
+    //Drug Interaction2
+    public void checkDrugInteraction(String drugname) {
+        String[] strREAD = filter_medTABLE_by_id(drugname);
+
+        Log.d("checkDrugInteraction", strREAD[0] + strREAD[1]+strREAD[2]+strREAD[3]);
+
+        String[] stringsMed_id = null;
+
+        String[] stringsGeneric1 = null;
+        String[] stringsGeneric2 = null;
+        String[] stringsGeneric3 = null;
+        String[] stringsGeneric4 = null;
+
+        for(int i = 0; i < 4; i++) {
+            if (!strREAD[i].equals("1")) {
+                Log.d("checkDrugInteraction", strREAD[i]);
+
+                Cursor cursormainTABLE = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null, null);
+                stringsMed_id = new String[cursormainTABLE.getCount()];
+                stringsGeneric1 = new String[cursormainTABLE.getCount()];
+                stringsGeneric2 = new String[cursormainTABLE.getCount()];
+                stringsGeneric3 = new String[cursormainTABLE.getCount()];
+                stringsGeneric4 = new String[cursormainTABLE.getCount()];
+
+                //mainTABLE
+                if (cursormainTABLE != null) {
+                    cursormainTABLE.moveToFirst();
+                    for (int x = 0; x < cursormainTABLE.getCount(); x++) {
+                        stringsMed_id[x] = cursormainTABLE.getString(cursormainTABLE.getColumnIndex(mcolumn_Med_id));
+
+
+                        Cursor cursormedTABLE = readSqLiteDatabase.query(medTABLE, column_medTABLE, "_id =?", new String[]{String.valueOf(stringsMed_id[x])}, null, null, null);
+                        if (cursormedTABLE != null) {
+                            cursormedTABLE.moveToFirst();
+                            stringsGeneric1[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name1));
+                            stringsGeneric2[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name2));
+                            stringsGeneric3[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name3));
+                            stringsGeneric4[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name4));
+                        } //if medTABLE
+                        Log.d("checkDrugInteraction", stringsMed_id[x] + stringsGeneric1[x] + stringsGeneric2[x] + stringsGeneric3[x] + stringsGeneric4[x]);
+                        cursormainTABLE.moveToNext();
+                    }
+
+                    for (int y = 0; y < stringsMed_id.length; y++) {
+                        Cursor cursorInteraction = readSqLiteDatabase.query(drugInteractionTABLE,column_drugInteractionTABLE,
+                                "(Medicine1" + " LIKE '" + strREAD[i] + "'" + " and " + "Medicine2" +
+                                        " LIKE '" + stringsGeneric1[y] + "')" + " or " + "(Medicine1" + " LIKE '" +
+                                        strREAD[i] + "'" + " and " + "Medicine2" +
+                                        " LIKE '" + stringsGeneric2[y] + "')" + " or " + "(Medicine1" + " LIKE '" +
+                                        strREAD[i] + "'" + " and " + "Medicine2" +
+                                        " LIKE '" + stringsGeneric3[y] + "')" + " or " + "(Medicine1" +" LIKE '" +
+                                        strREAD[i] + "'" + " and " + "Medicine2" +
+                                        " LIKE '" + stringsGeneric4[y] + "')",null,null,null,null);
+
+
+                        if (cursorInteraction != null) {
+
+                            Log.d("checkDrugInteraction", "cursorInteraction count :" + cursorInteraction.getCount());
+                        }
+                    }
+
+
+
+                } //for mainTABLE
+
+            } //first if
+        } //first loop
+
+    }
+
 
     //เริ่มค้นหา Drug Interaction ของยาแต่ละตัวที่มีอยู่แล้วใน Database
-    public void checkDrugInteraction(String drugName) {
+    public void checkDrugInteraction1(String drugName) {
 
         String[] strREAD = filter_medTABLE_by_id(drugName);
 
         Log.d("checkDrugInteraction", strREAD[0] + strREAD[1]+strREAD[2]+strREAD[3]);
+
+
+        int[] intsMedicine;
+        int[] intsMedicine1;
+        int[] intsMedicine2;
+
+        String[] stringsMed_id = null;
+
+        String[] stringsGeneric1 = null;
+        String[] stringsGeneric2 = null;
+        String[] stringsGeneric3 = null;
+        String[] stringsGeneric4 = null;
+
+        for(int i = 0; i < 4; i++) {
+            if (!strREAD[i].equals("1")) {
+                Log.d("checkDrugInteraction", strREAD[i]);
+                //เริ่ม
+                Cursor cursorInteraction1 = readSqLiteDatabase.query(drugInteractionTABLE, column_drugInteractionTABLE, "Medicine1" + " LIKE '" + strREAD[i] + "'" + " or " + "Medicine2" + " LIKE '" + strREAD[i] + "'", null, null, null, null);
+                if (cursorInteraction1 != null) {
+                    cursorInteraction1.moveToFirst();
+
+                    intsMedicine1 = new int[cursorInteraction1.getCount()];
+                    intsMedicine2 = new int[cursorInteraction1.getCount()];
+                    intsMedicine = new int[cursorInteraction1.getCount()];
+
+                    for (int w = 0; w < cursorInteraction1.getCount(); w++) {
+
+                        intsMedicine1[w] = cursorInteraction1.getInt(cursorInteraction1.getColumnIndex(dcolumn_medicine1));
+                        intsMedicine2[w] = cursorInteraction1.getInt(cursorInteraction1.getColumnIndex(dcolumn_medicine2));
+
+                        Log.d("checkDrugInteraction", Integer.toString(intsMedicine1[w]) + " " +  Integer.toString(intsMedicine2[w]));
+
+
+                        if (Integer.parseInt(strREAD[i]) < intsMedicine2[w]) {
+                            intsMedicine[w] = intsMedicine2[w];
+                        } else {
+                            intsMedicine[w] = intsMedicine1[w];
+                        }
+
+                        Log.d("checkDrugInteraction", Integer.toString(intsMedicine[w]));
+
+
+                        cursorInteraction1.moveToNext();
+                    } //for inner
+
+                    //ไปอ่านค่าจากตาราง mainTABLE ว่ามี ยาอะไรบ้าง (ไปดูใน _id แล้วไป filter จาก medTABLE อีกทีจะได้ค่า generic name ทั้งหมดที่ ผู้ป่วยกิน)
+                    Cursor cursormainTABLE = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null, null);
+                    stringsMed_id = new String[cursormainTABLE.getCount()];
+                    stringsGeneric1 = new String[cursormainTABLE.getCount()];
+                    stringsGeneric2 = new String[cursormainTABLE.getCount()];
+                    stringsGeneric3 = new String[cursormainTABLE.getCount()];
+                    stringsGeneric4 = new String[cursormainTABLE.getCount()];
+
+                    if (cursormainTABLE != null) {
+                        cursormainTABLE.moveToFirst();
+                        for (int x = 0; x < cursormainTABLE.getCount(); x++) {
+                            stringsMed_id[x] = cursormainTABLE.getString(cursormainTABLE.getColumnIndex(mcolumn_Med_id));
+
+
+                            Cursor cursormedTABLE = readSqLiteDatabase.query(medTABLE, column_medTABLE, "_id =?", new String[]{String.valueOf(stringsMed_id[x])}, null, null, null);
+                            if (cursormedTABLE != null) {
+                                cursormedTABLE.moveToFirst();
+                                stringsGeneric1[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name1));
+                                stringsGeneric2[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name2));
+                                stringsGeneric3[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name3));
+                                stringsGeneric4[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name4));
+                            } //if medTABLE
+                            Log.d("checkDrugInteraction", stringsMed_id[x] + stringsGeneric1[x] + stringsGeneric2[x] + stringsGeneric3[x] + stringsGeneric4[x]);
+                            cursormainTABLE.moveToNext();
+                        } //for mainTABLE
+
+                        //ตรงนี้นะ
+
+                        for(int y = 0; y < intsMedicine.length; y++) {
+                            for(int z = 0; z < stringsMed_id.length; z++) {
+
+                                Cursor cursorInteraction = readSqLiteDatabase.query(drugInteractionTABLE,column_drugInteractionTABLE,
+                                        "(Medicine1" + " LIKE '" + Integer.toString(intsMedicine[y]) + "'" + " and " + "Medicine2" +
+                                                " LIKE '" + stringsGeneric1[z] + "')" + " or " + "(Medicine1" + " LIKE '" +
+                                                Integer.toString(intsMedicine[y]) + "'" + " and " + "Medicine2" +
+                                                " LIKE '" + stringsGeneric2[z] + "')" + " or " + "(Medicine1" + " LIKE '" +
+                                                Integer.toString(intsMedicine[y]) + "'" + " and " + "Medicine2" +
+                                                " LIKE '" + stringsGeneric3[z] + "')" + " or " + "(Medicine1" +" LIKE '" +
+                                                Integer.toString(intsMedicine[y]) + "'" + " and " + "Medicine2" +
+                                                " LIKE '" + stringsGeneric4[z] + "')",null,null,null,null);
+
+                                if (cursorInteraction != null) {
+
+                                    Log.d("checkDrugInteraction", "cursorInteraction count :" + cursorInteraction.getCount());
+                                }
+
+                            }
+
+                        }
+
+
+
+                    }
+
+
+
+                }
+            }
+        }
+
+
+        /*
 
         String[] stringsMedicine1 = null;
         String[] stringsMedicine2 = null;
@@ -510,6 +689,9 @@ public class MyManage {
                 } //if inner
             } //if
         } //for
+
+        */
+
     } //checkDrugInteraction
 
     //รับค่าจาก id
@@ -643,8 +825,8 @@ public class MyManage {
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
 
         if (cursor.getCount()==0) {
-            addMedTABLEValue("Antivir","Zidovudine", 2, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", "1", null, "8:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("GPO vir S",null, 3, "100", "1", 4, "100", "1", 5, "100", "1", 1, null, null, "1", "1", null, "9:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Antivir","Zidovudine", 3, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", "1", null, "8:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("GPO vir S",null, 2, "100", "1", 4, "100", "1", 5, "100", "1", 6, null, null, "1", "1", null, "9:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Curam", null, 4, "1", "2", 6, "100", "1", 7, "1000", "1", 7, "100", "1", "1", "1", null, "10:00", "", "", "", "", "", "", "");
             addMedTABLEValue("GPO vir Z",null, 5, "250", "1", 3, "100", "1", 4, "100", "1", 1, null, null, "1", "1", null, "11:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Augmentin", "Amoxicillin", 6, "1", "2", 7, "125", "1", 1, null, null, 1, null, null, "1", "1", "1", "11:30", "", "", "", "", "", "", "");
@@ -674,9 +856,10 @@ public class MyManage {
 
         if (cursor.getCount() == 0) {
 
-            adddrugInteractionTABLEValue(2, 3, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
-            adddrugInteractionTABLEValue(2, 4, "2", "แค่ระมัดระวังในการทานร่วมกัน", 0, 0);
-            adddrugInteractionTABLEValue(2, 5, "3", "Atazanavir ต้องกินก่อน Antacid 4 ชั่วโมงหรือ หลัง Antacid 2 ชั่วโมง", 4, 2);
+            adddrugInteractionTABLEValue(3, 4, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(3, 5, "2", "แค่ระมัดระวังในการทานร่วมกัน", 0, 0);
+            adddrugInteractionTABLEValue(3, 6, "3", "Atazanavir ต้องกินก่อน Antacid 4 ชั่วโมงหรือ หลัง Antacid 2 ชั่วโมง", 4, 2);
+            adddrugInteractionTABLEValue(2, 3, "2", "ระมัดระวังมากขึ้นหน่อย", 0, 0);
 
         }
     }

@@ -123,7 +123,6 @@ public class AddMedicine2Activity extends AppCompatActivity {
         Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);
         startActivity(intent);
         finish();
-
         */
 
     } //clickSave

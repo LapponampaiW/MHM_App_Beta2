@@ -916,6 +916,7 @@ public class MyManage {
             adddrugInteractionTABLEValue(3, 5, "2", "แค่ระมัดระวังในการทานร่วมกัน", 0, 0);
             adddrugInteractionTABLEValue(3, 6, "3", "Atazanavir ต้องกินก่อน Antacid 4 ชั่วโมงหรือ หลัง Antacid 2 ชั่วโมง", 4, 2);
             adddrugInteractionTABLEValue(2, 3, "2", "ระมัดระวังมากขึ้นหน่อย", 0, 0);
+            adddrugInteractionTABLEValue(2, 7, "1", "Fatal DrugInteraction Canot Take with", 0, 0);
 
         }
     }

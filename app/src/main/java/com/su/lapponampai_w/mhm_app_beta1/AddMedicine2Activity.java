@@ -205,6 +205,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+                finish();
             }
         });
         builder.show();

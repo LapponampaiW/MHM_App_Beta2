@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         updatesumTABLE00();
 
         //Notification from SQLite
-        notificationFormSQLite();  //เปิดในมือถือแล้วใช้ไม่ได้
+        //notificationFormSQLite();  //เปิดในมือถือแล้วใช้ไม่ได้
 
 
         buttonAddMedicine.setOnClickListener(new View.OnClickListener() {
@@ -96,8 +96,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         //myCalendar1.set(calendar.DAY_OF_MONTH,15);
-        myCalendar1.set(Calendar.HOUR_OF_DAY, 23);
-        myCalendar1.set(Calendar.MINUTE, 59);
+        myCalendar1.set(Calendar.HOUR_OF_DAY, 10);
+        myCalendar1.set(Calendar.MINUTE, 30);
         myCalendar1.set(Calendar.SECOND, 59);
         myCalendar1.set(Calendar.MILLISECOND, 0);
 
@@ -107,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
         Date date = new Date();
         String currentDate = dateFormat.format(date);
 
-        //Intent intent = new Intent(getBaseContext(),DailyUpdateReceiver.class);
-        Intent intent = new Intent(getBaseContext(),AlarmReceiver.class);
+        Intent intent = new Intent(getBaseContext(),DailyUpdateReceiver.class);
+        //Intent intent = new Intent(getBaseContext(),AlarmReceiver.class);
 
 
         //Date

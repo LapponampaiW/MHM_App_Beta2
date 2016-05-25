@@ -166,7 +166,6 @@ public class AddMedicine2Activity extends AppCompatActivity {
 
         }
 
-        /*
 
         myManage.addValueTomainTABLE(string1,string2,string3,string4,string5,string6,string7,string8,string9,string10,string11,string12,string13,string14);
 
@@ -174,7 +173,6 @@ public class AddMedicine2Activity extends AppCompatActivity {
         startActivity(intent);
         finish();
 
-        */
 
     } //clickSave
 

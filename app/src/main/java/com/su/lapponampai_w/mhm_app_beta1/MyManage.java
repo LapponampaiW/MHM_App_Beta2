@@ -11,7 +11,9 @@ import android.util.Log;
 import android.util.StringBuilderPrinter;
 import android.widget.Toast;
 
+import java.math.BigInteger;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -167,6 +169,13 @@ public class MyManage {
                                     String strT8) {
 
         ContentValues contentValues = new ContentValues();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        String time = dateFormat.format(System.currentTimeMillis());
+        time = time.substring(2);
+        long longTime = Long.parseLong(time);
+
+        contentValues.put("_id",longTime);
         contentValues.put("Med_id", strMed_id);
         contentValues.put("Trade_name", strTrade_name);
         contentValues.put("Generic_line", strGeneric_line);
@@ -750,8 +759,6 @@ public class MyManage {
     public String filter_drugInteractionTABLE_Dialog() {
         Cursor cursor = readSqLiteDatabase.query(drugInteractionTABLE_For_Query, column_drugInteractionTABLE_For_Query, "Type_interaction LIKE '2'", null, null, null, "_id ASC");
         cursor.moveToFirst();
-        //slkfs;ljf;sljf;sjf
-
 
         return null;
     }

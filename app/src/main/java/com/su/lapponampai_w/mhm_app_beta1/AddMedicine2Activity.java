@@ -1,11 +1,14 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -23,6 +26,8 @@ public class AddMedicine2Activity extends AppCompatActivity {
     private  String string1, string2, string3, string4, string5, string6,
             string7, string8, string9, string10, string11, string12,
             string13, string14;
+
+    private String[] strings0,strings2,strings3,strings4,strings5,strings6,strings1;
 
 
     @Override
@@ -116,6 +121,31 @@ public class AddMedicine2Activity extends AppCompatActivity {
         myManage.checkDrugInteraction(string1);
 
 
+        strings0 = myManage.filter_drugInteractionTABLE_For_Query(0);
+        strings1 = myManage.filter_drugInteractionTABLE_For_Query(1);
+        strings2 = myManage.filter_drugInteractionTABLE_For_Query(2);
+        strings3 = myManage.filter_drugInteractionTABLE_For_Query(3);
+        strings4 = myManage.filter_drugInteractionTABLE_For_Query(4);
+        strings5 = myManage.filter_drugInteractionTABLE_For_Query(5);
+        strings6 = myManage.filter_drugInteractionTABLE_For_Query(6);
+
+        Log.d("filter_drugInteraction", strings3[0]);
+
+        if (strings0.length != 0) {
+            if (strings3[0].equals("1")) {
+                alertDialogFaltal();
+            }
+
+            for(int i = 0; i < strings0.length; i++) {
+                if (strings3[i].equals("2")) {
+                    alertDialogInteraction();
+                }
+            }
+
+        }
+
+
+
         /*
 
         myManage.addValueTomainTABLE(string1,string2,string3,string4,string5,string6,string7,string8,string9,string10,string11,string12,string13,string14);
@@ -126,5 +156,29 @@ public class AddMedicine2Activity extends AppCompatActivity {
         */
 
     } //clickSave
+
+    private void alertDialogInteraction() {
+
+        AlertDialog.Builder builder = new  AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.icon_question);
+        builder.setTitle("เกิดปฏิกิริยาระหว่างยา (ยาตีกัน)");
+        builder.setMessage("");
+
+    }
+
+    private void alertDialogFaltal() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.faltal_drug);
+        builder.setTitle("Fatal Drug Interaction");
+        builder.setMessage("ยานี้ไม่สามารถทานร่วมกับ\n ยาบางตัวที่ท่านรับประทานอยู่ \n โปรดปรึกษาแพทย์หรือเภสัชกรก่อน \n (ไม่แนะนำให้รับประทานอย่างเด็ดขาด!!!)");
+        builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+        builder.show();
+    }
 
 }  //Main Class

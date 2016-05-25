@@ -23,11 +23,13 @@ public class AddMedicine2Activity extends AppCompatActivity {
             textView5, textView6, textView7, textView8, textView9,
             textView10, textView11, textView12, textView13, textView14;
 
-    private  String string1, string2, string3, string4, string5, string6,
+    private String string1, string2, string3, string4, string5, string6,
             string7, string8, string9, string10, string11, string12,
             string13, string14;
 
-    private String[] strings0,strings2,strings3,strings4,strings5,strings6,strings1;
+    private String stringInteraction2;
+
+    private String[] strings0, strings2, strings3, strings4, strings5, strings6, strings1, strings7, stringGenericName2;
 
 
     @Override
@@ -63,7 +65,6 @@ public class AddMedicine2Activity extends AppCompatActivity {
         textView14.setText(string14);
 
 
-
     }
 
     private void receiveIntent() {
@@ -82,7 +83,6 @@ public class AddMedicine2Activity extends AppCompatActivity {
         string12 = getIntent().getStringExtra("T6");
         string13 = getIntent().getStringExtra("T7");
         string14 = getIntent().getStringExtra("T8");
-
 
 
     }
@@ -118,33 +118,53 @@ public class AddMedicine2Activity extends AppCompatActivity {
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
         sqLiteDatabase.delete("drugInteractionTABLE_For_Query", null, null);
 
+
         myManage.checkDrugInteraction(string1);
 
 
-        strings0 = myManage.filter_drugInteractionTABLE_For_Query(0);
-        strings1 = myManage.filter_drugInteractionTABLE_For_Query(1);
-        strings2 = myManage.filter_drugInteractionTABLE_For_Query(2);
-        strings3 = myManage.filter_drugInteractionTABLE_For_Query(3);
-        strings4 = myManage.filter_drugInteractionTABLE_For_Query(4);
-        strings5 = myManage.filter_drugInteractionTABLE_For_Query(5);
-        strings6 = myManage.filter_drugInteractionTABLE_For_Query(6);
+        int countRowTABLE_Query = myManage.filter_drugInteractionTABLE_For_Query(0).length;
+        Log.d("filter_drugInteraction", Integer.toString(countRowTABLE_Query));
 
-        Log.d("filter_drugInteraction", strings3[0]);
 
-        if (strings0.length != 0) {
-            if (strings3[0].equals("1")) {
+        if (countRowTABLE_Query != 0) {
+            strings0 = myManage.filter_drugInteractionTABLE_For_Query(0);
+            strings1 = myManage.filter_drugInteractionTABLE_For_Query(1);
+            strings2 = myManage.filter_drugInteractionTABLE_For_Query(2);
+            strings3 = myManage.filter_drugInteractionTABLE_For_Query(3);
+            strings4 = myManage.filter_drugInteractionTABLE_For_Query(4);
+            strings5 = myManage.filter_drugInteractionTABLE_For_Query(5);
+            strings6 = myManage.filter_drugInteractionTABLE_For_Query(6);
+            strings7 = myManage.filter_drugInteractionTABLE_For_Query(7);
+
+
+            Log.d("filter_drugInteraction", strings3[0]);
+
+
+            if (strings4[0].equals("1")) {
                 alertDialogFaltal();
             }
 
-            for(int i = 0; i < strings0.length; i++) {
-                if (strings3[i].equals("2")) {
-                    alertDialogInteraction();
+            for (int i = 0; i < strings0.length; i++) {
+                if (strings4[i].equals("2")) {
+
+                    Log.d("filter_drugInteraction","type2 :"+ strings0[i] + " :" + strings1[i] +
+                            " :" + strings2[i] + " :" + strings3[i] + " :" + strings4[i] +
+                            " :" + strings5[i] + " :" + strings6[i] + " :" + strings7[i]);
+
+                    if (strings1[i].equals(strings2[i])) {
+                        stringInteraction2 = strings3[i];
+                    } else {
+                        stringInteraction2 = strings2[i];
+                    }
+                    alertDialogInteraction(string2,strings1[i],stringInteraction2,strings5[i]);
+                } else if (strings4[i].equals("3")) {
+                    Log.d("filter_drugInteraction", "type 3 :" + strings0[i] + " :" + strings1[i] +
+                            " :" + strings2[i] + " :" + strings3[i] + " :" + strings4[i] +
+                            " :" + strings5[i] + " :" + strings6[i] + " :" + strings7[i]);
                 }
             }
 
         }
-
-
 
         /*
 
@@ -153,16 +173,42 @@ public class AddMedicine2Activity extends AppCompatActivity {
         Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);
         startActivity(intent);
         finish();
+
         */
 
     } //clickSave
 
-    private void alertDialogInteraction() {
+    private void alertDialogInteraction(String s1, String s2,String s3, String s4) {
 
-        AlertDialog.Builder builder = new  AlertDialog.Builder(this);
+
+        MyManage myManage = new MyManage(this);
+        s2 = myManage.findGenerinName_nameGenericTABLE_by_id(s2);
+
+
+        stringGenericName2 = myManage.find_id_medTABLE_by_Generic_name(s3);
+        //ต้องทำการ นับจำนวน stringGenericName2 แล้วทำการ bufferString ให้ได้ค่าของ String ออกมา
+        //แล้วเอาไปใส่แทน ใน setMessage
+
+
+        myManage.filter_drugInteractionTABLE_Dialog();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(R.drawable.icon_question);
         builder.setTitle("เกิดปฏิกิริยาระหว่างยา (ยาตีกัน)");
-        builder.setMessage("");
+        builder.setMessage("ยา " + s1 + " (" + s2 + ") \nเกิดปฏิกิริยาระหว่างยากับ\n"+ stringGenericName2[0] +"\nเหตุผล : " + s4);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+
 
     }
 

@@ -52,7 +52,7 @@ public class MyHelper extends SQLiteOpenHelper {
 
     //Create table drugInteractionTABLE_For_Query
     private static final String CREATE_drugInteractionTABLE_For_Query = "create table drugInteractionTABLE_For_Query " +
-            "(_id integer primary key, Medicine1 integer, Medicine2 integer, " +
+            "(_id integer primary key, Initial_medicine integer, Medicine1 integer, Medicine2 integer, " +
             "Type_interaction text, Message text, TimeMedicine1_2 integer, TimeMedicine2_1 integer);";
 
 

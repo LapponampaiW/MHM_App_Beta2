@@ -87,14 +87,17 @@ public class MyManage {
     //drugInteractionTABLE_For_Query
     private static final String drugInteractionTABLE_For_Query = "drugInteractionTABLE_For_Query";
     private static final String qcolumn_id = "_id";
+    private static final String qcolunm_initial_medicine = "Initial_medicine";
     private static final String qcolumn_medicine1 = "Medicine1";
     private static final String qcolumn_medicine2 = "Medicine2";
     private static final String qcolumn_type_interaction = "Type_interaction";
     private static final String qcolumn_message = "Message";
     private static final String qcolumn_timeMedicine1_2 = "TimeMedicine1_2";
     private static final String qcolumn_timeMedicine2_1 = "TimeMedicine2_1";
-    private static final String[] column_drugInteractionTABLE_For_Query = {qcolumn_id,qcolumn_medicine1,qcolumn_medicine2,
-            qcolumn_type_interaction,qcolumn_message,qcolumn_timeMedicine1_2,qcolumn_timeMedicine2_1};
+    private static final String[] column_drugInteractionTABLE_For_Query = {qcolumn_id,
+            qcolunm_initial_medicine, qcolumn_medicine1,qcolumn_medicine2,
+            qcolumn_type_interaction,qcolumn_message,
+            qcolumn_timeMedicine1_2,qcolumn_timeMedicine2_1};
 
 
     //mainTABLE
@@ -201,11 +204,12 @@ public class MyManage {
         return writeSqLiteDatabase.insert(sum_table, null, contentValues);
     }
 
-    public long addValueTodrugInteractionTABLE_For_Query(int d_medicine1, int d_medicine2, String d_type_interaction,
+    public long addValueTodrugInteractionTABLE_For_Query(int d_initial_medicine, int d_medicine1, int d_medicine2, String d_type_interaction,
                                                               String d_message,int d_timemedicine1_2, int d_timemedicine2_1) {
 
         ContentValues contentValues = new ContentValues();
         long addlong = 0;
+        contentValues.put(qcolunm_initial_medicine,d_initial_medicine);
         contentValues.put(qcolumn_medicine1,d_medicine1);
         contentValues.put(qcolumn_medicine2,d_medicine2);
         contentValues.put(qcolumn_type_interaction,d_type_interaction);
@@ -215,7 +219,6 @@ public class MyManage {
 
         addlong = writeSqLiteDatabase.insert(drugInteractionTABLE_For_Query, null, contentValues);
         return addlong;
-
 
     }
 
@@ -430,6 +433,60 @@ public class MyManage {
         return strREAD;
     }
 
+    public String findGenerinName_nameGenericTABLE_by_id(String id) {
+
+
+        Cursor cursor = readSqLiteDatabase.query(nameGenericTABLE, column_nameGenericTABLE,"_id LIKE '" + id + "'",null,null,null,null);
+        cursor.moveToFirst();
+
+        String s;
+        s = cursor.getString(cursor.getColumnIndex(gcolumn_generic_name));
+
+        return s;
+    }
+
+    public String[] find_id_medTABLE_by_Generic_name(String generic_name) {
+
+        Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE,
+                "Generic_name1 LIKE '" + generic_name + "'" + " or "
+                        + "Generic_name2 LIKE '" + generic_name + "'" + " or "
+                        + "Generic_name3 LIKE '" + generic_name + "'" + " or "
+                        + "Generic_name4 LIKE '" + generic_name + "'", null, null, null, null);
+
+        String[] strREAD_id = null;
+        String[] strREAD_Tradename = null;
+        if (cursor != null) {
+            cursor.moveToFirst();
+            strREAD_id = new String[cursor.getCount()];
+            strREAD_Tradename = new String[cursor.getCount()];
+            for(int i = 0; i < cursor.getCount(); i++) {
+                strREAD_id[i] = cursor.getString(0);
+
+                Cursor cursor1 = readSqLiteDatabase.query(mainTABLE, column_mainTABLE,
+                        "Med_id LIKE '" + strREAD_id[i] + "'", null, null, null, null);
+                cursor1.moveToFirst();
+                strREAD_Tradename[i] = cursor1.getString(2);
+
+                cursor.moveToNext();
+            }
+
+            /*
+            for(int x = 0; x <cursor.getCount(); x++) {
+                Cursor cursor1 = readSqLiteDatabase.query(mainTABLE, column_mainTABLE,
+                        "Med_id LIKE '" + strREAD_id[x] + "'", null, null, null, null);
+
+                cursor1.moveToFirst();
+                strREAD_Tradename[x] = cursor1.getString(2);
+            }
+            */
+
+        } else {
+            strREAD_Tradename = null;
+        }
+
+    return strREAD_Tradename;
+    }
+
     //Drug Interaction
     public void checkDrugInteraction(String drugname) {
 
@@ -447,7 +504,7 @@ public class MyManage {
 
         for(int i = 0; i < 4; i++) {
             if (!strREAD[i].equals("1")) {
-                Log.d("checkDrugInteraction", strREAD[i]);
+                Log.d("checkDrugInteraction","strREAD :" + strREAD[i]);
 
                 Cursor cursormainTABLE = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null, null);
                 stringsMed_id = new String[cursormainTABLE.getCount()];
@@ -503,8 +560,9 @@ public class MyManage {
                             cursorInteraction.moveToFirst();
                             String[] strings = new String[cursorInteraction.getCount()];
                             for(int z = 0; z < cursorInteraction.getCount(); z++) {
-                                addValueTodrugInteractionTABLE_For_Query(cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_medicine1)),
-                                        cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_medicine2)), cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_type_interaction)),
+                                addValueTodrugInteractionTABLE_For_Query(Integer.parseInt(strREAD[i]),cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_medicine1)),
+                                        cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_medicine2)),
+                                        cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_type_interaction)),
                                         cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_message)),
                                         cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_timeMedicine1_2)),
                                         cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_timeMedicine2_1)));
@@ -522,7 +580,7 @@ public class MyManage {
 
     //ทำ query drugInteractionTABLE_For_Query
     public String[] filter_drugInteractionTABLE_For_Query(int intColumn) {
-        Cursor cursor = readSqLiteDatabase.query(drugInteractionTABLE_For_Query, column_drugInteractionTABLE_For_Query, null, null, null, null, "Type_interaction ASC");
+        Cursor cursor = readSqLiteDatabase.query(drugInteractionTABLE_For_Query, column_drugInteractionTABLE_For_Query, null, null, null, null, "Type_interaction ASC, _id ASC");
 
         String[] strREAD = null;
         if (cursor != null) {
@@ -552,6 +610,8 @@ public class MyManage {
                     case (6):
                         strREAD[i] = cursor.getString(6);
                         break;
+                    case (7):
+                        strREAD[i] = cursor.getString(7);
                     default:
                         break;
                 }
@@ -686,6 +746,16 @@ public class MyManage {
         return writeSqLiteDatabase.insert(nameGenericTABLE, null, contentValues);
     }
 
+    //ทำ Drug Interaction
+    public String filter_drugInteractionTABLE_Dialog() {
+        Cursor cursor = readSqLiteDatabase.query(drugInteractionTABLE_For_Query, column_drugInteractionTABLE_For_Query, "Type_interaction LIKE '2'", null, null, null, "_id ASC");
+        cursor.moveToFirst();
+        //slkfs;ljf;sljf;sjf
+
+
+        return null;
+    }
+
 
 
     //ทำการ add ค่าเข้าไปถ้า table มันว่างอะนะ
@@ -699,6 +769,7 @@ public class MyManage {
             addMedTABLEValue("Curam", null, 4, "1", "2", 6, "100", "1", 7, "1000", "1", 7, "100", "1", "1", "1", null, "10:00", "", "", "", "", "", "", "");
             addMedTABLEValue("GPO vir Z",null, 5, "250", "1", 3, "100", "1", 4, "100", "1", 1, null, null, "1", "1", null, "11:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Augmentin", "Amoxicillin", 6, "1", "2", 7, "125", "1", 1, null, null, 1, null, null, "1", "1", "1", "11:30", "", "", "", "", "", "", "");
+            addMedTABLEValue("CPM", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null, "1", "1", null, "10:00", "", "", "", "", "", "", "");
 
 
         }
@@ -717,6 +788,7 @@ public class MyManage {
             addnameGenericTABLEValue("Zidovudine"); //5
             addnameGenericTABLEValue("Amoxicillin"); //6
             addnameGenericTABLEValue("Clavulanic"); //7
+            addnameGenericTABLEValue("Chlorpheniramine"); //8
         }
     }  //nameGenericTABLEData
 
@@ -730,6 +802,7 @@ public class MyManage {
             adddrugInteractionTABLEValue(3, 6, "3", "Atazanavir ต้องกินก่อน Antacid 4 ชั่วโมงหรือ หลัง Antacid 2 ชั่วโมง", 4, 2);
             adddrugInteractionTABLEValue(2, 3, "2", "ระมัดระวังมากขึ้นหน่อย", 0, 0);
             adddrugInteractionTABLEValue(2, 7, "1", "Fatal DrugInteraction Canot Take with", 0, 0);
+            adddrugInteractionTABLEValue(2, 8, "2", "แค่ระมัดระวังการทานร่วมกัน", 0, 0);
 
         }
     }

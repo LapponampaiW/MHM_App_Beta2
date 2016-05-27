@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     //Widget ต่างๆ
     Button buttonAddMedicine;
+    TextView textViewAdd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
         updatesumTABLE00();
 
         //Notification from SQLite
-        //notificationFormSQLite();  //เปิดในมือถือแล้วใช้ไม่ได้
+        notificationFormSQLite();  //เปิดในมือถือแล้วใช้ไม่ได้
+
+
+
 
 
         buttonAddMedicine.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //myCalendar1.set(calendar.DAY_OF_MONTH,15);
-        myCalendar1.set(Calendar.HOUR_OF_DAY, 10);
+        myCalendar1.set(Calendar.HOUR_OF_DAY, 23);
         myCalendar1.set(Calendar.MINUTE, 30);
         myCalendar1.set(Calendar.SECOND, 59);
         myCalendar1.set(Calendar.MILLISECOND, 0);
@@ -131,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void bindWidget() {
         buttonAddMedicine = (Button) findViewById(R.id.buttonAddMedicine);
+        textViewAdd = (TextView) findViewById(R.id.textView_Main_Add);
 
     }
 

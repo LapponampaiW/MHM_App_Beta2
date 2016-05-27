@@ -152,6 +152,68 @@ public class MyManage {
             return resultStrings;
     }
 
+    public String[] readAllMainTABLE_string(String med_id,int intColumn) {
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, "Med_id LIKE '" + med_id + "'", null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for(int i = 0;i <cursor.getCount();i++) {
+                switch (intColumn) {
+                    case 0:
+                        strREAD[i] = cursor.getString(0);
+                        break;
+                    case 1:
+                        strREAD[i] = cursor.getString(1);
+                        break;
+                    case 2:
+                        strREAD[i] = cursor.getString(2);
+                        break;
+                    case 3:
+                        strREAD[i] = cursor.getString(3);
+                        break;
+                    case 4:
+                        strREAD[i] = cursor.getString(4);
+                        break;
+                    case 5:
+                        strREAD[i] = cursor.getString(5);
+                        break;
+                    case 6:
+                        strREAD[i] = cursor.getString(6);
+                        break;
+                    case 7:
+                        strREAD[i] = cursor.getString(7);
+                        break;
+                    case 8:
+                        strREAD[i] = cursor.getString(8);
+                        break;
+                    case 9:
+                        strREAD[i] = cursor.getString(9);
+                        break;
+                    case 10:
+                        strREAD[i] = cursor.getString(10);
+                        break;
+                    case 11:
+                        strREAD[i] = cursor.getString(11);
+                        break;
+                    case 12:
+                        strREAD[i] = cursor.getString(12);
+                        break;
+                    case 13:
+                        strREAD[i] = cursor.getString(13);
+                        break;
+                    case 14:
+                        strREAD[i] = cursor.getString(14);
+                        break;
+                }
+                cursor.moveToNext();
+            }
+
+        }
+        return strREAD;
+
+    } //readAllmainTABLE1
+
 
     public long addValueTomainTABLE(String strMed_id,
                                     String strTrade_name,

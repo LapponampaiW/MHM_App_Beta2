@@ -31,7 +31,9 @@
             android:name=".AlarmReceiver"
             android:process=":remote" />
 
-        <activity android:name=".Calendartest"></activity>
+        <activity android:name=".Calendartest" />
+
+
     </application>
 
 </manifest>

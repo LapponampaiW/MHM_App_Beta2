@@ -29,7 +29,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
 
     private String stringInteraction2;
 
-    private String[] strings0, strings2, strings3, strings4, strings5, strings6, strings1, strings7, stringGenericName2;
+    private String[] strings0, strings2, strings3, strings4, strings5, strings6, strings1, strings7, stringGenericName2, stringsduplicate;
 
 
     @Override
@@ -142,39 +142,77 @@ public class AddMedicine2Activity extends AppCompatActivity {
 
             if (strings4[0].equals("1")) {
                 alertDialogFaltal();
-            }
+                Log.d("filter_drugInteraction", "type 1:");
+                return;
+            } else {
+                for (int i = 0; i < strings0.length; i++) {
+                    if (strings4[i].equals("2")) {
 
-            for (int i = 0; i < strings0.length; i++) {
-                if (strings4[i].equals("2")) {
+                        Log.d("filter_drugInteraction", "type2 :" + strings0[i] + " :" + strings1[i] +
+                                " :" + strings2[i] + " :" + strings3[i] + " :" + strings4[i] +
+                                " :" + strings5[i] + " :" + strings6[i] + " :" + strings7[i]);
 
-                    Log.d("filter_drugInteraction","type2 :"+ strings0[i] + " :" + strings1[i] +
-                            " :" + strings2[i] + " :" + strings3[i] + " :" + strings4[i] +
-                            " :" + strings5[i] + " :" + strings6[i] + " :" + strings7[i]);
+                        if (strings1[i].equals(strings2[i])) {
+                            stringInteraction2 = strings3[i];
+                        } else {
+                            stringInteraction2 = strings2[i];
+                        }
 
-                    if (strings1[i].equals(strings2[i])) {
-                        stringInteraction2 = strings3[i];
-                    } else {
-                        stringInteraction2 = strings2[i];
+                        alertDialogInteraction(string2, strings1[i], stringInteraction2, strings5[i]);
+                        Log.d("filter_drugInteraction", "Access via type2");
+
+                    } else if (strings4[i].equals("3")) {
+                        Log.d("filter_drugInteraction", "type 3 :" + strings0[i] + " :" + strings1[i] +
+                                " :" + strings2[i] + " :" + strings3[i] + " :" + strings4[i] +
+                                " :" + strings5[i] + " :" + strings6[i] + " :" + strings7[i]);
+                        Toast.makeText(getBaseContext(),"ได้ค่า 3",Toast.LENGTH_LONG).show();
                     }
-                    alertDialogInteraction(string2,strings1[i],stringInteraction2,strings5[i]);
-                } else if (strings4[i].equals("3")) {
-                    Log.d("filter_drugInteraction", "type 3 :" + strings0[i] + " :" + strings1[i] +
-                            " :" + strings2[i] + " :" + strings3[i] + " :" + strings4[i] +
-                            " :" + strings5[i] + " :" + strings6[i] + " :" + strings7[i]);
                 }
+                return;
             }
 
         }
 
 
+
+
+        addValueTomainTABLEandIntent();
+
+
+
+
+    } //clickSave
+
+    private void alertDialogDuplicate() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.icon_question);
+        builder.setTitle("Duplicate!!!");
+        builder.setMessage("ไม่สามารถดำเนินการต่อได้ \nเนื่องจากมียาตัวนี้ในระบบแล้ว");
+        builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+        builder.show();
+    }
+
+
+    private void addValueTomainTABLEandIntent() {
+        MyManage myManage = new MyManage(this);
+
+        stringsduplicate = myManage.readAllMainTABLE_string(string1, 0);
+        if (stringsduplicate.length > 0) {
+            alertDialogDuplicate();
+            return;
+        }
         myManage.addValueTomainTABLE(string1,string2,string3,string4,string5,string6,string7,string8,string9,string10,string11,string12,string13,string14);
 
         Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);
         startActivity(intent);
         finish();
-
-
-    } //clickSave
+    }
 
     private void alertDialogInteraction(String s1, String s2,String s3, String s4) {
 
@@ -186,20 +224,26 @@ public class AddMedicine2Activity extends AppCompatActivity {
         stringGenericName2 = myManage.find_id_medTABLE_by_Generic_name(s3);
         //ต้องทำการ นับจำนวน stringGenericName2 แล้วทำการ bufferString ให้ได้ค่าของ String ออกมา
         //แล้วเอาไปใส่แทน ใน setMessage
+        StringBuilder stringBuilder = new StringBuilder("ยา :");
+        for(int i = 0;i < stringGenericName2.length;i++) {
+            stringBuilder.append(stringGenericName2[i]);
+        }
+
+
 
 
         myManage.filter_drugInteractionTABLE_Dialog();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(R.drawable.icon_question);
         builder.setTitle("เกิดปฏิกิริยาระหว่างยา (ยาตีกัน)");
-        builder.setMessage("ยา " + s1 + " (" + s2 + ") \nเกิดปฏิกิริยาระหว่างยากับ\n"+ stringGenericName2[0] +"\nเหตุผล : " + s4);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setMessage("ยา " + s1 + " (" + s2 + ") \nเกิดปฏิกิริยาระหว่างยากับ\n"+ stringBuilder +"\nเหตุผล : " + s4);
+        builder.setPositiveButton("ยืนยันการรับประทาน", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
+                addValueTomainTABLEandIntent();
             }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

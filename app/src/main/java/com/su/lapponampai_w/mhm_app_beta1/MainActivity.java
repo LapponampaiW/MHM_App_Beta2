@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popup_main_add, null);
 
                 popupWindow = new PopupWindow(container, ListPopupWindow.WRAP_CONTENT,ListPopupWindow.WRAP_CONTENT,true);
-                popupWindow.showAtLocation(relativeLayout,Gravity.CENTER,0,0);
+                popupWindow.showAtLocation(relativeLayout,Gravity.BOTTOM,0,0);
 
                 container.setOnTouchListener(new View.OnTouchListener() {
                     @Override

@@ -44,4 +44,24 @@
             android:src="@drawable/btn_pop4"
             android:background="#00000000" />
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_pop5"
+            android:src="@drawable/btn_pop5"
+            android:background="#00000000" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_pop6"
+            android:src="@drawable/btn_pop6"
+            android:background="#00000000" />
+    </LinearLayout>
 </LinearLayout>

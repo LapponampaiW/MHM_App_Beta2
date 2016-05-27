@@ -14,15 +14,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add medicine"
-        android:id="@+id/buttonAddMedicine"
-        android:layout_alignTop="@+id/button3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Calendar"
         android:id="@+id/button3"
         android:onClick="clickCalendar"
@@ -39,7 +30,6 @@
         android:textSize="20sp"
         android:textColor="#b33636"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/buttonAddMedicine"
-        android:layout_alignEnd="@+id/buttonAddMedicine"
-        android:layout_marginRight="10dp" />
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true" />
 </RelativeLayout>

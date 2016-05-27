@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.ListPopupWindow;
 import android.util.Log;
 import android.view.Gravity;
@@ -16,9 +17,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     //Explicit
 
     //Widget ต่างๆ
-    Button buttonAddMedicine;
+    ImageButton imageButtonPop1, imageButtonPop2, imageButtonPop3, imageButtonPop4, imageButtonPop5, imageButtonPop6;
     TextView textViewAdd;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
@@ -60,14 +63,13 @@ public class MainActivity extends AppCompatActivity {
         clickAddbtn();
 
 
-        buttonAddMedicine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,AddMedicineActivity.class));
-            }
-        });
+
+
 
     } //Main method
+
+
+
 
     private void clickAddbtn() {
 
@@ -87,6 +89,24 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+
+
+                imageButtonPop1 = (ImageButton) container.findViewById(R.id.btn_pop1);
+                imageButtonPop1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this,AddMedicineActivity.class));
+                    }
+                });
+
+                imageButtonPop6 = (ImageButton) container.findViewById(R.id.btn_pop6);
+                imageButtonPop6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
+
 
             }
         });
@@ -170,9 +190,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bindWidget() {
-        buttonAddMedicine = (Button) findViewById(R.id.buttonAddMedicine);
         textViewAdd = (TextView) findViewById(R.id.textView_Main_Add);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative);
+
 
     }
 

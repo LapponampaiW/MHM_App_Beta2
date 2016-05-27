@@ -8,15 +8,23 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ListPopupWindow;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
     //Widget ต่างๆ
     Button buttonAddMedicine;
     TextView textViewAdd;
+    private PopupWindow popupWindow;
+    private LayoutInflater layoutInflater;
+    private RelativeLayout relativeLayout;
+
 
 
     @Override
@@ -42,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
         //Notification from SQLite
         notificationFormSQLite();  //เปิดในมือถือแล้วใช้ไม่ได้
 
+        //คลิก เพิ่มเติม
+        clickAddbtn();
+
 
 
 
@@ -53,10 +68,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    } //Main Method
+    } //Main method
 
+    private void clickAddbtn() {
 
+        textViewAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popup_main_add, null);
 
+                popupWindow = new PopupWindow(container, ListPopupWindow.WRAP_CONTENT,ListPopupWindow.WRAP_CONTENT,true);
+                popupWindow.showAtLocation(relativeLayout,Gravity.CENTER,0,0);
+
+                container.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        popupWindow.dismiss();
+                        return true;
+                    }
+                });
+
+            }
+        });
+    }
 
 
     public void clickCalendar(View view) {
@@ -138,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
     private void bindWidget() {
         buttonAddMedicine = (Button) findViewById(R.id.buttonAddMedicine);
         textViewAdd = (TextView) findViewById(R.id.textView_Main_Add);
+        relativeLayout = (RelativeLayout) findViewById(R.id.relative);
 
     }
 

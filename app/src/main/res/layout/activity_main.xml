@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:id="@+id/relative"
     tools:context="com.su.lapponampai_w.mhm_app_beta1.MainActivity"
     android:background="@drawable/mainbg">
 

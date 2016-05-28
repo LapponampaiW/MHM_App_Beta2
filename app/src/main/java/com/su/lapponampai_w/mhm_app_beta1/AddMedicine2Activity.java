@@ -21,11 +21,11 @@ public class AddMedicine2Activity extends AppCompatActivity {
     //Explicit
     private TextView textView1, textView2, textView3, textView4,
             textView5, textView6, textView7, textView8, textView9,
-            textView10, textView11, textView12, textView13, textView14;
+            textView10, textView11, textView12, textView13, textView14, textView15;
 
     private String string1, string2, string3, string4, string5, string6,
             string7, string8, string9, string10, string11, string12,
-            string13, string14;
+            string13, string14, string15;
 
     private String stringInteraction2;
 
@@ -63,6 +63,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
         textView12.setText(string12);
         textView13.setText(string13);
         textView14.setText(string14);
+        textView15.setText(string15);
 
 
     }
@@ -83,6 +84,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
         string12 = getIntent().getStringExtra("T6");
         string13 = getIntent().getStringExtra("T7");
         string14 = getIntent().getStringExtra("T8");
+        string15 = getIntent().getStringExtra("Amount_tablet");
 
 
     }
@@ -102,6 +104,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
         textView12 = (TextView) findViewById(R.id.textView32);
         textView13 = (TextView) findViewById(R.id.textView34);
         textView14 = (TextView) findViewById(R.id.textView36);
+        textView15 = (TextView) findViewById(R.id.textView38);
 
     }
 
@@ -207,7 +210,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
             alertDialogDuplicate();
             return;
         }
-        myManage.addValueTomainTABLE(string1,string2,string3,string4,string5,string6,string7,string8,string9,string10,string11,string12,string13,string14);
+        myManage.addValueTomainTABLE(string1,string2,string3,string15,string4,string5,string6,string7,string8,string9,string10,string11,string12,string13,string14);
 
         Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);
         startActivity(intent);

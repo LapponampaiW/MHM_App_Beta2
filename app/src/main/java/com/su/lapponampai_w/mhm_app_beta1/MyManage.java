@@ -50,6 +50,7 @@ public class MyManage {
     private static final String mcolumn_generic_name4 = "Generic_name4";
     private static final String mcolumn_dosage4 = "Dosage4";
     private static final String mcolumn_uom4 = "UOM4";
+    private static final String mcolumn_amount_tablet = "Amount_tablet";
     private static final String mcolumn_which_date_d = "Which_Date_D";
     private static final String mcolumn_appearance = "Appearance";
     private static final String mcolumn_pharmaco = "Pharmaco";
@@ -63,7 +64,7 @@ public class MyManage {
     private static final String mcolumn_t8 = "T8";
     private static final String[] column_medTABLE = {mcolumn_id,mcolumn_trade_name,mcolumn_key_search,mcolumn_generic_name1,mcolumn_dosage1,
                                     mcolumn_uom1,mcolumn_generic_name2,mcolumn_dosage2,mcolumn_uom2,mcolumn_generic_name3,
-                                    mcolumn_dosage3,mcolumn_uom3,mcolumn_generic_name4,mcolumn_dosage4,mcolumn_uom4,
+                                    mcolumn_dosage3,mcolumn_uom3,mcolumn_generic_name4,mcolumn_dosage4,mcolumn_uom4,mcolumn_amount_tablet,
                                     mcolumn_which_date_d,mcolumn_appearance,mcolumn_pharmaco,mcolumn_t1,mcolumn_t2,
                                     mcolumn_t3,mcolumn_t4,mcolumn_t5,mcolumn_t6,mcolumn_t7,mcolumn_t8};
 
@@ -108,7 +109,7 @@ public class MyManage {
     private static final String mcolumn_Med_id = "Med_id";
     private static final String mcolumn_generic_line = "Generic_line";
     private static final String[] column_mainTABLE = {mcolumn_id,mcolumn_Med_id,mcolumn_trade_name,
-            mcolumn_generic_line,mcolumn_which_date_d,mcolumn_appearance,mcolumn_pharmaco,mcolumn_t1,
+            mcolumn_generic_line,mcolumn_which_date_d,mcolumn_amount_tablet,mcolumn_appearance,mcolumn_pharmaco,mcolumn_t1,
             mcolumn_t2,mcolumn_t3,mcolumn_t4,mcolumn_t5,mcolumn_t6,mcolumn_t7,mcolumn_t8};
 
     //sumTABLE
@@ -161,49 +162,52 @@ public class MyManage {
             for(int i = 0;i <cursor.getCount();i++) {
                 switch (intColumn) {
                     case 0:
-                        strREAD[i] = cursor.getString(0);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
                         break;
                     case 1:
-                        strREAD[i] = cursor.getString(1);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_Med_id));
                         break;
                     case 2:
-                        strREAD[i] = cursor.getString(2);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_trade_name));
                         break;
                     case 3:
-                        strREAD[i] = cursor.getString(3);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_line));
                         break;
                     case 4:
-                        strREAD[i] = cursor.getString(4);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_which_date_d));
                         break;
                     case 5:
-                        strREAD[i] = cursor.getString(5);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_appearance));
                         break;
                     case 6:
-                        strREAD[i] = cursor.getString(6);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_pharmaco));
                         break;
                     case 7:
-                        strREAD[i] = cursor.getString(7);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t1));
                         break;
                     case 8:
-                        strREAD[i] = cursor.getString(8);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t2));
                         break;
                     case 9:
-                        strREAD[i] = cursor.getString(9);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t3));
                         break;
                     case 10:
-                        strREAD[i] = cursor.getString(10);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t4));
                         break;
                     case 11:
-                        strREAD[i] = cursor.getString(11);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t5));
                         break;
                     case 12:
-                        strREAD[i] = cursor.getString(12);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t6));
                         break;
                     case 13:
-                        strREAD[i] = cursor.getString(13);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t7));
                         break;
                     case 14:
-                        strREAD[i] = cursor.getString(14);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t8));
+                        break;
+                    case 15:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_amount_tablet));
                         break;
                 }
                 cursor.moveToNext();
@@ -218,6 +222,7 @@ public class MyManage {
     public long addValueTomainTABLE(String strMed_id,
                                     String strTrade_name,
                                     String strGeneric_line,
+                                    String strAmount_tablet,
                                     String strWhich_Date_D,
                                     String strAppearance,
                                     String strPharmaco,
@@ -241,6 +246,7 @@ public class MyManage {
         contentValues.put("Med_id", strMed_id);
         contentValues.put("Trade_name", strTrade_name);
         contentValues.put("Generic_line", strGeneric_line);
+        contentValues.put("Amount_tablet",strAmount_tablet);
         contentValues.put("Which_Date_D", strWhich_Date_D);
         contentValues.put("Appearance", strAppearance);
         contentValues.put("Pharmaco", strPharmaco);
@@ -473,6 +479,8 @@ public class MyManage {
                     case 25:
                         strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t8));
                         break;
+                    case 26:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_amount_tablet));
                     default:
                         break;
                 }
@@ -531,12 +539,12 @@ public class MyManage {
             strREAD_id = new String[cursor.getCount()];
             strREAD_Tradename = new String[cursor.getCount()];
             for(int i = 0; i < cursor.getCount(); i++) {
-                strREAD_id[i] = cursor.getString(0);
+                strREAD_id[i] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
 
                 Cursor cursor1 = readSqLiteDatabase.query(mainTABLE, column_mainTABLE,
                         "Med_id LIKE '" + strREAD_id[i] + "'", null, null, null, null);
                 cursor1.moveToFirst();
-                strREAD_Tradename[i] = cursor1.getString(2);
+                strREAD_Tradename[i] = cursor1.getString(cursor1.getColumnIndex(mcolumn_trade_name));
 
                 cursor.moveToNext();
             }
@@ -661,28 +669,28 @@ public class MyManage {
             for (int i = 0; i < cursor.getCount(); i++) {
                 switch (intColumn) {
                     case (0):
-                        strREAD[i] = cursor.getString(0);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(qcolumn_id));
                         break;
                     case (1):
-                        strREAD[i] = cursor.getString(1);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(qcolunm_initial_medicine));
                         break;
                     case (2):
-                        strREAD[i] = cursor.getString(2);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(qcolumn_medicine1));
                         break;
                     case (3):
-                        strREAD[i] = cursor.getString(3);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(qcolumn_medicine2));
                         break;
                     case (4):
-                        strREAD[i] = cursor.getString(4);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(qcolumn_type_interaction));
                         break;
                     case (5):
-                        strREAD[i] = cursor.getString(5);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(qcolumn_message));
                         break;
                     case (6):
-                        strREAD[i] = cursor.getString(6);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(qcolumn_timeMedicine1_2));
                         break;
                     case (7):
-                        strREAD[i] = cursor.getString(7);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(qcolumn_timeMedicine2_1));
                     default:
                         break;
                 }
@@ -700,33 +708,35 @@ public class MyManage {
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, "_id =?", new String[]{String.valueOf(id)}, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
-            strread = new String[26];
-                strread[0] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
-                strread[1] = cursor.getString(cursor.getColumnIndex(mcolumn_trade_name));
-                strread[2] = cursor.getString(cursor.getColumnIndex(mcolumn_key_search));
-                strread[3] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name1));
-                strread[4] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage1));
-                strread[5] = cursor.getString(cursor.getColumnIndex(mcolumn_uom1));
-                strread[6] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name2));
-                strread[7] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage2));
-                strread[8] = cursor.getString(cursor.getColumnIndex(mcolumn_uom2));
-                strread[9] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name3));
-                strread[10] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage3));
-                strread[11] = cursor.getString(cursor.getColumnIndex(mcolumn_uom3));
-                strread[12] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name4));
-                strread[13] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage4));
-                strread[14] = cursor.getString(cursor.getColumnIndex(mcolumn_uom4));
-                strread[15] = cursor.getString(cursor.getColumnIndex(mcolumn_which_date_d));
-                strread[16] = cursor.getString(cursor.getColumnIndex(mcolumn_appearance));
-                strread[17] = cursor.getString(cursor.getColumnIndex(mcolumn_pharmaco));
-                strread[18] = cursor.getString(cursor.getColumnIndex(mcolumn_t1));
-                strread[19] = cursor.getString(cursor.getColumnIndex(mcolumn_t2));
-                strread[20] = cursor.getString(cursor.getColumnIndex(mcolumn_t3));
-                strread[21] = cursor.getString(cursor.getColumnIndex(mcolumn_t4));
-                strread[22] = cursor.getString(cursor.getColumnIndex(mcolumn_t5));
-                strread[23] = cursor.getString(cursor.getColumnIndex(mcolumn_t6));
-                strread[24] = cursor.getString(cursor.getColumnIndex(mcolumn_t7));
-                strread[25] = cursor.getString(cursor.getColumnIndex(mcolumn_t8));
+            strread = new String[27];
+
+            strread[0] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
+            strread[1] = cursor.getString(cursor.getColumnIndex(mcolumn_trade_name));
+            strread[2] = cursor.getString(cursor.getColumnIndex(mcolumn_key_search));
+            strread[3] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name1));
+            strread[4] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage1));
+            strread[5] = cursor.getString(cursor.getColumnIndex(mcolumn_uom1));
+            strread[6] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name2));
+            strread[7] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage2));
+            strread[8] = cursor.getString(cursor.getColumnIndex(mcolumn_uom2));
+            strread[9] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name3));
+            strread[10] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage3));
+            strread[11] = cursor.getString(cursor.getColumnIndex(mcolumn_uom3));
+            strread[12] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name4));
+            strread[13] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage4));
+            strread[14] = cursor.getString(cursor.getColumnIndex(mcolumn_uom4));
+            strread[15] = cursor.getString(cursor.getColumnIndex(mcolumn_which_date_d));
+            strread[16] = cursor.getString(cursor.getColumnIndex(mcolumn_appearance));
+            strread[17] = cursor.getString(cursor.getColumnIndex(mcolumn_pharmaco));
+            strread[18] = cursor.getString(cursor.getColumnIndex(mcolumn_t1));
+            strread[19] = cursor.getString(cursor.getColumnIndex(mcolumn_t2));
+            strread[20] = cursor.getString(cursor.getColumnIndex(mcolumn_t3));
+            strread[21] = cursor.getString(cursor.getColumnIndex(mcolumn_t4));
+            strread[22] = cursor.getString(cursor.getColumnIndex(mcolumn_t5));
+            strread[23] = cursor.getString(cursor.getColumnIndex(mcolumn_t6));
+            strread[24] = cursor.getString(cursor.getColumnIndex(mcolumn_t7));
+            strread[25] = cursor.getString(cursor.getColumnIndex(mcolumn_t8));
+            strread[26] = cursor.getString(cursor.getColumnIndex(mcolumn_amount_tablet));
         }
         return strread;
     }
@@ -771,7 +781,8 @@ public class MyManage {
                               int s_generic_name2, String s_dosage2, String s_uom2,
                               int s_generic_name3, String s_dosage3, String s_uom3,
                               int s_generic_name4, String s_dosage4, String s_uom4,
-                              String s_which_date_d, String s_appearance, String s_pharmaco,
+                                   double s_amount_tablet, String s_which_date_d,
+                                   String s_appearance, String s_pharmaco,
                               String s_t1, String s_t2, String s_t3, String s_t4,
                               String s_t5, String s_t6, String s_t7, String s_t8) {
 
@@ -791,6 +802,7 @@ public class MyManage {
         contentValues.put(mcolumn_generic_name4,s_generic_name4);
         contentValues.put(mcolumn_dosage4,s_dosage4);
         contentValues.put(mcolumn_uom4,s_uom4);
+        contentValues.put(mcolumn_amount_tablet,s_amount_tablet);
         contentValues.put(mcolumn_which_date_d,s_which_date_d);
         contentValues.put(mcolumn_appearance,s_appearance);
         contentValues.put(mcolumn_pharmaco,s_pharmaco);
@@ -833,12 +845,12 @@ public class MyManage {
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
 
         if (cursor.getCount()==0) {
-            addMedTABLEValue("Antivir","Zidovudine", 3, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", "1", null, "8:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("GPO vir S",null, 2, "100", "1", 4, "100", "1", 5, "100", "1", 6, null, null, "1", "1", null, "9:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Curam", null, 4, "1", "2", 6, "100", "1", 7, "1000", "1", 7, "100", "1", "1", "1", null, "10:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("GPO vir Z",null, 5, "250", "1", 3, "100", "1", 4, "100", "1", 1, null, null, "1", "1", null, "11:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Augmentin", "Amoxicillin", 6, "1", "2", 7, "125", "1", 1, null, null, 1, null, null, "1", "1", "1", "11:30", "", "", "", "", "", "", "");
-            addMedTABLEValue("CPM", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null, "1", "1", null, "10:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Antivir","Zidovudine", 3, "250", "1", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "8:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("GPO vir S",null, 2, "100", "1", 4, "100", "1", 5, "100", "1", 6, null, null,1, "1", "1", null, "9:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Curam", null, 4, "1", "2", 6, "100", "1", 7, "1000", "1", 7, "100", "1",1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("GPO vir Z",null, 5, "250", "1", 3, "100", "1", 4, "100", "1", 1, null, null,1, "1", "1", null, "11:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Augmentin", "Amoxicillin", 6, "1", "2", 7, "125", "1", 1, null, null, 1, null, null,1, "1", "1", "1", "11:30", "", "", "", "", "", "", "");
+            addMedTABLEValue("CPM", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
 
 
         }

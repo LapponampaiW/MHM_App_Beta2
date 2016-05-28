@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //myCalendar1.set(calendar.DAY_OF_MONTH,15);
-        myCalendar1.set(Calendar.HOUR_OF_DAY, 23);
+        myCalendar1.set(Calendar.HOUR_OF_DAY, 10);
         myCalendar1.set(Calendar.MINUTE, 30);
         myCalendar1.set(Calendar.SECOND, 59);
         myCalendar1.set(Calendar.MILLISECOND, 0);

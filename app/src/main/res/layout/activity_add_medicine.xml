@@ -50,13 +50,15 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editText_Add_TG"
                 android:layout_marginBottom="@dimen/z2_margin_space"
-                android:hint="Trade name / Generic name" />
+                android:hint="Trade/ Generic name"
+                android:layout_weight="1" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="filter"
-                android:id="@+id/buttonFilterListView" />
+                android:id="@+id/buttonFilterListView"
+                android:layout_weight="0.25" />
         </LinearLayout>
 
         <ListView

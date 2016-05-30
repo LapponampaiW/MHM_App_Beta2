@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewAdd;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
-    private LinearLayout relativeLayout;
+    private RelativeLayout relativeLayout;
 
 
 
@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void bindWidget() {
         textViewAdd = (TextView) findViewById(R.id.textView_Main_Add);
-        relativeLayout = (LinearLayout) findViewById(R.id.relative);
+        relativeLayout = (RelativeLayout) findViewById(R.id.relative);
         imageCalendar = (ImageButton) findViewById(R.id.imageButtonCalendar);
 
 

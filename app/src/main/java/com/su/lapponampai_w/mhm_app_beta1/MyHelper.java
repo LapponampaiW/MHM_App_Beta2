@@ -57,7 +57,9 @@ public class MyHelper extends SQLiteOpenHelper {
             "(_id integer primary key, Initial_medicine integer, Medicine1 integer, Medicine2 integer, " +
             "Type_interaction text, Message text, TimeMedicine1_2 integer, TimeMedicine2_1 integer);";
 
-
+    //Create table timeTABLE
+    private static final String CREATE_timeTABLE = "create table timeTABLE " +
+            "(_id integer primary key, Time_interval text, Start_time text, End_time text);";
 
     public MyHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -74,6 +76,7 @@ public class MyHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_sumTABLE);
         db.execSQL(CREATE_drugInteractionTABLE);
         db.execSQL(CREATE_drugInteractionTABLE_For_Query);
+        db.execSQL(CREATE_timeTABLE);
 
     }
 

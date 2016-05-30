@@ -11,25 +11,39 @@
     tools:context="com.su.lapponampai_w.mhm_app_beta1.MainActivity"
     android:background="@drawable/mainbg">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calendar"
-        android:id="@+id/button3"
-        android:onClick="clickCalendar"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="112dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+เพิ่มเติม+"
-        android:id="@+id/textView_Main_Add"
-        android:textSize="20sp"
-        android:textColor="#b33636"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentRight="true" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calendar"
+            android:id="@+id/button3"
+            android:onClick="clickCalendar"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+เพิ่มเติม+"
+            android:id="@+id/textView_Main_Add"
+            android:textSize="20sp"
+            android:textColor="#b33636"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true" />
+    </LinearLayout>
+
 </RelativeLayout>

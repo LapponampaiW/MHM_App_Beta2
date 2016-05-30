@@ -26,8 +26,6 @@ public class SplashScreen extends AppCompatActivity {
 
 
 
-
-
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -71,6 +69,7 @@ public class SplashScreen extends AppCompatActivity {
         myManage.nameGenericTABLEData();
         myManage.medTABLEData();
         myManage.drugInteractionTABLEData();
+        myManage.timeTABLEData();
 
     }  //Main Method
 }  //Main Class

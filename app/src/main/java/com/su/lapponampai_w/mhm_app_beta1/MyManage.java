@@ -121,6 +121,13 @@ public class MyManage {
     private static final String column_TimeCheck = "TimeCheck";
     private static final String column_SkipHold = " SkipHold";
 
+    //timeTABLE
+    private static final String timeTABLE = "timeTABLE";
+    private static final String tcolumn_id = "_id";
+    private static final String tcolumn_time_interval = "Time_interval";
+    private static final String tcolumn_start_time = "Start_time";
+    private static final String tcolumn_end_time = "End_time";
+    private static final String[] column_timeTABLE = {tcolumn_id,tcolumn_time_interval,tcolumn_start_time,tcolumn_end_time};
 
 
     public MyManage(Context context) {
@@ -279,6 +286,18 @@ public class MyManage {
         contentValues.put(column_SkipHold, strSkipHold); // ใช้ Clrl + Enter
 
         return writeSqLiteDatabase.insert(sum_table, null, contentValues);
+    } //addValueToSumTable
+
+    public long addValueToTimeTable(String strTime_interval,
+                                    String strStart_time,
+                                    String strEnd_time) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(tcolumn_time_interval,strTime_interval);
+        contentValues.put(tcolumn_start_time,strStart_time);
+        contentValues.put(tcolumn_end_time,strEnd_time);
+
+        return writeSqLiteDatabase.insert(timeTABLE, null, contentValues);
     }
 
     public long addValueTodrugInteractionTABLE_For_Query(int d_initial_medicine, int d_medicine1, int d_medicine2, String d_type_interaction,
@@ -885,6 +904,18 @@ public class MyManage {
             adddrugInteractionTABLEValue(2, 7, "1", "Fatal DrugInteraction Canot Take with", 0, 0);
             adddrugInteractionTABLEValue(2, 8, "2", "แค่ระมัดระวังการทานร่วมกัน", 0, 0);
 
+        }
+    }
+
+    public void timeTABLEData() {
+        Cursor cursor = readSqLiteDatabase.query(timeTABLE, column_timeTABLE, null, null, null, null, null);
+
+        if (cursor.getCount() == 0) {
+
+            addValueToTimeTable("เช้า", "06:00", "11:59");
+            addValueToTimeTable("กลางวัน", "12:00", "17:59");
+            addValueToTimeTable("เย็น", "18:00", "23:59");
+            addValueToTimeTable("ก่อนนอน", "00:00", "05.59");
         }
     }
 

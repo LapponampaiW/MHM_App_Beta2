@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textViewAdd;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
-    private RelativeLayout relativeLayout;
+    private LinearLayout relativeLayout;
 
 
 
@@ -198,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void bindWidget() {
         textViewAdd = (TextView) findViewById(R.id.textView_Main_Add);
-        relativeLayout = (RelativeLayout) findViewById(R.id.relative);
+        relativeLayout = (LinearLayout) findViewById(R.id.relative);
 
 
     }

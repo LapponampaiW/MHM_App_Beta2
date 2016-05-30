@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private RelativeLayout relativeLayout;
+    private TextView tvMorning, tvAfternoon, tvEvening, tvBedtime;
+    String today;
+    String[] stringsInterval, stringsStartTime, stringsEndTime, stringstimeTABLE;
 
 
 
@@ -65,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
         //Bind Widget
         bindWidget();
 
@@ -72,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         //updatesumTABLE00();
 
         //Notification from SQLite
-        //notificationFormSQLite();  //เปิดในมือถือแล้วใช้ไม่ได้
+        //notificationFormSQLite();
 
         //คลิก เพิ่มเติม
         clickAddbtn();
@@ -80,67 +87,50 @@ public class MainActivity extends AppCompatActivity {
         //คลิก ImageButtonCalendar
         click_ImageButtonCalendar();
 
-        showContentOnMainActivity_QuerySumTABLE();
+        setDateAndTimeToday();
+
+
+        displayMedicineByDay(today);
+
 
 
 
 
     } //Main method
 
-    private void showContentOnMainActivity_QuerySumTABLE() {
+    private void setDateAndTimeToday() {
+        MyManage myManage = new MyManage(this);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        today = dateFormat.format(System.currentTimeMillis());
+        textViewMainDate.setText("วันที่ :" + today);
 
-        imageButtonA1.setVisibility(View.INVISIBLE);
-        imageButtonA2.setVisibility(View.INVISIBLE);
-        imageButtonA3.setVisibility(View.INVISIBLE);
-        imageButtonA4.setVisibility(View.INVISIBLE);
-        imageButtonA5.setVisibility(View.INVISIBLE);
-        imageButtonA6.setVisibility(View.INVISIBLE);
-        imageButtonA7.setVisibility(View.INVISIBLE);
-        imageButtonA8.setVisibility(View.INVISIBLE);
-        imageButtonA9.setVisibility(View.INVISIBLE);
-        imageButtonB1.setVisibility(View.INVISIBLE);
-        imageButtonB2.setVisibility(View.INVISIBLE);
-        imageButtonB3.setVisibility(View.INVISIBLE);
-        imageButtonB4.setVisibility(View.INVISIBLE);
-        imageButtonB5.setVisibility(View.INVISIBLE);
-        imageButtonB6.setVisibility(View.INVISIBLE);
-        imageButtonB7.setVisibility(View.INVISIBLE);
-        imageButtonB8.setVisibility(View.INVISIBLE);
-        imageButtonB9.setVisibility(View.INVISIBLE);
-        imageButtonM1.setVisibility(View.INVISIBLE);
-        imageButtonM2.setVisibility(View.INVISIBLE);
-        imageButtonM3.setVisibility(View.INVISIBLE);
-        imageButtonM4.setVisibility(View.INVISIBLE);
-        imageButtonM5.setVisibility(View.INVISIBLE);
-        imageButtonM6.setVisibility(View.INVISIBLE);
-        imageButtonM7.setVisibility(View.INVISIBLE);
-        imageButtonM8.setVisibility(View.INVISIBLE);
-        imageButtonM9.setVisibility(View.INVISIBLE);
-        imageButtonE1.setVisibility(View.INVISIBLE);
-        imageButtonE2.setVisibility(View.INVISIBLE);
-        imageButtonE3.setVisibility(View.INVISIBLE);
-        imageButtonE4.setVisibility(View.INVISIBLE);
-        imageButtonE5.setVisibility(View.INVISIBLE);
-        imageButtonE6.setVisibility(View.INVISIBLE);
-        imageButtonE7.setVisibility(View.INVISIBLE);
-        imageButtonE8.setVisibility(View.INVISIBLE);
-        imageButtonE9.setVisibility(View.INVISIBLE);
+        stringsInterval = myManage.readTimeTABLE(1);
+        stringsStartTime = myManage.readTimeTABLE(2);
+        stringsEndTime = myManage.readTimeTABLE(3);
+        stringstimeTABLE = new String[4];
+
+        for(int x = 0; x < 4;x++) {
+            stringstimeTABLE[x] = stringsInterval[x] + "(" + stringsStartTime[x] + " - " + stringsEndTime[x] + ")";
+        }
+
+        tvMorning.setText(stringstimeTABLE[0]);
+        tvAfternoon.setText(stringstimeTABLE[1]);
+        tvEvening.setText(stringstimeTABLE[2]);
+        tvBedtime.setText(stringstimeTABLE[3]);
+    }
+
+
+
+    private void displayMedicineByDay(String day) {
 
         MyManage myManage = new MyManage(this);
 
-
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String day = dateFormat.format(System.currentTimeMillis());
-        textViewMainDate.setText("วันที่" + day);
-
-
-
-        String[] strings_Main_id  = myManage.filter_sumTABLE__by_Date(day,1);
-        String[] strings_Time_Ref = myManage.filter_sumTABLE__by_Date(day,3);
+        String[] strings_Main_id  = myManage.filter_sumTABLE__by_Date(day,1);  //ได้ Main_id จาก sumTABLE
+        String[] strings_Time_Ref = myManage.filter_sumTABLE__by_Date(day,3);  //ได้ Time_Ref จาก sumTABLE
         String[] strings_Appearance = new String[strings_Main_id.length];
 
-        Log.d("ContentMainActivity", strings_Main_id[0] + strings_Time_Ref[0]);
+        if (strings_Main_id.length != 0) {
+            Log.d("ContentMainActivity", strings_Main_id[0] + strings_Time_Ref[0]);
 
         for(int i =0 ;i<strings_Main_id.length;i++) {
 
@@ -149,14 +139,131 @@ public class MainActivity extends AppCompatActivity {
         }
 
         MyData myData = new MyData();
-        int[] intsIndex = myData.translate_Appearance(strings_Appearance);
+        int[] intsIndex = myData.translate_Appearance(strings_Appearance); //ได้ รูป จาก mainTABLE ==> sumTABLE
+
+
+
+        //เริ่มทำการใส่ภาพของใน MainActivity
+
+        String strDayM1 = day;
+        String strTimeM1 = stringsStartTime[0];
+        String strTimeM2 = stringsEndTime[0];
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date convertedDateMorning1 = new Date();
+        Date convertedDateMorning2 = new Date();
+        Date convertedDateAfternoon1 = new Date();
+        Date convertedDateAfternoon2 = new Date();
+        Date convertedDateEvening1 = new Date();
+        Date convertedDateEvening2 = new Date();
+        Date convertedBedtime1 = new Date();
+        Date convertedBedtime2 = new Date();
+        Date t = new Date();
+        try {
+            convertedDateMorning1 = dateFormat.parse(day + " " + stringsStartTime[0]);
+            convertedDateMorning2 = dateFormat.parse(day + " " + stringsEndTime[0]);
+            convertedDateAfternoon1 = dateFormat.parse(day + " " + stringsStartTime[1]);
+            convertedDateAfternoon2 = dateFormat.parse(day + " " + stringsEndTime[1]);
+            convertedDateEvening1 = dateFormat.parse(day + " " + stringsStartTime[2]);
+            convertedDateEvening2 = dateFormat.parse(day + " " + stringsEndTime[2]);
+            convertedBedtime1 = dateFormat.parse(day + " " + stringsStartTime[3]);
+            convertedBedtime2 = dateFormat.parse(day + " " + stringsEndTime[3]);
+            t = dateFormat.parse(day + " " + strings_Time_Ref[0]);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        //แค่เช็ค Log.d ดูว่าถูกต้อง
+        String s = dateFormat.format(convertedDateMorning1);
+        String s1 = dateFormat.format(convertedDateMorning2);
+        String s2 = dateFormat.format(convertedDateAfternoon1);
+        String s3 = dateFormat.format(convertedDateAfternoon2);
+        String s4 = dateFormat.format(convertedDateEvening1);
+        String s5 = dateFormat.format(convertedDateEvening2);
+        String s6 = dateFormat.format(convertedBedtime1);
+        String s7 = dateFormat.format(convertedBedtime2);
+        String st  = dateFormat.format(t);
+        Log.d("abc", "st :" + st);
+
+
+        if (t.after(convertedDateMorning1)) {
+            Log.d("abc",st + " ตามหลัง " + s);
+        }
+
+        Log.d("abc", s + " " + s1);
+        Log.d("abc", s2 + " " + s3);
+        Log.d("abc", s4 + " " + s5);
+        Log.d("abc", s6 + " " + s7);  // ลบได้ต้องแต่ //แค่เช็ค ถึงบรรทัดนี้
+
+            Date time = new Date();
+
+            for(int z = 0; z < strings_Time_Ref.length;z++) {
+
+                try {
+                    time = dateFormat.parse(day + " " + strings_Time_Ref[z]);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                if (time.compareTo(convertedDateMorning1) >= 0 && time.compareTo(convertedDateMorning2) <= 0) {
+                    Log.d("abc", "อยู่ระหว่าง 06:00 - 11:59");
+
+
+                }
+
+
+
+
+            }
+
+
+
+        }
 
 
 
 
 
 
-    } //showContentOnMainActivity_QuerySumTABLE
+
+
+
+        /*
+        String dateString = "03/26/2012 11:49:00 AM";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+        Date convertedDate = new Date();
+        try {
+            convertedDate = dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (convertedDate.equals(convertedDate)) {
+            Log.d("abc", "ลอง2");
+        }
+
+
+        // template
+        String dateString = "03/26/2012 11:49:00 AM";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
+        Date convertedDate = new Date();
+        try {
+            convertedDate = dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println(convertedDate);
+
+        */
+
+        for(int y = 0; y < strings_Main_id.length; y++) {
+
+        }
+
+
+    }
 
 
     private void click_ImageButtonCalendar() {
@@ -249,7 +356,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //myCalendar1.set(calendar.DAY_OF_MONTH,15);
-        myCalendar1.set(Calendar.HOUR_OF_DAY, 10);
+        myCalendar1.set(Calendar.HOUR_OF_DAY, 00);
         myCalendar1.set(Calendar.MINUTE, 30);
         myCalendar1.set(Calendar.SECOND, 59);
         myCalendar1.set(Calendar.MILLISECOND, 0);
@@ -323,6 +430,48 @@ public class MainActivity extends AppCompatActivity {
         imageButtonE7 = (ImageButton) findViewById(R.id.iB_E7);
         imageButtonE8 = (ImageButton) findViewById(R.id.iB_E8);
         imageButtonE9 = (ImageButton) findViewById(R.id.iB_E9);
+        tvMorning = (TextView) findViewById(R.id.tvMorning);
+        tvAfternoon = (TextView) findViewById(R.id.tvAfternoon);
+        tvEvening = (TextView) findViewById(R.id.tvEvening);
+        tvBedtime = (TextView) findViewById(R.id.tvBedtime);
+
+        //Invisible
+        imageButtonA1.setVisibility(View.INVISIBLE);
+        imageButtonA2.setVisibility(View.INVISIBLE);
+        imageButtonA3.setVisibility(View.INVISIBLE);
+        imageButtonA4.setVisibility(View.INVISIBLE);
+        imageButtonA5.setVisibility(View.INVISIBLE);
+        imageButtonA6.setVisibility(View.INVISIBLE);
+        imageButtonA7.setVisibility(View.INVISIBLE);
+        imageButtonA8.setVisibility(View.INVISIBLE);
+        imageButtonA9.setVisibility(View.INVISIBLE);
+        imageButtonB1.setVisibility(View.INVISIBLE);
+        imageButtonB2.setVisibility(View.INVISIBLE);
+        imageButtonB3.setVisibility(View.INVISIBLE);
+        imageButtonB4.setVisibility(View.INVISIBLE);
+        imageButtonB5.setVisibility(View.INVISIBLE);
+        imageButtonB6.setVisibility(View.INVISIBLE);
+        imageButtonB7.setVisibility(View.INVISIBLE);
+        imageButtonB8.setVisibility(View.INVISIBLE);
+        imageButtonB9.setVisibility(View.INVISIBLE);
+        imageButtonM1.setVisibility(View.INVISIBLE);
+        imageButtonM2.setVisibility(View.INVISIBLE);
+        imageButtonM3.setVisibility(View.INVISIBLE);
+        imageButtonM4.setVisibility(View.INVISIBLE);
+        imageButtonM5.setVisibility(View.INVISIBLE);
+        imageButtonM6.setVisibility(View.INVISIBLE);
+        imageButtonM7.setVisibility(View.INVISIBLE);
+        imageButtonM8.setVisibility(View.INVISIBLE);
+        imageButtonM9.setVisibility(View.INVISIBLE);
+        imageButtonE1.setVisibility(View.INVISIBLE);
+        imageButtonE2.setVisibility(View.INVISIBLE);
+        imageButtonE3.setVisibility(View.INVISIBLE);
+        imageButtonE4.setVisibility(View.INVISIBLE);
+        imageButtonE5.setVisibility(View.INVISIBLE);
+        imageButtonE6.setVisibility(View.INVISIBLE);
+        imageButtonE7.setVisibility(View.INVISIBLE);
+        imageButtonE8.setVisibility(View.INVISIBLE);
+        imageButtonE9.setVisibility(View.INVISIBLE);
 
 
     }

@@ -842,6 +842,35 @@ public class MyManage {
         return strread;
     }
 
+    public String[] readTimeTABLE(int intcolumn) {
+
+        Cursor cursor = readSqLiteDatabase.query(timeTABLE, column_timeTABLE, null, null, null, null, null);
+        cursor.moveToFirst();
+        String[] strREAD = new String[cursor.getCount()];
+
+        for (int i = 0; i <cursor.getCount(); i++) {
+            switch (intcolumn) {
+                case 0:
+                    strREAD[i] = cursor.getString(cursor.getColumnIndex(tcolumn_id));
+                    break;
+                case 1:
+                    strREAD[i] = cursor.getString(cursor.getColumnIndex(tcolumn_time_interval));
+                    break;
+                case 2:
+                    strREAD[i] = cursor.getString(cursor.getColumnIndex(tcolumn_start_time));
+                    break;
+                case 3:
+                    strREAD[i] = cursor.getString(cursor.getColumnIndex(tcolumn_end_time));
+                    break;
+                default:
+                    break;
+
+            }
+            cursor.moveToNext();
+        }
+        return strREAD;
+    }
+
     public String[] translate_GenericName(String[] genericname) {
 
         String[] strRead = new String[genericname.length];
@@ -997,7 +1026,7 @@ public class MyManage {
             addValueToTimeTable("เช้า", "06:00", "11:59");
             addValueToTimeTable("กลางวัน", "12:00", "17:59");
             addValueToTimeTable("เย็น", "18:00", "23:59");
-            addValueToTimeTable("ก่อนนอน", "00:00", "05.59");
+            addValueToTimeTable("ก่อนนอน", "00:00", "05:59");
         }
     }
 

@@ -41,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
     //Widget ต่างๆ
     ImageButton imageButtonPop1, imageButtonPop2, imageButtonPop3, imageButtonPop4, imageButtonPop5, imageButtonPop6;
     ImageButton imageCalendar;
+    ImageButton imageButtonM1,imageButtonM2,imageButtonM3,imageButtonM4,
+            imageButtonM5,imageButtonM6,imageButtonM7,imageButtonM8,imageButtonM9,
+            imageButtonA1,imageButtonA2,imageButtonA3,imageButtonA4,imageButtonA5,
+            imageButtonA6,imageButtonA7,imageButtonA8,imageButtonA9,imageButtonE1,
+            imageButtonE2,imageButtonE3,imageButtonE4,imageButtonE5,imageButtonE6,
+            imageButtonE7,imageButtonE8,imageButtonE9,imageButtonB1,imageButtonB2,
+            imageButtonB3,imageButtonB4,imageButtonB5,imageButtonB6,imageButtonB7,
+            imageButtonB8,imageButtonB9;
     TextView textViewAdd, textViewMainDate;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
@@ -81,13 +89,51 @@ public class MainActivity extends AppCompatActivity {
 
     private void showContentOnMainActivity_QuerySumTABLE() {
 
+        imageButtonA1.setVisibility(View.INVISIBLE);
+        imageButtonA2.setVisibility(View.INVISIBLE);
+        imageButtonA3.setVisibility(View.INVISIBLE);
+        imageButtonA4.setVisibility(View.INVISIBLE);
+        imageButtonA5.setVisibility(View.INVISIBLE);
+        imageButtonA6.setVisibility(View.INVISIBLE);
+        imageButtonA7.setVisibility(View.INVISIBLE);
+        imageButtonA8.setVisibility(View.INVISIBLE);
+        imageButtonA9.setVisibility(View.INVISIBLE);
+        imageButtonB1.setVisibility(View.INVISIBLE);
+        imageButtonB2.setVisibility(View.INVISIBLE);
+        imageButtonB3.setVisibility(View.INVISIBLE);
+        imageButtonB4.setVisibility(View.INVISIBLE);
+        imageButtonB5.setVisibility(View.INVISIBLE);
+        imageButtonB6.setVisibility(View.INVISIBLE);
+        imageButtonB7.setVisibility(View.INVISIBLE);
+        imageButtonB8.setVisibility(View.INVISIBLE);
+        imageButtonB9.setVisibility(View.INVISIBLE);
+        imageButtonM1.setVisibility(View.INVISIBLE);
+        imageButtonM2.setVisibility(View.INVISIBLE);
+        imageButtonM3.setVisibility(View.INVISIBLE);
+        imageButtonM4.setVisibility(View.INVISIBLE);
+        imageButtonM5.setVisibility(View.INVISIBLE);
+        imageButtonM6.setVisibility(View.INVISIBLE);
+        imageButtonM7.setVisibility(View.INVISIBLE);
+        imageButtonM8.setVisibility(View.INVISIBLE);
+        imageButtonM9.setVisibility(View.INVISIBLE);
+        imageButtonE1.setVisibility(View.INVISIBLE);
+        imageButtonE2.setVisibility(View.INVISIBLE);
+        imageButtonE3.setVisibility(View.INVISIBLE);
+        imageButtonE4.setVisibility(View.INVISIBLE);
+        imageButtonE5.setVisibility(View.INVISIBLE);
+        imageButtonE6.setVisibility(View.INVISIBLE);
+        imageButtonE7.setVisibility(View.INVISIBLE);
+        imageButtonE8.setVisibility(View.INVISIBLE);
+        imageButtonE9.setVisibility(View.INVISIBLE);
+
         MyManage myManage = new MyManage(this);
+
+
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String day = dateFormat.format(System.currentTimeMillis());
         textViewMainDate.setText("วันที่" + day);
 
-        String[] strings_medTABLE;
 
 
         String[] strings_Main_id  = myManage.filter_sumTABLE__by_Date(day,1);
@@ -97,9 +143,14 @@ public class MainActivity extends AppCompatActivity {
         Log.d("ContentMainActivity", strings_Main_id[0] + strings_Time_Ref[0]);
 
         for(int i =0 ;i<strings_Main_id.length;i++) {
-            strings_medTABLE = myManage.filter_medTABLE_by_id_Full(strings_Main_id[i]);
-            strings_Appearance[i] = strings_medTABLE[16];
+
+            String[] strings_medTABLE = myManage.filter_mainTABLE_by_id_Full(strings_Main_id[i]);
+            strings_Appearance[i] = strings_medTABLE[6];
         }
+
+        MyData myData = new MyData();
+        int[] intsIndex = myData.translate_Appearance(strings_Appearance);
+
 
 
 
@@ -236,6 +287,42 @@ public class MainActivity extends AppCompatActivity {
         relativeLayout = (RelativeLayout) findViewById(R.id.relative);
         imageCalendar = (ImageButton) findViewById(R.id.imageButtonCalendar);
         textViewMainDate = (TextView) findViewById(R.id.textViewMainDate);
+        imageButtonA1 = (ImageButton) findViewById(R.id.iB_A1);
+        imageButtonA2 = (ImageButton) findViewById(R.id.iB_A2);
+        imageButtonA3 = (ImageButton) findViewById(R.id.iB_A3);
+        imageButtonA4 = (ImageButton) findViewById(R.id.iB_A4);
+        imageButtonA5 = (ImageButton) findViewById(R.id.iB_A5);
+        imageButtonA6 = (ImageButton) findViewById(R.id.iB_A6);
+        imageButtonA7 = (ImageButton) findViewById(R.id.iB_A7);
+        imageButtonA8 = (ImageButton) findViewById(R.id.iB_A8);
+        imageButtonA9 = (ImageButton) findViewById(R.id.iB_A9);
+        imageButtonB1 = (ImageButton) findViewById(R.id.iB_B1);
+        imageButtonB2 = (ImageButton) findViewById(R.id.iB_B2);
+        imageButtonB3 = (ImageButton) findViewById(R.id.iB_B3);
+        imageButtonB4 = (ImageButton) findViewById(R.id.iB_B4);
+        imageButtonB5 = (ImageButton) findViewById(R.id.iB_B5);
+        imageButtonB6 = (ImageButton) findViewById(R.id.iB_B6);
+        imageButtonB7 = (ImageButton) findViewById(R.id.iB_B7);
+        imageButtonB8 = (ImageButton) findViewById(R.id.iB_B8);
+        imageButtonB9 = (ImageButton) findViewById(R.id.iB_B9);
+        imageButtonM1 = (ImageButton) findViewById(R.id.iB_M1);
+        imageButtonM2 = (ImageButton) findViewById(R.id.iB_M2);
+        imageButtonM3 = (ImageButton) findViewById(R.id.iB_M3);
+        imageButtonM4 = (ImageButton) findViewById(R.id.iB_M4);
+        imageButtonM5 = (ImageButton) findViewById(R.id.iB_M5);
+        imageButtonM6 = (ImageButton) findViewById(R.id.iB_M6);
+        imageButtonM7 = (ImageButton) findViewById(R.id.iB_M7);
+        imageButtonM8 = (ImageButton) findViewById(R.id.iB_M8);
+        imageButtonM9 = (ImageButton) findViewById(R.id.iB_M9);
+        imageButtonE1 = (ImageButton) findViewById(R.id.iB_E1);
+        imageButtonE2 = (ImageButton) findViewById(R.id.iB_E2);
+        imageButtonE3 = (ImageButton) findViewById(R.id.iB_E3);
+        imageButtonE4 = (ImageButton) findViewById(R.id.iB_E4);
+        imageButtonE5 = (ImageButton) findViewById(R.id.iB_E5);
+        imageButtonE6 = (ImageButton) findViewById(R.id.iB_E6);
+        imageButtonE7 = (ImageButton) findViewById(R.id.iB_E7);
+        imageButtonE8 = (ImageButton) findViewById(R.id.iB_E8);
+        imageButtonE9 = (ImageButton) findViewById(R.id.iB_E9);
 
 
     }

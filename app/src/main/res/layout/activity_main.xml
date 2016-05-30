@@ -68,8 +68,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginBottom="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -77,7 +76,7 @@
                 android:text="New Text"
                 android:id="@+id/textView41"
                 android:layout_marginRight="20dp"
-                android:textSize="@dimen/heading3"
+                android:textSize="@dimen/heading4"
                 android:layout_weight="1"
                 android:gravity="right" />
 
@@ -87,7 +86,7 @@
                 android:text="New Text"
                 android:id="@+id/textView42"
                 android:layout_marginRight="10dp"
-                android:textSize="@dimen/heading3"
+                android:textSize="@dimen/heading4"
                 android:layout_weight="1"
                 android:gravity="left" />
         </LinearLayout>
@@ -109,21 +108,21 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/iB_M6"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton4"
+                    android:id="@+id/iB_M5"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton6"
+                    android:id="@+id/iB_M4"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
             </LinearLayout>
@@ -137,21 +136,21 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/iB_A4"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton5"
+                    android:id="@+id/iB_A5"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton7"
+                    android:id="@+id/iB_A6"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
             </LinearLayout>
@@ -174,21 +173,21 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton8"
+                    android:id="@+id/iB_M2"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton9"
+                    android:id="@+id/iB_M1"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton10"
+                    android:id="@+id/iB_M3"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
             </LinearLayout>
@@ -202,21 +201,21 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton11"
+                    android:id="@+id/iB_A3"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton12"
+                    android:id="@+id/iB_A1"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton13"
+                    android:id="@+id/iB_A2"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
             </LinearLayout>
@@ -239,21 +238,21 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton14"
+                    android:id="@+id/iB_M7"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton15"
+                    android:id="@+id/iB_M8"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton16"
+                    android:id="@+id/iB_M9"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
             </LinearLayout>
@@ -267,31 +266,25 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton17"
+                    android:id="@+id/iB_A9"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton18"
+                    android:id="@+id/iB_A8"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton19"
+                    android:id="@+id/iB_A7"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
             </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"></LinearLayout>
 
     </LinearLayout>
 
@@ -318,21 +311,21 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton20"
+                    android:id="@+id/iB_B7"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton21"
+                    android:id="@+id/iB_B8"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton22"
+                    android:id="@+id/iB_B9"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
             </LinearLayout>
@@ -346,21 +339,21 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton23"
+                    android:id="@+id/iB_E9"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton24"
+                    android:id="@+id/iB_E8"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton25"
+                    android:id="@+id/iB_E7"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
@@ -384,21 +377,21 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton26"
+                    android:id="@+id/iB_B2"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton27"
+                    android:id="@+id/iB_B1"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton28"
+                    android:id="@+id/iB_B3"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
             </LinearLayout>
@@ -412,21 +405,21 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton29"
+                    android:id="@+id/iB_E3"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton30"
+                    android:id="@+id/iB_E1"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton31"
+                    android:id="@+id/iB_E2"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
             </LinearLayout>
@@ -449,21 +442,21 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton32"
+                    android:id="@+id/iB_B5"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton33"
+                    android:id="@+id/iB_B4"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton34"
+                    android:id="@+id/iB_B6"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
             </LinearLayout>
@@ -477,21 +470,21 @@
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton35"
+                    android:id="@+id/iB_E6"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton36"
+                    android:id="@+id/iB_E4"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
 
                 <ImageButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButton37"
+                    android:id="@+id/iB_E5"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
             </LinearLayout>
@@ -509,7 +502,7 @@
                 android:text="New Text"
                 android:id="@+id/textView43"
                 android:layout_marginRight="20dp"
-                android:textSize="@dimen/heading3"
+                android:textSize="@dimen/heading4"
                 android:layout_weight="1"
                 android:gravity="right" />
 
@@ -519,7 +512,7 @@
                 android:text="New Text"
                 android:id="@+id/textView44"
                 android:layout_marginRight="10dp"
-                android:textSize="@dimen/heading3"
+                android:textSize="@dimen/heading4"
                 android:layout_weight="1"
                 android:gravity="left" />
 

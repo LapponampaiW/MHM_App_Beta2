@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     //Widget ต่างๆ
     ImageButton imageButtonPop1, imageButtonPop2, imageButtonPop3, imageButtonPop4, imageButtonPop5, imageButtonPop6;
+    ImageButton imageCalendar;
     TextView textViewAdd;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
@@ -66,17 +67,22 @@ public class MainActivity extends AppCompatActivity {
         //คลิก เพิ่มเติม
         clickAddbtn();
 
-
-
-
-
+        //คลิก ImageButtonCalendar
+        click_ImageButtonCalendar();
 
 
 
 
     } //Main method
 
-
+    private void click_ImageButtonCalendar() {
+        imageCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,Calendartest.class));
+            }
+        });
+    }
 
 
     private void clickAddbtn() {
@@ -118,11 +124,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-
-    public void clickCalendar(View view) {
-        startActivity(new Intent(MainActivity.this,Calendartest.class));
     }
 
     private void notificationFormSQLite() {
@@ -200,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
     private void bindWidget() {
         textViewAdd = (TextView) findViewById(R.id.textView_Main_Add);
         relativeLayout = (LinearLayout) findViewById(R.id.relative);
+        imageCalendar = (ImageButton) findViewById(R.id.imageButtonCalendar);
 
 
     }

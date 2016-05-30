@@ -120,6 +120,7 @@ public class MyManage {
     private static final String column_DateCheck = "DateCheck";
     private static final String column_TimeCheck = "TimeCheck";
     private static final String column_SkipHold = " SkipHold";
+    private static final String[] column_sumTABLE = {"_id",column_Main_id,column_DateRef,column_TimeRef,column_DateCheck,column_TimeCheck,column_SkipHold};
 
     //timeTABLE
     private static final String timeTABLE = "timeTABLE";
@@ -224,6 +225,52 @@ public class MyManage {
         return strREAD;
 
     } //readAllmainTABLE1
+
+
+    public String[] filter_sumTABLE__by_Date(String time,int intcolumn) {
+
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(sum_table,column_sumTABLE,"DateRef LIKE '" + time + "'",null,null,null,null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+
+            for(int i = 0;i <cursor.getCount();i++) {
+
+                switch (intcolumn) {
+                    case (0):
+                        strREAD[i] = cursor.getString(0);
+                        break;
+                    case (1):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_Main_id));
+                        break;
+                    case (2):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_DateRef));
+                        break;
+                    case (3):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_TimeRef));
+                        break;
+                    case (4):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_DateCheck));
+                        break;
+                    case (5):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_TimeCheck));
+                        break;
+                    case (6):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_SkipHold));
+                        break;
+                    default:
+                        break;
+
+                }
+
+                cursor.moveToNext();
+            }
+
+        }
+
+        return strREAD;
+    } //filter_sumTABLE_by_Date
 
 
     public long addValueTomainTABLE(String strMed_id,
@@ -529,6 +576,48 @@ public class MyManage {
         }
 
         return strREAD;
+    }
+
+    public String[] filter_medTABLE_by_id_Full(String id) {
+        Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"_id =?",new String[]{String.valueOf(id)},null,null,null);
+        String[] strREAD = new String[27];
+        if (cursor != null) {
+            cursor.moveToFirst();
+
+            strREAD[0] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
+            strREAD[1] = cursor.getString(cursor.getColumnIndex(mcolumn_trade_name));
+            strREAD[2] = cursor.getString(cursor.getColumnIndex(mcolumn_key_search));
+            strREAD[3] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name1));
+            strREAD[4] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage1));
+            strREAD[5] = cursor.getString(cursor.getColumnIndex(mcolumn_uom1));
+            strREAD[6] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name2));
+            strREAD[7] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage2));
+            strREAD[8] = cursor.getString(cursor.getColumnIndex(mcolumn_uom2));
+            strREAD[9] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name3));
+            strREAD[10] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage3));
+            strREAD[11] = cursor.getString(cursor.getColumnIndex(mcolumn_uom3));
+            strREAD[12] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name4));
+            strREAD[13] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage4));
+            strREAD[14] = cursor.getString(cursor.getColumnIndex(mcolumn_uom4));
+            strREAD[15] = cursor.getString(cursor.getColumnIndex(mcolumn_which_date_d));
+            strREAD[16] = cursor.getString(cursor.getColumnIndex(mcolumn_appearance));
+            strREAD[17] = cursor.getString(cursor.getColumnIndex(mcolumn_pharmaco));
+            strREAD[18] = cursor.getString(cursor.getColumnIndex(mcolumn_t1));
+            strREAD[19] = cursor.getString(cursor.getColumnIndex(mcolumn_t2));
+            strREAD[20] = cursor.getString(cursor.getColumnIndex(mcolumn_t3));
+            strREAD[21] = cursor.getString(cursor.getColumnIndex(mcolumn_t4));
+            strREAD[22] = cursor.getString(cursor.getColumnIndex(mcolumn_t5));
+            strREAD[23] = cursor.getString(cursor.getColumnIndex(mcolumn_t6));
+            strREAD[24] = cursor.getString(cursor.getColumnIndex(mcolumn_t7));
+            strREAD[25] = cursor.getString(cursor.getColumnIndex(mcolumn_t8));
+            strREAD[26] = cursor.getString(cursor.getColumnIndex(mcolumn_amount_tablet));
+
+        } else {
+            strREAD = null;
+        }
+
+        return strREAD;
+
     }
 
     public String findGenerinName_nameGenericTABLE_by_id(String id) {

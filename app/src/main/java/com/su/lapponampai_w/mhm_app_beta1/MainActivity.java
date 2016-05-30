@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     //Widget ต่างๆ
     ImageButton imageButtonPop1, imageButtonPop2, imageButtonPop3, imageButtonPop4, imageButtonPop5, imageButtonPop6;
     ImageButton imageCalendar;
-    TextView textViewAdd;
+    TextView textViewAdd, textViewMainDate;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private RelativeLayout relativeLayout;
@@ -55,14 +55,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         //Bind Widget
         bindWidget();
 
         //Update sumTABLE 0:00
-        updatesumTABLE00();
+        //updatesumTABLE00();
 
         //Notification from SQLite
-        notificationFormSQLite();  //เปิดในมือถือแล้วใช้ไม่ได้
+        //notificationFormSQLite();  //เปิดในมือถือแล้วใช้ไม่ได้
 
         //คลิก เพิ่มเติม
         clickAddbtn();
@@ -70,10 +72,41 @@ public class MainActivity extends AppCompatActivity {
         //คลิก ImageButtonCalendar
         click_ImageButtonCalendar();
 
+        showContentOnMainActivity_QuerySumTABLE();
+
 
 
 
     } //Main method
+
+    private void showContentOnMainActivity_QuerySumTABLE() {
+
+        MyManage myManage = new MyManage(this);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String day = dateFormat.format(System.currentTimeMillis());
+        textViewMainDate.setText("วันที่" + day);
+
+        String[] strings_medTABLE;
+
+
+        String[] strings_Main_id  = myManage.filter_sumTABLE__by_Date(day,1);
+        String[] strings_Time_Ref = myManage.filter_sumTABLE__by_Date(day,3);
+        String[] strings_Appearance = new String[strings_Main_id.length];
+
+        Log.d("ContentMainActivity", strings_Main_id[0] + strings_Time_Ref[0]);
+
+        for(int i =0 ;i<strings_Main_id.length;i++) {
+            strings_medTABLE = myManage.filter_medTABLE_by_id_Full(strings_Main_id[i]);
+            strings_Appearance[i] = strings_medTABLE[16];
+        }
+
+
+
+
+
+    } //showContentOnMainActivity_QuerySumTABLE
+
 
     private void click_ImageButtonCalendar() {
         imageCalendar.setOnClickListener(new View.OnClickListener() {
@@ -202,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
         textViewAdd = (TextView) findViewById(R.id.textView_Main_Add);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative);
         imageCalendar = (ImageButton) findViewById(R.id.imageButtonCalendar);
+        textViewMainDate = (TextView) findViewById(R.id.textViewMainDate);
 
 
     }

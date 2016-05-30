@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add Date"
-                android:id="@+id/textView40"
+                android:id="@+id/textViewMainDate"
                 android:textSize="@dimen/heading3"
                 android:gravity="center_vertical|center_horizontal" />
         </LinearLayout>

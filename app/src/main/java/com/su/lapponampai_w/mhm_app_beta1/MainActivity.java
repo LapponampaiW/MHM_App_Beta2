@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             imageButtonE7,imageButtonE8,imageButtonE9,imageButtonB1,imageButtonB2,
             imageButtonB3,imageButtonB4,imageButtonB5,imageButtonB6,imageButtonB7,
             imageButtonB8,imageButtonB9;
-    TextView textViewAdd, textViewMainDate;
+    TextView textViewAdd, textViewMainDate, textViewMedication;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private RelativeLayout relativeLayout;
@@ -80,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
         //คลิก เพิ่มเติม
         clickAddbtn();
 
+        //คลิก รายการยา
+        clickMedicationList();
+
         //คลิก ImageButtonCalendar
         click_ImageButtonCalendar();
 
@@ -88,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
         displayMedicineByDay(today);
 
     } //Main method
+
+    private void clickMedicationList() {
+        textViewMedication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,MedicationListActivity.class));
+            }
+        });
+    }
 
     private void setDateAndTimeToday() {
         MyManage myManage = new MyManage(this);
@@ -594,6 +606,7 @@ public class MainActivity extends AppCompatActivity {
         relativeLayout = (RelativeLayout) findViewById(R.id.relative);
         imageCalendar = (ImageButton) findViewById(R.id.imageButtonCalendar);
         textViewMainDate = (TextView) findViewById(R.id.textViewMainDate);
+        textViewMedication = (TextView) findViewById(R.id.textView_Medicine);
         imageButtonA1 = (ImageButton) findViewById(R.id.iB_A1);
         imageButtonA2 = (ImageButton) findViewById(R.id.iB_A2);
         imageButtonA3 = (ImageButton) findViewById(R.id.iB_A3);

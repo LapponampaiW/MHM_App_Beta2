@@ -162,7 +162,7 @@ public class MyManage {
 
         String[] resultStrings = null;
         Cursor cursor = readSqLiteDatabase.query("mainTABLE",
-                new String[]{"_id", "T1"},
+                new String[]{"_id", "T1","Med_id","Trade_name","Generic_line","Appearance"}, //2,3,4,5
                 null,null,null,null,null);
 
         resultStrings = new String[cursor.getCount()];

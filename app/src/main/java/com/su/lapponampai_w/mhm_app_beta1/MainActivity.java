@@ -126,11 +126,13 @@ public class MainActivity extends AppCompatActivity {
         MyManage myManage = new MyManage(this);
 
         String[] strings_Main_id  = myManage.filter_sumTABLE__by_Date(day,1);  //ได้ Main_id จาก sumTABLE
-        String[] strings_Time_Ref = myManage.filter_sumTABLE__by_Date(day,3);  //ได้ Time_Ref จาก sumTABLE
+        String[] strings_TimeRef = myManage.filter_sumTABLE__by_Date(day,3);  //ได้ Time_Ref จาก sumTABLE
+        String[] strings_Sum_id = myManage.filter_sumTABLE__by_Date(day, 0); //ได้ sum_id จาก sumTABLE
+        String[] strings_TimeCheck = myManage.filter_sumTABLE__by_Date(day,5 ); //ได้ TimeCheck จาก sumTABLE
         String[] strings_Appearance = new String[strings_Main_id.length];
 
         if (strings_Main_id.length != 0) {
-            Log.d("ContentMainActivity", strings_Main_id[0] + strings_Time_Ref[0]);
+            Log.d("ContentMainActivity", strings_Main_id[0] + strings_TimeRef[0]);
 
         for(int i =0 ;i<strings_Main_id.length;i++) {
 
@@ -168,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
             convertedDateEvening2 = dateFormat.parse(day + " " + stringsEndTime[2]);
             convertedBedtime1 = dateFormat.parse(day + " " + stringsStartTime[3]);
             convertedBedtime2 = dateFormat.parse(day + " " + stringsEndTime[3]);
-            t = dateFormat.parse(day + " " + strings_Time_Ref[0]);
+            t = dateFormat.parse(day + " " + strings_TimeRef[0]);
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -198,17 +200,27 @@ public class MainActivity extends AppCompatActivity {
         Log.d("abc", s6 + " " + s7);  // ลบได้ต้องแต่ //แค่เช็ค ถึงบรรทัดนี้
 
             Date time = new Date();
+            //ลบข้อมูลทั้งหมดใน displayTABLE
+            SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
+            sqLiteDatabase.delete("displayTABLE", null, null);
 
-            for(int z = 0; z < strings_Time_Ref.length;z++) {
-
+            for(int z = 0; z < strings_TimeRef.length;z++) {
+                String strValue;
                 try {
-                    time = dateFormat.parse(day + " " + strings_Time_Ref[z]);
+                    time = dateFormat.parse(day + " " + strings_TimeRef[z]);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
 
+
                 if (time.compareTo(convertedDateMorning1) >= 0 && time.compareTo(convertedDateMorning2) <= 0) {
                     Log.d("abc", "อยู่ระหว่าง 06:00 - 11:59");
+                    strValue = myManage.filterdisplayTABLE_null__By_Position("M1");
+                    Log.d("abc", "strREAD :" + strValue);
+                    if (strValue.equals("Non value")) {
+
+                    }
+
 
 
                 }
@@ -356,7 +368,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //myCalendar1.set(calendar.DAY_OF_MONTH,15);
-        myCalendar1.set(Calendar.HOUR_OF_DAY, 00);
+        myCalendar1.set(Calendar.HOUR_OF_DAY, 01);
         myCalendar1.set(Calendar.MINUTE, 30);
         myCalendar1.set(Calendar.SECOND, 59);
         myCalendar1.set(Calendar.MILLISECOND, 0);

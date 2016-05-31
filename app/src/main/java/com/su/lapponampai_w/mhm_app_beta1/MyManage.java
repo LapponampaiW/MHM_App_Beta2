@@ -133,6 +133,18 @@ public class MyManage {
     private static final String tcolumn_end_time = "End_time";
     private static final String[] column_timeTABLE = {tcolumn_id,tcolumn_time_interval,tcolumn_start_time,tcolumn_end_time};
 
+    //displayTABLE
+    private static final String displayTABLE = "displayTABLE";
+    private static final String displaycolumn_id = "_id";
+    private static final String displaycolumn_position = "Position";
+    private static final String displaycolumn_sum_id = "Sum_id";
+    private static final String displaycolumn_main_id = "Main_id";
+    private static final String displaycolumn_timeref = "TimeRef";
+    private static final String displaycolumn_timecheck = "TimeCheck";
+    private static final String displaycolumn_appearance = "Appearance";
+    private static final String[] column_displayTABLE = {displaycolumn_id,displaycolumn_position,displaycolumn_sum_id,
+            displaycolumn_main_id,displaycolumn_timeref,displaycolumn_timecheck,displaycolumn_appearance};
+
 
     public MyManage(Context context) {
         helper = new MyHelper(context);
@@ -162,6 +174,25 @@ public class MyManage {
         cursor.close();
 
             return resultStrings;
+    }
+
+    public String filterdisplayTABLE_null__By_Position(String position) {
+
+        String strREAD = null;
+
+        Cursor cursor = readSqLiteDatabase.query(displayTABLE, column_displayTABLE,"Position =?", new String[]{String.valueOf(position)}, null,null,null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            int i = cursor.getCount();
+            if (i > 0) {
+                strREAD = "Value";
+            } else {
+                strREAD = "Non value";
+            }
+        }
+
+        return strREAD;
     }
 
     public String[] readAllMainTABLE_string(String med_id,int intColumn) {

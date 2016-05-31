@@ -212,6 +212,46 @@ public class AddMedicine2Activity extends AppCompatActivity {
         }
         myManage.addValueTomainTABLE(string1,string2,string3,string15,string4,string5,string6,string7,string8,string9,string10,string11,string12,string13,string14);
 
+        String[] strings1 = myManage.readAllMainTABLE_string(string1, 0);
+        String[] stringsT1 = myManage.readAllMainTABLE_string(string1, 7);
+        String[] stringsT2 = myManage.readAllMainTABLE_string(string1, 8);
+        String[] stringsT3 = myManage.readAllMainTABLE_string(string1, 9);
+        String[] stringsT4 = myManage.readAllMainTABLE_string(string1, 10);
+        String[] stringsT5 = myManage.readAllMainTABLE_string(string1, 11);
+        String[] stringsT6 = myManage.readAllMainTABLE_string(string1, 12);
+        String[] stringsT7 = myManage.readAllMainTABLE_string(string1, 13);
+        String[] stringsT8 = myManage.readAllMainTABLE_string(string1, 14);
+
+        String currentDay = myManage.currentDay();
+
+        Log.d("addValueToSumTable", strings1[0] + " " + currentDay);
+
+
+
+        myManage.addValueToSumTable(strings1[0],currentDay,stringsT1[0],"","","");
+
+        if (!stringsT2[0].equals("")) {
+            myManage.addValueToSumTable(strings1[0],currentDay,stringsT2[0],"","","");
+        }
+        if (!stringsT3[0].equals("")) {
+            myManage.addValueToSumTable(strings1[0],currentDay,stringsT3[0],"","","");
+        }
+        if (!stringsT4[0].equals("")) {
+            myManage.addValueToSumTable(strings1[0],currentDay,stringsT4[0],"","","");
+        }
+        if (!stringsT5[0].equals("")) {
+            myManage.addValueToSumTable(strings1[0],currentDay,stringsT5[0],"","","");
+        }
+        if (!stringsT6[0].equals("")) {
+            myManage.addValueToSumTable(strings1[0],currentDay,stringsT6[0],"","","");
+        }
+        if (!stringsT7[0].equals("")) {
+            myManage.addValueToSumTable(strings1[0],currentDay,stringsT7[0],"","","");
+        }
+        if (!stringsT8[0].equals("")) {
+            myManage.addValueToSumTable(strings1[0],currentDay,stringsT8[0],"","","");
+        }
+
 
         Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);
         startActivity(intent);

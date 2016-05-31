@@ -68,15 +68,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
-
-
         //Bind Widget
         bindWidget();
 
-        //Update sumTABLE 0:00
-        updatesumTABLE00();
+        //Update sumTABLE 0:00 (ปิดไว้ก่อนยังไม่ดีเท่าที่ควร)
+        //updatesumTABLE00();
 
         //Notification from SQLite
         //notificationFormSQLite();
@@ -89,12 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         setDateAndTimeToday();
 
-
         displayMedicineByDay(today);
-
-
-
-
 
     } //Main method
 
@@ -118,8 +109,6 @@ public class MainActivity extends AppCompatActivity {
         tvEvening.setText(stringstimeTABLE[2]);
         tvBedtime.setText(stringstimeTABLE[3]);
     }
-
-
 
     private void displayMedicineByDay(String day) {
 
@@ -203,6 +192,8 @@ public class MainActivity extends AppCompatActivity {
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
             sqLiteDatabase.delete("displayTABLE", null, null);
 
+            String date_specific = today;
+
             for(int z = 0; z < strings_TimeRef.length;z++) {
                 String strValue;
                 try {
@@ -217,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                     strValue = myManage.filterdisplayTABLE_MAEB_By_Position("M");
                     Log.d("abc", "strREAD :" + strValue);
                     if (strValue.equals("Non value")) {
-                        myManage.adddisplayTABLEValue("M1", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("M1", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("abc", "strings_TimeCheck[0] มีค่าว่าง");
                             imageButtonM1.setImageResource(intsNotTakeYet[z]);
@@ -228,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                             // Non Value เติมค่า M1
                     } else if (strValue.equals("M1")) {
-                        myManage.adddisplayTABLEValue("M2", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("M2", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("abc", "strings_TimeCheck[1] มีค่าว่าง");
                             imageButtonM2.setImageResource(intsNotTakeYet[z]);
@@ -239,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี M1 แล้ว เติม M2
                     } else if (strValue.equals("M2")) {
-                        myManage.adddisplayTABLEValue("M3", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("M3", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("abc", "strings_TimeCheck[2] มีค่าว่าง");
                             imageButtonM3.setImageResource(intsNotTakeYet[z]);
@@ -250,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี M2 แล้ว เติม M3
                     } else if (strValue.equals("M3")) {
-                        myManage.adddisplayTABLEValue("M4", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("M4", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("abc", "strings_TimeCheck[3] มีค่าว่าง");
                             imageButtonM4.setImageResource(intsNotTakeYet[z]);
@@ -261,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี M3 แล้ว เติม M4
                     } else if (strValue.equals("M4")) {
-                        myManage.adddisplayTABLEValue("M5", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("M5", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("abc", "strings_TimeCheck[4] มีค่าว่าง");
                             imageButtonM5.setImageResource(intsNotTakeYet[z]);
@@ -272,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี M4 แล้ว เติม M5
                     } else if (strValue.equals("M5")) {
-                        myManage.adddisplayTABLEValue("M6", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("M6", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("abc", "strings_TimeCheck[5] มีค่าว่าง");
                             imageButtonM6.setImageResource(intsNotTakeYet[z]);
@@ -283,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี M5 แล้ว เติม M6
                     } else if (strValue.equals("M6")) {
-                        myManage.adddisplayTABLEValue("M7", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("M7", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("abc", "strings_TimeCheck[6] มีค่าว่าง");
                             imageButtonM7.setImageResource(intsNotTakeYet[z]);
@@ -294,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี M6 แล้ว เติม M7
                     } else if (strValue.equals("M7")) {
-                        myManage.adddisplayTABLEValue("M8", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("M8", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("abc", "strings_TimeCheck[7] มีค่าว่าง");
                             imageButtonM8.setImageResource(intsNotTakeYet[z]);
@@ -305,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี M7 แล้ว เติม M8
                     } else if (strValue.equals("M8")) {
-                        myManage.adddisplayTABLEValue("M9", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("M9", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("abc", "strings_TimeCheck[8] มีค่าว่าง");
                             imageButtonM9.setImageResource(intsNotTakeYet[z]);
@@ -324,7 +315,7 @@ public class MainActivity extends AppCompatActivity {
                     strValue = myManage.filterdisplayTABLE_MAEB_By_Position("A");
                     Log.d("afternoon", "strREAD :" + strValue);
                     if (strValue.equals("Non value")) {
-                        myManage.adddisplayTABLEValue("A1", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("A1", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("afternoon", "strings_TimeCheck[0] มีค่าว่าง");
                             imageButtonA1.setImageResource(intsNotTakeYet[z]);
@@ -335,7 +326,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // Non Value เติมค่า A1
                     } else if (strValue.equals("A1")) {
-                        myManage.adddisplayTABLEValue("A2", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("A2", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("afternoon", "strings_TimeCheck[1] มีค่าว่าง");
                             imageButtonA2.setImageResource(intsNotTakeYet[z]);
@@ -346,7 +337,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี A1 แล้ว เติม A2
                     } else if (strValue.equals("A2")) {
-                        myManage.adddisplayTABLEValue("A3", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("A3", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("afternoon", "strings_TimeCheck[2] มีค่าว่าง");
                             imageButtonA3.setImageResource(intsNotTakeYet[z]);
@@ -357,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี A2 แล้ว เติม A3
                     } else if (strValue.equals("A3")) {
-                        myManage.adddisplayTABLEValue("A4", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("A4", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("afternoon", "strings_TimeCheck[3] มีค่าว่าง");
                             imageButtonA4.setImageResource(intsNotTakeYet[z]);
@@ -368,7 +359,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี A3 แล้ว เติม A4
                     } else if (strValue.equals("A4")) {
-                        myManage.adddisplayTABLEValue("A5", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("A5", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("afternoon", "strings_TimeCheck[4] มีค่าว่าง");
                             imageButtonA5.setImageResource(intsNotTakeYet[z]);
@@ -379,7 +370,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี A4 แล้ว เติม A5
                     } else if (strValue.equals("A5")) {
-                        myManage.adddisplayTABLEValue("A6", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("A6", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("abc", "strings_TimeCheck[5] มีค่าว่าง");
                             imageButtonA6.setImageResource(intsNotTakeYet[z]);
@@ -390,7 +381,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี A5 แล้ว เติม A6
                     } else if (strValue.equals("A6")) {
-                        myManage.adddisplayTABLEValue("A7", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("A7", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("afternoon", "strings_TimeCheck[6] มีค่าว่าง");
                             imageButtonA7.setImageResource(intsNotTakeYet[z]);
@@ -401,7 +392,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี A6 แล้ว เติม A7
                     } else if (strValue.equals("A7")) {
-                        myManage.adddisplayTABLEValue("A8", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("A8", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("afternoon", "strings_TimeCheck[7] มีค่าว่าง");
                             imageButtonA8.setImageResource(intsNotTakeYet[z]);
@@ -412,7 +403,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         // มี A7 แล้ว เติม A8
                     } else if (strValue.equals("A8")) {
-                        myManage.adddisplayTABLEValue("A9", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        myManage.adddisplayTABLEValue("A9", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
                             Log.d("afternoon", "strings_TimeCheck[8] มีค่าว่าง");
                             imageButtonA9.setImageResource(intsNotTakeYet[z]);

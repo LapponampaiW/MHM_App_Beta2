@@ -63,7 +63,7 @@ public class MyHelper extends SQLiteOpenHelper {
 
     //Create table displayTABLE
     private static final String CREATE_displayTABLE = "create table displayTABLE " +
-            "(_id integer primary key, Position text, Sum_id text, Main_id text, " +
+            "(_id integer primary key, Position text, Sum_id text, Main_id text, Day text, " +
             "TimeRef text, TimeCheck text, Appearance text);";
 
     public MyHelper(Context context) {

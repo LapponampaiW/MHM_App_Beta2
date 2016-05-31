@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import java.math.BigInteger;
 import java.sql.Time;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by apple on 4/20/16.
@@ -139,11 +141,12 @@ public class MyManage {
     private static final String displaycolumn_position = "Position";
     private static final String displaycolumn_sum_id = "Sum_id";
     private static final String displaycolumn_main_id = "Main_id";
+    private static final String displaycolumn_day = "Day";
     private static final String displaycolumn_timeref = "TimeRef";
     private static final String displaycolumn_timecheck = "TimeCheck";
     private static final String displaycolumn_appearance = "Appearance";
     private static final String[] column_displayTABLE = {displaycolumn_id,displaycolumn_position,displaycolumn_sum_id,
-            displaycolumn_main_id,displaycolumn_timeref,displaycolumn_timecheck,displaycolumn_appearance};
+            displaycolumn_main_id,displaycolumn_day,displaycolumn_timeref,displaycolumn_timecheck,displaycolumn_appearance};
 
 
     public MyManage(Context context) {
@@ -198,6 +201,7 @@ public class MyManage {
     public long adddisplayTABLEValue(String strdisplaycolumn_position,
                                      String strdisplaycolumn_sum_id,
                                      String strdisplaycolumn_main_id,
+                                     String strdisplaycolumn_day,
                                      String strdisplaycolumn_timeref,
                                      String strdisplaycolumn_timecheck,
                                      String strdisplaycolumn_appearance) {
@@ -206,6 +210,7 @@ public class MyManage {
         contentValues.put(displaycolumn_position,strdisplaycolumn_position);
         contentValues.put(displaycolumn_sum_id,strdisplaycolumn_sum_id);
         contentValues.put(displaycolumn_main_id,strdisplaycolumn_main_id);
+        contentValues.put(displaycolumn_day,strdisplaycolumn_day);
         contentValues.put(displaycolumn_timeref,strdisplaycolumn_timeref);
         contentValues.put(displaycolumn_timecheck,strdisplaycolumn_timecheck);
         contentValues.put(displaycolumn_appearance,strdisplaycolumn_appearance);
@@ -214,9 +219,16 @@ public class MyManage {
 
     }
 
+    public String currentDay() {
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String currentday = dateFormat.format(date);
+        return currentday;
+    }
+
     public String[] readAllMainTABLE_string(String med_id,int intColumn) {
         String[] strREAD = null;
-        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, "Med_id LIKE '" + med_id + "'", null, null, null, null);
+        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, "Med_id LIKE '" + med_id + "'", null, null, null, "_id DESC");
         if (cursor != null) {
             cursor.moveToFirst();
             strREAD = new String[cursor.getCount()];
@@ -1047,7 +1059,7 @@ public class MyManage {
             addMedTABLEValue("Para6", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Para7", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Para8", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Para9", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Para8&Add", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "07:00", "08:05", "09:00", "10:00", "13:00", "14:35", "15:40", "17:30");
 
 
         }

@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         bindWidget();
 
         //Update sumTABLE 0:00
-        //updatesumTABLE00();
+        updatesumTABLE00();
 
         //Notification from SQLite
         //notificationFormSQLite();
@@ -319,6 +319,112 @@ public class MainActivity extends AppCompatActivity {
 
                 } // if ของ Morning...
 
+                if (time.compareTo(convertedDateAfternoon1) >= 0 && time.compareTo(convertedDateAfternoon2) <= 0) {
+                    Log.d("afternoon", "อยู่ระหว่าง 12:00 - 17:59");
+                    strValue = myManage.filterdisplayTABLE_MAEB_By_Position("A");
+                    Log.d("afternoon", "strREAD :" + strValue);
+                    if (strValue.equals("Non value")) {
+                        myManage.adddisplayTABLEValue("A1", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_TimeCheck[0] มีค่าว่าง");
+                            imageButtonA1.setImageResource(intsNotTakeYet[z]);
+                            imageButtonA1.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonA1.setImageResource(intsTake[z]);
+                            imageButtonA1.setVisibility(View.VISIBLE);
+                        }
+                        // Non Value เติมค่า A1
+                    } else if (strValue.equals("A1")) {
+                        myManage.adddisplayTABLEValue("A2", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_TimeCheck[1] มีค่าว่าง");
+                            imageButtonA2.setImageResource(intsNotTakeYet[z]);
+                            imageButtonA2.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonA2.setImageResource(intsTake[z]);
+                            imageButtonA2.setVisibility(View.VISIBLE);
+                        }
+                        // มี A1 แล้ว เติม A2
+                    } else if (strValue.equals("A2")) {
+                        myManage.adddisplayTABLEValue("A3", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_TimeCheck[2] มีค่าว่าง");
+                            imageButtonA3.setImageResource(intsNotTakeYet[z]);
+                            imageButtonA3.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonA3.setImageResource(intsTake[z]);
+                            imageButtonA3.setVisibility(View.VISIBLE);
+                        }
+                        // มี A2 แล้ว เติม A3
+                    } else if (strValue.equals("A3")) {
+                        myManage.adddisplayTABLEValue("A4", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_TimeCheck[3] มีค่าว่าง");
+                            imageButtonA4.setImageResource(intsNotTakeYet[z]);
+                            imageButtonA4.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonA4.setImageResource(intsTake[z]);
+                            imageButtonA4.setVisibility(View.VISIBLE);
+                        }
+                        // มี A3 แล้ว เติม A4
+                    } else if (strValue.equals("A4")) {
+                        myManage.adddisplayTABLEValue("A5", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_TimeCheck[4] มีค่าว่าง");
+                            imageButtonA5.setImageResource(intsNotTakeYet[z]);
+                            imageButtonA5.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonA5.setImageResource(intsTake[z]);
+                            imageButtonA5.setVisibility(View.VISIBLE);
+                        }
+                        // มี A4 แล้ว เติม A5
+                    } else if (strValue.equals("A5")) {
+                        myManage.adddisplayTABLEValue("A6", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_TimeCheck[5] มีค่าว่าง");
+                            imageButtonA6.setImageResource(intsNotTakeYet[z]);
+                            imageButtonA6.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonA6.setImageResource(intsTake[z]);
+                            imageButtonA6.setVisibility(View.VISIBLE);
+                        }
+                        // มี A5 แล้ว เติม A6
+                    } else if (strValue.equals("A6")) {
+                        myManage.adddisplayTABLEValue("A7", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_TimeCheck[6] มีค่าว่าง");
+                            imageButtonA7.setImageResource(intsNotTakeYet[z]);
+                            imageButtonA7.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonA7.setImageResource(intsTake[z]);
+                            imageButtonA7.setVisibility(View.VISIBLE);
+                        }
+                        // มี A6 แล้ว เติม A7
+                    } else if (strValue.equals("A7")) {
+                        myManage.adddisplayTABLEValue("A8", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_TimeCheck[7] มีค่าว่าง");
+                            imageButtonA8.setImageResource(intsNotTakeYet[z]);
+                            imageButtonA8.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonA8.setImageResource(intsTake[z]);
+                            imageButtonA8.setVisibility(View.VISIBLE);
+                        }
+                        // มี A7 แล้ว เติม A8
+                    } else if (strValue.equals("A8")) {
+                        myManage.adddisplayTABLEValue("A9", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_TimeCheck[8] มีค่าว่าง");
+                            imageButtonA9.setImageResource(intsNotTakeYet[z]);
+                            imageButtonA9.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonA9.setImageResource(intsTake[z]);
+                            imageButtonA9.setVisibility(View.VISIBLE);
+                        }
+                        // มี A8 แล้ว เติม A9
+                    }
+
+                } // if ของ Afternoon
 
 
 
@@ -460,10 +566,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         //myCalendar1.set(calendar.DAY_OF_MONTH,15);
-        myCalendar1.set(Calendar.HOUR_OF_DAY, 01);
-        myCalendar1.set(Calendar.MINUTE, 30);
+        myCalendar1.set(Calendar.HOUR_OF_DAY, 23);
+        myCalendar1.set(Calendar.MINUTE, 59);
         myCalendar1.set(Calendar.SECOND, 59);
-        myCalendar1.set(Calendar.MILLISECOND, 0);
+        myCalendar1.set(Calendar.MILLISECOND, 59);
 
         Log.d("10MayV1", "myCaledar ==> " + myCalendar1.getTime().toString()); //กำหนดค่าค่าเวลาในการเตือน
 

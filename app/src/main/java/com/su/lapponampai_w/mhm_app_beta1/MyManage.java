@@ -1031,6 +1031,23 @@ public class MyManage {
             addMedTABLEValue("GPO vir Z",null, 5, "250", "1", 3, "100", "1", 4, "100", "1", 1, null, null,1, "1", "1", null, "11:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Augmentin", "Amoxicillin", 6, "1", "2", 7, "125", "1", 1, null, null, 1, null, null,1, "1", "1", "1", "11:30", "", "", "", "", "", "", "");
             addMedTABLEValue("CPM", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("CPM2", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("CPM3", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("CPM4", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("CPM5", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("CPM6", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("CPM7", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("CPM8", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("CPM9", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Para", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Para2", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Para3", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Para4", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Para5", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Para6", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Para7", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Para8", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Para9", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
 
 
         }
@@ -1050,6 +1067,7 @@ public class MyManage {
             addnameGenericTABLEValue("Amoxicillin"); //6
             addnameGenericTABLEValue("Clavulanic"); //7
             addnameGenericTABLEValue("Chlorpheniramine"); //8
+            addnameGenericTABLEValue("Paracetamol"); //9
         }
     }  //nameGenericTABLEData
 

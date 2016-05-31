@@ -5,10 +5,6 @@ package com.su.lapponampai_w.mhm_app_beta1;
  */
 public class MyData {
 
-
-
-
-
     public String[] translate_uomArray(String[] uom) {
 
         String[] strRead = new String[uom.length];
@@ -45,6 +41,33 @@ public class MyData {
         for (int i = 0; i < appearance.length; i++) {
             if (appearance[i].equals("1")) {
                 intsRead[i] = R.drawable.exampletablet;
+            } else if (appearance[i].equals("2")) {
+                intsRead[i] = R.drawable.mainbg;
+            }
+        }
+        return intsRead;
+    }
+
+
+    public int[] translate_Small_Appearance(String[] appearance) {
+
+        int[] intsRead = new int[appearance.length];
+        for (int i = 0; i < appearance.length; i++) {
+            if (appearance[i].equals("1")) {
+                intsRead[i] = R.drawable.b2_redtablet;
+            } else if (appearance[i].equals("2")) {
+                intsRead[i] = R.drawable.mainbg;
+            }
+        }
+        return intsRead;
+    }
+
+    public int[] translate_Smallate_Appearance(String[] appearance) {
+
+        int[] intsRead = new int[appearance.length];
+        for (int i = 0; i < appearance.length; i++) {
+            if (appearance[i].equals("1")) {
+                intsRead[i] = R.drawable.b2z_redtablet;
             } else if (appearance[i].equals("2")) {
                 intsRead[i] = R.drawable.mainbg;
             }

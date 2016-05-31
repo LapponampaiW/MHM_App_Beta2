@@ -193,6 +193,25 @@ public class MyManage {
         }
 
         return strREAD;
+    }  //filterdisplayTABLE_MAEB_By_Position
+
+    public long adddisplayTABLEValue(String strdisplaycolumn_position,
+                                     String strdisplaycolumn_sum_id,
+                                     String strdisplaycolumn_main_id,
+                                     String strdisplaycolumn_timeref,
+                                     String strdisplaycolumn_timecheck,
+                                     String strdisplaycolumn_appearance) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(displaycolumn_position,strdisplaycolumn_position);
+        contentValues.put(displaycolumn_sum_id,strdisplaycolumn_sum_id);
+        contentValues.put(displaycolumn_main_id,strdisplaycolumn_main_id);
+        contentValues.put(displaycolumn_timeref,strdisplaycolumn_timeref);
+        contentValues.put(displaycolumn_timecheck,strdisplaycolumn_timecheck);
+        contentValues.put(displaycolumn_appearance,strdisplaycolumn_appearance);
+
+        return writeSqLiteDatabase.insert(displayTABLE, null, contentValues);
+
     }
 
     public String[] readAllMainTABLE_string(String med_id,int intColumn) {

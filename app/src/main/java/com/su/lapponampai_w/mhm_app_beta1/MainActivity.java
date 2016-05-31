@@ -141,9 +141,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         MyData myData = new MyData();
-        int[] intsIndex = myData.translate_Appearance(strings_Appearance); //ได้ รูป จาก mainTABLE ==> sumTABLE
-
-
+            int[] intsNotTakeYet = myData.translate_Small_Appearance(strings_Appearance); //รับค่ารูปจาก mainTABLE แล้วเปลี่ยนเป็นขนาดเล็ก
+            int[] intsTake = myData.translate_Smallate_Appearance(strings_Appearance);
 
         //เริ่มทำการใส่ภาพของใน MainActivity
 
@@ -218,12 +217,107 @@ public class MainActivity extends AppCompatActivity {
                     strValue = myManage.filterdisplayTABLE_MAEB_By_Position("M");
                     Log.d("abc", "strREAD :" + strValue);
                     if (strValue.equals("Non value")) {
-
+                        myManage.adddisplayTABLEValue("M1", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_TimeCheck[0] มีค่าว่าง");
+                            imageButtonM1.setImageResource(intsNotTakeYet[z]);
+                            imageButtonM1.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonM1.setImageResource(intsTake[z]);
+                            imageButtonM1.setVisibility(View.VISIBLE);
+                        }
+                            // Non Value เติมค่า M1
+                    } else if (strValue.equals("M1")) {
+                        myManage.adddisplayTABLEValue("M2", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_TimeCheck[1] มีค่าว่าง");
+                            imageButtonM2.setImageResource(intsNotTakeYet[z]);
+                            imageButtonM2.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonM2.setImageResource(intsTake[z]);
+                            imageButtonM2.setVisibility(View.VISIBLE);
+                        }
+                        // มี M1 แล้ว เติม M2
+                    } else if (strValue.equals("M2")) {
+                        myManage.adddisplayTABLEValue("M3", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_TimeCheck[2] มีค่าว่าง");
+                            imageButtonM3.setImageResource(intsNotTakeYet[z]);
+                            imageButtonM3.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonM3.setImageResource(intsTake[z]);
+                            imageButtonM3.setVisibility(View.VISIBLE);
+                        }
+                        // มี M2 แล้ว เติม M3
+                    } else if (strValue.equals("M3")) {
+                        myManage.adddisplayTABLEValue("M4", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_TimeCheck[3] มีค่าว่าง");
+                            imageButtonM4.setImageResource(intsNotTakeYet[z]);
+                            imageButtonM4.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonM4.setImageResource(intsTake[z]);
+                            imageButtonM4.setVisibility(View.VISIBLE);
+                        }
+                        // มี M3 แล้ว เติม M4
+                    } else if (strValue.equals("M4")) {
+                        myManage.adddisplayTABLEValue("M5", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_TimeCheck[4] มีค่าว่าง");
+                            imageButtonM5.setImageResource(intsNotTakeYet[z]);
+                            imageButtonM5.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonM5.setImageResource(intsTake[z]);
+                            imageButtonM5.setVisibility(View.VISIBLE);
+                        }
+                        // มี M4 แล้ว เติม M5
+                    } else if (strValue.equals("M5")) {
+                        myManage.adddisplayTABLEValue("M6", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_TimeCheck[5] มีค่าว่าง");
+                            imageButtonM6.setImageResource(intsNotTakeYet[z]);
+                            imageButtonM6.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonM6.setImageResource(intsTake[z]);
+                            imageButtonM6.setVisibility(View.VISIBLE);
+                        }
+                        // มี M5 แล้ว เติม M6
+                    } else if (strValue.equals("M6")) {
+                        myManage.adddisplayTABLEValue("M7", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_TimeCheck[6] มีค่าว่าง");
+                            imageButtonM7.setImageResource(intsNotTakeYet[z]);
+                            imageButtonM7.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonM7.setImageResource(intsTake[z]);
+                            imageButtonM7.setVisibility(View.VISIBLE);
+                        }
+                        // มี M6 แล้ว เติม M7
+                    } else if (strValue.equals("M7")) {
+                        myManage.adddisplayTABLEValue("M8", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_TimeCheck[7] มีค่าว่าง");
+                            imageButtonM8.setImageResource(intsNotTakeYet[z]);
+                            imageButtonM8.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonM8.setImageResource(intsTake[z]);
+                            imageButtonM8.setVisibility(View.VISIBLE);
+                        }
+                        // มี M7 แล้ว เติม M8
+                    } else if (strValue.equals("M8")) {
+                        myManage.adddisplayTABLEValue("M9", strings_Sum_id[z], strings_Main_id[z], strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
+                        if (strings_TimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_TimeCheck[8] มีค่าว่าง");
+                            imageButtonM9.setImageResource(intsNotTakeYet[z]);
+                            imageButtonM9.setVisibility(View.VISIBLE);
+                        } else {
+                            imageButtonM9.setImageResource(intsTake[z]);
+                            imageButtonM9.setVisibility(View.VISIBLE);
+                        }
+                        // มี M8 แล้ว เติม M9
                     }
 
-
-
-                }
+                } // if ของ Morning...
 
 
 
@@ -270,9 +364,7 @@ public class MainActivity extends AppCompatActivity {
 
         */
 
-        for(int y = 0; y < strings_Main_id.length; y++) {
 
-        }
 
 
     }

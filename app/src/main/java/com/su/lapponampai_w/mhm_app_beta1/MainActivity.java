@@ -110,14 +110,14 @@ public class MainActivity extends AppCompatActivity {
         tvBedtime.setText(stringstimeTABLE[3]);
     }
 
-    private void displayMedicineByDay(String day) {
+    private void displayMedicineByDay(String date_specific) {
 
         MyManage myManage = new MyManage(this);
 
-        String[] strings_Main_id  = myManage.filter_sumTABLE__by_Date(day,1);  //ได้ Main_id จาก sumTABLE
-        String[] strings_TimeRef = myManage.filter_sumTABLE__by_Date(day,3);  //ได้ Time_Ref จาก sumTABLE
-        String[] strings_Sum_id = myManage.filter_sumTABLE__by_Date(day, 0); //ได้ sum_id จาก sumTABLE
-        String[] strings_TimeCheck = myManage.filter_sumTABLE__by_Date(day,5 ); //ได้ TimeCheck จาก sumTABLE
+        String[] strings_Main_id  = myManage.filter_sumTABLE__by_Date(date_specific,1);  //ได้ Main_id จาก sumTABLE
+        String[] strings_TimeRef = myManage.filter_sumTABLE__by_Date(date_specific,3);  //ได้ Time_Ref จาก sumTABLE
+        String[] strings_Sum_id = myManage.filter_sumTABLE__by_Date(date_specific, 0); //ได้ sum_id จาก sumTABLE
+        String[] strings_TimeCheck = myManage.filter_sumTABLE__by_Date(date_specific,5 ); //ได้ TimeCheck จาก sumTABLE
         String[] strings_Appearance = new String[strings_Main_id.length];
 
         if (strings_Main_id.length != 0) {
@@ -135,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
 
         //เริ่มทำการใส่ภาพของใน MainActivity
 
-        String strDayM1 = day;
+        String strDayM1 = date_specific;
         String strTimeM1 = stringsStartTime[0];
         String strTimeM2 = stringsEndTime[0];
 
@@ -150,15 +150,15 @@ public class MainActivity extends AppCompatActivity {
         Date convertedBedtime2 = new Date();
         Date t = new Date();
         try {
-            convertedDateMorning1 = dateFormat.parse(day + " " + stringsStartTime[0]);
-            convertedDateMorning2 = dateFormat.parse(day + " " + stringsEndTime[0]);
-            convertedDateAfternoon1 = dateFormat.parse(day + " " + stringsStartTime[1]);
-            convertedDateAfternoon2 = dateFormat.parse(day + " " + stringsEndTime[1]);
-            convertedDateEvening1 = dateFormat.parse(day + " " + stringsStartTime[2]);
-            convertedDateEvening2 = dateFormat.parse(day + " " + stringsEndTime[2]);
-            convertedBedtime1 = dateFormat.parse(day + " " + stringsStartTime[3]);
-            convertedBedtime2 = dateFormat.parse(day + " " + stringsEndTime[3]);
-            t = dateFormat.parse(day + " " + strings_TimeRef[0]);
+            convertedDateMorning1 = dateFormat.parse(date_specific + " " + stringsStartTime[0]);
+            convertedDateMorning2 = dateFormat.parse(date_specific + " " + stringsEndTime[0]);
+            convertedDateAfternoon1 = dateFormat.parse(date_specific + " " + stringsStartTime[1]);
+            convertedDateAfternoon2 = dateFormat.parse(date_specific + " " + stringsEndTime[1]);
+            convertedDateEvening1 = dateFormat.parse(date_specific + " " + stringsStartTime[2]);
+            convertedDateEvening2 = dateFormat.parse(date_specific + " " + stringsEndTime[2]);
+            convertedBedtime1 = dateFormat.parse(date_specific + " " + stringsStartTime[3]);
+            convertedBedtime2 = dateFormat.parse(date_specific + " " + stringsEndTime[3]);
+            t = dateFormat.parse(date_specific + " " + strings_TimeRef[0]);
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -192,12 +192,11 @@ public class MainActivity extends AppCompatActivity {
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
             sqLiteDatabase.delete("displayTABLE", null, null);
 
-            String date_specific = today;
 
             for(int z = 0; z < strings_TimeRef.length;z++) {
                 String strValue;
                 try {
-                    time = dateFormat.parse(day + " " + strings_TimeRef[z]);
+                    time = dateFormat.parse(date_specific + " " + strings_TimeRef[z]);
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

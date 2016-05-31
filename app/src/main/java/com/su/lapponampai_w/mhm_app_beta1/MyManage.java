@@ -176,17 +176,17 @@ public class MyManage {
             return resultStrings;
     }
 
-    public String filterdisplayTABLE_null__By_Position(String position) {
+    public String filterdisplayTABLE_MAEB_By_Position(String position) {
 
         String strREAD = null;
 
-        Cursor cursor = readSqLiteDatabase.query(displayTABLE, column_displayTABLE,"Position =?", new String[]{String.valueOf(position)}, null,null,null);
+        Cursor cursor = readSqLiteDatabase.query(displayTABLE, column_displayTABLE,"Position" + " LIKE '" + position + "%'",null, null,null,"_id DESC");
 
         if (cursor != null) {
             cursor.moveToFirst();
             int i = cursor.getCount();
             if (i > 0) {
-                strREAD = "Value";
+                strREAD = cursor.getString(cursor.getColumnIndex(displaycolumn_position));
             } else {
                 strREAD = "Non value";
             }

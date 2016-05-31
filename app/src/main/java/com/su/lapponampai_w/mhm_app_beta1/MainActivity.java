@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (time.compareTo(convertedDateMorning1) >= 0 && time.compareTo(convertedDateMorning2) <= 0) {
                     Log.d("abc", "อยู่ระหว่าง 06:00 - 11:59");
-                    strValue = myManage.filterdisplayTABLE_null__By_Position("M1");
+                    strValue = myManage.filterdisplayTABLE_MAEB_By_Position("M");
                     Log.d("abc", "strREAD :" + strValue);
                     if (strValue.equals("Non value")) {
 

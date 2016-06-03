@@ -1041,6 +1041,9 @@ public class MyManage {
             addMedTABLEValue("Stocrin", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "4", null, "22:00","","","","","","","");
             addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "1", null, "08:00", "20:00","","","","","","");
             addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null, 1, "1", "3", null, "08:00", "20:00","","","","","","");
+            addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "5", null, "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Viread", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "6", null, "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("TEST", null, 7, "100", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "1", null, "08:00", "", "", "", "", "", "", "");
 
         }
 
@@ -1056,6 +1059,9 @@ public class MyManage {
             addnameGenericTABLEValue("Lamivudine"); //3
             addnameGenericTABLEValue("Nevirapine"); //4
             addnameGenericTABLEValue("Stavudine"); //5
+            addnameGenericTABLEValue("Tenofovir"); //6
+            addnameGenericTABLEValue("TEST"); //7
+
 
         }
     }  //nameGenericTABLEData
@@ -1065,7 +1071,7 @@ public class MyManage {
 
         if (cursor.getCount() == 0) {
 
-            adddrugInteractionTABLEValue(3, 4, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(7, 7, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
 
         }
     }

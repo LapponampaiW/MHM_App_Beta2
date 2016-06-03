@@ -540,7 +540,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="ข่าวสาร"
-                android:id="@+id/textView_New"
+                android:id="@+id/textView_News"
                 android:textSize="@dimen/heading3"
                 android:gravity="center_vertical|center_horizontal"
                 android:layout_weight="2"

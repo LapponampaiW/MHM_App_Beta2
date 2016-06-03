@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             imageButtonE7,imageButtonE8,imageButtonE9,imageButtonB1,imageButtonB2,
             imageButtonB3,imageButtonB4,imageButtonB5,imageButtonB6,imageButtonB7,
             imageButtonB8,imageButtonB9;
-    TextView textViewAdd, textViewMainDate, textViewMedication;
+    TextView textViewAdd, textViewMainDate, textViewMedication, textViewNews;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private RelativeLayout relativeLayout;
@@ -90,9 +90,20 @@ public class MainActivity extends AppCompatActivity {
         //คลิก ImageButtonCalendar
         click_ImageButtonCalendar();
 
+        click_News();
+
 
 
     } //Main method
+
+    private void click_News() {
+        textViewNews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,NewsActivity.class));
+            }
+        });
+    }
 
     private void clickMedicationList() {
         textViewMedication.setOnClickListener(new View.OnClickListener() {
@@ -545,7 +556,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (time.compareTo(convertedBedtime1) >= 0 && time.compareTo(convertedBedtime2) <= 0) {
                     Log.d("Bedtime", "อยู่ระหว่าง 00:00 - 05:59");
-                    strValue = myManage.filterdisplayTABLE_MAEB_By_Position("E");
+                    strValue = myManage.filterdisplayTABLE_MAEB_By_Position("B");
                     Log.d("Bedtime", "strREAD :" + strValue);
                     if (strValue.equals("Non value")) {
                         myManage.adddisplayTABLEValue("B1", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
@@ -824,6 +835,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void bindWidget() {
         textViewAdd = (TextView) findViewById(R.id.textView_Main_Add);
+        textViewNews = (TextView) findViewById(R.id.textView_News);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative);
         imageCalendar = (ImageButton) findViewById(R.id.imageButtonCalendar);
         textViewMainDate = (TextView) findViewById(R.id.textViewMainDate);

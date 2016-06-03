@@ -32,7 +32,8 @@
             android:process=":remote" />
 
         <activity android:name=".Calendartest" />
-        <activity android:name=".MedicationListActivity"></activity>
+        <activity android:name=".MedicationListActivity" />
+        <activity android:name=".NewsActivity"></activity>
     </application>
 
 </manifest>

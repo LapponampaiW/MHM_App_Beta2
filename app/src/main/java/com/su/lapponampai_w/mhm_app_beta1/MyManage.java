@@ -1081,10 +1081,10 @@ public class MyManage {
 
         if (cursor.getCount() == 0) {
 
-            addValueToTimeTable("เช้า", "06:00", "11:59");
+            addValueToTimeTable("เช้า", "00:00", "11:59");
             addValueToTimeTable("กลางวัน", "12:00", "17:59");
-            addValueToTimeTable("เย็น", "18:00", "23:59");
-            addValueToTimeTable("ก่อนนอน", "00:00", "05:59");
+            addValueToTimeTable("เย็น", "18:00", "20:59");
+            addValueToTimeTable("ก่อนนอน", "21:00", "23:59");
         }
     }
 

@@ -66,6 +66,10 @@ public class MyHelper extends SQLiteOpenHelper {
             "(_id integer primary key, Position text, Sum_id text, Main_id text, Day text, " +
             "TimeRef text, TimeCheck text, Appearance text);";
 
+    //Create table newsTABLE
+    private static final String CREATE_newsTABLE = "create table newsTABLE " +
+            "(_id integer primary key, Med_id text, Message text, Appearance_edit text);";
+
     public MyHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
 
@@ -83,6 +87,7 @@ public class MyHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_drugInteractionTABLE_For_Query);
         db.execSQL(CREATE_timeTABLE);
         db.execSQL(CREATE_displayTABLE);
+        db.execSQL(CREATE_newsTABLE);
 
     }
 

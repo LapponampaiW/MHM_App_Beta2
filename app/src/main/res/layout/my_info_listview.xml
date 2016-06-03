@@ -17,7 +17,7 @@
             <ImageView
                 android:layout_width="@dimen/z1_linearlayout_icon"
                 android:layout_height="@dimen/z1_linearlayout_icon"
-                android:id="@+id/imageView2"
+                android:id="@+id/imageViewNewsAdaptor"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:text="New Text"
-                android:id="@+id/textView42"
+                android:id="@+id/textViewNewAdaptor"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 android:textSize="@dimen/heading4" />

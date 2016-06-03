@@ -105,6 +105,23 @@ public class MyData {
     }
 
 
+    /*
+    public String[] stringsNews(String[] med_id) {
+
+        String[] stringsREAD = new String[med_id.length];
+        for (int i = 0;i<med_id.length;i++) {
+
+            if (med_id[i].equals("1")) {
+                stringsREAD[i] = "เนื้อหาความรู้เกี่ยวกับยา Efaviren GPO";
+            } else if (med_id[i].equals("2")) {
+                stringsREAD[i] = "เนื้อหาความรู้เกี่ยวกับยา Stocrin";
+            }
+        }
+        return stringsREAD;
+
+    }  //stringsNews
+
+    */
 
 
 } //Main class

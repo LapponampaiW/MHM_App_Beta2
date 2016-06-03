@@ -148,6 +148,14 @@ public class MyManage {
     private static final String[] column_displayTABLE = {displaycolumn_id,displaycolumn_position,displaycolumn_sum_id,
             displaycolumn_main_id,displaycolumn_day,displaycolumn_timeref,displaycolumn_timecheck,displaycolumn_appearance};
 
+    //newsTABLE
+    private static final String newsTABLE = "newsTABLE";
+    private static final String ncolumn_id = "_id";
+    private static final String ncolumn_med_id = "Med_id";
+    private static final String ncolumn_message = "Message";
+    private static final String ncolumn_appearance_edit = "Appearance_edit";
+    private static final String[] column_newsTABLE = {ncolumn_id,ncolumn_med_id,ncolumn_message,ncolumn_appearance_edit};
+
 
     public MyManage(Context context) {
         helper = new MyHelper(context);
@@ -968,6 +976,17 @@ public class MyManage {
 
     } //adddrugInteractionTABLEValue
 
+    public long addNewsTABLEValue(String strMed_id,String strMessage, String strAppearence_edit) {
+
+        long addlong;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ncolumn_med_id,strMed_id);
+        contentValues.put(ncolumn_message,strMessage);
+        contentValues.put(ncolumn_appearance_edit,strAppearence_edit);
+        addlong = writeSqLiteDatabase.insert(newsTABLE, null, contentValues);
+        return addlong;
+    }
+
     public double addMedTABLEValue(String s_trade_name, String s_key_search,
                               int s_generic_name1, String s_dosage1, String s_uom1,
                               int s_generic_name2, String s_dosage2, String s_uom2,
@@ -1085,6 +1104,13 @@ public class MyManage {
             addValueToTimeTable("กลางวัน", "12:00", "17:59");
             addValueToTimeTable("เย็น", "18:00", "20:59");
             addValueToTimeTable("ก่อนนอน", "21:00", "23:59");
+        }
+    }
+
+    public void newsTABLEData() {
+        Cursor cursor = readSqLiteDatabase.query(newsTABLE, column_newsTABLE, null, null, null, null, null);
+        if (cursor.getCount() == 0) {
+            addNewsTABLEValue("2", "รายระเอียดข้อมูลยา Efaviren", "");
         }
     }
 

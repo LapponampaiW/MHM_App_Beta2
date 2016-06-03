@@ -40,9 +40,13 @@ public class MyData {
         int[] intsRead = new int[appearance.length];
         for (int i = 0; i < appearance.length; i++) {
             if (appearance[i].equals("1")) {
-                intsRead[i] = R.drawable.exampletablet;
+                intsRead[i] = R.drawable.img0101;
             } else if (appearance[i].equals("2")) {
-                intsRead[i] = R.drawable.mainbg;
+                intsRead[i] = R.drawable.img0102;
+            } else if (appearance[i].equals("3")) {
+                intsRead[i] = R.drawable.img0201;
+            } else if (appearance[i].equals("4")) {
+                intsRead[i] = R.drawable.img0302;
             }
         }
         return intsRead;
@@ -54,9 +58,13 @@ public class MyData {
         int[] intsRead = new int[appearance.length];
         for (int i = 0; i < appearance.length; i++) {
             if (appearance[i].equals("1")) {
-                intsRead[i] = R.drawable.b2_redtablet;
+                intsRead[i] = R.drawable.ib0101;
             } else if (appearance[i].equals("2")) {
-                intsRead[i] = R.drawable.mainbg;
+                intsRead[i] = R.drawable.ib0102;
+            } else if (appearance[i].equals("3")) {
+                intsRead[i] = R.drawable.ib0201;
+            } else if (appearance[i].equals("4")) {
+                intsRead[i] = R.drawable.ib0302;
             }
         }
         return intsRead;
@@ -66,11 +74,20 @@ public class MyData {
 
         int[] intsRead = new int[appearance.length];
         for (int i = 0; i < appearance.length; i++) {
+
+
+
             if (appearance[i].equals("1")) {
-                intsRead[i] = R.drawable.b2z_redtablet;
+                intsRead[i] = R.drawable.ibc0101;
             } else if (appearance[i].equals("2")) {
-                intsRead[i] = R.drawable.mainbg;
+                intsRead[i] = R.drawable.ibc0102;
+            } else if (appearance[i].equals("3")) {
+                intsRead[i] = R.drawable.ibc0201;
+            } else if (appearance[i].equals("4")) {
+                intsRead[i] = R.drawable.ibc0302;
             }
+
+
         }
         return intsRead;
     }

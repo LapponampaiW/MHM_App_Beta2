@@ -77,6 +77,10 @@ public class MainActivity extends AppCompatActivity {
         //Notification from SQLite
         //notificationFormSQLite();
 
+        setDateAndTimeToday();
+
+        displayMedicineByDay(today);
+
         //คลิก เพิ่มเติม
         clickAddbtn();
 
@@ -86,9 +90,7 @@ public class MainActivity extends AppCompatActivity {
         //คลิก ImageButtonCalendar
         click_ImageButtonCalendar();
 
-        setDateAndTimeToday();
 
-        displayMedicineByDay(today);
 
     } //Main method
 
@@ -102,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setDateAndTimeToday() {
+
+        Log.d("abc", "เข้ามาที่ setDateAndTimeToday");
+
         MyManage myManage = new MyManage(this);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         today = dateFormat.format(System.currentTimeMillis());

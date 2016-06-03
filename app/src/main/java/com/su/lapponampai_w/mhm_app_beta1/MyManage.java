@@ -1037,30 +1037,10 @@ public class MyManage {
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
 
         if (cursor.getCount()==0) {
-            addMedTABLEValue("Antivir","Zidovudine", 3, "250", "1", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "8:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("GPO vir S",null, 2, "100", "1", 4, "100", "1", 5, "100", "1", 6, null, null,1, "1", "1", null, "9:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Curam", null, 4, "1", "2", 6, "100", "1", 7, "1000", "1", 7, "100", "1",1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("GPO vir Z",null, 5, "250", "1", 3, "100", "1", 4, "100", "1", 1, null, null,1, "1", "1", null, "11:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Augmentin", "Amoxicillin", 6, "1", "2", 7, "125", "1", 1, null, null, 1, null, null,1, "1", "1", "1", "11:30", "", "", "", "", "", "", "");
-            addMedTABLEValue("CPM", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("CPM2", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("CPM3", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("CPM4", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("CPM5", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("CPM6", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("CPM7", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("CPM8", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("CPM9", "Chlorpheniramine", 8, "4", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "10:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Para", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Para2", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Para3", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Para4", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Para5", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Para6", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Para7", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Para8", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "14:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Para8&Add", "Paracetamol", 9, "500", "mg", 1, null, null, 1, null, null, 1, null, null,1, "1", "1", null, "07:00", "08:05", "09:00", "10:00", "13:00", "14:35", "15:40", "17:30");
-
+            addMedTABLEValue("Efaviren GPO", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "4", null, "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Stocrin", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "4", null, "22:00","","","","","","","");
+            addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "1", null, "08:00", "20:00","","","","","","");
+            addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null, 1, "1", "3", null, "08:00", "20:00","","","","","","");
 
         }
 
@@ -1072,14 +1052,11 @@ public class MyManage {
         if (cursor.getCount()==0) {
 
             addnameGenericTABLEValue("N/A"); //1
-            addnameGenericTABLEValue("Stavudine"); //2
+            addnameGenericTABLEValue("Efaviren"); //2
             addnameGenericTABLEValue("Lamivudine"); //3
             addnameGenericTABLEValue("Nevirapine"); //4
-            addnameGenericTABLEValue("Zidovudine"); //5
-            addnameGenericTABLEValue("Amoxicillin"); //6
-            addnameGenericTABLEValue("Clavulanic"); //7
-            addnameGenericTABLEValue("Chlorpheniramine"); //8
-            addnameGenericTABLEValue("Paracetamol"); //9
+            addnameGenericTABLEValue("Stavudine"); //5
+
         }
     }  //nameGenericTABLEData
 
@@ -1089,11 +1066,6 @@ public class MyManage {
         if (cursor.getCount() == 0) {
 
             adddrugInteractionTABLEValue(3, 4, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
-            adddrugInteractionTABLEValue(3, 5, "2", "แค่ระมัดระวังในการทานร่วมกัน", 0, 0);
-            adddrugInteractionTABLEValue(3, 6, "3", "Atazanavir ต้องกินก่อน Antacid 4 ชั่วโมงหรือ หลัง Antacid 2 ชั่วโมง", 4, 2);
-            adddrugInteractionTABLEValue(2, 3, "2", "ระมัดระวังมากขึ้นหน่อย", 0, 0);
-            adddrugInteractionTABLEValue(2, 7, "1", "Fatal DrugInteraction Canot Take with", 0, 0);
-            adddrugInteractionTABLEValue(2, 8, "2", "แค่ระมัดระวังการทานร่วมกัน", 0, 0);
 
         }
     }

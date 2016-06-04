@@ -154,7 +154,8 @@ public class MyManage {
     private static final String ncolumn_med_id = "Med_id";
     private static final String ncolumn_message = "Message";
     private static final String ncolumn_appearance_edit = "Appearance_edit";
-    private static final String[] column_newsTABLE = {ncolumn_id,ncolumn_med_id,ncolumn_message,ncolumn_appearance_edit};
+    private static final String ncolumn_activity = "Activity";
+    private static final String[] column_newsTABLE = {ncolumn_id,ncolumn_med_id,ncolumn_message,ncolumn_appearance_edit,ncolumn_activity};
 
 
     public MyManage(Context context) {
@@ -164,6 +165,141 @@ public class MyManage {
         writeSqLiteDatabase = helper.getWritableDatabase();
 
     } //Constructor
+
+    //Read All medTABLE
+    public String[] readAllmedTABLE(int intColumn) {
+        String[] strread = null;
+        Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            strread = new String[cursor.getCount()];
+
+            for(int i = 0;i<cursor.getCount();i++) {
+                switch (intColumn) {
+                    case 0:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
+                        break;
+                    case 1:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_trade_name));
+                        break;
+                    case 2:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_key_search));
+                        break;
+                    case 3:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name1));
+                        break;
+                    case 4:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage1));
+                        break;
+                    case 5:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_uom1));
+                        break;
+                    case 6:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name2));
+                        break;
+                    case 7:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage2));
+                        break;
+                    case 8:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_uom2));
+                        break;
+                    case 9:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name3));
+                        break;
+                    case 10:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage3));
+                        break;
+                    case 11:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_uom3));
+                        break;
+                    case 12:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name4));
+                        break;
+                    case 13:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_dosage4));
+                        break;
+                    case 14:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_uom4));
+                        break;
+                    case 15:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_which_date_d));
+                        break;
+                    case 16:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_appearance)); //ใช้ใน NewsActivity
+                        break;
+                    case 17:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_pharmaco));
+                        break;
+                    case 18:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t1));
+                        break;
+                    case 19:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t2));
+                        break;
+                    case 20:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t3));
+                        break;
+                    case 21:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t4));
+                        break;
+                    case 22:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t5));
+                        break;
+                    case 23:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t6));
+                        break;
+                    case 24:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t7));
+                        break;
+                    case 25:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t8));
+                        break;
+                    case 26:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_amount_tablet));
+                    default:
+                        break;
+                }
+                cursor.moveToNext();
+            }
+        }
+
+        return strread;
+
+    } //finish readAllmedTABLE
+
+    //Read All newsTABLE
+    public String[] readAllnewsTABLE(int intColumn) {
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(newsTABLE, column_newsTABLE, null, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for (int i = 0 ; i<cursor.getCount();i++) {
+                switch (intColumn) {
+                    case 0:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(ncolumn_id));
+                        break;
+                    case 1:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(ncolumn_med_id));
+                        break;
+                    case 2:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(ncolumn_message));
+                        break;
+                    case 3:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(ncolumn_appearance_edit));
+                        break;
+                    case 4:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(ncolumn_activity));
+                        break;
+                    default:
+                        break;
+                }
+                cursor.moveToNext();
+            }
+
+        }
+        return strREAD;
+    }
 
     // Read All mainTABLE
     public String[] readAllMainTABLE(int intColumn) { //0 หมายถึง ==> _id , 1 ==>T1
@@ -976,13 +1112,16 @@ public class MyManage {
 
     } //adddrugInteractionTABLEValue
 
-    public long addNewsTABLEValue(String strMed_id,String strMessage, String strAppearence_edit) {
+    public long addNewsTABLEValue(String strMed_id,String strMessage,
+                                  String strAppearence_edit,
+                                  String strActivity) {
 
         long addlong;
         ContentValues contentValues = new ContentValues();
         contentValues.put(ncolumn_med_id,strMed_id);
         contentValues.put(ncolumn_message,strMessage);
         contentValues.put(ncolumn_appearance_edit,strAppearence_edit);
+        contentValues.put(ncolumn_activity,strActivity);
         addlong = writeSqLiteDatabase.insert(newsTABLE, null, contentValues);
         return addlong;
     }
@@ -1110,7 +1249,8 @@ public class MyManage {
     public void newsTABLEData() {
         Cursor cursor = readSqLiteDatabase.query(newsTABLE, column_newsTABLE, null, null, null, null, null);
         if (cursor.getCount() == 0) {
-            addNewsTABLEValue("2", "รายระเอียดข้อมูลยา Efaviren", "");
+            addNewsTABLEValue("1", "รายละเอียดข้อมูลยา Efaviren GPO", "","");
+            addNewsTABLEValue("2", "รายละเอียดข้อมูลยา Stocrin","","");
         }
     }
 

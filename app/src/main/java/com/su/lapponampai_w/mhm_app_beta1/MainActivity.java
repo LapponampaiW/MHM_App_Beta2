@@ -670,43 +670,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-        /*
-        String dateString = "03/26/2012 11:49:00 AM";
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm");
-        Date convertedDate = new Date();
-        try {
-            convertedDate = dateFormat.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        if (convertedDate.equals(convertedDate)) {
-            Log.d("abc", "ลอง2");
-        }
-
-
-        // template
-        String dateString = "03/26/2012 11:49:00 AM";
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
-        Date convertedDate = new Date();
-        try {
-            convertedDate = dateFormat.parse(dateString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        System.out.println(convertedDate);
-
-        */
-
-
-
-
     }
 
 

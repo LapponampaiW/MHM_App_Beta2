@@ -1,9 +1,14 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.support.v4.view.NestedScrollingChild;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -13,6 +18,8 @@ public class NewsActivity extends AppCompatActivity {
 
     String[] stringsMainTABLEMed_id,stringsNewsTABLE_Med_id,stringsAdaptorid,stringsmedTABLE_id,
             stringsAppearance,stringsAdaptorAppearance,stringsNewsTABLE_Message,stringsAdaptorMessage;
+    ListView listViewNewsActivity;
+
 
 
     @Override
@@ -86,9 +93,40 @@ public class NewsActivity extends AppCompatActivity {
 
 
         MyNewsAdaptor myNewsAdaptor = new MyNewsAdaptor(getBaseContext(), stringsAdaptorMessage, intsIndexAppearance);
-        ListView listViewNewsActivity = (ListView) findViewById(R.id.listViewNewsActivity);
+        listViewNewsActivity = (ListView) findViewById(R.id.listViewNewsActivity);
         listViewNewsActivity.setAdapter(myNewsAdaptor);
 
+
+        Log.d("stringsAdaptor", "กำลังจะทำ setOnItemClickListener");
+        listViewNewsActivity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String s = stringsAdaptorMessage[position];
+                Toast.makeText(NewsActivity.this,s,Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
+
+        /*
+        MyAdaptor myAdaptor = new MyAdaptor(OrderActivity.this, strFood, intsIndex, strPrice);
+        listView.setAdapter(myAdaptor);
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                stringFood = strFood[position];
+                Toast t = Toast.makeText(OrderActivity.this, stringFood, Toast.LENGTH_LONG);
+                t.show();
+                chooseitem();
+            }
+        });
+
+    }
+
+        */
 
 
 

@@ -5,39 +5,37 @@
     android:background="#7dabbbe1">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <ImageView
+            android:layout_width="@dimen/z1_linearlayout_icon"
+            android:layout_height="@dimen/z1_linearlayout_icon"
+            android:id="@+id/imageViewNewsAdaptor"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp" />
+
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="@dimen/z1_linearlayout_icon"
-                android:layout_height="@dimen/z1_linearlayout_icon"
-                android:id="@+id/imageViewNewsAdaptor"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:text="New Text"
-                android:id="@+id/textViewNewAdaptor"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:textSize="@dimen/heading4" />
-        </LinearLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ดูเพิ่มเติม"
-            android:id="@+id/button3" />
-
+            android:layout_height="fill_parent"
+            android:text="New Text"
+            android:id="@+id/textViewNewAdaptor"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:textSize="@dimen/heading3" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+++คลิกเพื่อดูรายละเอียด+++"
+        android:id="@+id/textView43"
+        android:singleLine="true"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/heading4"
+        android:textColor="#ff4a4a" />
+
 </LinearLayout>

@@ -150,7 +150,15 @@ public class MainActivity extends AppCompatActivity {
                         " "+ strResult_TimeRef +" " + strResult_Appearance +" "+
                         strResult_Tradename +" " + strResult_AmountTablet);
 
-                startActivity(new Intent(MainActivity.this,TakeSkipMedicineActivity.class));
+                Intent intent = new Intent(MainActivity.this,TakeSkipMedicineActivity.class);
+
+                //ทำการ copy ข้อมูลไป TakeSkipMedicineActivity
+                //intent.putExtra("Med_id",strings_receiver[0]);
+                intent.putExtra("Tradename", strResult_Tradename);
+                intent.putExtra("Appearance", strResult_Appearance);
+                intent.putExtra("AmountTablet", strResult_AmountTablet);
+                intent.putExtra("TimeRef", strResult_TimeRef);
+                startActivity(intent);
 
             }
         });

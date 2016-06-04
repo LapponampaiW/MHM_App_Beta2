@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#81304a69"
+        android:background="#dabaac0f"
         android:id="@+id/linearLayout6">
 
         <LinearLayout
@@ -29,10 +29,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:text="New Text"
-                android:id="@+id/textViewHeadLineTSM"
+                android:id="@+id/textViewTSMHeadline"
                 android:textSize="@dimen/heading3"
                 android:gravity="center_vertical"
-                android:layout_margin="@dimen/z2_margin_space" />
+                android:layout_margin="@dimen/z2_margin_space"
+                android:textColor="#d22e2e" />
         </LinearLayout>
 
     </LinearLayout>
@@ -53,7 +54,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView3"
+                android:id="@+id/imageViewTSM"
                 android:src="@drawable/ib0102"
                 android:layout_margin="@dimen/z2_margin_space" />
 
@@ -61,7 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:text="New Text"
-                android:id="@+id/textView45"
+                android:id="@+id/textViewTSML1"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/heading4" />
         </LinearLayout>
@@ -75,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
-                android:id="@+id/textView46"
+                android:id="@+id/textViewTSML2"
                 android:layout_marginLeft="20dp"
                 android:textSize="@dimen/heading4" />
         </LinearLayout>
@@ -86,21 +87,44 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="#d3a3a3">
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button3"
-            android:layout_weight="1" />
+            android:text="New Text"
+            android:id="@+id/textView47"
+            android:textSize="@dimen/heading3"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="@dimen/z2_margin_space"
+            android:layout_marginBottom="@dimen/z2_margin_space" />
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/button4"
-            android:layout_weight="1" />
+            android:text="New Text"
+            android:id="@+id/textView48"
+            android:textSize="@dimen/heading3"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="@dimen/z2_margin_space"
+            android:layout_marginBottom="@dimen/z2_margin_space" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/textView49"
+            android:textSize="@dimen/heading3"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="@dimen/z2_margin_space"
+            android:layout_marginBottom="@dimen/z2_margin_space" />
     </LinearLayout>
 
 </RelativeLayout>

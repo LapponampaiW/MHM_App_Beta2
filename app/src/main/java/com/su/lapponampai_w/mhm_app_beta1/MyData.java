@@ -51,6 +51,8 @@ public class MyData {
                 intsRead[i] = R.drawable.img0203;
             } else if (appearance[i].equals("6")) {
                 intsRead[i] = R.drawable.img0501;
+            } else if (appearance[i].equals("icon_question")) {
+                intsRead[i] = R.drawable.icon_question;
             }
         }
         return intsRead;

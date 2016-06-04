@@ -33,7 +33,8 @@
 
         <activity android:name=".Calendartest" />
         <activity android:name=".MedicationListActivity" />
-        <activity android:name=".NewsActivity"></activity>
+        <activity android:name=".NewsActivity" />
+        <activity android:name=".DrugInformationActivity"></activity>
     </application>
 
 </manifest>

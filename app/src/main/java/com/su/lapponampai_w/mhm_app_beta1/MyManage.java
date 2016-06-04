@@ -1249,8 +1249,8 @@ public class MyManage {
     public void newsTABLEData() {
         Cursor cursor = readSqLiteDatabase.query(newsTABLE, column_newsTABLE, null, null, null, null, null);
         if (cursor.getCount() == 0) {
-            addNewsTABLEValue("1", "รายละเอียดข้อมูลยา Efaviren GPO", "","");
-            addNewsTABLEValue("2", "รายละเอียดข้อมูลยา Stocrin","","");
+            addNewsTABLEValue("1", "รายละเอียดข้อมูลยา Efaviren GPO", "","DrugInformationActivity");
+            addNewsTABLEValue("2", "รายละเอียดข้อมูลยา Stocrin","","DrugInformationActivity");
         }
     }
 

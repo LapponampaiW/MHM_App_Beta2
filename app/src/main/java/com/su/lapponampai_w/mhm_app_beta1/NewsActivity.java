@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.content.Intent;
 import android.support.v4.view.NestedScrollingChild;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,7 +18,9 @@ public class NewsActivity extends AppCompatActivity {
     //Explicit
 
     String[] stringsMainTABLEMed_id,stringsNewsTABLE_Med_id,stringsAdaptorid,stringsmedTABLE_id,
-            stringsAppearance,stringsAdaptorAppearance,stringsNewsTABLE_Message,stringsAdaptorMessage;
+            stringsAppearance,stringsAdaptorAppearance,stringsNewsTABLE_Message,stringsAdaptorMessage,
+            stringsNewsTABLE_Appearance_edit,stringsAdaptorAppearance_edit,stringsNewsTABLE_Activity,
+            stringsAdaptorActivity;
     ListView listViewNewsActivity;
 
 
@@ -36,8 +39,14 @@ public class NewsActivity extends AppCompatActivity {
         stringsMainTABLEMed_id = myManage.readAllMainTABLE(2);  //Med_id ในตาราง mainTABLE ทั้งหมด
         stringsNewsTABLE_Med_id = myManage.readAllnewsTABLE(1); //Med_id ในตาราง newsTABLE ทั้งหมด
         stringsNewsTABLE_Message = myManage.readAllnewsTABLE(2); //Message ในตาราง newsTABLE ทั้งหมด
+        stringsNewsTABLE_Appearance_edit = myManage.readAllnewsTABLE(3);  //Appearance ในตาราง newsTABLE ทั้งหมด
+        stringsNewsTABLE_Activity = myManage.readAllnewsTABLE(4); //Appearance ในตาราง newsTABLE ทั้งหมด
+
         ArrayList<String> arrayListString = new ArrayList<String>();
         ArrayList<String> arrayListString2 = new ArrayList<String>();
+        ArrayList<String> arrayListString3 = new ArrayList<String>();
+        ArrayList<String> arrayListString4 = new ArrayList<String>();
+
         int arrayListIndex = 0;
 
         Log.d("stringsAdaptor", "เริ่ม arrayListIndex = 0");
@@ -48,6 +57,8 @@ public class NewsActivity extends AppCompatActivity {
                 if (stringsMainTABLEMed_id[i].equals(stringsNewsTABLE_Med_id[x])) {
                     arrayListString.add(arrayListIndex,stringsNewsTABLE_Med_id[x]);
                     arrayListString2.add(arrayListIndex,stringsNewsTABLE_Message[x]);
+                    arrayListString3.add(arrayListIndex,stringsNewsTABLE_Appearance_edit[x]);
+                    arrayListString4.add(arrayListIndex,stringsNewsTABLE_Activity[x]);
                     arrayListIndex = arrayListIndex + 1;
                 }
             }
@@ -59,6 +70,13 @@ public class NewsActivity extends AppCompatActivity {
         stringsAdaptorMessage = new String[arrayListString2.size()];
         stringsAdaptorMessage = arrayListString2.toArray(stringsAdaptorMessage); //Array ที่เก็บค่าที่ต้องแสดง (Message)
 
+        stringsAdaptorAppearance_edit = new String[arrayListString3.size()];
+        stringsAdaptorAppearance_edit = arrayListString3.toArray(stringsAdaptorAppearance_edit);
+
+        stringsAdaptorActivity = new String[arrayListString4.size()];
+        stringsAdaptorActivity = arrayListString4.toArray(stringsAdaptorActivity);
+
+
         for (int z = 0;z<arrayListString.size();z++) {
             Log.d("stringsAdaptor", stringsAdaptorid[z] + "ได้ Med_id ที่ต้องใช้ทำ Adaptor มาแล้ว");
         }
@@ -66,6 +84,11 @@ public class NewsActivity extends AppCompatActivity {
         for (int cc = 0;cc<arrayListString2.size();cc++) {
             Log.d("stringsAdaptor", stringsAdaptorMessage[cc] + "ได้ Message ที่ต้องใช้ทำ Adaptor มาแล้ว");
         }
+
+        for (int dd = 0;dd<arrayListString2.size();dd++) {
+            Log.d("stringsAdaptor", stringsAdaptorAppearance_edit[dd] + "ได้ Appearance_edit ที่ต้องใช้ทำ Adaptor มาแล้ว");
+        }
+
 
         stringsmedTABLE_id = myManage.readAllmedTABLE(0);
         stringsAppearance = myManage.readAllmedTABLE(16);  //Appearance ทั้งหมดในตาราง medTABLE
@@ -77,7 +100,13 @@ public class NewsActivity extends AppCompatActivity {
         for (int y = 0;y<stringsAdaptorid.length;y++) {
             for(int aa = 0; aa<stringsmedTABLE_id.length;aa++) {
                 if (stringsAdaptorid[y].equals(stringsmedTABLE_id[aa])) {
-                    arrayListString.add(arrayListIndex,stringsAppearance[aa]);
+
+                    if (!stringsAdaptorAppearance_edit[y].equals("")) {
+                        arrayListString.add(arrayListIndex, stringsAdaptorAppearance_edit[y]);
+                    } else {
+                        arrayListString.add(arrayListIndex,stringsAppearance[aa]);
+                    }
+
                     arrayListIndex = arrayListIndex + 1;
                 }
             }
@@ -101,32 +130,18 @@ public class NewsActivity extends AppCompatActivity {
         listViewNewsActivity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String s = stringsAdaptorMessage[position];
-                Toast.makeText(NewsActivity.this,s,Toast.LENGTH_LONG).show();
+                String strActivity = stringsAdaptorActivity[position];
+                Toast.makeText(NewsActivity.this,strActivity,Toast.LENGTH_LONG).show();
+
+                //น่าเกลียดมากแต่คิดวิธีแก้ไม่ได้
+                if (strActivity.equals("DrugInformationActivity")) {
+                    Intent intent = new Intent(getBaseContext(),DrugInformationActivity.class);
+                    startActivity(intent);
+                }
+
+
             }
         });
-
-
-
-
-        /*
-        MyAdaptor myAdaptor = new MyAdaptor(OrderActivity.this, strFood, intsIndex, strPrice);
-        listView.setAdapter(myAdaptor);
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                stringFood = strFood[position];
-                Toast t = Toast.makeText(OrderActivity.this, stringFood, Toast.LENGTH_LONG);
-                t.show();
-                chooseitem();
-            }
-        });
-
-    }
-
-        */
 
 
 

@@ -57,8 +57,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvMorning, tvAfternoon, tvEvening, tvBedtime;
     String today;
     String[] stringsInterval, stringsStartTime, stringsEndTime, stringstimeTABLE;
+
     String[] stringsClick_Position, stringsClick_Main_id, stringsClick_TimeRef,
-            stringsClick_Appearance;
+            stringsClick_Appearance; //clickTakeMedicine
+    String[] stringsMainTABLE_TradeName,stringsMainTABLE_AmountTablet,stringsMainTABLE_Main_id; //clickTakeMedicine
+    String strResult_Position, strResult_Main_id, strResult_TimeRef,
+            strResult_Appearance,strResult_AmountTablet,strResult_Tradename; //clickTakeMedicine
 
 
 
@@ -108,6 +112,10 @@ public class MainActivity extends AppCompatActivity {
         stringsClick_TimeRef = myManage.readAlldisplayTABLE(5);
         stringsClick_Appearance = myManage.readAlldisplayTABLE(7);
 
+        stringsMainTABLE_Main_id = myManage.readAllMainTABLE(0);
+        stringsMainTABLE_TradeName = myManage.readAllMainTABLE(3);
+        stringsMainTABLE_AmountTablet = myManage.readAllMainTABLE(6);
+
         //ลองทำ Morning ตำแหน่งที่ 1 ก่อน
         imageButtonM1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             //คลิก!!! จะทานยา
             private void clickTakeMedicine(String maeb) {
                 Toast.makeText(getBaseContext(),"เริ่ม " + maeb,Toast.LENGTH_SHORT).show();
-                String strResult_Position, strResult_Main_id, strResult_TimeRef, strResult_Appearance;
+
 
                 for(int i = 0;i<stringsClick_Position.length;i++) {
                     if (stringsClick_Position[i].equals(maeb)) {
@@ -130,6 +138,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
+                for(int i = 0;i<stringsMainTABLE_Main_id.length;i++) {
+                    if (stringsMainTABLE_Main_id[i].equals(strResult_Main_id)) {
+                        strResult_Tradename = stringsMainTABLE_TradeName[i];
+                        strResult_AmountTablet = stringsMainTABLE_AmountTablet[i];
+                    }
+
+                }
+
+                Log.d("clickTakeMedicine",strResult_Position +" "+strResult_Main_id +
+                        " "+ strResult_TimeRef +" " + strResult_Appearance +" "+
+                        strResult_Tradename +" " + strResult_AmountTablet);
 
 
 

@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvMorning, tvAfternoon, tvEvening, tvBedtime;
     String today;
     String[] stringsInterval, stringsStartTime, stringsEndTime, stringstimeTABLE;
+    String[] stringsClick_Position, stringsClick_Main_id, stringsClick_TimeRef,
+            stringsClick_Appearance;
 
 
 
@@ -92,9 +94,51 @@ public class MainActivity extends AppCompatActivity {
 
         click_News();
 
-
+        clickImagepill();
 
     } //Main method
+
+
+
+    private void clickImagepill() {
+        final MyManage myManage = new MyManage(this);
+
+        stringsClick_Position = myManage.readAlldisplayTABLE(1);
+        stringsClick_Main_id = myManage.readAlldisplayTABLE(3);
+        stringsClick_TimeRef = myManage.readAlldisplayTABLE(5);
+        stringsClick_Appearance = myManage.readAlldisplayTABLE(7);
+
+        //ลองทำ Morning ตำแหน่งที่ 1 ก่อน
+        imageButtonM1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickTakeMedicine("M1");
+            }
+
+
+            //คลิก!!! จะทานยา
+            private void clickTakeMedicine(String maeb) {
+                Toast.makeText(getBaseContext(),"เริ่ม " + maeb,Toast.LENGTH_SHORT).show();
+                String strResult_Position, strResult_Main_id, strResult_TimeRef, strResult_Appearance;
+
+                for(int i = 0;i<stringsClick_Position.length;i++) {
+                    if (stringsClick_Position[i].equals(maeb)) {
+                        strResult_Position = stringsClick_Position[i];
+                        strResult_Main_id = stringsClick_Main_id[i];  //ต้องเอา Main_id ไปทำต่อ
+                        strResult_TimeRef = stringsClick_TimeRef[i];
+                        strResult_Appearance = stringsClick_Appearance[i];
+                    }
+                }
+
+
+
+
+            }
+        });
+
+
+
+    } //clickImagepill
 
     private void click_News() {
         textViewNews.setOnClickListener(new View.OnClickListener() {

@@ -166,6 +166,49 @@ public class MyManage {
 
     } //Constructor
 
+    //Read All displayTABLE
+    public String[] readAlldisplayTABLE(int intColumn) {
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(displayTABLE, column_displayTABLE, null, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+
+            for(int i = 0;i<cursor.getCount();i++) {
+                switch (intColumn) {
+                    case 0:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(displaycolumn_id));
+                        break;
+                    case 1:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(displaycolumn_position));
+                        break;
+                    case 2:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(displaycolumn_sum_id));
+                        break;
+                    case 3:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(displaycolumn_main_id));
+                        break;
+                    case 4:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(displaycolumn_day));
+                        break;
+                    case 5:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(displaycolumn_timeref));
+                        break;
+                    case 6:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(displaycolumn_timecheck));
+                        break;
+                    case 7:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(displaycolumn_appearance));
+                        break;
+                    default:
+                        break;
+                }
+                cursor.moveToNext();
+            }
+        }
+        return strREAD;
+    }
+
     //Read All medTABLE
     public String[] readAllmedTABLE(int intColumn) {
         String[] strread = null;
@@ -313,7 +356,6 @@ public class MyManage {
 
         cursor.moveToFirst();
         for (int i=0; i<cursor.getCount();i++) {
-
             resultStrings[i] = cursor.getString(intColumn);
             cursor.moveToNext();
 

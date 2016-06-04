@@ -34,7 +34,10 @@
         <activity android:name=".Calendartest" />
         <activity android:name=".MedicationListActivity" />
         <activity android:name=".NewsActivity" />
-        <activity android:name=".DrugInformationActivity"></activity>
+        <activity android:name=".DrugInformationActivity" />
+        <activity android:name=".TakeSkipMedicineActivity"
+            android:theme="@style/AppTheme.CustomTheme"
+            ></activity>
     </application>
 
 </manifest>

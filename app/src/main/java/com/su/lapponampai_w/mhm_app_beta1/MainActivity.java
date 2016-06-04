@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                         " "+ strResult_TimeRef +" " + strResult_Appearance +" "+
                         strResult_Tradename +" " + strResult_AmountTablet);
 
-
+                startActivity(new Intent(MainActivity.this,TakeSkipMedicineActivity.class));
 
             }
         });

@@ -1243,7 +1243,9 @@ public class MyManage {
             addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null, 1, "1", "3", null, "08:00", "20:00","","","","","","");
             addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "5", null, "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Viread", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "6", null, "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("TEST", null, 7, "100", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "1", null, "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Reyataz","Atazanavir",7,"300","1",1, null, null, 1, null, null, 1, null, null, 1, "1", "7", null, "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cafergot","Ergotamine Tartrate",8,"1","1",1, null, null, 1, null, null, 1, null, null, 1, "1", "8", null, "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Prevacid","Lansoprazole",9,"30","1",1, null, null, 1, null, null, 1, null, null, 1, "1", "9", null, "07:00", "", "", "", "", "", "", "");
 
         }
 
@@ -1260,7 +1262,9 @@ public class MyManage {
             addnameGenericTABLEValue("Nevirapine"); //4
             addnameGenericTABLEValue("Stavudine"); //5
             addnameGenericTABLEValue("Tenofovir"); //6
-            addnameGenericTABLEValue("TEST"); //7
+            addnameGenericTABLEValue("Atazanavir"); //7
+            addnameGenericTABLEValue("Ergotamine Tartrate"); //8
+            addnameGenericTABLEValue("Lansoprazole"); //9
 
 
         }
@@ -1271,7 +1275,8 @@ public class MyManage {
 
         if (cursor.getCount() == 0) {
 
-            adddrugInteractionTABLEValue(7, 7, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(7, 8, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(7, 9, "2", "ควรรับประทานห่างกันอย่างน้อย 4 ชั่วโมง", 0, 0);
 
         }
     }

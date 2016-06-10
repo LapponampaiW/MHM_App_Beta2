@@ -23,7 +23,7 @@ public class MyHelper extends SQLiteOpenHelper {
             "Generic_name2 integer, Dosage2 text, UOM2 text, " +
             "Generic_name3 integer, Dosage3 text, UOM3 text, " +
             "Generic_name4 integer, Dosage4 text, UOM4 text, " +
-            "Amount_tablet double, " +
+            "EA text, Amount_tablet double, " +
             "Which_Date_D text, Appearance text, Pharmaco text, T1 text, T2 text," +
             "T3 text, T4 text,T5 text, T6 text,T7 text, T8 text);";
 
@@ -32,7 +32,7 @@ public class MyHelper extends SQLiteOpenHelper {
     private static final String CREATE_mainTABLE = "create table mainTABLE" +
             "(_id long primary key, Med_id integer, Trade_name text, " +
             "Generic_line text, Amount_tablet double, Which_Date_D text, Appearance text, " +
-            "pharmaco text, " +
+            "EA text, pharmaco text, StartDate text, FinishDate text, PRN text, " +
             "T1 text, T2 text, T3 text, T4 text,T5 text, T6 text, " +
             "T7 text, T8 text);";
 

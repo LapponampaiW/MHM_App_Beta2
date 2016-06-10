@@ -167,6 +167,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                         intent.putExtra("Trade_name", strings_receiver[1]);
                         intent.putExtra("Generic_line", stringGenericLine);
                         intent.putExtra("Amount_tablet", strings_receiver[26]);
+                        intent.putExtra("EA", strings_receiver[27]);
                         intent.putExtra("Which_Date_D", strings_receiver[15]);
                         intent.putExtra("Appearance", strings_receiver[16]);
                         intent.putExtra("Pharmaco", strings_receiver[17]);

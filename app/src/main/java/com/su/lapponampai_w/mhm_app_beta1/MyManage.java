@@ -52,6 +52,7 @@ public class MyManage {
     private static final String mcolumn_generic_name4 = "Generic_name4";
     private static final String mcolumn_dosage4 = "Dosage4";
     private static final String mcolumn_uom4 = "UOM4";
+    private static final String mcolumn_ea = "EA";
     private static final String mcolumn_amount_tablet = "Amount_tablet";
     private static final String mcolumn_which_date_d = "Which_Date_D";
     private static final String mcolumn_appearance = "Appearance";
@@ -66,7 +67,7 @@ public class MyManage {
     private static final String mcolumn_t8 = "T8";
     private static final String[] column_medTABLE = {mcolumn_id,mcolumn_trade_name,mcolumn_key_search,mcolumn_generic_name1,mcolumn_dosage1,
                                     mcolumn_uom1,mcolumn_generic_name2,mcolumn_dosage2,mcolumn_uom2,mcolumn_generic_name3,
-                                    mcolumn_dosage3,mcolumn_uom3,mcolumn_generic_name4,mcolumn_dosage4,mcolumn_uom4,mcolumn_amount_tablet,
+                                    mcolumn_dosage3,mcolumn_uom3,mcolumn_generic_name4,mcolumn_dosage4,mcolumn_uom4,mcolumn_ea,mcolumn_amount_tablet,
                                     mcolumn_which_date_d,mcolumn_appearance,mcolumn_pharmaco,mcolumn_t1,mcolumn_t2,
                                     mcolumn_t3,mcolumn_t4,mcolumn_t5,mcolumn_t6,mcolumn_t7,mcolumn_t8};
 
@@ -299,6 +300,9 @@ public class MyManage {
                         break;
                     case 26:
                         strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_amount_tablet));
+                        break;
+                    case 27:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_ea));
                     default:
                         break;
                 }
@@ -798,6 +802,9 @@ public class MyManage {
                         break;
                     case 26:
                         strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_amount_tablet));
+                        break;
+                    case 27:
+                        strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_ea));
                     default:
                         break;
                 }
@@ -1057,7 +1064,7 @@ public class MyManage {
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, "_id =?", new String[]{String.valueOf(id)}, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
-            strread = new String[27];
+            strread = new String[28];
 
             strread[0] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
             strread[1] = cursor.getString(cursor.getColumnIndex(mcolumn_trade_name));
@@ -1086,6 +1093,7 @@ public class MyManage {
             strread[24] = cursor.getString(cursor.getColumnIndex(mcolumn_t7));
             strread[25] = cursor.getString(cursor.getColumnIndex(mcolumn_t8));
             strread[26] = cursor.getString(cursor.getColumnIndex(mcolumn_amount_tablet));
+            strread[27] = cursor.getString(cursor.getColumnIndex(mcolumn_ea));
         }
         return strread;
     }
@@ -1173,7 +1181,7 @@ public class MyManage {
                               int s_generic_name2, String s_dosage2, String s_uom2,
                               int s_generic_name3, String s_dosage3, String s_uom3,
                               int s_generic_name4, String s_dosage4, String s_uom4,
-                                   double s_amount_tablet, String s_which_date_d,
+                                   String s_ea, double s_amount_tablet, String s_which_date_d,
                                    String s_appearance, String s_pharmaco,
                               String s_t1, String s_t2, String s_t3, String s_t4,
                               String s_t5, String s_t6, String s_t7, String s_t8) {
@@ -1194,6 +1202,7 @@ public class MyManage {
         contentValues.put(mcolumn_generic_name4,s_generic_name4);
         contentValues.put(mcolumn_dosage4,s_dosage4);
         contentValues.put(mcolumn_uom4,s_uom4);
+        contentValues.put(mcolumn_ea,s_ea);
         contentValues.put(mcolumn_amount_tablet,s_amount_tablet);
         contentValues.put(mcolumn_which_date_d,s_which_date_d);
         contentValues.put(mcolumn_appearance,s_appearance);
@@ -1237,15 +1246,15 @@ public class MyManage {
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
 
         if (cursor.getCount()==0) {
-            addMedTABLEValue("Efaviren GPO", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "4", null, "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Stocrin", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "4", null, "22:00","","","","","","","");
-            addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "1", null, "08:00", "20:00","","","","","","");
-            addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null, 1, "1", "3", null, "08:00", "20:00","","","","","","");
-            addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "5", null, "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Viread", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, 1, "1", "6", null, "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Reyataz","Atazanavir",7,"300","1",1, null, null, 1, null, null, 1, null, null, 1, "1", "7", null, "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Cafergot","Ergotamine Tartrate",8,"1","1",1, null, null, 1, null, null, 1, null, null, 1, "1", "8", null, "08:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Prevacid","Lansoprazole",9,"30","1",1, null, null, 1, null, null, 1, null, null, 1, "1", "9", null, "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Efaviren GPO", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null,"", 1, "1", "4", null, "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Stocrin", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null,"", 1, "1", "4", null, "22:00","","","","","","","");
+            addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null,"", 1, "1", "1", null, "08:00", "20:00","","","","","","");
+            addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null,"", 1, "1", "3", null, "08:00", "20:00","","","","","","");
+            addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null,"", 1, "1", "5", null, "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Viread", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null,"", 1, "1", "6", null, "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Reyataz","Atazanavir",7,"300","1",1, null, null, 1, null, null, 1, null, null,"", 1, "1", "7", null, "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cafergot","Ergotamine Tartrate",8,"1","1",1, null, null, 1, null, null, 1, null, null,"", 1, "1", "8", null, "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Prevacid","Lansoprazole",9,"30","1",1, null, null, 1, null, null, 1, null, null,"", 1, "1", "9", null, "07:00", "", "", "", "", "", "", "");
 
         }
 

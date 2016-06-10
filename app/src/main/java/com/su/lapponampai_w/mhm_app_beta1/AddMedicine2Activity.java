@@ -21,11 +21,11 @@ public class AddMedicine2Activity extends AppCompatActivity {
     //Explicit
     private TextView textView1, textView2, textView3, textView4,
             textView5, textView6, textView7, textView8, textView9,
-            textView10, textView11, textView12, textView13, textView14, textView15;
+            textView10, textView11, textView12, textView13, textView14, textView15, textView16;
 
     private String string1, string2, string3, string4, string5, string6,
             string7, string8, string9, string10, string11, string12,
-            string13, string14, string15;
+            string13, string14, string15, string16;
 
     private String stringInteraction2;
 
@@ -64,6 +64,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
         textView13.setText(string13);
         textView14.setText(string14);
         textView15.setText(string15);
+        textView16.setText(string16);
 
 
     }
@@ -85,6 +86,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
         string13 = getIntent().getStringExtra("T7");
         string14 = getIntent().getStringExtra("T8");
         string15 = getIntent().getStringExtra("Amount_tablet");
+        string16 = getIntent().getStringExtra("EA");
 
 
     }
@@ -105,7 +107,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
         textView13 = (TextView) findViewById(R.id.textView34);
         textView14 = (TextView) findViewById(R.id.textView36);
         textView15 = (TextView) findViewById(R.id.textView38);
-
+        textView16 = (TextView) findViewById(R.id.textView46);
     }
 
     public void clickCancelAddMedicine(View view) {

@@ -45,6 +45,19 @@ public class MyData {
         return strREAD;
     }
 
+    public String[] translate_Which_Date_D(String which_date_d) {
+        String[] strREAD = null;
+        strREAD = new String[2];
+
+        if (which_date_d.equals("ED:0")) {
+            strREAD[0] = "1";
+            strREAD[1] = "ทานทุกวัน";
+
+        }
+
+        return strREAD;
+    }
+
 
     public int[] translate_Appearance(String[] appearance) {
 

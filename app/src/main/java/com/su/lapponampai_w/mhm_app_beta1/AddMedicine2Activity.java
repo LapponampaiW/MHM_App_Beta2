@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ public class AddMedicine2Activity extends AppCompatActivity {
     private String string1, string2, string3, string4, string5, string6,
             string7, string8, string9, string10, string11, string12,
             string13, string14, string15, string16;
+
+    private CheckBox checkBox1, checkBox2, checkBox3, checkBox4;
 
     private EditText editText1;
 
@@ -55,7 +58,72 @@ public class AddMedicine2Activity extends AppCompatActivity {
         //Show View
         showView();
 
+        //click CheckBox
+        clickCheckBox();
+
+
     } //Main Method
+
+    private void clickCheckBox() {
+
+        //Click CheckBox1
+        checkBox1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox1.isChecked()) {
+                    checkBox2.setChecked(false);
+                    checkBox3.setChecked(false);
+                    checkBox4.setChecked(false);
+                }
+
+            }
+        });
+
+
+        //Click CheckBox2
+        checkBox2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox2.isChecked()) {
+                    checkBox1.setChecked(false);
+                    checkBox3.setChecked(false);
+                    checkBox4.setChecked(false);
+
+
+                }
+            }
+        });
+
+        //Click CheckBox3
+        checkBox3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox3.isChecked()) {
+                    checkBox1.setChecked(false);
+                    checkBox2.setChecked(false);
+                    checkBox4.setChecked(false);
+
+
+                }
+            }
+        });
+
+
+        //Click CheckBox4
+        checkBox4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox4.isChecked()) {
+                    checkBox1.setChecked(false);
+                    checkBox2.setChecked(false);
+                    checkBox3.setChecked(false);
+
+
+                }
+            }
+        });
+
+    }
 
     private void showView() {
         MyData myData = new MyData();
@@ -69,7 +137,16 @@ public class AddMedicine2Activity extends AppCompatActivity {
         stringsAppearance[0] = string5;
         int[] intsIndex = myData.translate_Appearance(stringsAppearance);
         imageView.setBackgroundResource(intsIndex[0]);
-        textView6.setText(string6);
+        //textView6.setText(string6);
+
+        String[] stringsWhich_Date_D = myData.translate_Which_Date_D(string4);
+        if (stringsWhich_Date_D[0].equals("1")) {
+            checkBox1.setChecked(true);
+            textView1.setText(stringsWhich_Date_D[1]);
+        }
+
+
+
         textView7.setText(string7);
         textView8.setText(string8);
         textView9.setText(string9);
@@ -112,12 +189,13 @@ public class AddMedicine2Activity extends AppCompatActivity {
 
     private void bindWidget() {
 
+        textView1 = (TextView) findViewById(R.id.textViewWhich_Date_D);
         textView2 = (TextView) findViewById(R.id.textView12);
         textView3 = (TextView) findViewById(R.id.textView14);
         //textView4 = (TextView) findViewById(R.id.textView16); เอาวันที่รับประทาน ออก Which_Date
         imageView = (ImageView) findViewById(R.id.imageViewAppearance);
-        //textView5 = (TextView) findViewById(R.id.textView18);
-        textView6 = (TextView) findViewById(R.id.textView20);
+        //textView5 = (TextView) findViewById(R.id.textView18);  จะเปลี่ยนให้เป็น StartDate
+        //textView6 = (TextView) findViewById(R.id.textView20); จะเปลี่ยนให้เป็น FinishDate
         textView7 = (TextView) findViewById(R.id.textView22);
         textView8 = (TextView) findViewById(R.id.textView24);
         textView9 = (TextView) findViewById(R.id.textView26);
@@ -129,6 +207,13 @@ public class AddMedicine2Activity extends AppCompatActivity {
         //textView15 = (TextView) findViewById(R.id.textView38);  เปลี่ยน Amount_Tablet ไปเป็น Edittext
         editText1 = (EditText) findViewById(R.id.editText1);
         textView16 = (TextView) findViewById(R.id.textView46);
+        checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
+        checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
+        checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
+        checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
+
+
+
     }
 
     public void clickCancelAddMedicine(View view) {

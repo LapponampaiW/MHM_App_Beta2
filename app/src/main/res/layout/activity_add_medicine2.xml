@@ -192,7 +192,6 @@
                     android:id="@+id/textView45"
                     android:gravity="right"
                     android:layout_marginTop="@dimen/z2_margin_bigspace"
-                    android:layout_marginBottom="@dimen/z2_margin_bigspace"
                     android:textColor="#ff0000" />
             </LinearLayout>
 
@@ -235,7 +234,7 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
 
@@ -247,42 +246,48 @@
                         android:textSize="20sp"
                         android:layout_gravity="right" />
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"></LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="ทานทุกวัน"
-                        android:id="@+id/checkBox" />
+                        android:id="@+id/checkBox1"
+                        android:layout_marginLeft="20dp" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="วัน.....ในสัปดาห์"
-                        android:id="@+id/checkBox2" />
+                        android:id="@+id/checkBox2"
+                        android:layout_marginLeft="20dp" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="วันที่.....ของเดือน"
-                        android:id="@+id/checkBox3" />
+                        android:id="@+id/checkBox3"
+                        android:layout_marginLeft="20dp" />
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1 วัน เว้น ....... วัน"
-                        android:id="@+id/checkBox4" />
+                        android:id="@+id/checkBox4"
+                        android:layout_marginLeft="20dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textViewWhich_Date_D"
+                        android:textSize="@dimen/heading3" />
                 </LinearLayout>
 
             </LinearLayout>

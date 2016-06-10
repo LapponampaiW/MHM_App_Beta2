@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -27,11 +29,16 @@ public class AddMedicine2Activity extends AppCompatActivity {
             string7, string8, string9, string10, string11, string12,
             string13, string14, string15, string16;
 
+    private EditText editText1;
+
+    private ImageView imageView;
+
     private String string16_Translate;
 
     private String stringInteraction2;
 
     private String[] strings0, strings2, strings3, strings4, strings5, strings6, strings1, strings7, stringGenericName2, stringsduplicate;
+    private String[] stringsAppearance;
 
 
     @Override
@@ -53,11 +60,15 @@ public class AddMedicine2Activity extends AppCompatActivity {
     private void showView() {
         MyData myData = new MyData();
 
-        textView1.setText(string1);
+        //ลบ textView1 ที่เป็น Med_id ออกแต่ยังคงเก็บค่าไว้ที่ String 1
         textView2.setText(string2);
         textView3.setText(string3);
-        textView4.setText(string4);
-        textView5.setText(string5);
+        //textView4.setText(string4);
+        //textView5.setText(string5);
+        stringsAppearance = new String[1];
+        stringsAppearance[0] = string5;
+        int[] intsIndex = myData.translate_Appearance(stringsAppearance);
+        imageView.setBackgroundResource(intsIndex[0]);
         textView6.setText(string6);
         textView7.setText(string7);
         textView8.setText(string8);
@@ -67,7 +78,10 @@ public class AddMedicine2Activity extends AppCompatActivity {
         textView12.setText(string12);
         textView13.setText(string13);
         textView14.setText(string14);
-        textView15.setText(string15);
+        //textView15.setText(string15);
+
+
+        editText1.setText(string15);
         string16_Translate = myData.translate_EA(string16);
         textView16.setText(string16_Translate);
 
@@ -97,11 +111,12 @@ public class AddMedicine2Activity extends AppCompatActivity {
     }
 
     private void bindWidget() {
-        textView1 = (TextView) findViewById(R.id.textView10);
+
         textView2 = (TextView) findViewById(R.id.textView12);
         textView3 = (TextView) findViewById(R.id.textView14);
-        textView4 = (TextView) findViewById(R.id.textView16);
-        textView5 = (TextView) findViewById(R.id.textView18);
+        //textView4 = (TextView) findViewById(R.id.textView16); เอาวันที่รับประทาน ออก Which_Date
+        imageView = (ImageView) findViewById(R.id.imageViewAppearance);
+        //textView5 = (TextView) findViewById(R.id.textView18);
         textView6 = (TextView) findViewById(R.id.textView20);
         textView7 = (TextView) findViewById(R.id.textView22);
         textView8 = (TextView) findViewById(R.id.textView24);
@@ -111,7 +126,8 @@ public class AddMedicine2Activity extends AppCompatActivity {
         textView12 = (TextView) findViewById(R.id.textView32);
         textView13 = (TextView) findViewById(R.id.textView34);
         textView14 = (TextView) findViewById(R.id.textView36);
-        textView15 = (TextView) findViewById(R.id.textView38);
+        //textView15 = (TextView) findViewById(R.id.textView38);  เปลี่ยน Amount_Tablet ไปเป็น Edittext
+        editText1 = (EditText) findViewById(R.id.editText1);
         textView16 = (TextView) findViewById(R.id.textView46);
     }
 

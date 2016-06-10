@@ -22,6 +22,17 @@ public class MyData {
         return strRead;
     } //translate_uom
 
+
+    public String translate_EA(String ea) {
+        String strREAD = null;
+
+        if (ea.equals("1")) {
+            strREAD = "เม็ด";
+        }
+
+        return strREAD;
+    }
+
     public String translate_uom(String uom) {
 
         String strREAD = "N/A";
@@ -119,10 +130,11 @@ public class MyData {
                 intsRead[i] = R.drawable.ibc0607;
             }
 
-
         }
         return intsRead;
     }
+
+
 
 
     /*

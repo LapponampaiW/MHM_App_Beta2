@@ -1246,15 +1246,15 @@ public class MyManage {
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
 
         if (cursor.getCount()==0) {
-            addMedTABLEValue("Efaviren GPO", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null,"", 1, "1", "4", null, "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Stocrin", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null,"", 1, "1", "4", null, "22:00","","","","","","","");
-            addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null,"", 1, "1", "1", null, "08:00", "20:00","","","","","","");
-            addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null,"", 1, "1", "3", null, "08:00", "20:00","","","","","","");
-            addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null,"", 1, "1", "5", null, "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Viread", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null,"", 1, "1", "6", null, "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Reyataz","Atazanavir",7,"300","1",1, null, null, 1, null, null, 1, null, null,"", 1, "1", "7", null, "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Cafergot","Ergotamine Tartrate",8,"1","1",1, null, null, 1, null, null, 1, null, null,"", 1, "1", "8", null, "08:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Prevacid","Lansoprazole",9,"30","1",1, null, null, 1, null, null, 1, null, null,"", 1, "1", "9", null, "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Efaviren GPO", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null,"1", 1, "1", "4", null, "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Stocrin", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null,"1", 1, "1", "4", null, "22:00","","","","","","","");
+            addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null,"1", 1, "1", "1", null, "08:00", "20:00","","","","","","");
+            addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null,"1", 1, "1", "3", null, "08:00", "20:00","","","","","","");
+            addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null,"1", 1, "1", "5", null, "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Viread", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null,"1", 1, "1", "6", null, "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Reyataz","Atazanavir",7,"300","1",1, null, null, 1, null, null, 1, null, null,"1", 1, "1", "7", null, "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cafergot","Ergotamine Tartrate",8,"1","1",1, null, null, 1, null, null, 1, null, null,"1", 1, "1", "8", null, "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Prevacid","Lansoprazole",9,"30","1",1, null, null, 1, null, null, 1, null, null,"1", 1, "1", "9", null, "07:00", "", "", "", "", "", "", "");
 
         }
 

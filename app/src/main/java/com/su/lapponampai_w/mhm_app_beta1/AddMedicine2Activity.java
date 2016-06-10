@@ -27,6 +27,8 @@ public class AddMedicine2Activity extends AppCompatActivity {
             string7, string8, string9, string10, string11, string12,
             string13, string14, string15, string16;
 
+    private String string16_Translate;
+
     private String stringInteraction2;
 
     private String[] strings0, strings2, strings3, strings4, strings5, strings6, strings1, strings7, stringGenericName2, stringsduplicate;
@@ -49,6 +51,8 @@ public class AddMedicine2Activity extends AppCompatActivity {
     } //Main Method
 
     private void showView() {
+        MyData myData = new MyData();
+
         textView1.setText(string1);
         textView2.setText(string2);
         textView3.setText(string3);
@@ -64,7 +68,8 @@ public class AddMedicine2Activity extends AppCompatActivity {
         textView13.setText(string13);
         textView14.setText(string14);
         textView15.setText(string15);
-        textView16.setText(string16);
+        string16_Translate = myData.translate_EA(string16);
+        textView16.setText(string16_Translate);
 
 
     }

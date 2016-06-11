@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class AddMedicineActivity extends AppCompatActivity {
 
     //Explicit
@@ -158,9 +160,20 @@ public class AddMedicineActivity extends AppCompatActivity {
 
                         String stringSearchId = stringsId[position];
                         stringGenericLine = stringsGenericLine1[position];
-                        strings_receiver = myManage.searchById(stringSearchId);
-                        //Toast.makeText(AddMedicineActivity.this,stringGenericLine,Toast.LENGTH_LONG).show();
+                        strings_receiver = myManage.searchById(stringSearchId); // search ที่จำเป็นต้องใช้มา
 
+
+                        //นับว่า Default ให้ทานยาวันละกี่ครั้ง
+                        ArrayList<String> arrayListstrings = new ArrayList<String>();
+                        for(int i = 18;i<=25;i++) {
+                            if (!strings_receiver[i].equals("")) {
+                                arrayListstrings.add(strings_receiver[i]);
+                            }
+                        }
+                        String sCountTimesPerDay = Integer.toString(arrayListstrings.size());
+
+
+                        //เปิดหน้าใหม่ พร้อมจำค่าใน putExtra
                         Intent intent = new Intent(AddMedicineActivity.this,AddMedicine2Activity.class);
 
                         intent.putExtra("Med_id",strings_receiver[0]);
@@ -179,6 +192,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                         intent.putExtra("T6",strings_receiver[23]);
                         intent.putExtra("T7",strings_receiver[24]);
                         intent.putExtra("T8",strings_receiver[25]);
+                        intent.putExtra("TimesPerDay", sCountTimesPerDay);
 
                         startActivity(intent);
 

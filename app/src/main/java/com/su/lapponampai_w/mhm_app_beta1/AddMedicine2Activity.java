@@ -17,7 +17,9 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class AddMedicine2Activity extends AppCompatActivity {
@@ -25,11 +27,12 @@ public class AddMedicine2Activity extends AppCompatActivity {
     //Explicit
     private TextView textView1, textView2, textView3, textView4,
             textView5, textView6, textView7, textView8, textView9,
-            textView10, textView11, textView12, textView13, textView14, textView15, textView16;
+            textView10, textView11, textView12, textView13,
+            textView14, textView15, textView16;
 
     private String string1, string2, string3, string4, string5, string6,
             string7, string8, string9, string10, string11, string12,
-            string13, string14, string15, string16;
+            string13, string14, string15, string16, string17;
 
     private CheckBox checkBox1, checkBox2, checkBox3, checkBox4;
 
@@ -77,8 +80,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
                     checkBox4.setChecked(false);
                     string4 = "ED:0";  //เก็บค่าไว้ใน string4 เหมือนเดิม
                     textView1.setVisibility(View.INVISIBLE);
-                    textView4.setVisibility(View.INVISIBLE);
-                    textView6.setVisibility(View.INVISIBLE);
+
                 }
 
             }
@@ -93,8 +95,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
                     checkBox1.setChecked(false);
                     checkBox3.setChecked(false);
                     checkBox4.setChecked(false);
-                    textView4.setVisibility(View.INVISIBLE);
-                    textView6.setVisibility(View.INVISIBLE);
+
 
                     final ArrayList<Integer> arrayList = new ArrayList<Integer>();
                     final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getContext());
@@ -116,6 +117,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
 
                             Integer[] integers = new Integer[arrayList.size()];
                             integers = arrayList.toArray(integers);
+                            Arrays.sort(integers);
 
                             if (arrayList.size() == 0) {
                                 string4 = "";
@@ -175,8 +177,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
                     checkBox1.setChecked(false);
                     checkBox2.setChecked(false);
                     checkBox4.setChecked(false);
-                    textView1.setVisibility(View.INVISIBLE);
-                    textView6.setVisibility(View.INVISIBLE);
+
 
                     final ArrayList<Integer> arrayList = new ArrayList<Integer>();
                     final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getContext());
@@ -202,12 +203,13 @@ public class AddMedicine2Activity extends AppCompatActivity {
 
                             Integer[] integers = new Integer[arrayList.size()];
                             integers = arrayList.toArray(integers);
+                            Arrays.sort(integers);
 
                             if (arrayList.size() == 0) {
                                 string4 = "";
                                 checkBox3.setChecked(false);
                                 Toast.makeText(getApplicationContext(), "โปรดเลือกวันที่ต้องการทานยา", Toast.LENGTH_SHORT).show();
-                                textView4.setVisibility(View.INVISIBLE);
+                                textView1.setVisibility(View.INVISIBLE);
                             } else {
                                 StringBuffer stringBuffer = new StringBuffer("วันที่ทานยา : ");
                                 StringBuffer stringBufferCode = new StringBuffer("DOM:");
@@ -228,8 +230,8 @@ public class AddMedicine2Activity extends AppCompatActivity {
                                 s = s.substring(0,s.length() - 2);
                                 s = s.concat(" ของทุกเดือน");
 
-                                textView4.setText(s);
-                                textView4.setVisibility(View.VISIBLE);
+                                textView1.setText(s);
+                                textView1.setVisibility(View.VISIBLE);
 
                                 String sCode = stringBufferCode.toString();
                                 Log.d("Which","sCode = " + sCode );
@@ -251,7 +253,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
                     builder.show();
                 } else {
                     string4 = "";
-                    textView4.setVisibility(View.INVISIBLE);
+                    textView1.setVisibility(View.INVISIBLE);
                     Log.d("Which", "string 4 :" + string4);
                 }
             }
@@ -266,11 +268,10 @@ public class AddMedicine2Activity extends AppCompatActivity {
                     checkBox1.setChecked(false);
                     checkBox2.setChecked(false);
                     checkBox3.setChecked(false);
-                    textView1.setVisibility(View.INVISIBLE);
-                    textView4.setVisibility(View.INVISIBLE);
+
 
                     final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getContext());
-                    final String[] strings = {"วันเว้นวัน", "1 วันเว้น 2 วัน", "1 วันเว้น 3 วัน", "1 วันเว้น 4 วัน", "1 วันเว้น 5 วัน"};
+                    final String[] strings = {"วันเว้นวัน", "1 วันเว้น 2 วัน(ทุก 3 วัน)", "1 วันเว้น 3 วัน(ทุก 4 วัน)", "1 วันเว้น 4 วัน(ทุก 5 วัน)", "1 วันเว้น 5 วัน(ทุก 6 วัน)"};
                     builder.setTitle("โปรดเลือกวันที่รับประทาน");
                     builder.setSingleChoiceItems(strings, -1, new DialogInterface.OnClickListener() {
                         @Override
@@ -287,8 +288,8 @@ public class AddMedicine2Activity extends AppCompatActivity {
                             } else if (which == 4) {
                                 string4 = "ED:5";
                             }
-                            textView6.setVisibility(View.VISIBLE);
-                            textView6.setText(s);
+                            textView1.setVisibility(View.VISIBLE);
+                            textView1.setText(s);
 
                             Log.d("Which", "string 4 :" + string4);
                             dialog.dismiss();
@@ -299,7 +300,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
 
                 } else {
                     string4 = "";
-                    textView6.setVisibility(View.INVISIBLE);
+                    textView1.setVisibility(View.INVISIBLE);
                     Log.d("Which", "string 4 :" + string4);
                 }
             }
@@ -311,8 +312,6 @@ public class AddMedicine2Activity extends AppCompatActivity {
         MyData myData = new MyData();
 
         textView1.setVisibility(View.INVISIBLE);
-        textView4.setVisibility(View.INVISIBLE);
-        textView6.setVisibility(View.INVISIBLE);
         //ลบ textView1 ที่เป็น Med_id ออกแต่ยังคงเก็บค่าไว้ที่ String 1
         textView2.setText(string2);
         textView3.setText(string3);
@@ -328,6 +327,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
         if (stringsWhich_Date_D[0].equals("1")) {
             checkBox1.setChecked(true);
         }
+        textView4.setText(string17);
 
         textView7.setText(string7);
         textView8.setText(string8);
@@ -365,6 +365,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
         string14 = getIntent().getStringExtra("T8");
         string15 = getIntent().getStringExtra("Amount_tablet");
         string16 = getIntent().getStringExtra("EA");
+        string17 = getIntent().getStringExtra("TimesPerDay");
 
 
     }
@@ -372,11 +373,10 @@ public class AddMedicine2Activity extends AppCompatActivity {
     private void bindWidget() {
 
         textView1 = (TextView) findViewById(R.id.textViewWhich_Date_D2);
-        textView4 = (TextView) findViewById(R.id.textViewWhich_Date_D3);
-        textView6 = (TextView) findViewById(R.id.textViewWhich_Date_D4);
         textView2 = (TextView) findViewById(R.id.textView12);
         textView3 = (TextView) findViewById(R.id.textView14);
         //textView4 = (TextView) findViewById(R.id.textView16); เอาวันที่รับประทาน ออก Which_Date
+        textView4 = (TextView) findViewById(R.id.textView54);
         imageView = (ImageView) findViewById(R.id.imageViewAppearance);
         //textView5 = (TextView) findViewById(R.id.textView18);  จะเปลี่ยนให้เป็น StartDate
         //textView6 = (TextView) findViewById(R.id.textView20); จะเปลี่ยนให้เป็น FinishDate

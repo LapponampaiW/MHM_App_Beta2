@@ -120,7 +120,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
                             if (arrayList.size() == 0) {
                                 string4 = "";
                                 checkBox2.setChecked(false);
-                                Toast.makeText(getApplicationContext(), "โปรดเลือกวันที่ทานยา", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "โปรดเลือกวันที่ต้องการทานยา", Toast.LENGTH_SHORT).show();
                                 textView1.setVisibility(View.INVISIBLE);
                             } else {
                                 StringBuffer stringBuffer = new StringBuffer("วันที่ทานยา : ");
@@ -175,8 +175,84 @@ public class AddMedicine2Activity extends AppCompatActivity {
                     checkBox1.setChecked(false);
                     checkBox2.setChecked(false);
                     checkBox4.setChecked(false);
+                    textView1.setVisibility(View.INVISIBLE);
+                    textView6.setVisibility(View.INVISIBLE);
 
+                    final ArrayList<Integer> arrayList = new ArrayList<Integer>();
+                    final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getContext());
+                    final String[] strings = new String[28];
+                    for(int i = 0;i<28;i++) {
+                        strings[i] = Integer.toString(i + 1);
+                    }
+                    builder.setTitle("โปรดเลือกวันที่รับประทานในเดือนนั้น");
+                    builder.setMultiChoiceItems(strings, null, new DialogInterface.OnMultiChoiceClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                            if (isChecked) {
+                                arrayList.add(which);
+                            } else if (arrayList.contains(which)) {
+                                arrayList.remove(Integer.valueOf(which));
+                            }
 
+                        }
+                    });
+                    builder.setPositiveButton("เลือกรายการ", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            Integer[] integers = new Integer[arrayList.size()];
+                            integers = arrayList.toArray(integers);
+
+                            if (arrayList.size() == 0) {
+                                string4 = "";
+                                checkBox3.setChecked(false);
+                                Toast.makeText(getApplicationContext(), "โปรดเลือกวันที่ต้องการทานยา", Toast.LENGTH_SHORT).show();
+                                textView4.setVisibility(View.INVISIBLE);
+                            } else {
+                                StringBuffer stringBuffer = new StringBuffer("วันที่ทานยา : ");
+                                StringBuffer stringBufferCode = new StringBuffer("DOM:");
+
+                                for(int i = 0;i<arrayList.size();i++) {
+                                    Log.d("Which", Integer.toString(integers[i]));
+                                    for (int w = 0; w < strings.length; w++) {
+                                        if (integers[i] == w) {
+                                            stringBuffer.append(strings[w]);
+                                            stringBuffer.append(", ");
+
+                                            stringBufferCode.append(Integer.toString(integers[i] + 1));  //DOM: ตัวเลขเป็นเลขวันไปเลยนะ
+                                            stringBufferCode.append(",");
+                                        }
+                                    }
+                                }
+                                String s = stringBuffer.toString();
+                                s = s.substring(0,s.length() - 2);
+                                s = s.concat(" ของทุกเดือน");
+
+                                textView4.setText(s);
+                                textView4.setVisibility(View.VISIBLE);
+
+                                String sCode = stringBufferCode.toString();
+                                Log.d("Which","sCode = " + sCode );
+                                sCode = sCode.substring(0,sCode.length() - 1);
+                                Log.d("Which","sCode = " + sCode );
+                                string4 = sCode;
+
+                            }
+                        }
+                    });
+                    builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            string4 = "";
+                            checkBox3.setChecked(false);
+                        }
+                    });
+                    builder.show();
+                } else {
+                    string4 = "";
+                    textView4.setVisibility(View.INVISIBLE);
+                    Log.d("Which", "string 4 :" + string4);
                 }
             }
         });

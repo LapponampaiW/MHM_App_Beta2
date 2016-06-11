@@ -95,7 +95,8 @@ public class AddMedicine2Activity extends AppCompatActivity {
                     checkBox4.setChecked(false);
                     textView4.setVisibility(View.INVISIBLE);
                     textView6.setVisibility(View.INVISIBLE);
-                    final ArrayList arrayList = new ArrayList();
+
+                    final ArrayList<Integer> arrayList = new ArrayList<Integer>();
                     final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getContext());
                     final String[] strings = {"วันอาทิตย์", "วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัสบดี", "วันศุกร์", "วันเสาร์"};
                     builder.setTitle("โปรดเลือกวันที่รับประทาน");
@@ -111,7 +112,40 @@ public class AddMedicine2Activity extends AppCompatActivity {
                     });
                     builder.setPositiveButton("เลือกรายการ", new DialogInterface.OnClickListener() {
                         @Override
-                        public void onClick(DialogInterface dialog, int which) {
+                        public void onClick(DialogInterface dialog, int intWhich) {
+
+                            Integer[] integers = new Integer[arrayList.size()];
+                            integers = arrayList.toArray(integers);
+
+                            if (arrayList.size() == 0) {
+                                string4 = "";
+                                checkBox2.setChecked(false);
+                                Toast.makeText(getApplicationContext(), "โปรดเลือกวันที่ทานยา", Toast.LENGTH_SHORT).show();
+                                textView1.setVisibility(View.INVISIBLE);
+                            } else {
+                                StringBuffer stringBuffer = new StringBuffer("วันที่ทานยา : ");
+                                StringBuffer stringBufferCode = new StringBuffer("DOW:");
+                                for(int i = 0;i<arrayList.size();i++) {
+                                    Log.d("Which", Integer.toString(integers[i]));
+                                    for(int w = 0;w<strings.length;w++) {
+                                        if (integers[i] == w) {
+                                            stringBuffer.append(strings[w]);
+                                            stringBuffer.append(" ");
+
+                                            stringBufferCode.append(Integer.toString(integers[i]));
+                                            stringBufferCode.append(",");
+                                        }
+                                    }
+                                }
+                                textView1.setText(stringBuffer);
+                                textView1.setVisibility(View.VISIBLE);
+
+                                String sCode = stringBufferCode.toString();
+                                Log.d("Which","sCode = " + sCode );
+                                sCode = sCode.substring(0,sCode.length() - 1);
+                                Log.d("Which","sCode = " + sCode );
+                                string4 = sCode;
+                            }
 
                         }
                     });
@@ -123,7 +157,6 @@ public class AddMedicine2Activity extends AppCompatActivity {
                             checkBox2.setChecked(false);
                         }
                     });
-
 
                     builder.show();
                 } else {
@@ -167,15 +200,15 @@ public class AddMedicine2Activity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             String s = strings[which];
-                            if (s.equals("วันเว้นวัน")) {
+                            if (which == 0) {
                                 string4 = "ED:1";
-                            } else if (s.equals("1 วันเว้น 2 วัน")) {
+                            } else if (which == 1) {
                                 string4 = "ED:2";
-                            } else if (s.equals("1 วันเว้น 3 วัน")) {
+                            } else if (which == 2) {
                                 string4 = "ED:3";
-                            } else if (s.equals("1 วันเว้น 4 วัน")) {
+                            } else if (which == 3) {
                                 string4 = "ED:4";
-                            } else if (s.equals("1 วันเว้น 5 วัน")) {
+                            } else if (which == 4) {
                                 string4 = "ED:5";
                             }
                             textView6.setVisibility(View.VISIBLE);

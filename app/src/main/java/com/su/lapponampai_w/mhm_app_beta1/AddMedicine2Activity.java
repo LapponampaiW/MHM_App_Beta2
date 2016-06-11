@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -44,8 +45,11 @@ public class AddMedicine2Activity extends AppCompatActivity {
 
     private String stringInteraction2;
 
-    private String[] strings0, strings2, strings3, strings4, strings5, strings6, strings1, strings7, stringGenericName2, stringsduplicate;
+    private String[] strings0, strings2, strings3, strings4, strings5, strings6, strings1,
+            strings7, stringGenericName2, stringsduplicate;
     private String[] stringsAppearance;
+    private LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4,
+            linearLayout5, linearLayout6, linearLayout7, linearLayout8;
 
 
     @Override
@@ -65,8 +69,87 @@ public class AddMedicine2Activity extends AppCompatActivity {
         //click CheckBox
         clickCheckBox();
 
+        //Click Amount_Tablet
+        clickAmount_Tablet();
+
 
     } //Main Method
+
+    private void clickAmount_Tablet() {
+        textView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getContext());
+                final String[] strings = {"1","2","3","4","5","6","7","8"};
+                builder.setTitle("โปรดระบุ!!! \nจำนวนครั้งที่ต้องทานยา(ใน 1 วัน)");
+                builder.setSingleChoiceItems(strings, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        int i = which + 1;
+                        textView4.setText(Integer.toString(i));
+                        //Toast.makeText(getApplicationContext(), Integer.toString(i), Toast.LENGTH_LONG).show();
+                        if (i >= 8) {
+                            linearLayout8.setVisibility(View.VISIBLE);
+                        } else {
+                            linearLayout8.setVisibility(View.GONE);
+                            textView14.setText("");
+                        }
+                        if (i >= 7) {
+                            linearLayout7.setVisibility(View.VISIBLE);
+                        } else {
+                            linearLayout7.setVisibility(View.GONE);
+                            textView13.setText("");
+                        }
+                        if (i >= 6) {
+                            linearLayout6.setVisibility(View.VISIBLE);
+                        } else {
+                            linearLayout6.setVisibility(View.GONE);
+                            textView12.setText("");
+                        }
+                        if (i >= 5) {
+                            linearLayout5.setVisibility(View.VISIBLE);
+                        } else {
+                            linearLayout5.setVisibility(View.GONE);
+                            textView11.setText("");
+                        }
+                        if (i >= 4) {
+                            linearLayout4.setVisibility(View.VISIBLE);
+                        } else {
+                            linearLayout4.setVisibility(View.GONE);
+                            textView10.setText("");
+                        }
+                        if (i >= 3) {
+                            linearLayout3.setVisibility(View.VISIBLE);
+                        } else {
+                            linearLayout3.setVisibility(View.GONE);
+                            textView9.setText("");
+                        }
+                        if (i >= 2) {
+                            linearLayout2.setVisibility(View.VISIBLE);
+                        } else {
+                            linearLayout2.setVisibility(View.GONE);
+                            textView8.setText("");
+                        }
+                        if (i >= 1) {
+                            linearLayout1.setVisibility(View.VISIBLE);
+                        } else {
+                            linearLayout1.setVisibility(View.GONE);
+                            textView7.setText("");
+                        }
+
+
+
+
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.show();
+
+            }
+        });
+
+    }
 
     private void clickCheckBox() {
 
@@ -127,9 +210,9 @@ public class AddMedicine2Activity extends AppCompatActivity {
                             } else {
                                 StringBuffer stringBuffer = new StringBuffer("วันที่ทานยา : ");
                                 StringBuffer stringBufferCode = new StringBuffer("DOW:");
-                                for(int i = 0;i<arrayList.size();i++) {
+                                for (int i = 0; i < arrayList.size(); i++) {
                                     Log.d("Which", Integer.toString(integers[i]));
-                                    for(int w = 0;w<strings.length;w++) {
+                                    for (int w = 0; w < strings.length; w++) {
                                         if (integers[i] == w) {
                                             stringBuffer.append(strings[w]);
                                             stringBuffer.append(" ");
@@ -143,9 +226,9 @@ public class AddMedicine2Activity extends AppCompatActivity {
                                 textView1.setVisibility(View.VISIBLE);
 
                                 String sCode = stringBufferCode.toString();
-                                Log.d("Which","sCode = " + sCode );
-                                sCode = sCode.substring(0,sCode.length() - 1);
-                                Log.d("Which","sCode = " + sCode );
+                                Log.d("Which", "sCode = " + sCode);
+                                sCode = sCode.substring(0, sCode.length() - 1);
+                                Log.d("Which", "sCode = " + sCode);
                                 string4 = sCode;
                             }
 
@@ -182,7 +265,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
                     final ArrayList<Integer> arrayList = new ArrayList<Integer>();
                     final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getContext());
                     final String[] strings = new String[28];
-                    for(int i = 0;i<28;i++) {
+                    for (int i = 0; i < 28; i++) {
                         strings[i] = Integer.toString(i + 1);
                     }
                     builder.setTitle("โปรดเลือกวันที่รับประทานในเดือนนั้น");
@@ -214,7 +297,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
                                 StringBuffer stringBuffer = new StringBuffer("วันที่ทานยา : ");
                                 StringBuffer stringBufferCode = new StringBuffer("DOM:");
 
-                                for(int i = 0;i<arrayList.size();i++) {
+                                for (int i = 0; i < arrayList.size(); i++) {
                                     Log.d("Which", Integer.toString(integers[i]));
                                     for (int w = 0; w < strings.length; w++) {
                                         if (integers[i] == w) {
@@ -227,16 +310,16 @@ public class AddMedicine2Activity extends AppCompatActivity {
                                     }
                                 }
                                 String s = stringBuffer.toString();
-                                s = s.substring(0,s.length() - 2);
+                                s = s.substring(0, s.length() - 2);
                                 s = s.concat(" ของทุกเดือน");
 
                                 textView1.setText(s);
                                 textView1.setVisibility(View.VISIBLE);
 
                                 String sCode = stringBufferCode.toString();
-                                Log.d("Which","sCode = " + sCode );
-                                sCode = sCode.substring(0,sCode.length() - 1);
-                                Log.d("Which","sCode = " + sCode );
+                                Log.d("Which", "sCode = " + sCode);
+                                sCode = sCode.substring(0, sCode.length() - 1);
+                                Log.d("Which", "sCode = " + sCode);
                                 string4 = sCode;
 
                             }
@@ -329,17 +412,43 @@ public class AddMedicine2Activity extends AppCompatActivity {
         }
         textView4.setText(string17);
 
-        textView7.setText(string7);
-        textView8.setText(string8);
-        textView9.setText(string9);
-        textView10.setText(string10);
-        textView11.setText(string11);
-        textView12.setText(string12);
-        textView13.setText(string13);
-        textView14.setText(string14);
+        textView7.setText(string7); //T1
+        textView8.setText(string8); //T2
+        textView9.setText(string9); //T3
+        textView10.setText(string10); //T4
+        textView11.setText(string11); //T5
+        textView12.setText(string12); //T6
+        textView13.setText(string13); //T7
+        textView14.setText(string14); //T8
+
+        //ทำให้ปรากฎตามจำนวนครั้งที่ต้องรับประทาน
+        if (string14.equals("")) {
+            linearLayout8.setVisibility(View.GONE);
+        }
+        if (string13.equals("")) {
+            linearLayout7.setVisibility(View.GONE);
+        }
+        if (string12.equals("")) {
+            linearLayout6.setVisibility(View.GONE);
+        }
+        if (string11.equals("")) {
+            linearLayout5.setVisibility(View.GONE);
+        }
+        if (string10.equals("")) {
+            linearLayout4.setVisibility(View.GONE);
+        }
+        if (string9.equals("")) {
+            linearLayout3.setVisibility(View.GONE);
+        }
+        if (string8.equals("")) {
+            linearLayout2.setVisibility(View.GONE);
+        }
+        if (string7.equals("")) {
+            linearLayout1.setVisibility(View.GONE);
+        }
+        //linearLayout1.setVisibility(View.GONE);
+
         //textView15.setText(string15);
-
-
         editText1.setText(string15);
         string16_Translate = myData.translate_EA(string16);
         textView16.setText(string16_Translate);
@@ -395,7 +504,14 @@ public class AddMedicine2Activity extends AppCompatActivity {
         checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
         checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
         checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
-
+        linearLayout1 = (LinearLayout) findViewById(R.id.t1Layout);
+        linearLayout2 = (LinearLayout) findViewById(R.id.t2Layout);
+        linearLayout3 = (LinearLayout) findViewById(R.id.t3Layout);
+        linearLayout4 = (LinearLayout) findViewById(R.id.t4Layout);
+        linearLayout5 = (LinearLayout) findViewById(R.id.t5Layout);
+        linearLayout6 = (LinearLayout) findViewById(R.id.t6Layout);
+        linearLayout7 = (LinearLayout) findViewById(R.id.t7Layout);
+        linearLayout8 = (LinearLayout) findViewById(R.id.t8Layout);
 
 
     }
@@ -460,7 +576,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
                         Log.d("filter_drugInteraction", "type 3 :" + strings0[i] + " :" + strings1[i] +
                                 " :" + strings2[i] + " :" + strings3[i] + " :" + strings4[i] +
                                 " :" + strings5[i] + " :" + strings6[i] + " :" + strings7[i]);
-                        Toast.makeText(getBaseContext(),"ได้ค่า 3",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(), "ได้ค่า 3", Toast.LENGTH_LONG).show();
                     }
                 }
                 return;
@@ -469,11 +585,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
         }
 
 
-
-
         addValueTomainTABLEandIntent();
-
-
 
 
     } //clickSave
@@ -502,7 +614,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
             alertDialogDuplicate();
             return;
         }
-        myManage.addValueTomainTABLE(string1,string2,string3,string15,string4,string5,string6,string7,string8,string9,string10,string11,string12,string13,string14);
+        myManage.addValueTomainTABLE(string1, string2, string3, string15, string4, string5, string6, string7, string8, string9, string10, string11, string12, string13, string14);
 
         String[] strings1 = myManage.readAllMainTABLE_string(string1, 0);
         String[] stringsT1 = myManage.readAllMainTABLE_string(string1, 7);
@@ -519,29 +631,28 @@ public class AddMedicine2Activity extends AppCompatActivity {
         Log.d("addValueToSumTable", strings1[0] + " " + currentDay);
 
 
-
-        myManage.addValueToSumTable(strings1[0],currentDay,stringsT1[0],"","","");
+        myManage.addValueToSumTable(strings1[0], currentDay, stringsT1[0], "", "", "");
 
         if (!stringsT2[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0],currentDay,stringsT2[0],"","","");
+            myManage.addValueToSumTable(strings1[0], currentDay, stringsT2[0], "", "", "");
         }
         if (!stringsT3[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0],currentDay,stringsT3[0],"","","");
+            myManage.addValueToSumTable(strings1[0], currentDay, stringsT3[0], "", "", "");
         }
         if (!stringsT4[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0],currentDay,stringsT4[0],"","","");
+            myManage.addValueToSumTable(strings1[0], currentDay, stringsT4[0], "", "", "");
         }
         if (!stringsT5[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0],currentDay,stringsT5[0],"","","");
+            myManage.addValueToSumTable(strings1[0], currentDay, stringsT5[0], "", "", "");
         }
         if (!stringsT6[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0],currentDay,stringsT6[0],"","","");
+            myManage.addValueToSumTable(strings1[0], currentDay, stringsT6[0], "", "", "");
         }
         if (!stringsT7[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0],currentDay,stringsT7[0],"","","");
+            myManage.addValueToSumTable(strings1[0], currentDay, stringsT7[0], "", "", "");
         }
         if (!stringsT8[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0],currentDay,stringsT8[0],"","","");
+            myManage.addValueToSumTable(strings1[0], currentDay, stringsT8[0], "", "", "");
         }
 
 
@@ -550,7 +661,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
         finish();
     }
 
-    private void alertDialogInteraction(String s1, String s2,String s3, String s4) {
+    private void alertDialogInteraction(String s1, String s2, String s3, String s4) {
 
 
         MyManage myManage = new MyManage(this);
@@ -561,18 +672,16 @@ public class AddMedicine2Activity extends AppCompatActivity {
         //ต้องทำการ นับจำนวน stringGenericName2 แล้วทำการ bufferString ให้ได้ค่าของ String ออกมา
         //แล้วเอาไปใส่แทน ใน setMessage
         StringBuilder stringBuilder = new StringBuilder("ยา :");
-        for(int i = 0;i < stringGenericName2.length;i++) {
+        for (int i = 0; i < stringGenericName2.length; i++) {
             stringBuilder.append(stringGenericName2[i]);
         }
-
-
 
 
         myManage.filter_drugInteractionTABLE_Dialog();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(R.drawable.icon_question);
         builder.setTitle("เกิดปฏิกิริยาระหว่างยา (ยาตีกัน)");
-        builder.setMessage("ยา " + s1 + " (" + s2 + ") \nเกิดปฏิกิริยาระหว่างยากับ\n"+ stringBuilder +"\nเหตุผล : " + s4);
+        builder.setMessage("ยา " + s1 + " (" + s2 + ") \nเกิดปฏิกิริยาระหว่างยากับ\n" + stringBuilder + "\nเหตุผล : " + s4);
         builder.setPositiveButton("ยืนยันการรับประทาน", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

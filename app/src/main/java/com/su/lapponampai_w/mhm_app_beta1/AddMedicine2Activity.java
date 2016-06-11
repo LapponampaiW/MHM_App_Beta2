@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class AddMedicine2Activity extends AppCompatActivity {
@@ -74,13 +75,17 @@ public class AddMedicine2Activity extends AppCompatActivity {
                     checkBox2.setChecked(false);
                     checkBox3.setChecked(false);
                     checkBox4.setChecked(false);
+                    string4 = "ED:0";  //เก็บค่าไว้ใน string4 เหมือนเดิม
+                    textView1.setVisibility(View.INVISIBLE);
+                    textView4.setVisibility(View.INVISIBLE);
+                    textView6.setVisibility(View.INVISIBLE);
                 }
 
             }
         });
 
 
-        //Click CheckBox2
+        //Click CheckBox2 ... Day of Week (DOW:)
         checkBox2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,13 +93,48 @@ public class AddMedicine2Activity extends AppCompatActivity {
                     checkBox1.setChecked(false);
                     checkBox3.setChecked(false);
                     checkBox4.setChecked(false);
+                    textView4.setVisibility(View.INVISIBLE);
+                    textView6.setVisibility(View.INVISIBLE);
+                    final ArrayList arrayList = new ArrayList();
+                    final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getContext());
+                    final String[] strings = {"วันอาทิตย์", "วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัสบดี", "วันศุกร์", "วันเสาร์"};
+                    builder.setTitle("โปรดเลือกวันที่รับประทาน");
+                    builder.setMultiChoiceItems(strings, null, new DialogInterface.OnMultiChoiceClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                            if (isChecked) {
+                                arrayList.add(which);
+                            } else if (arrayList.contains(which)) {
+                                arrayList.remove(Integer.valueOf(which));
+                            }
+                        }
+                    });
+                    builder.setPositiveButton("เลือกรายการ", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            string4 = "";
+                            checkBox2.setChecked(false);
+                        }
+                    });
 
 
+                    builder.show();
+                } else {
+                    string4 = "";
+                    textView1.setVisibility(View.INVISIBLE);
+                    Log.d("Which", "string 4 :" + string4);
                 }
             }
         });
 
-        //Click CheckBox3
+        //Click CheckBox3 ... Day of Month (DOM:)
         checkBox3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +149,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
         });
 
 
-        //Click CheckBox4
+        //Click CheckBox4 ... Every...day (ED:1-5)
         checkBox4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,8 +157,41 @@ public class AddMedicine2Activity extends AppCompatActivity {
                     checkBox1.setChecked(false);
                     checkBox2.setChecked(false);
                     checkBox3.setChecked(false);
+                    textView1.setVisibility(View.INVISIBLE);
+                    textView4.setVisibility(View.INVISIBLE);
 
+                    final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getContext());
+                    final String[] strings = {"วันเว้นวัน", "1 วันเว้น 2 วัน", "1 วันเว้น 3 วัน", "1 วันเว้น 4 วัน", "1 วันเว้น 5 วัน"};
+                    builder.setTitle("โปรดเลือกวันที่รับประทาน");
+                    builder.setSingleChoiceItems(strings, -1, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String s = strings[which];
+                            if (s.equals("วันเว้นวัน")) {
+                                string4 = "ED:1";
+                            } else if (s.equals("1 วันเว้น 2 วัน")) {
+                                string4 = "ED:2";
+                            } else if (s.equals("1 วันเว้น 3 วัน")) {
+                                string4 = "ED:3";
+                            } else if (s.equals("1 วันเว้น 4 วัน")) {
+                                string4 = "ED:4";
+                            } else if (s.equals("1 วันเว้น 5 วัน")) {
+                                string4 = "ED:5";
+                            }
+                            textView6.setVisibility(View.VISIBLE);
+                            textView6.setText(s);
 
+                            Log.d("Which", "string 4 :" + string4);
+                            dialog.dismiss();
+                        }
+                    });
+
+                    builder.show();
+
+                } else {
+                    string4 = "";
+                    textView6.setVisibility(View.INVISIBLE);
+                    Log.d("Which", "string 4 :" + string4);
                 }
             }
         });
@@ -128,6 +201,9 @@ public class AddMedicine2Activity extends AppCompatActivity {
     private void showView() {
         MyData myData = new MyData();
 
+        textView1.setVisibility(View.INVISIBLE);
+        textView4.setVisibility(View.INVISIBLE);
+        textView6.setVisibility(View.INVISIBLE);
         //ลบ textView1 ที่เป็น Med_id ออกแต่ยังคงเก็บค่าไว้ที่ String 1
         textView2.setText(string2);
         textView3.setText(string3);
@@ -142,10 +218,7 @@ public class AddMedicine2Activity extends AppCompatActivity {
         String[] stringsWhich_Date_D = myData.translate_Which_Date_D(string4);
         if (stringsWhich_Date_D[0].equals("1")) {
             checkBox1.setChecked(true);
-            textView1.setText(stringsWhich_Date_D[1]);
         }
-
-
 
         textView7.setText(string7);
         textView8.setText(string8);
@@ -189,7 +262,9 @@ public class AddMedicine2Activity extends AppCompatActivity {
 
     private void bindWidget() {
 
-        textView1 = (TextView) findViewById(R.id.textViewWhich_Date_D);
+        textView1 = (TextView) findViewById(R.id.textViewWhich_Date_D2);
+        textView4 = (TextView) findViewById(R.id.textViewWhich_Date_D3);
+        textView6 = (TextView) findViewById(R.id.textViewWhich_Date_D4);
         textView2 = (TextView) findViewById(R.id.textView12);
         textView3 = (TextView) findViewById(R.id.textView14);
         //textView4 = (TextView) findViewById(R.id.textView16); เอาวันที่รับประทาน ออก Which_Date

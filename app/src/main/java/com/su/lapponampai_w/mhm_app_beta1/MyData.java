@@ -147,6 +147,25 @@ public class MyData {
         return intsRead;
     }
 
+    public String createStringTime(int hour,int minute) {
+
+        String strHour, strMinute, strTime;
+
+        strHour = Integer.toString(hour);
+        strMinute = Integer.toString(minute);
+
+        if (strHour.length() == 1) {
+            strHour = "0".concat(strHour);
+        }
+        if (strMinute.length() == 1) {
+            strMinute = "0".concat(strMinute);
+        }
+        strTime = strHour.concat(":");
+        strTime = strTime.concat(strMinute);
+
+        return strTime;
+    }
+
 
 
 

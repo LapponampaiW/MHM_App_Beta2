@@ -46,6 +46,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
     private String string16_Translate;
 
     private String stringInteraction2;
+    private String stringTime;
 
     private String[] strings0, strings2, strings3, strings4, strings5, strings6, strings1,
             strings7, stringGenericName2, stringsduplicate;
@@ -55,8 +56,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
 
     private Calendar calendar = Calendar.getInstance();
 
-    private int pickerHour = 0;
-    private int pickerMin = 0;
+    private int pickerHour;
+    private int pickerMin;
 
 
     @Override
@@ -85,36 +86,107 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
 
 
     } //Main Method
+    @Override //การนำค่าเวลามาอยู่ในค่า Int
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        MyData myData = new MyData();
+        pickerHour = hourOfDay;
+        pickerMin = minute;
+        Log.d("testTime", "hourOfDay = " + Integer.toString(pickerHour) + "minute = " + Integer.toString(pickerMin));
+        if (stringTime.equals("T1")) {
+            string7 = myData.createStringTime(pickerHour, pickerMin);
+            textView7.setText(string7);
+        } else if (stringTime.equals("T2")) {
+            string8 = myData.createStringTime(pickerHour, pickerMin);
+            textView8.setText(string8);
+        } else if (stringTime.equals("T3")) {
+            string9 = myData.createStringTime(pickerHour, pickerMin);
+            textView9.setText(string9);
+        } else if (stringTime.equals("T4")) {
+            string10 = myData.createStringTime(pickerHour, pickerMin);
+            textView10.setText(string10);
+        } else if (stringTime.equals("T5")) {
+            string11 = myData.createStringTime(pickerHour, pickerMin);
+            textView11.setText(string11);
+        } else if (stringTime.equals("T6")) {
+            string12 = myData.createStringTime(pickerHour, pickerMin);
+            textView12.setText(string12);
+        } else if (stringTime.equals("T7")) {
+            string13 = myData.createStringTime(pickerHour, pickerMin);
+            textView13.setText(string13);
+        } else if (stringTime.equals("T8")) {
+            string14 = myData.createStringTime(pickerHour, pickerMin);
+            textView14.setText(string14);
+        }
+    }
 
 
     private void clickTimesTextView() {
-        Calendar calendar = Calendar.getInstance();
-        final int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        final int minute = calendar.get(Calendar.MINUTE);
 
+        //T1
         textView7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //new TimePickerDialog(AddMedicine2Activity.this, onTimeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
-                //TimePickerDialog timePickerDialog = new TimePickerDialog(AddMedicine2Activity.this, this, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
-                //showTimePickerDialog(v);
-                /*
-                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-
-                    TimePickerDialog timePickerDialog = new TimePickerDialog(AddMedicine2Activity.this, this,hour,minute,android.text.format.DateFormat.is24HourFormat(getApplicationContext()));
-
-
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-                    }
-                };
-                */
+                stringTime = "T1";
                 showTimePickerDialog(v);
-
             }
         });
+        //T2
+        textView8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringTime = "T2";
+                showTimePickerDialog(v);
+            }
+        });
+        //T3
+        textView9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringTime = "T3";
+                showTimePickerDialog(v);
+            }
+        });
+        //T4
+        textView10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringTime = "T4";
+                showTimePickerDialog(v);
+            }
+        });
+        //T5
+        textView11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringTime = "T5";
+                showTimePickerDialog(v);
+            }
+        });
+        //T6
+        textView12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringTime = "T6";
+                showTimePickerDialog(v);
+            }
+        });
+        //T7
+        textView13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringTime = "T7";
+                showTimePickerDialog(v);
+            }
+        });
+        //T8
+        textView14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringTime = "T8";
+                showTimePickerDialog(v);
+            }
+        });
+
     }
 
     public void showTimePickerDialog(View v) {
@@ -144,48 +216,56 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
                         } else {
                             linearLayout8.setVisibility(View.GONE);
                             textView14.setText("");
+                            string14 = "";
                         }
                         if (i >= 7) {
                             linearLayout7.setVisibility(View.VISIBLE);
                         } else {
                             linearLayout7.setVisibility(View.GONE);
                             textView13.setText("");
+                            string13 = "";
                         }
                         if (i >= 6) {
                             linearLayout6.setVisibility(View.VISIBLE);
                         } else {
                             linearLayout6.setVisibility(View.GONE);
                             textView12.setText("");
+                            string12 = "";
                         }
                         if (i >= 5) {
                             linearLayout5.setVisibility(View.VISIBLE);
                         } else {
                             linearLayout5.setVisibility(View.GONE);
                             textView11.setText("");
+                            string11 = "";
                         }
                         if (i >= 4) {
                             linearLayout4.setVisibility(View.VISIBLE);
                         } else {
                             linearLayout4.setVisibility(View.GONE);
                             textView10.setText("");
+                            string10 = "";
                         }
                         if (i >= 3) {
                             linearLayout3.setVisibility(View.VISIBLE);
                         } else {
                             linearLayout3.setVisibility(View.GONE);
                             textView9.setText("");
+                            string9 = "";
                         }
                         if (i >= 2) {
                             linearLayout2.setVisibility(View.VISIBLE);
                         } else {
                             linearLayout2.setVisibility(View.GONE);
                             textView8.setText("");
+                            string8 = "";
                         }
                         if (i >= 1) {
                             linearLayout1.setVisibility(View.VISIBLE);
                         } else {
                             linearLayout1.setVisibility(View.GONE);
                             textView7.setText("");
+                            string7 = "";
                         }
 
 
@@ -748,7 +828,6 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         });
         builder.show();
 
-
     }
 
     private void alertDialogFaltal() {
@@ -766,10 +845,5 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         builder.show();
     }
 
-    @Override
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        pickerHour = hourOfDay;
-        pickerMin = minute;
-        Log.d("testTime", "hourOfDay = " + Integer.toString(pickerHour) + "minute = " + Integer.toString(pickerMin));
-    }
+
 }  //Main Class

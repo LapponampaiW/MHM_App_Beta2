@@ -16,10 +16,11 @@ import java.util.Calendar;
  */
 public class MyTimePickerFragment extends DialogFragment {
 
-    private Activity mActivity;
-    private TimePickerDialog.OnTimeSetListener mListener;
+    private Activity mActivity;  //คือ Activity
+    private TimePickerDialog.OnTimeSetListener mListener;  //ที่เอาไป Implement ที่ Activity อื่น
     private int hour, minute;
 
+    @Override // Overwrite มาจาก App.Fragment
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mActivity = activity;
@@ -28,7 +29,8 @@ public class MyTimePickerFragment extends DialogFragment {
             mListener = (TimePickerDialog.OnTimeSetListener) activity;
 
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement OnTimeSetListener");
+            throw new ClassCastException(activity.toString() +
+                    " must implement OnTimeSetListener");
         }
     }
 
@@ -37,7 +39,14 @@ public class MyTimePickerFragment extends DialogFragment {
         hour = calendar.get(Calendar.HOUR_OF_DAY);
         minute = calendar.get(Calendar.MINUTE);
 
-        return new TimePickerDialog(mActivity, mListener, hour, minute, android.text.format.DateFormat.is24HourFormat(mActivity));
+
+
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(mActivity, mListener, hour, minute, android.text.
+                format.DateFormat.is24HourFormat(mActivity));
+        timePickerDialog.setTitle("โปรดระบุเวลารับประทาน");
+
+        return timePickerDialog;
     }
 
 

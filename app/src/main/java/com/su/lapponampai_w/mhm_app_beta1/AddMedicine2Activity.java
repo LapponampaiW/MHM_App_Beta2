@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,11 +20,12 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 
-public class AddMedicine2Activity extends AppCompatActivity {
+public class AddMedicine2Activity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener{
 
     //Explicit
     private TextView textView1, textView2, textView3, textView4,
@@ -51,6 +53,11 @@ public class AddMedicine2Activity extends AppCompatActivity {
     private LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4,
             linearLayout5, linearLayout6, linearLayout7, linearLayout8;
 
+    private Calendar calendar = Calendar.getInstance();
+
+    private int pickerHour = 0;
+    private int pickerMin = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +79,52 @@ public class AddMedicine2Activity extends AppCompatActivity {
         //Click Amount_Tablet
         clickAmount_Tablet();
 
+        //Click เพื่อใส่เวลา
+        clickTimesTextView();
+
+
 
     } //Main Method
+
+
+    private void clickTimesTextView() {
+        Calendar calendar = Calendar.getInstance();
+        final int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        final int minute = calendar.get(Calendar.MINUTE);
+
+        textView7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //new TimePickerDialog(AddMedicine2Activity.this, onTimeSetListener, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
+                //TimePickerDialog timePickerDialog = new TimePickerDialog(AddMedicine2Activity.this, this, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE));
+                //showTimePickerDialog(v);
+                /*
+                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+
+                    TimePickerDialog timePickerDialog = new TimePickerDialog(AddMedicine2Activity.this, this,hour,minute,android.text.format.DateFormat.is24HourFormat(getApplicationContext()));
+
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                    }
+                };
+                */
+                showTimePickerDialog(v);
+
+            }
+        });
+    }
+
+    public void showTimePickerDialog(View v) {
+
+        MyTimePickerFragment myTimePickerFragment = new MyTimePickerFragment();
+        myTimePickerFragment.show(getFragmentManager(), "timePicker");
+
+    }
+
+
 
     private void clickAmount_Tablet() {
         textView4.setOnClickListener(new View.OnClickListener() {
@@ -715,4 +766,10 @@ public class AddMedicine2Activity extends AppCompatActivity {
         builder.show();
     }
 
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        pickerHour = hourOfDay;
+        pickerMin = minute;
+        Log.d("testTime", "hourOfDay = " + Integer.toString(pickerHour) + "minute = " + Integer.toString(pickerMin));
+    }
 }  //Main Class

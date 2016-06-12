@@ -31,13 +31,13 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
     private TextView textView1, textView2, textView3, textView4,
             textView5, textView6, textView7, textView8, textView9,
             textView10, textView11, textView12, textView13,
-            textView14, textView15, textView16;
+            textView14, textView15, textView16, textViewStartDate, textViewFinishDate;
 
     private String string1, string2, string3, string4, string5, string6,
             string7, string8, string9, string10, string11, string12,
             string13, string14, string15, string16, string17;
 
-    private CheckBox checkBox1, checkBox2, checkBox3, checkBox4;
+    private CheckBox checkBox1, checkBox2, checkBox3, checkBox4,checkBox5,checkBox6;
 
     private EditText editText1;
 
@@ -52,7 +52,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
             strings7, stringGenericName2, stringsduplicate;
     private String[] stringsAppearance;
     private LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4,
-            linearLayout5, linearLayout6, linearLayout7, linearLayout8;
+            linearLayout5, linearLayout6, linearLayout7, linearLayout8, startDatelin,finishDatelin;
 
     private Calendar calendar = Calendar.getInstance();
 
@@ -584,6 +584,23 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         string16_Translate = myData.translate_EA(string16);
         textView16.setText(string16_Translate);
 
+        //checkBox 5,6 (ทานยาเป็นช่วง หรือต่อเนื่อง Default)
+        checkBox5.setChecked(false);
+        checkBox6.setChecked(true);
+        finishDatelin.setVisibility(View.GONE);
+        if (checkBox5.isChecked()) {
+            checkBox6.setChecked(false);
+            finishDatelin.setVisibility(View.VISIBLE);
+            textViewFinishDate.setText("");
+        } else {
+            finishDatelin.setVisibility(View.GONE);
+            textViewFinishDate.setText("");
+        }
+        if (checkBox6.isChecked()) {
+            checkBox5.setChecked(false);
+            finishDatelin.setVisibility(View.GONE);
+            textViewFinishDate.setText("");
+        }
 
     }
 
@@ -629,12 +646,16 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         textView13 = (TextView) findViewById(R.id.textView34);
         textView14 = (TextView) findViewById(R.id.textView36);
         //textView15 = (TextView) findViewById(R.id.textView38);  เปลี่ยน Amount_Tablet ไปเป็น Edittext
+        textViewStartDate = (TextView) findViewById(R.id.textViewStartDate);
+        textViewFinishDate = (TextView) findViewById(R.id.textViewFinishDate);
         editText1 = (EditText) findViewById(R.id.editText1);
         textView16 = (TextView) findViewById(R.id.textView46);
         checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
         checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
         checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
         checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
+        checkBox5 = (CheckBox) findViewById(R.id.checkBox5);
+        checkBox6 = (CheckBox) findViewById(R.id.checkBox6);
         linearLayout1 = (LinearLayout) findViewById(R.id.t1Layout);
         linearLayout2 = (LinearLayout) findViewById(R.id.t2Layout);
         linearLayout3 = (LinearLayout) findViewById(R.id.t3Layout);
@@ -643,6 +664,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         linearLayout6 = (LinearLayout) findViewById(R.id.t6Layout);
         linearLayout7 = (LinearLayout) findViewById(R.id.t7Layout);
         linearLayout8 = (LinearLayout) findViewById(R.id.t8Layout);
+        startDatelin = (LinearLayout) findViewById(R.id.startDateLin);
+        finishDatelin = (LinearLayout) findViewById(R.id.finishDateLin);
 
 
     }

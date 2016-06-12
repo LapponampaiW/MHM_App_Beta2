@@ -1,5 +1,7 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import java.text.SimpleDateFormat;
+
 /**
  * Created by apple on 5/1/16.
  */
@@ -164,6 +166,14 @@ public class MyData {
         strTime = strTime.concat(strMinute);
 
         return strTime;
+    }
+
+    public String currentDay() {
+        String today;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        today = dateFormat.format(System.currentTimeMillis());
+
+        return today;
     }
 
 

@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 
-public class AddMedicine2Activity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener{
+public class AddMedicine2Activity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener,DatePickerDialog.OnDateSetListener{
 
     //Explicit
     private TextView textView1, textView2, textView3, textView4,
@@ -54,7 +56,6 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
     private LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4,
             linearLayout5, linearLayout6, linearLayout7, linearLayout8, startDatelin,finishDatelin;
 
-    private Calendar calendar = Calendar.getInstance();
 
     private int pickerHour;
     private int pickerMin;
@@ -81,12 +82,18 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         clickAmount_Tablet();
 
         //Click เพื่อใส่เวลา
-        clickTimesTextView();
+        clickTimesAndDateTextView();
 
 
 
     } //Main Method
-    @Override //การนำค่าเวลามาอยู่ในค่า Int
+
+    @Override //จาก DatePickerFragment
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+    }
+
+    @Override //การนำค่าเวลามาอยู่ในค่า Int //จาก TimePickerFragment
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         MyData myData = new MyData();
         pickerHour = hourOfDay;
@@ -120,7 +127,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
     }
 
 
-    private void clickTimesTextView() {
+    private void clickTimesAndDateTextView() {
 
         //T1
         textView7.setOnClickListener(new View.OnClickListener() {
@@ -187,6 +194,20 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
             }
         });
 
+
+        //StartDate
+        textViewStartDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(v);
+            }
+        });
+
+    }
+
+    public void showDatePickerDialog(View v) {
+        MyDatePickerFragment myDatePickerFragment = new MyDatePickerFragment();
+        myDatePickerFragment.show(getFragmentManager(), "datePicker");
     }
 
     public void showTimePickerDialog(View v) {
@@ -520,6 +541,34 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
             }
         });
 
+
+        //Click CheckBox5
+        checkBox5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox5.isChecked()) {
+                    checkBox6.setChecked(false);
+                    finishDatelin.setVisibility(View.VISIBLE);
+                    textViewFinishDate.setText("");
+                } else {
+                    finishDatelin.setVisibility(View.GONE);
+                    textViewFinishDate.setText("");
+                }
+            }
+        });
+
+        //Click CheckBox6
+        checkBox6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox6.isChecked()) {
+                    checkBox5.setChecked(false);
+                    finishDatelin.setVisibility(View.GONE);
+                    textViewFinishDate.setText("");
+                }
+            }
+        });
+
     }
 
     private void showView() {
@@ -588,19 +637,12 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         checkBox5.setChecked(false);
         checkBox6.setChecked(true);
         finishDatelin.setVisibility(View.GONE);
-        if (checkBox5.isChecked()) {
-            checkBox6.setChecked(false);
-            finishDatelin.setVisibility(View.VISIBLE);
-            textViewFinishDate.setText("");
-        } else {
-            finishDatelin.setVisibility(View.GONE);
-            textViewFinishDate.setText("");
-        }
-        if (checkBox6.isChecked()) {
-            checkBox5.setChecked(false);
-            finishDatelin.setVisibility(View.GONE);
-            textViewFinishDate.setText("");
-        }
+        textViewStartDate.setText(myData.currentDay());
+        Log.d("testTime",myData.currentDay());
+
+
+
+
 
     }
 
@@ -867,6 +909,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         });
         builder.show();
     }
+
 
 
 }  //Main Class

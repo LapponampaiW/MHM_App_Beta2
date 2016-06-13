@@ -23,9 +23,12 @@ import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 
 public class AddMedicine2Activity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener,DatePickerDialog.OnDateSetListener{
 
@@ -38,6 +41,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
     private String string1, string2, string3, string4, string5, string6,
             string7, string8, string9, string10, string11, string12,
             string13, string14, string15, string16, string17;
+    private String string18,string19; //StartDate,FinishDate
 
     private CheckBox checkBox1, checkBox2, checkBox3, checkBox4,checkBox5,checkBox6;
 
@@ -90,6 +94,61 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
 
     @Override //จาก DatePickerFragment
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        MyData myData = new MyData();
+        int pickYear = year;
+        int pickMonthOfYear = monthOfYear;
+        int pickDayOfMonth = dayOfMonth;
+
+        Log.d("testTime", "DatePickerFragment = " + pickDayOfMonth + " " + pickMonthOfYear + " " + pickYear);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date_Specific = new Date();
+        Date date = new Date();
+        Date date_Start = new Date();
+        Date date_Finish = new Date();
+
+        String sSpecificDate = myData.createStringDay(pickDayOfMonth, pickMonthOfYear + 1, pickYear);
+        String sDate = myData.currentDay();
+        Log.d("testTime", "sSpecific = " + sSpecificDate);
+
+        try {
+            date_Specific = dateFormat.parse(sSpecificDate);
+            date = dateFormat.parse(sDate);
+            date_Start = dateFormat.parse(string18);
+            if (!string19.equals("")) {
+                date_Finish = dateFormat.parse(string19);
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (date_Specific.compareTo(date) > 0) {
+            //เงื่อนไขวันที่มากกว่าเท่ากับปัจจุบัน
+            if (stringTime.equals("StartDate")) {
+                if (!string19.equals("")) {
+                    if (date_Specific.compareTo(date_Finish) > 0) {
+                        Toast.makeText(AddMedicine2Activity.this,"ไม่สามารถตั้งวันเริ่มต้นให้มากกว่าวันที่สิ้นสุดรับประทานได้",Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
+                    textViewStartDate.setText(sSpecificDate);
+                    string18 = sSpecificDate;
+                }
+            }
+
+            if (stringTime.equals("FinishDate")) {
+                if (date_Specific.compareTo(date_Start) >= 0) {
+                    textViewFinishDate.setText(sSpecificDate);
+                    string19 = sSpecificDate;
+                } else {
+                    Toast.makeText(AddMedicine2Activity.this,"ไม่สามารถตั้งวันสิ้นสุดให้น้อยกว่าวันที่เริ่มต้นรับประทานได้",Toast.LENGTH_SHORT).show();
+                }
+            }
+        } else { //ถ้าตั้งวันน้อยกว่าวันที่ปัจจุบัน
+            Toast.makeText(AddMedicine2Activity.this, "ไม่สามารถตั้งเวลารับประทานเป็นอดีตได้", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 
@@ -199,6 +258,16 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         textViewStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stringTime = "StartDate";
+                showDatePickerDialog(v);
+            }
+        });
+
+        //FinishDate
+        textViewFinishDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stringTime = "FinishDate";
                 showDatePickerDialog(v);
             }
         });
@@ -553,6 +622,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
                 } else {
                     finishDatelin.setVisibility(View.GONE);
                     textViewFinishDate.setText("");
+                    string19 = "";
                 }
             }
         });
@@ -565,6 +635,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
                     checkBox5.setChecked(false);
                     finishDatelin.setVisibility(View.GONE);
                     textViewFinishDate.setText("");
+                    string19 = "";
                 }
             }
         });
@@ -647,6 +718,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
     }
 
     private void receiveIntent() {
+        MyData myData = new MyData();
 
         string1 = getIntent().getStringExtra("Med_id");
         string2 = getIntent().getStringExtra("Trade_name");
@@ -665,6 +737,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         string15 = getIntent().getStringExtra("Amount_tablet");
         string16 = getIntent().getStringExtra("EA");
         string17 = getIntent().getStringExtra("TimesPerDay");
+        string18 = myData.currentDay();
+        string19 = "";
 
 
     }

@@ -168,6 +168,26 @@ public class MyData {
         return strTime;
     }
 
+    public String createStringDay(int day,int month,int year) {
+
+        String strDay, strMonth, strYear,strDateMonthYear;
+        strDay = Integer.toString(day);
+        strMonth = Integer.toString(month);
+
+        strYear = Integer.toString(year);
+
+        if (strDay.length() == 1) {
+            strDay = "0".concat(strDay);
+        }
+        if (strMonth.length() == 1) {
+            strMonth = "0".concat(strMonth);
+        }
+
+        strDateMonthYear = strDay + "/" + strMonth + "/" + strYear;
+
+        return strDateMonthYear;
+    }
+
     public String currentDay() {
         String today;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

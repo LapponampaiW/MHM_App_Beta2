@@ -30,7 +30,8 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
-public class AddMedicine2Activity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener,DatePickerDialog.OnDateSetListener{
+public class AddMedicine2Activity extends AppCompatActivity implements
+        TimePickerDialog.OnTimeSetListener,DatePickerDialog.OnDateSetListener{
 
     //Explicit
     private TextView textView1, textView2, textView3, textView4,
@@ -41,9 +42,10 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
     private String string1, string2, string3, string4, string5, string6,
             string7, string8, string9, string10, string11, string12,
             string13, string14, string15, string16, string17;
-    private String string18,string19; //StartDate,FinishDate
+    private String string18,string19,string20; //StartDate,FinishDate,PRN
 
-    private CheckBox checkBox1, checkBox2, checkBox3, checkBox4,checkBox5,checkBox6;
+    private CheckBox checkBox1, checkBox2, checkBox3, checkBox4,
+            checkBox5,checkBox6,checkBox7,checkBox8;
 
     private EditText editText1;
 
@@ -58,7 +60,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
             strings7, stringGenericName2, stringsduplicate;
     private String[] stringsAppearance;
     private LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4,
-            linearLayout5, linearLayout6, linearLayout7, linearLayout8, startDatelin,finishDatelin;
+            linearLayout5, linearLayout6, linearLayout7, linearLayout8, startDatelin,
+            finishDatelin,linearLayoutTimePerDay;
 
 
     private int pickerHour;
@@ -640,6 +643,68 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
             }
         });
 
+        //Click CheckBox7
+        checkBox7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox7.isChecked()) {
+                    checkBox8.setChecked(false);
+                    string20 = "N";
+                    linearLayoutTimePerDay.setVisibility(View.VISIBLE);
+                    if (!string14.equals("")) {
+                        linearLayout8.setVisibility(View.VISIBLE);
+                    }
+                    if (!string13.equals("")) {
+                        linearLayout7.setVisibility(View.VISIBLE);
+                    }
+                    if (!string12.equals("")) {
+                        linearLayout6.setVisibility(View.VISIBLE);
+                    }
+                    if (!string11.equals("")) {
+                        linearLayout5.setVisibility(View.VISIBLE);
+                    }
+                    if (!string10.equals("")) {
+                        linearLayout4.setVisibility(View.VISIBLE);
+                    }
+                    if (!string9.equals("")) {
+                        linearLayout3.setVisibility(View.VISIBLE);
+                    }
+                    if (!string8.equals("")) {
+                        linearLayout2.setVisibility(View.VISIBLE);
+                    }
+                    if (!string7.equals("")) {
+                        linearLayout1.setVisibility(View.VISIBLE);
+                    }
+
+                } else {
+                    checkBox7.setChecked(true);
+                }
+            }
+        });
+
+
+        //Click CheckBox 8
+        checkBox8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox8.isChecked()) {
+                    checkBox7.setChecked(false);
+                    string20 = "Y";
+                    linearLayoutTimePerDay.setVisibility(View.GONE);
+                    linearLayout1.setVisibility(View.GONE);
+                    linearLayout2.setVisibility(View.GONE);
+                    linearLayout3.setVisibility(View.GONE);
+                    linearLayout4.setVisibility(View.GONE);
+                    linearLayout5.setVisibility(View.GONE);
+                    linearLayout6.setVisibility(View.GONE);
+                    linearLayout7.setVisibility(View.GONE);
+                    linearLayout8.setVisibility(View.GONE);
+                } else {
+                    checkBox8.setChecked(true);
+                }
+            }
+        });
+
     }
 
     private void showView() {
@@ -711,6 +776,10 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         textViewStartDate.setText(myData.currentDay());
         Log.d("testTime",myData.currentDay());
 
+        //checkBox 7,8 ทานยาประจำ เป็นครั้งคราว
+        checkBox7.setChecked(true);
+        checkBox8.setChecked(false);
+
 
 
 
@@ -737,8 +806,9 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         string15 = getIntent().getStringExtra("Amount_tablet");
         string16 = getIntent().getStringExtra("EA");
         string17 = getIntent().getStringExtra("TimesPerDay");
-        string18 = myData.currentDay();
-        string19 = "";
+        string18 = myData.currentDay(); //StartDate
+        string19 = ""; //FinishDate
+        string20 = "N"; //PRN
 
 
     }
@@ -772,6 +842,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         checkBox4 = (CheckBox) findViewById(R.id.checkBox4);
         checkBox5 = (CheckBox) findViewById(R.id.checkBox5);
         checkBox6 = (CheckBox) findViewById(R.id.checkBox6);
+        checkBox7 = (CheckBox) findViewById(R.id.checkBox7);
+        checkBox8 = (CheckBox) findViewById(R.id.checkBox8);
         linearLayout1 = (LinearLayout) findViewById(R.id.t1Layout);
         linearLayout2 = (LinearLayout) findViewById(R.id.t2Layout);
         linearLayout3 = (LinearLayout) findViewById(R.id.t3Layout);
@@ -782,6 +854,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
         linearLayout8 = (LinearLayout) findViewById(R.id.t8Layout);
         startDatelin = (LinearLayout) findViewById(R.id.startDateLin);
         finishDatelin = (LinearLayout) findViewById(R.id.finishDateLin);
+        linearLayoutTimePerDay = (LinearLayout) findViewById(R.id.timePerDayLayout);
 
 
     }

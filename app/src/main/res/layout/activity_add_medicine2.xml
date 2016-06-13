@@ -26,159 +26,128 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/linBotton">
+        android:id="@+id/topicLayout"
+        android:layout_below="@+id/headingLayout"
+        android:background="#d9ffd2">
 
-        <Button
-            android:layout_width="0dp"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CANCEL"
-            android:id="@+id/button"
-            android:layout_weight="1"
-            android:onClick="clickCancelAddMedicine" />
+            android:id="@+id/linearLayout7" >
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="SAVE"
-            android:id="@+id/button2"
-            android:layout_weight="1"
-            android:onClick="clickSaveAddMedicine" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="รายละเอียดยา"
+                android:id="@+id/textView58"
+                android:gravity="right"
+                android:textColor="#ff0004" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" >
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:id="@+id/imageViewAppearance"
+                    android:layout_marginTop="@dimen/z2_margin_space"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="++คลิกรูปเพื่อเปลี่ยน++"
+                    android:id="@+id/textView9"
+                    android:textSize="10sp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="10sp" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ชื่อการค้า"
+                    android:id="@+id/textView60"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/heading4" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/textView12"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="#e78d4d" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ชื่อสามัญทางยา"
+                    android:id="@+id/textView63"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/heading4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/textView14"
+                    android:layout_weight="1"
+                    android:textSize="20sp"
+                    android:textColor="#e78d4d" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayout8"
+            android:layout_marginTop="@dimen/z2_margin_bigspace"
+            android:background="#30abc4" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:id="@+id/textView11"
+                android:textSize="1sp" />
+        </LinearLayout>
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/scrollView"
-        android:layout_above="@+id/linBotton"
-        android:layout_below="@+id/headingLayout"
+        android:layout_below="@+id/topicLayout"
         android:layout_margin="10dp">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/head1Layout">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="รายละเอียดยา"
-                    android:id="@+id/textView9"
-                    android:gravity="right"
-                    android:textColor="#ff0004" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2">
-
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/imageViewAppearance"
-                        android:layout_marginTop="@dimen/z2_margin_space"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="10dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="++คลิกรูปเพื่อเปลี่ยน++"
-                        android:id="@+id/textView11"
-                        android:textSize="10sp"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="10dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="10sp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="ชื่อการค้า"
-                        android:id="@+id/textView51"
-                        android:layout_weight="1"
-                        android:textSize="@dimen/heading4" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="New Text"
-                        android:id="@+id/textView12"
-                        android:layout_weight="1"
-                        android:textSize="20sp"
-                        android:textColor="#e78d4d" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="ชื่อสามัญทางยา"
-                        android:id="@+id/textView13"
-                        android:layout_weight="1"
-                        android:textSize="@dimen/heading4" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="New Text"
-                        android:id="@+id/textView14"
-                        android:layout_weight="1"
-                        android:textSize="20sp"
-                        android:textColor="#e78d4d" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/line1"
-                android:layout_marginTop="@dimen/z2_margin_bigspace"
-                android:layout_marginBottom="@dimen/z2_margin_bigspace"
-                android:background="#30abc4">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" "
-                    android:id="@+id/textView10"
-                    android:textSize="1sp" />
-            </LinearLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -195,7 +164,8 @@
                     android:gravity="right"
                     android:textColor="#ff0000"
                     android:background="@drawable/my_border_shadow"
-                    android:padding="5dp" />
+                    android:padding="5dp"
+                    android:layout_marginBottom="@dimen/z2_margin_space" />
             </LinearLayout>
 
             <LinearLayout
@@ -336,278 +306,311 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/head3Layout">
+                android:layout_height="wrap_content"
+                android:id="@+id/head3Layout"
+                android:gravity="right">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="เวลา&amp;การรับประทาน"
                     android:id="@+id/textView16"
                     android:gravity="right"
-                    android:layout_marginTop="@dimen/z2_margin_bigspace"
                     android:textColor="#ff0000"
-                    android:layout_marginBottom="@dimen/z2_margin_space" />
+                    android:layout_marginBottom="@dimen/z2_margin_space"
+                    android:background="@drawable/my_border_shadow"
+                    android:padding="@dimen/z2_margin_space" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="รับประทานวันละ"
-                    android:id="@+id/textView52"
-                    android:layout_weight="2"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView54"
-                    android:layout_weight="1"
-                    android:textColor="#e78d4d"
-                    android:gravity="center_horizontal"
-                    android:textSize="@dimen/heading3"
-                    android:background="@drawable/my_border_red" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="ครั้ง"
-                    android:id="@+id/textView53"
-                    android:layout_weight="2"
-                    android:textSize="@dimen/heading3"
-                    android:textColor="#e78d4d"
-                    android:gravity="center_horizontal" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/t1Layout"
-                android:layout_marginTop="@dimen/z2_margin_space">
+                android:id="@+id/linBox3"
+                android:background="@drawable/my_border_shadow"
+                android:padding="@dimen/z2_margin_bigspace">
 
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ทานยาเป็นเวลา"
+                        android:id="@+id/checkBox7"
+                        android:layout_weight="1" />
+
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ทานยาเป็นครั้งคราว"
+                        android:id="@+id/checkBox8"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/timePerDayLayout">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="รับประทานวันละ"
+                        android:id="@+id/textView52"
+                        android:layout_weight="2"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView54"
+                        android:layout_weight="1"
+                        android:textColor="#e78d4d"
+                        android:gravity="center_horizontal"
+                        android:textSize="@dimen/heading3"
+                        android:background="@drawable/my_border_red" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ครั้ง"
+                        android:id="@+id/textView53"
+                        android:layout_weight="2"
+                        android:textSize="@dimen/heading3"
+                        android:textColor="#e78d4d"
+                        android:gravity="center_horizontal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="เวลาที่ 1"
-                    android:id="@+id/textView21"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal" />
+                    android:id="@+id/t1Layout"
+                    android:layout_marginTop="@dimen/z2_margin_space">
 
-                <TextView
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="เวลาที่ 1"
+                        android:id="@+id/textView21"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView22"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal"
+                        android:textColor="#c959d8"
+                        android:background="@drawable/my_border_orange" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView22"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal"
-                    android:textColor="#c959d8"
-                    android:background="@drawable/my_border_orange" />
-            </LinearLayout>
+                    android:id="@+id/t2Layout"
+                    android:layout_marginTop="@dimen/z2_margin_space">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/t2Layout"
-                android:layout_marginTop="@dimen/z2_margin_space">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="เวลาที่ 2"
+                        android:id="@+id/textView23"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal" />
 
-                <TextView
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView24"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal"
+                        android:textColor="#c959d8"
+                        android:background="@drawable/my_border_orange" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="เวลาที่ 2"
-                    android:id="@+id/textView23"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal" />
+                    android:id="@+id/t3Layout"
+                    android:layout_marginTop="@dimen/z2_margin_space">
 
-                <TextView
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="เวลาที่ 3"
+                        android:id="@+id/textView25"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView26"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal"
+                        android:textColor="#c959d8"
+                        android:background="@drawable/my_border_orange" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView24"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal"
-                    android:textColor="#c959d8"
-                    android:background="@drawable/my_border_orange" />
-            </LinearLayout>
+                    android:id="@+id/t4Layout"
+                    android:layout_marginTop="@dimen/z2_margin_space">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/t3Layout"
-                android:layout_marginTop="@dimen/z2_margin_space">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="เวลาที่ 4"
+                        android:id="@+id/textView27"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal" />
 
-                <TextView
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView28"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal"
+                        android:textColor="#c959d8"
+                        android:background="@drawable/my_border_orange" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="เวลาที่ 3"
-                    android:id="@+id/textView25"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal" />
+                    android:id="@+id/t5Layout"
+                    android:layout_marginTop="@dimen/z2_margin_space">
 
-                <TextView
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="เวลาที่ 5"
+                        android:id="@+id/textView29"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView30"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal"
+                        android:textColor="#c959d8"
+                        android:background="@drawable/my_border_orange" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView26"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal"
-                    android:textColor="#c959d8"
-                    android:background="@drawable/my_border_orange" />
-            </LinearLayout>
+                    android:id="@+id/t6Layout"
+                    android:layout_marginTop="@dimen/z2_margin_space">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/t4Layout"
-                android:layout_marginTop="@dimen/z2_margin_space">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="เวลาที่ 6"
+                        android:id="@+id/textView31"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal" />
 
-                <TextView
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView32"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal"
+                        android:textColor="#c959d8"
+                        android:background="@drawable/my_border_orange" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="เวลาที่ 4"
-                    android:id="@+id/textView27"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal" />
+                    android:id="@+id/t7Layout"
+                    android:layout_marginTop="@dimen/z2_margin_space">
 
-                <TextView
-                    android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="เวลาที่ 7"
+                        android:id="@+id/textView33"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView34"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal"
+                        android:textColor="#c959d8"
+                        android:background="@drawable/my_border_orange" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView28"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal"
-                    android:textColor="#c959d8"
-                    android:background="@drawable/my_border_orange" />
-            </LinearLayout>
+                    android:id="@+id/t8Layout"
+                    android:layout_marginTop="@dimen/z2_margin_space">
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/t5Layout"
-                android:layout_marginTop="@dimen/z2_margin_space">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="เวลาที่ 8"
+                        android:id="@+id/textView35"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="เวลาที่ 5"
-                    android:id="@+id/textView29"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView36"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:gravity="center_horizontal"
+                        android:textColor="#c959d8"
+                        android:background="@drawable/my_border_orange" />
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView30"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal"
-                    android:textColor="#c959d8"
-                    android:background="@drawable/my_border_orange" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/t6Layout"
-                android:layout_marginTop="@dimen/z2_margin_space">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="เวลาที่ 6"
-                    android:id="@+id/textView31"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView32"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal"
-                    android:textColor="#c959d8"
-                    android:background="@drawable/my_border_orange" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/t7Layout"
-                android:layout_marginTop="@dimen/z2_margin_space">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="เวลาที่ 7"
-                    android:id="@+id/textView33"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView34"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal"
-                    android:textColor="#c959d8"
-                    android:background="@drawable/my_border_orange" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/t8Layout"
-                android:layout_marginTop="@dimen/z2_margin_space">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="เวลาที่ 8"
-                    android:id="@+id/textView35"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView36"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:gravity="center_horizontal"
-                    android:textColor="#c959d8"
-                    android:background="@drawable/my_border_orange" />
-
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -786,6 +789,30 @@
                     android:id="@+id/textView20"
                     android:layout_weight="1"
                     android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:id="@+id/linearLayout9" >
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="CANCEL"
+                    android:id="@+id/button3"
+                    android:layout_weight="1"
+                    android:onClick="clickCancelAddMedicine" />
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="SAVE"
+                    android:id="@+id/button4"
+                    android:layout_weight="1"
+                    android:onClick="clickSaveAddMedicine" />
             </LinearLayout>
 
         </LinearLayout>

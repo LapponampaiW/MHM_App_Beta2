@@ -123,7 +123,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements TimePicke
             e.printStackTrace();
         }
 
-        if (date_Specific.compareTo(date) > 0) {
+        if (date_Specific.compareTo(date) >= 0) {
             //เงื่อนไขวันที่มากกว่าเท่ากับปัจจุบัน
             if (stringTime.equals("StartDate")) {
                 if (!string19.equals("")) {

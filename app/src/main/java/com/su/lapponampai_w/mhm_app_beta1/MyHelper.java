@@ -34,7 +34,7 @@ public class MyHelper extends SQLiteOpenHelper {
             "Generic_line text, Amount_tablet double, Which_Date_D text, Appearance text, " +
             "EA text, pharmaco text, StartDate text, FinishDate text, PRN text, " +
             "T1 text, T2 text, T3 text, T4 text,T5 text, T6 text, " +
-            "T7 text, T8 text);";
+            "T7 text, T8 text, DateTimeCanceled text);";
 
 
     //Create table nameGenericTABLE

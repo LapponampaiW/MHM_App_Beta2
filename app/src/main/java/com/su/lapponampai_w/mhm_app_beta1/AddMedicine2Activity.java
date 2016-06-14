@@ -53,7 +53,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
     private String string16_Translate;
 
-    private String stringInteraction2;
+    private String stringInteraction2,stringTimeMedicine1_2,stringTimeMedicine2_1;
     private String stringTime;
 
     private String[] strings0, strings2, strings3, strings4, strings5, strings6, strings1,
@@ -289,9 +289,32 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
     }
 
-
-
     private void clickAmount_Tablet() {
+
+        //จำนวนเม็ด ที่กิน... ทำไปก่อนแก้ทีหลังนะ
+        textView15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getContext());
+                final String[] strings = {"0.25(เศษหนึ่งส่วนสี่) เม็ด","0.5(ครึ่ง) เม็ด",
+                        "0.75(เศษสามส่วนสี่) เม็ด","1(หนึ่ง) เม็ด","1.25(หนึ่งเศษหนึ่งส่วนสี่) เม็ด",
+                        "1.5(หนึ่งครึ่ง) เม็ด","1.75(หนึ่งเศษสามส่วนสี่) เม็ด","2(สอง) เม็ด"};
+                builder.setTitle("โปรดระบุ!!! \nจำนวนครั้งที่ต้องทานยา(ใน 1 วัน)");
+                builder.setSingleChoiceItems(strings, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Double aDouble = (which + 1) * 0.25;
+                        string15 = Double.toString(aDouble);
+                        textView15.setText(string15);
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
+            }
+
+        });
+
+
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -765,7 +788,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         //linearLayout1.setVisibility(View.GONE);
 
         //textView15.setText(string15);
-        editText1.setText(string15);
+        textView15.setText(string15);
         string16_Translate = myData.translate_EA(string16);
         textView16.setText(string16_Translate);
 
@@ -779,10 +802,6 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         //checkBox 7,8 ทานยาประจำ เป็นครั้งคราว
         checkBox7.setChecked(true);
         checkBox8.setChecked(false);
-
-
-
-
 
     }
 
@@ -821,7 +840,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         //textView4 = (TextView) findViewById(R.id.textView16); เอาวันที่รับประทาน ออก Which_Date
         textView4 = (TextView) findViewById(R.id.textView54);
         imageView = (ImageView) findViewById(R.id.imageViewAppearance);
-        //textView5 = (TextView) findViewById(R.id.textView18);  จะเปลี่ยนให้เป็น StartDate
+        textView15 = (TextView) findViewById(R.id.textView13);  //กลายเป็น Amount_Tablet
         //textView6 = (TextView) findViewById(R.id.textView20); จะเปลี่ยนให้เป็น FinishDate
         textView7 = (TextView) findViewById(R.id.textView22);
         textView8 = (TextView) findViewById(R.id.textView24);
@@ -834,7 +853,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         //textView15 = (TextView) findViewById(R.id.textView38);  เปลี่ยน Amount_Tablet ไปเป็น Edittext
         textViewStartDate = (TextView) findViewById(R.id.textViewStartDate);
         textViewFinishDate = (TextView) findViewById(R.id.textViewFinishDate);
-        editText1 = (EditText) findViewById(R.id.editText1);
+        //editText1 = (EditText) findViewById(R.id.editText1);
         textView16 = (TextView) findViewById(R.id.textView46);
         checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
         checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
@@ -863,22 +882,23 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         finish();
     }
 
+    // Click Save
     public void clickSaveAddMedicine(View view) {
 
         MyManage myManage = new MyManage(this);
+        MyData myData = new MyData();
 
         //เริ่มจากตรงนี้นะ
 
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
         sqLiteDatabase.delete("drugInteractionTABLE_For_Query", null, null);
 
-
-        myManage.checkDrugInteraction(string1);
-
+        myManage.checkDrugInteraction(string1);  //Check DrugInteraction จาก Med_id
+        //ทำการ add ข้อมูลที่มี DrugInteraction ทั้งหมดเข้าไปในตาราง drugInteractionTABLE_For_Query
+        //ถ้ามีค่าเป็น 1 ขึ้นไปแปลว่ามี DrugInteraction แต่ยังไม่รู้ว่า Type ไหน
 
         int countRowTABLE_Query = myManage.filter_drugInteractionTABLE_For_Query(0).length;
         Log.d("filter_drugInteraction", Integer.toString(countRowTABLE_Query));
-
 
         if (countRowTABLE_Query != 0) {
             strings0 = myManage.filter_drugInteractionTABLE_For_Query(0);
@@ -890,10 +910,10 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             strings6 = myManage.filter_drugInteractionTABLE_For_Query(6);
             strings7 = myManage.filter_drugInteractionTABLE_For_Query(7);
 
-
             Log.d("filter_drugInteraction", strings3[0]);
 
-
+            //เอาค่าที่ได้มาดู ตำแหน่งที่ strings4 คือ DrugInteraction type ไหน 1,2,3 ถ้ามี 1 แม้แต่อันเดียวก็ไม่ยอม
+            //ให้ save โดยทำการ filter ไว้แล้วว่าให้ 1 ขึ้นก่อนเสมอ
             if (strings4[0].equals("1")) {
                 alertDialogFaltal();
                 Log.d("filter_drugInteraction", "type 1:");
@@ -902,15 +922,15 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                 for (int i = 0; i < strings0.length; i++) {
                     if (strings4[i].equals("2")) {
 
-                        Log.d("filter_drugInteraction", "type2 :" + strings0[i] + " :" + strings1[i] +
-                                " :" + strings2[i] + " :" + strings3[i] + " :" + strings4[i] +
-                                " :" + strings5[i] + " :" + strings6[i] + " :" + strings7[i]);
+                        Log.d("filter_drugInteraction", "type2 :" +"_id :" + strings0[i] + "Initial_medicine :" + strings1[i] +
+                                "Medicine1 :" + strings2[i] + "Medicine2 :" + strings3[i] + "Type_interaction :" + strings4[i] +
+                                "Message :" + strings5[i] + "TimeMedicine1_2 :" + strings6[i] + "TimeMedicine2_1 :" + strings7[i]);
 
                         if (strings1[i].equals(strings2[i])) {
                             stringInteraction2 = strings3[i];
                         } else {
                             stringInteraction2 = strings2[i];
-                        }
+                        }  //เซ็ต stringInteraction2 เป็นตัวหนังสือที่ต่างจาก ตัวแรก
 
                         alertDialogInteraction(string2, strings1[i], stringInteraction2, strings5[i]);
                         Log.d("filter_drugInteraction", "Access via type2");
@@ -920,6 +940,64 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                                 " :" + strings2[i] + " :" + strings3[i] + " :" + strings4[i] +
                                 " :" + strings5[i] + " :" + strings6[i] + " :" + strings7[i]);
                         Toast.makeText(getBaseContext(), "ได้ค่า 3", Toast.LENGTH_LONG).show();
+                        //ทำแสดง PopUp ค่า drugInteraction ที่ 3
+                        //แต่ตอนนี้มีการทานที่บางวันไม่จำเป็นต้องทานด้วย
+                        //เอาเป็นว่าเขียน message ในลักษณะ เกิด DrugInteraction ประเภทจำเป็นต้องทานห่างกัน
+                        //ถ้าจำเป็นต้องทานร่วมกัน
+                        if (strings1[i].equals(strings2[i])) {  //ชื่อยาเหมือนกัน ยาตัวแรกคือ strings1[i]
+                            stringInteraction2 = strings3[i];  //ชื่อยาอีกตัวหนึ่ง
+                            stringTimeMedicine1_2 = strings6[i]; //1 ไป 2 ไปข้างหน้า
+                            stringTimeMedicine2_1 = strings7[i]; // 2 ไป 1 ไปด้านหลัง
+                        } else {
+                            stringInteraction2 = strings2[i]; // strings1[i] คือยาตัวแรก stringInteraction2 คือยาอีกตัว
+                            stringTimeMedicine1_2 = strings7[i];  //1 ไป 2 ข้างหน้า
+                            stringTimeMedicine2_1 = strings6[i]; // 2 ไป 1 ไปข้างหลัง
+                        }
+                        //ต่อไปจะคำนวณช่วยเวลาที่เกิด Drug Interaction ในกรณีที่จำทานวันเดียวกัน ไม่ได้ดูถึงขนาดว่าคนละวัน ทำไม่ได้ครับ
+
+                        String[] stringsAllTimes = {string7,string8,string9,string10,string11,string12,string13,string14};
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                        Date date = new Date();
+                        Calendar calendar1 = Calendar.getInstance();
+                        Calendar calendar2 = Calendar.getInstance();
+                        String today = myData.currentDay();
+                        for(int x = 0;x<stringsAllTimes.length;x++) {
+
+                            if (!stringsAllTimes[x].equals("")) {
+                                try {
+                                    date = simpleDateFormat.parse(today +" "+ stringsAllTimes[x]);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                calendar1.setTime(date); // set calendar
+                                calendar1.add(Calendar.MINUTE,Integer.parseInt(stringTimeMedicine1_2));
+                                calendar2.setTime(date); // set Date เป็น calendar
+                                calendar2.add(Calendar.MINUTE,-1 * Integer.parseInt(stringTimeMedicine2_1));
+
+                                Date date1 = calendar1.getTime();
+                                Date date2 = calendar2.getTime();
+                                String s = simpleDateFormat.format(date);  //เดี่ยวลบทิ้ง
+                                String s1 = simpleDateFormat.format(date1); //เดี่ยวลบทิ้ง
+                                String s2 = simpleDateFormat.format(date2); //เดี่ยวลบทิ้ง
+
+                                Log.d("filter_drugInteraction","date : " + s); //เดี่ยวลบทิ้ง
+                                Log.d("filter_drugInteraction","date1 : " + s1); //เดี่ยวลบทิ้ง
+                                Log.d("filter_drugInteraction","date2 : " + s2); //เดี่ยวลบทิ้ง
+
+
+
+
+
+
+                                // ได้ค่าเวลามา 2 อันแล้ว ทั้ง upper และ lower
+
+                            }
+                        }
+
+
+
+
+
                     }
                 }
                 return;
@@ -937,7 +1015,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(R.drawable.icon_question);
         builder.setTitle("Duplicate!!!");
-        builder.setMessage("ไม่สามารถดำเนินการต่อได้ \nเนื่องจากมียาตัวนี้ในระบบแล้ว");
+        builder.setMessage("ไม่สามารถดำเนินการต่อได้ \nเนื่องจากมียาตัวนี้ที่วิธีกินคล้ายกัน \n" +
+                "หรือมียาตัวเดียวกันที่เวลาทานยาซ้ำกันในระบบแล้ว");
         builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -952,25 +1031,86 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     private void addValueTomainTABLEandIntent() {
         MyManage myManage = new MyManage(this);
 
+
+
+
+
         stringsduplicate = myManage.readAllMainTABLE_string(string1, 0);
+        //check Duplicate ว่ามียาตัวเดียวกันอยู่หรือไม่ถ้ามีใน mainTABLE แล้วจะไม่ยอมให้ save
+        //ให้ไป Delete แล้วเพิ่มข้อมูลเข้าไปใหม่แทน
+
         if (stringsduplicate.length > 0) {
-            alertDialogDuplicate();
-            return;
+            String[] sAmount_tablet = myManage.readAllMainTABLE_string(string1, 15);
+            Log.d("12345", "sAmount_tablet : " + sAmount_tablet[0]);
+            Log.d("12345", "string15 : " + string15);
+            String[] sT1 = myManage.readAllMainTABLE_string(string1, 7);  //T1
+            String[] sT2 = myManage.readAllMainTABLE_string(string1, 8);  //T2
+            String[] sT3 = myManage.readAllMainTABLE_string(string1, 9);  //T3
+            String[] sT4 = myManage.readAllMainTABLE_string(string1, 10);  //T4
+            String[] sT5 = myManage.readAllMainTABLE_string(string1, 11);  //T5
+            String[] sT6 = myManage.readAllMainTABLE_string(string1, 12);  //T6
+            String[] sT7 = myManage.readAllMainTABLE_string(string1, 13);  //T7
+            String[] sT8 = myManage.readAllMainTABLE_string(string1, 14);  //T8
+            String[] sTTime = {string7,string8,string9,string10,string11,string12,string13,string14};
+            for (int i = 0; i < stringsduplicate.length; i++) {
+                if (sAmount_tablet[i].equals(string15)) {
+                    alertDialogDuplicate();
+                    return;  //แปลว่าหยุดการทำงาน เหมือน End sub ใน VB
+                }
+            }
+
+            for(int x = 0; x<sTTime.length;x++) {
+                for (int y = 0;y<stringsduplicate.length;y++) {
+                    if (sTTime[x].equals(sT1[y]) && !sTTime[x].equals("") && !sT1[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT2[y]) && !sTTime[x].equals("") && !sT2[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT3[y]) && !sTTime[x].equals("") && !sT3[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT4[y]) && !sTTime[x].equals("") && !sT4[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT5[y]) && !sTTime[x].equals("") && !sT5[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT6[y]) && !sTTime[x].equals("") && !sT6[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT7[y]) && !sTTime[x].equals("") && !sT7[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT8[y]) && !sTTime[x].equals("") && !sT8[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    }
+                }
+            }
+
+
         }
-        myManage.addValueTomainTABLE(string1, string2, string3, string15, string4, string5, string6, string7, string8, string9, string10, string11, string12, string13, string14);
 
-        String[] strings1 = myManage.readAllMainTABLE_string(string1, 0);
-        String[] stringsT1 = myManage.readAllMainTABLE_string(string1, 7);
-        String[] stringsT2 = myManage.readAllMainTABLE_string(string1, 8);
-        String[] stringsT3 = myManage.readAllMainTABLE_string(string1, 9);
-        String[] stringsT4 = myManage.readAllMainTABLE_string(string1, 10);
-        String[] stringsT5 = myManage.readAllMainTABLE_string(string1, 11);
-        String[] stringsT6 = myManage.readAllMainTABLE_string(string1, 12);
-        String[] stringsT7 = myManage.readAllMainTABLE_string(string1, 13);
-        String[] stringsT8 = myManage.readAllMainTABLE_string(string1, 14);
+        //***ต้องแก้ใหม่ addValueTomainTABLE
+        myManage.addValueTomainTABLE(string1, string2, string3, string15, string4, string5,string16, string6,string18,string19,string20, string7, string8, string9, string10, string11, string12, string13, string14,"");
 
-        String currentDay = myManage.currentDay();
+        //เอาค่า Med_id เป็นตัว query ในตาราง mainTABLE โดยเรียงจาก _id แบบ DESC
+        String[] strings1 = myManage.readAllMainTABLE_string(string1, 0); //เอาค่าMain_id
+        String[] stringsT1 = myManage.readAllMainTABLE_string(string1, 7); //T1
+        String[] stringsT2 = myManage.readAllMainTABLE_string(string1, 8); //T2
+        String[] stringsT3 = myManage.readAllMainTABLE_string(string1, 9); //T3
+        String[] stringsT4 = myManage.readAllMainTABLE_string(string1, 10); //T4
+        String[] stringsT5 = myManage.readAllMainTABLE_string(string1, 11); //T5
+        String[] stringsT6 = myManage.readAllMainTABLE_string(string1, 12); //T6
+        String[] stringsT7 = myManage.readAllMainTABLE_string(string1, 13); //T7
+        String[] stringsT8 = myManage.readAllMainTABLE_string(string1, 14); //T8
 
+        String currentDay = myManage.currentDay();  //ค่าของวันนี้
+
+
+        //addValueToSumTable
+        //*** ดูว่าเป็นวันนี้หรือป่าว ในวันที่เริ่มต้น
         Log.d("addValueToSumTable", strings1[0] + " " + currentDay);
 
 

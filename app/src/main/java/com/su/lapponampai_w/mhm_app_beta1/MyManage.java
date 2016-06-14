@@ -534,7 +534,11 @@ public class MyManage {
                                     String strAmount_tablet,
                                     String strWhich_Date_D,
                                     String strAppearance,
+                                    String strEA,
                                     String strPharmaco,
+                                    String strStartDate,
+                                    String strFinishDate,
+                                    String strPRN,
                                     String strT1,
                                     String strT2,
                                     String strT3,
@@ -542,7 +546,8 @@ public class MyManage {
                                     String strT5,
                                     String strT6,
                                     String strT7,
-                                    String strT8) {
+                                    String strT8,
+                                    String strDateTimeCanceled) {
 
         ContentValues contentValues = new ContentValues();
 
@@ -551,14 +556,18 @@ public class MyManage {
         time = time.substring(2);
         long longTime = Long.parseLong(time);
 
-        contentValues.put("_id",longTime);
+        contentValues.put("_id", longTime);
         contentValues.put("Med_id", strMed_id);
         contentValues.put("Trade_name", strTrade_name);
         contentValues.put("Generic_line", strGeneric_line);
-        contentValues.put("Amount_tablet",strAmount_tablet);
+        contentValues.put("Amount_tablet", strAmount_tablet);
         contentValues.put("Which_Date_D", strWhich_Date_D);
         contentValues.put("Appearance", strAppearance);
+        contentValues.put("EA",strEA);
         contentValues.put("Pharmaco", strPharmaco);
+        contentValues.put("StartDate", strStartDate);
+        contentValues.put("FinishDate", strFinishDate);
+        contentValues.put("PRN", strPRN);
         contentValues.put("T1", strT1);
         contentValues.put("T2", strT2);
         contentValues.put("T3", strT3);
@@ -567,6 +576,7 @@ public class MyManage {
         contentValues.put("T6", strT6);
         contentValues.put("T7", strT7);
         contentValues.put("T8", strT8);
+        contentValues.put("DateTimeCanceled", strDateTimeCanceled);
 
 
         return writeSqLiteDatabase.insert("mainTABLE", null, contentValues);
@@ -1255,6 +1265,7 @@ public class MyManage {
             addMedTABLEValue("Reyataz","Atazanavir",7,"300","1",1, null, null, 1, null, null, 1, null, null,"1", 1, "ED:0", "7", null, "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Cafergot","Ergotamine Tartrate",8,"1","1",1, null, null, 1, null, null, 1, null, null,"1", 1, "ED:0", "8", null, "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Prevacid","Lansoprazole",9,"30","1",1, null, null, 1, null, null, 1, null, null,"1", 1, "ED:0", "9", null, "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Antacin", "Antacid", 10, "100", "1", 11, "100", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "10", null, "08:00", "13:00", "18:00", "", "", "", "", "");
 
         }
 
@@ -1274,6 +1285,8 @@ public class MyManage {
             addnameGenericTABLEValue("Atazanavir"); //7
             addnameGenericTABLEValue("Ergotamine Tartrate"); //8
             addnameGenericTABLEValue("Lansoprazole"); //9
+            addnameGenericTABLEValue("Aluminium Hydroxide"); //10
+            addnameGenericTABLEValue("Magnesium Hydroxide"); //11
 
 
         }
@@ -1285,7 +1298,8 @@ public class MyManage {
         if (cursor.getCount() == 0) {
 
             adddrugInteractionTABLEValue(7, 8, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
-            adddrugInteractionTABLEValue(7, 9, "2", "ควรรับประทานห่างกันอย่างน้อย 4 ชั่วโมง", 0, 0);
+            adddrugInteractionTABLEValue(7, 9, "2", "ไม่ควรรับประทานร่วมกัน", 0, 0);
+            adddrugInteractionTABLEValue(7, 10, "3", "ควรรับประทานยาห่างกัน", 240, 120);
 
         }
     }

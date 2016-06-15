@@ -954,25 +954,47 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                             stringTimeMedicine2_1 = strings6[i]; // 2 ไป 1 ไปข้างหลัง
                         }
                         //ต่อไปจะคำนวณช่วยเวลาที่เกิด Drug Interaction ในกรณีที่จำทานวันเดียวกัน ไม่ได้ดูถึงขนาดว่าคนละวัน ทำไม่ได้ครับ
+                        /*
+                        String[] stringsInteraction2T1 = myManage.readAllMainTABLE_string(stringInteraction2, 7);  //ค่าของเวลาที่อยู่ใน T1 ของตัวที่เกิด durg Interaction Type 3
+                        String[] stringsInteraction2T2 = myManage.readAllMainTABLE_string(stringInteraction2, 8); //ค่าของเวลาที่อยู่ใน T2 ของตัวที่เกิด durg Interaction Type 3
+                        String[] stringsInteraction2T3 = myManage.readAllMainTABLE_string(stringInteraction2, 9); //ค่าของเวลาที่อยู่ใน T3 ของตัวที่เกิด durg Interaction Type 3
+                        String[] stringsInteraction2T4 = myManage.readAllMainTABLE_string(stringInteraction2, 10); //ค่าของเวลาที่อยู่ใน T4 ของตัวที่เกิด durg Interaction Type 3
+                        String[] stringsInteraction2T5 = myManage.readAllMainTABLE_string(stringInteraction2, 11); //ค่าของเวลาที่อยู่ใน T5 ของตัวที่เกิด durg Interaction Type 3
+                        String[] stringsInteraction2T6 = myManage.readAllMainTABLE_string(stringInteraction2, 12); //ค่าของเวลาที่อยู่ใน T6 ของตัวที่เกิด durg Interaction Type 3
+                        String[] stringsInteraction2T7 = myManage.readAllMainTABLE_string(stringInteraction2, 13); //ค่าของเวลาที่อยู่ใน T7 ของตัวที่เกิด durg Interaction Type 3
+                        String[] stringsInteraction2T8 = myManage.readAllMainTABLE_string(stringInteraction2, 14); //ค่าของเวลาที่อยู่ใน T8 ของตัวที่เกิด durg Interaction Type 3
 
+                        Log.d("filter_drugInteraction","stringsInteraction2T1 : " + stringsInteraction2T1[0]); //ลบทิ้งได้
+                        Log.d("filter_drugInteraction","stringsInteraction2T2 : " + stringsInteraction2T2[0]); //ลบทิ้งได้
+                        Log.d("filter_drugInteraction","stringsInteraction2T3 : " + stringsInteraction2T3[0]); //ลบทิ้งได้
+                        Log.d("filter_drugInteraction","stringsInteraction2T4 : " + stringsInteraction2T4[0]); //ลบทิ้งได้
+                        Log.d("filter_drugInteraction","stringsInteraction2T5 : " + stringsInteraction2T5[0]); //ลบทิ้งได้
+                        Log.d("filter_drugInteraction","stringsInteraction2T6 : " + stringsInteraction2T6[0]); //ลบทิ้งได้
+                        Log.d("filter_drugInteraction","stringsInteraction2T7 : " + stringsInteraction2T7[0]); //ลบทิ้งได้
+                        Log.d("filter_drugInteraction","stringsInteraction2T8 : " + stringsInteraction2T8[0]); //ลบทิ้งได้
+
+                        */
                         String[] stringsAllTimes = {string7,string8,string9,string10,string11,string12,string13,string14};
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
                         Date date = new Date();
                         Calendar calendar1 = Calendar.getInstance();
                         Calendar calendar2 = Calendar.getInstance();
                         String today = myData.currentDay();
+
+                        //Query ยาตัวที่ 2 แล้วก็เวลาด้วย
+
                         for(int x = 0;x<stringsAllTimes.length;x++) {
 
                             if (!stringsAllTimes[x].equals("")) {
                                 try {
-                                    date = simpleDateFormat.parse(today +" "+ stringsAllTimes[x]);
+                                    date = simpleDateFormat.parse(today + " " + stringsAllTimes[x]);
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
                                 calendar1.setTime(date); // set calendar
-                                calendar1.add(Calendar.MINUTE,Integer.parseInt(stringTimeMedicine1_2));
+                                calendar1.add(Calendar.MINUTE, Integer.parseInt(stringTimeMedicine1_2));
                                 calendar2.setTime(date); // set Date เป็น calendar
-                                calendar2.add(Calendar.MINUTE,-1 * Integer.parseInt(stringTimeMedicine2_1));
+                                calendar2.add(Calendar.MINUTE, -1 * Integer.parseInt(stringTimeMedicine2_1));
 
                                 Date date1 = calendar1.getTime();
                                 Date date2 = calendar2.getTime();
@@ -980,13 +1002,35 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                                 String s1 = simpleDateFormat.format(date1); //เดี่ยวลบทิ้ง
                                 String s2 = simpleDateFormat.format(date2); //เดี่ยวลบทิ้ง
 
-                                Log.d("filter_drugInteraction","date : " + s); //เดี่ยวลบทิ้ง
-                                Log.d("filter_drugInteraction","date1 : " + s1); //เดี่ยวลบทิ้ง
-                                Log.d("filter_drugInteraction","date2 : " + s2); //เดี่ยวลบทิ้ง
+                                Log.d("filter_drugInteraction", "date : " + s); //เดี่ยวลบทิ้ง
+                                Log.d("filter_drugInteraction", "date1 : " + s1); //เดี่ยวลบทิ้ง
+                                Log.d("filter_drugInteraction", "date2 : " + s2); //เดี่ยวลบทิ้ง
+
+                                //เริ่มทำการเปรียบเทียบเวลาของยาตัวที่จะ add เข้า mainTABLE กับเวลาของยาที่มีอยู่ใน MainTABLE อยู่แล้ว
+                                //String[][] stringsInteraction2 = new String[8][stringsInteraction2T1.length];
+                                //String[][] str = {myManage.readAllMainTABLE_string(stringInteraction2,7)};
+                                //stringsInteraction2[0] = stringsInteraction2T1;
+                                //stringsInteraction2[1] = stringsInteraction2T2;
+                                //stringsInteraction2[2] = stringsInteraction2T3;
+                                //stringsInteraction2[3] = stringsInteraction2T4;
+                                //stringsInteraction2[4] = stringsInteraction2T5;
+                                //stringsInteraction2[5] = stringsInteraction2T6;
+                                //stringsInteraction2[6] = stringsInteraction2T7;
+                                //stringsInteraction2[7] = stringsInteraction2T8;
+                                //Log.d("filter_drugInteraction", "stringsInteraction2[0][0] : " + stringsInteraction2[0][0]);
+                                //Log.d("filter_drugInteraction", "stringsInteraction2[1][0] : " + stringsInteraction2[1][0]);
+                                //Log.d("filter_drugInteraction", "stringsInteraction2[2][0] : " + stringsInteraction2[2][0]);
+                                //Log.d("filter_drugInteraction", "stringsInteraction2[0][0] : " + stringsInteraction2[0][0]);
+                                //Log.d("filter_drugInteraction", "stringsInteraction2[1][0] : " + stringsInteraction2[1][0]);
+                                for (int y = 0; y < stringsInteraction2T1.length; y++) {
+
+                                    // if (!stringsInteraction2T1.equals("")) {
+                                    //     Date dateInteraction2T1 = new Date();
+                                    //     try
+                                    // }
 
 
-
-
+                                }
 
 
                                 // ได้ค่าเวลามา 2 อันแล้ว ทั้ง upper และ lower

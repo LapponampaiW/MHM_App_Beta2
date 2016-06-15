@@ -1054,28 +1054,16 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
                                                 Log.d("filter_drugInteraction","เข้า if!!!!!!!!!!! ");
                                                 alertDialogInteractionType3(string2, strings1[i], stringInteraction2, strings5[i],strings6[i],strings7[i]);
-
-
+                                                return;
                                             }
-
-
-
-
                                         }
                                     }
-
-
-
                                 }
-
-
                                 // ได้ค่าเวลามา 2 อันแล้ว ทั้ง upper และ lower
-
                             }
                         }
-
-
-                    }
+                        addValueTomainTABLEandIntent();
+                    }  //Type 3
                 }
                 return;
             }
@@ -1276,8 +1264,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         builder.setIcon(R.drawable.icon_question);
         builder.setTitle("ยาที่ควรทานห่างกัน");
         builder.setMessage("ยา " + s1 + " (" + s2 + ") \nควรทานห่างจาก" + stringBuilder +
-                "\nเหตุผล : " + s4 + "\nหมายเหตุ!! \nควรทานยา " + s1 + "ก่อน "+stringBuilder +" อย่างน้อย " + s5 +
-                " นาที\nหรือควรทานยา" + s1 + "หลัง "+stringBuilder+ " อย่างน้อย " + s6 + " นาที");
+                "\nเหตุผล : " + s4 + "\nหมายเหตุ!! \nควรทานยา " + s1 + " ก่อน"+stringBuilder +" อย่างน้อย " + s5 +
+                " นาที\nหรือควรทานยา" + s1 + " หลัง"+stringBuilder+ " อย่างน้อย " + s6 + " นาที");
         builder.setPositiveButton("ยืนยันการรับประทาน", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

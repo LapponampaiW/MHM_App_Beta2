@@ -1,6 +1,7 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by apple on 5/1/16.
@@ -198,9 +199,23 @@ public class MyData {
         String today;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         today = dateFormat.format(System.currentTimeMillis());
-
         return today;
     }
+
+    public String current_DayOfMonth() {
+
+        Calendar calendar = Calendar.getInstance();
+        int i = calendar.get(Calendar.DAY_OF_MONTH);
+
+        return Integer.toString(i);
+    }
+
+    public String current_DayOfWeek() {
+        Calendar calendar = Calendar.getInstance();
+        int i = calendar.get(Calendar.DAY_OF_WEEK);
+        return Integer.toString(i);
+    }
+
 
 
 

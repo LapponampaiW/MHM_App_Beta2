@@ -468,7 +468,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                                             stringBuffer.append(strings[w]);
                                             stringBuffer.append(" ");
 
-                                            stringBufferCode.append(Integer.toString(integers[i]));
+                                            stringBufferCode.append(Integer.toString(integers[i] + 1));
                                             stringBufferCode.append(",");
                                         }
                                     }
@@ -1456,6 +1456,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         */
         //เริ่มจากตรงนี้.... ถ้าไม่ได้เริ่มยาในวันนี้ต้องยังไม่แสดงหนะ
 
+
         myManage.addValueTomainTABLE(string1, string2, string3, string15, string4, string5,string16, string6,string18,string19,string20, string7, string8, string9, string10, string11, string12, string13, string14,"");
 
         //เอาค่า Med_id เป็นตัว query ในตาราง mainTABLE โดยเรียงจาก _id แบบ DESC
@@ -1469,44 +1470,85 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         String[] stringsT7 = myManage.readAllMainTABLE_string(string1, 13); //T7
         String[] stringsT8 = myManage.readAllMainTABLE_string(string1, 14); //T8
 
-        //ต้องทำอย่างไรก็ได้ check ให้ได้ก่อนว่าวันนี้ต้องกินยาหรือไม่
 
-        String currentDay = myManage.currentDay();  //ค่าของวันนี้
+
+
+        //ต้องทำอย่างไรก็ได้ check ให้ได้ก่อนว่าวันนี้ต้องกินยาหรือไม่
+        MyData myData = new MyData();
+        String currentDay = myData.currentDay();  //ค่าของวันนี้
+        String current_DayOfWeek = myData.current_DayOfWeek();  //ค่าเป็นเลข ของ DayofWeek
+        String current_DayOfMonth = myData.current_DayOfMonth(); //ค่าเป็นเลข ของ DayofMonth
+
+        Log.d("queryDay", "current_DayofWeek : " + current_DayOfWeek);
+        Log.d("queryDay", "current_DayofMonth : " + current_DayOfMonth);
+        String addSumTABLE_Today = "N";
+
+        String[] queryDay = string4.split(":");
+        String[] querySelectedDay = null;
+
+        Log.d("queryDay", "queryDay0 : " + queryDay[0]);
+        Log.d("queryDay", "queryDay1 : " + queryDay[1]);
+        if (!queryDay[0].equals("ED")) {
+            querySelectedDay = queryDay[1].split(",");
+            for (int i = 0; i < querySelectedDay.length; i++) {
+                Log.d("queryDay", "querySelectedDay[] : " + querySelectedDay[i]);
+                if (queryDay[0].equals("DOW")) {
+                    if (querySelectedDay[i].equals(current_DayOfWeek)) {
+                        addSumTABLE_Today = "Y";
+                    }
+                }
+                if (queryDay[0].equals("DOM")) {
+                    if (querySelectedDay[i].equals(current_DayOfMonth)) {
+                        addSumTABLE_Today = "Y";
+                    }
+                }
+            }
+
+        } else {
+
+            addSumTABLE_Today = "Y";
+        }
+
+        Log.d("queryDay", "addSumTABLE_Today : " + addSumTABLE_Today);
 
 
         //addValueToSumTable
         //*** ดูว่าเป็นวันนี้หรือป่าว ในวันที่เริ่มต้น
         Log.d("addValueToSumTable", strings1[0] + " " + currentDay);
 
+        if (addSumTABLE_Today.equals("Y")) {
 
-        myManage.addValueToSumTable(strings1[0], currentDay, stringsT1[0], "", "", "");
+            myManage.addValueToSumTable(strings1[0], currentDay, stringsT1[0], "", "", "");
 
-        if (!stringsT2[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0], currentDay, stringsT2[0], "", "", "");
-        }
-        if (!stringsT3[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0], currentDay, stringsT3[0], "", "", "");
-        }
-        if (!stringsT4[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0], currentDay, stringsT4[0], "", "", "");
-        }
-        if (!stringsT5[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0], currentDay, stringsT5[0], "", "", "");
-        }
-        if (!stringsT6[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0], currentDay, stringsT6[0], "", "", "");
-        }
-        if (!stringsT7[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0], currentDay, stringsT7[0], "", "", "");
-        }
-        if (!stringsT8[0].equals("")) {
-            myManage.addValueToSumTable(strings1[0], currentDay, stringsT8[0], "", "", "");
-        }
+            if (!stringsT2[0].equals("")) {
+                myManage.addValueToSumTable(strings1[0], currentDay, stringsT2[0], "", "", "");
+            }
+            if (!stringsT3[0].equals("")) {
+                myManage.addValueToSumTable(strings1[0], currentDay, stringsT3[0], "", "", "");
+            }
+            if (!stringsT4[0].equals("")) {
+                myManage.addValueToSumTable(strings1[0], currentDay, stringsT4[0], "", "", "");
+            }
+            if (!stringsT5[0].equals("")) {
+                myManage.addValueToSumTable(strings1[0], currentDay, stringsT5[0], "", "", "");
+            }
+            if (!stringsT6[0].equals("")) {
+                myManage.addValueToSumTable(strings1[0], currentDay, stringsT6[0], "", "", "");
+            }
+            if (!stringsT7[0].equals("")) {
+                myManage.addValueToSumTable(strings1[0], currentDay, stringsT7[0], "", "", "");
+            }
+            if (!stringsT8[0].equals("")) {
+                myManage.addValueToSumTable(strings1[0], currentDay, stringsT8[0], "", "", "");
+            }
 
 
+
+        }
         Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);
         startActivity(intent);
         finish();
+
     }
 
     private void alertDialogInteraction(String s1, String s2, String s3, String s4) {

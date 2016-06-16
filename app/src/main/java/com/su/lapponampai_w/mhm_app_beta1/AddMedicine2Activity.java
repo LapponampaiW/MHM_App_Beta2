@@ -63,6 +63,10 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             linearLayout5, linearLayout6, linearLayout7, linearLayout8, startDatelin,
             finishDatelin,linearLayoutTimePerDay;
 
+    private ArrayList<String> stringArrayListResultType2 = new ArrayList<String>();
+    private ArrayList<String> stringArrayListResultType2Count = new ArrayList<String>();
+    private ArrayList<String> stringArrayListResultType3 = new ArrayList<String>();
+    private ArrayList<String> stringArrayListResultType3Count = new ArrayList<String>();
 
     private int pickerHour;
     private int pickerMin;
@@ -885,8 +889,10 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     // Click Save
     public void clickSaveAddMedicine(View view) {
 
+
         MyManage myManage = new MyManage(this);
         MyData myData = new MyData();
+
 
         //เริ่มจากตรงนี้นะ
 
@@ -919,8 +925,22 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                 Log.d("filter_drugInteraction", "type 1:");
                 return;
             } else {
+
+
+
+
+                // เริ่มจากตรงนี้
+
+                stringArrayListResultType2.clear(); //ตัวตั้งต้นในการนับ type 2
+                stringArrayListResultType2Count.clear(); //ตัวนับใน type 2
+                stringArrayListResultType3.clear(); //ตัวตั้นต้นในการนับ type 3
+                stringArrayListResultType3Count.clear(); //ตัวนับใน type 3
+
                 for (int i = 0; i < strings0.length; i++) {
+
                     if (strings4[i].equals("2")) {
+
+                        stringArrayListResultType2.add("N"); //เพิ่มข้อมูลในตัวตั้งต้น
 
                         Log.d("filter_drugInteraction", "type2 :" +"_id :" + strings0[i] + "Initial_medicine :" + strings1[i] +
                                 "Medicine1 :" + strings2[i] + "Medicine2 :" + strings3[i] + "Type_interaction :" + strings4[i] +
@@ -934,6 +954,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
                         alertDialogInteraction(string2, strings1[i], stringInteraction2, strings5[i]);
                         Log.d("filter_drugInteraction", "Access via type2");
+
 
                     } else if (strings4[i].equals("3")) {
                         Log.d("filter_drugInteraction", "type 3 :" + strings0[i] + " :" + strings1[i] +
@@ -1048,13 +1069,17 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                                             Log.d("filter_drugInteraction","ก่อนเข้า if : dateCheckMinus1day : " + sMinus1day);
                                             Log.d("filter_drugInteraction", "i ต่างๆ " + i1 + i2 + i3 + i4 + i5 + i6);
 
+                                            //ทำการนับ type 3
+                                            stringArrayListResultType3.add("N"); //นับตัว Reference
+
                                             if ((date1.compareTo(dateCheck) > 0 && date2.compareTo(dateCheck) < 0) ||
                                                     (date1.compareTo(dateCheckPlus1day) > 0 && date2.compareTo(dateCheckPlus1day) < 0)
                                                     || (date1.compareTo(dateCheckMinus1day) > 0 && date2.compareTo(dateCheckMinus1day) < 0)) {
 
-                                                Log.d("filter_drugInteraction","เข้า if!!!!!!!!!!! ");
-                                                alertDialogInteractionType3(string2, strings1[i], stringInteraction2, strings5[i],strings6[i],strings7[i]);
-                                                return;
+                                                Log.d("filter_drugInteraction", "เข้า if!!!!!!!!!!! ");
+                                                alertDialogInteractionType3(string2, strings1[i], stringInteraction2, strings5[i], strings6[i], strings7[i]);
+                                            } else {
+                                                stringArrayListResultType3Count.add("N"); //นับตัว ที่ต้องนับ
                                             }
                                         }
                                     }
@@ -1062,18 +1087,15 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                                 // ได้ค่าเวลามา 2 อันแล้ว ทั้ง upper และ lower
                             }
                         }
-                        addValueTomainTABLEandIntent();
-                    }  //Type 3
-                }
-                return;
-            }
 
+                    }  //Type 3
+                } //ออกจาก loop Type 2 และ Type 3
+
+            }
+            return;
         }
 
-
         addValueTomainTABLEandIntent();
-
-
     } //clickSave
 
     private void alertDialogDuplicate() {
@@ -1093,12 +1115,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     }
 
 
-    private void addValueTomainTABLEandIntent() {
+    private void checkDuplicate() {
         MyManage myManage = new MyManage(this);
-
-
-
-
 
         stringsduplicate = myManage.readAllMainTABLE_string(string1, 0);
         //check Duplicate ว่ามียาตัวเดียวกันอยู่หรือไม่ถ้ามีใน mainTABLE แล้วจะไม่ยอมให้ save
@@ -1157,7 +1175,70 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
         }
 
-        //***ต้องแก้ใหม่ addValueTomainTABLE
+    }
+
+    private void addValueTomainTABLEandIntent() {
+        MyManage myManage = new MyManage(this);
+
+        stringsduplicate = myManage.readAllMainTABLE_string(string1, 0);
+        //check Duplicate ว่ามียาตัวเดียวกันอยู่หรือไม่ถ้ามีใน mainTABLE แล้วจะไม่ยอมให้ save
+        //ให้ไป Delete แล้วเพิ่มข้อมูลเข้าไปใหม่แทน
+
+        if (stringsduplicate.length > 0) {
+            String[] sAmount_tablet = myManage.readAllMainTABLE_string(string1, 15);
+            Log.d("12345", "sAmount_tablet : " + sAmount_tablet[0]);
+            Log.d("12345", "string15 : " + string15);
+            String[] sT1 = myManage.readAllMainTABLE_string(string1, 7);  //T1
+            String[] sT2 = myManage.readAllMainTABLE_string(string1, 8);  //T2
+            String[] sT3 = myManage.readAllMainTABLE_string(string1, 9);  //T3
+            String[] sT4 = myManage.readAllMainTABLE_string(string1, 10);  //T4
+            String[] sT5 = myManage.readAllMainTABLE_string(string1, 11);  //T5
+            String[] sT6 = myManage.readAllMainTABLE_string(string1, 12);  //T6
+            String[] sT7 = myManage.readAllMainTABLE_string(string1, 13);  //T7
+            String[] sT8 = myManage.readAllMainTABLE_string(string1, 14);  //T8
+            String[] sTTime = {string7,string8,string9,string10,string11,string12,string13,string14};
+            for (int i = 0; i < stringsduplicate.length; i++) {
+                if (sAmount_tablet[i].equals(string15)) {
+                    alertDialogDuplicate();
+                    return;  //แปลว่าหยุดการทำงาน เหมือน End sub ใน VB
+                }
+            }
+
+            for(int x = 0; x<sTTime.length;x++) {
+                for (int y = 0;y<stringsduplicate.length;y++) {
+                    if (sTTime[x].equals(sT1[y]) && !sTTime[x].equals("") && !sT1[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT2[y]) && !sTTime[x].equals("") && !sT2[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT3[y]) && !sTTime[x].equals("") && !sT3[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT4[y]) && !sTTime[x].equals("") && !sT4[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT5[y]) && !sTTime[x].equals("") && !sT5[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT6[y]) && !sTTime[x].equals("") && !sT6[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT7[y]) && !sTTime[x].equals("") && !sT7[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    } else if (sTTime[x].equals(sT8[y]) && !sTTime[x].equals("") && !sT8[y].equals("")) {
+                        alertDialogDuplicate();
+                        return;
+                    }
+                }
+            }
+
+
+        }
+
+
+
         myManage.addValueTomainTABLE(string1, string2, string3, string15, string4, string5,string16, string6,string18,string19,string20, string7, string8, string9, string10, string11, string12, string13, string14,"");
 
         //เอาค่า Med_id เป็นตัว query ในตาราง mainTABLE โดยเรียงจาก _id แบบ DESC
@@ -1234,7 +1315,11 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         builder.setPositiveButton("ยืนยันการรับประทาน", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                addValueTomainTABLEandIntent();
+                //addValueTomainTABLEandIntent();
+                stringArrayListResultType2Count.add("N"); //เพิ่มข้อมูลเข้าไปใน stringArray แบบที่ 2
+                checkaddValueTomainTABLEandIntent();
+
+
             }
         });
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -1245,6 +1330,34 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             }
         });
         builder.show();
+
+    }
+
+    private void checkaddValueTomainTABLEandIntent() {
+
+        String[] stringstype2 = new String[stringArrayListResultType2.size()];
+        String[] stringstype2Count = new String[stringArrayListResultType2Count.size()];
+        String[] stringstype3 = new String[stringArrayListResultType3.size()];
+        String[] stringstype3Count = new String[stringArrayListResultType3Count.size()];
+
+        stringstype2 = stringArrayListResultType2.toArray(stringstype2);
+        stringstype2Count = stringArrayListResultType2Count.toArray(stringstype2Count);
+        stringstype3 = stringArrayListResultType3.toArray(stringstype3);
+        stringstype3Count = stringArrayListResultType3Count.toArray(stringstype3Count);
+
+
+
+        Log.d("Flow_Test", "stringstype2.length : " + stringstype2.length);
+        Log.d("Flow_Test", "stringstype2Count : " + stringstype2Count.length);
+        Log.d("Flow_Test", "stringstype3.length : " + stringstype3.length);
+        Log.d("Flow_Test", "stringstype3Count : " + stringstype3Count.length);
+
+        if (stringstype2.length == stringstype2Count.length &&
+                stringstype3.length == stringstype3Count.length) {
+            Log.d("Flow_Test", "เข้า if .... เท่ากันแล้ว");
+            addValueTomainTABLEandIntent();
+
+        }
 
     }
 
@@ -1269,7 +1382,9 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         builder.setPositiveButton("ยืนยันการรับประทาน", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                addValueTomainTABLEandIntent();
+                stringArrayListResultType3Count.add("N"); //นับตัว type 3
+                checkaddValueTomainTABLEandIntent();
+
             }
         });
         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {

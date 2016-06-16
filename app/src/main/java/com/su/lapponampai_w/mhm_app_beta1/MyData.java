@@ -1,7 +1,9 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by apple on 5/1/16.
@@ -214,6 +216,19 @@ public class MyData {
         Calendar calendar = Calendar.getInstance();
         int i = calendar.get(Calendar.DAY_OF_WEEK);
         return Integer.toString(i);
+    }
+
+    public Date stringChangetoDateWithOutTime(String strDate) {
+        //ใช้ได้ในกรณี strDate เป็น dd/MM/yyyy เท่านั้นไม่รวม เวลา
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        try {
+            date = simpleDateFormat.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date;
     }
 
 

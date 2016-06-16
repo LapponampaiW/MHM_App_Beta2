@@ -1475,13 +1475,25 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
         //ต้องทำอย่างไรก็ได้ check ให้ได้ก่อนว่าวันนี้ต้องกินยาหรือไม่
         MyData myData = new MyData();
-        String currentDay = myData.currentDay();  //ค่าของวันนี้
+        String currentDay = myData.currentDay();  //ค่าของวันนี้ & ค่า String ของวันเริ่มต้น คือ string18
+        String addSumTABLE_Today = "N";
+        String startDateToday = "N";
+        // เปลี่ยน String ให้เป็น Date เพื่อเปรียบเทียบ
+        Date dateToday = myData.stringChangetoDateWithOutTime(currentDay);
+        Date dateStartDate = myData.stringChangetoDateWithOutTime(string18);
+
+        if (dateToday.compareTo(dateStartDate) == 0) {
+            startDateToday = "Y";
+        }
+
+
+
         String current_DayOfWeek = myData.current_DayOfWeek();  //ค่าเป็นเลข ของ DayofWeek
         String current_DayOfMonth = myData.current_DayOfMonth(); //ค่าเป็นเลข ของ DayofMonth
 
         Log.d("queryDay", "current_DayofWeek : " + current_DayOfWeek);
         Log.d("queryDay", "current_DayofMonth : " + current_DayOfMonth);
-        String addSumTABLE_Today = "N";
+
 
         String[] queryDay = string4.split(":");
         String[] querySelectedDay = null;
@@ -1510,13 +1522,13 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         }
 
         Log.d("queryDay", "addSumTABLE_Today : " + addSumTABLE_Today);
-
+        Log.d("queryDay", "startDateToday : " + startDateToday);
 
         //addValueToSumTable
         //*** ดูว่าเป็นวันนี้หรือป่าว ในวันที่เริ่มต้น
         Log.d("addValueToSumTable", strings1[0] + " " + currentDay);
 
-        if (addSumTABLE_Today.equals("Y")) {
+        if (addSumTABLE_Today.equals("Y") && startDateToday.equals("Y")) {
 
             myManage.addValueToSumTable(strings1[0], currentDay, stringsT1[0], "", "", "");
 

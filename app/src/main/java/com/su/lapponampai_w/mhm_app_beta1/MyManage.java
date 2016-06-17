@@ -377,7 +377,7 @@ public class MyManage {
 
     public String[] readAllMainTABLE_Full(int intColumn) {
         String[] strREAD = null;
-        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null,"_id DESC");
+        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null,"_id ASC");
 
         if (cursor != null) {
             cursor.moveToFirst();
@@ -385,7 +385,7 @@ public class MyManage {
             for(int i = 0;i<cursor.getCount();i++) {
                 switch (intColumn) {
                     case (0):
-                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
+                            strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
                         break;
                     case (1):
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_Med_id));

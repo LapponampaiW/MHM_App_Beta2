@@ -1500,6 +1500,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
         Log.d("queryDay", "queryDay0 : " + queryDay[0]);
         Log.d("queryDay", "queryDay1 : " + queryDay[1]);
+
         if (!queryDay[0].equals("ED")) {
             querySelectedDay = queryDay[1].split(",");
             for (int i = 0; i < querySelectedDay.length; i++) {

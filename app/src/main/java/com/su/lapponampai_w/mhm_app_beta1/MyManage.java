@@ -49,10 +49,10 @@ public class MyManage {
     private static final String mcolumn_generic_name3 = "Generic_name3";
     private static final String mcolumn_dosage3 = "Dosage3";
     private static final String mcolumn_uom3 = "UOM3";
+    private static final String mcolumn_ea = "EA";
     private static final String mcolumn_generic_name4 = "Generic_name4";
     private static final String mcolumn_dosage4 = "Dosage4";
     private static final String mcolumn_uom4 = "UOM4";
-    private static final String mcolumn_ea = "EA";
     private static final String mcolumn_amount_tablet = "Amount_tablet";
     private static final String mcolumn_which_date_d = "Which_Date_D";
     private static final String mcolumn_appearance = "Appearance";
@@ -114,9 +114,15 @@ public class MyManage {
     private static final String mainTABLE = "mainTABLE";
     private static final String mcolumn_Med_id = "Med_id";
     private static final String mcolumn_generic_line = "Generic_line";
+    private static final String mcolumn_Main_pharmaco = "pharmaco";
+    private static final String mcolumn_startdate = "StartDate";
+    private static final String mcolumn_finishdate = "FinishDate";
+    private static final String mcolumn_prn = "PRN";
+    private static final String mcolumn_datetimecanceled = "DateTimeCanceled";
     private static final String[] column_mainTABLE = {mcolumn_id,mcolumn_Med_id,mcolumn_trade_name,
-            mcolumn_generic_line,mcolumn_which_date_d,mcolumn_amount_tablet,mcolumn_appearance,mcolumn_pharmaco,mcolumn_t1,
-            mcolumn_t2,mcolumn_t3,mcolumn_t4,mcolumn_t5,mcolumn_t6,mcolumn_t7,mcolumn_t8};
+            mcolumn_generic_line,mcolumn_amount_tablet,mcolumn_which_date_d,mcolumn_appearance,mcolumn_ea,mcolumn_Main_pharmaco,
+            mcolumn_startdate,mcolumn_finishdate,mcolumn_prn,mcolumn_t1,
+            mcolumn_t2,mcolumn_t3,mcolumn_t4,mcolumn_t5,mcolumn_t6,mcolumn_t7,mcolumn_t8,mcolumn_datetimecanceled};
 
     //sumTABLE
     private static final String sum_table = "sumTABLE";
@@ -367,6 +373,93 @@ public class MyManage {
         cursor.close();
 
             return resultStrings;
+    }
+
+    public String[] readAllMainTABLE_Full(int intColumn) {
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null,"_id DESC");
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for(int i = 0;i<cursor.getCount();i++) {
+                switch (intColumn) {
+                    case (0):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
+                        break;
+                    case (1):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_Med_id));
+                        break;
+                    case (2):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_trade_name));
+                        break;
+                    case (3):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_line));
+                        break;
+                    case (4):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_amount_tablet));
+                        break;
+                    case (5):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_which_date_d));
+                        break;
+                    case (6):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_appearance));
+                        break;
+                    case (7):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_ea));
+                        break;
+                    case (8):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_Main_pharmaco));
+                        break;
+                    case (9):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_startdate)); //StartDate
+                        break;
+                    case (10):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_finishdate)); //FinishDate
+                        break;
+                    case (11):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_prn)); //PRN
+                        break;
+                    case (12):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t1));
+                        break;
+                    case (13):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t2));
+                        break;
+                    case (14):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t3));
+                        break;
+                    case (15):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t4));
+                        break;
+                    case (16):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t5));
+                        break;
+                    case (17):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t6));
+                        break;
+                    case (18):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t7));
+                        break;
+                    case (19):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_t8));
+                        break;
+                    case (20):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_datetimecanceled)); //DateTimeCanceled
+                        break;
+                    default:
+                        break;
+                }
+                //strREAD[i] = cursor.getString(intColumn);
+                //0 _id ,1 Med_id, 2 Trade_name
+                //3 Generic_Line ,4 Amount_tablet , 5 Which_Date_D
+                //6 Appearance ,7 EA ,8 pharmaco ,9 StartDate
+                //10 StopDate ,11 PRN ,12 - 19 T1-T8 , 20 DateTimeCanceled
+                cursor.moveToNext();
+            }
+
+        }
+        return strREAD;
     }
 
     public String filterdisplayTABLE_MAEB_By_Position(String position) {

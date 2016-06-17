@@ -173,6 +173,26 @@ public class MyManage {
 
     } //Constructor
 
+    //Read All sumTABLE
+    public String[] readAllsumTABLE_Full(int intColumn) {
+        String[] strREAD = null;
+
+        Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE, null, null, null, null, "DateRef DESC");
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for (int i=0; i<cursor.getCount();i++) {
+                strREAD[i] = cursor.getString(intColumn);
+                cursor.moveToNext();
+            } //for
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+        return strREAD;
+    }
+
     //Read All displayTABLE
     public String[] readAlldisplayTABLE(int intColumn) {
         String[] strREAD = null;
@@ -378,14 +398,14 @@ public class MyManage {
     public String[] readAllMainTABLE_Full(int intColumn) {
         String[] strREAD = null;
         Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null,"_id ASC");
-
-        if (cursor != null) {
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
             cursor.moveToFirst();
             strREAD = new String[cursor.getCount()];
-            for(int i = 0;i<cursor.getCount();i++) {
+            for (int i = 0; i < cursor.getCount(); i++) {
                 switch (intColumn) {
                     case (0):
-                            strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
                         break;
                     case (1):
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_Med_id));
@@ -458,6 +478,9 @@ public class MyManage {
                 cursor.moveToNext();
             }
 
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
         }
         return strREAD;
     }

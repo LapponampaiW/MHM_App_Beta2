@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -35,9 +36,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
     //Explicit
+    public static Activity activityMainActivity;
 
     //Widget ต่างๆ
     ImageButton imageButtonPop1, imageButtonPop2, imageButtonPop3, imageButtonPop4, imageButtonPop5, imageButtonPop6;
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        activityMainActivity = this;
 
         //Bind Widget
         bindWidget();
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         clickImagepill();
 
     } //Main method
+
 
     private void updatesumTABLE00() {
         //กำลังจะทำการ Update ที่เวลา 00:00:00:01 ของทุกๆวัน

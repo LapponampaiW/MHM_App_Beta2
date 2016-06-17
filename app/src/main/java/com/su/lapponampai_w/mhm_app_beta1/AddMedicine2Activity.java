@@ -1393,6 +1393,10 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
 
     private void addValueTomainTABLEandIntent() {
+
+        //ปิด 2 Activity ด้านหน้า
+        MainActivity.activityMainActivity.finish();
+        AddMedicineActivity.activityAddMedicineActivity.finish();
         MyManage myManage = new MyManage(this);
 
         /*
@@ -1531,7 +1535,9 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
         if (addSumTABLE_Today.equals("Y") && startDateToday.equals("Y")) {
 
-            myManage.addValueToSumTable(strings1[0], currentDay, stringsT1[0], "", "", "");
+            if (!stringsT1[0].equals("")) {
+                myManage.addValueToSumTable(strings1[0], currentDay, stringsT1[0], "", "", "");
+            }
 
             if (!stringsT2[0].equals("")) {
                 myManage.addValueToSumTable(strings1[0], currentDay, stringsT2[0], "", "", "");
@@ -1560,6 +1566,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         }
         Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);
         startActivity(intent);
+        //ปิด Activity สุดท้าย
         finish();
 
     }

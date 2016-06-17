@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 public class AddMedicineActivity extends AppCompatActivity {
 
     //Explicit
+    public static Activity activityAddMedicineActivity;
     String stringeditTextAddTG;
     MyManage myManage;
 
@@ -45,6 +47,8 @@ public class AddMedicineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_medicine);
+
+        activityAddMedicineActivity = this;
 
         myManage = new MyManage(this);
 

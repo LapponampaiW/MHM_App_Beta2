@@ -131,8 +131,7 @@ public class MainActivity extends AppCompatActivity {
         //alarmManager.set(AlarmManager.RTC_WAKEUP, myCalendar1.getTimeInMillis(),pendingIntent); //Wakeuppppppp
 
         ((AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE)).setRepeating(1,
-                myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY,
-                pendingIntent);
+                myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
 
     }

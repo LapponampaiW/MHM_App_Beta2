@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.ListPopupWindow;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -33,6 +34,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.StringTokenizer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
     //Widget ต่างๆ
     ImageButton imageButtonPop1, imageButtonPop2, imageButtonPop3, imageButtonPop4, imageButtonPop5, imageButtonPop6;
     ImageButton imageCalendar;
-    ImageButton imageButtonM1,imageButtonM2,imageButtonM3,imageButtonM4,
-            imageButtonM5,imageButtonM6,imageButtonM7,imageButtonM8,imageButtonM9,
-            imageButtonA1,imageButtonA2,imageButtonA3,imageButtonA4,imageButtonA5,
-            imageButtonA6,imageButtonA7,imageButtonA8,imageButtonA9,imageButtonE1,
-            imageButtonE2,imageButtonE3,imageButtonE4,imageButtonE5,imageButtonE6,
-            imageButtonE7,imageButtonE8,imageButtonE9,imageButtonB1,imageButtonB2,
-            imageButtonB3,imageButtonB4,imageButtonB5,imageButtonB6,imageButtonB7,
-            imageButtonB8,imageButtonB9;
+    ImageButton imageButtonM1, imageButtonM2, imageButtonM3, imageButtonM4,
+            imageButtonM5, imageButtonM6, imageButtonM7, imageButtonM8, imageButtonM9,
+            imageButtonA1, imageButtonA2, imageButtonA3, imageButtonA4, imageButtonA5,
+            imageButtonA6, imageButtonA7, imageButtonA8, imageButtonA9, imageButtonE1,
+            imageButtonE2, imageButtonE3, imageButtonE4, imageButtonE5, imageButtonE6,
+            imageButtonE7, imageButtonE8, imageButtonE9, imageButtonB1, imageButtonB2,
+            imageButtonB3, imageButtonB4, imageButtonB5, imageButtonB6, imageButtonB7,
+            imageButtonB8, imageButtonB9;
     TextView textViewAdd, textViewMainDate, textViewMedication, textViewNews;
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
@@ -60,12 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
     String[] stringsClick_Position, stringsClick_Main_id, stringsClick_TimeRef,
             stringsClick_Appearance; //clickTakeMedicine
-    String[] stringsMainTABLE_TradeName,stringsMainTABLE_AmountTablet,stringsMainTABLE_Main_id; //clickTakeMedicine
+    String[] stringsMainTABLE_TradeName, stringsMainTABLE_AmountTablet, stringsMainTABLE_Main_id; //clickTakeMedicine
     String strResult_Position, strResult_Main_id, strResult_TimeRef,
-            strResult_Appearance,strResult_AmountTablet,strResult_Tradename; //clickTakeMedicine
-
-
-
+            strResult_Appearance, strResult_AmountTablet, strResult_Tradename; //clickTakeMedicine
 
 
     @Override
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         bindWidget();
 
         //Update sumTABLE 0:00 (ปิดไว้ก่อนยังไม่ดีเท่าที่ควร)
-        updatesumTABLE00();
+        //updatesumTABLE00();
 
         //Notification from SQLite
         //notificationFormSQLite();
@@ -105,33 +104,34 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void updatesumTABLE00() {
-        //กำลังจะทำการ Update ที่เวลา 00:00:00:01 ของทุกๆวัน
+
+
+        //กำลังจะทำการ Update ที่เวลา 00:00:00:10 ของทุกๆวัน
         Calendar calendar = Calendar.getInstance();
         Calendar myCalendar1 = (Calendar) calendar.clone();
 
         myCalendar1.set(Calendar.HOUR_OF_DAY, 0);
-        myCalendar1.set(Calendar.MINUTE,0);
+        myCalendar1.set(Calendar.MINUTE, 5);
         myCalendar1.set(Calendar.SECOND, 0);
-        myCalendar1.set(Calendar.MILLISECOND, 10);  //อย่างนี้คือการเตือนของวันที่แล้ว
+        myCalendar1.set(Calendar.MILLISECOND, 10);
 
-
-
-        Log.d("UpdatesumTABLE", "ทำ Alarm ขึ้นเองได้แล้ว"+ myCalendar1.getTime().toString());
 
         Random random = new Random();
         int myRandom = random.nextInt(1000);
 
-        Intent intent = new Intent(getBaseContext(),DailyUpdateReceiver.class);
+        Intent intent = new Intent(getBaseContext(), DailyUpdateReceiver.class);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
-                myRandom,intent,0);
+                myRandom, intent, 0);
 
 
-        //AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        //alarmManager.set(AlarmManager.RTC_WAKEUP, myCalendar1.getTimeInMillis(),pendingIntent); //Wakeuppppppp
-
-        ((AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE)).setRepeating(1,
-                myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        //((AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE)).setRepeating(1,myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+        //alarmManager.setRepeating(1, myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        //alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,myCalendar1.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+        //alarmManager.setInexactRepeating(AlarmManager.RTC,myCalendar1.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, myCalendar1.getTimeInMillis(), pendingIntent); //Wakeuppppppp
+        Log.d("UpdatesumTABLE", "ทำ Alarm ขึ้นเองได้แล้ว" + myCalendar1.getTime().toString());
 
 
     }
@@ -159,10 +159,10 @@ public class MainActivity extends AppCompatActivity {
 
             //คลิก!!! จะทานยา
             private void clickTakeMedicine(String maeb) {
-                Toast.makeText(getBaseContext(),"เริ่ม " + maeb,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "เริ่ม " + maeb, Toast.LENGTH_SHORT).show();
 
 
-                for(int i = 0;i<stringsClick_Position.length;i++) {
+                for (int i = 0; i < stringsClick_Position.length; i++) {
                     if (stringsClick_Position[i].equals(maeb)) {
                         strResult_Position = stringsClick_Position[i];
                         strResult_Main_id = stringsClick_Main_id[i];  //ต้องเอา Main_id ไปทำต่อ
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                for(int i = 0;i<stringsMainTABLE_Main_id.length;i++) {
+                for (int i = 0; i < stringsMainTABLE_Main_id.length; i++) {
                     if (stringsMainTABLE_Main_id[i].equals(strResult_Main_id)) {
                         strResult_Tradename = stringsMainTABLE_TradeName[i];
                         strResult_AmountTablet = stringsMainTABLE_AmountTablet[i];
@@ -179,11 +179,11 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                Log.d("clickTakeMedicine",strResult_Position +" "+strResult_Main_id +
-                        " "+ strResult_TimeRef +" " + strResult_Appearance +" "+
-                        strResult_Tradename +" " + strResult_AmountTablet);
+                Log.d("clickTakeMedicine", strResult_Position + " " + strResult_Main_id +
+                        " " + strResult_TimeRef + " " + strResult_Appearance + " " +
+                        strResult_Tradename + " " + strResult_AmountTablet);
 
-                Intent intent = new Intent(MainActivity.this,TakeSkipMedicineActivity.class);
+                Intent intent = new Intent(MainActivity.this, TakeSkipMedicineActivity.class);
 
                 //ทำการ copy ข้อมูลไป TakeSkipMedicineActivity
                 //intent.putExtra("Med_id",strings_receiver[0]);
@@ -198,14 +198,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
     } //clickImagepill
 
     private void click_News() {
         textViewNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,NewsActivity.class));
+                startActivity(new Intent(MainActivity.this, NewsActivity.class));
             }
         });
     }
@@ -214,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
         textViewMedication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,MedicationListActivity.class));
+                startActivity(new Intent(MainActivity.this, MedicationListActivity.class));
             }
         });
     }
@@ -233,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
         stringsEndTime = myManage.readTimeTABLE(3);
         stringstimeTABLE = new String[4];
 
-        for(int x = 0; x < 4;x++) {
+        for (int x = 0; x < 4; x++) {
             stringstimeTABLE[x] = stringsInterval[x] + "(" + stringsStartTime[x] + " - " + stringsEndTime[x] + ")";
         }
 
@@ -247,78 +246,78 @@ public class MainActivity extends AppCompatActivity {
 
         MyManage myManage = new MyManage(this);
 
-        String[] strings_Main_id  = myManage.filter_sumTABLE__by_Date(date_specific,1);  //ได้ Main_id จาก sumTABLE
-        String[] strings_TimeRef = myManage.filter_sumTABLE__by_Date(date_specific,3);  //ได้ Time_Ref จาก sumTABLE
+        String[] strings_Main_id = myManage.filter_sumTABLE__by_Date(date_specific, 1);  //ได้ Main_id จาก sumTABLE
+        String[] strings_TimeRef = myManage.filter_sumTABLE__by_Date(date_specific, 3);  //ได้ Time_Ref จาก sumTABLE
         String[] strings_Sum_id = myManage.filter_sumTABLE__by_Date(date_specific, 0); //ได้ sum_id จาก sumTABLE
-        String[] strings_TimeCheck = myManage.filter_sumTABLE__by_Date(date_specific,5 ); //ได้ TimeCheck จาก sumTABLE
+        String[] strings_TimeCheck = myManage.filter_sumTABLE__by_Date(date_specific, 5); //ได้ TimeCheck จาก sumTABLE
         String[] strings_Appearance = new String[strings_Main_id.length];
 
         if (strings_Main_id.length != 0) {
             Log.d("ContentMainActivity", strings_Main_id[0] + strings_TimeRef[0]);
 
-        for(int i =0 ;i<strings_Main_id.length;i++) {
+            for (int i = 0; i < strings_Main_id.length; i++) {
 
-            String[] strings_medTABLE = myManage.filter_mainTABLE_by_id_Full(strings_Main_id[i]);
-            strings_Appearance[i] = strings_medTABLE[6];
-        }
+                String[] strings_medTABLE = myManage.filter_mainTABLE_by_id_Full(strings_Main_id[i]);
+                strings_Appearance[i] = strings_medTABLE[6];
+            }
 
-        MyData myData = new MyData();
+            MyData myData = new MyData();
             int[] intsNotTakeYet = myData.translate_Small_Appearance(strings_Appearance); //รับค่ารูปจาก mainTABLE แล้วเปลี่ยนเป็นขนาดเล็ก
             int[] intsTake = myData.translate_Smallate_Appearance(strings_Appearance);
 
-        //เริ่มทำการใส่ภาพของใน MainActivity
+            //เริ่มทำการใส่ภาพของใน MainActivity
 
-        String strDayM1 = date_specific;
-        String strTimeM1 = stringsStartTime[0];
-        String strTimeM2 = stringsEndTime[0];
+            String strDayM1 = date_specific;
+            String strTimeM1 = stringsStartTime[0];
+            String strTimeM2 = stringsEndTime[0];
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        Date convertedDateMorning1 = new Date();
-        Date convertedDateMorning2 = new Date();
-        Date convertedDateAfternoon1 = new Date();
-        Date convertedDateAfternoon2 = new Date();
-        Date convertedDateEvening1 = new Date();
-        Date convertedDateEvening2 = new Date();
-        Date convertedBedtime1 = new Date();
-        Date convertedBedtime2 = new Date();
-        Date t = new Date();
-        try {
-            convertedDateMorning1 = dateFormat.parse(date_specific + " " + stringsStartTime[0]);
-            convertedDateMorning2 = dateFormat.parse(date_specific + " " + stringsEndTime[0]);
-            convertedDateAfternoon1 = dateFormat.parse(date_specific + " " + stringsStartTime[1]);
-            convertedDateAfternoon2 = dateFormat.parse(date_specific + " " + stringsEndTime[1]);
-            convertedDateEvening1 = dateFormat.parse(date_specific + " " + stringsStartTime[2]);
-            convertedDateEvening2 = dateFormat.parse(date_specific + " " + stringsEndTime[2]);
-            convertedBedtime1 = dateFormat.parse(date_specific + " " + stringsStartTime[3]);
-            convertedBedtime2 = dateFormat.parse(date_specific + " " + stringsEndTime[3]);
-            t = dateFormat.parse(date_specific + " " + strings_TimeRef[0]);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            Date convertedDateMorning1 = new Date();
+            Date convertedDateMorning2 = new Date();
+            Date convertedDateAfternoon1 = new Date();
+            Date convertedDateAfternoon2 = new Date();
+            Date convertedDateEvening1 = new Date();
+            Date convertedDateEvening2 = new Date();
+            Date convertedBedtime1 = new Date();
+            Date convertedBedtime2 = new Date();
+            Date t = new Date();
+            try {
+                convertedDateMorning1 = dateFormat.parse(date_specific + " " + stringsStartTime[0]);
+                convertedDateMorning2 = dateFormat.parse(date_specific + " " + stringsEndTime[0]);
+                convertedDateAfternoon1 = dateFormat.parse(date_specific + " " + stringsStartTime[1]);
+                convertedDateAfternoon2 = dateFormat.parse(date_specific + " " + stringsEndTime[1]);
+                convertedDateEvening1 = dateFormat.parse(date_specific + " " + stringsStartTime[2]);
+                convertedDateEvening2 = dateFormat.parse(date_specific + " " + stringsEndTime[2]);
+                convertedBedtime1 = dateFormat.parse(date_specific + " " + stringsStartTime[3]);
+                convertedBedtime2 = dateFormat.parse(date_specific + " " + stringsEndTime[3]);
+                t = dateFormat.parse(date_specific + " " + strings_TimeRef[0]);
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
-        //แค่เช็ค Log.d ดูว่าถูกต้อง
-        String s = dateFormat.format(convertedDateMorning1);
-        String s1 = dateFormat.format(convertedDateMorning2);
-        String s2 = dateFormat.format(convertedDateAfternoon1);
-        String s3 = dateFormat.format(convertedDateAfternoon2);
-        String s4 = dateFormat.format(convertedDateEvening1);
-        String s5 = dateFormat.format(convertedDateEvening2);
-        String s6 = dateFormat.format(convertedBedtime1);
-        String s7 = dateFormat.format(convertedBedtime2);
-        String st  = dateFormat.format(t);
-        Log.d("abc", "st :" + st);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
 
-        if (t.after(convertedDateMorning1)) {
-            Log.d("abc",st + " ตามหลัง " + s);
-        }
+            //แค่เช็ค Log.d ดูว่าถูกต้อง
+            String s = dateFormat.format(convertedDateMorning1);
+            String s1 = dateFormat.format(convertedDateMorning2);
+            String s2 = dateFormat.format(convertedDateAfternoon1);
+            String s3 = dateFormat.format(convertedDateAfternoon2);
+            String s4 = dateFormat.format(convertedDateEvening1);
+            String s5 = dateFormat.format(convertedDateEvening2);
+            String s6 = dateFormat.format(convertedBedtime1);
+            String s7 = dateFormat.format(convertedBedtime2);
+            String st = dateFormat.format(t);
+            Log.d("abc", "st :" + st);
 
-        Log.d("abc", s + " " + s1);
-        Log.d("abc", s2 + " " + s3);
-        Log.d("abc", s4 + " " + s5);
-        Log.d("abc", s6 + " " + s7);  // ลบได้ต้องแต่ //แค่เช็ค ถึงบรรทัดนี้
+
+            if (t.after(convertedDateMorning1)) {
+                Log.d("abc", st + " ตามหลัง " + s);
+            }
+
+            Log.d("abc", s + " " + s1);
+            Log.d("abc", s2 + " " + s3);
+            Log.d("abc", s4 + " " + s5);
+            Log.d("abc", s6 + " " + s7);  // ลบได้ต้องแต่ //แค่เช็ค ถึงบรรทัดนี้
 
             Date time = new Date();
             //ลบข้อมูลทั้งหมดใน displayTABLE
@@ -326,7 +325,7 @@ public class MainActivity extends AppCompatActivity {
             sqLiteDatabase.delete("displayTABLE", null, null);
 
 
-            for(int z = 0; z < strings_TimeRef.length;z++) {
+            for (int z = 0; z < strings_TimeRef.length; z++) {
                 String strValue;
                 try {
                     time = dateFormat.parse(date_specific + " " + strings_TimeRef[z]);
@@ -349,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
                             imageButtonM1.setImageResource(intsTake[z]);
                             imageButtonM1.setVisibility(View.VISIBLE);
                         }
-                            // Non Value เติมค่า M1
+                        // Non Value เติมค่า M1
                     } else if (strValue.equals("M1")) {
                         myManage.adddisplayTABLEValue("M2", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z]);
                         if (strings_TimeCheck[z].equals("")) {
@@ -770,9 +769,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-
         }
-
 
 
     }
@@ -782,7 +779,7 @@ public class MainActivity extends AppCompatActivity {
         imageCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,Calendartest.class));
+                startActivity(new Intent(MainActivity.this, Calendartest.class));
             }
         });
     }
@@ -796,8 +793,8 @@ public class MainActivity extends AppCompatActivity {
                 layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                 ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popup_main_add, null);
 
-                popupWindow = new PopupWindow(container, ListPopupWindow.WRAP_CONTENT,ListPopupWindow.WRAP_CONTENT,true);
-                popupWindow.showAtLocation(relativeLayout,Gravity.BOTTOM,0,0);
+                popupWindow = new PopupWindow(container, ListPopupWindow.WRAP_CONTENT, ListPopupWindow.WRAP_CONTENT, true);
+                popupWindow.showAtLocation(relativeLayout, Gravity.BOTTOM, 0, 0);
 
                 container.setOnTouchListener(new View.OnTouchListener() {
                     @Override
@@ -812,7 +809,7 @@ public class MainActivity extends AppCompatActivity {
                 imageButtonPop1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(MainActivity.this,AddMedicineActivity.class));
+                        startActivity(new Intent(MainActivity.this, AddMedicineActivity.class));
                     }
                 });
 
@@ -833,7 +830,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Read sumTABLE
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME,
-                MODE_PRIVATE,null); //เชื่อมต่อกับ SQLiteDatabase
+                MODE_PRIVATE, null); //เชื่อมต่อกับ SQLiteDatabase
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM sumTABLE", null);
         cursor.moveToFirst();
 
@@ -844,7 +841,7 @@ public class MainActivity extends AppCompatActivity {
         String[] hrStrings = new String[cursor.getCount()];
         String[] minStrings = new String[cursor.getCount()];
 
-        for (int i=0;i<cursor.getCount();i++) {
+        for (int i = 0; i < cursor.getCount(); i++) {
 
             dateStrings[i] = cursor.getString(2);
             String[] strings = dateStrings[i].split("/");
@@ -879,7 +876,7 @@ public class MainActivity extends AppCompatActivity {
         Date date = new Date();
         String currentDate = dateFormat.format(date);
 
-        Intent intent = new Intent(getBaseContext(),DailyUpdateReceiver.class);
+        Intent intent = new Intent(getBaseContext(), DailyUpdateReceiver.class);
         //Intent intent = new Intent(getBaseContext(),AlarmReceiver.class);
 
 
@@ -893,11 +890,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
-                myRandom,intent,0);
+                myRandom, intent, 0);
 
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, myCalendar1.getTimeInMillis(),pendingIntent); //Wakeuppppppp
+        alarmManager.set(AlarmManager.RTC_WAKEUP, myCalendar1.getTimeInMillis(), pendingIntent); //Wakeuppppppp
 
     }
 

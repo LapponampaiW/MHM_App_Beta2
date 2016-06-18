@@ -1,8 +1,11 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -29,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 public class AddMedicine2Activity extends AppCompatActivity implements
         TimePickerDialog.OnTimeSetListener,DatePickerDialog.OnDateSetListener{
@@ -1356,13 +1360,14 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                                             int i6 = date2.compareTo(dateCheckMinus1day); //ลบได้
 
 
-                                            Log.d("filter_drugInteraction","ก่อนเข้า if : dateCheckPlus1day : " + sPlus1day);
-                                            Log.d("filter_drugInteraction", "ก่อนเข้า if : dateCheck : " + sDate);
-                                            Log.d("filter_drugInteraction","ก่อนเข้า if : dateCheckMinus1day : " + sMinus1day);
-                                            Log.d("filter_drugInteraction", "i ต่างๆ " + i1 + i2 + i3 + i4 + i5 + i6);
+                                            //Log.d("filter_drugInteraction","ก่อนเข้า if : dateCheckPlus1day : " + sPlus1day);
+                                            //Log.d("filter_drugInteraction", "ก่อนเข้า if : dateCheck : " + sDate);
+                                            //Log.d("filter_drugInteraction","ก่อนเข้า if : dateCheckMinus1day : " + sMinus1day);
+                                            //Log.d("filter_drugInteraction", "i ต่างๆ " + i1 + i2 + i3 + i4 + i5 + i6);
 
                                             //ทำการนับ type 3
                                             stringArrayListResultType3.add("N"); //นับตัว Reference
+                                            //Log.d("filter_drugInteraction", "นับType 3 " );
 
                                             if ((date1.compareTo(dateCheck) > 0 && date2.compareTo(dateCheck) < 0) ||
                                                     (date1.compareTo(dateCheckPlus1day) > 0 && date2.compareTo(dateCheckPlus1day) < 0)
@@ -1372,6 +1377,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                                                 alertDialogInteractionType3(string2, strings1[i], stringInteraction2, strings5[i], strings6[i], strings7[i]);
                                             } else {
                                                 stringArrayListResultType3Count.add("N"); //นับตัว ที่ต้องนับ
+                                                //Log.d("filter_drugInteraction", "นับType 3 ใช้ " );
                                             }
                                         }
                                     }
@@ -1384,6 +1390,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                 } //ออกจาก loop Type 2 และ Type 3
 
             }
+            checkaddValueTomainTABLEandIntent();
             return;
         }
 
@@ -1399,65 +1406,15 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         AddMedicineActivity.activityAddMedicineActivity.finish();
         MyManage myManage = new MyManage(this);
 
-        /*
-        stringsduplicate = myManage.readAllMainTABLE_string(string1, 0);
-        //check Duplicate ว่ามียาตัวเดียวกันอยู่หรือไม่ถ้ามีใน mainTABLE แล้วจะไม่ยอมให้ save
-        //ให้ไป Delete แล้วเพิ่มข้อมูลเข้าไปใหม่แทน
 
-        if (stringsduplicate.length > 0) {
-            String[] sAmount_tablet = myManage.readAllMainTABLE_string(string1, 15);
-            Log.d("12345", "sAmount_tablet : " + sAmount_tablet[0]);
-            Log.d("12345", "string15 : " + string15);
-            String[] sT1 = myManage.readAllMainTABLE_string(string1, 7);  //T1
-            String[] sT2 = myManage.readAllMainTABLE_string(string1, 8);  //T2
-            String[] sT3 = myManage.readAllMainTABLE_string(string1, 9);  //T3
-            String[] sT4 = myManage.readAllMainTABLE_string(string1, 10);  //T4
-            String[] sT5 = myManage.readAllMainTABLE_string(string1, 11);  //T5
-            String[] sT6 = myManage.readAllMainTABLE_string(string1, 12);  //T6
-            String[] sT7 = myManage.readAllMainTABLE_string(string1, 13);  //T7
-            String[] sT8 = myManage.readAllMainTABLE_string(string1, 14);  //T8
-            String[] sTTime = {string7,string8,string9,string10,string11,string12,string13,string14};
-            for (int i = 0; i < stringsduplicate.length; i++) {
-                if (sAmount_tablet[i].equals(string15)) {
-                    alertDialogDuplicate();
-                    return;  //แปลว่าหยุดการทำงาน เหมือน End sub ใน VB
-                }
-            }
-
-            for(int x = 0; x<sTTime.length;x++) {
-                for (int y = 0;y<stringsduplicate.length;y++) {
-                    if (sTTime[x].equals(sT1[y]) && !sTTime[x].equals("") && !sT1[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT2[y]) && !sTTime[x].equals("") && !sT2[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT3[y]) && !sTTime[x].equals("") && !sT3[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT4[y]) && !sTTime[x].equals("") && !sT4[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT5[y]) && !sTTime[x].equals("") && !sT5[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT6[y]) && !sTTime[x].equals("") && !sT6[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT7[y]) && !sTTime[x].equals("") && !sT7[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT8[y]) && !sTTime[x].equals("") && !sT8[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    }
-                }
-            }
-
-
+        String[] stringsREAD_mainTABLE = myManage.readAllMainTABLE_Full(0); //เอาค่ามาซักค่านึกไว้ check ว่า mainTABLE มียาหรือไม่
+        String[] stringsREAD_sumTABLE = myManage.readAllsumTABLE_Full(0);
+        if (stringsREAD_mainTABLE[0].equals("") && stringsREAD_sumTABLE[0].equals("")) {
+            checkDailyUpdateReceiver();
         }
 
-        */
+
+
         //เริ่มจากตรงนี้.... ถ้าไม่ได้เริ่มยาในวันนี้ต้องยังไม่แสดงหนะ
 
 
@@ -1570,6 +1527,34 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         finish();
 
     }
+
+    private void checkDailyUpdateReceiver() {
+
+        Calendar calendar = Calendar.getInstance();
+        Calendar myCalendar1 = (Calendar) calendar.clone();
+
+        myCalendar1.set(Calendar.HOUR_OF_DAY, 0);
+        myCalendar1.set(Calendar.MINUTE, 0);
+        myCalendar1.set(Calendar.SECOND, 0);
+        myCalendar1.set(Calendar.MILLISECOND, 10);
+
+
+        Random random = new Random();
+        int myRandom = random.nextInt(1000);
+
+        Intent intent = new Intent(getBaseContext(), DailyUpdateReceiver.class);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
+                myRandom, intent, 0);
+
+
+        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+        alarmManager.setRepeating(1, myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+
+        Log.d("UpdatesumTABLE", "ทำ Alarm ขึ้นเองได้แล้ว" + myCalendar1.getTime().toString());
+        Toast.makeText(getBaseContext(),"เริ่มทำการ BroadCAst",Toast.LENGTH_LONG).show();
+
+    } //ทำการ BroadCast (checkDailyUpdateReceiver)
 
     private void alertDialogInteraction(String s1, String s2, String s3, String s4) {
 

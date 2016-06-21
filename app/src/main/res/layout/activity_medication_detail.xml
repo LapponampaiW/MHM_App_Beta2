@@ -1,21 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.su.lapponampai_w.mhm_app_beta1.MedicationDetailActivity">
+    android:layout_height="wrap_content"
+    tools:context="com.su.lapponampai_w.mhm_app_beta1.MedicationDetailActivity"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MedicationDetailActivity"
-        android:id="@+id/textView18"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="213dp"
-        android:textSize="50sp" />
-</RelativeLayout>
+        android:background="#6643ff">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton7"
+            android:src="@drawable/btn_menu"
+            android:background="#00000000"
+            android:layout_weight="10"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:text="MHM Application"
+            android:id="@+id/textView19"
+            android:layout_weight="200"
+            android:textColor="#ffffff"
+            android:textSize="27sp"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageButton8"
+            android:src="@drawable/btn_calendar"
+            android:background="#00000000"
+            android:layout_weight="10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout14">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2" >
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:id="@+id/imageView3"
+                    android:layout_marginTop="@dimen/z2_margin_space"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/z2_margin_space">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ชื่อการค้า : "
+                        android:id="@+id/textView65"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/heading4" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView66"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:textColor="#e78d4d" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="ชื่อสามัญทางยา : "
+                        android:id="@+id/textView18"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/heading4" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView20"
+                        android:layout_weight="1"
+                        android:textSize="20sp"
+                        android:textColor="#e78d4d" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearLayout13"
+            android:layout_marginTop="@dimen/z2_margin_bigspace"
+            android:background="#30abc4" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:id="@+id/textView67"
+                android:textSize="1sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"></LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="@dimen/z2_margin_space">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView62"
+                android:textSize="@dimen/heading4"
+                android:padding="@dimen/z2_margin_space" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView64"
+                android:textSize="@dimen/heading4"
+                android:padding="@dimen/z2_margin_space" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView68"
+                android:textSize="@dimen/heading4"
+                android:padding="@dimen/z2_margin_space" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView69"
+                android:textSize="@dimen/heading4"
+                android:padding="@dimen/z2_margin_space" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView70"
+                android:textSize="@dimen/heading4"
+                android:padding="@dimen/z2_margin_space" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView71"
+                android:textSize="@dimen/heading4"
+                android:padding="@dimen/z2_margin_space" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

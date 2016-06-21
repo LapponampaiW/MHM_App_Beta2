@@ -78,27 +78,27 @@ public class MedicationListActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(MedicationListActivity.this, MedicationDetailActivity.class);
 
-                        intent.putExtra(strREAD[0][i], "MedicationListActivity_id");
-                        intent.putExtra(strREAD[1][i], "MedicationListActivity_med_id");
-                        intent.putExtra(strREAD[2][i], "MedicationListActivity_trade_name");
-                        intent.putExtra(strREAD[3][i], "MedicationListActivity_generic_line");
-                        intent.putExtra(strREAD[4][i], "MedicationListActivity_amount_tablet");
-                        intent.putExtra(strREAD[5][i], "MedicationListActivity_which_date_d");
-                        intent.putExtra(strREAD[6][i], "MedicationListActivity_appearance");
-                        intent.putExtra(strREAD[7][i], "MedicationListActivity_ea");
-                        intent.putExtra(strREAD[8][i], "MedicationListActivity_pharmaco");
-                        intent.putExtra(strREAD[9][i], "MedicationListActivity_startdate");
-                        intent.putExtra(strREAD[10][i], "MedicationListActivity_finishdate");
-                        intent.putExtra(strREAD[11][i], "MedicationListActivity_prn");
-                        intent.putExtra(strREAD[12][i], "MedicationListActivity_t1");
-                        intent.putExtra(strREAD[13][i], "MedicationListActivity_t2");
-                        intent.putExtra(strREAD[14][i], "MedicationListActivity_t3");
-                        intent.putExtra(strREAD[15][i], "MedicationListActivity_t4");
-                        intent.putExtra(strREAD[16][i], "MedicationListActivity_t5");
-                        intent.putExtra(strREAD[17][i], "MedicationListActivity_t6");
-                        intent.putExtra(strREAD[18][i], "MedicationListActivity_t7");
-                        intent.putExtra(strREAD[19][i], "MedicationListActivity_t8");
-                        intent.putExtra(strREAD[20][i], "MedicationListActivity_datetimecanceled");
+                        intent.putExtra("MedicationListActivity_id",strREAD[0][i]);
+                        intent.putExtra("MedicationListActivity_med_id",strREAD[1][i]);
+                        intent.putExtra("MedicationListActivity_trade_name",strREAD[2][i]);
+                        intent.putExtra("MedicationListActivity_generic_line",strREAD[3][i]);
+                        intent.putExtra("MedicationListActivity_amount_tablet",strREAD[4][i]);
+                        intent.putExtra("MedicationListActivity_which_date_d",strREAD[5][i]);
+                        intent.putExtra("MedicationListActivity_appearance",strREAD[6][i]);
+                        intent.putExtra("MedicationListActivity_ea",strREAD[7][i]);
+                        intent.putExtra("MedicationListActivity_pharmaco",strREAD[8][i]);
+                        intent.putExtra("MedicationListActivity_startdate",strREAD[9][i]);
+                        intent.putExtra("MedicationListActivity_finishdate",strREAD[10][i]);
+                        intent.putExtra("MedicationListActivity_prn",strREAD[11][i]);
+                        intent.putExtra("MedicationListActivity_t1",strREAD[12][i]);
+                        intent.putExtra("MedicationListActivity_t2",strREAD[13][i]);
+                        intent.putExtra("MedicationListActivity_t3",strREAD[14][i]);
+                        intent.putExtra("MedicationListActivity_t4",strREAD[15][i]);
+                        intent.putExtra("MedicationListActivity_t5",strREAD[16][i]);
+                        intent.putExtra("MedicationListActivity_t6",strREAD[17][i]);
+                        intent.putExtra("MedicationListActivity_t7",strREAD[18][i]);
+                        intent.putExtra("MedicationListActivity_t8",strREAD[19][i]);
+                        intent.putExtra("MedicationListActivity_datetimecanceled",strREAD[20][i]);
 
                         startActivity(intent);
 

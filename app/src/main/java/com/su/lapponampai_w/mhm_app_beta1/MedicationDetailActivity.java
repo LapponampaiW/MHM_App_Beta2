@@ -12,7 +12,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
 
     //Explicit
-    private TextView textView1,textView2, textView3;
+    private TextView textView1,textView2, textView3,textView4,textView5,textView6;
     private ImageView imageView1;
     //receiveIntent
     private String string0,string1,string2,string3,string4,string5,string6,string7,
@@ -43,6 +43,11 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
         textView1.setText(string2);
         textView2.setText(string3);
+        //แปลงหน่วย
+        String string7_Translate = myData.translate_EA(string7);
+
+        textView3.setText("รับประทานครั้งละ " + string4 + " " + string7_Translate);
+        textView4.setText("วันที่รับประทาน : " + string5);
     }
 
     private void receiveIntent() {
@@ -75,6 +80,9 @@ public class MedicationDetailActivity extends AppCompatActivity {
         imageView1 = (ImageView) findViewById(R.id.imageView3); //รูปเม็ดยา
         textView1 = (TextView) findViewById(R.id.textView66); //ชื่อการค้า
         textView2 = (TextView) findViewById(R.id.textView20); //ชื่อสามัญทางยา
+        textView3 = (TextView) findViewById(R.id.textView62); //รับประทานครั้งละ .... EA
+        textView4 = (TextView) findViewById(R.id.textView64);
+        textView5 = (TextView) findViewById(R.id.textView68);
 
     }
 }

@@ -70,6 +70,16 @@ public class MyHelper extends SQLiteOpenHelper {
     private static final String CREATE_newsTABLE = "create table newsTABLE " +
             "(_id integer primary key, Med_id text, Message text, Appearance_edit text, Activity text);";
 
+    //Create table addUseTABLE
+    private static final String CREATE_addUseTABLE = "create table addUseTABLE " +
+            "(_id text primary key, Main_id text, Add_Use_Adjust_txt text, Amount double, " +
+            "Date text);";
+
+    //Create table totalAmountTABLE
+    private static final String CREATE_totalAmountTABLE = "create table totalAmountTABLE " +
+            "(_id integer primary key, Main_id text, TotalAmount double, DateUpdated text);";
+
+
     public MyHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
 
@@ -88,6 +98,8 @@ public class MyHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_timeTABLE);
         db.execSQL(CREATE_displayTABLE);
         db.execSQL(CREATE_newsTABLE);
+        db.execSQL(CREATE_addUseTABLE);
+        db.execSQL(CREATE_totalAmountTABLE);
 
     }
 

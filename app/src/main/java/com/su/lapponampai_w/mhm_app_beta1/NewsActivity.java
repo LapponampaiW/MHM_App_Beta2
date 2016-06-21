@@ -137,6 +137,7 @@ public class NewsActivity extends AppCompatActivity {
                 if (strActivity.equals("DrugInformationActivity")) {
                     Intent intent = new Intent(getBaseContext(),DrugInformationActivity.class);
                     startActivity(intent);
+
                 }
 
 

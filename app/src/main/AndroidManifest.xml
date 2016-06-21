@@ -35,9 +35,10 @@
         <activity android:name=".MedicationListActivity" />
         <activity android:name=".NewsActivity" />
         <activity android:name=".DrugInformationActivity" />
-        <activity android:name=".TakeSkipMedicineActivity"
-            android:theme="@style/AppTheme.CustomTheme"
-            ></activity>
+        <activity
+            android:name=".TakeSkipMedicineActivity"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity android:name=".MedicationDetailActivity"></activity>
     </application>
 
 </manifest>

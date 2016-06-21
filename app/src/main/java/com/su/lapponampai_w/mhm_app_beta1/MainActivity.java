@@ -76,10 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Bind Widget
         bindWidget();
-
-        //Update sumTABLE 0:00 (ปิดไว้ก่อนยังไม่ดีเท่าที่ควร)
-        //updatesumTABLE00();
-
+        
         //Notification from SQLite
         //notificationFormSQLite();
 
@@ -103,38 +100,7 @@ public class MainActivity extends AppCompatActivity {
     } //Main method
 
 
-    private void updatesumTABLE00() {
 
-
-        //กำลังจะทำการ Update ที่เวลา 00:00:00:10 ของทุกๆวัน
-        Calendar calendar = Calendar.getInstance();
-        Calendar myCalendar1 = (Calendar) calendar.clone();
-
-        myCalendar1.set(Calendar.HOUR_OF_DAY, 0);
-        myCalendar1.set(Calendar.MINUTE, 5);
-        myCalendar1.set(Calendar.SECOND, 0);
-        myCalendar1.set(Calendar.MILLISECOND, 10);
-
-
-        Random random = new Random();
-        int myRandom = random.nextInt(1000);
-
-        Intent intent = new Intent(getBaseContext(), DailyUpdateReceiver.class);
-
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
-                myRandom, intent, 0);
-
-
-        //((AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE)).setRepeating(1,myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-        //alarmManager.setRepeating(1, myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-        //alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,myCalendar1.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
-        //alarmManager.setInexactRepeating(AlarmManager.RTC,myCalendar1.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, myCalendar1.getTimeInMillis(), pendingIntent); //Wakeuppppppp
-        Log.d("UpdatesumTABLE", "ทำ Alarm ขึ้นเองได้แล้ว" + myCalendar1.getTime().toString());
-
-
-    }
 
 
     private void clickImagepill() {
@@ -853,7 +819,7 @@ public class MainActivity extends AppCompatActivity {
             hrStrings[i] = strings1[0];
             minStrings[i] = strings1[1];
 
-        }
+        } //ตอนนี้คาดว่าน่าจะยังไม่จำเป็นนะจ๊ะ
 
         cursor.close();
 

@@ -90,7 +90,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:text="New Text1"
                         android:id="@+id/textView66"
                         android:layout_weight="1"
                         android:textSize="20sp"
@@ -113,7 +113,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="New Text"
+                        android:text="New Text2"
                         android:id="@+id/textView20"
                         android:layout_weight="1"
                         android:textSize="20sp"
@@ -162,7 +162,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="New Text3"
                 android:id="@+id/textView62"
                 android:textSize="@dimen/heading4"
                 android:padding="@dimen/z2_margin_space" />
@@ -170,7 +170,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="New Text4"
                 android:id="@+id/textView64"
                 android:textSize="@dimen/heading4"
                 android:padding="@dimen/z2_margin_space" />
@@ -178,7 +178,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="New Text5"
                 android:id="@+id/textView68"
                 android:textSize="@dimen/heading4"
                 android:padding="@dimen/z2_margin_space" />
@@ -186,7 +186,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="New Text6"
                 android:id="@+id/textView69"
                 android:textSize="@dimen/heading4"
                 android:padding="@dimen/z2_margin_space" />
@@ -194,7 +194,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="New Text7"
                 android:id="@+id/textView70"
                 android:textSize="@dimen/heading4"
                 android:padding="@dimen/z2_margin_space" />
@@ -202,7 +202,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="New Text"
+                android:text="New Text8"
                 android:id="@+id/textView71"
                 android:textSize="@dimen/heading4"
                 android:padding="@dimen/z2_margin_space" />

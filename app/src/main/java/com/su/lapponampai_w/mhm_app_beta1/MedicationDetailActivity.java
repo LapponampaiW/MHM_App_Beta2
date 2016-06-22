@@ -3,6 +3,7 @@ package com.su.lapponampai_w.mhm_app_beta1;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,7 +13,8 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
 
     //Explicit
-    private TextView textView1,textView2, textView3,textView4,textView5,textView6;
+    private TextView textView1,textView2, textView3,textView4,textView5,textView6,textView7,
+            textView8,textView9,textView10,textView11,textView12,textView13,textView14;
     private ImageView imageView1;
     //receiveIntent
     private String string0,string1,string2,string3,string4,string5,string6,string7,
@@ -47,7 +49,26 @@ public class MedicationDetailActivity extends AppCompatActivity {
         String string7_Translate = myData.translate_EA(string7);
 
         textView3.setText("รับประทานครั้งละ " + string4 + " " + string7_Translate);
-        textView4.setText("วันที่รับประทาน : " + string5);
+
+        String string5_Translate = myData.translate_Which_Date_D(string5);
+        textView4.setText(string5_Translate);
+
+        textView5.setText("วันที่เริ่มต้นรับประทานยา : " + string9);
+        if (string10.equals("")) {
+            textView6.setVisibility(View.GONE);
+        } else {
+            textView6.setText("วันสิ้นสุดรับประทานยา : " + string10);
+        }
+
+            textView7.setText("เวลาในการรับประทานยา :");
+
+        if (string11.equals("Y")) {
+
+        }
+
+
+
+
     }
 
     private void receiveIntent() {
@@ -82,7 +103,10 @@ public class MedicationDetailActivity extends AppCompatActivity {
         textView2 = (TextView) findViewById(R.id.textView20); //ชื่อสามัญทางยา
         textView3 = (TextView) findViewById(R.id.textView62); //รับประทานครั้งละ .... EA
         textView4 = (TextView) findViewById(R.id.textView64);
-        textView5 = (TextView) findViewById(R.id.textView68);
+        textView5 = (TextView) findViewById(R.id.textView68); //StartDate
+        textView6 = (TextView) findViewById(R.id.textView69); //FinishDate
+        textView7 = (TextView) findViewById(R.id.textView70); //เวลาที่รับประทาน,เป็นครั้งคราว
+        textView8 = (TextView) findViewById(R.id.textView71);
 
     }
 }

@@ -50,18 +50,74 @@ public class MyData {
         return strREAD;
     }
 
+    public String translate_Which_Date_D(String which_date_d) {
+        String strREAD = null;
+
+        if (which_date_d.equals("ED:0")) {
+            strREAD = "รับประทานยาทุกวัน";
+        } else if (which_date_d.equals("ED:1")) {
+            strREAD = "รับประทานยาวันเว้นวัน";
+        } else if (which_date_d.equals("ED:2")) {
+            strREAD = "รับประทานยา 1 วันเว้น 2 วัน(ทุก 3 วัน)";
+        } else if (which_date_d.equals("ED:3")) {
+            strREAD = "รับประทานยา 1 วันเว้น 3 วัน(ทุก 4 วัน)";
+        } else if (which_date_d.equals("ED:4")) {
+            strREAD = "รับประทานยา 1 วันเว้น 4 วัน(ทุก 5 วัน)";
+        } else if (which_date_d.equals("ED:5")) {
+            strREAD = "รับประทานยา 1 วันเว้น 5 วัน(ทุก 6 วัน)";
+        } else {
+            String[] queryDay = which_date_d.split(":");
+            String[] queryDetailDay = queryDay[1].split(",");
+            if (queryDay[0].equals("DOM")) {
+                StringBuilder stringBuilder = new StringBuilder("วันที่ : ");
+                for(int i = 0;i<queryDetailDay.length;i++) {
+                    stringBuilder.append(queryDetailDay[i]);
+                    stringBuilder.append(", ");
+                }
+                String s = stringBuilder.toString();
+                s = s.substring(0, s.length() - 2);
+                s = s.concat(" ของทุกเดือน");
+                strREAD = s;
+            }
+
+            if (queryDay[0].equals("DOW")) {
+                final String[] strings = {"วันอาทิตย์", "วันจันทร์", "วันอังคาร", "วันพุธ", "วันพฤหัสบดี", "วันศุกร์", "วันเสาร์"};
+                StringBuilder stringBuilder = new StringBuilder();
+                int x;
+                for(int i = 0;i<queryDetailDay.length;i++) {
+                    x = Integer.parseInt(queryDetailDay[i]);
+                    x = x - 1;
+
+                    stringBuilder.append(strings[x]);
+                    stringBuilder.append(", ");
+                }
+                String s = stringBuilder.toString();
+                s = s.substring(0, s.length() - 2);
+                s = s.concat(" ของทุกสัปดาห์");
+                strREAD = s;
+
+            }
+
+        }
+
+
+        return strREAD;
+    }
+
+    /*
     public String[] translate_Which_Date_D(String which_date_d) {
         String[] strREAD = null;
         strREAD = new String[2];
 
         if (which_date_d.equals("ED:0")) {
             strREAD[0] = "1";
-            strREAD[1] = "ทานทุกวัน";
+            strREAD[1] = "ทานยาทุกวัน";
 
         }
 
         return strREAD;
     }
+    */
 
 
     public int[] translate_Appearance(String[] appearance) {

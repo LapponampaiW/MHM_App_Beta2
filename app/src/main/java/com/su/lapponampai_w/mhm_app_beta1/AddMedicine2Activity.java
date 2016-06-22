@@ -753,8 +753,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         imageView.setBackgroundResource(intsIndex[0]);
         //textView6.setText(string6);
 
-        String[] stringsWhich_Date_D = myData.translate_Which_Date_D(string4);
-        if (stringsWhich_Date_D[0].equals("1")) {
+        String stringsWhich_Date_D = myData.translate_Which_Date_D(string4);
+        if (stringsWhich_Date_D.equals("รับประทานยาทุกวัน")) {
             checkBox1.setChecked(true);
         }
         textView4.setText(string17);

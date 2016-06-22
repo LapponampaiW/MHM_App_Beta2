@@ -149,8 +149,9 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="4"></LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:background="#30589d"></LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
@@ -205,7 +206,71 @@
                 android:text="New Text8"
                 android:id="@+id/textView71"
                 android:textSize="@dimen/heading4"
-                android:padding="@dimen/z2_margin_space" />
+                android:paddingTop="@dimen/z2_margin_space"
+                android:paddingLeft="@dimen/z2_margin_biggap" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text8"
+                android:id="@+id/textView72"
+                android:textSize="@dimen/heading4"
+                android:paddingTop="@dimen/z2_margin_space"
+                android:paddingLeft="@dimen/z2_margin_biggap" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text8"
+                android:id="@+id/textView73"
+                android:textSize="@dimen/heading4"
+                android:paddingTop="@dimen/z2_margin_space"
+                android:paddingLeft="@dimen/z2_margin_biggap" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text8"
+                android:id="@+id/textView74"
+                android:textSize="@dimen/heading4"
+                android:paddingTop="@dimen/z2_margin_space"
+                android:paddingLeft="@dimen/z2_margin_biggap" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text8"
+                android:id="@+id/textView75"
+                android:textSize="@dimen/heading4"
+                android:paddingTop="@dimen/z2_margin_space"
+                android:paddingLeft="@dimen/z2_margin_biggap" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text8"
+                android:id="@+id/textView76"
+                android:textSize="@dimen/heading4"
+                android:paddingTop="@dimen/z2_margin_space"
+                android:paddingLeft="@dimen/z2_margin_biggap" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text8"
+                android:id="@+id/textView77"
+                android:textSize="@dimen/heading4"
+                android:paddingTop="@dimen/z2_margin_space"
+                android:paddingLeft="@dimen/z2_margin_biggap" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text8"
+                android:id="@+id/textView78"
+                android:textSize="@dimen/heading4"
+                android:paddingTop="@dimen/z2_margin_space"
+                android:paddingLeft="@dimen/z2_margin_biggap" />
 
         </LinearLayout>
     </LinearLayout>

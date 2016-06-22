@@ -14,7 +14,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
     //Explicit
     private TextView textView1,textView2, textView3,textView4,textView5,textView6,textView7,
-            textView8,textView9,textView10,textView11,textView12,textView13,textView14;
+            textView8,textView9,textView10,textView11,textView12,textView13,textView14,textView15;
     private ImageView imageView1;
     //receiveIntent
     private String string0,string1,string2,string3,string4,string5,string6,string7,
@@ -63,10 +63,21 @@ public class MedicationDetailActivity extends AppCompatActivity {
             textView7.setText("เวลาในการรับประทานยา :");
 
         if (string11.equals("Y")) {
+            textView8.setText("รับประทานยาเป็นครั้งคราว!!!");
+        } else if (string11.equals("N")) {
+            TextView[] textViews = {textView8, textView9, textView10, textView11, textView12,
+                    textView13, textView14, textView15};
+            String[] strings = {string12,string13,string14,string15,string16,string17,
+                    string18,string19};
 
+            for(int i=0;i<strings.length;i++) {
+                if (strings[i].equals("")) {
+                    textViews[i].setVisibility(View.GONE);
+                } else {
+                    textViews[i].setText("เวลาที่ " + Integer.toString(i+1) + " :  " + strings[i] + " น.");
+                }
+            }
         }
-
-
 
 
     }
@@ -106,7 +117,15 @@ public class MedicationDetailActivity extends AppCompatActivity {
         textView5 = (TextView) findViewById(R.id.textView68); //StartDate
         textView6 = (TextView) findViewById(R.id.textView69); //FinishDate
         textView7 = (TextView) findViewById(R.id.textView70); //เวลาที่รับประทาน,เป็นครั้งคราว
-        textView8 = (TextView) findViewById(R.id.textView71);
+
+        textView8 = (TextView) findViewById(R.id.textView71); //t1
+        textView9 = (TextView) findViewById(R.id.textView72); //t2
+        textView10 = (TextView) findViewById(R.id.textView73); //t3
+        textView11 = (TextView) findViewById(R.id.textView74); //t4
+        textView12 = (TextView) findViewById(R.id.textView75); //t5
+        textView13 = (TextView) findViewById(R.id.textView76); //t6
+        textView14 = (TextView) findViewById(R.id.textView77); //t7
+        textView15 = (TextView) findViewById(R.id.textView78); //t8
 
     }
 }

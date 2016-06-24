@@ -263,6 +263,13 @@ public class MyData {
         return today;
     }
 
+    public String currentDateTime() {
+        String today;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        today = dateFormat.format(System.currentTimeMillis());
+        return today;
+    }
+
     public String current_DayOfMonth() {
 
         Calendar calendar = Calendar.getInstance();

@@ -71,13 +71,38 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
                             myManage.readAlltotalAmountTABLE(1),myManage.readAlltotalAmountTABLE(2),
                             myManage.readAlltotalAmountTABLE(3)};
 
-                    String sDate = myData.currentDay();
+                    String sDate = myData.currentDateTime();
 
                     myManage.addValueTo_addUseTABLE(string_Main_id,"Add",doubleAmountMedicine,sDate);
                     Toast.makeText(PopUpAddAmountMedicine.this,"addValueTo_addUseTABLE",Toast.LENGTH_SHORT).show();
 
                     // ทำการแทนค่าในเตัว totalAmountTABLE
+                    String s = "N";
+                    double doubleAmountInitialMedicine = 0;
+                    String s_id = null;
+                    String s_Main_id = null;
+                    for(int i = 0;i<stringstotalAmountTABLE[0].length;i++) {
+                        if (stringstotalAmountTABLE[1][i].equals(string_Main_id)) {
+                            s = "Y";
+                            doubleAmountInitialMedicine = Double.parseDouble(stringstotalAmountTABLE[2][i]);
+                            s_id = stringstotalAmountTABLE[0][i];
+                            s_Main_id = stringstotalAmountTABLE[1][i];
+                        }
+                    }
 
+                    if (s.equals("N")) {
+                        myManage.addValueTo_totalAmountTABLE(string_Main_id, doubleAmountMedicine, sDate);
+                    } else if (s.equals("Y")) {
+                        Toast.makeText(PopUpAddAmountMedicine.this,"มีค่า Main_id ของ totalAmountTABLE แล้ว",Toast.LENGTH_SHORT).show();
+                        //ทำการ UPdate
+                        doubleAmountMedicine = doubleAmountInitialMedicine + doubleAmountMedicine;
+                        String s_AmountMedicine = Double.toString(doubleAmountMedicine);
+                        myManage.updateTotalAmountTABLE(s_id, s_AmountMedicine, sDate);
+                        Log.d("MedicationAdd", "จำนวนเม็ดสะสม "+ s_AmountMedicine);
+
+                    }
+
+                    finish();
 
                 }
 

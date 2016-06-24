@@ -189,6 +189,18 @@ public class MyManage {
 
     } //Constructor
 
+    //Update totalAmountTABLE
+    public long updateTotalAmountTABLE(String strid,
+                                       String strTotalAmount,
+                                       String strDateUpdated) {
+        long readlong = 0;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(tcolumn_TotalAmount,strTotalAmount);
+        contentValues.put(tcolumn_DateUpdated, strDateUpdated);
+        readlong = writeSqLiteDatabase.update(totalAmountTABLE, contentValues, "_id = " + strid,null);
+        return readlong;
+    }
+
     //Read All addUseTABLE
     public String[] readAlladdUseTABLE(int intColumn) {
         String strREAD[] = null;

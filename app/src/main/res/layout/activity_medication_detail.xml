@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,7 +10,8 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#6643ff">
+        android:background="#6643ff"
+        android:id="@+id/amd_LinHeading">
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -44,7 +45,8 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout14">
+        android:id="@+id/amd_LinTopic"
+        android:layout_below="@+id/amd_LinHeading">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -144,14 +146,17 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/amd_LinDetail"
+        android:layout_below="@+id/amd_LinTopic"
+        android:layout_above="@+id/amd_LinButton">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="5"
-            android:background="#30589d"></LinearLayout>
+            android:background="#84a2f9"></LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
@@ -274,4 +279,62 @@
 
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/amd_LinButton"
+        android:layout_alignParentBottom="true"
+        android:background="#30589d">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:text="ยกเลิกการใช้ยา"
+            android:id="@+id/textView51"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text=" "
+            android:id="@+id/textView80"
+            android:background="#ffffff"
+            android:layout_margin="@dimen/z2_margin_space"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:text="เพิ่มจำนวนยา"
+            android:id="@+id/textView79"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_weight="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text=" "
+            android:id="@+id/textView81"
+            android:background="#ffffff"
+            android:layout_margin="@dimen/z2_margin_space"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:text="ปรับจำนวนยา"
+            android:id="@+id/textView82"
+            android:textSize="12sp"
+            android:textColor="#ffffff"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+</RelativeLayout>

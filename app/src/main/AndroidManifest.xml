@@ -38,7 +38,10 @@
         <activity
             android:name=".TakeSkipMedicineActivity"
             android:theme="@style/AppTheme.CustomTheme" />
-        <activity android:name=".MedicationDetailActivity"></activity>
+        <activity android:name=".MedicationDetailActivity" />
+        <activity
+            android:name=".PopUpAddAmountMedicine"
+            android:theme="@style/AppTheme.CustomTheme"></activity>
     </application>
 
 </manifest>

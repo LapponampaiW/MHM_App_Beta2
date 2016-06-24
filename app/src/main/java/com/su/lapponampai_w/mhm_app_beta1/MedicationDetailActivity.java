@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
     //Explicit
     private TextView textView1,textView2, textView3,textView4,textView5,textView6,textView7,
             textView8,textView9,textView10,textView11,textView12,textView13,textView14,textView15;
+    private TextView textViewAddAmountMedicine;
     private ImageView imageView1;
     //receiveIntent
     private String string0,string1,string2,string3,string4,string5,string6,string7,
@@ -33,6 +35,25 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
         //Show View
         showView();
+
+        //Click AddAmountMedicine
+        clickAddAmountMedicine();
+    }
+
+    private void clickAddAmountMedicine() {
+        textViewAddAmountMedicine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MedicationDetailActivity.this, PopUpAddAmountMedicine.class);
+                startActivity(intent);
+
+
+
+
+            }
+        });
+
     }
 
     private void showView() {
@@ -126,6 +147,8 @@ public class MedicationDetailActivity extends AppCompatActivity {
         textView13 = (TextView) findViewById(R.id.textView76); //t6
         textView14 = (TextView) findViewById(R.id.textView77); //t7
         textView15 = (TextView) findViewById(R.id.textView78); //t8
+
+        textViewAddAmountMedicine = (TextView) findViewById(R.id.textView79); //เพิ่มจำนวนยา
 
     }
 }

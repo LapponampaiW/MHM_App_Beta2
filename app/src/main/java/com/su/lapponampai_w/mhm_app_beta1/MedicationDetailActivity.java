@@ -73,10 +73,10 @@ public class MedicationDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(MedicationDetailActivity.this, PopUpAddAmountMedicine.class);
+
+
+                intent.putExtra("MedicationDetailActivity_id", string0);
                 startActivity(intent);
-
-
-
 
             }
         });

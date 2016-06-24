@@ -3,6 +3,7 @@ package com.su.lapponampai_w.mhm_app_beta1;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,8 +14,10 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
 
     //Explicit
     private Button buttonAdd10, buttonAdd1, buttonMinus1, buttonMinus10;
+    private String string_Main_id;
     private EditText editTextAmountMedicine;
     private Integer integerAmountMedicine;
+    private Double doubleAmountMedicine;
     private TextView textViewOK, textViewCancel;
 
     @Override
@@ -27,6 +30,8 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
 
         displayMetrics();
 
+        receiveIntent();
+
         showView();
 
         clickCalculateAmountMedicine();
@@ -37,12 +42,23 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
 
     }
 
+    private void receiveIntent() {
+
+        string_Main_id = getIntent().getStringExtra("MedicationDetailActivity_id"); //เอาค่า Main_id มา
+        Log.d("MedicationAdd", string_Main_id);
+
+    }
+
     private void clickOKCancel() {
+        final MyData myData = new MyData();
+        final MyManage myManage = new MyManage(this);
+
         textViewOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                integerAmountMedicine = Integer.parseInt(editTextAmountMedicine.getText().toString());
-                if (integerAmountMedicine == 0) {
+                doubleAmountMedicine = Double.parseDouble(editTextAmountMedicine.getText().toString());
+
+                if (doubleAmountMedicine == 0) {
                     Toast.makeText(PopUpAddAmountMedicine.this, "ไม่สามารถบันทึกจำนวนค่า 0 ได้", Toast.LENGTH_SHORT).show();
                 } else {
 
@@ -55,6 +71,12 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
                             myManage.readAlltotalAmountTABLE(1),myManage.readAlltotalAmountTABLE(2),
                             myManage.readAlltotalAmountTABLE(3)};
 
+                    String sDate = myData.currentDay();
+
+                    myManage.addValueTo_addUseTABLE(string_Main_id,"Add",doubleAmountMedicine,sDate);
+                    Toast.makeText(PopUpAddAmountMedicine.this,"addValueTo_addUseTABLE",Toast.LENGTH_SHORT).show();
+
+                    // ทำการแทนค่าในเตัว totalAmountTABLE
 
 
                 }

@@ -72,7 +72,7 @@ public class MyHelper extends SQLiteOpenHelper {
 
     //Create table addUseTABLE
     private static final String CREATE_addUseTABLE = "create table addUseTABLE " +
-            "(_id text primary key, Main_id text, Add_Use_Adjust_txt text, Amount double, " +
+            "(_id integer primary key, Main_id text, Add_Use_Adjust_txt text, Amount double, " +
             "Date text);";
 
     //Create table totalAmountTABLE

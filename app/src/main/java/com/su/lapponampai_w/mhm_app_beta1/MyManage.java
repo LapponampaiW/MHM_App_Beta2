@@ -1356,6 +1356,31 @@ public class MyManage {
         return strRead;
     } //translate_GenericName
 
+    public long addValueTo_addUseTABLE(String strMain_id,
+                                       String strAdd_Use_Adjust_txt,
+                                       double doubleAmount,
+                                       String strDate) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(acolumn_Main_id, strMain_id);
+        contentValues.put(acolum_Add_Use_Adjust_txt,strAdd_Use_Adjust_txt);
+        contentValues.put(acolumn_Amount,doubleAmount);
+        contentValues.put(acolumn_Date,strDate);
+
+        return writeSqLiteDatabase.insert(addUseTABLE, null, contentValues);
+    }
+
+    public long addValueTo_totalAmountTABLE(String strMain_id,
+                                            double doubleTotalAmount,
+                                            String strDateUpdated) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(tcolumn_Main_id,strMain_id);
+        contentValues.put(tcolumn_TotalAmount,doubleTotalAmount);
+        contentValues.put(tcolumn_DateUpdated,strDateUpdated);
+
+        return writeSqLiteDatabase.insert(totalAmountTABLE, null, contentValues);
+    }
+
 
     public long adddrugInteractionTABLEValue(int d_medicine1, int d_medicine2, String d_type_interaction,
                                              String d_message, int d_timemedicine1_2, int d_timemedicine2_1) {

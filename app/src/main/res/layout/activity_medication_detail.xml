@@ -277,6 +277,29 @@
                 android:paddingTop="@dimen/z2_margin_space"
                 android:paddingLeft="@dimen/z2_margin_biggap" />
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/z2_margin_smallgap">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="จำนวนยาคงเหลือ : "
+                    android:id="@+id/textView87"
+                    android:textSize="@dimen/heading4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/textView88"
+                    android:textSize="@dimen/heading4"
+                    android:textColor="#f26f6f"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
         </LinearLayout>
     </LinearLayout>
 

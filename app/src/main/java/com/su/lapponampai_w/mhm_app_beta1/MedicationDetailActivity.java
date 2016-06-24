@@ -16,10 +16,10 @@ public class MedicationDetailActivity extends AppCompatActivity {
     //Explicit
     private TextView textView1,textView2, textView3,textView4,textView5,textView6,textView7,
             textView8,textView9,textView10,textView11,textView12,textView13,textView14,textView15;
-    private TextView textViewAddAmountMedicine;
+    private TextView textViewAddAmountMedicine, textViewtotalAmountTablet;
     private ImageView imageView1;
     //receiveIntent
-    private String string0,string1,string2,string3,string4,string5,string6,string7,
+    private String string0,string1,string2,string3,string4,string5,string6,string7,string7_Translate,
             string8,string9,string10,string11,string12,string13,string14,string15,string16,
             string17,string18,string19,string20;
 
@@ -38,6 +38,33 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
         //Click AddAmountMedicine
         clickAddAmountMedicine();
+
+        //show จำนวนเม็ดยาคงเหลือ
+        showtotalAmountTablet();
+
+
+    }
+
+
+
+    private void showtotalAmountTablet() {
+        MyManage myManage = new MyManage(this);
+        MyData myData = new MyData();
+        String[][] stringstotalAmount = {myManage.readAlltotalAmountTABLE(0),
+                myManage.readAlltotalAmountTABLE(1),myManage.readAlltotalAmountTABLE(2),
+                myManage.readAlltotalAmountTABLE(3)};
+        String s_totalAmount;
+
+        if (stringstotalAmount[0][0].equals("")) {
+            //Toast.makeText(MedicationDetailActivity.this,"a;dsjf;sdfj",Toast.LENGTH_LONG).show();
+            s_totalAmount = "0 ";
+            string7_Translate = myData.translate_EA(string7);
+            s_totalAmount = s_totalAmount.concat(string7_Translate);
+            textViewtotalAmountTablet.setText(s_totalAmount);
+        }
+
+
+
     }
 
     private void clickAddAmountMedicine() {
@@ -67,7 +94,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
         textView1.setText(string2);
         textView2.setText(string3);
         //แปลงหน่วย
-        String string7_Translate = myData.translate_EA(string7);
+        string7_Translate = myData.translate_EA(string7);
 
         textView3.setText("รับประทานครั้งละ " + string4 + " " + string7_Translate);
 
@@ -149,6 +176,8 @@ public class MedicationDetailActivity extends AppCompatActivity {
         textView15 = (TextView) findViewById(R.id.textView78); //t8
 
         textViewAddAmountMedicine = (TextView) findViewById(R.id.textView79); //เพิ่มจำนวนยา
+        textViewtotalAmountTablet = (TextView) findViewById(R.id.textView88); //จำนวนยาคงเหลือพร้อม UOM
+
 
     }
 }

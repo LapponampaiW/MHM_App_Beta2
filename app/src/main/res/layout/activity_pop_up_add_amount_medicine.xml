@@ -81,19 +81,39 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:background="#252d60">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
             android:text="ยกเลิก"
-            android:id="@+id/textView85" />
+            android:id="@+id/textView85"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/heading3"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
+            android:text=" "
+            android:id="@+id/textView89"
+            android:background="#ffffff"
+            android:layout_margin="@dimen/z2_margin_space"
+            android:textSize="12sp"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
             android:text="ตกลง"
-            android:id="@+id/textView86" />
+            android:id="@+id/textView86"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/heading3"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal" />
+
     </LinearLayout>
 </RelativeLayout>

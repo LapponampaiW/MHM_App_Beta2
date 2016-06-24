@@ -6,6 +6,8 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class PopUpAddAmountMedicine extends AppCompatActivity {
 
@@ -13,11 +15,13 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
     private Button buttonAdd10, buttonAdd1, buttonMinus1, buttonMinus10;
     private EditText editTextAmountMedicine;
     private Integer integerAmountMedicine;
+    private TextView textViewOK, textViewCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up_add_amount_medicine);
+
 
         bindWidget();
 
@@ -28,7 +32,35 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
         clickCalculateAmountMedicine();
 
 
+        //Click button(OK or Cancel)
+        clickOKCancel();
 
+    }
+
+    private void clickOKCancel() {
+        textViewOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                integerAmountMedicine = Integer.parseInt(editTextAmountMedicine.getText().toString());
+                if (integerAmountMedicine == 0) {
+                    Toast.makeText(PopUpAddAmountMedicine.this, "ไม่สามารถบันทึกจำนวนค่า 0 ได้", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    MyManage myManage = new MyManage(PopUpAddAmountMedicine.this);
+                    String[][] stringsaddUseTABLE = {myManage.readAlladdUseTABLE(0),
+                            myManage.readAlladdUseTABLE(1),myManage.readAlladdUseTABLE(2),
+                            myManage.readAlladdUseTABLE(3),myManage.readAlladdUseTABLE(4)};
+
+                    String[][] stringstotalAmountTABLE = {myManage.readAlltotalAmountTABLE(0),
+                            myManage.readAlltotalAmountTABLE(1),myManage.readAlltotalAmountTABLE(2),
+                            myManage.readAlltotalAmountTABLE(3)};
+
+
+
+                }
+
+            }
+        });
     }
 
     private void showView() {
@@ -87,6 +119,8 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
         buttonAdd1 = (Button) findViewById(R.id.buttonAdd1);
         buttonMinus1 = (Button) findViewById(R.id.buttonMinus1);
         buttonMinus10 = (Button) findViewById(R.id.buttonMinus10);
+        textViewOK = (TextView) findViewById(R.id.textView86);  //ตกลง
+        textViewCancel = (TextView) findViewById(R.id.textView85); //ยกเลิก
 
     }
 

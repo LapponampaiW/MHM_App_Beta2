@@ -33,7 +33,7 @@ public class MyManage {
     private static final String ucolumn_Password = "Password";
     private static final String ucolumn_Stay = "Stay";
     private static final String ucolumn_Email = "Email";
-    private static final String[] column_userTABLE = {ucolumn_id,ucolumn_User,ucolumn_Password,ucolumn_Stay,ucolumn_Email};
+    private static final String[] column_userTABLE = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_Email};
 
     //medTABLE
     private static final String medTABLE = "medTABLE";
@@ -65,19 +65,17 @@ public class MyManage {
     private static final String mcolumn_t6 = "T6";
     private static final String mcolumn_t7 = "T7";
     private static final String mcolumn_t8 = "T8";
-    private static final String[] column_medTABLE = {mcolumn_id,mcolumn_trade_name,mcolumn_key_search,mcolumn_generic_name1,mcolumn_dosage1,
-                                    mcolumn_uom1,mcolumn_generic_name2,mcolumn_dosage2,mcolumn_uom2,mcolumn_generic_name3,
-                                    mcolumn_dosage3,mcolumn_uom3,mcolumn_generic_name4,mcolumn_dosage4,mcolumn_uom4,mcolumn_ea,mcolumn_amount_tablet,
-                                    mcolumn_which_date_d,mcolumn_appearance,mcolumn_pharmaco,mcolumn_t1,mcolumn_t2,
-                                    mcolumn_t3,mcolumn_t4,mcolumn_t5,mcolumn_t6,mcolumn_t7,mcolumn_t8};
+    private static final String[] column_medTABLE = {mcolumn_id, mcolumn_trade_name, mcolumn_key_search, mcolumn_generic_name1, mcolumn_dosage1,
+            mcolumn_uom1, mcolumn_generic_name2, mcolumn_dosage2, mcolumn_uom2, mcolumn_generic_name3,
+            mcolumn_dosage3, mcolumn_uom3, mcolumn_generic_name4, mcolumn_dosage4, mcolumn_uom4, mcolumn_ea, mcolumn_amount_tablet,
+            mcolumn_which_date_d, mcolumn_appearance, mcolumn_pharmaco, mcolumn_t1, mcolumn_t2,
+            mcolumn_t3, mcolumn_t4, mcolumn_t5, mcolumn_t6, mcolumn_t7, mcolumn_t8};
 
     //nameGenericTABLE
     private static final String nameGenericTABLE = "nameGenericTABLE";
     private static final String gcolumn_id = "_id";
     private static final String gcolumn_generic_name = "Generic_name";
-    private static final String[] column_nameGenericTABLE = {gcolumn_id,gcolumn_generic_name};
-
-
+    private static final String[] column_nameGenericTABLE = {gcolumn_id, gcolumn_generic_name};
 
 
     //drugInteractionTABLE
@@ -89,8 +87,8 @@ public class MyManage {
     private static final String dcolumn_message = "Message";
     private static final String dcolumn_timeMedicine1_2 = "TimeMedicine1_2";
     private static final String dcolumn_timeMedicine2_1 = "TimeMedicine2_1";
-    private static final String[] column_drugInteractionTABLE = {dcolumn_id,dcolumn_medicine1,dcolumn_medicine2,
-            dcolumn_type_interaction,dcolumn_message,dcolumn_timeMedicine1_2,dcolumn_timeMedicine2_1};
+    private static final String[] column_drugInteractionTABLE = {dcolumn_id, dcolumn_medicine1, dcolumn_medicine2,
+            dcolumn_type_interaction, dcolumn_message, dcolumn_timeMedicine1_2, dcolumn_timeMedicine2_1};
 
 
     //drugInteractionTABLE_For_Query
@@ -104,9 +102,9 @@ public class MyManage {
     private static final String qcolumn_timeMedicine1_2 = "TimeMedicine1_2";
     private static final String qcolumn_timeMedicine2_1 = "TimeMedicine2_1";
     private static final String[] column_drugInteractionTABLE_For_Query = {qcolumn_id,
-            qcolunm_initial_medicine, qcolumn_medicine1,qcolumn_medicine2,
-            qcolumn_type_interaction,qcolumn_message,
-            qcolumn_timeMedicine1_2,qcolumn_timeMedicine2_1};
+            qcolunm_initial_medicine, qcolumn_medicine1, qcolumn_medicine2,
+            qcolumn_type_interaction, qcolumn_message,
+            qcolumn_timeMedicine1_2, qcolumn_timeMedicine2_1};
 
 
     //mainTABLE
@@ -119,10 +117,10 @@ public class MyManage {
     private static final String mcolumn_finishdate = "FinishDate";
     private static final String mcolumn_prn = "PRN";
     private static final String mcolumn_datetimecanceled = "DateTimeCanceled";
-    private static final String[] column_mainTABLE = {mcolumn_id,mcolumn_Med_id,mcolumn_trade_name,
-            mcolumn_generic_line,mcolumn_amount_tablet,mcolumn_which_date_d,mcolumn_appearance,mcolumn_ea,mcolumn_Main_pharmaco,
-            mcolumn_startdate,mcolumn_finishdate,mcolumn_prn,mcolumn_t1,
-            mcolumn_t2,mcolumn_t3,mcolumn_t4,mcolumn_t5,mcolumn_t6,mcolumn_t7,mcolumn_t8,mcolumn_datetimecanceled};
+    private static final String[] column_mainTABLE = {mcolumn_id, mcolumn_Med_id, mcolumn_trade_name,
+            mcolumn_generic_line, mcolumn_amount_tablet, mcolumn_which_date_d, mcolumn_appearance, mcolumn_ea, mcolumn_Main_pharmaco,
+            mcolumn_startdate, mcolumn_finishdate, mcolumn_prn, mcolumn_t1,
+            mcolumn_t2, mcolumn_t3, mcolumn_t4, mcolumn_t5, mcolumn_t6, mcolumn_t7, mcolumn_t8, mcolumn_datetimecanceled};
 
     //sumTABLE
     private static final String sum_table = "sumTABLE";
@@ -132,7 +130,7 @@ public class MyManage {
     private static final String column_DateCheck = "DateCheck";
     private static final String column_TimeCheck = "TimeCheck";
     private static final String column_SkipHold = " SkipHold";
-    private static final String[] column_sumTABLE = {"_id",column_Main_id,column_DateRef,column_TimeRef,column_DateCheck,column_TimeCheck,column_SkipHold};
+    private static final String[] column_sumTABLE = {"_id", column_Main_id, column_DateRef, column_TimeRef, column_DateCheck, column_TimeCheck, column_SkipHold};
 
     //timeTABLE
     private static final String timeTABLE = "timeTABLE";
@@ -140,7 +138,7 @@ public class MyManage {
     private static final String tcolumn_time_interval = "Time_interval";
     private static final String tcolumn_start_time = "Start_time";
     private static final String tcolumn_end_time = "End_time";
-    private static final String[] column_timeTABLE = {tcolumn_id,tcolumn_time_interval,tcolumn_start_time,tcolumn_end_time};
+    private static final String[] column_timeTABLE = {tcolumn_id, tcolumn_time_interval, tcolumn_start_time, tcolumn_end_time};
 
     //displayTABLE
     private static final String displayTABLE = "displayTABLE";
@@ -152,8 +150,8 @@ public class MyManage {
     private static final String displaycolumn_timeref = "TimeRef";
     private static final String displaycolumn_timecheck = "TimeCheck";
     private static final String displaycolumn_appearance = "Appearance";
-    private static final String[] column_displayTABLE = {displaycolumn_id,displaycolumn_position,displaycolumn_sum_id,
-            displaycolumn_main_id,displaycolumn_day,displaycolumn_timeref,displaycolumn_timecheck,displaycolumn_appearance};
+    private static final String[] column_displayTABLE = {displaycolumn_id, displaycolumn_position, displaycolumn_sum_id,
+            displaycolumn_main_id, displaycolumn_day, displaycolumn_timeref, displaycolumn_timecheck, displaycolumn_appearance};
 
     //newsTABLE
     private static final String newsTABLE = "newsTABLE";
@@ -162,8 +160,26 @@ public class MyManage {
     private static final String ncolumn_message = "Message";
     private static final String ncolumn_appearance_edit = "Appearance_edit";
     private static final String ncolumn_activity = "Activity";
-    private static final String[] column_newsTABLE = {ncolumn_id,ncolumn_med_id,ncolumn_message,ncolumn_appearance_edit,ncolumn_activity};
+    private static final String[] column_newsTABLE = {ncolumn_id, ncolumn_med_id, ncolumn_message, ncolumn_appearance_edit, ncolumn_activity};
 
+    //totalAmountTABLE
+    private static final String totalAmountTABLE = "totalAmountTABLE";
+    //tcolumn_id ใช้อันเดียวกั่บ timeTABLE
+    private static final String tcolumn_Main_id = "Main_id";
+    private static final String tcolumn_TotalAmount = "TotalAmount";
+    private static final String tcolumn_DateUpdated = "DateUpdated";
+    private static final String[] column_totalAmountTABLE = {tcolumn_id,
+            tcolumn_Main_id, tcolumn_TotalAmount, tcolumn_DateUpdated};
+
+    //addUseTABLE
+    private static final String addUseTABLE = "addUseTABLE";
+    private static final String acolumn_id = "_id";
+    private static final String acolumn_Main_id = "Main_id";
+    private static final String acolum_Add_Use_Adjust_txt = "Add_Use_Adjust_txt";
+    private static final String acolumn_Amount = "Amount";
+    private static final String acolumn_Date = "Date";
+    private static final String[] column_addUseTABLE = {acolumn_id, acolumn_Main_id,
+            acolum_Add_Use_Adjust_txt, acolumn_Amount, acolumn_Date};
 
     public MyManage(Context context) {
         helper = new MyHelper(context);
@@ -172,6 +188,78 @@ public class MyManage {
         writeSqLiteDatabase = helper.getWritableDatabase();
 
     } //Constructor
+
+    //Read All addUseTABLE
+    public String[] readAlladdUseTABLE(int intColumn) {
+        String strREAD[] = null;
+        Cursor cursor = readSqLiteDatabase.query(addUseTABLE, column_addUseTABLE, null, null, null, null, null);
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for (int i = 0; i < cursor.getCount(); i++) {
+                switch (intColumn) {
+                    case 0:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(acolumn_id));
+                        break;
+                    case 1:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(acolumn_Main_id));
+                        break;
+                    case 2:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(acolum_Add_Use_Adjust_txt));
+                        break;
+                    case 3:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(acolumn_Amount));
+                        break;
+                    case 4:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(acolumn_Date));
+                    default:
+                        break;
+                }
+
+            }
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+
+        return strREAD;
+    }
+
+    //Read All totalAmountTABLE
+    public String[] readAlltotalAmountTABLE(int intColumn) {
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(totalAmountTABLE, column_totalAmountTABLE, null, null, null, null, null);
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for (int i = 0; i < cursor.getCount(); i++) {
+                switch (intColumn) {
+                    case 0:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(tcolumn_id));
+                        break;
+                    case 1:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(tcolumn_Main_id));
+                        break;
+                    case 2:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(tcolumn_TotalAmount));
+                        break;
+                    case 3:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(tcolumn_DateUpdated));
+                        break;
+                    default:
+                        break;
+                }
+                cursor.moveToNext();
+            }
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+
+        return strREAD;
+    }
 
     //Read All sumTABLE
     public String[] readAllsumTABLE_Full(int intColumn) {
@@ -182,7 +270,7 @@ public class MyManage {
         if (intCount > 0) {
             cursor.moveToFirst();
             strREAD = new String[cursor.getCount()];
-            for (int i=0; i<cursor.getCount();i++) {
+            for (int i = 0; i < cursor.getCount(); i++) {
                 strREAD[i] = cursor.getString(intColumn);
                 cursor.moveToNext();
             } //for
@@ -201,7 +289,7 @@ public class MyManage {
             cursor.moveToFirst();
             strREAD = new String[cursor.getCount()];
 
-            for(int i = 0;i<cursor.getCount();i++) {
+            for (int i = 0; i < cursor.getCount(); i++) {
                 switch (intColumn) {
                     case 0:
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(displaycolumn_id));
@@ -244,7 +332,7 @@ public class MyManage {
             cursor.moveToFirst();
             strread = new String[cursor.getCount()];
 
-            for(int i = 0;i<cursor.getCount();i++) {
+            for (int i = 0; i < cursor.getCount(); i++) {
                 switch (intColumn) {
                     case 0:
                         strread[i] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
@@ -347,7 +435,7 @@ public class MyManage {
         if (cursor != null) {
             cursor.moveToFirst();
             strREAD = new String[cursor.getCount()];
-            for (int i = 0 ; i<cursor.getCount();i++) {
+            for (int i = 0; i < cursor.getCount(); i++) {
                 switch (intColumn) {
                     case 0:
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(ncolumn_id));
@@ -379,25 +467,25 @@ public class MyManage {
 
         String[] resultStrings = null;
         Cursor cursor = readSqLiteDatabase.query("mainTABLE",
-                new String[]{"_id", "T1","Med_id","Trade_name","Generic_line","Appearance","Amount_tablet"}, //2,3,4,5,6
-                null,null,null,null,null);
+                new String[]{"_id", "T1", "Med_id", "Trade_name", "Generic_line", "Appearance", "Amount_tablet"}, //2,3,4,5,6
+                null, null, null, null, null);
 
         resultStrings = new String[cursor.getCount()];
 
         cursor.moveToFirst();
-        for (int i=0; i<cursor.getCount();i++) {
+        for (int i = 0; i < cursor.getCount(); i++) {
             resultStrings[i] = cursor.getString(intColumn);
             cursor.moveToNext();
 
         } //for
         cursor.close();
 
-            return resultStrings;
+        return resultStrings;
     }
 
     public String[] readAllMainTABLE_Full(int intColumn) {
         String[] strREAD = null;
-        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null,"_id ASC");
+        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null, "_id ASC");
         int intCount = cursor.getCount();
         if (intCount > 0) {
             cursor.moveToFirst();
@@ -489,7 +577,7 @@ public class MyManage {
 
         String strREAD = null;
 
-        Cursor cursor = readSqLiteDatabase.query(displayTABLE, column_displayTABLE,"Position" + " LIKE '" + position + "%'",null, null,null,"_id DESC");
+        Cursor cursor = readSqLiteDatabase.query(displayTABLE, column_displayTABLE, "Position" + " LIKE '" + position + "%'", null, null, null, "_id DESC");
 
         if (cursor != null) {
             cursor.moveToFirst();
@@ -513,13 +601,13 @@ public class MyManage {
                                      String strdisplaycolumn_appearance) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(displaycolumn_position,strdisplaycolumn_position);
-        contentValues.put(displaycolumn_sum_id,strdisplaycolumn_sum_id);
-        contentValues.put(displaycolumn_main_id,strdisplaycolumn_main_id);
-        contentValues.put(displaycolumn_day,strdisplaycolumn_day);
-        contentValues.put(displaycolumn_timeref,strdisplaycolumn_timeref);
-        contentValues.put(displaycolumn_timecheck,strdisplaycolumn_timecheck);
-        contentValues.put(displaycolumn_appearance,strdisplaycolumn_appearance);
+        contentValues.put(displaycolumn_position, strdisplaycolumn_position);
+        contentValues.put(displaycolumn_sum_id, strdisplaycolumn_sum_id);
+        contentValues.put(displaycolumn_main_id, strdisplaycolumn_main_id);
+        contentValues.put(displaycolumn_day, strdisplaycolumn_day);
+        contentValues.put(displaycolumn_timeref, strdisplaycolumn_timeref);
+        contentValues.put(displaycolumn_timecheck, strdisplaycolumn_timecheck);
+        contentValues.put(displaycolumn_appearance, strdisplaycolumn_appearance);
 
         return writeSqLiteDatabase.insert(displayTABLE, null, contentValues);
 
@@ -532,13 +620,13 @@ public class MyManage {
         return currentday;
     }
 
-    public String[] readAllMainTABLE_string(String med_id,int intColumn) {
+    public String[] readAllMainTABLE_string(String med_id, int intColumn) {
         String[] strREAD = null;
         Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, "Med_id LIKE '" + med_id + "'", null, null, null, "_id DESC");
         if (cursor != null) {
             cursor.moveToFirst();
             strREAD = new String[cursor.getCount()];
-            for(int i = 0;i <cursor.getCount();i++) {
+            for (int i = 0; i < cursor.getCount(); i++) {
                 switch (intColumn) {
                     case 0:
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
@@ -598,15 +686,15 @@ public class MyManage {
     } //readAllmainTABLE1
 
 
-    public String[] filter_sumTABLE__by_Date(String time,int intcolumn) {
+    public String[] filter_sumTABLE__by_Date(String time, int intcolumn) {
 
         String[] strREAD = null;
-        Cursor cursor = readSqLiteDatabase.query(sum_table,column_sumTABLE,"DateRef LIKE '" + time + "'",null,null,null,null);
+        Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE, "DateRef LIKE '" + time + "'", null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
             strREAD = new String[cursor.getCount()];
 
-            for(int i = 0;i <cursor.getCount();i++) {
+            for (int i = 0; i < cursor.getCount(); i++) {
 
                 switch (intcolumn) {
                     case (0):
@@ -679,7 +767,7 @@ public class MyManage {
         contentValues.put("Amount_tablet", strAmount_tablet);
         contentValues.put("Which_Date_D", strWhich_Date_D);
         contentValues.put("Appearance", strAppearance);
-        contentValues.put("EA",strEA);
+        contentValues.put("EA", strEA);
         contentValues.put("Pharmaco", strPharmaco);
         contentValues.put("StartDate", strStartDate);
         contentValues.put("FinishDate", strFinishDate);
@@ -721,25 +809,25 @@ public class MyManage {
                                     String strEnd_time) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(tcolumn_time_interval,strTime_interval);
-        contentValues.put(tcolumn_start_time,strStart_time);
-        contentValues.put(tcolumn_end_time,strEnd_time);
+        contentValues.put(tcolumn_time_interval, strTime_interval);
+        contentValues.put(tcolumn_start_time, strStart_time);
+        contentValues.put(tcolumn_end_time, strEnd_time);
 
         return writeSqLiteDatabase.insert(timeTABLE, null, contentValues);
     }
 
     public long addValueTodrugInteractionTABLE_For_Query(int d_initial_medicine, int d_medicine1, int d_medicine2, String d_type_interaction,
-                                                              String d_message,int d_timemedicine1_2, int d_timemedicine2_1) {
+                                                         String d_message, int d_timemedicine1_2, int d_timemedicine2_1) {
 
         ContentValues contentValues = new ContentValues();
         long addlong = 0;
-        contentValues.put(qcolunm_initial_medicine,d_initial_medicine);
-        contentValues.put(qcolumn_medicine1,d_medicine1);
-        contentValues.put(qcolumn_medicine2,d_medicine2);
-        contentValues.put(qcolumn_type_interaction,d_type_interaction);
-        contentValues.put(qcolumn_message,d_message);
-        contentValues.put(qcolumn_timeMedicine1_2,d_timemedicine1_2);
-        contentValues.put(qcolumn_timeMedicine2_1,d_timemedicine2_1);
+        contentValues.put(qcolunm_initial_medicine, d_initial_medicine);
+        contentValues.put(qcolumn_medicine1, d_medicine1);
+        contentValues.put(qcolumn_medicine2, d_medicine2);
+        contentValues.put(qcolumn_type_interaction, d_type_interaction);
+        contentValues.put(qcolumn_message, d_message);
+        contentValues.put(qcolumn_timeMedicine1_2, d_timemedicine1_2);
+        contentValues.put(qcolumn_timeMedicine2_1, d_timemedicine2_1);
 
         addlong = writeSqLiteDatabase.insert(drugInteractionTABLE_For_Query, null, contentValues);
         return addlong;
@@ -762,10 +850,10 @@ public class MyManage {
                                String email) {
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ucolumn_User,user);
-        contentValues.put(ucolumn_Password,password);
-        contentValues.put(ucolumn_Stay,stay);
-        contentValues.put(ucolumn_Email,email);
+        contentValues.put(ucolumn_User, user);
+        contentValues.put(ucolumn_Password, password);
+        contentValues.put(ucolumn_Stay, stay);
+        contentValues.put(ucolumn_Email, email);
         writeSqLiteDatabase.insert(userTABLE, null, contentValues);
     }
 
@@ -804,7 +892,7 @@ public class MyManage {
         return strAllFood;
     }
 
-    public String getArrayStringIndex(String[] strAry,String keyWord_String) {
+    public String getArrayStringIndex(String[] strAry, String keyWord_String) {
 
         int fake = -500;
         for (int i = 0; i < strAry.length; i++) {
@@ -829,19 +917,19 @@ public class MyManage {
 
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ucolumn_Stay,"1");
+        contentValues.put(ucolumn_Stay, "1");
 
-        writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?",new String[]{String.valueOf(id)});
+        writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
 
     }
 
-    public String[] filterAddMed(int intColumn,String strWord) {
+    public String[] filterAddMed(int intColumn, String strWord) {
         String[] strread = null;
 
 
-       //Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"Trade_name =?",new String[]{String.valueOf(strWord)},null,null,null);
+        //Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"Trade_name =?",new String[]{String.valueOf(strWord)},null,null,null);
         //ทำ Search ตัวอักษรแบบไม่ต้องเขียนครบก็ได้ โดย Search ตาม key search และ tradename
-       Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"Trade_name" + " LIKE '%" + strWord + "%'" + " or " + "Key_search" + " LIKE '%" + strWord + "%'",null,null,null,null);
+        Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, "Trade_name" + " LIKE '%" + strWord + "%'" + " or " + "Key_search" + " LIKE '%" + strWord + "%'", null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
             strread = new String[cursor.getCount()];
@@ -945,7 +1033,7 @@ public class MyManage {
     }
 
     public String[] filter_medTABLE_by_id(String id) {
-        Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"_id =?",new String[]{String.valueOf(id)},null,null,null);
+        Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, "_id =?", new String[]{String.valueOf(id)}, null, null, null);
         String[] strREAD = new String[4];
         if (cursor != null) {
             cursor.moveToFirst();
@@ -963,7 +1051,7 @@ public class MyManage {
     }
 
     public String[] filter_mainTABLE_by_id_Full(String id) {
-        Cursor cursor = readSqLiteDatabase.query(mainTABLE,column_mainTABLE,"_id =?",new String[]{String.valueOf(id)},null,null,null);
+        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, "_id =?", new String[]{String.valueOf(id)}, null, null, null);
         String[] strREAD = new String[16];
         if (cursor != null) {
             cursor.moveToFirst();
@@ -997,7 +1085,7 @@ public class MyManage {
     public String findGenerinName_nameGenericTABLE_by_id(String id) {
 
 
-        Cursor cursor = readSqLiteDatabase.query(nameGenericTABLE, column_nameGenericTABLE,"_id LIKE '" + id + "'",null,null,null,null);
+        Cursor cursor = readSqLiteDatabase.query(nameGenericTABLE, column_nameGenericTABLE, "_id LIKE '" + id + "'", null, null, null, null);
         cursor.moveToFirst();
 
         String s;
@@ -1020,7 +1108,7 @@ public class MyManage {
             cursor.moveToFirst();
             strREAD_id = new String[cursor.getCount()];
             strREAD_Tradename = new String[cursor.getCount()];
-            for(int i = 0; i < cursor.getCount(); i++) {
+            for (int i = 0; i < cursor.getCount(); i++) {
                 strREAD_id[i] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
 
                 Cursor cursor1 = readSqLiteDatabase.query(mainTABLE, column_mainTABLE,
@@ -1045,7 +1133,7 @@ public class MyManage {
             strREAD_Tradename = null;
         }
 
-    return strREAD_Tradename;
+        return strREAD_Tradename;
     }
 
     //Drug Interaction
@@ -1054,7 +1142,7 @@ public class MyManage {
 
         String[] strREAD = filter_medTABLE_by_id(drugname);
 
-        Log.d("checkDrugInteraction", strREAD[0] + strREAD[1]+strREAD[2]+strREAD[3]);
+        Log.d("checkDrugInteraction", strREAD[0] + strREAD[1] + strREAD[2] + strREAD[3]);
 
         String[] stringsMed_id = null;
 
@@ -1063,9 +1151,9 @@ public class MyManage {
         String[] stringsGeneric3 = null;
         String[] stringsGeneric4 = null;
 
-        for(int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) {
             if (!strREAD[i].equals("1")) {
-                Log.d("checkDrugInteraction","strREAD :" + strREAD[i]);
+                Log.d("checkDrugInteraction", "strREAD :" + strREAD[i]);
 
                 Cursor cursormainTABLE = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null, null);
                 stringsMed_id = new String[cursormainTABLE.getCount()];
@@ -1096,32 +1184,31 @@ public class MyManage {
                     }
 
 
-
                     for (int y = 0; y < stringsMed_id.length; y++) {
-                        Cursor cursorInteraction = readSqLiteDatabase.query(drugInteractionTABLE,column_drugInteractionTABLE,
+                        Cursor cursorInteraction = readSqLiteDatabase.query(drugInteractionTABLE, column_drugInteractionTABLE,
                                 "(Medicine1" + " LIKE '" + strREAD[i] + "'" + " and " + "Medicine2" +
                                         " LIKE '" + stringsGeneric1[y] + "')" + " or " + "(Medicine1" + " LIKE '" +
                                         strREAD[i] + "'" + " and " + "Medicine2" +
                                         " LIKE '" + stringsGeneric2[y] + "')" + " or " + "(Medicine1" + " LIKE '" +
                                         strREAD[i] + "'" + " and " + "Medicine2" +
-                                        " LIKE '" + stringsGeneric3[y] + "')" + " or " + "(Medicine1" +" LIKE '" +
+                                        " LIKE '" + stringsGeneric3[y] + "')" + " or " + "(Medicine1" + " LIKE '" +
                                         strREAD[i] + "'" + " and " + "Medicine2" +
                                         " LIKE '" + stringsGeneric4[y] + "')" + " or " + "(Medicine2" + " LIKE '" + strREAD[i] + "'" + " and " + "Medicine1" +
                                         " LIKE '" + stringsGeneric1[y] + "')" + " or " + "(Medicine2" + " LIKE '" +
                                         strREAD[i] + "'" + " and " + "Medicine1" +
                                         " LIKE '" + stringsGeneric2[y] + "')" + " or " + "(Medicine2" + " LIKE '" +
                                         strREAD[i] + "'" + " and " + "Medicine1" +
-                                        " LIKE '" + stringsGeneric3[y] + "')" + " or " + "(Medicine2" +" LIKE '" +
+                                        " LIKE '" + stringsGeneric3[y] + "')" + " or " + "(Medicine2" + " LIKE '" +
                                         strREAD[i] + "'" + " and " + "Medicine1" +
-                                        " LIKE '" + stringsGeneric4[y] + "')",null,null,null,null);
+                                        " LIKE '" + stringsGeneric4[y] + "')", null, null, null, null);
 
 
                         if (cursorInteraction != null) {
                             Log.d("checkDrugInteraction", "cursorInteraction count :" + cursorInteraction.getCount());
                             cursorInteraction.moveToFirst();
                             String[] strings = new String[cursorInteraction.getCount()];
-                            for(int z = 0; z < cursorInteraction.getCount(); z++) {
-                                addValueTodrugInteractionTABLE_For_Query(Integer.parseInt(strREAD[i]),cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_medicine1)),
+                            for (int z = 0; z < cursorInteraction.getCount(); z++) {
+                                addValueTodrugInteractionTABLE_For_Query(Integer.parseInt(strREAD[i]), cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_medicine1)),
                                         cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_medicine2)),
                                         cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_type_interaction)),
                                         cursorInteraction.getString(cursorInteraction.getColumnIndex(dcolumn_message)),
@@ -1183,7 +1270,6 @@ public class MyManage {
     }
 
 
-
     //รับค่าจาก id
     public String[] searchById(String id) {
         String[] strread = null;
@@ -1230,7 +1316,7 @@ public class MyManage {
         cursor.moveToFirst();
         String[] strREAD = new String[cursor.getCount()];
 
-        for (int i = 0; i <cursor.getCount(); i++) {
+        for (int i = 0; i < cursor.getCount(); i++) {
             switch (intcolumn) {
                 case 0:
                     strREAD[i] = cursor.getString(cursor.getColumnIndex(tcolumn_id));
@@ -1258,7 +1344,7 @@ public class MyManage {
         String[] strRead = new String[genericname.length];
 
         for (int i = 0; i < genericname.length; i++) {
-            Cursor cursor = readSqLiteDatabase.query(nameGenericTABLE,column_nameGenericTABLE,"_id =?",new String[]{String.valueOf(genericname[i])},null,null,null);
+            Cursor cursor = readSqLiteDatabase.query(nameGenericTABLE, column_nameGenericTABLE, "_id =?", new String[]{String.valueOf(genericname[i])}, null, null, null);
             if (cursor != null) {
                 cursor.moveToFirst();
                 strRead[i] = cursor.getString(cursor.getColumnIndex(gcolumn_generic_name));
@@ -1272,75 +1358,75 @@ public class MyManage {
 
 
     public long adddrugInteractionTABLEValue(int d_medicine1, int d_medicine2, String d_type_interaction,
-                                            String d_message,int d_timemedicine1_2, int d_timemedicine2_1) {
+                                             String d_message, int d_timemedicine1_2, int d_timemedicine2_1) {
 
         ContentValues contentValues = new ContentValues();
         long addlong = 0;
-        contentValues.put(dcolumn_medicine1,d_medicine1);
-        contentValues.put(dcolumn_medicine2,d_medicine2);
-        contentValues.put(dcolumn_type_interaction,d_type_interaction);
-        contentValues.put(dcolumn_message,d_message);
-        contentValues.put(dcolumn_timeMedicine1_2,d_timemedicine1_2);
-        contentValues.put(dcolumn_timeMedicine2_1,d_timemedicine2_1);
+        contentValues.put(dcolumn_medicine1, d_medicine1);
+        contentValues.put(dcolumn_medicine2, d_medicine2);
+        contentValues.put(dcolumn_type_interaction, d_type_interaction);
+        contentValues.put(dcolumn_message, d_message);
+        contentValues.put(dcolumn_timeMedicine1_2, d_timemedicine1_2);
+        contentValues.put(dcolumn_timeMedicine2_1, d_timemedicine2_1);
 
         addlong = writeSqLiteDatabase.insert(drugInteractionTABLE, null, contentValues);
         return addlong;
 
     } //adddrugInteractionTABLEValue
 
-    public long addNewsTABLEValue(String strMed_id,String strMessage,
+    public long addNewsTABLEValue(String strMed_id, String strMessage,
                                   String strAppearence_edit,
                                   String strActivity) {
 
         long addlong;
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ncolumn_med_id,strMed_id);
-        contentValues.put(ncolumn_message,strMessage);
-        contentValues.put(ncolumn_appearance_edit,strAppearence_edit);
-        contentValues.put(ncolumn_activity,strActivity);
+        contentValues.put(ncolumn_med_id, strMed_id);
+        contentValues.put(ncolumn_message, strMessage);
+        contentValues.put(ncolumn_appearance_edit, strAppearence_edit);
+        contentValues.put(ncolumn_activity, strActivity);
         addlong = writeSqLiteDatabase.insert(newsTABLE, null, contentValues);
         return addlong;
     }
 
     public double addMedTABLEValue(String s_trade_name, String s_key_search,
-                              int s_generic_name1, String s_dosage1, String s_uom1,
-                              int s_generic_name2, String s_dosage2, String s_uom2,
-                              int s_generic_name3, String s_dosage3, String s_uom3,
-                              int s_generic_name4, String s_dosage4, String s_uom4,
+                                   int s_generic_name1, String s_dosage1, String s_uom1,
+                                   int s_generic_name2, String s_dosage2, String s_uom2,
+                                   int s_generic_name3, String s_dosage3, String s_uom3,
+                                   int s_generic_name4, String s_dosage4, String s_uom4,
                                    String s_ea, double s_amount_tablet, String s_which_date_d,
                                    String s_appearance, String s_pharmaco,
-                              String s_t1, String s_t2, String s_t3, String s_t4,
-                              String s_t5, String s_t6, String s_t7, String s_t8) {
+                                   String s_t1, String s_t2, String s_t3, String s_t4,
+                                   String s_t5, String s_t6, String s_t7, String s_t8) {
 
         ContentValues contentValues = new ContentValues();
         double adddouble = 0;
-        contentValues.put(mcolumn_trade_name,s_trade_name);
-        contentValues.put(mcolumn_key_search,s_key_search);
-        contentValues.put(mcolumn_generic_name1,s_generic_name1);
-        contentValues.put(mcolumn_dosage1,s_dosage1);
-        contentValues.put(mcolumn_uom1,s_uom1);
-        contentValues.put(mcolumn_generic_name2,s_generic_name2);
-        contentValues.put(mcolumn_dosage2,s_dosage2);
-        contentValues.put(mcolumn_uom2,s_uom2);
-        contentValues.put(mcolumn_generic_name3,s_generic_name3);
-        contentValues.put(mcolumn_dosage3,s_dosage3);
-        contentValues.put(mcolumn_uom3,s_uom3);
-        contentValues.put(mcolumn_generic_name4,s_generic_name4);
-        contentValues.put(mcolumn_dosage4,s_dosage4);
-        contentValues.put(mcolumn_uom4,s_uom4);
-        contentValues.put(mcolumn_ea,s_ea);
-        contentValues.put(mcolumn_amount_tablet,s_amount_tablet);
-        contentValues.put(mcolumn_which_date_d,s_which_date_d);
-        contentValues.put(mcolumn_appearance,s_appearance);
-        contentValues.put(mcolumn_pharmaco,s_pharmaco);
-        contentValues.put(mcolumn_t1,s_t1);
-        contentValues.put(mcolumn_t2,s_t2);
-        contentValues.put(mcolumn_t3,s_t3);
-        contentValues.put(mcolumn_t4,s_t4);
-        contentValues.put(mcolumn_t5,s_t5);
-        contentValues.put(mcolumn_t6,s_t6);
-        contentValues.put(mcolumn_t7,s_t7);
-        contentValues.put(mcolumn_t8,s_t8);
+        contentValues.put(mcolumn_trade_name, s_trade_name);
+        contentValues.put(mcolumn_key_search, s_key_search);
+        contentValues.put(mcolumn_generic_name1, s_generic_name1);
+        contentValues.put(mcolumn_dosage1, s_dosage1);
+        contentValues.put(mcolumn_uom1, s_uom1);
+        contentValues.put(mcolumn_generic_name2, s_generic_name2);
+        contentValues.put(mcolumn_dosage2, s_dosage2);
+        contentValues.put(mcolumn_uom2, s_uom2);
+        contentValues.put(mcolumn_generic_name3, s_generic_name3);
+        contentValues.put(mcolumn_dosage3, s_dosage3);
+        contentValues.put(mcolumn_uom3, s_uom3);
+        contentValues.put(mcolumn_generic_name4, s_generic_name4);
+        contentValues.put(mcolumn_dosage4, s_dosage4);
+        contentValues.put(mcolumn_uom4, s_uom4);
+        contentValues.put(mcolumn_ea, s_ea);
+        contentValues.put(mcolumn_amount_tablet, s_amount_tablet);
+        contentValues.put(mcolumn_which_date_d, s_which_date_d);
+        contentValues.put(mcolumn_appearance, s_appearance);
+        contentValues.put(mcolumn_pharmaco, s_pharmaco);
+        contentValues.put(mcolumn_t1, s_t1);
+        contentValues.put(mcolumn_t2, s_t2);
+        contentValues.put(mcolumn_t3, s_t3);
+        contentValues.put(mcolumn_t4, s_t4);
+        contentValues.put(mcolumn_t5, s_t5);
+        contentValues.put(mcolumn_t6, s_t6);
+        contentValues.put(mcolumn_t7, s_t7);
+        contentValues.put(mcolumn_t8, s_t8);
 
         adddouble = writeSqLiteDatabase.insert(medTABLE, null, contentValues);
 
@@ -1351,7 +1437,7 @@ public class MyManage {
     public long addnameGenericTABLEValue(String s_generic_name) {
         ContentValues contentValues = new ContentValues();
         long addlong = 0;
-        contentValues.put(gcolumn_generic_name,s_generic_name);
+        contentValues.put(gcolumn_generic_name, s_generic_name);
 
         return writeSqLiteDatabase.insert(nameGenericTABLE, null, contentValues);
     }
@@ -1365,22 +1451,21 @@ public class MyManage {
     }
 
 
-
     //ทำการ add ค่าเข้าไปถ้า table มันว่างอะนะ
     public void medTABLEData() {
 
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
 
-        if (cursor.getCount()==0) {
-            addMedTABLEValue("Efaviren GPO", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null,"1", 1, "ED:0", "4", null, "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Stocrin", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null,"1", 1, "ED:0", "4", null, "22:00","","","","","","","");
-            addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null,"1", 1, "ED:0", "1", null, "08:00", "20:00","","","","","","");
-            addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null,"1", 1, "ED:0", "3", null, "08:00", "20:00","","","","","","");
-            addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null,"1", 1, "ED:0", "5", null, "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Viread", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null,"1", 1, "ED:0", "6", null, "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Reyataz","Atazanavir",7,"300","1",1, null, null, 1, null, null, 1, null, null,"1", 1, "ED:0", "7", null, "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Cafergot","Ergotamine Tartrate",8,"1","1",1, null, null, 1, null, null, 1, null, null,"1", 1, "ED:0", "8", null, "08:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Prevacid","Lansoprazole",9,"30","1",1, null, null, 1, null, null, 1, null, null,"1", 1, "ED:0", "9", null, "07:00", "", "", "", "", "", "", "");
+        if (cursor.getCount() == 0) {
+            addMedTABLEValue("Efaviren GPO", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "4", null, "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Stocrin", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "4", null, "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "1", null, "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null, "1", 1, "ED:0", "3", null, "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "5", null, "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Viread", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "6", null, "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Reyataz", "Atazanavir", 7, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "7", null, "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cafergot", "Ergotamine Tartrate", 8, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "8", null, "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Prevacid", "Lansoprazole", 9, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "9", null, "07:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Antacin", "Antacid", 10, "100", "1", 11, "100", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "10", null, "08:00", "13:00", "18:00", "", "", "", "", "");
 
         }
@@ -1390,7 +1475,7 @@ public class MyManage {
     public void nameGenericTABLEData() {
         Cursor cursor = readSqLiteDatabase.query(nameGenericTABLE, column_nameGenericTABLE, null, null, null, null, null);
 
-        if (cursor.getCount()==0) {
+        if (cursor.getCount() == 0) {
 
             addnameGenericTABLEValue("N/A"); //1
             addnameGenericTABLEValue("Efaviren"); //2
@@ -1437,8 +1522,8 @@ public class MyManage {
     public void newsTABLEData() {
         Cursor cursor = readSqLiteDatabase.query(newsTABLE, column_newsTABLE, null, null, null, null, null);
         if (cursor.getCount() == 0) {
-            addNewsTABLEValue("1", "รายละเอียดข้อมูลยา Efaviren GPO", "","DrugInformationActivity");
-            addNewsTABLEValue("2", "รายละเอียดข้อมูลยา Stocrin","","DrugInformationActivity");
+            addNewsTABLEValue("1", "รายละเอียดข้อมูลยา Efaviren GPO", "", "DrugInformationActivity");
+            addNewsTABLEValue("2", "รายละเอียดข้อมูลยา Stocrin", "", "DrugInformationActivity");
         }
     }
 

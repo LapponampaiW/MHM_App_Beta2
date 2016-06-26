@@ -47,6 +47,7 @@ public class MedicationListActivity extends AppCompatActivity {
         strings_generic_line = myManage.readAllMainTABLE(4);
         strings_appearance = myManage.readAllMainTABLE(5);
 
+
         MyData myData = new MyData();
         final int[] intsIndex = myData.translate_Appearance(strings_appearance);
 

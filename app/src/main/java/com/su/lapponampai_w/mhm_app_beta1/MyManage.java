@@ -189,15 +189,25 @@ public class MyManage {
 
     } //Constructor
 
+    //Update mainTABLE_DateTimeCanceled
+    public long updatemainTABLE_DateTimeCanceled(String str_id) {
+
+        MyData myData = new MyData();
+        String strDateTime = myData.currentDateTime();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(mcolumn_datetimecanceled,strDateTime);
+        return writeSqLiteDatabase.update(mainTABLE, contentValues, "_id = " + str_id,null);
+    }
+
     //Update totalAmountTABLE
-    public long updateTotalAmountTABLE(String strid,
+    public long updateTotalAmountTABLE(String str_id,
                                        String strTotalAmount,
                                        String strDateUpdated) {
         long readlong = 0;
         ContentValues contentValues = new ContentValues();
         contentValues.put(tcolumn_TotalAmount,strTotalAmount);
         contentValues.put(tcolumn_DateUpdated, strDateUpdated);
-        readlong = writeSqLiteDatabase.update(totalAmountTABLE, contentValues, "_id = " + strid,null);
+        readlong = writeSqLiteDatabase.update(totalAmountTABLE, contentValues, "_id = " + str_id,null);
         return readlong;
     }
 
@@ -474,6 +484,29 @@ public class MyManage {
         return strREAD;
     }
 
+
+    //Read mainTABLE ที่ DateTimeCanceled ยังเป็น "" (คือยัง Active อยู่)
+    public String[] read_mainTABLE_DateTimeCanceled_N(int intColumn) {
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(mainTABLE,column_mainTABLE, "DateTimeCanceled " + "LIKE ''", null, null, null, "_id ASC");
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+
+            strREAD = new String[cursor.getCount()];
+            cursor.moveToFirst();
+            for(int i = 0;i < cursor.getCount();i++) {
+                strREAD[i] = cursor.getString(intColumn);
+                cursor.moveToNext();
+            } //for
+            cursor.close();
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+        return strREAD;
+    }
+
+
     // Read All mainTABLE
     public String[] readAllMainTABLE(int intColumn) { //0 หมายถึง ==> _id , 1 ==>T1
 
@@ -570,11 +603,6 @@ public class MyManage {
                     default:
                         break;
                 }
-                //strREAD[i] = cursor.getString(intColumn);
-                //0 _id ,1 Med_id, 2 Trade_name
-                //3 Generic_Line ,4 Amount_tablet , 5 Which_Date_D
-                //6 Appearance ,7 EA ,8 pharmaco ,9 StartDate
-                //10 StopDate ,11 PRN ,12 - 19 T1-T8 , 20 DateTimeCanceled
                 cursor.moveToNext();
             }
 

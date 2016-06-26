@@ -71,7 +71,11 @@ public class MedicationDetailActivity extends AppCompatActivity {
                 builder.setPositiveButton("ลบข้อมูล", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(MedicationDetailActivity.this,"ลบข้อมูลเสร็จสิ้น",Toast.LENGTH_SHORT).show();
+                        MyManage myManage = new MyManage(MedicationDetailActivity.this);
+                        myManage.updatemainTABLE_DateTimeCanceled(string0);
                         dialog.dismiss();
+                        finish();
                         //ลบข้อมูล
                     }
                 });

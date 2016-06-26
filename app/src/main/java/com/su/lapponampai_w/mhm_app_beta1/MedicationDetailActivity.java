@@ -1,6 +1,8 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +18,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
     //Explicit
     private TextView textView1,textView2, textView3,textView4,textView5,textView6,textView7,
             textView8,textView9,textView10,textView11,textView12,textView13,textView14,textView15;
-    private TextView textViewAddAmountMedicine, textViewtotalAmountTablet;
+    private TextView textViewAddAmountMedicine, textViewtotalAmountTablet,textViewDeleteMedicine;
     private ImageView imageView1;
     //receiveIntent
     private String string0,string1,string2,string3,string4,string5,string6,string7,string7_Translate,
@@ -39,13 +41,52 @@ public class MedicationDetailActivity extends AppCompatActivity {
         //Click AddAmountMedicine
         clickAddAmountMedicine();
 
+        //Click Delete Medicine
+        clickDeleteMedicine();
+
         //show จำนวนเม็ดยาคงเหลือ
         showtotalAmountTablet();
 
 
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        //show จำนวนเม็ดยาคงเหลือ
+        showtotalAmountTablet();
 
+    }
+
+    private void clickDeleteMedicine() {
+
+        textViewDeleteMedicine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MedicationDetailActivity.this);
+                builder.setIcon(R.drawable.icon_question);
+                builder.setTitle("ลบยาออกจากระบบ!!!");
+                builder.setMessage("ท่านต้องการลบยาออกจากฐานข้อมูล (ทั้งชื่อยาและจำนวนยา)");
+                builder.setPositiveButton("ลบข้อมูล", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        //ลบข้อมูล
+                    }
+                });
+                builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
+
+            }
+        });
+
+    }
 
     private void showtotalAmountTablet() {
         MyManage myManage = new MyManage(this);
@@ -53,17 +94,35 @@ public class MedicationDetailActivity extends AppCompatActivity {
         String[][] stringstotalAmount = {myManage.readAlltotalAmountTABLE(0),
                 myManage.readAlltotalAmountTABLE(1),myManage.readAlltotalAmountTABLE(2),
                 myManage.readAlltotalAmountTABLE(3)};
-        String s_totalAmount;
+        String s_totalAmount = "N/A";
+        String s_totalAmount_null = "Y";
 
         if (stringstotalAmount[0][0].equals("")) {
             //Toast.makeText(MedicationDetailActivity.this,"a;dsjf;sdfj",Toast.LENGTH_LONG).show();
             s_totalAmount = "0 ";
-            string7_Translate = myData.translate_EA(string7);
-            s_totalAmount = s_totalAmount.concat(string7_Translate);
-            textViewtotalAmountTablet.setText(s_totalAmount);
+
+        } else {
+            // ใส่จำนวนเม็ดใน s_totalAmount ... ค่า mainTABLE ค่า 1
+            String[][] stringstotalAmountTABLE = {myManage.readAlltotalAmountTABLE(0),
+                    myManage.readAlltotalAmountTABLE(1),myManage.readAlltotalAmountTABLE(2),
+                    myManage.readAlltotalAmountTABLE(3)};
+
+            for(int i = 0;i<stringstotalAmountTABLE[0].length;i++) {
+                if (stringstotalAmountTABLE[1][i].equals(string0)) {
+                    s_totalAmount = stringstotalAmountTABLE[2][i];
+                    s_totalAmount = s_totalAmount.concat(" ");
+                    s_totalAmount_null = "N";
+                }
+            }
+
+            if (s_totalAmount_null.equals("Y")) {
+                s_totalAmount = "0 ";
+            }
         }
 
-
+        string7_Translate = myData.translate_EA(string7);
+        s_totalAmount = s_totalAmount.concat(string7_Translate);
+        textViewtotalAmountTablet.setText(s_totalAmount);
 
     }
 
@@ -177,6 +236,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
         textViewAddAmountMedicine = (TextView) findViewById(R.id.textView79); //เพิ่มจำนวนยา
         textViewtotalAmountTablet = (TextView) findViewById(R.id.textView88); //จำนวนยาคงเหลือพร้อม UOM
+        textViewDeleteMedicine = (TextView) findViewById(R.id.textView51); //ลบยาออกจากระบบ
 
 
     }

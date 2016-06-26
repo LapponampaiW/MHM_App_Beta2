@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -35,7 +36,6 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
         showView();
 
         clickCalculateAmountMedicine();
-
 
         //Click button(OK or Cancel)
         clickOKCancel();
@@ -101,13 +101,21 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
                         Log.d("MedicationAdd", "จำนวนเม็ดสะสม "+ s_AmountMedicine);
 
                     }
-
                     finish();
-
                 }
 
             }
         });
+
+        //Click Cancel
+        textViewCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
     }
 
     private void showView() {

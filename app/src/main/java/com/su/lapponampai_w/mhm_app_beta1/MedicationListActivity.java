@@ -30,6 +30,12 @@ public class MedicationListActivity extends AppCompatActivity {
 
     } // Main Method
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        recieveValue_mainTABLE();
+    }
+
     private void click_ImageButtonCalendar() {
         imageButtonCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,12 +47,19 @@ public class MedicationListActivity extends AppCompatActivity {
 
     private void recieveValue_mainTABLE() {
         final MyManage myManage = new MyManage(this);
+        /*
         strings_id = myManage.readAllMainTABLE(0);
         strings_tradname = myManage.readAllMainTABLE(3);
         strings_med_id = myManage.readAllMainTABLE(2);
         strings_generic_line = myManage.readAllMainTABLE(4);
         strings_appearance = myManage.readAllMainTABLE(5);
+        */
 
+        strings_id = myManage.read_mainTABLE_DateTimeCanceled_N(0);
+        strings_tradname = myManage.read_mainTABLE_DateTimeCanceled_N(2);
+        strings_med_id = myManage.read_mainTABLE_DateTimeCanceled_N(1);
+        strings_generic_line = myManage.read_mainTABLE_DateTimeCanceled_N(3);
+        strings_appearance = myManage.read_mainTABLE_DateTimeCanceled_N(6);
 
         MyData myData = new MyData();
         final int[] intsIndex = myData.translate_Appearance(strings_appearance);

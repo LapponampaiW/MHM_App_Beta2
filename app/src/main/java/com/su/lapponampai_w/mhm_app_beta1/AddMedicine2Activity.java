@@ -65,7 +65,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     private String[] stringsAppearance;
     private LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4,
             linearLayout5, linearLayout6, linearLayout7, linearLayout8, startDatelin,
-            finishDatelin,linearLayoutTimePerDay;
+            finishDatelin,linearLayoutTimePerDay,intervalLin,head4Layout,linBox4,
+            linBox2Left,linBox2Right;
 
     private ArrayList<String> stringArrayListResultType2 = new ArrayList<String>();
     private ArrayList<String> stringArrayListResultType2Count = new ArrayList<String>();
@@ -711,9 +712,12 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                     if (!string7.equals("")) {
                         linearLayout1.setVisibility(View.VISIBLE);
                     }
+                    head4Layout.setVisibility(View.VISIBLE);
+                    linBox4.setVisibility(View.VISIBLE);
 
                 } else {
                     checkBox7.setChecked(true);
+
                 }
             }
         });
@@ -735,6 +739,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                     linearLayout6.setVisibility(View.GONE);
                     linearLayout7.setVisibility(View.GONE);
                     linearLayout8.setVisibility(View.GONE);
+                    head4Layout.setVisibility(View.GONE);
+                    linBox4.setVisibility(View.GONE);
                 } else {
                     checkBox8.setChecked(true);
                 }
@@ -887,6 +893,9 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         startDatelin = (LinearLayout) findViewById(R.id.startDateLin);
         finishDatelin = (LinearLayout) findViewById(R.id.finishDateLin);
         linearLayoutTimePerDay = (LinearLayout) findViewById(R.id.timePerDayLayout);
+        intervalLin = (LinearLayout) findViewById(R.id.intervalLin);
+        head4Layout = (LinearLayout) findViewById(R.id.head4Layout);
+        linBox4 = (LinearLayout) findViewById(R.id.linBox4);
 
 
     }
@@ -898,36 +907,36 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     // Click Save
     public void clickSaveAddMedicine(View view) {
 
-
-        if (string4.equals("")) {
-            Toast.makeText(AddMedicine2Activity.this,
-                    "กรุณากรอกข้อมูลในช่องให้ครบถ้วน",Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String[] stringsTime = {string7,string8,string9,string10,
-                string11,string12,string13,string14};
-        int iTimesPerDay = Integer.parseInt(textView4.getText().toString());
-
-        for(int i = 0;i<iTimesPerDay;i++) {
-            if (stringsTime.equals("")) {
+        if (string20.equals("N")) {
+            if (string4.equals("")) {
                 Toast.makeText(AddMedicine2Activity.this,
-                        "กรุณากรอกเวลาในช่องให้ครบถ้วน",Toast.LENGTH_SHORT).show();
+                        "กรุณากรอกข้อมูลในช่องให้ครบถ้วน", Toast.LENGTH_SHORT).show();
                 return;
             }
-        }
+            String[] stringsTime = {string7, string8, string9, string10,
+                    string11, string12, string13, string14};
+            int iTimesPerDay = Integer.parseInt(textView4.getText().toString());
 
-        //เวลาซ้ำกัน
-        for(int w = 0;w<iTimesPerDay;w++) {
-            for(int x = 0;x<iTimesPerDay;x++) {
-                if (!stringsTime[w].equals("") && !stringsTime[x].equals("") && w < x) {
-                    Log.d("AddMedicine", "stringsTime[w] : " + w + " " + stringsTime[w]);
-                    Log.d("AddMedicine", "stringsTime[x] : " + x + " " + stringsTime[x]);
-                    if (stringsTime[w].equals(stringsTime[x])) {
-                        Toast.makeText(AddMedicine2Activity.this,
-                                "ใส่เวลาในการรับประทานยาเดียวกัน ไม่สามารถดำเนินการต่อได้",
-                                Toast.LENGTH_SHORT).show();
-                        return;
+            for (int i = 0; i < iTimesPerDay; i++) {
+                if (stringsTime.equals("")) {
+                    Toast.makeText(AddMedicine2Activity.this,
+                            "กรุณากรอกเวลาในช่องให้ครบถ้วน", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+
+            //เวลาซ้ำกัน
+            for (int w = 0; w < iTimesPerDay; w++) {
+                for (int x = 0; x < iTimesPerDay; x++) {
+                    if (!stringsTime[w].equals("") && !stringsTime[x].equals("") && w < x) {
+                        Log.d("AddMedicine", "stringsTime[w] : " + w + " " + stringsTime[w]);
+                        Log.d("AddMedicine", "stringsTime[x] : " + x + " " + stringsTime[x]);
+                        if (stringsTime[w].equals(stringsTime[x])) {
+                            Toast.makeText(AddMedicine2Activity.this,
+                                    "ใส่เวลาในการรับประทานยาเดียวกัน ไม่สามารถดำเนินการต่อได้",
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                     }
                 }
             }
@@ -1021,6 +1030,18 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         MyManage myManage = new MyManage(this);
         MyData myData = new MyData();
 
+        if (string20.equals("Y")) {
+            string7 = "";
+            string8 = "";
+            string9 = "";
+            string10 = "";
+            string11 = "";
+            string12 = "";
+            string13 = "";
+            string14 = "";
+            string18 = myData.currentDay();
+            string19 = "";
+        }
 
         //เริ่มจากตรงนี้นะ
 
@@ -1307,10 +1328,47 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         Log.d("testTimes","D6 : " + stringsTime6);
         Log.d("testTimes","D7 : " + stringsTime7);
 
-        //ผิดตรงนี้
-        for(int a = 0;a<iTimesPerDay;a++) {
-            stringsTime[a] = dateFormat.format(dates[a]);
+        if (!string7.equals("")) {
+            string7 = dateFormat.format(dates[0]);
         }
+        if (!string8.equals("")) {
+            string8 = dateFormat.format(dates[1]);
+        }
+        if (!string9.equals("")) {
+            string9 = dateFormat.format(dates[2]);
+        }
+        if (!string10.equals("")) {
+            string10 = dateFormat.format(dates[3]);
+        }
+        if (!string11.equals("")) {
+            string11 = dateFormat.format(dates[4]);
+        }
+        if (!string12.equals("")) {
+            string12 = dateFormat.format(dates[5]);
+        }
+        if (!string13.equals("")) {
+            string13 = dateFormat.format(dates[6]);
+        }
+        if (!string14.equals("")) {
+            string14 = dateFormat.format(dates[7]);
+        }
+
+        //ต่อไปทำ PRN ถ้าเป็น Y ให้
+        /*
+        if (string20.equals("Y")) {
+            string7 = "";
+            string8 = "";
+            string9 = "";
+            string10 = "";
+            string11 = "";
+            string12 = "";
+            string13 = "";
+            string14 = "";
+            string18 = myData.currentDay();
+            string19 = "";
+        }
+        */
+
 
         //เริ่มจากตรงนี้.... ถ้าไม่ได้เริ่มยาในวันนี้ต้องยังไม่แสดงหนะ
         myManage.addValueTomainTABLE(string1, string2, string3, string15, string4, string5, string16, string6, string18, string19, string20, string7, string8, string9, string10, string11, string12, string13, string14, "");

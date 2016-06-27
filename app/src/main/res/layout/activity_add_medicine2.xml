@@ -222,7 +222,8 @@
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:id="@+id/linBox2Left">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -271,7 +272,8 @@
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:id="@+id/linBox2Right">
 
                         <TextView
                             android:layout_width="fill_parent"
@@ -688,7 +690,8 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:id="@+id/intervalLin">
 
                     <CheckBox
                         android:layout_width="match_parent"

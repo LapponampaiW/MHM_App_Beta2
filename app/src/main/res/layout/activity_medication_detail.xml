@@ -146,166 +146,6 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/amd_LinDetail"
-        android:layout_below="@+id/amd_LinTopic"
-        android:layout_above="@+id/amd_LinButton">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:background="#84a2f9"></LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="@dimen/z2_margin_space">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text3"
-                android:id="@+id/textView62"
-                android:textSize="@dimen/heading4"
-                android:padding="@dimen/z2_margin_space" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text4"
-                android:id="@+id/textView64"
-                android:textSize="@dimen/heading4"
-                android:padding="@dimen/z2_margin_space" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text5"
-                android:id="@+id/textView68"
-                android:textSize="@dimen/heading4"
-                android:padding="@dimen/z2_margin_space" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text6"
-                android:id="@+id/textView69"
-                android:textSize="@dimen/heading4"
-                android:padding="@dimen/z2_margin_space" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text7"
-                android:id="@+id/textView70"
-                android:textSize="@dimen/heading4"
-                android:padding="@dimen/z2_margin_space" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text8"
-                android:id="@+id/textView71"
-                android:textSize="@dimen/heading4"
-                android:paddingTop="@dimen/z2_margin_space"
-                android:paddingLeft="@dimen/z2_margin_biggap" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text8"
-                android:id="@+id/textView72"
-                android:textSize="@dimen/heading4"
-                android:paddingTop="@dimen/z2_margin_space"
-                android:paddingLeft="@dimen/z2_margin_biggap" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text8"
-                android:id="@+id/textView73"
-                android:textSize="@dimen/heading4"
-                android:paddingTop="@dimen/z2_margin_space"
-                android:paddingLeft="@dimen/z2_margin_biggap" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text8"
-                android:id="@+id/textView74"
-                android:textSize="@dimen/heading4"
-                android:paddingTop="@dimen/z2_margin_space"
-                android:paddingLeft="@dimen/z2_margin_biggap" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text8"
-                android:id="@+id/textView75"
-                android:textSize="@dimen/heading4"
-                android:paddingTop="@dimen/z2_margin_space"
-                android:paddingLeft="@dimen/z2_margin_biggap" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text8"
-                android:id="@+id/textView76"
-                android:textSize="@dimen/heading4"
-                android:paddingTop="@dimen/z2_margin_space"
-                android:paddingLeft="@dimen/z2_margin_biggap" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text8"
-                android:id="@+id/textView77"
-                android:textSize="@dimen/heading4"
-                android:paddingTop="@dimen/z2_margin_space"
-                android:paddingLeft="@dimen/z2_margin_biggap" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Text8"
-                android:id="@+id/textView78"
-                android:textSize="@dimen/heading4"
-                android:paddingTop="@dimen/z2_margin_space"
-                android:paddingLeft="@dimen/z2_margin_biggap" />
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/z2_margin_smallgap">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="จำนวนยาคงเหลือ : "
-                    android:id="@+id/textView87"
-                    android:textSize="@dimen/heading4" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="New Text"
-                    android:id="@+id/textView88"
-                    android:textSize="@dimen/heading4"
-                    android:textColor="#f26f6f"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/amd_LinButton"
         android:layout_alignParentBottom="true"
@@ -360,4 +200,173 @@
             android:layout_weight="1" />
 
     </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView2"
+        android:layout_below="@+id/amd_LinTopic"
+        android:layout_above="@+id/amd_LinButton" >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/amd_LinDetail"
+            android:layout_below="@+id/amd_LinTopic"
+            android:layout_above="@+id/amd_LinButton">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="#84a2f9"></LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:padding="@dimen/z2_margin_space">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text3"
+                    android:id="@+id/textView62"
+                    android:textSize="@dimen/heading4"
+                    android:padding="@dimen/z2_margin_space" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text4"
+                    android:id="@+id/textView64"
+                    android:textSize="@dimen/heading4"
+                    android:padding="@dimen/z2_margin_space" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text5"
+                    android:id="@+id/textView68"
+                    android:textSize="@dimen/heading4"
+                    android:padding="@dimen/z2_margin_space" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text6"
+                    android:id="@+id/textView69"
+                    android:textSize="@dimen/heading4"
+                    android:padding="@dimen/z2_margin_space" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text7"
+                    android:id="@+id/textView70"
+                    android:textSize="@dimen/heading4"
+                    android:padding="@dimen/z2_margin_space" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text8"
+                    android:id="@+id/textView71"
+                    android:textSize="@dimen/heading4"
+                    android:paddingTop="@dimen/z2_margin_space"
+                    android:paddingLeft="@dimen/z2_margin_biggap" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text8"
+                    android:id="@+id/textView72"
+                    android:textSize="@dimen/heading4"
+                    android:paddingTop="@dimen/z2_margin_space"
+                    android:paddingLeft="@dimen/z2_margin_biggap" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text8"
+                    android:id="@+id/textView73"
+                    android:textSize="@dimen/heading4"
+                    android:paddingTop="@dimen/z2_margin_space"
+                    android:paddingLeft="@dimen/z2_margin_biggap" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text8"
+                    android:id="@+id/textView74"
+                    android:textSize="@dimen/heading4"
+                    android:paddingTop="@dimen/z2_margin_space"
+                    android:paddingLeft="@dimen/z2_margin_biggap" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text8"
+                    android:id="@+id/textView75"
+                    android:textSize="@dimen/heading4"
+                    android:paddingTop="@dimen/z2_margin_space"
+                    android:paddingLeft="@dimen/z2_margin_biggap" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text8"
+                    android:id="@+id/textView76"
+                    android:textSize="@dimen/heading4"
+                    android:paddingTop="@dimen/z2_margin_space"
+                    android:paddingLeft="@dimen/z2_margin_biggap" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text8"
+                    android:id="@+id/textView77"
+                    android:textSize="@dimen/heading4"
+                    android:paddingTop="@dimen/z2_margin_space"
+                    android:paddingLeft="@dimen/z2_margin_biggap" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Text8"
+                    android:id="@+id/textView78"
+                    android:textSize="@dimen/heading4"
+                    android:paddingTop="@dimen/z2_margin_space"
+                    android:paddingLeft="@dimen/z2_margin_biggap" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/z2_margin_bigspace">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="จำนวนยาคงเหลือ : "
+                        android:id="@+id/textView87"
+                        android:textSize="@dimen/heading4" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView88"
+                        android:textSize="@dimen/heading4"
+                        android:textColor="#f26f6f"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>

@@ -66,7 +66,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     private LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4,
             linearLayout5, linearLayout6, linearLayout7, linearLayout8, startDatelin,
             finishDatelin,linearLayoutTimePerDay,intervalLin,head4Layout,linBox4,
-            linBox2Left,linBox2Right;
+            linBox2Left,linBox2Right,linLine3;
 
     private ArrayList<String> stringArrayListResultType2 = new ArrayList<String>();
     private ArrayList<String> stringArrayListResultType2Count = new ArrayList<String>();
@@ -714,6 +714,9 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                     }
                     head4Layout.setVisibility(View.VISIBLE);
                     linBox4.setVisibility(View.VISIBLE);
+                    linBox2Left.setVisibility(View.VISIBLE);
+                    linBox2Right.setVisibility(View.VISIBLE);
+                    linLine3.setVisibility(View.VISIBLE);
 
                 } else {
                     checkBox7.setChecked(true);
@@ -741,6 +744,9 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                     linearLayout8.setVisibility(View.GONE);
                     head4Layout.setVisibility(View.GONE);
                     linBox4.setVisibility(View.GONE);
+                    linBox2Left.setVisibility(View.GONE);
+                    linBox2Right.setVisibility(View.GONE);
+                    linLine3.setVisibility(View.GONE);
                 } else {
                     checkBox8.setChecked(true);
                 }
@@ -822,6 +828,10 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         checkBox7.setChecked(true);
         checkBox8.setChecked(false);
 
+
+
+
+
     }
 
     private void receiveIntent() {
@@ -896,6 +906,9 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         intervalLin = (LinearLayout) findViewById(R.id.intervalLin);
         head4Layout = (LinearLayout) findViewById(R.id.head4Layout);
         linBox4 = (LinearLayout) findViewById(R.id.linBox4);
+        linBox2Left = (LinearLayout) findViewById(R.id.linBox2Left);
+        linBox2Right = (LinearLayout) findViewById(R.id.linBox2Right);
+        linLine3 = (LinearLayout) findViewById(R.id.line3);
 
 
     }

@@ -175,6 +175,23 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
         if (string11.equals("Y")) {
             textView8.setText("รับประทานยาเป็นครั้งคราว!!!");
+            //เริ่มตรงนี้
+            textView9.setVisibility(View.GONE);
+            textView10.setVisibility(View.GONE);
+            textView11.setVisibility(View.GONE);
+            textView12.setVisibility(View.GONE);
+            textView13.setVisibility(View.GONE);
+            textView14.setVisibility(View.GONE);
+            textView15.setVisibility(View.GONE);
+            textView4.setVisibility(View.GONE);
+
+
+
+
+
+
+
+
         } else if (string11.equals("N")) {
             TextView[] textViews = {textView8, textView9, textView10, textView11, textView12,
                     textView13, textView14, textView15};
@@ -189,6 +206,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
                 }
             }
         }
+
 
 
     }

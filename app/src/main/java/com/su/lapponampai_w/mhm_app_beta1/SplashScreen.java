@@ -84,17 +84,32 @@ public class SplashScreen extends AppCompatActivity {
     private void updatesumTABLE00() {
         MyData myData = new MyData();
 
-        String[] stringsREAD_mainTABLE = myManage.read_mainTABLE_DateTimeCanceled_N(0); //เอามา check ว่า mainTABLE มียาป่าว
+        String[] stringsREAD_mainTABLE = myManage.read_mainTABLE_DateTimeCanceled_N(11); //เอามา check ว่า mainTABLE มียาป่าว
 
         //ต้องแก้ค่าใน sumTABLE ก่อนให้มีแต่ค่าที่แท้จริงเท่านั้นก่อนควรจะมีแค่บรรทัดเดียว
 
         String[] stringsDateRef = myManage.readAllsumTABLE_Full(2); //check วันที่มีการ Add ยาลง sumTABLE ล่าสุด
         String currentDay = myData.currentDay();  //ค่าของวันนี้
 
+        //ดูว่ามีแต่ prn ก็ต้องยกเลิก
+        String strCheckPRN = "Y";
+        for(int i = 0;i<stringsREAD_mainTABLE.length;i++) {
+            if (stringsREAD_mainTABLE[i].equals("N")) {
+                strCheckPRN = "N";
+            }
+        }
+
         if (stringsREAD_mainTABLE[0].equals("")) {
             Log.d("UpdatesumTABLE", "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver");
             Toast.makeText(SplashScreen.this,"ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
             return;
+        }
+        //ดูว่าถ้ามีถ่าแต่ prn ก็ต้องยกเลิก
+        else if (strCheckPRN.equals("Y")) {
+            Log.d("UpdatesumTABLE", "ยาใน mainTABLE มีแต่ยา PRN : ยุติการ UpdateReceiver");
+            Toast.makeText(SplashScreen.this,"ยาใน mainTABLE มีแต่ยา PRN :ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
+            return;
+
         }
         //ถ้าจะ Test การเอาเข้าให้เอา else if อันนี้ออกไป
         else if (stringsDateRef[0].equals(currentDay)) {
@@ -124,7 +139,7 @@ public class SplashScreen extends AppCompatActivity {
             alarmManager.setRepeating(1, myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
             Log.d("UpdatesumTABLE", "ทำ Alarm ขึ้นเองได้แล้ว" + myCalendar1.getTime().toString());
-            Toast.makeText(getBaseContext(),"เริ่มทำการ BroadCAst",Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "เริ่มทำการ BroadCAst", Toast.LENGTH_LONG).show();
 
         }
 

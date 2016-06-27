@@ -528,9 +528,9 @@ public class MyManage {
         return resultStrings;
     }
 
-    public String[] readAllMainTABLE_Full(int intColumn) {
+    public String[] readAllMainTABLE_Full(int intColumn) { //ไม่อยากแก้ เอา DateTimeCanceled ออก
         String[] strREAD = null;
-        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null, "_id ASC");
+        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE,"DateTimeCanceled " + "LIKE ''", null, null, null, "_id ASC");
         int intCount = cursor.getCount();
         if (intCount > 0) {
             cursor.moveToFirst();
@@ -662,7 +662,9 @@ public class MyManage {
 
     public String[] readAllMainTABLE_string(String med_id, int intColumn) {
         String[] strREAD = null;
-        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, "Med_id LIKE '" + med_id + "'", null, null, null, "_id DESC");
+        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, "Med_id LIKE '" +
+                med_id + "' AND DateTimeCanceled LIKE ''", null, null, null, "_id DESC");
+        //Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, "Med_id LIKE '" + med_id + "'", null, null, null, "_id DESC");
         if (cursor != null) {
             cursor.moveToFirst();
             strREAD = new String[cursor.getCount()];

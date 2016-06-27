@@ -69,9 +69,23 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         stringsDateRef = myManage.readAllsumTABLE_Full(2); //ค่า DateRef แบบ DESC ถ้ามีค่าของวันนี้แล้ว ก็ return
         currentDay = myData.currentDay();  //ค่าของวันนี้
 
+        String strCheckPRN = "Y";
+        for(int i = 0;i<stringsREAD11.length;i++) {
+            if (stringsREAD11[i].equals("N")) {
+                strCheckPRN = "N";
+            }
+        }
+
+
+
         if (stringsREAD0[0].equals("")) {
             Log.d("UpdatesumTABLE", "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver");
             Toast.makeText(context,"ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
+            return;
+        }
+        else if (strCheckPRN.equals("Y")) {
+            Log.d("UpdatesumTABLE", "ยาใน mainTABLE มีแต่ยา PRN : ยุติการ UpdateReceiver");
+            Toast.makeText(context,"ยาใน mainTABLE มีแต่ยา PRN :ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
             return;
         }
         //ถ้าจะ Test การเอาเข้าให้เอา else if อันนี้ออกไป

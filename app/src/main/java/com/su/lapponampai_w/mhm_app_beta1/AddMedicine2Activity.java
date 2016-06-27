@@ -418,7 +418,12 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                     checkBox4.setChecked(false);
                     string4 = "ED:0";  //เก็บค่าไว้ใน string4 เหมือนเดิม
                     textView1.setVisibility(View.INVISIBLE);
-
+                } else {
+                    checkBox1.setChecked(true);
+                    checkBox2.setChecked(false);
+                    checkBox3.setChecked(false);
+                    checkBox4.setChecked(false);
+                    string4 = "ED:0";  //เก็บค่าไว้ใน string4 เหมือนเดิม
                 }
 
             }
@@ -714,7 +719,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         });
 
 
-        //Click CheckBox 8
+        //Click CheckBox 8 PRN
         checkBox8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -893,216 +898,42 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     // Click Save
     public void clickSaveAddMedicine(View view) {
 
-        checkDuplicate();
-        /*
-        MyManage myManage = new MyManage(this);
-        MyData myData = new MyData();
 
-
-        //เริ่มจากตรงนี้นะ
-
-        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
-        sqLiteDatabase.delete("drugInteractionTABLE_For_Query", null, null);
-
-        myManage.checkDrugInteraction(string1);  //Check DrugInteraction จาก Med_id
-        //ทำการ add ข้อมูลที่มี DrugInteraction ทั้งหมดเข้าไปในตาราง drugInteractionTABLE_For_Query
-        //ถ้ามีค่าเป็น 1 ขึ้นไปแปลว่ามี DrugInteraction แต่ยังไม่รู้ว่า Type ไหน
-
-        int countRowTABLE_Query = myManage.filter_drugInteractionTABLE_For_Query(0).length;
-        Log.d("filter_drugInteraction", Integer.toString(countRowTABLE_Query));
-
-        if (countRowTABLE_Query != 0) {
-            strings0 = myManage.filter_drugInteractionTABLE_For_Query(0);
-            strings1 = myManage.filter_drugInteractionTABLE_For_Query(1);
-            strings2 = myManage.filter_drugInteractionTABLE_For_Query(2);
-            strings3 = myManage.filter_drugInteractionTABLE_For_Query(3);
-            strings4 = myManage.filter_drugInteractionTABLE_For_Query(4);
-            strings5 = myManage.filter_drugInteractionTABLE_For_Query(5);
-            strings6 = myManage.filter_drugInteractionTABLE_For_Query(6);
-            strings7 = myManage.filter_drugInteractionTABLE_For_Query(7);
-
-            Log.d("filter_drugInteraction", strings3[0]);
-
-            //เอาค่าที่ได้มาดู ตำแหน่งที่ strings4 คือ DrugInteraction type ไหน 1,2,3 ถ้ามี 1 แม้แต่อันเดียวก็ไม่ยอม
-            //ให้ save โดยทำการ filter ไว้แล้วว่าให้ 1 ขึ้นก่อนเสมอ
-            if (strings4[0].equals("1")) {
-                alertDialogFaltal();
-                Log.d("filter_drugInteraction", "type 1:");
-                return;
-            } else {
-
-
-
-
-                // เริ่มจากตรงนี้
-
-                stringArrayListResultType2.clear(); //ตัวตั้งต้นในการนับ type 2
-                stringArrayListResultType2Count.clear(); //ตัวนับใน type 2
-                stringArrayListResultType3.clear(); //ตัวตั้นต้นในการนับ type 3
-                stringArrayListResultType3Count.clear(); //ตัวนับใน type 3
-
-                for (int i = 0; i < strings0.length; i++) {
-
-                    if (strings4[i].equals("2")) {
-
-                        stringArrayListResultType2.add("N"); //เพิ่มข้อมูลในตัวตั้งต้น
-
-                        Log.d("filter_drugInteraction", "type2 :" +"_id :" + strings0[i] + "Initial_medicine :" + strings1[i] +
-                                "Medicine1 :" + strings2[i] + "Medicine2 :" + strings3[i] + "Type_interaction :" + strings4[i] +
-                                "Message :" + strings5[i] + "TimeMedicine1_2 :" + strings6[i] + "TimeMedicine2_1 :" + strings7[i]);
-
-                        if (strings1[i].equals(strings2[i])) {
-                            stringInteraction2 = strings3[i];
-                        } else {
-                            stringInteraction2 = strings2[i];
-                        }  //เซ็ต stringInteraction2 เป็นตัวหนังสือที่ต่างจาก ตัวแรก
-
-                        alertDialogInteraction(string2, strings1[i], stringInteraction2, strings5[i]);
-                        Log.d("filter_drugInteraction", "Access via type2");
-
-
-                    } else if (strings4[i].equals("3")) {
-                        Log.d("filter_drugInteraction", "type 3 :" + strings0[i] + " :" + strings1[i] +
-                                " :" + strings2[i] + " :" + strings3[i] + " :" + strings4[i] +
-                                " :" + strings5[i] + " :" + strings6[i] + " :" + strings7[i]);
-                        Toast.makeText(getBaseContext(), "ได้ค่า 3", Toast.LENGTH_LONG).show();
-                        //ทำแสดง PopUp ค่า drugInteraction ที่ 3
-                        //แต่ตอนนี้มีการทานที่บางวันไม่จำเป็นต้องทานด้วย
-                        //เอาเป็นว่าเขียน message ในลักษณะ เกิด DrugInteraction ประเภทจำเป็นต้องทานห่างกัน
-                        //ถ้าจำเป็นต้องทานร่วมกัน
-                        if (strings1[i].equals(strings2[i])) {  //ชื่อยาเหมือนกัน ยาตัวแรกคือ strings1[i]
-                            stringInteraction2 = strings3[i];  //ชื่อยาอีกตัวหนึ่ง
-                            stringTimeMedicine1_2 = strings6[i]; //1 ไป 2 ไปข้างหน้า
-                            stringTimeMedicine2_1 = strings7[i]; // 2 ไป 1 ไปด้านหลัง
-                        } else {
-                            stringInteraction2 = strings2[i]; // strings1[i] คือยาตัวแรก stringInteraction2 คือยาอีกตัว
-                            stringTimeMedicine1_2 = strings7[i];  //1 ไป 2 ข้างหน้า
-                            stringTimeMedicine2_1 = strings6[i]; // 2 ไป 1 ไปข้างหลัง
-                        }
-                        //ต่อไปจะคำนวณช่วยเวลาที่เกิด Drug Interaction ในกรณีที่จำทานวันเดียวกัน ไม่ได้ดูถึงขนาดว่าคนละวัน ทำไม่ได้ครับ
-
-                        String[][] stringsInteraction2 = {myManage.readAllMainTABLE_string(stringInteraction2,7),
-                                myManage.readAllMainTABLE_string(stringInteraction2,8),
-                                myManage.readAllMainTABLE_string(stringInteraction2,9),
-                                myManage.readAllMainTABLE_string(stringInteraction2,10),
-                                myManage.readAllMainTABLE_string(stringInteraction2,11),
-                                myManage.readAllMainTABLE_string(stringInteraction2,12),
-                                myManage.readAllMainTABLE_string(stringInteraction2,13),
-                                myManage.readAllMainTABLE_string(stringInteraction2,14)};
-                        //ค่าของเวลาที่อยู่ใน T1-8 ของตัวที่เกิด durg Interaction Type 3 เก็บเป็น 2 Dimention Array
-                        // stringsInteraction2[1-8][] คือ ตัวที่ 1 ของแต่ละอัน
-                        // stringsInteraction2[][ตำแหน่งใดๆ] คือตัวต่อๆ ไป
-
-                        Log.d("filter_drugInteraction", "stringsInteraction2[0][0]" + stringsInteraction2[0][0]);
-                        Log.d("filter_drugInteraction", "stringsInteraction2[1][0]" + stringsInteraction2[1][0]);
-                        Log.d("filter_drugInteraction", "stringsInteraction2[2][0]" + stringsInteraction2[2][0]);
-
-                        String[] stringsAllTimes = {string7, string8, string9, string10, string11, string12, string13, string14};
-                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                        Date date = new Date();
-                        Calendar calendar1 = Calendar.getInstance();
-                        Calendar calendar2 = Calendar.getInstance();
-
-                        String today = myData.currentDay();
-
-                        //Query ยาตัวที่ 2 แล้วก็เวลาด้วย
-
-                        for (int x = 0; x < stringsAllTimes.length; x++) {
-
-                            if (!stringsAllTimes[x].equals("")) {
-                                try {
-                                    date = simpleDateFormat.parse(today + " " + stringsAllTimes[x]);
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                                calendar1.setTime(date); // set calendar
-                                calendar1.add(Calendar.MINUTE, Integer.parseInt(stringTimeMedicine1_2));
-                                calendar2.setTime(date); // set Date เป็น calendar
-                                calendar2.add(Calendar.MINUTE, -1 * Integer.parseInt(stringTimeMedicine2_1));
-
-                                Date date1 = calendar1.getTime(); // เวลาที่ไปข้างหน้า
-                                Date date2 = calendar2.getTime(); // เวลาด้านหลัง
-                                String s = simpleDateFormat.format(date);  //เดี่ยวลบทิ้ง
-                                String s1 = simpleDateFormat.format(date1); //เดี่ยวลบทิ้ง
-                                String s2 = simpleDateFormat.format(date2); //เดี่ยวลบทิ้ง
-
-                                Log.d("filter_drugInteraction", "date : " + s); //เดี่ยวลบทิ้ง
-                                Log.d("filter_drugInteraction", "date1 : " + s1); //เดี่ยวลบทิ้ง
-                                Log.d("filter_drugInteraction", "date2 : " + s2); //เดี่ยวลบทิ้ง
-
-                                //เริ่มทำการเปรียบเทียบเวลาของยาตัวที่จะ add เข้า mainTABLE กับเวลาของยาที่มีอยู่ใน MainTABLE อยู่แล้ว
-
-
-                                Log.d("filter_drugInteraction", "stringsInteraction2[0].length : " +Integer.toString(stringsInteraction2[0].length));
-                                for (int y = 0; y < stringsInteraction2[0].length; y++) {
-                                    Log.d("filter_drugInteraction", "Loop Y(1) :" + stringsInteraction2[0].length);
-
-                                    for(int z =0;z < stringsInteraction2.length;z++) {
-                                        Log.d("filter_drugInteraction", "Loop Z(2) :" + stringsInteraction2.length);
-                                        if (!stringsInteraction2[z][y].equals("")) {
-                                            Log.d("filter_drugInteraction", "stringsInteraction2[z][y] ไม่ใช่ค่าว่าง");
-                                            Date dateCheck = new Date();
-                                            try {
-                                                dateCheck = simpleDateFormat.parse(today + " " + stringsInteraction2[z][y]);
-                                            } catch (ParseException e) {
-                                                e.printStackTrace();
-                                            }
-                                            Calendar calendarCheckMinus1day = Calendar.getInstance();
-                                            Calendar calendarCheckPlus1day = Calendar.getInstance();
-                                            calendarCheckPlus1day.setTime(dateCheck);
-                                            calendarCheckMinus1day.setTime(dateCheck);
-                                            calendarCheckPlus1day.add(Calendar.DAY_OF_MONTH,1);
-                                            calendarCheckMinus1day.add(Calendar.DAY_OF_MONTH, -1);
-
-                                            Date dateCheckPlus1day = calendarCheckPlus1day.getTime();
-                                            Date dateCheckMinus1day = calendarCheckMinus1day.getTime();
-
-
-                                            String sPlus1day = simpleDateFormat.format(dateCheckPlus1day); //ลบได้
-                                            String sDate = simpleDateFormat.format(dateCheck); //ลบได้
-                                            String sMinus1day = simpleDateFormat.format(dateCheckMinus1day); //ลบได้
-                                            int i1 = date1.compareTo(dateCheck); //ลบได้
-                                            int i2 = date2.compareTo(dateCheck); //ลบได้
-                                            int i3 = date1.compareTo(dateCheckPlus1day); //ลบได้
-                                            int i4 = date2.compareTo(dateCheckPlus1day); //ลบได้
-                                            int i5 = date1.compareTo(dateCheckMinus1day); //ลบได้
-                                            int i6 = date2.compareTo(dateCheckMinus1day); //ลบได้
-
-
-                                            Log.d("filter_drugInteraction","ก่อนเข้า if : dateCheckPlus1day : " + sPlus1day);
-                                            Log.d("filter_drugInteraction", "ก่อนเข้า if : dateCheck : " + sDate);
-                                            Log.d("filter_drugInteraction","ก่อนเข้า if : dateCheckMinus1day : " + sMinus1day);
-                                            Log.d("filter_drugInteraction", "i ต่างๆ " + i1 + i2 + i3 + i4 + i5 + i6);
-
-                                            //ทำการนับ type 3
-                                            stringArrayListResultType3.add("N"); //นับตัว Reference
-
-                                            if ((date1.compareTo(dateCheck) > 0 && date2.compareTo(dateCheck) < 0) ||
-                                                    (date1.compareTo(dateCheckPlus1day) > 0 && date2.compareTo(dateCheckPlus1day) < 0)
-                                                    || (date1.compareTo(dateCheckMinus1day) > 0 && date2.compareTo(dateCheckMinus1day) < 0)) {
-
-                                                Log.d("filter_drugInteraction", "เข้า if!!!!!!!!!!! ");
-                                                alertDialogInteractionType3(string2, strings1[i], stringInteraction2, strings5[i], strings6[i], strings7[i]);
-                                            } else {
-                                                stringArrayListResultType3Count.add("N"); //นับตัว ที่ต้องนับ
-                                            }
-                                        }
-                                    }
-                                }
-                                // ได้ค่าเวลามา 2 อันแล้ว ทั้ง upper และ lower
-                            }
-                        }
-
-                    }  //Type 3
-                } //ออกจาก loop Type 2 และ Type 3
-
-            }
+        if (string4.equals("")) {
+            Toast.makeText(AddMedicine2Activity.this,
+                    "กรุณากรอกข้อมูลในช่องให้ครบถ้วน",Toast.LENGTH_SHORT).show();
             return;
         }
 
-        addValueTomainTABLEandIntent();
+        String[] stringsTime = {string7,string8,string9,string10,
+                string11,string12,string13,string14};
+        int iTimesPerDay = Integer.parseInt(textView4.getText().toString());
 
-        */
+        for(int i = 0;i<iTimesPerDay;i++) {
+            if (stringsTime.equals("")) {
+                Toast.makeText(AddMedicine2Activity.this,
+                        "กรุณากรอกเวลาในช่องให้ครบถ้วน",Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        for(int w = 0;w<iTimesPerDay;w++) {
+            for(int x = 0;x<iTimesPerDay;x++) {
+                if (!stringsTime[w].equals("") && !stringsTime[x].equals("") && w < x) {
+                    Log.d("AddMedicine", "stringsTime[w] : " + w + " " + stringsTime[w]);
+                    Log.d("AddMedicine", "stringsTime[x] : " + x + " " + stringsTime[x]);
+                    if (stringsTime[w].equals(stringsTime[x])) {
+                        Toast.makeText(AddMedicine2Activity.this,
+                                "ใส่เวลาในการรับประทานยาเดียวกัน ไม่สามารถดำเนินการต่อได้",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
+            }
+        }
+
+        checkDuplicate();
+
     } //clickSave
 
     private void alertDialogDuplicate() {

@@ -917,6 +917,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             }
         }
 
+        //เวลาซ้ำกัน
         for(int w = 0;w<iTimesPerDay;w++) {
             for(int x = 0;x<iTimesPerDay;x++) {
                 if (!stringsTime[w].equals("") && !stringsTime[x].equals("") && w < x) {
@@ -1236,20 +1237,83 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         MainActivity.activityMainActivity.finish();
         AddMedicineActivity.activityAddMedicineActivity.finish();
         MyManage myManage = new MyManage(this);
+        MyData myData = new MyData();
 
 
         String[] stringsREAD_mainTABLE = myManage.readAllMainTABLE_Full(0); //เอาค่ามาซักค่านึกไว้ check ว่า mainTABLE มียาหรือไม่
         String[] stringsREAD_sumTABLE = myManage.readAllsumTABLE_Full(0);
         if (stringsREAD_mainTABLE[0].equals("") && stringsREAD_sumTABLE[0].equals("")) {
-            checkDailyUpdateReceiver();
+            checkDailyUpdateReceiver(); //เริ่มต้นการทำ boardcast ที่ยา Add เข้าไปครั้งแรก
         }
 
+        //เรียงเวลาในการกินยาเผื่อมีคนใส่เวลาแบบไม่เรียง > <'''
+        String[] stringsTime = {string7, string8, string9, string10,
+                string11, string12, string13, string14};
+        Date date00 = new Date();
+        Date date01 = new Date();
+        Date date02 = new Date();
+        Date date03 = new Date();
+        Date date04 = new Date();
+        Date date05 = new Date();
+        Date date06 = new Date();
+        Date date07 = new Date();
+        Date date_w;
+        Date date_x;
+        Date[] dates = {date00,date01,date02,date03,date04,date05,date06,date07};
+        int iTimesPerDay = Integer.parseInt(textView4.getText().toString());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
 
+        for (int z = 0; z < iTimesPerDay; z++) {
+            try {
+                dates[z] = dateFormat.parse(stringsTime[z]);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+
+        for (int w = 0; w < iTimesPerDay; w++) {
+            for (int x = 0; x < iTimesPerDay; x++) {
+                if (w < x) {
+                    Log.d("testTimes","1 : " + Integer.toString(w) + Integer.toString(x));
+                    if (dates[w].compareTo(dates[x]) > 0) {
+                        Log.d("testTimes","2 : " + Integer.toString(w) + Integer.toString(x));
+                        date_w = dates[w];
+                        Log.d("testTimes","date_w : " +  dateFormat.format(date_w));
+                        date_x = dates[x];
+                        Log.d("testTimes","date_x : " +  dateFormat.format(date_x));
+                        dates[w] = date_x;
+                        Log.d("testTimes","date[w] : " +  dateFormat.format(dates[w]));
+                        dates[x] = date_w;
+                        Log.d("testTimes","date[x] : " +  dateFormat.format(dates[x]));
+                    }
+                }
+            }
+        }
+
+        String stringsTime0 = dateFormat.format(dates[0]);
+        String stringsTime1 = dateFormat.format(dates[1]);
+        String stringsTime2 = dateFormat.format(dates[2]);
+        String stringsTime3 = dateFormat.format(dates[3]);
+        String stringsTime4 = dateFormat.format(dates[4]);
+        String stringsTime5 = dateFormat.format(dates[5]);
+        String stringsTime6 = dateFormat.format(dates[6]);
+        String stringsTime7 = dateFormat.format(dates[7]);
+        Log.d("testTimes","D0 : " + stringsTime0);
+        Log.d("testTimes","D1 : " + stringsTime1);
+        Log.d("testTimes","D2 : " + stringsTime2);
+        Log.d("testTimes","D3 : " + stringsTime3);
+        Log.d("testTimes","D4 : " + stringsTime4);
+        Log.d("testTimes","D5 : " + stringsTime5);
+        Log.d("testTimes","D6 : " + stringsTime6);
+        Log.d("testTimes","D7 : " + stringsTime7);
+
+        //ผิดตรงนี้
+        for(int a = 0;a<iTimesPerDay;a++) {
+            stringsTime[a] = dateFormat.format(dates[a]);
+        }
 
         //เริ่มจากตรงนี้.... ถ้าไม่ได้เริ่มยาในวันนี้ต้องยังไม่แสดงหนะ
-
-
-        myManage.addValueTomainTABLE(string1, string2, string3, string15, string4, string5,string16, string6,string18,string19,string20, string7, string8, string9, string10, string11, string12, string13, string14,"");
+        myManage.addValueTomainTABLE(string1, string2, string3, string15, string4, string5, string16, string6, string18, string19, string20, string7, string8, string9, string10, string11, string12, string13, string14, "");
 
         //เอาค่า Med_id เป็นตัว query ในตาราง mainTABLE โดยเรียงจาก _id แบบ DESC
         String[] strings1 = myManage.readAllMainTABLE_string(string1, 0); //เอาค่าMain_id
@@ -1263,10 +1327,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         String[] stringsT8 = myManage.readAllMainTABLE_string(string1, 14); //T8
 
 
-
-
         //ต้องทำอย่างไรก็ได้ check ให้ได้ก่อนว่าวันนี้ต้องกินยาหรือไม่
-        MyData myData = new MyData();
         String currentDay = myData.currentDay();  //ค่าของวันนี้ & ค่า String ของวันเริ่มต้น คือ string18
         String addSumTABLE_Today = "N";
         String startDateToday = "N";
@@ -1277,7 +1338,6 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         if (dateToday.compareTo(dateStartDate) == 0) {
             startDateToday = "Y";
         }
-
 
 
         String current_DayOfWeek = myData.current_DayOfWeek();  //ค่าเป็นเลข ของ DayofWeek
@@ -1348,7 +1408,6 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             if (!stringsT8[0].equals("")) {
                 myManage.addValueToSumTable(strings1[0], currentDay, stringsT8[0], "", "", "");
             }
-
 
 
         }

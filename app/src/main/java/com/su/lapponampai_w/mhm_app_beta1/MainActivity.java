@@ -2,6 +2,7 @@ package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -39,7 +41,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.StringTokenizer;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     //Explicit
     public static Activity activityMainActivity;
@@ -79,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
 
         //Bind Widget
         bindWidget();
+
+        showView();
         
         //Notification from SQLite
         //notificationFormSQLite();
@@ -102,15 +106,77 @@ public class MainActivity extends AppCompatActivity {
 
         clickImagepill();
 
+        clickTextViewMainDate();
+
     } //Main method
+
+    private void clickTextViewMainDate() {
+        textViewMainDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(v);
+            }
+
+            private void showDatePickerDialog(View v) {
+                MyDatePickerFragment myDatePickerFragment = new MyDatePickerFragment();
+                myDatePickerFragment.show(getFragmentManager(), "datePicker");
+            }
+        });
+
+    }
+
+    private void showView() {
+        //Invisible
+        imageButtonA1.setVisibility(View.INVISIBLE);
+        imageButtonA2.setVisibility(View.INVISIBLE);
+        imageButtonA3.setVisibility(View.INVISIBLE);
+        imageButtonA4.setVisibility(View.INVISIBLE);
+        imageButtonA5.setVisibility(View.INVISIBLE);
+        imageButtonA6.setVisibility(View.INVISIBLE);
+        imageButtonA7.setVisibility(View.INVISIBLE);
+        imageButtonA8.setVisibility(View.INVISIBLE);
+        imageButtonA9.setVisibility(View.INVISIBLE);
+        imageButtonB1.setVisibility(View.INVISIBLE);
+        imageButtonB2.setVisibility(View.INVISIBLE);
+        imageButtonB3.setVisibility(View.INVISIBLE);
+        imageButtonB4.setVisibility(View.INVISIBLE);
+        imageButtonB5.setVisibility(View.INVISIBLE);
+        imageButtonB6.setVisibility(View.INVISIBLE);
+        imageButtonB7.setVisibility(View.INVISIBLE);
+        imageButtonB8.setVisibility(View.INVISIBLE);
+        imageButtonB9.setVisibility(View.INVISIBLE);
+        imageButtonM1.setVisibility(View.INVISIBLE);
+        imageButtonM2.setVisibility(View.INVISIBLE);
+        imageButtonM3.setVisibility(View.INVISIBLE);
+        imageButtonM4.setVisibility(View.INVISIBLE);
+        imageButtonM5.setVisibility(View.INVISIBLE);
+        imageButtonM6.setVisibility(View.INVISIBLE);
+        imageButtonM7.setVisibility(View.INVISIBLE);
+        imageButtonM8.setVisibility(View.INVISIBLE);
+        imageButtonM9.setVisibility(View.INVISIBLE);
+        imageButtonE1.setVisibility(View.INVISIBLE);
+        imageButtonE2.setVisibility(View.INVISIBLE);
+        imageButtonE3.setVisibility(View.INVISIBLE);
+        imageButtonE4.setVisibility(View.INVISIBLE);
+        imageButtonE5.setVisibility(View.INVISIBLE);
+        imageButtonE6.setVisibility(View.INVISIBLE);
+        imageButtonE7.setVisibility(View.INVISIBLE);
+        imageButtonE8.setVisibility(View.INVISIBLE);
+        imageButtonE9.setVisibility(View.INVISIBLE);
+    } //showView
 
     @Override
     public void onResume(){
         super.onResume();
 
-        setDateAndTimeToday();
+
+        showView();
 
         delete_UnnecessaryData_sumTABLE();
+
+        setDateAndTimeToday();
+
+        textViewMainDate.setText("วันที่ : " + today);
 
         displayMedicineByDay(today);
 
@@ -127,7 +193,6 @@ public class MainActivity extends AppCompatActivity {
         String[] str_id_in_sumTABLE_Today = myManage.filter_sumTABLE__by_Date(today, 0);
         String[] str_DateCheck_in_sumTABLE_Today = myManage.filter_sumTABLE__by_Date(today, 4);
         ArrayList<String> stringArrayList = new ArrayList<String>();
-        ArrayList<String> stringArrayList1 = new ArrayList<String>();
         int arrayIndex = 0;
         if (!strMain_id_in_mainTABLE.equals("") && !strMain_id_in_sumTABlE_Today.equals("")) {
             for(int i = 0;i<strMain_id_in_mainTABLE.length;i++) {
@@ -307,7 +372,7 @@ public class MainActivity extends AppCompatActivity {
         MyManage myManage = new MyManage(this);
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         today = dateFormat.format(System.currentTimeMillis());
-        textViewMainDate.setText("วันที่ :" + today);
+        textViewMainDate.setText("วันที่ : " + today);
 
         stringsInterval = myManage.readTimeTABLE(1);
         stringsStartTime = myManage.readTimeTABLE(2);
@@ -317,7 +382,7 @@ public class MainActivity extends AppCompatActivity {
         for (int x = 0; x < 4; x++) {
             stringstimeTABLE[x] = stringsInterval[x] + "(" + stringsStartTime[x] + " - " + stringsEndTime[x] + ")";
         }
-
+        //set เวลาเป็นเช้า กลางวัน เย็น ก่อนนอน
         tvMorning.setText(stringstimeTABLE[0]);
         tvAfternoon.setText(stringstimeTABLE[1]);
         tvEvening.setText(stringstimeTABLE[2]);
@@ -1029,6 +1094,7 @@ public class MainActivity extends AppCompatActivity {
         tvBedtime = (TextView) findViewById(R.id.tvBedtime);
 
         //Invisible
+        /*
         imageButtonA1.setVisibility(View.INVISIBLE);
         imageButtonA2.setVisibility(View.INVISIBLE);
         imageButtonA3.setVisibility(View.INVISIBLE);
@@ -1065,9 +1131,24 @@ public class MainActivity extends AppCompatActivity {
         imageButtonE7.setVisibility(View.INVISIBLE);
         imageButtonE8.setVisibility(View.INVISIBLE);
         imageButtonE9.setVisibility(View.INVISIBLE);
-
+        */
 
     }
 
 
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        MyData myData = new MyData();
+
+        String sSpecificDate = myData.createStringDay(dayOfMonth, monthOfYear + 1, year);
+        textViewMainDate.setText("วันที่ : " + sSpecificDate);
+
+        showView();
+
+        displayMedicineByDay(sSpecificDate);
+
+
+
+
+    }
 } //Main Class

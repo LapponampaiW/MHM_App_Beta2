@@ -53,15 +53,20 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add Date"
                 android:id="@+id/textViewMainDate"
-                android:textSize="@dimen/heading3"
-                android:gravity="center_vertical|center_horizontal" />
+                android:textSize="22sp"
+                android:gravity="center_vertical|center_horizontal"
+                android:paddingLeft="@dimen/z2_margin_bigspace"
+                android:paddingRight="@dimen/z2_margin_bigspace"
+                android:textColor="#ffffff"
+                android:background="@drawable/my_border_black" />
         </LinearLayout>
 
         <LinearLayout

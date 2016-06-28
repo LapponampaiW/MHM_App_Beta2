@@ -191,18 +191,40 @@ public class MyManage {
 
     } //Constructor
 
-    //Delete UnnecessaryData_sumTABLE
-    public long delete_UnneccessaryData_sumTABLE(String strMain_id,
-                                                 String strDate) {
-        long readlong = 0;
 
+
+    //Update ยกเลิก SkipHold ใน sumTABLE
+    public long updatesumTABLE_Canceled_SkipHold(String str_id) {
         ContentValues contentValues = new ContentValues();
-        readlong = writeSqLiteDatabase.delete(sum_table, "Main_id = " +
-                strMain_id + " AND DateRef = " + strDate + " AND DateCheck = ''", null);
-
-
-        return readlong;
+        contentValues.put(column_DateCheck,"");
+        contentValues.put(column_TimeCheck,"");
+        contentValues.put(column_SkipHold,"");
+        return writeSqLiteDatabase.update(sum_table,contentValues, "_id = " + str_id,null);
     }
+
+    //Update SkipHold ใน sumTABLE
+    public long updatesumTABLE_ADD_SkipHold_Now(String str_id) {
+        MyData myData = new MyData();
+        String strDateTime = myData.currentDateTime();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(column_DateCheck,"");
+        contentValues.put(column_TimeCheck,"");
+        contentValues.put(column_SkipHold,strDateTime);
+        return writeSqLiteDatabase.update(sum_table,contentValues, "_id = " + str_id,null);
+    }
+
+    //Update sumTABLE โดยใส่ค่าของ DateCheck TimeCheck เข้าไป
+    public long updatesumTABLE_ADD_DateCheckTimeCheck_Now(String str_id) {
+        MyData myData = new MyData();
+        String strDateCheck = myData.currentDay();
+        String strTimeCheck = myData.currentTime_Minus();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(column_DateCheck,strDateCheck);
+        contentValues.put(column_TimeCheck,strTimeCheck);
+        contentValues.put(column_SkipHold,"");
+        return writeSqLiteDatabase.update(sum_table,contentValues, "_id = " + str_id,null);
+    }
+
 
     //Update mainTABLE_DateTimeCanceled
     public long updatemainTABLE_DateTimeCanceled(String str_id) {
@@ -551,7 +573,7 @@ public class MyManage {
 
         String[] resultStrings = null;
         Cursor cursor = readSqLiteDatabase.query("mainTABLE",
-                new String[]{"_id", "T1", "Med_id", "Trade_name", "Generic_line", "Appearance", "Amount_tablet"}, //2,3,4,5,6
+                new String[]{"_id", "T1", "Med_id", "Trade_name", "Generic_line", "Appearance", "Amount_tablet", "EA"}, //2,3,4,5,6,7
                 null, null, null, null, null);
 
         resultStrings = new String[cursor.getCount()];

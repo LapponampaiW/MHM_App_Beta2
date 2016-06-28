@@ -1,16 +1,22 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TakeSkipMedicineActivity extends AppCompatActivity {
 
-    String string1,string2,string3, string4;
+    //Explicit
+    public Activity activityTSMActivity;
+    String string1,string2,string3, string4,string5,string6,string7,stringId;
     TextView textView1,textView2, textView3;
+    TextView textViewB1,textViewB2, textViewB3;
     ImageView imageView;
     int[] intsIndex;
     String[] stringsIndex;
@@ -20,6 +26,8 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_take_skip_medicine);
 
+        activityTSMActivity = this;
+
         displayMetrics();
 
         bindWidget();
@@ -28,8 +36,60 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
 
         showView();
 
+        setTextButton();
 
+        clickButton();
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        receiveIntent();
+
+        showView();
+
+        setTextButton();
+
+        clickButton();
+
+    } //Override
+
+    private void clickButton() {
+        final MyManage myManage = new MyManage(this);
+        textViewB1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (string5.equals("") && string6.equals("")) {
+                    myManage.updatesumTABLE_ADD_SkipHold_Now(stringId);
+                    Toast.makeText(getBaseContext(), stringId, Toast.LENGTH_LONG).show();
+                    finish();
+                } else if (!string5.equals("") && string6.equals("")) {
+                    myManage.updatesumTABLE_ADD_SkipHold_Now(stringId);
+                    finish();
+                } else if (string5.equals("") && !string6.equals("")) {
+                    myManage.updatesumTABLE_Canceled_SkipHold(stringId);
+                    finish();
+                }
+            }
+        });
+    }
+
+    private void setTextButton() {
+        if (string5.equals("") && string6.equals("")) {
+            textViewB1.setText("ข้ามการกิน");
+            textViewB2.setText("กินยาตอนนี้");
+            textViewB3.setText("ยกเลิก");
+        } else if (!string5.equals("") && string6.equals("")) {
+            textViewB1.setText("ข้ามการกิน");
+            textViewB2.setText("ยกเลิกการกินยา");
+            textViewB3.setText("ยกเลิก");
+        } else if (string5.equals("") && !string6.equals("")) {
+            textViewB1.setText("ยกเลิกการข้าม");
+            textViewB2.setText("กินยาตอนนี้");
+            textViewB3.setText("ยกเลิก");
+        }
+    } //setButton
 
     private void showView() {
 
@@ -39,10 +99,13 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         Log.d("abc",stringsIndex[0]);
         intsIndex = myData.translate_Small_Appearance(stringsIndex);
 
+        String stextView1 = "ชื่อยา : " + string1;
+        String stextView2 = "จำนวนที่รับประทาน : " + string3 + " " + myData.translate_EA(string7);
+        String stextView3 = "เวลาที่รับประทาน : " + string4;
 
-        textView1.setText("ชื่อยา : " + string1);
-        textView2.setText("จำนวนที่รับประทาน : " + string3);
-        textView3.setText("เวลาที่รับประทาน : " + string4);
+        textView1.setText(stextView1);
+        textView2.setText(stextView2);
+        textView3.setText(stextView3);
         imageView.setImageResource(intsIndex[0]);
     }
 
@@ -51,13 +114,21 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         textView2 = (TextView) findViewById(R.id.textViewTSML1);
         textView3 = (TextView) findViewById(R.id.textViewTSML2);
         imageView = (ImageView) findViewById(R.id.imageViewTSM);
+        textViewB1 = (TextView) findViewById(R.id.textView47);
+        textViewB2 = (TextView) findViewById(R.id.textView48);
+        textViewB3 = (TextView) findViewById(R.id.textView49);
     }
 
     private void receiveIntent() {
-        string1 = getIntent().getStringExtra("Tradename");
-        string2 = getIntent().getStringExtra("Appearance");
-        string3 = getIntent().getStringExtra("AmountTablet");
-        string4 = getIntent().getStringExtra("TimeRef");
+        string1 = getIntent().getStringExtra("MainActivity_Tradename");
+        string2 = getIntent().getStringExtra("MainActivity_Appearance");
+        string3 = getIntent().getStringExtra("MainActivity_AmountTablet");
+        string4 = getIntent().getStringExtra("MainActivity_TimeRef");
+        string5 = getIntent().getStringExtra("MainActivity_TimeCheck");
+        string6 = getIntent().getStringExtra("MainActivity_SkipHold");
+        string7 = getIntent().getStringExtra("MainActivity_EA");
+        stringId = getIntent().getStringExtra("MainActivity_Sum_id");
+
 
     }
 

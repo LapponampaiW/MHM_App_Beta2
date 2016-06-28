@@ -301,6 +301,13 @@ public class MyData {
         return today;
     }
 
+    public String currentTime_Minus() {
+        String today;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+        today = dateFormat.format(System.currentTimeMillis());
+        return today;
+    }
+
     public String current_DayOfMonth() {
 
         Calendar calendar = Calendar.getInstance();

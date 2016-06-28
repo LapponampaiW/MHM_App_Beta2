@@ -215,6 +215,37 @@ public class MyData {
     }
 
 
+    public int[] translate_SmallSkipHold_Appearance(String[] appearance) {
+
+        int[] intsRead = new int[appearance.length];
+        for (int i = 0; i < appearance.length; i++) {
+
+            if (appearance[i].equals("1")) {
+                intsRead[i] = R.drawable.ibs0101;
+            } else if (appearance[i].equals("2")) {
+                intsRead[i] = R.drawable.ibs0102;
+            } else if (appearance[i].equals("3")) {
+                intsRead[i] = R.drawable.ibs0201;
+            } else if (appearance[i].equals("4")) {
+                intsRead[i] = R.drawable.ibs0302;
+            } else if (appearance[i].equals("5")) {
+                intsRead[i] = R.drawable.ibs0203;
+            } else if (appearance[i].equals("6")) {
+                intsRead[i] = R.drawable.ibs0501;
+            } else if (appearance[i].equals("7")) {
+                intsRead[i] = R.drawable.ibs90506;
+            } else if (appearance[i].equals("8")) {
+                intsRead[i] = R.drawable.ibs0604;
+            } else if (appearance[i].equals("9")) {
+                intsRead[i] = R.drawable.ibs0607;
+            } else if (appearance[i].equals("10")) {
+                intsRead[i] = R.drawable.ibs0602;
+            }
+
+        }
+        return intsRead;
+    }
+
 
 
     public String createStringTime(int hour,int minute) {

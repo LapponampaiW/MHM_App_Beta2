@@ -1,6 +1,9 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +14,8 @@ import android.widget.ListView;
 
 public class MedicationListActivity extends AppCompatActivity {
 
+    //Explicit
+    public static Activity activityMedicationListActivity;
     private ListView listView;
     private String[] strings_id, strings_tradname,strings_med_id, strings_generic_line, strings_appearance;
     ImageButton imageButtonCalendar;
@@ -19,16 +24,18 @@ public class MedicationListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medication_list);
-
-
+        activityMedicationListActivity = this;
 
         bindWidget();
+
 
         recieveValue_mainTABLE();
 
         click_ImageButtonCalendar();
 
     } // Main Method
+
+
 
     @Override
     public void onResume(){
@@ -55,11 +62,33 @@ public class MedicationListActivity extends AppCompatActivity {
         strings_appearance = myManage.readAllMainTABLE(5);
         */
 
-        strings_id = myManage.read_mainTABLE_DateTimeCanceled_N(0);
-        strings_tradname = myManage.read_mainTABLE_DateTimeCanceled_N(2);
-        strings_med_id = myManage.read_mainTABLE_DateTimeCanceled_N(1);
-        strings_generic_line = myManage.read_mainTABLE_DateTimeCanceled_N(3);
-        strings_appearance = myManage.read_mainTABLE_DateTimeCanceled_N(6);
+        strings_id = myManage.readAllMainTABLE_Full(0);
+        strings_tradname = myManage.readAllMainTABLE_Full(2);
+        strings_med_id = myManage.readAllMainTABLE_Full(1);
+        strings_generic_line = myManage.readAllMainTABLE_Full(3);
+        strings_appearance = myManage.readAllMainTABLE_Full(6);
+
+        if (strings_id[0].equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setIcon(R.drawable.icon_question);
+            builder.setTitle("ไม่มียาในรายการ!!!");
+            builder.setMessage("กรุณาเพิ่มรายการยาก่อน\nโดยคลิ๊กที่ +เพิ่มเติม+ ==> เพิ่มรายการยา");
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    finish();
+                }
+            });
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    finish();
+                }
+            });
+            builder.show();
+        }
+
 
         MyData myData = new MyData();
         final int[] intsIndex = myData.translate_Appearance(strings_appearance);

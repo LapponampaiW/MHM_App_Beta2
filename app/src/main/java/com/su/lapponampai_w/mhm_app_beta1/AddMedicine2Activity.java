@@ -1274,11 +1274,13 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         MyData myData = new MyData();
 
 
-        String[] stringsREAD_mainTABLE = myManage.readAllMainTABLE_Full(0); //เอาค่ามาซักค่านึกไว้ check ว่า mainTABLE มียาหรือไม่
+        String[] stringsREAD_mainTABLE = myManage.read_mainTABLE_InCluded_DateTimeCanceled(0); //เอาค่ามาซักค่านึกไว้ check ว่า mainTABLE มียาหรือไม่
         String[] stringsREAD_sumTABLE = myManage.readAllsumTABLE_Full(0);
         if (stringsREAD_mainTABLE[0].equals("") && stringsREAD_sumTABLE[0].equals("")) {
             checkDailyUpdateReceiver(); //เริ่มต้นการทำ boardcast ที่ยา Add เข้าไปครั้งแรก
         }
+
+
 
         //เรียงเวลาในการกินยาเผื่อมีคนใส่เวลาแบบไม่เรียง > <'''
         String[] stringsTime = {string7, string8, string9, string10,

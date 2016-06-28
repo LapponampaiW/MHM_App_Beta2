@@ -27,9 +27,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -82,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
         setDateAndTimeToday();
 
+        delete_UnnecessaryData_sumTABLE();
+
         displayMedicineByDay(today);
 
         //คลิก เพิ่มเติม
@@ -99,7 +104,119 @@ public class MainActivity extends AppCompatActivity {
 
     } //Main method
 
+    @Override
+    public void onResume(){
+        super.onResume();
 
+        setDateAndTimeToday();
+
+        delete_UnnecessaryData_sumTABLE();
+
+        displayMedicineByDay(today);
+
+    } //Override
+
+    private void delete_UnnecessaryData_sumTABLE() {
+
+        MyManage myManage = new MyManage(this);
+
+        //เปิดmainTABLE จะเอาเฉพาะค่าที่ถูก cancel แล้ว
+        String[] strMain_id_in_mainTABLE = myManage.read_mainTABLE_InCluded_DateTimeCanceled(0);
+        String[] strDateTimeCanceled = myManage.read_mainTABLE_InCluded_DateTimeCanceled(20);
+        String[] strMain_id_in_sumTABlE_Today = myManage.filter_sumTABLE__by_Date(today, 1);
+        String[] str_id_in_sumTABLE_Today = myManage.filter_sumTABLE__by_Date(today, 0);
+        String[] str_DateCheck_in_sumTABLE_Today = myManage.filter_sumTABLE__by_Date(today, 4);
+        ArrayList<String> stringArrayList = new ArrayList<String>();
+        ArrayList<String> stringArrayList1 = new ArrayList<String>();
+        int arrayIndex = 0;
+        if (!strMain_id_in_mainTABLE.equals("") && !strMain_id_in_sumTABlE_Today.equals("")) {
+            for(int i = 0;i<strMain_id_in_mainTABLE.length;i++) {
+                if (!strDateTimeCanceled[i].equals("")) {
+                    stringArrayList.add(arrayIndex, strMain_id_in_mainTABLE[i]);
+                    arrayIndex = arrayIndex + 1;
+                }
+            }
+              //เช็คว่ามียาที่ถูก cancel หรือป่าว
+            if (stringArrayList.size() > 0) {
+                String[] strings = new String[stringArrayList.size()];
+                strings = stringArrayList.toArray(strings);
+
+                arrayIndex = 0;
+                for (int w = 0;w<strMain_id_in_sumTABlE_Today.length;w++) {
+                    for(int x = 0;x<strings.length;x++) {
+                        if (strMain_id_in_sumTABlE_Today[w].equals(strings[x])) {
+                            if (str_DateCheck_in_sumTABLE_Today[w].equals("")) {
+                                SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
+                                sqLiteDatabase.delete("sumTABLE", "_id = " + str_id_in_sumTABLE_Today[w], null);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+        /*
+        // ถ้ามีให้ลบทิ้งไป
+        MyManage myManage = new MyManage(this);
+        //เปิดmainTABLE เฉพาะค่าที่ ACtive ขึ้นมา
+        String[] strMain_id_in_mainTABLE = myManage.readAllMainTABLE_Full(0);
+        //เปิด sumTABLE ของวันนี้ขึ้นมา (เอาเฉพาะวันนี้ก็ได้)  filter_sumTABLE__by_Date
+        String[] strMain_id_in_sumTABlE_Today = myManage.filter_sumTABLE__by_Date(today, 1);
+        String[] str_id_in_sumTABLE_Today = myManage.filter_sumTABLE__by_Date(today, 0);
+        //เอาค่ามาเทียบกันว่า มีค่าใน sumTABLE (main_id) ที่ไม่มีใน mainTABLE หรือไม่
+
+        if (!strMain_id_in_sumTABlE_Today.equals("")) {
+            int[][] iCheckMain_id_in_sumTABLE_Today =
+                    new int[strMain_id_in_sumTABlE_Today.length][strMain_id_in_mainTABLE.length];
+
+
+            for(int i = 0;i<strMain_id_in_sumTABlE_Today.length;i++) {
+                for (int x = 0;x<strMain_id_in_mainTABLE.length;x++) {
+                    if (strMain_id_in_sumTABlE_Today[i].equals(strMain_id_in_mainTABLE[x])) {
+                        iCheckMain_id_in_sumTABLE_Today[i][x] = 1;
+                    } else {
+                        iCheckMain_id_in_sumTABLE_Today[i][x] = 0;
+                    }
+
+                }
+            }
+
+            ArrayList<Integer> arrayList = new ArrayList<Integer>();
+
+            for(int w = 0;w<iCheckMain_id_in_sumTABLE_Today[0].length;w++) {
+                int arrayListIndex = 0;
+                for(int z = 0;z<iCheckMain_id_in_sumTABLE_Today.length;z++) {
+                    Log.d("Main_Delete", "iCheckMain_id_in_sumTABLE_Today[z][w] : " +Integer.toString(z)+Integer.toString(w) + " : " + Integer.toString(iCheckMain_id_in_sumTABLE_Today[z][w]));
+                    arrayList.add(arrayListIndex,iCheckMain_id_in_sumTABLE_Today[z][w]); //ค่า main_id ในตำแหน่ง w มี 0 หรือ 1
+                    arrayListIndex = arrayListIndex + 1;
+                }
+                Integer[] ii = new Integer[arrayList.size()];
+                ii = arrayList.toArray(ii);
+
+                Arrays.sort(ii);
+                int i = Arrays.binarySearch(ii, 1);
+                if (i < 0) {
+                    //ทำการลบค่าที่ตำแหน่งดังกล่าว
+                    //strMain_id_in_sumTABlE_Today[w] ลบค่านี้ ใช้ search ด้วย
+                    // main_id ของ วันนี้(Date_Ref) และยังมี DateCheck เป็นค่าว่าง
+                    Log.d("Main_Delete", "strMain_id_in_sumTABLE_Today[w] ที่จะลบ  : " + strMain_id_in_sumTABlE_Today[w]);
+                    SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
+                    sqLiteDatabase.delete("sumTABLE", "Main_id = " + str_id_in_sumTABLE_Today[w], null);
+                }
+                arrayList.clear();
+            }
+
+
+        }
+
+        */
+
+
+
+
+
+    }
 
 
 
@@ -159,7 +276,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("TimeRef", strResult_TimeRef);
                 startActivity(intent);
 
-
             }
         });
 
@@ -218,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
         String[] strings_TimeCheck = myManage.filter_sumTABLE__by_Date(date_specific, 5); //ได้ TimeCheck จาก sumTABLE
         String[] strings_Appearance = new String[strings_Main_id.length];
 
-        if (strings_Main_id.length != 0) {
+        if (!strings_Main_id[0].equals("")) {
             Log.d("ContentMainActivity", strings_Main_id[0] + strings_TimeRef[0]);
 
             for (int i = 0; i < strings_Main_id.length; i++) {

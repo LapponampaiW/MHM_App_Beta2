@@ -1,7 +1,10 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v4.view.NestedScrollingChild;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +19,7 @@ import java.util.ArrayList;
 public class NewsActivity extends AppCompatActivity {
 
     //Explicit
-
+    Activity activityNewsActivity;
     String[] stringsMainTABLEMed_id,stringsNewsTABLE_Med_id,stringsAdaptorid,stringsmedTABLE_id,
             stringsAppearance,stringsAdaptorAppearance,stringsNewsTABLE_Message,stringsAdaptorMessage,
             stringsNewsTABLE_Appearance_edit,stringsAdaptorAppearance_edit,stringsNewsTABLE_Activity,
@@ -31,6 +34,8 @@ public class NewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
 
+        activityNewsActivity = this;
+
 
         MyManage myManage = new MyManage(this);
         MyData myData = new MyData();
@@ -41,6 +46,30 @@ public class NewsActivity extends AppCompatActivity {
         stringsNewsTABLE_Message = myManage.readAllnewsTABLE(2); //Message ในตาราง newsTABLE ทั้งหมด
         stringsNewsTABLE_Appearance_edit = myManage.readAllnewsTABLE(3);  //Appearance ในตาราง newsTABLE ทั้งหมด
         stringsNewsTABLE_Activity = myManage.readAllnewsTABLE(4); //Appearance ในตาราง newsTABLE ทั้งหมด
+
+
+        //ถ้าไม่มีข่าวสารให้ออกเลย
+        if (stringsMainTABLEMed_id[0].equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setIcon(R.drawable.icon_question);
+            builder.setTitle("ไม่มีข่าวสาร!!!");
+            builder.setMessage("ข่าวสารจะปรากฎตามรายการยาที่กำหนด\nกรุณาเพิ่มยา โดยเข้าไปที่ +เพิ่มเติม+ ==> เพิ่มรายการยา");
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    finish();
+                }
+            });
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    finish();
+                }
+            });
+            builder.show();
+        }
+
 
         ArrayList<String> arrayListString = new ArrayList<String>();
         ArrayList<String> arrayListString2 = new ArrayList<String>();

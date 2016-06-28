@@ -84,7 +84,7 @@ public class SplashScreen extends AppCompatActivity {
     private void updatesumTABLE00() {
         MyData myData = new MyData();
 
-        String[] stringsREAD_mainTABLE = myManage.read_mainTABLE_DateTimeCanceled_N(11); //เอามา check ว่า mainTABLE มียาป่าว
+        String[] stringsREAD_mainTABLE = myManage.readAllMainTABLE_Full(11); //เอามา check ว่า mainTABLE มียาป่าว
 
         //ต้องแก้ค่าใน sumTABLE ก่อนให้มีแต่ค่าที่แท้จริงเท่านั้นก่อนควรจะมีแค่บรรทัดเดียว
 

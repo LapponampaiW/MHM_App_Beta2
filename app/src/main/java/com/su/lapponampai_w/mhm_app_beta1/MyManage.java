@@ -189,6 +189,19 @@ public class MyManage {
 
     } //Constructor
 
+    //Delete UnnecessaryData_sumTABLE
+    public long delete_UnneccessaryData_sumTABLE(String strMain_id,
+                                                 String strDate) {
+        long readlong = 0;
+
+        ContentValues contentValues = new ContentValues();
+        readlong = writeSqLiteDatabase.delete(sum_table, "Main_id = " +
+                strMain_id + " AND DateRef = " + strDate + " AND DateCheck = ''", null);
+
+
+        return readlong;
+    }
+
     //Update mainTABLE_DateTimeCanceled
     public long updatemainTABLE_DateTimeCanceled(String str_id) {
 
@@ -506,6 +519,27 @@ public class MyManage {
         return strREAD;
     }
 
+    //Read mainTABLE ที่ DateTimeCanceled ยังเป็น "" (คือยัง Active อยู่)
+    public String[] read_mainTABLE_InCluded_DateTimeCanceled(int intColumn) {
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(mainTABLE,column_mainTABLE, null, null, null, null, "_id ASC");
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+
+            strREAD = new String[cursor.getCount()];
+            cursor.moveToFirst();
+            for(int i = 0;i < cursor.getCount();i++) {
+                strREAD[i] = cursor.getString(intColumn);
+                cursor.moveToNext();
+            } //for
+            cursor.close();
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+        return strREAD;
+    }
+
 
     // Read All mainTABLE
     public String[] readAllMainTABLE(int intColumn) { //0 หมายถึง ==> _id , 1 ==>T1
@@ -732,7 +766,8 @@ public class MyManage {
 
         String[] strREAD = null;
         Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE, "DateRef LIKE '" + time + "'", null, null, null, null);
-        if (cursor != null) {
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
             cursor.moveToFirst();
             strREAD = new String[cursor.getCount()];
 
@@ -767,6 +802,11 @@ public class MyManage {
 
                 cursor.moveToNext();
             }
+
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+
 
         }
 
@@ -1097,7 +1137,6 @@ public class MyManage {
         String[] strREAD = new String[16];
         if (cursor != null) {
             cursor.moveToFirst();
-
 
             strREAD[0] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
             strREAD[1] = cursor.getString(cursor.getColumnIndex(mcolumn_Med_id));

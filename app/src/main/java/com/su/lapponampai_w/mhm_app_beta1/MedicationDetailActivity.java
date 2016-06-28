@@ -74,6 +74,10 @@ public class MedicationDetailActivity extends AppCompatActivity {
                         Toast.makeText(MedicationDetailActivity.this,"ลบข้อมูลเสร็จสิ้น",Toast.LENGTH_SHORT).show();
                         MyManage myManage = new MyManage(MedicationDetailActivity.this);
                         myManage.updatemainTABLE_DateTimeCanceled(string0);
+                        MainActivity.activityMainActivity.finish();
+                        MedicationListActivity.activityMedicationListActivity.finish();
+                        Intent intent = new Intent(MedicationDetailActivity.this, MainActivity.class);
+                        startActivity(intent);
                         dialog.dismiss();
                         finish();
                         //ลบข้อมูล

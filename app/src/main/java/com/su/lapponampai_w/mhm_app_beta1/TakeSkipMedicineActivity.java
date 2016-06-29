@@ -41,19 +41,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         clickButton();
     }
 
-    @Override
-    public void onResume(){
-        super.onResume();
 
-        receiveIntent();
-
-        showView();
-
-        setTextButton();
-
-        clickButton();
-
-    } //Override
 
     private void clickButton() {
         final MyManage myManage = new MyManage(this);
@@ -71,6 +59,28 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
                     myManage.updatesumTABLE_Canceled_SkipHold(stringId);
                     finish();
                 }
+            }
+        });
+
+        textViewB2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (string5.equals("") && string6.equals("")) {
+                    myManage.updatesumTABLE_ADD_DateCheckTimeCheck_Now(stringId);
+                    finish();
+                } else if (!string5.equals("") && string6.equals("")) {
+                    myManage.updatesumTABLE_Canceled_ADD_DateCheckTimeCheck(stringId);
+                    finish();
+                } else if (string5.equals("") && !string6.equals("")) {
+                    myManage.updatesumTABLE_ADD_DateCheckTimeCheck_Now(stringId);
+                    finish();
+                }
+            }
+        });
+        textViewB3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
@@ -128,6 +138,14 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         string6 = getIntent().getStringExtra("MainActivity_SkipHold");
         string7 = getIntent().getStringExtra("MainActivity_EA");
         stringId = getIntent().getStringExtra("MainActivity_Sum_id");
+        Log.d("TakeSkip", "Tradename : " + string1);
+        Log.d("TakeSkip", "Appearance : " + string2);
+        Log.d("TakeSkip", "AmountTablet : " + string3);
+        Log.d("TakeSkip", "TimeRef : " + string4);
+        Log.d("TakeSkip", "TimeCheck : " + string5);
+        Log.d("TakeSkip", "SkipHold : " + string6);
+        Log.d("TakeSkip", "Ea : " + string7);
+        Log.d("TakeSkip", "Sum_id : " + stringId);
 
 
     }

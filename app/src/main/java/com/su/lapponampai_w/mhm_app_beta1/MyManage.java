@@ -191,7 +191,13 @@ public class MyManage {
 
     } //Constructor
 
-
+    //Update sumTABLE ยกเลิก การAdd DateCheck DateTime
+    public long updatesumTABLE_Canceled_ADD_DateCheckTimeCheck(String str_id) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(column_DateCheck,"");
+        contentValues.put(column_TimeCheck,"");
+        return writeSqLiteDatabase.update(sum_table,contentValues, "_id = " + str_id,null);
+    }
 
     //Update ยกเลิก SkipHold ใน sumTABLE
     public long updatesumTABLE_Canceled_SkipHold(String str_id) {

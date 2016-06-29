@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     String today;
     String[] stringsInterval, stringsStartTime, stringsEndTime, stringstimeTABLE;
 
+
     String[] stringsClick_Position, stringsClick_Main_id, stringsClick_TimeRef,stringsClick_Sum_id,
             stringsClick_Appearance, stringsClick_SkipHold,stringsClick_TimeCheck; //clickTakeMedicine
     String[] stringsMainTABLE_TradeName, stringsMainTABLE_AmountTablet,
@@ -171,16 +172,17 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     public void onResume(){
         super.onResume();
 
-
         showView();
-
         delete_UnnecessaryData_sumTABLE();
-
         setDateAndTimeToday();
-
         textViewMainDate.setText("วันที่ : " + today);
-
         displayMedicineByDay(today);
+        clickAddbtn();
+        clickMedicationList();
+        click_ImageButtonCalendar();
+        click_News();
+        clickImagepill();
+        clickTextViewMainDate();
 
     } //Override
 
@@ -301,65 +303,124 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         stringsMainTABLE_AmountTablet = myManage.readAllMainTABLE(6);
         stringsMainTABLE_EA = myManage.readAllMainTABLE(7);
 
-        //ลองทำ Morning ตำแหน่งที่ 1 ก่อน
+        //เริ่ม Click!!!
         imageButtonM1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clickTakeMedicine("M1");
-            }
+            public void onClick(View v) {clickTakeMedicine("M1");}});
+        imageButtonM2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("M2");}});
+        imageButtonM3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("M3");}});
+        imageButtonM4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("M4");}});
+        imageButtonM5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("M5");}});
+        imageButtonM6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("M6");}});
+        imageButtonM7.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("M7");}});
+        imageButtonM8.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("M8");}});
 
+        imageButtonA1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("A1");}});
+        imageButtonA2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("A2");}});
+        imageButtonA3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("A3");}});
+        imageButtonA4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("A4");}});
+        imageButtonA5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("A5");}});
+        imageButtonA6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("A6");}});
+        imageButtonA7.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("A7");}});
+        imageButtonA8.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("A8");}});
 
-            //คลิก!!! จะทานยา
-            private void clickTakeMedicine(String maeb) {
-                Toast.makeText(getBaseContext(), "เริ่ม " + maeb, Toast.LENGTH_SHORT).show();
+        imageButtonE1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("E1");}});
+        imageButtonE2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("E2");}});
+        imageButtonE3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("E3");}});
+        imageButtonE4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("E4");}});
+        imageButtonE5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("E5");}});
+        imageButtonE6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("E6");}});
+        imageButtonE7.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("E7");}});
+        imageButtonE8.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("E8");}});
 
-
-                for (int i = 0; i < stringsClick_Position.length; i++) {
-                    if (stringsClick_Position[i].equals(maeb)) {
-                        //ค่าที่จะเอาไปใช้ใน Pop up จริงๆ
-                        strResult_Position = stringsClick_Position[i];
-                        strResult_Main_id = stringsClick_Main_id[i];  //ต้องเอา Main_id ไปทำต่อ
-                        strResult_Sum_id = stringsClick_Sum_id[i];
-                        strResult_TimeRef = stringsClick_TimeRef[i];
-                        strResult_Appearance = stringsClick_Appearance[i];
-                        strResult_TimeCheck = stringsClick_TimeCheck[i];
-                        strResult_SkipHold = stringsClick_SkipHold[i];
-                    }
-                }
-
-                for (int i = 0; i < stringsMainTABLE_Main_id.length; i++) {
-                    if (stringsMainTABLE_Main_id[i].equals(strResult_Main_id)) {
-                        strResult_Tradename = stringsMainTABLE_TradeName[i];  //Tradename
-                        strResult_AmountTablet = stringsMainTABLE_AmountTablet[i]; //จำนวนเม็ดที่กิน
-                        strResult_EA = stringsMainTABLE_EA[i]; //EA
-                    }
-
-                }
-
-                Log.d("clickTakeMedicine", strResult_Position + " " + strResult_Main_id +
-                        " " + strResult_TimeRef + " " + strResult_Appearance + " " +
-                        strResult_Tradename + " " + strResult_AmountTablet);
-
-
-                Intent intent = new Intent(MainActivity.this, TakeSkipMedicineActivity.class);
-
-                //ทำการ copy ข้อมูลไป TakeSkipMedicineActivity
-                //intent.putExtra("Med_id",strings_receiver[0]);
-                intent.putExtra("MainActivity_Tradename", strResult_Tradename);
-                intent.putExtra("MainActivity_Appearance", strResult_Appearance);
-                intent.putExtra("MainActivity_AmountTablet", strResult_AmountTablet);
-                intent.putExtra("MainActivity_TimeRef", strResult_TimeRef);
-                intent.putExtra("MainActivity_TimeCheck", strResult_TimeCheck);
-                intent.putExtra("MainActivity_SkipHold", strResult_SkipHold);
-                intent.putExtra("MainActivity_EA", strResult_EA);
-                intent.putExtra("MainActivity_Sum_id", strResult_Sum_id);
-                startActivity(intent);
-
-            }
-        });
-
+        imageButtonB1.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("B1");}});
+        imageButtonB2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("B2");}});
+        imageButtonB3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("B3");}});
+        imageButtonB4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("B4");}});
+        imageButtonB5.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("B5");}});
+        imageButtonB6.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("B6");}});
+        imageButtonB7.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("B7");}});
+        imageButtonB8.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("B8");}});
 
     } //clickImagepill
+
+    //คลิก!!! จะทานยา
+    private void clickTakeMedicine(String maeb) {
+        Toast.makeText(getBaseContext(), "เริ่ม " + maeb, Toast.LENGTH_SHORT).show();
+
+
+        for (int i = 0; i < stringsClick_Position.length; i++) {
+            if (stringsClick_Position[i].equals(maeb)) {
+                //ค่าที่จะเอาไปใช้ใน Pop up จริงๆ
+                strResult_Position = stringsClick_Position[i];
+                strResult_Main_id = stringsClick_Main_id[i];  //ต้องเอา Main_id ไปทำต่อ
+                strResult_Sum_id = stringsClick_Sum_id[i];
+                strResult_TimeRef = stringsClick_TimeRef[i];
+                strResult_Appearance = stringsClick_Appearance[i];
+                strResult_TimeCheck = stringsClick_TimeCheck[i];
+                strResult_SkipHold = stringsClick_SkipHold[i];
+            }
+        }
+
+        for (int i = 0; i < stringsMainTABLE_Main_id.length; i++) {
+            if (stringsMainTABLE_Main_id[i].equals(strResult_Main_id)) {
+                strResult_Tradename = stringsMainTABLE_TradeName[i];  //Tradename
+                strResult_AmountTablet = stringsMainTABLE_AmountTablet[i]; //จำนวนเม็ดที่กิน
+                strResult_EA = stringsMainTABLE_EA[i]; //EA
+            }
+
+        }
+
+        Log.d("clickTakeMedicine", strResult_Position + " " + strResult_Main_id +
+                " " + strResult_TimeRef + " " + strResult_Appearance + " " +
+                strResult_Tradename + " " + strResult_AmountTablet);
+
+
+        Intent intent = new Intent(MainActivity.this, TakeSkipMedicineActivity.class);
+
+        //ทำการ copy ข้อมูลไป TakeSkipMedicineActivity
+        //intent.putExtra("Med_id",strings_receiver[0]);
+        intent.putExtra("MainActivity_Tradename", strResult_Tradename);
+        intent.putExtra("MainActivity_Appearance", strResult_Appearance);
+        intent.putExtra("MainActivity_AmountTablet", strResult_AmountTablet);
+        intent.putExtra("MainActivity_TimeRef", strResult_TimeRef);
+        intent.putExtra("MainActivity_TimeCheck", strResult_TimeCheck);
+        intent.putExtra("MainActivity_SkipHold", strResult_SkipHold);
+        intent.putExtra("MainActivity_EA", strResult_EA);
+        intent.putExtra("MainActivity_Sum_id", strResult_Sum_id);
+        startActivity(intent);
+
+    }
 
     private void click_News() {
         textViewNews.setOnClickListener(new View.OnClickListener() {

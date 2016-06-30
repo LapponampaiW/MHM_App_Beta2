@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         stringsClick_Sum_id = myManage.readAlldisplayTABLE(2); //Sum_id
         stringsClick_Main_id = myManage.readAlldisplayTABLE(3);  //Main_id
         stringsClick_TimeRef = myManage.readAlldisplayTABLE(5);  //TimeRef
-        stringsClick_TimeCheck = myManage.readAlldisplayTABLE(6); //Timecheck
+        stringsClick_TimeCheck = myManage.readAlldisplayTABLE(6); //DateTimeCheck
         stringsClick_Appearance = myManage.readAlldisplayTABLE(7);  //Appearance
         stringsClick_SkipHold = myManage.readAlldisplayTABLE(8);  //SkipHold
         //เอาค่าบางค่าจาก mainTABLE มาใช้ด้วย
@@ -459,7 +459,21 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         String[] strings_Main_id = myManage.filter_sumTABLE__by_Date(date_specific, 1);  //ได้ Main_id จาก sumTABLE
         String[] strings_TimeRef = myManage.filter_sumTABLE__by_Date(date_specific, 3);  //ได้ Time_Ref จาก sumTABLE
         String[] strings_Sum_id = myManage.filter_sumTABLE__by_Date(date_specific, 0); //ได้ sum_id จาก sumTABLE
+        String[] strings_DateCheck = myManage.filter_sumTABLE__by_Date(date_specific, 4); //ได้ DateCheck จาก sumTABLE
         String[] strings_TimeCheck = myManage.filter_sumTABLE__by_Date(date_specific, 5); //ได้ TimeCheck จาก sumTABLE
+
+        String[] strings_DateTimeCheck = new String[strings_Main_id.length];
+        if (!strings_Main_id[0].equals("")) {
+            for(int i = 0;i<strings_Main_id.length;i++) {
+                if (!strings_DateCheck[i].equals("")) {
+                    strings_DateTimeCheck[i] = strings_DateCheck[i] + " " + strings_TimeCheck[i];
+                } else {
+                    strings_DateTimeCheck[i] = "";
+                }
+            }
+
+        }
+
         //เพิ่ม skiphold
         String[] strings_skiphold = myManage.filter_sumTABLE__by_Date(date_specific, 6); //ได้ skipHold จาก sumTABLE
         String[] strings_Appearance = new String[strings_Main_id.length];
@@ -552,9 +566,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     strValue = myManage.filterdisplayTABLE_MAEB_By_Position("M");
                     Log.d("abc", "strREAD :" + strValue);
                     if (strValue.equals("Non value")) {
-                        myManage.adddisplayTABLEValue("M1", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("abc", "strings_TimeCheck[0] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("M1", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_DateTimeCheck[0] มีค่าว่าง");
                             imageButtonM1.setImageResource(intsNotTakeYet[z]);
                             imageButtonM1.setVisibility(View.VISIBLE);
                         } else {
@@ -567,9 +581,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // Non Value เติมค่า M1
                     } else if (strValue.equals("M1")) {
-                        myManage.adddisplayTABLEValue("M2", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("abc", "strings_TimeCheck[1] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("M2", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_DateTimeCheck[1] มีค่าว่าง");
                             imageButtonM2.setImageResource(intsNotTakeYet[z]);
                             imageButtonM2.setVisibility(View.VISIBLE);
                         } else {
@@ -582,9 +596,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี M1 แล้ว เติม M2
                     } else if (strValue.equals("M2")) {
-                        myManage.adddisplayTABLEValue("M3", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("abc", "strings_TimeCheck[2] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("M3", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_DateTimeCheck[2] มีค่าว่าง");
                             imageButtonM3.setImageResource(intsNotTakeYet[z]);
                             imageButtonM3.setVisibility(View.VISIBLE);
                         } else {
@@ -597,9 +611,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี M2 แล้ว เติม M3
                     } else if (strValue.equals("M3")) {
-                        myManage.adddisplayTABLEValue("M4", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("abc", "strings_TimeCheck[3] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("M4", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_DateTimeCheck[3] มีค่าว่าง");
                             imageButtonM4.setImageResource(intsNotTakeYet[z]);
                             imageButtonM4.setVisibility(View.VISIBLE);
                         } else {
@@ -612,9 +626,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี M3 แล้ว เติม M4
                     } else if (strValue.equals("M4")) {
-                        myManage.adddisplayTABLEValue("M5", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("abc", "strings_TimeCheck[4] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("M5", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_DateTimeCheck[4] มีค่าว่าง");
                             imageButtonM5.setImageResource(intsNotTakeYet[z]);
                             imageButtonM5.setVisibility(View.VISIBLE);
                         } else {
@@ -627,9 +641,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี M4 แล้ว เติม M5
                     } else if (strValue.equals("M5")) {
-                        myManage.adddisplayTABLEValue("M6", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("abc", "strings_TimeCheck[5] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("M6", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_DateTimeCheck[5] มีค่าว่าง");
                             imageButtonM6.setImageResource(intsNotTakeYet[z]);
                             imageButtonM6.setVisibility(View.VISIBLE);
                         } else {
@@ -642,9 +656,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี M5 แล้ว เติม M6
                     } else if (strValue.equals("M6")) {
-                        myManage.adddisplayTABLEValue("M7", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("abc", "strings_TimeCheck[6] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("M7", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_DateTimeCheck[6] มีค่าว่าง");
                             imageButtonM7.setImageResource(intsNotTakeYet[z]);
                             imageButtonM7.setVisibility(View.VISIBLE);
                         } else {
@@ -657,9 +671,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี M6 แล้ว เติม M7
                     } else if (strValue.equals("M7")) {
-                        myManage.adddisplayTABLEValue("M8", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("abc", "strings_TimeCheck[7] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("M8", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_DateTimeCheck[7] มีค่าว่าง");
                             imageButtonM8.setImageResource(intsNotTakeYet[z]);
                             imageButtonM8.setVisibility(View.VISIBLE);
                         } else {
@@ -672,9 +686,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี M7 แล้ว เติม M8
                     } else if (strValue.equals("M8")) {
-                        myManage.adddisplayTABLEValue("M9", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("abc", "strings_TimeCheck[8] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("M9", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_DateTimeCheck[8] มีค่าว่าง");
                             imageButtonM9.setImageResource(intsNotTakeYet[z]);
                             imageButtonM9.setVisibility(View.VISIBLE);
                         } else {
@@ -695,9 +709,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     strValue = myManage.filterdisplayTABLE_MAEB_By_Position("A");
                     Log.d("afternoon", "strREAD :" + strValue);
                     if (strValue.equals("Non value")) {
-                        myManage.adddisplayTABLEValue("A1", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("afternoon", "strings_TimeCheck[0] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("A1", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_DateTimeCheck[0] มีค่าว่าง");
                             imageButtonA1.setImageResource(intsNotTakeYet[z]);
                             imageButtonA1.setVisibility(View.VISIBLE);
                         } else {
@@ -710,9 +724,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // Non Value เติมค่า A1
                     } else if (strValue.equals("A1")) {
-                        myManage.adddisplayTABLEValue("A2", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("afternoon", "strings_TimeCheck[1] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("A2", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_DateTimeCheck[1] มีค่าว่าง");
                             imageButtonA2.setImageResource(intsNotTakeYet[z]);
                             imageButtonA2.setVisibility(View.VISIBLE);
                         } else {
@@ -725,9 +739,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี A1 แล้ว เติม A2
                     } else if (strValue.equals("A2")) {
-                        myManage.adddisplayTABLEValue("A3", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("afternoon", "strings_TimeCheck[2] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("A3", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_DateTimeCheck[2] มีค่าว่าง");
                             imageButtonA3.setImageResource(intsNotTakeYet[z]);
                             imageButtonA3.setVisibility(View.VISIBLE);
                         } else {
@@ -740,9 +754,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี A2 แล้ว เติม A3
                     } else if (strValue.equals("A3")) {
-                        myManage.adddisplayTABLEValue("A4", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("afternoon", "strings_TimeCheck[3] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("A4", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_DateTimeCheck[3] มีค่าว่าง");
                             imageButtonA4.setImageResource(intsNotTakeYet[z]);
                             imageButtonA4.setVisibility(View.VISIBLE);
                         } else {
@@ -755,9 +769,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี A3 แล้ว เติม A4
                     } else if (strValue.equals("A4")) {
-                        myManage.adddisplayTABLEValue("A5", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("afternoon", "strings_TimeCheck[4] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("A5", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_DateTimeCheck[4] มีค่าว่าง");
                             imageButtonA5.setImageResource(intsNotTakeYet[z]);
                             imageButtonA5.setVisibility(View.VISIBLE);
                         } else {
@@ -770,9 +784,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี A4 แล้ว เติม A5
                     } else if (strValue.equals("A5")) {
-                        myManage.adddisplayTABLEValue("A6", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("abc", "strings_TimeCheck[5] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("A6", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("abc", "strings_DateTimeCheck[5] มีค่าว่าง");
                             imageButtonA6.setImageResource(intsNotTakeYet[z]);
                             imageButtonA6.setVisibility(View.VISIBLE);
                         } else {
@@ -785,9 +799,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี A5 แล้ว เติม A6
                     } else if (strValue.equals("A6")) {
-                        myManage.adddisplayTABLEValue("A7", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("afternoon", "strings_TimeCheck[6] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("A7", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_DateTimeCheck[6] มีค่าว่าง");
                             imageButtonA7.setImageResource(intsNotTakeYet[z]);
                             imageButtonA7.setVisibility(View.VISIBLE);
                         } else {
@@ -800,9 +814,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี A6 แล้ว เติม A7
                     } else if (strValue.equals("A7")) {
-                        myManage.adddisplayTABLEValue("A8", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("afternoon", "strings_TimeCheck[7] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("A8", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_DateTimeCheck[7] มีค่าว่าง");
                             imageButtonA8.setImageResource(intsNotTakeYet[z]);
                             imageButtonA8.setVisibility(View.VISIBLE);
                         } else {
@@ -815,9 +829,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี A7 แล้ว เติม A8
                     } else if (strValue.equals("A8")) {
-                        myManage.adddisplayTABLEValue("A9", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("afternoon", "strings_TimeCheck[8] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("A9", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("afternoon", "strings_DateTimeCheck[8] มีค่าว่าง");
                             imageButtonA9.setImageResource(intsNotTakeYet[z]);
                             imageButtonA9.setVisibility(View.VISIBLE);
                         } else {
@@ -840,9 +854,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     strValue = myManage.filterdisplayTABLE_MAEB_By_Position("E");
                     Log.d("Evening", "strREAD :" + strValue);
                     if (strValue.equals("Non value")) {
-                        myManage.adddisplayTABLEValue("E1", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Evening", "strings_TimeCheck[0] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("E1", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Evening", "strings_DateTimeCheck[0] มีค่าว่าง");
                             imageButtonE1.setImageResource(intsNotTakeYet[z]);
                             imageButtonE1.setVisibility(View.VISIBLE);
                         } else {
@@ -855,9 +869,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // Non Value เติมค่า E1
                     } else if (strValue.equals("E1")) {
-                        myManage.adddisplayTABLEValue("E2", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Evening", "strings_TimeCheck[1] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("E2", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Evening", "strings_DateTimeCheck[1] มีค่าว่าง");
                             imageButtonE2.setImageResource(intsNotTakeYet[z]);
                             imageButtonE2.setVisibility(View.VISIBLE);
                         } else {
@@ -870,9 +884,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี E1 แล้ว เติม E2
                     } else if (strValue.equals("E2")) {
-                        myManage.adddisplayTABLEValue("E3", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Evening", "strings_TimeCheck[2] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("E3", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Evening", "strings_DateTimeCheck[2] มีค่าว่าง");
                             imageButtonE3.setImageResource(intsNotTakeYet[z]);
                             imageButtonE3.setVisibility(View.VISIBLE);
                         } else {
@@ -885,9 +899,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี E2 แล้ว เติม E3
                     } else if (strValue.equals("E3")) {
-                        myManage.adddisplayTABLEValue("E4", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Evening", "strings_TimeCheck[3] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("E4", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Evening", "strings_DateTimeCheck[3] มีค่าว่าง");
                             imageButtonE4.setImageResource(intsNotTakeYet[z]);
                             imageButtonE4.setVisibility(View.VISIBLE);
                         } else {
@@ -900,9 +914,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี E3 แล้ว เติม E4
                     } else if (strValue.equals("E4")) {
-                        myManage.adddisplayTABLEValue("E5", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Evening", "strings_TimeCheck[4] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("E5", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Evening", "strings_DateTimeCheck[4] มีค่าว่าง");
                             imageButtonE5.setImageResource(intsNotTakeYet[z]);
                             imageButtonE5.setVisibility(View.VISIBLE);
                         } else {
@@ -915,9 +929,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี E4 แล้ว เติม E5
                     } else if (strValue.equals("E5")) {
-                        myManage.adddisplayTABLEValue("E6", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Evening", "strings_TimeCheck[5] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("E6", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Evening", "strings_DateTimeCheck[5] มีค่าว่าง");
                             imageButtonE6.setImageResource(intsNotTakeYet[z]);
                             imageButtonE6.setVisibility(View.VISIBLE);
                         } else {
@@ -930,9 +944,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี E5 แล้ว เติม E6
                     } else if (strValue.equals("E6")) {
-                        myManage.adddisplayTABLEValue("E7", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Evening", "strings_TimeCheck[6] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("E7", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Evening", "strings_DateTimeCheck[6] มีค่าว่าง");
                             imageButtonE7.setImageResource(intsNotTakeYet[z]);
                             imageButtonE7.setVisibility(View.VISIBLE);
                         } else {
@@ -945,9 +959,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี E6 แล้ว เติม E7
                     } else if (strValue.equals("E7")) {
-                        myManage.adddisplayTABLEValue("E8", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Evening", "strings_TimeCheck[7] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("E8", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Evening", "strings_DateTimeCheck[7] มีค่าว่าง");
                             imageButtonE8.setImageResource(intsNotTakeYet[z]);
                             imageButtonE8.setVisibility(View.VISIBLE);
                         } else {
@@ -960,9 +974,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี E7 แล้ว เติม E8
                     } else if (strValue.equals("E8")) {
-                        myManage.adddisplayTABLEValue("E9", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Evening", "strings_TimeCheck[8] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("E9", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Evening", "strings_DateTimeCheck[8] มีค่าว่าง");
                             imageButtonE9.setImageResource(intsNotTakeYet[z]);
                             imageButtonE9.setVisibility(View.VISIBLE);
                         } else {
@@ -984,9 +998,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     strValue = myManage.filterdisplayTABLE_MAEB_By_Position("B");
                     Log.d("Bedtime", "strREAD :" + strValue);
                     if (strValue.equals("Non value")) {
-                        myManage.adddisplayTABLEValue("B1", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Bedtime", "strings_TimeCheck[0] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("B1", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Bedtime", "strings_DateTimeCheck[0] มีค่าว่าง");
                             imageButtonB1.setImageResource(intsNotTakeYet[z]);
                             imageButtonB1.setVisibility(View.VISIBLE);
                         } else {
@@ -999,9 +1013,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // Non Value เติมค่า B1
                     } else if (strValue.equals("B1")) {
-                        myManage.adddisplayTABLEValue("B2", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Bedtime", "strings_TimeCheck[1] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("B2", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Bedtime", "strings_DateTimeCheck[1] มีค่าว่าง");
                             imageButtonB2.setImageResource(intsNotTakeYet[z]);
                             imageButtonB2.setVisibility(View.VISIBLE);
                         } else {
@@ -1014,9 +1028,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี B1 แล้ว เติม B2
                     } else if (strValue.equals("B2")) {
-                        myManage.adddisplayTABLEValue("B3", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Bedtime", "strings_TimeCheck[2] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("B3", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Bedtime", "strings_DateTimeCheck[2] มีค่าว่าง");
                             imageButtonB3.setImageResource(intsNotTakeYet[z]);
                             imageButtonB3.setVisibility(View.VISIBLE);
                         } else {
@@ -1029,9 +1043,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี B2 แล้ว เติม B3
                     } else if (strValue.equals("B3")) {
-                        myManage.adddisplayTABLEValue("B4", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Bedtime", "strings_TimeCheck[3] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("B4", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Bedtime", "strings_DateTimeCheck[3] มีค่าว่าง");
                             imageButtonB4.setImageResource(intsNotTakeYet[z]);
                             imageButtonB4.setVisibility(View.VISIBLE);
                         } else {
@@ -1044,9 +1058,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี B3 แล้ว เติม B4
                     } else if (strValue.equals("B4")) {
-                        myManage.adddisplayTABLEValue("B5", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Bedtime", "strings_TimeCheck[4] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("B5", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Bedtime", "strings_DateTimeCheck[4] มีค่าว่าง");
                             imageButtonB5.setImageResource(intsNotTakeYet[z]);
                             imageButtonB5.setVisibility(View.VISIBLE);
                         } else {
@@ -1059,9 +1073,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี B4 แล้ว เติม B5
                     } else if (strValue.equals("B5")) {
-                        myManage.adddisplayTABLEValue("B6", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Bedtime", "strings_TimeCheck[5] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("B6", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Bedtime", "strings_DateTimeCheck[5] มีค่าว่าง");
                             imageButtonB6.setImageResource(intsNotTakeYet[z]);
                             imageButtonB6.setVisibility(View.VISIBLE);
                         } else {
@@ -1074,9 +1088,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี B5 แล้ว เติม B6
                     } else if (strValue.equals("B6")) {
-                        myManage.adddisplayTABLEValue("B7", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Bedtime", "strings_TimeCheck[6] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("B7", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Bedtime", "strings_DateTimeCheck[6] มีค่าว่าง");
                             imageButtonB7.setImageResource(intsNotTakeYet[z]);
                             imageButtonB7.setVisibility(View.VISIBLE);
                         } else {
@@ -1089,9 +1103,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี B6 แล้ว เติม B7
                     } else if (strValue.equals("B7")) {
-                        myManage.adddisplayTABLEValue("B8", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Bedtime", "strings_TimeCheck[7] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("B8", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Bedtime", "strings_DateTimeCheck[7] มีค่าว่าง");
                             imageButtonB8.setImageResource(intsNotTakeYet[z]);
                             imageButtonB8.setVisibility(View.VISIBLE);
                         } else {
@@ -1104,9 +1118,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         }
                         // มี B7 แล้ว เติม B8
                     } else if (strValue.equals("B8")) {
-                        myManage.adddisplayTABLEValue("B9", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_TimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
-                        if (strings_TimeCheck[z].equals("")) {
-                            Log.d("Bedtime", "strings_TimeCheck[8] มีค่าว่าง");
+                        myManage.adddisplayTABLEValue("B9", strings_Sum_id[z], strings_Main_id[z], date_specific, strings_TimeRef[z], strings_DateTimeCheck[z], strings_Appearance[z],strings_skiphold[z]);
+                        if (strings_DateTimeCheck[z].equals("")) {
+                            Log.d("Bedtime", "strings_DateTimeCheck[8] มีค่าว่าง");
                             imageButtonB9.setImageResource(intsNotTakeYet[z]);
                             imageButtonB9.setVisibility(View.VISIBLE);
                         } else {

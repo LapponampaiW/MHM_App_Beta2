@@ -148,12 +148,12 @@ public class MyManage {
     private static final String displaycolumn_main_id = "Main_id";
     private static final String displaycolumn_day = "Day";
     private static final String displaycolumn_timeref = "TimeRef";
-    private static final String displaycolumn_timecheck = "TimeCheck";
+    private static final String displaycolumn_datetimecheck = "DateTimeCheck";
     private static final String displaycolumn_appearance = "Appearance";
     private static final String displaycolumn_skiphold = "SkipHold";
     private static final String[] column_displayTABLE = {displaycolumn_id, displaycolumn_position, displaycolumn_sum_id,
             displaycolumn_main_id, displaycolumn_day, displaycolumn_timeref,
-            displaycolumn_timecheck, displaycolumn_appearance,displaycolumn_skiphold};
+            displaycolumn_datetimecheck, displaycolumn_appearance,displaycolumn_skiphold};
 
     //newsTABLE
     private static final String newsTABLE = "newsTABLE";
@@ -375,7 +375,7 @@ public class MyManage {
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(displaycolumn_timeref));
                         break;
                     case 6:
-                        strREAD[i] = cursor.getString(cursor.getColumnIndex(displaycolumn_timecheck));
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(displaycolumn_datetimecheck));
                         break;
                     case 7:
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(displaycolumn_appearance));
@@ -704,7 +704,7 @@ public class MyManage {
                                      String strdisplaycolumn_main_id,
                                      String strdisplaycolumn_day,
                                      String strdisplaycolumn_timeref,
-                                     String strdisplaycolumn_timecheck,
+                                     String strdisplaycolumn_datetimecheck,
                                      String strdisplaycolumn_appearance,
                                      String strdisplaycolumn_skiphold) { //String strdisplaycolumn_skiphold
 
@@ -714,7 +714,7 @@ public class MyManage {
         contentValues.put(displaycolumn_main_id, strdisplaycolumn_main_id);
         contentValues.put(displaycolumn_day, strdisplaycolumn_day);
         contentValues.put(displaycolumn_timeref, strdisplaycolumn_timeref);
-        contentValues.put(displaycolumn_timecheck, strdisplaycolumn_timecheck);
+        contentValues.put(displaycolumn_datetimecheck, strdisplaycolumn_datetimecheck);
         contentValues.put(displaycolumn_appearance, strdisplaycolumn_appearance);
         contentValues.put(displaycolumn_skiphold,strdisplaycolumn_skiphold);
 

@@ -47,7 +47,7 @@ public class MedicationListActivity extends AppCompatActivity {
         imageButtonCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MedicationListActivity.this,Calendartest.class));
+                startActivity(new Intent(MedicationListActivity.this,MyCalendar.class));
             }
         });
     }

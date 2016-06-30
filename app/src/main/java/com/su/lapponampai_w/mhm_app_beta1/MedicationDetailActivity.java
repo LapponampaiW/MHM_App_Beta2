@@ -18,7 +18,8 @@ public class MedicationDetailActivity extends AppCompatActivity {
     //Explicit
     private TextView textView1,textView2, textView3,textView4,textView5,textView6,textView7,
             textView8,textView9,textView10,textView11,textView12,textView13,textView14,textView15;
-    private TextView textViewAddAmountMedicine, textViewtotalAmountTablet,textViewDeleteMedicine;
+    private TextView textViewAddAmountMedicine, textViewtotalAmountTablet,
+            textViewDeleteMedicine,textViewAddDoseNow;
     private ImageView imageView1;
     //receiveIntent
     private String string0,string1,string2,string3,string4,string5,string6,string7,string7_Translate,
@@ -47,7 +48,29 @@ public class MedicationDetailActivity extends AppCompatActivity {
         //show จำนวนเม็ดยาคงเหลือ
         showtotalAmountTablet();
 
+        clickAddDose();
 
+        //Log.d("MedicationDetail1","string0 : " + string0);
+
+    }
+
+    private void clickAddDose() {
+        textViewAddDoseNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyData myData = new MyData();
+                MyManage myManage = new MyManage(MedicationDetailActivity.this);
+                String strCurrentDay = myData.currentDay();
+                String strCurrentTime = myData.currentTime_Minus();
+
+                myManage.addValueToSumTable(string0, strCurrentDay, strCurrentTime, strCurrentDay, strCurrentTime, "");
+                Toast.makeText(MedicationDetailActivity.this,"เสร็จสิ้นการทำงาน",Toast.LENGTH_SHORT).show();
+                MedicationListActivity.activityMedicationListActivity.finish();
+                finish();
+
+
+            }
+        });
     }
 
     @Override
@@ -260,6 +283,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
         textViewAddAmountMedicine = (TextView) findViewById(R.id.textView79); //เพิ่มจำนวนยา
         textViewtotalAmountTablet = (TextView) findViewById(R.id.textView88); //จำนวนยาคงเหลือพร้อม UOM
         textViewDeleteMedicine = (TextView) findViewById(R.id.textView51); //ลบยาออกจากระบบ
+        textViewAddDoseNow = (TextView) findViewById(R.id.textView82); //กินยาเพิ่มตอนนี้!!!
 
 
     }

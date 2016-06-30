@@ -84,12 +84,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         //Bind Widget
         bindWidget();
-
         showView();
-        
         //Notification from SQLite
         //notificationFormSQLite();
-
         setDateAndTimeToday();
 
         delete_UnnecessaryData_sumTABLE();

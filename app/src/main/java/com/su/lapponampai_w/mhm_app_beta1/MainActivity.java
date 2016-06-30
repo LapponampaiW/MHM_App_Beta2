@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
 
     String[] stringsClick_Position, stringsClick_Main_id, stringsClick_TimeRef,stringsClick_Sum_id,
-            stringsClick_Appearance, stringsClick_SkipHold,stringsClick_TimeCheck; //clickTakeMedicine
+            stringsClick_Appearance, stringsClick_SkipHold,stringsClick_DateTimeCheck; //clickTakeMedicine
     String[] stringsMainTABLE_TradeName, stringsMainTABLE_AmountTablet,
             stringsMainTABLE_Main_id,stringsMainTABLE_EA; //clickTakeMedicine
     String strResult_Position, strResult_Main_id, strResult_TimeRef, strResult_Appearance,
-            strResult_AmountTablet, strResult_Tradename,strResult_TimeCheck,strResult_Sum_id,
+            strResult_AmountTablet, strResult_Tradename,strResult_DateTimeCheck,strResult_Sum_id,
             strResult_EA,strResult_SkipHold; //clickTakeMedicine
 
 
@@ -282,7 +282,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         stringsClick_Sum_id = myManage.readAlldisplayTABLE(2); //Sum_id
         stringsClick_Main_id = myManage.readAlldisplayTABLE(3);  //Main_id
         stringsClick_TimeRef = myManage.readAlldisplayTABLE(5);  //TimeRef
-        stringsClick_TimeCheck = myManage.readAlldisplayTABLE(6); //DateTimeCheck
+        stringsClick_DateTimeCheck = myManage.readAlldisplayTABLE(6); //DateTimeCheck
         stringsClick_Appearance = myManage.readAlldisplayTABLE(7);  //Appearance
         stringsClick_SkipHold = myManage.readAlldisplayTABLE(8);  //SkipHold
         //เอาค่าบางค่าจาก mainTABLE มาใช้ด้วย
@@ -364,8 +364,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     //คลิก!!! จะทานยา
     private void clickTakeMedicine(String maeb) {
-        Toast.makeText(getBaseContext(), "เริ่ม " + maeb, Toast.LENGTH_SHORT).show();
-
+        //Toast.makeText(getBaseContext(), "เริ่ม " + maeb, Toast.LENGTH_SHORT).show();
 
         for (int i = 0; i < stringsClick_Position.length; i++) {
             if (stringsClick_Position[i].equals(maeb)) {
@@ -375,7 +374,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 strResult_Sum_id = stringsClick_Sum_id[i];
                 strResult_TimeRef = stringsClick_TimeRef[i];
                 strResult_Appearance = stringsClick_Appearance[i];
-                strResult_TimeCheck = stringsClick_TimeCheck[i];
+                strResult_DateTimeCheck = stringsClick_DateTimeCheck[i];
                 strResult_SkipHold = stringsClick_SkipHold[i];
             }
         }
@@ -393,6 +392,65 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 " " + strResult_TimeRef + " " + strResult_Appearance + " " +
                 strResult_Tradename + " " + strResult_AmountTablet);
 
+        //เริ่มทำการดูเวลา ถ้ามีการทานไปแล้ว หรือ skip ไปแล้วเกินเวลาที่กำหนดให้ Toast ขึ้นมาแล้วทำการ return
+
+        if (!strResult_DateTimeCheck.equals("")) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            Date date = new Date();
+            try {
+                date = dateFormat.parse(strResult_DateTimeCheck);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.HOUR_OF_DAY, -3);
+            Date dateRef = calendar.getTime();
+
+            if (date.compareTo(dateRef) < 0) {
+                Toast.makeText(MainActivity.this, "ไม่สามารถแก้ไข้เกินเวลาที่กำหนดได้", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+        if (!strResult_SkipHold.equals("")) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+            try {
+                date = dateFormat.parse(strResult_SkipHold);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.HOUR_OF_DAY, -3);
+            Date dateRef = calendar.getTime();
+
+            if (date.compareTo(dateRef) < 0) {
+                Toast.makeText(MainActivity.this, "ไม่สามารถแก้ไข้เกินเวลาที่กำหนดได้", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        if (strResult_DateTimeCheck.equals("")) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            Date date = new Date();
+            try {
+                date = dateFormat.parse(strResult_DateTimeCheck);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_MONTH, -2);
+            Date dateRef = calendar.getTime();
+
+            if (date.compareTo(dateRef) < 0) {
+                Toast.makeText(MainActivity.this,"ไม่สามารถเปลี่ยนแปลงเกินเวลาที่กำหนดได้", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+
 
         Intent intent = new Intent(MainActivity.this, TakeSkipMedicineActivity.class);
 
@@ -402,7 +460,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         intent.putExtra("MainActivity_Appearance", strResult_Appearance);
         intent.putExtra("MainActivity_AmountTablet", strResult_AmountTablet);
         intent.putExtra("MainActivity_TimeRef", strResult_TimeRef);
-        intent.putExtra("MainActivity_TimeCheck", strResult_TimeCheck);
+        intent.putExtra("MainActivity_DateTimeCheck", strResult_DateTimeCheck);
         intent.putExtra("MainActivity_SkipHold", strResult_SkipHold);
         intent.putExtra("MainActivity_EA", strResult_EA);
         intent.putExtra("MainActivity_Sum_id", strResult_Sum_id);
@@ -1317,45 +1375,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         tvEvening = (TextView) findViewById(R.id.tvEvening);
         tvBedtime = (TextView) findViewById(R.id.tvBedtime);
 
-        //Invisible
-        /*
-        imageButtonA1.setVisibility(View.INVISIBLE);
-        imageButtonA2.setVisibility(View.INVISIBLE);
-        imageButtonA3.setVisibility(View.INVISIBLE);
-        imageButtonA4.setVisibility(View.INVISIBLE);
-        imageButtonA5.setVisibility(View.INVISIBLE);
-        imageButtonA6.setVisibility(View.INVISIBLE);
-        imageButtonA7.setVisibility(View.INVISIBLE);
-        imageButtonA8.setVisibility(View.INVISIBLE);
-        imageButtonA9.setVisibility(View.INVISIBLE);
-        imageButtonB1.setVisibility(View.INVISIBLE);
-        imageButtonB2.setVisibility(View.INVISIBLE);
-        imageButtonB3.setVisibility(View.INVISIBLE);
-        imageButtonB4.setVisibility(View.INVISIBLE);
-        imageButtonB5.setVisibility(View.INVISIBLE);
-        imageButtonB6.setVisibility(View.INVISIBLE);
-        imageButtonB7.setVisibility(View.INVISIBLE);
-        imageButtonB8.setVisibility(View.INVISIBLE);
-        imageButtonB9.setVisibility(View.INVISIBLE);
-        imageButtonM1.setVisibility(View.INVISIBLE);
-        imageButtonM2.setVisibility(View.INVISIBLE);
-        imageButtonM3.setVisibility(View.INVISIBLE);
-        imageButtonM4.setVisibility(View.INVISIBLE);
-        imageButtonM5.setVisibility(View.INVISIBLE);
-        imageButtonM6.setVisibility(View.INVISIBLE);
-        imageButtonM7.setVisibility(View.INVISIBLE);
-        imageButtonM8.setVisibility(View.INVISIBLE);
-        imageButtonM9.setVisibility(View.INVISIBLE);
-        imageButtonE1.setVisibility(View.INVISIBLE);
-        imageButtonE2.setVisibility(View.INVISIBLE);
-        imageButtonE3.setVisibility(View.INVISIBLE);
-        imageButtonE4.setVisibility(View.INVISIBLE);
-        imageButtonE5.setVisibility(View.INVISIBLE);
-        imageButtonE6.setVisibility(View.INVISIBLE);
-        imageButtonE7.setVisibility(View.INVISIBLE);
-        imageButtonE8.setVisibility(View.INVISIBLE);
-        imageButtonE9.setVisibility(View.INVISIBLE);
-        */
 
     }
 
@@ -1370,9 +1389,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         showView();
 
         displayMedicineByDay(sSpecificDate);
+        clickAddbtn();
 
+        //คลิก รายการยา
+        clickMedicationList();
 
+        //คลิก ImageButtonCalendar
+        click_ImageButtonCalendar();
 
+        click_News();
+
+        clickImagepill();
+
+        clickTextViewMainDate();
 
     }
 } //Main Class

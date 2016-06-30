@@ -98,6 +98,13 @@ public class SplashScreen extends AppCompatActivity {
                 strCheckPRN = "N";
             }
         }
+        //มีวันนี้แล้วหรือยัง
+        String strDateRef = "N";
+        for(int x = 0;x<stringsDateRef.length;x++) {
+            if (stringsDateRef[x].equals(currentDay)) {
+                strDateRef = "Y";
+            }
+        }
 
         if (stringsREAD_mainTABLE[0].equals("")) {
             Log.d("UpdatesumTABLE", "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver");
@@ -112,7 +119,7 @@ public class SplashScreen extends AppCompatActivity {
 
         }
         //ถ้าจะ Test การเอาเข้าให้เอา else if อันนี้ออกไป
-        else if (stringsDateRef[0].equals(currentDay)) {
+        else if (strDateRef.equals("Y")) {
             Log.d("UpdatesumTABLE", "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver");
             Toast.makeText(SplashScreen.this, "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
             return;

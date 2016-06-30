@@ -106,6 +106,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         MyData myData = new MyData();
         stringsIndex = new String[string2.length()];
         stringsIndex[0] = string2;
+
         Log.d("abc",stringsIndex[0]);
         intsIndex = myData.translate_Small_Appearance(stringsIndex);
 
@@ -134,7 +135,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         string2 = getIntent().getStringExtra("MainActivity_Appearance");
         string3 = getIntent().getStringExtra("MainActivity_AmountTablet");
         string4 = getIntent().getStringExtra("MainActivity_TimeRef");
-        string5 = getIntent().getStringExtra("MainActivity_TimeCheck");
+        string5 = getIntent().getStringExtra("MainActivity_DateTimeCheck");
         string6 = getIntent().getStringExtra("MainActivity_SkipHold");
         string7 = getIntent().getStringExtra("MainActivity_EA");
         stringId = getIntent().getStringExtra("MainActivity_Sum_id");

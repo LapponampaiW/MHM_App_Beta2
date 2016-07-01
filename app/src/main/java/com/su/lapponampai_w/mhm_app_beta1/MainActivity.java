@@ -58,12 +58,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
 
     String[] stringsClick_Position, stringsClick_Main_id, stringsClick_TimeRef,stringsClick_Sum_id,
-            stringsClick_Appearance, stringsClick_SkipHold,stringsClick_DateTimeCheck; //clickTakeMedicine
+            stringsClick_Appearance, stringsClick_SkipHold,stringsClick_DateTimeCheck,stringsClick_DateRef; //clickTakeMedicine
     String[] stringsMainTABLE_TradeName, stringsMainTABLE_AmountTablet,
             stringsMainTABLE_Main_id,stringsMainTABLE_EA; //clickTakeMedicine
     String strResult_Position, strResult_Main_id, strResult_TimeRef, strResult_Appearance,
             strResult_AmountTablet, strResult_Tradename,strResult_DateTimeCheck,strResult_Sum_id,
-            strResult_EA,strResult_SkipHold; //clickTakeMedicine
+            strResult_EA,strResult_SkipHold,strResult_DateRef = ""; //clickTakeMedicine
 
 
     @Override
@@ -160,17 +160,31 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     public void onResume(){
         super.onResume();
 
-        showView();
-        delete_UnnecessaryData_sumTABLE();
-        setDateAndTimeToday();
-        textViewMainDate.setText("วันที่ : " + today);
-        displayMedicineByDay(today);
-        clickAddbtn();
-        clickMedicationList();
-        click_ImageButtonCalendar();
-        click_News();
-        clickImagepill();
-        clickTextViewMainDate();
+        if (!strResult_DateRef.equals("")) {
+            showView();
+            delete_UnnecessaryData_sumTABLE();
+            textViewMainDate.setText("วันที่ : " + strResult_DateRef);
+            displayMedicineByDay(strResult_DateRef);
+            clickAddbtn();
+            clickMedicationList();
+            click_ImageButtonCalendar();
+            click_News();
+            clickImagepill();
+            clickTextViewMainDate();
+        } else {
+            showView();
+            delete_UnnecessaryData_sumTABLE();
+            setDateAndTimeToday();
+            textViewMainDate.setText("วันที่ : " + today);
+            displayMedicineByDay(today);
+            clickAddbtn();
+            clickMedicationList();
+            click_ImageButtonCalendar();
+            click_News();
+            clickImagepill();
+            clickTextViewMainDate();
+        }
+
 
     } //Override
 
@@ -280,6 +294,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         //เอาค่าจากใน displayTABLE
         stringsClick_Position = myManage.readAlldisplayTABLE(1);  //ตำแหน่ง
         stringsClick_Sum_id = myManage.readAlldisplayTABLE(2); //Sum_id
+        stringsClick_DateRef = myManage.readAlldisplayTABLE(4); //Day (DateRef)
         stringsClick_Main_id = myManage.readAlldisplayTABLE(3);  //Main_id
         stringsClick_TimeRef = myManage.readAlldisplayTABLE(5);  //TimeRef
         stringsClick_DateTimeCheck = myManage.readAlldisplayTABLE(6); //DateTimeCheck
@@ -372,6 +387,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 strResult_Position = stringsClick_Position[i];
                 strResult_Main_id = stringsClick_Main_id[i];  //ต้องเอา Main_id ไปทำต่อ
                 strResult_Sum_id = stringsClick_Sum_id[i];
+                strResult_DateRef = stringsClick_DateRef[i];
                 strResult_TimeRef = stringsClick_TimeRef[i];
                 strResult_Appearance = stringsClick_Appearance[i];
                 strResult_DateTimeCheck = stringsClick_DateTimeCheck[i];
@@ -434,8 +450,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         if (strResult_DateTimeCheck.equals("")) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
             Date date = new Date();
+
             try {
-                date = dateFormat.parse(strResult_DateTimeCheck);
+                date = dateFormat.parse(strResult_DateRef + " " + strResult_TimeRef);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -459,6 +476,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         intent.putExtra("MainActivity_Tradename", strResult_Tradename);
         intent.putExtra("MainActivity_Appearance", strResult_Appearance);
         intent.putExtra("MainActivity_AmountTablet", strResult_AmountTablet);
+        intent.putExtra("MainActivity_DateRef", strResult_DateRef);
         intent.putExtra("MainActivity_TimeRef", strResult_TimeRef);
         intent.putExtra("MainActivity_DateTimeCheck", strResult_DateTimeCheck);
         intent.putExtra("MainActivity_SkipHold", strResult_SkipHold);

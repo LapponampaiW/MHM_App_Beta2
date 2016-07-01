@@ -14,7 +14,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
 
     //Explicit
     public Activity activityTSMActivity;
-    String string1,string2,string3, string4,string5,string6,string7,stringId;
+    String string1,string2,string3, string4,string5,string6,string7,stringId,stringDateRef;
     TextView textView1,textView2, textView3;
     TextView textViewB1,textViewB2, textViewB3;
     ImageView imageView;
@@ -139,6 +139,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         string6 = getIntent().getStringExtra("MainActivity_SkipHold");
         string7 = getIntent().getStringExtra("MainActivity_EA");
         stringId = getIntent().getStringExtra("MainActivity_Sum_id");
+        stringDateRef = getIntent().getStringExtra("MainActivity_DateRef");
         Log.d("TakeSkip", "Tradename : " + string1);
         Log.d("TakeSkip", "Appearance : " + string2);
         Log.d("TakeSkip", "AmountTablet : " + string3);

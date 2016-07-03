@@ -3,6 +3,7 @@ package com.su.lapponampai_w.mhm_app_beta1;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     //Widget ต่างๆ
     ImageButton imageButtonPop1, imageButtonPop2, imageButtonPop3, imageButtonPop4, imageButtonPop5, imageButtonPop6;
-    ImageButton imageCalendar;
+    ImageButton imageAdherence;
     ImageButton imageButtonM1, imageButtonM2, imageButtonM3, imageButtonM4,
             imageButtonM5, imageButtonM6, imageButtonM7, imageButtonM8, imageButtonM9,
             imageButtonA1, imageButtonA2, imageButtonA3, imageButtonA4, imageButtonA5,
@@ -90,8 +91,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         //คลิก รายการยา
         clickMedicationList();
 
-        //คลิก ImageButtonCalendar
-        click_ImageButtonCalendar();
+        //คลิก ImageButtonAdherence
+        click_ImageButtonAdherence();
 
         click_News();
 
@@ -167,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             displayMedicineByDay(strResult_DateRef);
             clickAddbtn();
             clickMedicationList();
-            click_ImageButtonCalendar();
+            click_ImageButtonAdherence();
             click_News();
             clickImagepill();
             clickTextViewMainDate();
@@ -179,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             displayMedicineByDay(today);
             clickAddbtn();
             clickMedicationList();
-            click_ImageButtonCalendar();
+            click_ImageButtonAdherence();
             click_News();
             clickImagepill();
             clickTextViewMainDate();
@@ -1222,11 +1223,15 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     }
 
 
-    private void click_ImageButtonCalendar() {
-        imageCalendar.setOnClickListener(new View.OnClickListener() {
+    private void click_ImageButtonAdherence() {
+        imageAdherence.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MyCalendar.class));
+                Intent intent = new Intent(getApplicationContext(), AdherenceActivity.class);
+                startActivity(intent);
+
+
+
             }
         });
     }
@@ -1349,7 +1354,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         textViewAdd = (TextView) findViewById(R.id.textView_Main_Add);
         textViewNews = (TextView) findViewById(R.id.textView_News);
         relativeLayout = (RelativeLayout) findViewById(R.id.relative);
-        imageCalendar = (ImageButton) findViewById(R.id.imageButtonCalendar);
+        imageAdherence = (ImageButton) findViewById(R.id.imageButtonAdherence);
         textViewMainDate = (TextView) findViewById(R.id.textViewMainDate);
         textViewMedication = (TextView) findViewById(R.id.textView_Medicine);
         imageButtonA1 = (ImageButton) findViewById(R.id.iB_A1);
@@ -1412,8 +1417,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         //คลิก รายการยา
         clickMedicationList();
 
-        //คลิก ImageButtonCalendar
-        click_ImageButtonCalendar();
+        //คลิก ImageButtonAdherence
+        click_ImageButtonAdherence();
 
         click_News();
 

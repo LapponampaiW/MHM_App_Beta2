@@ -42,7 +42,7 @@
         <activity
             android:name=".PopUpAddAmountMedicine"
             android:theme="@style/AppTheme.CustomTheme" />
-        <activity android:name=".AdherenceActivity"></activity>
+        <activity android:name=".AdherenceActivity" />
     </application>
 
 </manifest>

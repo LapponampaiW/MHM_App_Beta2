@@ -43,7 +43,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:id="@+id/imageButtonCalendar"
+                android:id="@+id/imageButtonAdherence"
                 android:src="@drawable/btn_calendar"
                 android:background="#00000000"
                 android:layout_weight="10" />

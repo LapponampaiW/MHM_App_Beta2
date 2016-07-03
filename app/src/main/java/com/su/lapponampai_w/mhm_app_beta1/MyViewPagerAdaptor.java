@@ -32,8 +32,10 @@ public class MyViewPagerAdaptor extends FragmentPagerAdapter{
         return fragments.size();
     }
 
+
     @Override
     public CharSequence getPageTitle(int position) {
         return tabTitles.get(position);
     }
+
 }

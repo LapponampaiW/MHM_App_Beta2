@@ -17,10 +17,17 @@ public class AdherenceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adherence);
-        toolbar = (Toolbar) findViewById(R.id.toolBar);
+
+        bindWidget();
+
         setSupportActionBar(toolbar);
-        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
+
+        addFragmentAndDisplay();
+
+
+    }
+
+    private void addFragmentAndDisplay() {
         myViewPagerAdaptor = new MyViewPagerAdaptor(getSupportFragmentManager());
         myViewPagerAdaptor.addFragments(new DailyFragment(),"รายวัน");
         myViewPagerAdaptor.addFragments(new WeeklyFragment(),"รายเดือน");
@@ -28,5 +35,11 @@ public class AdherenceActivity extends AppCompatActivity {
         viewPager.setAdapter(myViewPagerAdaptor);
         tabLayout.setupWithViewPager(viewPager);
 
+    }
+
+    private void bindWidget() {
+        toolbar = (Toolbar) findViewById(R.id.toolBar);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
     }
 }

@@ -14,7 +14,7 @@
             android:layout_height="60dp"
             android:id="@+id/imageView4"
             android:layout_margin="@dimen/z2_margin_bigspace"
-            android:src="@drawable/good_adhearence" />
+            android:src="@drawable/good_adherence" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="% Adhearence"
+                android:text="% Adherence"
                 android:id="@+id/textView95" />
 
             <TextView

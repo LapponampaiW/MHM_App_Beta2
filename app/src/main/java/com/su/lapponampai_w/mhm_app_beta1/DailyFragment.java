@@ -16,6 +16,7 @@ import android.widget.Toast;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -177,8 +178,33 @@ public class DailyFragment extends Fragment {
                         Log.d("DailyFragment", "i_result = " + Integer.toString(i_total));
                     }
 
-
-                    //เอาค่า Tradename จาก Main_id
+                    //น่าจะครบทุกอย่างละต่อไปก็แค่เอาทั้งหมดมารวมกันแล้วก็สรุปใน listView
+                    ArrayList<String> arrayList_main_id = new ArrayList<String>();
+                    int iIndex = 0;
+                    String[] stringsIndex = {""};
+                    for(int i = 0;i<stringsReadmainTABLE_id.length;i++) {
+                        String strIntermediate = ""; //ตัวกลางใช้ยกตัวอย่าง
+                        for(int w = 0;w<strings_Main_id.length;w++) { //Main_id ในตารางที่จะใช้
+                            if (stringsReadmainTABLE_id[i].equals(strings_Main_id[w])) {
+                                String str = "N";
+                                for (int z = 0;z<stringsIndex.length;z++) {
+                                    if (stringsIndex[z].equals(stringsReadmainTABLE_id[i])) {
+                                        str = "Y";
+                                    }
+                                }
+                                if (str.equals("N")) {
+                                    arrayList_main_id.add(iIndex, strings_Main_id[w]);
+                                    iIndex = iIndex + 1;
+                                    stringsIndex = new String[arrayList_main_id.size()];
+                                    stringsIndex = arrayList_main_id.toArray(stringsIndex);
+                                }
+                            }
+                        }
+                    }
+                    Log.d("DailyFragment","stringsIndex0 : " + stringsIndex[0]);
+                    Log.d("DailyFragment","stringsIndex1 : " + stringsIndex[1]);
+                    Log.d("DailyFragment", "stringsIndex2 : " + stringsIndex[2]);
+                    Log.d("DailyFragment", "stringsIndex.length" + stringsIndex.length);
 
 
 

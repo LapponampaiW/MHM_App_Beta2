@@ -104,10 +104,10 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
     private void showView() {
 
         MyData myData = new MyData();
-        stringsIndex = new String[string2.length()];
+        stringsIndex = new String[1];
         stringsIndex[0] = string2;
 
-        Log.d("abc",stringsIndex[0]);
+        Log.d("abc","ค่าใน StringsIndex[0] :" + stringsIndex[0]);
         intsIndex = myData.translate_Small_Appearance(stringsIndex);
 
         String stextView1 = "ชื่อยา : " + string1;

@@ -57,10 +57,10 @@ public class MyAdaptorAdherence extends BaseAdapter {
         textViewAdherence.setText(stringsPercentAdherence[position]);
 
         ImageView imageViewAdherence = (ImageView) view.findViewById(R.id.imageView4);
-        imageViewAdherence.setBackgroundResource(intsAdherence[position]);
+        imageViewAdherence.setImageResource(intsAdherence[position]);
 
         ImageView imageViewDisplay = (ImageView) view.findViewById(R.id.imageView5);
-        imageViewDisplay.setBackgroundResource(intsDisplay[position]);
+        imageViewDisplay.setImageResource(intsDisplay[position]);
 
         return view;
     }

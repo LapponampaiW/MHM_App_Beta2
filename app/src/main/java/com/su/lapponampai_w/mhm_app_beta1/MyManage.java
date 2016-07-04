@@ -191,6 +191,51 @@ public class MyManage {
 
     } //Constructor
 
+    public String[] filtersumTABLE_by_DateRef(String dateref, int intColumn) {
+        String[] strREAD = null;
+
+        Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE, "DateRef " + "LIKE '"+ dateref + "'", null, null, null,null);
+        int iCount = cursor.getCount();
+        if (iCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for(int i = 0;i<cursor.getCount();i++) {
+                switch (intColumn) {
+                    case 0:
+                        strREAD[i] = cursor.getString(0);
+                        break;
+                    case 1:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_Main_id));
+                        break;
+                    case 2:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_DateRef));
+                        break;
+                    case 3:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_TimeRef));
+                        break;
+                    case 4:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_DateCheck));
+                        break;
+                    case 5:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_TimeCheck));
+                        break;
+                    case 6:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_SkipHold));
+                        break;
+                    default:
+                        break;
+                }
+                cursor.moveToNext();
+            }
+
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+
+        return strREAD;
+    }
+
     //Update sumTABLE ยกเลิก การAdd DateCheck DateTime
     public long updatesumTABLE_Canceled_ADD_DateCheckTimeCheck(String str_id) {
         ContentValues contentValues = new ContentValues();
@@ -629,7 +674,7 @@ public class MyManage {
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_ea));
                         break;
                     case (8):
-                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_Main_pharmaco));
+                        strREAD[i] = cursor.getString(8);
                         break;
                     case (9):
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_startdate)); //StartDate
@@ -1598,16 +1643,16 @@ public class MyManage {
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
 
         if (cursor.getCount() == 0) {
-            addMedTABLEValue("Efaviren GPO", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "4", null, "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Stocrin", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "4", null, "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "1", null, "08:00", "20:00", "", "", "", "", "", "");
-            addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null, "1", 1, "ED:0", "3", null, "08:00", "20:00", "", "", "", "", "", "");
-            addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "5", null, "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Viread", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "6", null, "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Reyataz", "Atazanavir", 7, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "7", null, "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Cafergot", "Ergotamine Tartrate", 8, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "8", null, "08:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Prevacid", "Lansoprazole", 9, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "9", null, "07:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Antacin", "Antacid", 10, "100", "1", 11, "100", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "10", null, "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Efaviren GPO", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "4", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Stocrin", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "4", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "1", "A", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null, "1", 1, "ED:0", "3", "A", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "5", "A", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Viread", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "6", "A", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Reyataz", "Atazanavir", 7, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "7", "A", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cafergot", "Ergotamine Tartrate", 8, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "8", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Prevacid", "Lansoprazole", 9, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "9", "", "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Antacin", "Antacid", 10, "100", "1", 11, "100", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "10", "", "08:00", "13:00", "18:00", "", "", "", "", "");
 
         }
 

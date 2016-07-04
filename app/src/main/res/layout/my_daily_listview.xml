@@ -77,10 +77,8 @@
             android:layout_height="wrap_content"
             android:text=" "
             android:id="@+id/textView98"
-            android:textSize="5sp"
-            android:background="#ffffff"
-            android:layout_marginLeft="@dimen/z2_margin_space"
-            android:layout_marginRight="@dimen/z2_margin_space" />
+            android:textSize="1sp"
+            android:background="#ffffff" />
     </LinearLayout>
 
 </LinearLayout>

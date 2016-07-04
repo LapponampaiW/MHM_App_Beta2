@@ -31,8 +31,8 @@ public class AdherenceActivity extends AppCompatActivity {
 
     private void addFragmentAndDisplay() {
         myViewPagerAdaptor = new MyViewPagerAdaptor(getSupportFragmentManager());
-        myViewPagerAdaptor.addFragments(new DailyFragment(),"รายวัน");
-        myViewPagerAdaptor.addFragments(new WeeklyFragment(),"รายเดือน");
+        myViewPagerAdaptor.addFragments(new DailyFragment(),"Adherence รายวัน");
+        myViewPagerAdaptor.addFragments(new WeeklyFragment(),"Adherence รายเดือน");
 
         viewPager.setAdapter(myViewPagerAdaptor);
         tabLayout.setupWithViewPager(viewPager);

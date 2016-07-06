@@ -27,45 +27,45 @@ public class MyManage {
     SQLiteDatabase readSqLiteDatabase, writeSqLiteDatabase;
 
     //userTABLE
-    private static final String userTABLE = "userTABLE";
-    private static final String ucolumn_id = "_id";
-    private static final String ucolumn_User = "User";
-    private static final String ucolumn_Password = "Password";
-    private static final String ucolumn_Stay = "Stay";
-    private static final String ucolumn_Email = "Email";
-    private static final String[] column_userTABLE = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_Email};
+    public static final String userTABLE = "userTABLE";
+    public static final String ucolumn_id = "_id";
+    public static final String ucolumn_User = "User";
+    public static final String ucolumn_Password = "Password";
+    public static final String ucolumn_Stay = "Stay";
+    public static final String ucolumn_Email = "Email";
+    public static final String[] column_userTABLE = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_Email};
 
     //medTABLE
-    private static final String medTABLE = "medTABLE";
-    private static final String mcolumn_id = "_id";
-    private static final String mcolumn_trade_name = "Trade_name";
-    private static final String mcolumn_key_search = "Key_search";
-    private static final String mcolumn_generic_name1 = "Generic_name1";
-    private static final String mcolumn_dosage1 = "Dosage1";
-    private static final String mcolumn_uom1 = "UOM1";
-    private static final String mcolumn_generic_name2 = "Generic_name2";
-    private static final String mcolumn_dosage2 = "Dosage2";
-    private static final String mcolumn_uom2 = "UOM2";
-    private static final String mcolumn_generic_name3 = "Generic_name3";
-    private static final String mcolumn_dosage3 = "Dosage3";
-    private static final String mcolumn_uom3 = "UOM3";
-    private static final String mcolumn_ea = "EA";
-    private static final String mcolumn_generic_name4 = "Generic_name4";
-    private static final String mcolumn_dosage4 = "Dosage4";
-    private static final String mcolumn_uom4 = "UOM4";
-    private static final String mcolumn_amount_tablet = "Amount_tablet";
-    private static final String mcolumn_which_date_d = "Which_Date_D";
-    private static final String mcolumn_appearance = "Appearance";
-    private static final String mcolumn_pharmaco = "Pharmaco";
-    private static final String mcolumn_t1 = "T1";
-    private static final String mcolumn_t2 = "T2";
-    private static final String mcolumn_t3 = "T3";
-    private static final String mcolumn_t4 = "T4";
-    private static final String mcolumn_t5 = "T5";
-    private static final String mcolumn_t6 = "T6";
-    private static final String mcolumn_t7 = "T7";
-    private static final String mcolumn_t8 = "T8";
-    private static final String[] column_medTABLE = {mcolumn_id, mcolumn_trade_name, mcolumn_key_search, mcolumn_generic_name1, mcolumn_dosage1,
+    public static final String medTABLE = "medTABLE";
+    public static final String mcolumn_id = "_id";
+    public static final String mcolumn_trade_name = "Trade_name";
+    public static final String mcolumn_key_search = "Key_search";
+    public static final String mcolumn_generic_name1 = "Generic_name1";
+    public static final String mcolumn_dosage1 = "Dosage1";
+    public static final String mcolumn_uom1 = "UOM1";
+    public static final String mcolumn_generic_name2 = "Generic_name2";
+    public static final String mcolumn_dosage2 = "Dosage2";
+    public static final String mcolumn_uom2 = "UOM2";
+    public static final String mcolumn_generic_name3 = "Generic_name3";
+    public static final String mcolumn_dosage3 = "Dosage3";
+    public static final String mcolumn_uom3 = "UOM3";
+    public static final String mcolumn_ea = "EA";
+    public static final String mcolumn_generic_name4 = "Generic_name4";
+    public static final String mcolumn_dosage4 = "Dosage4";
+    public static final String mcolumn_uom4 = "UOM4";
+    public static final String mcolumn_amount_tablet = "Amount_tablet";
+    public static final String mcolumn_which_date_d = "Which_Date_D";
+    public static final String mcolumn_appearance = "Appearance";
+    public static final String mcolumn_pharmaco = "Pharmaco";
+    public static final String mcolumn_t1 = "T1";
+    public static final String mcolumn_t2 = "T2";
+    public static final String mcolumn_t3 = "T3";
+    public static final String mcolumn_t4 = "T4";
+    public static final String mcolumn_t5 = "T5";
+    public static final String mcolumn_t6 = "T6";
+    public static final String mcolumn_t7 = "T7";
+    public static final String mcolumn_t8 = "T8";
+    public static final String[] column_medTABLE = {mcolumn_id, mcolumn_trade_name, mcolumn_key_search, mcolumn_generic_name1, mcolumn_dosage1,
             mcolumn_uom1, mcolumn_generic_name2, mcolumn_dosage2, mcolumn_uom2, mcolumn_generic_name3,
             mcolumn_dosage3, mcolumn_uom3, mcolumn_generic_name4, mcolumn_dosage4, mcolumn_uom4, mcolumn_ea, mcolumn_amount_tablet,
             mcolumn_which_date_d, mcolumn_appearance, mcolumn_pharmaco, mcolumn_t1, mcolumn_t2,
@@ -109,15 +109,15 @@ public class MyManage {
 
     //mainTABLE
     //ใช้ ตัวแปรเดียวกับ medTABLE
-    private static final String mainTABLE = "mainTABLE";
-    private static final String mcolumn_Med_id = "Med_id";
-    private static final String mcolumn_generic_line = "Generic_line";
-    private static final String mcolumn_Main_pharmaco = "pharmaco";
-    private static final String mcolumn_startdate = "StartDate";
-    private static final String mcolumn_finishdate = "FinishDate";
-    private static final String mcolumn_prn = "PRN";
-    private static final String mcolumn_datetimecanceled = "DateTimeCanceled";
-    private static final String[] column_mainTABLE = {mcolumn_id, mcolumn_Med_id, mcolumn_trade_name,
+    public static final String mainTABLE = "mainTABLE";
+    public static final String mcolumn_Med_id = "Med_id";
+    public static final String mcolumn_generic_line = "Generic_line";
+    public static final String mcolumn_Main_pharmaco = "pharmaco";
+    public static final String mcolumn_startdate = "StartDate";
+    public static final String mcolumn_finishdate = "FinishDate";
+    public static final String mcolumn_prn = "PRN";
+    public static final String mcolumn_datetimecanceled = "DateTimeCanceled";
+    public static final String[] column_mainTABLE = {mcolumn_id, mcolumn_Med_id, mcolumn_trade_name,
             mcolumn_generic_line, mcolumn_amount_tablet, mcolumn_which_date_d, mcolumn_appearance, mcolumn_ea, mcolumn_Main_pharmaco,
             mcolumn_startdate, mcolumn_finishdate, mcolumn_prn, mcolumn_t1,
             mcolumn_t2, mcolumn_t3, mcolumn_t4, mcolumn_t5, mcolumn_t6, mcolumn_t7, mcolumn_t8, mcolumn_datetimecanceled};
@@ -674,7 +674,7 @@ public class MyManage {
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_ea));
                         break;
                     case (8):
-                        strREAD[i] = cursor.getString(8);
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_Main_pharmaco));
                         break;
                     case (9):
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_startdate)); //StartDate

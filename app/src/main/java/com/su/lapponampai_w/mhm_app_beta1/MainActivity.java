@@ -6,9 +6,11 @@ import android.app.DatePickerDialog;
 import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ListPopupWindow;
@@ -25,6 +27,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.FormEncodingBuilder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -101,6 +112,145 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         clickTextViewMainDate();
 
     } //Main method
+
+    public void clickUpdateValuetoServer(View view) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setIcon(R.drawable.logo_carabao48);
+        builder.setTitle("Update All data to Server");
+        builder.setMessage("คุณต้องการ Synchronize ขึ้น Server ของเราหรือไม่");
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                //updateUserTABLE();  // Update userTABLE SQLite to Server
+
+                updatemainTABLE(updateUserTABLE());
+
+
+            } //OnClick
+        });
+        builder.show();
+
+
+    } //clickUpdate
+
+    private void updatemainTABLE(String strEmail) {
+
+        String strURL = "http://www.swiftcodingthai.com/mhm/add_mainTABLE.php";
+        OkHttpClient okHttpClient = new OkHttpClient();
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM mainTABLE", null);
+        int iCount = cursor.getCount();
+        if (iCount > 0) {
+            cursor.moveToFirst();
+            for(int i = 0;i<cursor.getCount();i++) {
+                String str1 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_id));
+                String str2 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_Med_id));
+                String str3 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_trade_name));
+                String str4 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_generic_line));
+                String str5 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_which_date_d));
+                String str6 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_appearance));
+                String str7 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_ea));
+                String str8 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_Main_pharmaco));
+                String str9 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_startdate));
+                String str10 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_finishdate));
+                String str11 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_prn));
+                String str12 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t1));
+                String str13 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t2));
+                String str14 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t3));
+                String str15 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t4));
+                String str16 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t5));
+                String str17 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t6));
+                String str18 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t7));
+                String str19 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t8));
+                String str20 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_datetimecanceled));
+
+                RequestBody requestBody = new FormEncodingBuilder()
+                        .add("isAdd", "true")
+                        .add("id", str1)
+                        .add("Med_id", str2)
+                        .add("Trade_name", str3)
+                        .add("Email", strEmail)
+                        .build();
+
+                Request.Builder builder = new Request.Builder();
+                Request request = builder.url(strURL).post(requestBody).build();
+                Call call = okHttpClient.newCall(request);
+                call.enqueue(new Callback() { //ถ้าไม่สามารถโยนขึ้นได้ จะทำงานที่ onFailure
+                    @Override
+                    public void onFailure(Request request, IOException e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Response response) throws IOException {
+
+                    }
+                });
+
+            }
+
+
+        }
+
+
+    } //updateMain
+
+    private String updateUserTABLE() {
+
+        //String strURL = "http://www.swiftcodingthai.com/mhm/add_user.php";
+
+
+        //OkHttpClient okHttpClient = new OkHttpClient();
+
+        //Read SQLite userTABLE
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME,
+                MODE_PRIVATE, null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE", null);
+
+        cursor.moveToFirst();
+        String strUser = cursor.getString(cursor.getColumnIndex(MyManage.ucolumn_User));
+        String strPassword = cursor.getString(cursor.getColumnIndex(MyManage.ucolumn_Password));
+        String strStay = cursor.getString(cursor.getColumnIndex(MyManage.ucolumn_Stay));
+        String strEmail = cursor.getString(cursor.getColumnIndex(MyManage.ucolumn_Email));
+
+        /*
+        RequestBody requestBody = new FormEncodingBuilder()
+                .add("isAdd", "true")
+                .add("User", strUser)
+                .add("Password", strPassword)
+                .add("Stay", strStay)
+                .add("Email", strEmail)
+                .build();
+
+        Request.Builder builder = new Request.Builder();
+        Request request = builder.url(strURL).post(requestBody).build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() { //ถ้าไม่สามารถโยนขึ้นได้ จะทำงานที่ onFailure
+            @Override
+            public void onFailure(Request request, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+
+            }
+        });
+        */
+
+        return strEmail;
+
+    } //UpdateUserTABLE
 
     private void clickTextViewMainDate() {
         textViewMainDate.setOnClickListener(new View.OnClickListener() {

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.su.lapponampai_w.mhm_app_beta1">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -45,6 +45,8 @@
             android:name=".PopUpAddAmountMedicine"
             android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".AdherenceActivity" />
+        <activity android:name=".ForDoctorActivity" />
+        <activity android:name=".ResultDoctorActivity"></activity>
     </application>
 
 </manifest>

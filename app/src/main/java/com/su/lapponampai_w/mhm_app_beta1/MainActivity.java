@@ -113,6 +113,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     } //Main method
 
+    public void clickDoctor(View view) {
+        startActivity(new Intent(MainActivity.this,ForDoctorActivity.class));
+    }
+
     public void clickUpdateValuetoServer(View view) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -133,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 //updateUserTABLE();  // Update userTABLE SQLite to Server
 
                 updatemainTABLE(updateUserTABLE());
-
 
             } //OnClick
         });

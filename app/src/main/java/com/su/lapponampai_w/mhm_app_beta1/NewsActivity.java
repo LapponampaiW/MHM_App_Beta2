@@ -37,10 +37,11 @@ public class NewsActivity extends AppCompatActivity {
         activityNewsActivity = this;
 
 
+
         MyManage myManage = new MyManage(this);
         MyData myData = new MyData();
 
-
+        /*
         stringsMainTABLEMed_id = myManage.readAllMainTABLE_Full(1);  //Med_id ในตาราง mainTABLE ทั้งหมด
         stringsNewsTABLE_Med_id = myManage.readAllnewsTABLE(1); //Med_id ในตาราง newsTABLE ทั้งหมด
         stringsNewsTABLE_Message = myManage.readAllnewsTABLE(2); //Message ในตาราง newsTABLE ทั้งหมด
@@ -173,7 +174,7 @@ public class NewsActivity extends AppCompatActivity {
             }
         });
 
-
+        */
 
     }  //Main Method
 

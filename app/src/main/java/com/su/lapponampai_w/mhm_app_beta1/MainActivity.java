@@ -181,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 OkHttpClient okHttpClient = new OkHttpClient();
                 RequestBody requestBody = new FormEncodingBuilder()
                         .add("isAdd", "true")
-                        .add("id", str1)
                         .add("EmailUser", strEmail)
                         .add(MyManage.mcolumn_Med_id, str2)
                         .add(MyManage.mcolumn_trade_name, str3)

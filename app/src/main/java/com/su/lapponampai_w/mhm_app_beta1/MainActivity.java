@@ -145,11 +145,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private void updatemainTABLE(String strEmail) {
 
         String strURL = "http://www.swiftcodingthai.com/mhm/add_mainTABLE.php";
-        OkHttpClient okHttpClient = new OkHttpClient();
+
+
+        //OkHttpClient okHttpClient = new OkHttpClient();
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME,
                 MODE_PRIVATE, null);
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM mainTABLE", null);
+        final Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM mainTABLE", null);
         int iCount = cursor.getCount();
+        final int intTime = 0;
         if (iCount > 0) {
             cursor.moveToFirst();
             for(int i = 0;i<cursor.getCount();i++) {
@@ -157,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 String str2 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_Med_id));
                 String str3 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_trade_name));
                 String str4 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_generic_line));
+                String str21 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_amount_tablet));
                 String str5 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_which_date_d));
                 String str6 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_appearance));
                 String str7 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_ea));
@@ -174,18 +178,36 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 String str19 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t8));
                 String str20 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_datetimecanceled));
 
+                OkHttpClient okHttpClient = new OkHttpClient();
                 RequestBody requestBody = new FormEncodingBuilder()
                         .add("isAdd", "true")
                         .add("id", str1)
-                        .add("Med_id", str2)
-                        .add("Trade_name", str3)
-                        .add("Email", strEmail)
+                        .add("EmailUser", strEmail)
+                        .add(MyManage.mcolumn_Med_id, str2)
+                        .add(MyManage.mcolumn_trade_name, str3)
+                        .add(MyManage.mcolumn_generic_line, str4)
+                        .add(MyManage.mcolumn_which_date_d, str5)
+                        .add(MyManage.mcolumn_appearance, str6)
+                        .add(MyManage.mcolumn_ea, str7)
+                        .add(MyManage.mcolumn_Main_pharmaco, str8)
+                        .add(MyManage.mcolumn_startdate, str9)
+                        .add(MyManage.mcolumn_finishdate, str10)
+                        .add(MyManage.mcolumn_prn, str11)
+                        .add(MyManage.mcolumn_t1, str12)
+                        .add(MyManage.mcolumn_t2, str13)
+                        .add(MyManage.mcolumn_t3, str14)
+                        .add(MyManage.mcolumn_t4, str15)
+                        .add(MyManage.mcolumn_t5, str16)
+                        .add(MyManage.mcolumn_t6, str17)
+                        .add(MyManage.mcolumn_t7, str18)
+                        .add(MyManage.mcolumn_t8, str19)
+                        .add(MyManage.mcolumn_datetimecanceled, str20)
                         .build();
 
                 Request.Builder builder = new Request.Builder();
                 Request request = builder.url(strURL).post(requestBody).build();
                 Call call = okHttpClient.newCall(request);
-                call.enqueue(new Callback() { //ถ้าไม่สามารถโยนขึ้นได้ จะทำงานที่ onFailure
+                call.enqueue(new Callback() {
                     @Override
                     public void onFailure(Request request, IOException e) {
 
@@ -197,7 +219,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     }
                 });
 
-            }
+            } //for
 
 
         }

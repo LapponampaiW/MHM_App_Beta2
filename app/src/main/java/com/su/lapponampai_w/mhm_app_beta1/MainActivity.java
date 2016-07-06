@@ -186,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         .add(MyManage.mcolumn_Med_id, str2)
                         .add(MyManage.mcolumn_trade_name, str3)
                         .add(MyManage.mcolumn_generic_line, str4)
+                        .add(MyManage.mcolumn_amount_tablet,str21)
                         .add(MyManage.mcolumn_which_date_d, str5)
                         .add(MyManage.mcolumn_appearance, str6)
                         .add(MyManage.mcolumn_ea, str7)
@@ -219,9 +220,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     }
                 });
 
+                cursor.moveToNext();
             } //for
 
-
+            cursor.close();
         }
 
 

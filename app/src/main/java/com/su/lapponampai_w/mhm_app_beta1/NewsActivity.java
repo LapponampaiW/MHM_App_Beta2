@@ -24,13 +24,16 @@ public class NewsActivity extends AppCompatActivity {
             stringsAppearance,stringsAdaptorAppearance,stringsAdaptorMessage,
             stringsNewsTABLE_Appearance_edit,stringsAdaptorAppearance_edit,
             stringsAdaptorActivity;
-    String[] stringsMainTABLE_id,stringsMainTABLE_Med_id;
+    ListView listViewNewsActivity;
+    String[] stringsMainTABLE_id,stringsMainTABLE_Med_id,stringsArray_AllGeneric_NotDuplicated;
 
     String[] stringsMedTABLE_id,stringsMedTABLE_Generic1,stringsMedTABLE_Generic2,
             stringsMedTABLE_Generic3,stringsMedTABLE_Generic4,stringsArray_AllGeneric;
 
     String[] stringsNewsTABLE_Generic_id,stringsNewsTABLE_Appearance_News,stringsNewsTABLE_Message,
             stringsNewsTABLE_Criteria,stringsNewsTABLE_Activity,stringsNewsTABLE_id;
+
+    String[] messageStrings,picStrings,criteriaStrings, activityStrings;
 
 
     @Override
@@ -78,7 +81,6 @@ public class NewsActivity extends AppCompatActivity {
         stringsMedTABLE_Generic3 = myManage.readAllmedTABLE(9); //Generic_name3 ในตาราง MedTABLE
         stringsMedTABLE_Generic4 = myManage.readAllmedTABLE(12); //Generic_name4 ในตาราง MedTABLE
 
-        stringsNewsTABLE_id = myManage.readAllnewsTABLE(0);
         stringsNewsTABLE_Generic_id = myManage.readAllnewsTABLE(1); //Generic_id ในตาราง newsTABLE
         stringsNewsTABLE_Message = myManage.readAllnewsTABLE(2);
         stringsNewsTABLE_Appearance_News = myManage.readAllnewsTABLE(3);
@@ -114,14 +116,104 @@ public class NewsActivity extends AppCompatActivity {
 
         stringsArray_AllGeneric = new String[genericStringArrayList.size()];
         stringsArray_AllGeneric = genericStringArrayList.toArray(stringsArray_AllGeneric);
+        //Check can erase
+        for(int b = 0;b<stringsArray_AllGeneric.length;b++) {
+            Log.d("7July16V1",stringsArray_AllGeneric[b]);
+        }
 
-        for (int i = 0;i<stringsArray_AllGeneric.length;i++) {
-            for(int x = 0;x<stringsNewsTABLE_Generic_id.length;x++) {
 
 
+        genericStringArrayList.clear();
+        iIndex = 0;
+        String duplicateString;
+        //เอาซ้ำออกก่อน
+        stringsArray_AllGeneric_NotDuplicated = new String[1];
+        stringsArray_AllGeneric_NotDuplicated[0] = "";
 
+
+        for(int a = 0;a<stringsArray_AllGeneric.length;a++) {
+            duplicateString = "N";
+            if (stringsArray_AllGeneric_NotDuplicated[0].equals("")) {
+                //correct
+            } else {
+                for(int b = 0;b<stringsArray_AllGeneric_NotDuplicated.length;b++) {
+                    if (stringsArray_AllGeneric[a].equals(stringsArray_AllGeneric_NotDuplicated[b])) {
+                        duplicateString = "Y";
+                    } else {
+                       //correct
+                    }
+                }
+            }
+            if (duplicateString.equals("N")) {
+                genericStringArrayList.add(stringsArray_AllGeneric[a]);
+                iIndex = iIndex + 1;
+                stringsArray_AllGeneric_NotDuplicated = new String[genericStringArrayList.size()];
+                stringsArray_AllGeneric_NotDuplicated =
+                        genericStringArrayList.toArray(stringsArray_AllGeneric_NotDuplicated);
             }
         }
+
+        //Check can erase
+        for(int b = 0;b<stringsArray_AllGeneric_NotDuplicated.length;b++) {
+            Log.d("7July16V1","NotDuplicated ==>" + stringsArray_AllGeneric_NotDuplicated[b]);
+        }
+
+
+
+        ArrayList<String> arrayListString = new ArrayList<String>(); //รายละเอียดข้อมูลยา
+        ArrayList<String> arrayListStringPic = new ArrayList<String>();
+        ArrayList<String> arrayListStringCriteria = new ArrayList<String>();
+        ArrayList<String> arrayListStringActivity = new ArrayList<String>();
+        iIndex = 0;
+        for(int i = 0;i<stringsArray_AllGeneric_NotDuplicated.length;i++) {
+            for(int x = 0;x<stringsNewsTABLE_Generic_id.length;x++) {
+                if (stringsArray_AllGeneric_NotDuplicated[i].equals(stringsNewsTABLE_Generic_id[x])) {
+                    if (stringsNewsTABLE_Criteria[x].equals("1")) {
+                        String genericName = myManage.findGenerinName_nameGenericTABLE_by_id
+                                (stringsNewsTABLE_Generic_id[x]);
+                        genericName = "รายละเอียดข้อมูลยา : ".concat(genericName);
+                        arrayListString.add(iIndex, genericName);
+                        arrayListStringPic.add(iIndex,stringsNewsTABLE_Appearance_News[x]);
+                        arrayListStringCriteria.add(iIndex, stringsNewsTABLE_Criteria[x]);
+                        arrayListStringActivity.add(iIndex, stringsNewsTABLE_Activity[x]);
+                        iIndex = iIndex + 1;
+                    }
+                }
+            }
+        }
+
+        messageStrings = new String[arrayListString.size()];
+        messageStrings = arrayListString.toArray(messageStrings);
+
+        picStrings = new String[arrayListStringPic.size()];
+        picStrings = arrayListStringPic.toArray(picStrings);
+
+        criteriaStrings = new String[arrayListStringCriteria.size()];
+        criteriaStrings = arrayListStringCriteria.toArray(criteriaStrings);
+
+        activityStrings = new String[arrayListStringActivity.size()];
+        activityStrings = arrayListStringActivity.toArray(activityStrings);
+
+        int[] intsIndex = myData.translate_Appearance_News(picStrings);
+
+        MyNewsAdaptor myNewsAdaptor = new MyNewsAdaptor(NewsActivity.this, messageStrings, intsIndex);
+        listViewNewsActivity = (ListView) findViewById(R.id.listViewNewsActivity);
+        listViewNewsActivity.setAdapter(myNewsAdaptor);
+
+
+        listViewNewsActivity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (activityStrings[position].equals("DrugInformationActivity")) {
+
+                    Intent intent = new Intent(NewsActivity.this, DrugInformationActivity.class);
+                    intent.putExtra("NewsActivity_Med_id", stringsArray_AllGeneric_NotDuplicated[position]);
+
+                    startActivity(intent);
+                }
+
+            }
+        });
 
         /*
         stringsMainTABLEMed_id = myManage.readAllMainTABLE_Full(1);  //Med_id ในตาราง mainTABLE ทั้งหมด

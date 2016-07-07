@@ -163,7 +163,8 @@ public class MyManage {
     private static final String ncolumn_appearance_News = "Appearance_News";
     private static final String ncolumn_criteria = "Criteria";
     private static final String ncolumn_activity = "Activity";
-    private static final String[] column_newsTABLE = {ncolumn_id, ncolumn_generic_id, ncolumn_message, ncolumn_appearance_News, ncolumn_activity};
+    private static final String[] column_newsTABLE = {ncolumn_id, ncolumn_generic_id, ncolumn_message,
+            ncolumn_appearance_News, ncolumn_criteria, ncolumn_activity};
 
     //totalAmountTABLE
     private static final String totalAmountTABLE = "totalAmountTABLE";
@@ -191,6 +192,7 @@ public class MyManage {
         writeSqLiteDatabase = helper.getWritableDatabase();
 
     } //Constructor
+
 
     public String[] filtersumTABLE_by_DateRef(String dateref, int intColumn) {
         String[] strREAD = null;
@@ -1713,10 +1715,10 @@ public class MyManage {
     public void newsTABLEData() {
         Cursor cursor = readSqLiteDatabase.query(newsTABLE, column_newsTABLE, null, null, null, null, null);
         if (cursor.getCount() == 0) {
-            addNewsTABLEValue("2", "รายละเอียดข้อมูลยา Efaviren", "","1", "DrugInformationActivity");
-            addNewsTABLEValue("3", "รายละเอียดข้อมูลยา Lamivudine", "", "1", "DrugInformationActivity");
-            addNewsTABLEValue("4", "รายละเอียดข้อมูลยา Nevirapine", "", "1", "DrugInformationActivity");
-            addNewsTABLEValue("5", "รายละเอียดข้อมูลยา Stavudine", "", "1", "DrugInformationActivity");
+            addNewsTABLEValue("2", "", "N1","1", "DrugInformationActivity");
+            addNewsTABLEValue("3", "", "N1", "1", "DrugInformationActivity");
+            addNewsTABLEValue("4", "", "N1", "1", "DrugInformationActivity");
+            addNewsTABLEValue("5", "", "N1", "1", "DrugInformationActivity");
 
         }
     }

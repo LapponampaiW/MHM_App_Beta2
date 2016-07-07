@@ -119,6 +119,18 @@ public class MyData {
     }
     */
 
+    public int[] translate_Appearance_News(String[] appearance_News) {
+        int[] intsRead = new int[appearance_News.length];
+
+        for (int i = 0; i < appearance_News.length; i++) {
+            if (appearance_News[i].equals("N1")) {
+                intsRead[i] = R.drawable.news;
+            }
+        }
+
+        return intsRead;
+    }
+
 
     public int[] translate_Appearance(String[] appearance) {
 

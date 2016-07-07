@@ -1650,8 +1650,8 @@ public class MyManage {
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
 
         if (cursor.getCount() == 0) {
-            addMedTABLEValue("Efaviren GPO", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "4", "A", "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Stocrin", "Efaviren", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "4", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Efaviren GPO", "Efavirenz", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "4", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Stocrin", "Efavirenz", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "4", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "1", "A", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null, "1", 1, "ED:0", "3", "A", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "5", "A", "20:00", "", "", "", "", "", "", "");
@@ -1671,7 +1671,7 @@ public class MyManage {
         if (cursor.getCount() == 0) {
 
             addnameGenericTABLEValue("N/A"); //1
-            addnameGenericTABLEValue("Efaviren"); //2
+            addnameGenericTABLEValue("Efavirenz"); //2
             addnameGenericTABLEValue("Lamivudine"); //3
             addnameGenericTABLEValue("Nevirapine"); //4
             addnameGenericTABLEValue("Stavudine"); //5

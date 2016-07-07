@@ -208,7 +208,6 @@ public class NewsActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(NewsActivity.this, DrugInformationActivity.class);
                     intent.putExtra("NewsActivity_Med_id", stringsArray_AllGeneric_NotDuplicated[position]);
-
                     startActivity(intent);
                 }
 

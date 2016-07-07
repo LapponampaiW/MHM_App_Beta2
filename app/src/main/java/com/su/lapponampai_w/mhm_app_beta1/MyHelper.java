@@ -69,7 +69,7 @@ public class MyHelper extends SQLiteOpenHelper {
     //Create table newsTABLE
     private static final String CREATE_newsTABLE = "create table newsTABLE " +
             "(_id integer primary key, Generic_id text, Message text," +
-            " Appearance_edit text, Criteria text, Activity text);";
+            " Appearance_News text, Criteria text, Activity text);";
 
     //Create table addUseTABLE
     private static final String CREATE_addUseTABLE = "create table addUseTABLE " +

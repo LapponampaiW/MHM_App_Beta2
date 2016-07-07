@@ -20,12 +20,17 @@ public class NewsActivity extends AppCompatActivity {
 
     //Explicit
     Activity activityNewsActivity;
-    String[] stringsMainTABLEMed_id,stringsNewsTABLE_Med_id,stringsAdaptorid,stringsmedTABLE_id,
-            stringsAppearance,stringsAdaptorAppearance,stringsNewsTABLE_Message,stringsAdaptorMessage,
-            stringsNewsTABLE_Appearance_edit,stringsAdaptorAppearance_edit,stringsNewsTABLE_Activity,
+    String[]stringsNewsTABLE_Med_id,stringsAdaptorid,
+            stringsAppearance,stringsAdaptorAppearance,stringsAdaptorMessage,
+            stringsNewsTABLE_Appearance_edit,stringsAdaptorAppearance_edit,
             stringsAdaptorActivity;
-    ListView listViewNewsActivity;
+    String[] stringsMainTABLE_id,stringsMainTABLE_Med_id;
 
+    String[] stringsMedTABLE_id,stringsMedTABLE_Generic1,stringsMedTABLE_Generic2,
+            stringsMedTABLE_Generic3,stringsMedTABLE_Generic4,stringsArray_AllGeneric;
+
+    String[] stringsNewsTABLE_Generic_id,stringsNewsTABLE_Appearance_News,stringsNewsTABLE_Message,
+            stringsNewsTABLE_Criteria,stringsNewsTABLE_Activity,stringsNewsTABLE_id;
 
 
     @Override
@@ -40,6 +45,83 @@ public class NewsActivity extends AppCompatActivity {
 
         MyManage myManage = new MyManage(this);
         MyData myData = new MyData();
+
+
+        stringsMainTABLE_id = myManage.readAllMainTABLE_Full(0);
+        //ถ้าไม่มีข่าวสารให้ออกเลย
+        if (stringsMainTABLE_id[0].equals("")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setIcon(R.drawable.icon_question);
+            builder.setTitle("ไม่มีข่าวสาร!!!");
+            builder.setMessage("ข่าวสารจะปรากฎตามรายการยาที่กำหนด\nกรุณาเพิ่มยา โดยเข้าไปที่ +เพิ่มเติม+ ==> เพิ่มรายการยา");
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    finish();
+                }
+            });
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    finish();
+                }
+            });
+            builder.show();
+        }
+
+        //เอา Generic_id จาก MainTABLE จากยกทุกตัวมาก่อนเลย
+        stringsMainTABLE_Med_id = myManage.readAllMainTABLE_Full(1); //Med_id ในตาราง mainTABLE ทั้งหมด
+        stringsMedTABLE_id = myManage.readAllmedTABLE(0); //Med_id ในตาราง MedTABLE
+        stringsMedTABLE_Generic1 = myManage.readAllmedTABLE(3); //Generic_name1 ในตาราง MedTABLE
+        stringsMedTABLE_Generic2 = myManage.readAllmedTABLE(6); //Generic_name2 ในตาราง MedTABLE
+        stringsMedTABLE_Generic3 = myManage.readAllmedTABLE(9); //Generic_name3 ในตาราง MedTABLE
+        stringsMedTABLE_Generic4 = myManage.readAllmedTABLE(12); //Generic_name4 ในตาราง MedTABLE
+
+        stringsNewsTABLE_id = myManage.readAllnewsTABLE(0);
+        stringsNewsTABLE_Generic_id = myManage.readAllnewsTABLE(1); //Generic_id ในตาราง newsTABLE
+        stringsNewsTABLE_Message = myManage.readAllnewsTABLE(2);
+        stringsNewsTABLE_Appearance_News = myManage.readAllnewsTABLE(3);
+        stringsNewsTABLE_Criteria = myManage.readAllnewsTABLE(4);
+        stringsNewsTABLE_Activity = myManage.readAllnewsTABLE(5);
+
+
+
+
+        ArrayList<String> genericStringArrayList = new ArrayList<String>();
+        int iIndex = 0;
+        for(int i = 0;i<stringsMainTABLE_Med_id.length;i++) {
+
+            for(int x = 0;x<stringsMedTABLE_id.length;x++) {
+                if (stringsMainTABLE_Med_id[i].equals(stringsMedTABLE_id[x])) {
+                    genericStringArrayList.add(iIndex, stringsMedTABLE_Generic1[x]);
+                    iIndex = iIndex + 1;
+                    if (!stringsMedTABLE_Generic2[x].equals("1")) {
+                        genericStringArrayList.add(iIndex, stringsMedTABLE_Generic2[x]);
+                        iIndex = iIndex + 1;
+                    }
+                    if (!stringsMedTABLE_Generic3[x].equals("1")) {
+                        genericStringArrayList.add(iIndex, stringsMedTABLE_Generic3[x]);
+                        iIndex = iIndex + 1;
+                    }
+                    if (!stringsMedTABLE_Generic4[x].equals("1")) {
+                        genericStringArrayList.add(iIndex, stringsMedTABLE_Generic4[x]);
+                        iIndex = iIndex + 1;
+                    }
+                }
+            }
+        }
+
+        stringsArray_AllGeneric = new String[genericStringArrayList.size()];
+        stringsArray_AllGeneric = genericStringArrayList.toArray(stringsArray_AllGeneric);
+
+        for (int i = 0;i<stringsArray_AllGeneric.length;i++) {
+            for(int x = 0;x<stringsNewsTABLE_Generic_id.length;x++) {
+
+
+
+            }
+        }
 
         /*
         stringsMainTABLEMed_id = myManage.readAllMainTABLE_Full(1);  //Med_id ในตาราง mainTABLE ทั้งหมด

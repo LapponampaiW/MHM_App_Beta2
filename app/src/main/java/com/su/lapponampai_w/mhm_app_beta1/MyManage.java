@@ -158,11 +158,12 @@ public class MyManage {
     //newsTABLE
     private static final String newsTABLE = "newsTABLE";
     private static final String ncolumn_id = "_id";
-    private static final String ncolumn_med_id = "Med_id";
+    private static final String ncolumn_generic_id = "Generic_id";
     private static final String ncolumn_message = "Message";
     private static final String ncolumn_appearance_edit = "Appearance_edit";
+    private static final String ncolumn_criteria = "Criteria";
     private static final String ncolumn_activity = "Activity";
-    private static final String[] column_newsTABLE = {ncolumn_id, ncolumn_med_id, ncolumn_message, ncolumn_appearance_edit, ncolumn_activity};
+    private static final String[] column_newsTABLE = {ncolumn_id, ncolumn_generic_id, ncolumn_message, ncolumn_appearance_edit, ncolumn_activity};
 
     //totalAmountTABLE
     private static final String totalAmountTABLE = "totalAmountTABLE";
@@ -554,7 +555,7 @@ public class MyManage {
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(ncolumn_id));
                         break;
                     case 1:
-                        strREAD[i] = cursor.getString(cursor.getColumnIndex(ncolumn_med_id));
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(ncolumn_generic_id));
                         break;
                     case 2:
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(ncolumn_message));
@@ -1560,15 +1561,16 @@ public class MyManage {
 
     } //adddrugInteractionTABLEValue
 
-    public long addNewsTABLEValue(String strMed_id, String strMessage,
-                                  String strAppearence_edit,
+    public long addNewsTABLEValue(String strGeneric_id, String strMessage,
+                                  String strAppearence_edit, String strCriteria,
                                   String strActivity) {
 
         long addlong;
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ncolumn_med_id, strMed_id);
+        contentValues.put(ncolumn_generic_id, strGeneric_id);
         contentValues.put(ncolumn_message, strMessage);
         contentValues.put(ncolumn_appearance_edit, strAppearence_edit);
+        contentValues.put(ncolumn_criteria, strCriteria);
         contentValues.put(ncolumn_activity, strActivity);
         addlong = writeSqLiteDatabase.insert(newsTABLE, null, contentValues);
         return addlong;
@@ -1708,8 +1710,7 @@ public class MyManage {
     public void newsTABLEData() {
         Cursor cursor = readSqLiteDatabase.query(newsTABLE, column_newsTABLE, null, null, null, null, null);
         if (cursor.getCount() == 0) {
-            addNewsTABLEValue("1", "รายละเอียดข้อมูลยา Efaviren GPO", "", "DrugInformationActivity");
-            addNewsTABLEValue("2", "รายละเอียดข้อมูลยา Stocrin", "", "DrugInformationActivity");
+            addNewsTABLEValue("2", "รายละเอียดข้อมูลยา Efaviren", "","1", "DrugInformationActivity");
         }
     }
 

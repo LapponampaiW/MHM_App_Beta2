@@ -1150,9 +1150,9 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                         // stringsInteraction2[1-8][] คือ ตัวที่ 1 ของแต่ละอัน
                         // stringsInteraction2[][ตำแหน่งใดๆ] คือตัวต่อๆ ไป
 
-                        Log.d("filter_drugInteraction", "stringsInteraction2[0][0]" + stringsInteraction2[0][0]);
-                        Log.d("filter_drugInteraction", "stringsInteraction2[1][0]" + stringsInteraction2[1][0]);
-                        Log.d("filter_drugInteraction", "stringsInteraction2[2][0]" + stringsInteraction2[2][0]);
+                        //Log.d("filter_drugInteraction", "stringsInteraction2[0][0]" + stringsInteraction2[0][0]);
+                        //Log.d("filter_drugInteraction", "stringsInteraction2[1][0]" + stringsInteraction2[1][0]);
+                        //Log.d("filter_drugInteraction", "stringsInteraction2[2][0]" + stringsInteraction2[2][0]);
 
                         String[] stringsAllTimes = {string7, string8, string9, string10, string11, string12, string13, string14};
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");

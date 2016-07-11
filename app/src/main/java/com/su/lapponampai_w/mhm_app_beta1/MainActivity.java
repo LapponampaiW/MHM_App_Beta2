@@ -20,10 +20,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -77,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             strResult_AmountTablet, strResult_Tradename,strResult_DateTimeCheck,strResult_Sum_id,
             strResult_EA,strResult_SkipHold,strResult_DateRef = ""; //clickTakeMedicine
 
+    Spinner spinner;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +116,33 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         clickTextViewMainDate();
 
+        setSpinner();
+
     } //Main method
+
+    private void setSpinner() {
+
+        final String[] strDeskSpinner = {"วีระโชติ \n ลาภผลอำไพ", "two", "three", "four", "five"};
+        //ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>
+        //        (this, android.R.layout.simple_spinner_dropdown_item, strDeskSpinner);
+        ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(this, R.layout.my_spinner_item, strDeskSpinner);
+        spinner.setAdapter(stringArrayAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //strDesk = strDeskSpinner[position];
+                ((TextView)view).setText(null); //สำคัญมากได้แล้ว
+                view.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                //strDesk = strDeskSpinner[0];
+            }
+        });
+
+    } //setSpinner
 
     public void clickDoctor(View view) {
         startActivity(new Intent(MainActivity.this,ForDoctorActivity.class));
@@ -1573,7 +1604,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         tvAfternoon = (TextView) findViewById(R.id.tvAfternoon);
         tvEvening = (TextView) findViewById(R.id.tvEvening);
         tvBedtime = (TextView) findViewById(R.id.tvBedtime);
-
+        spinner = (Spinner) findViewById(R.id.spinner);
 
     }
 

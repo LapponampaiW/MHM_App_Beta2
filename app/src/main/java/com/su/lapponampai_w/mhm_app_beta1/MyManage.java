@@ -193,6 +193,22 @@ public class MyManage {
 
     } //Constructor
 
+    public String[] readAlluserTABLE(int intColumn) {
+        String[] strREAD = null;
+
+        Cursor cursor = readSqLiteDatabase.query("userTABLE", new String[]{"_id", "User"}, null, null, null, null,null);
+        cursor.moveToFirst();
+        strREAD = new String[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            strREAD[i] = cursor.getString(intColumn);
+            cursor.moveToNext();
+
+        } //for
+
+
+        return strREAD;
+    }
+
 
     public String[] filtersumTABLE_by_DateRef(String dateref, int intColumn) {
         String[] strREAD = null;

@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             strResult_AmountTablet, strResult_Tradename,strResult_DateTimeCheck,strResult_Sum_id,
             strResult_EA,strResult_SkipHold,strResult_DateRef = ""; //clickTakeMedicine
 
+    String[] strTextSpinner;
+
     Spinner spinner;
 
 
@@ -122,18 +124,37 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     private void setSpinner() {
 
-        final String[] strDeskSpinner = {"วีระโชติ \n ลาภผลอำไพ", "two", "three", "four", "five"};
-        //ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>
-        //        (this, android.R.layout.simple_spinner_dropdown_item, strDeskSpinner);
-        ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(this, R.layout.my_spinner_item, strDeskSpinner);
+        MyManage myManage = new MyManage(this);
+        String[] sName = myManage.readAlluserTABLE(1);
+
+        strTextSpinner = new String[9];
+        strTextSpinner[0] = "ไอดีผู้ใช้ : \n\n                 " + sName[0] + "\n=+=+=+=+=+=+=+=+";
+        strTextSpinner[1] = "เพิ่มรายการยา";
+        strTextSpinner[2] = "เพิ่มวันนัด";
+        strTextSpinner[3] = "เพิ่มค่าแล็ป";
+        strTextSpinner[4] = "เพิ่มบันทึกประจำวัน";
+        strTextSpinner[5] = "ปฏิทิน";
+        strTextSpinner[6] = "ตั้งค่าการใช้งาน";
+        strTextSpinner[7] = "เกี่ยวกับ\nMHM Application";
+        strTextSpinner[8] = "LogOut";
+
+
+        ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(this, R.layout.my_spinner_item, strTextSpinner);
         spinner.setAdapter(stringArrayAdapter);
+
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //strDesk = strDeskSpinner[position];
+
+
                 ((TextView)view).setText(null); //สำคัญมากได้แล้ว
                 view.setVisibility(View.INVISIBLE);
+                Log.d("Spinner : ","Check : " + Integer.toString(position));
+
+
+
             }
 
             @Override

@@ -20,7 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView3"
-        android:layout_below="@+id/textView101">
+        android:layout_below="@+id/textView101"
+        android:layout_above="@+id/button_Infor_Finish">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -108,5 +109,12 @@
                 android:textStyle="italic" />
         </RelativeLayout>
     </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="เสร็จสิ้น"
+        android:id="@+id/button_Infor_Finish"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

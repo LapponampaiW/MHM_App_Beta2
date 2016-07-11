@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class DrugInformationActivity extends AppCompatActivity {
@@ -13,6 +14,7 @@ public class DrugInformationActivity extends AppCompatActivity {
     //Explicit
     TextView textViewGenericName,textViewTradeName,textViewDetail,textViewOnline1,textViewOnline2;
     String string1;
+    Button button;
     String[] strings,str;
 
     @Override
@@ -25,6 +27,19 @@ public class DrugInformationActivity extends AppCompatActivity {
         receiveIntentAndMessage();
 
         showView();
+
+        clickButtonFinish();
+
+    }
+
+    private void clickButtonFinish() {
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
@@ -71,6 +86,7 @@ public class DrugInformationActivity extends AppCompatActivity {
         textViewDetail = (TextView) findViewById(R.id.textView_Infor_Detail);
         textViewOnline1 = (TextView) findViewById(R.id.textView_Infor_Online1);
         textViewOnline2 = (TextView) findViewById(R.id.textView_Infor_Online2);
+        button = (Button) findViewById(R.id.button_Infor_Finish);
     }  //bindWidget
 
     private void receiveIntentAndMessage() {

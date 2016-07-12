@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="true">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="7"
+            android:background="#b500b8"></LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DoctorName"
+                android:id="@+id/textView112"
+                android:paddingTop="@dimen/z2_margin_space"
+                android:paddingLeft="@dimen/z2_margin_smallgap" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="DateAppointment"
+                    android:id="@+id/textView113"
+                    android:paddingLeft="@dimen/z2_margin_smallgap"
+                    android:paddingTop="@dimen/z2_margin_space"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TimeAppointment"
+                    android:id="@+id/textView114"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NoteAppointment"
+                android:id="@+id/textView115"
+                android:paddingLeft="@dimen/z2_margin_smallgap"
+                android:paddingTop="@dimen/z2_margin_space" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -185,6 +185,20 @@ public class MyManage {
     private static final String[] column_addUseTABLE = {acolumn_id, acolumn_Main_id,
             acolum_Add_Use_Adjust_txt, acolumn_Amount, acolumn_Date};
 
+    //appointmentTABLE
+    private static final String appointmentTABLE = "appointmentTABLE";
+    private static final String appcolumn_id = "_id";
+    private static final String appcolumn_datetimesave = "DateTimeSave";
+    private static final String appcolumn_appointment_date = "AppointmentDate";
+    private static final String appcolumn_appointment_time = "AppointmentTime";
+    private static final String appcolumn_appointment_doctor = "AppointmentDoctor";
+    private static final String appcolumn_appointment_note = "AppointmentNote";
+    private static final String[] column_appointmentTABLE = {appcolumn_id, appcolumn_datetimesave,
+            appcolumn_datetimesave, appcolumn_appointment_date, appcolumn_appointment_time,
+            appcolumn_appointment_doctor,appcolumn_appointment_note};
+
+
+
     public MyManage(Context context) {
         helper = new MyHelper(context);
 
@@ -192,6 +206,22 @@ public class MyManage {
         writeSqLiteDatabase = helper.getWritableDatabase();
 
     } //Constructor
+
+    public long addValueToAppointmentTABLE(String strDateTimeSave, String strAppointment_Date,
+                                           String strAppointment_Time, String strAppointment_Doctor,
+                                           String strAppointment_Note) {
+        ContentValues contentValues = new ContentValues();
+        long addlong = 0;
+        contentValues.put(appcolumn_datetimesave,strDateTimeSave);
+        contentValues.put(appcolumn_appointment_date,strAppointment_Date);
+        contentValues.put(appcolumn_appointment_time,strAppointment_Time);
+        contentValues.put(appcolumn_appointment_doctor,strAppointment_Doctor);
+        contentValues.put(appcolumn_appointment_note,strAppointment_Note);
+
+        addlong = writeSqLiteDatabase.insert(appointmentTABLE, null, contentValues);
+        return addlong;
+
+    } //addValueToAppointmentTABLE
 
     public String[] readAlluserTABLE(int intColumn) {
         String[] strREAD = null;
@@ -205,9 +235,8 @@ public class MyManage {
 
         } //for
 
-
         return strREAD;
-    }
+    } //readAlluserTABLE
 
 
     public String[] filtersumTABLE_by_DateRef(String dateref, int intColumn) {

@@ -122,9 +122,11 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     } //Main method
 
+
+
     private void setSpinner() {
 
-        MyManage myManage = new MyManage(this);
+        final MyManage myManage = new MyManage(this);
         String[] sName = myManage.readAlluserTABLE(1);
 
         strTextSpinner = new String[9];
@@ -136,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         strTextSpinner[5] = "ปฏิทิน";
         strTextSpinner[6] = "ตั้งค่าการใช้งาน";
         strTextSpinner[7] = "เกี่ยวกับ\nMHM Application";
-        strTextSpinner[8] = "LogOut";
+        strTextSpinner[8] = "ออกจากระบบ";
 
 
         ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(this, R.layout.my_spinner_item, strTextSpinner);
@@ -146,7 +148,34 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //strDesk = strDeskSpinner[position];
+
+                if (strTextSpinner[position].equals("ออกจากระบบ")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    builder.setCancelable(false);
+                    builder.setIcon(R.drawable.logo_carabao48);
+                    builder.setTitle("Log Out");
+                    builder.setMessage("ยืนยันการ Log Out");
+                    builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            myManage.canceledStayLogin();
+                            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+
+                        } //OnClick
+                    });
+                    builder.show();
+
+
+                }
+
 
 
                 ((TextView)view).setText(null); //สำคัญมากได้แล้ว
@@ -164,6 +193,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         });
 
     } //setSpinner
+
+
 
     public void clickDoctor(View view) {
         startActivity(new Intent(MainActivity.this,ForDoctorActivity.class));
@@ -1490,8 +1521,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(MainActivity.this, AddMedicineActivity.class));
+                        popupWindow.dismiss();
                     }
                 });
+
+                imageButtonPop2 = (ImageButton) container.findViewById(R.id.btn_pop2);
+                imageButtonPop2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, AppointmentActivity.class));
+                        popupWindow.dismiss();
+                    }
+                });
+
 
                 imageButtonPop6 = (ImageButton) container.findViewById(R.id.btn_pop6);
                 imageButtonPop6.setOnClickListener(new View.OnClickListener() {

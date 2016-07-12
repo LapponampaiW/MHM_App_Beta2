@@ -1090,6 +1090,23 @@ public class MyManage {
         return Integer.toString(fake);
     }
 
+    public void canceledStayLogin() {
+
+        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,null,null,null,null,null);
+
+        cursor.moveToFirst();
+
+        String id = cursor.getString(0);
+
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ucolumn_Stay, "0");
+
+        writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
+
+    }
+
+
     public void updateStayLogin(String username) {
 
         Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE, "User =?", new String[]{String.valueOf(username)}, null, null, null);

@@ -46,7 +46,8 @@
             android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".AdherenceActivity" />
         <activity android:name=".ForDoctorActivity" />
-        <activity android:name=".ResultDoctorActivity"></activity>
+        <activity android:name=".ResultDoctorActivity" />
+        <activity android:name=".AppointmentActivity"></activity>
     </application>
 
 </manifest>

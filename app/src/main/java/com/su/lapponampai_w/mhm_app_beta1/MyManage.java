@@ -194,7 +194,7 @@ public class MyManage {
     private static final String appcolumn_appointment_doctor = "AppointmentDoctor";
     private static final String appcolumn_appointment_note = "AppointmentNote";
     private static final String[] column_appointmentTABLE = {appcolumn_id, appcolumn_datetimesave,
-            appcolumn_datetimesave, appcolumn_appointment_date, appcolumn_appointment_time,
+             appcolumn_appointment_date, appcolumn_appointment_time,
             appcolumn_appointment_doctor,appcolumn_appointment_note};
 
 
@@ -206,6 +206,27 @@ public class MyManage {
         writeSqLiteDatabase = helper.getWritableDatabase();
 
     } //Constructor
+
+    public String[] readAllappointmentTABLE(int intColumn) {
+        String[] strREAD = null;
+
+        Cursor cursor = readSqLiteDatabase.query(appointmentTABLE, column_appointmentTABLE, null, null, null, null, "_id DESC");
+        int iCount = cursor.getCount();
+        if (iCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for (int i = 0; i < cursor.getCount(); i++) {
+                strREAD[i] = cursor.getString(intColumn);
+                cursor.moveToNext();
+            } //for
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+
+        return strREAD;
+    }
+
 
     public long addValueToAppointmentTABLE(String strDateTimeSave, String strAppointment_Date,
                                            String strAppointment_Time, String strAppointment_Doctor,

@@ -30,7 +30,8 @@
                 android:text="DoctorName"
                 android:id="@+id/textView112"
                 android:paddingTop="@dimen/z2_margin_space"
-                android:paddingLeft="@dimen/z2_margin_smallgap" />
+                android:paddingLeft="@dimen/z2_margin_smallgap"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -44,7 +45,8 @@
                     android:id="@+id/textView113"
                     android:paddingLeft="@dimen/z2_margin_smallgap"
                     android:paddingTop="@dimen/z2_margin_space"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="match_parent"

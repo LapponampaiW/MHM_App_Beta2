@@ -11,13 +11,17 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import static com.su.lapponampai_w.mhm_app_beta1.R.id.buttonAppointmentSave;
 
@@ -30,6 +34,7 @@ public class AppointmentActivity extends AppCompatActivity implements
     CheckBox checkBox;
     LinearLayout linearLayout;
     Button cancelButton, saveButton;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +119,70 @@ public class AppointmentActivity extends AppCompatActivity implements
            }
        });
 
+        MyManage myManage = new MyManage(this);
+        MyData myData = new MyData();
+
+        //ShowListView ขึ้นมา
+        String[][] stringsAppointment = {myManage.readAllappointmentTABLE(0),
+                myManage.readAllappointmentTABLE(2),
+                myManage.readAllappointmentTABLE(3),myManage.readAllappointmentTABLE(4)
+                ,myManage.readAllappointmentTABLE(5)};
+        //0 id,1 Date,2 Time,3 Doctor,4 Note
+
+        if (!stringsAppointment[0][0].equals("")) {
+
+            //ArrayList<String> stringArrayList = new ArrayList<String>();
+
+            //int intIndex = 0;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            Date date_Specific = new Date();
+            Date date_current = new Date();
+            String sDate = myData.currentDay();
+
+            for(int i = 0;i<stringsAppointment[0].length;i++) {
+
+                try {
+                    date_Specific = dateFormat.parse(stringsAppointment[1][i]);
+                    date_current = dateFormat.parse(sDate);
+
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                String test_Specific = dateFormat.format(date_Specific);
+                String test_current = dateFormat.format(date_current);
+                Log.d("12July16V1", "test_Specific : " + test_Specific);
+                Log.d("12July16V1", "test_current : " + test_current);
+
+                if (date_Specific.compareTo(date_current) < 0) {
+                    stringsAppointment[4][i] = "หมายเหตุ :".concat(stringsAppointment[4][i]).concat(" (เลยวันนัดที่กำหนดแล้ว!!!)");
+                } else {
+                    if (!stringsAppointment[4][i].equals("")) {
+                        stringsAppointment[4][i] = "หมายเหตุ :".concat(stringsAppointment[4][i]);
+                    }
+                }
+
+                stringsAppointment[1][i] = "วันที่นัด : ".concat(stringsAppointment[1][i]);
+                Log.d("12July16V1", "วันที่นัด : " + stringsAppointment[1][i]);
+
+                if (!stringsAppointment[2][i].equals("")) {
+                    stringsAppointment[2][i] = "เวลาที่นัด : ".concat(stringsAppointment[2][i]);
+                } else {
+                    stringsAppointment[2][i] = "เวลาที่นัด : ไม่ได้ระบุ";
+                }
+                stringsAppointment[3][i] = "ชื่อแพทย์ผู้นัด : ".concat(stringsAppointment[3][i]);
+
+
+            }
+
+
+
+            MyAdaptorAppointment myAdaptorAppointment = new MyAdaptorAppointment(AppointmentActivity.this,
+                    stringsAppointment[3], stringsAppointment[1], stringsAppointment[2], stringsAppointment[4]);
+            listView.setAdapter(myAdaptorAppointment);
+        }
+
+
 
 
 
@@ -149,6 +218,7 @@ public class AppointmentActivity extends AppCompatActivity implements
         linearLayout = (LinearLayout) findViewById(R.id.linAppointmentTime);
         saveButton = (Button) findViewById(R.id.buttonAppointmentSave);
         cancelButton = (Button) findViewById(R.id.buttonAppointmentCancel);
+        listView = (ListView) findViewById(R.id.listViewAppointment);
 
 
 

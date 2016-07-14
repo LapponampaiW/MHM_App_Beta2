@@ -197,7 +197,15 @@ public class MyManage {
              appcolumn_appointment_date, appcolumn_appointment_time,
             appcolumn_appointment_doctor,appcolumn_appointment_note};
 
-
+    //noteTABLE
+    private static final String noteTABLE = "noteTABLE";
+    //private static final String ncolumn_id = "_id";
+    private static final String ncolumn_datetimesave = "DateTimeSave";
+    private static final String ncolumn_note_date = "NoteDate";
+    private static final String ncolumn_note_text = "NoteText";
+    private static final String ncolumn_allergy_sideeffect = "Allergy_SideEffect";
+    private static final String[] column_noteTABLE = {ncolumn_id,ncolumn_datetimesave,
+            ncolumn_note_date,ncolumn_note_text,ncolumn_allergy_sideeffect};
 
     public MyManage(Context context) {
         helper = new MyHelper(context);
@@ -206,17 +214,6 @@ public class MyManage {
         writeSqLiteDatabase = helper.getWritableDatabase();
 
     } //Constructor
-
-    public void deleteSelected_idAppointmentTABLE(String id) {
-        String whereClauseWithoutTheWhere = "_id = ?";
-        String[] params =new String[]{id};
-        //boolean succeeded = sqLiteDatabase.delete(SmartProbeDBOpenHelper.TABLE_NAME,whereClauseWithoutTheWhere,params)>0;
-        /*
-        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME,
-                MODE_PRIVATE, null);
-        sqLiteDatabase.delete(appointmentTABLE, whereClauseWithoutTheWhere, params);
-        */
-    }
 
 
     public String[] readAllappointmentTABLE(int intColumn) {
@@ -239,6 +236,18 @@ public class MyManage {
         return strREAD;
     }
 
+
+    public long addValueToNoteTABLE(String strDateTimeSave, String strNote_Date,
+                                    String strNote_Text, String strAllergy_SideEffect) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ncolumn_datetimesave,strDateTimeSave);
+        contentValues.put(ncolumn_note_date,strNote_Date);
+        contentValues.put(ncolumn_note_text,strNote_Text);
+        contentValues.put(ncolumn_allergy_sideeffect,strAllergy_SideEffect);
+
+        return writeSqLiteDatabase.insert(noteTABLE, null, contentValues);
+
+    }
 
     public long addValueToAppointmentTABLE(String strDateTimeSave, String strAppointment_Date,
                                            String strAppointment_Time, String strAppointment_Doctor,

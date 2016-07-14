@@ -85,6 +85,10 @@ public class MyHelper extends SQLiteOpenHelper {
             "(_id integer primary key, DateTimeSave Text, AppointmentDate Text, " +
             "AppointmentTime Text, AppointmentDoctor Text, AppointmentNote Text);";
 
+    //Create table noteTABLE
+    private static final String CREATE_noteTABLE = "create table noteTABLE " +
+            "(_id integer primary key, DateTimeSave Text, NoteDate Text, " +
+            "NoteText Text, Allergy_SideEffect Text);";
 
     public MyHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -107,6 +111,7 @@ public class MyHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_addUseTABLE);
         db.execSQL(CREATE_totalAmountTABLE);
         db.execSQL(CREATE_appointmentTABLE);
+        db.execSQL(CREATE_noteTABLE);
 
     }
 

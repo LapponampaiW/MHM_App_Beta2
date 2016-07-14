@@ -2,10 +2,15 @@ package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -47,83 +52,23 @@ public class AppointmentActivity extends AppCompatActivity implements
 
         showView();
 
+        showListView();
+
         clickSaveCancel();
+
+        clickDeleteInListView();
 
     }
 
-    private void clickSaveCancel() {
-
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String stringDoctor = doctoreditText.getText().toString().trim();
-                String stringNote = noteEditText.getText().toString();
-                String stringDate = dateTextView.getText().toString();
-                String stringTime = timeTextView.getText().toString();
-                Log.d("AppointmentActivity", "stringTime : " + stringTime);
-                String sSkip;
-                stringNote = noteEditText.getText().toString().trim();
-                Log.d("AppointmentActivity", stringDoctor);
-
-                if (checkBox.isChecked()) {
-                    sSkip = "Y";
-                } else {
-                    sSkip = "N";
-                }
-
-                if (sSkip.equals("N") && stringTime.equals("")) {
-                    Toast.makeText(getBaseContext(), "โปรดกรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (stringDoctor.equals("") || stringDate.equals("")) {
-                        Toast.makeText(getBaseContext(), "โปรดกรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getBaseContext(), "success!!", Toast.LENGTH_SHORT).show();
-                        //ทำไปต่อจากตรงนี้
-                        MyManage myManage = new MyManage(AppointmentActivity.this);
-                        MyData myData = new MyData();
-                        String strCurrentDateTime = myData.currentDateTime();
-                        myManage.addValueToAppointmentTABLE(strCurrentDateTime, stringDate,
-                                stringTime, stringDoctor, stringNote);
-
-                    }
-                }
 
 
-
-            }
-        });
-
-    } //clickSaveCancel
-
-    private void showView() {
-
-        dateTextView.setText("");
-        timeTextView.setText("");
-
-       checkBox.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               if (checkBox.isChecked()) {
-                   linearLayout.setVisibility(View.INVISIBLE);
-                   timeTextView.setText("");
-               } else {
-                   linearLayout.setVisibility(View.VISIBLE);
-               }
-           }
-       });
+    private void showListView() {
 
         MyManage myManage = new MyManage(this);
         MyData myData = new MyData();
 
         //ShowListView ขึ้นมา
-        String[][] stringsAppointment = {myManage.readAllappointmentTABLE(0),
+        final String[][] stringsAppointment = {myManage.readAllappointmentTABLE(0),
                 myManage.readAllappointmentTABLE(2),
                 myManage.readAllappointmentTABLE(3),myManage.readAllappointmentTABLE(4)
                 ,myManage.readAllappointmentTABLE(5)};
@@ -171,16 +116,143 @@ public class AppointmentActivity extends AppCompatActivity implements
                     stringsAppointment[2][i] = "เวลาที่นัด : ไม่ได้ระบุ";
                 }
                 stringsAppointment[3][i] = "ชื่อแพทย์ผู้นัด : ".concat(stringsAppointment[3][i]);
-
-
             }
-
 
 
             MyAdaptorAppointment myAdaptorAppointment = new MyAdaptorAppointment(AppointmentActivity.this,
                     stringsAppointment[3], stringsAppointment[1], stringsAppointment[2], stringsAppointment[4]);
             listView.setAdapter(myAdaptorAppointment);
+
+
         }
+    }
+
+    private void clickDeleteInListView() {
+
+        MyManage myManage = new MyManage(this);
+        final String[][] stringsAppointment = {myManage.readAllappointmentTABLE(0),
+                myManage.readAllappointmentTABLE(2),
+                myManage.readAllappointmentTABLE(3),myManage.readAllappointmentTABLE(4)
+                ,myManage.readAllappointmentTABLE(5)};
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setCancelable(false);
+                builder.setIcon(R.drawable.logo_carabao48);
+                builder.setTitle("ลบข้อมูลวันนัด");
+                builder.setMessage("ยืนยันการลบข้อมูลวันนัด");
+                builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        String id = stringsAppointment[0][position];
+                        Log.d("13JulyV1", "id : " + id);
+
+                        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME,
+                                MODE_PRIVATE, null);
+                        sqLiteDatabase.delete("appointmentTABLE", "_id = " + id, null);
+
+                        Toast.makeText(AppointmentActivity.this,"Delete in appointmentTABLE",Toast.LENGTH_SHORT).show();
+
+
+                        Intent intent = new Intent(AppointmentActivity.this,AppointmentActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                builder.show();
+
+            }
+        });
+
+
+    }
+
+    private void clickSaveCancel() {
+
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String stringDoctor = doctoreditText.getText().toString().trim();
+                String stringNote = noteEditText.getText().toString();
+                String stringDate = dateTextView.getText().toString();
+                String stringTime = timeTextView.getText().toString();
+                Log.d("AppointmentActivity", "stringTime : " + stringTime);
+                String sSkip;
+                stringNote = noteEditText.getText().toString().trim();
+                Log.d("AppointmentActivity", stringDoctor);
+
+                if (checkBox.isChecked()) {
+                    sSkip = "Y";
+                } else {
+                    sSkip = "N";
+                }
+
+                if (sSkip.equals("N") && stringTime.equals("")) {
+                    Toast.makeText(getBaseContext(), "โปรดกรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (stringDoctor.equals("") || stringDate.equals("")) {
+                        Toast.makeText(getBaseContext(), "โปรดกรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getBaseContext(), "success!!", Toast.LENGTH_SHORT).show();
+                        //ทำไปต่อจากตรงนี้
+                        MyManage myManage = new MyManage(AppointmentActivity.this);
+                        MyData myData = new MyData();
+                        String strCurrentDateTime = myData.currentDateTime();
+                        myManage.addValueToAppointmentTABLE(strCurrentDateTime, stringDate,
+                                stringTime, stringDoctor, stringNote);
+
+                        Intent intent = new Intent(AppointmentActivity.this,AppointmentActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+            }
+        });
+
+
+    } //clickSaveCancel
+
+    private void showView() {
+
+        dateTextView.setText("");
+        timeTextView.setText("");
+
+       checkBox.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               if (checkBox.isChecked()) {
+                   linearLayout.setVisibility(View.INVISIBLE);
+                   timeTextView.setText("");
+               } else {
+                   linearLayout.setVisibility(View.VISIBLE);
+               }
+           }
+       });
+
+        final MyManage myManage = new MyManage(this);
+        MyData myData = new MyData();
+
+
 
 
 

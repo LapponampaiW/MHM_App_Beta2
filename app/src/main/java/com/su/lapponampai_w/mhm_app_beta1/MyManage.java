@@ -207,6 +207,18 @@ public class MyManage {
 
     } //Constructor
 
+    public void deleteSelected_idAppointmentTABLE(String id) {
+        String whereClauseWithoutTheWhere = "_id = ?";
+        String[] params =new String[]{id};
+        //boolean succeeded = sqLiteDatabase.delete(SmartProbeDBOpenHelper.TABLE_NAME,whereClauseWithoutTheWhere,params)>0;
+        /*
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME,
+                MODE_PRIVATE, null);
+        sqLiteDatabase.delete(appointmentTABLE, whereClauseWithoutTheWhere, params);
+        */
+    }
+
+
     public String[] readAllappointmentTABLE(int intColumn) {
         String[] strREAD = null;
 
@@ -247,7 +259,7 @@ public class MyManage {
     public String[] readAlluserTABLE(int intColumn) {
         String[] strREAD = null;
 
-        Cursor cursor = readSqLiteDatabase.query("userTABLE", new String[]{"_id", "User"}, null, null, null, null,null);
+        Cursor cursor = readSqLiteDatabase.query("userTABLE", new String[]{"_id", "User", "Password"}, null, null, null, null,null);
         cursor.moveToFirst();
         strREAD = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {

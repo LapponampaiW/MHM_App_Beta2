@@ -14,6 +14,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.ListPopupWindow;
+import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -1502,7 +1505,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             @Override
             public void onClick(View v) {
                 layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-                ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popup_main_add, null);
+                final ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.popup_main_add, null);
 
                 popupWindow = new PopupWindow(container, ListPopupWindow.WRAP_CONTENT, ListPopupWindow.WRAP_CONTENT, true);
                 popupWindow.showAtLocation(relativeLayout, Gravity.BOTTOM, 0, 0);
@@ -1531,6 +1534,45 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     public void onClick(View v) {
                         startActivity(new Intent(MainActivity.this, AppointmentActivity.class));
                         popupWindow.dismiss();
+                    }
+                });
+
+                imageButtonPop4 = (ImageButton) container.findViewById(R.id.btn_pop4);
+                imageButtonPop4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final EditText editText = (EditText) findViewById(R.id.editTextLoginPassword);
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                        builder.setCancelable(false);
+                        builder.setIcon(R.drawable.logo_carabao48);
+                        builder.setTitle("รหัสผ่าน");
+                        builder.setMessage("โปรดใส่รหัสผ่าน (รหัสเดียวกับหน้า Login)");
+                        builder.setView(editText);
+                        builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String strEditText = editText.getText().toString().trim();
+                                MyManage myManage = new MyManage(MainActivity.this);
+                                String[] strPassword = myManage.readAlluserTABLE(2);
+
+                                if (strPassword[0].equals(strEditText)) {
+                                    startActivity(new Intent(MainActivity.this, NoteActivity.class));
+                                    dialog.dismiss();
+                                    popupWindow.dismiss();
+                                } else {
+                                    Toast.makeText(getBaseContext(),"รหัสผิดพลาด",Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                }
+                            }
+                        });
+                        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                popupWindow.dismiss();
+                            }
+                        });
+                        builder.show();
                     }
                 });
 

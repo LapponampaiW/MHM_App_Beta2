@@ -47,7 +47,9 @@
         <activity android:name=".AdherenceActivity" />
         <activity android:name=".ForDoctorActivity" />
         <activity android:name=".ResultDoctorActivity" />
-        <activity android:name=".AppointmentActivity"></activity>
+        <activity android:name=".AppointmentActivity" />
+        <activity android:name=".LabActivity" />
+        <activity android:name=".NoteActivity"></activity>
     </application>
 
 </manifest>

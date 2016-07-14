@@ -1541,7 +1541,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 imageButtonPop4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        final EditText editText = (EditText) findViewById(R.id.editTextLoginPassword);
+                        final EditText editText = new EditText(MainActivity.this);
+                        editText.setInputType(16);
+
                         final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                         builder.setCancelable(false);
                         builder.setIcon(R.drawable.logo_carabao48);
@@ -1557,6 +1559,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                                 if (strPassword[0].equals(strEditText)) {
                                     startActivity(new Intent(MainActivity.this, NoteActivity.class));
+                                    Toast.makeText(getBaseContext(),"เข้า NoteActivity",Toast.LENGTH_SHORT).show();
                                     dialog.dismiss();
                                     popupWindow.dismiss();
                                 } else {

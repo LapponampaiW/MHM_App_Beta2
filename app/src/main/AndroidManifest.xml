@@ -49,7 +49,10 @@
         <activity android:name=".ResultDoctorActivity" />
         <activity android:name=".AppointmentActivity" />
         <activity android:name=".LabActivity" />
-        <activity android:name=".NoteActivity"></activity>
+        <activity android:name=".NoteActivity" />
+        <activity android:name=".PopUpCalendarActivity"
+            android:theme="@style/AppTheme.CustomTheme"/>
+
     </application>
 
 </manifest>

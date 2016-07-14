@@ -42,33 +42,17 @@
         android:layout_above="@+id/linNoteButton"
         android:id="@+id/linNoteFill" >
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ไม่ระบุเวลานัด"
-            android:id="@+id/checkBox9"
-            android:layout_marginLeft="@dimen/z2_margin_biggap" />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText6"
-            android:hint="ชื่อแพทย์ :"
-            android:inputType="text"
-            android:layout_marginLeft="20dp" />
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="25dp"
-            android:paddingRight="25dp"
-            android:layout_margin="@dimen/z2_margin_bigspace" >
+            android:paddingRight="25dp">
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="วันนัด :"
+                android:text="ระบุวันที่ :"
                 android:id="@+id/textView120"
                 android:textSize="20sp"
                 android:gravity="left|center" />
@@ -84,50 +68,29 @@
                 android:background="@drawable/my_border_red" />
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp"
-            android:layout_marginLeft="@dimen/z2_margin_bigspace"
-            android:layout_marginRight="@dimen/z2_margin_bigspace"
-            android:id="@+id/linearLayout12" >
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="เวลานัด :"
-                android:id="@+id/textView122"
-                android:textSize="20sp" />
-
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="New Text"
-                android:id="@+id/textView123"
-                android:textSize="20sp"
-                android:gravity="center_horizontal"
-                android:textColor="#c959d8"
-                android:background="@drawable/my_border_orange" />
-        </LinearLayout>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="เพิ่มวันนัด!!!"
+            android:text="ข้อความที่ต้องการบันทึก"
             android:id="@+id/textView119"
             android:textColor="#b223a4"
             android:textStyle="bold"
             android:layout_marginTop="@dimen/z2_margin_bigspace" />
 
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="อาการข้างเคียง / แพ้ยา!!"
+            android:id="@+id/checkBox9" />
+
         <EditText
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editText7"
-            android:hint="หมายเหตุ :"
+            android:hint="บันทึก"
             android:inputType="text"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
     </LinearLayout>
 
     <LinearLayout

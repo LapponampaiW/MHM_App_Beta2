@@ -249,6 +249,21 @@ public class MyManage {
 
     }
 
+    public String[] readAllnoteTABLE(int intColumn) {
+        String[] strREAD = null;
+
+        Cursor cursor = readSqLiteDatabase.query(noteTABLE, column_noteTABLE, null, null, null, null, "_id DESC");
+        cursor.moveToFirst();
+        strREAD = new String[cursor.getCount()];
+        for (int i = 0; i < cursor.getCount(); i++) {
+            strREAD[i] = cursor.getString(intColumn);
+            cursor.moveToNext();
+
+        } //for
+
+        return strREAD;
+    } //readAllnoteTABLE
+
     public long addValueToAppointmentTABLE(String strDateTimeSave, String strAppointment_Date,
                                            String strAppointment_Time, String strAppointment_Doctor,
                                            String strAppointment_Note) {

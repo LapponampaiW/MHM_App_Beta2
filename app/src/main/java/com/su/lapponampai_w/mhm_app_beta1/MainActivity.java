@@ -1537,6 +1537,16 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     }
                 });
 
+                imageButtonPop3 = (ImageButton) container.findViewById(R.id.btn_pop3);
+                imageButtonPop3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this,LabActivity.class));
+                        popupWindow.dismiss();
+                    }
+                });
+
+
                 imageButtonPop4 = (ImageButton) container.findViewById(R.id.btn_pop4);
                 imageButtonPop4.setOnClickListener(new View.OnClickListener() {
                     @Override

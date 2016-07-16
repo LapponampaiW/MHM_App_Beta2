@@ -90,6 +90,11 @@ public class MyHelper extends SQLiteOpenHelper {
             "(_id integer primary key, DateTimeSave Text, NoteDate Text, " +
             "NoteText Text, Allergy_SideEffect Text);";
 
+    //Create table labTABLE
+    private static final String CREATE_labTABLE = "create table labTABLE " +
+            "(_id integer primary key, DateTimeSave Text, LabDate Text, BloodGlucose Text, BloodPressure Text, " +
+            "Weight Text, Temperature Text, LDLCholesterol Text, CD4 Text, ViralLoad Text);";
+
     public MyHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
 
@@ -112,6 +117,7 @@ public class MyHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_totalAmountTABLE);
         db.execSQL(CREATE_appointmentTABLE);
         db.execSQL(CREATE_noteTABLE);
+        db.execSQL(CREATE_labTABLE);
 
     }
 

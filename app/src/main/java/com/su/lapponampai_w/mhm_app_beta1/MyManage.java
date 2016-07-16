@@ -207,6 +207,23 @@ public class MyManage {
     private static final String[] column_noteTABLE = {ncolumn_id,ncolumn_datetimesave,
             ncolumn_note_date,ncolumn_note_text,ncolumn_allergy_sideeffect};
 
+    //labTABLE
+    private static final String labTABLE = "labTABLE";
+    private static final String lcolumn_id = "_id";
+    private static final String lcolumn_datetimesave = "DateTimeSave";
+    private static final String lcolumn_lab_date = "LabDate";
+    private static final String lcolumn_blood_glucose = "BloodGlucose";
+    private static final String lcolumn_blood_pressure = "BloodPressure";
+    private static final String lcolumn_weight = "Weight";
+    private static final String lcolumn_temperature = "Temperature";
+    private static final String lcolumn_ldl_cholesterol = "LDLCholesterol";
+    private static final String lcolumn_cd4 = "CD4";
+    private static final String lcolumn_viral_load = "ViralLoad";
+    private static final String[] column_labTABLE = {lcolumn_id,lcolumn_datetimesave,lcolumn_lab_date,
+            lcolumn_blood_glucose,lcolumn_blood_pressure,lcolumn_weight,
+            lcolumn_temperature,lcolumn_ldl_cholesterol,lcolumn_cd4,lcolumn_viral_load};
+
+
     public MyManage(Context context) {
         helper = new MyHelper(context);
 
@@ -215,6 +232,27 @@ public class MyManage {
 
     } //Constructor
 
+
+    public String[] readAlllabTABLE(int intColumn) {
+        String[] strREAD = null;
+
+        Cursor cursor = readSqLiteDatabase.query(labTABLE, column_labTABLE, null, null, null, null, "_id DESC");
+        int iCount = cursor.getCount();
+        if (iCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for (int i = 0; i < cursor.getCount(); i++) {
+                strREAD[i] = cursor.getString(intColumn);
+                cursor.moveToNext();
+            } //for
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+
+        return strREAD;
+
+    }
 
     public String[] readAllappointmentTABLE(int intColumn) {
         String[] strREAD = null;
@@ -236,6 +274,25 @@ public class MyManage {
         return strREAD;
     }
 
+    public long addValueToLabTABLE(String strDateTimeSave, String strLabDate, String strBloodGlucose,
+                                   String strBloodPressure, String strWeight, String strTemperature,
+                                   String strLDLChloresterol, String strCD4, String strViralLoad) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(lcolumn_datetimesave,strDateTimeSave);
+        contentValues.put(lcolumn_lab_date,strLabDate);
+        contentValues.put(lcolumn_blood_glucose,strBloodGlucose);
+        contentValues.put(lcolumn_blood_pressure,strBloodPressure);
+        contentValues.put(lcolumn_weight,strWeight);
+        contentValues.put(lcolumn_temperature,strTemperature);
+        contentValues.put(lcolumn_ldl_cholesterol,strLDLChloresterol);
+        contentValues.put(lcolumn_cd4,strCD4);
+        contentValues.put(lcolumn_viral_load,strViralLoad);
+
+        return writeSqLiteDatabase.insert(labTABLE, null, contentValues);
+
+
+    }
 
     public long addValueToNoteTABLE(String strDateTimeSave, String strNote_Date,
                                     String strNote_Text, String strAllergy_SideEffect) {

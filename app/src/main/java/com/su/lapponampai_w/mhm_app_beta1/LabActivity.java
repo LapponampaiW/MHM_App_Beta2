@@ -1,11 +1,16 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +27,9 @@ public class LabActivity extends AppCompatActivity {
     ListView listView;
     Button saveButton, cancelButton;
 
+    EditText editText1,editText2,editText3,editText4,editText5,editText6, editText7;
+    String s1,s2,s3,s4,s5,s6, s7,sCalendar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +45,57 @@ public class LabActivity extends AppCompatActivity {
 
         clickButtonSaveCancel();
 
-
+        clickDeleteListView();
 
     }
+
+    private void clickDeleteListView() {
+
+        MyManage myManage = new MyManage(LabActivity.this);
+
+        final String[][] stringsList = {myManage.readAlllabTABLE(0),myManage.readAlllabTABLE(1),
+                myManage.readAlllabTABLE(2),myManage.readAlllabTABLE(3),myManage.readAlllabTABLE(4),
+                myManage.readAlllabTABLE(5),myManage.readAlllabTABLE(6),myManage.readAlllabTABLE(7),
+                myManage.readAlllabTABLE(8),myManage.readAlllabTABLE(9)};
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setCancelable(false);
+                builder.setIcon(R.drawable.logo_carabao48);
+                builder.setTitle("ลบข้อมูลค่าแล็ป");
+                builder.setMessage("ยืนยันการลบข้อมูลค่าแล็ป");
+                builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        String id = stringsList[0][position];
+                        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME,
+                                MODE_PRIVATE, null);
+                        sqLiteDatabase.delete("LabTABLE", "_id = " + id, null);
+
+                        Toast.makeText(LabActivity.this,"Delete in LabTABLE",Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(LabActivity.this,LabActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+                builder.show();
+
+
+            }
+        });
+
+    }  //clickDeleteListView
 
     private void clickButtonSaveCancel() {
 
@@ -53,6 +109,44 @@ public class LabActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                s1 = editText1.getText().toString().trim();
+                s2 = editText2.getText().toString().trim();
+                s3 = editText3.getText().toString().trim();
+                s4 = editText4.getText().toString().trim();
+                s5 = editText5.getText().toString().trim();
+                s6 = editText6.getText().toString().trim();
+                s7 = editText7.getText().toString().trim();
+                sCalendar = textViewCalendar.getText().toString();
+
+                if (sCalendar.equals("")) {
+                    Toast.makeText(LabActivity.this,"กรุณาระบุวันทีที่ต้องการบันทึก",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (s1.equals("") && s2.equals("")
+                        && s3.equals("") && s4.equals("")
+                        && s5.equals("") && s6.equals("")
+                        && s7.equals("")) {
+
+                    Toast.makeText(LabActivity.this,"กรุณาระบุค่าแล็ปอย่างน้อย 1 ค่า",Toast.LENGTH_SHORT).show();
+                    return;
+
+                }
+
+                MyManage myManage = new MyManage(LabActivity.this);
+                MyData myData = new MyData();
+                String sSaveDateTime = myData.currentDay();
+
+
+                myManage.addValueToLabTABLE(sSaveDateTime, sCalendar, s1, s2, s3, s4, s5, s6, s7);
+                Toast.makeText(LabActivity.this,"Success!!!!",Toast.LENGTH_SHORT).show();
+
+
+                Intent intent = new Intent(LabActivity.this,LabActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
 
             }
         });
@@ -76,7 +170,6 @@ public class LabActivity extends AppCompatActivity {
                     stringsList[4], stringsList[5], stringsList[6], stringsList[7], stringsList[8],
                     stringsList[9], stringsList[2]);
             listView.setAdapter(myAdaptorLab);
-
 
 
 
@@ -141,6 +234,13 @@ public class LabActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listViewLab);
         saveButton = (Button) findViewById(R.id.buttonLabSave);
         cancelButton = (Button) findViewById(R.id.buttonLabCancel);
+        editText1 = (EditText) findViewById(R.id.editText6);
+        editText2 = (EditText) findViewById(R.id.editText7);
+        editText3 = (EditText) findViewById(R.id.editText8);
+        editText4 = (EditText) findViewById(R.id.editText9);
+        editText5 = (EditText) findViewById(R.id.editText10);
+        editText6 = (EditText) findViewById(R.id.editText11);
+        editText7 = (EditText) findViewById(R.id.editText12);
 
     } //bindwidget
 }

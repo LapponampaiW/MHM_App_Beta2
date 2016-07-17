@@ -134,19 +134,66 @@ public class LabActivity extends AppCompatActivity {
 
                 }
 
-                MyManage myManage = new MyManage(LabActivity.this);
+                final MyManage myManage = new MyManage(LabActivity.this);
                 MyData myData = new MyData();
-                String sSaveDateTime = myData.currentDay();
+                final String sSaveDateTime = myData.currentDay();
 
 
-                myManage.addValueToLabTABLE(sSaveDateTime, sCalendar, s1, s2, s3, s4, s5, s6, s7);
-                Toast.makeText(LabActivity.this,"Success!!!!",Toast.LENGTH_SHORT).show();
+                final String[][] stringsList = {myManage.readAlllabTABLE(0),myManage.readAlllabTABLE(1),
+                        myManage.readAlllabTABLE(2),myManage.readAlllabTABLE(3),myManage.readAlllabTABLE(4),
+                        myManage.readAlllabTABLE(5),myManage.readAlllabTABLE(6),myManage.readAlllabTABLE(7),
+                        myManage.readAlllabTABLE(8),myManage.readAlllabTABLE(9)};
+
+                String sDuplicate = "N";
+
+                for(int i = 0;i<stringsList[0].length;i++) {
+                    if (stringsList[2][i].equals(sCalendar)) {
+                        final int ii = i;
+                        sDuplicate = "Y";
+                        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                        builder.setCancelable(false);
+                        builder.setIcon(R.drawable.logo_carabao48);
+                        builder.setTitle("คำเตือน!!!");
+                        builder.setMessage("วันที่ " + sCalendar + " เคยมีการบันทึกไว้อยู่แล้วท่านต้องการบันทึกข้อมูลทับหรือไม่");
+                        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //ทำการ Overwite (Update) ข้อมูลใน labTABLE
+
+                                myManage.updateLabTABLE(stringsList[0][ii],sSaveDateTime,sCalendar
+                                        ,s1,s2,s3,s4,s5,s6,s7);
+
+                                Intent intent = new Intent(LabActivity.this,LabActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                                finish();
+
+                            }
+                        });
+                        builder.show();
 
 
-                Intent intent = new Intent(LabActivity.this,LabActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
+                    }
+                }
+
+
+                if (sDuplicate.equals("N")) {
+                    myManage.addValueToLabTABLE(sSaveDateTime, sCalendar, s1, s2, s3, s4, s5, s6, s7);
+                    Toast.makeText(LabActivity.this,"Success!!!!",Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(LabActivity.this,LabActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+
+                }
+
 
             }
         });

@@ -1233,6 +1233,28 @@ public class MyManage {
         return Integer.toString(fake);
     }
 
+    public void updateLabTABLE(String id,String strDateTimeSave, String strLabDate, String strBloodGlucose,
+                               String strBloodPressure, String strWeight, String strTemperature,
+                               String strLDLChloresterol, String strCD4, String strViralLoad) {
+
+        Cursor cursor = readSqLiteDatabase.query(labTABLE, column_labTABLE, null, null, null, null, null);
+        cursor.moveToFirst();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(lcolumn_datetimesave,strDateTimeSave);
+        contentValues.put(lcolumn_lab_date,strLabDate);
+        contentValues.put(lcolumn_blood_glucose,strBloodGlucose);
+        contentValues.put(lcolumn_blood_pressure,strBloodPressure);
+        contentValues.put(lcolumn_weight,strWeight);
+        contentValues.put(lcolumn_temperature,strTemperature);
+        contentValues.put(lcolumn_ldl_cholesterol,strLDLChloresterol);
+        contentValues.put(lcolumn_cd4,strCD4);
+        contentValues.put(lcolumn_viral_load,strViralLoad);
+
+        writeSqLiteDatabase.update(labTABLE,contentValues, "_id =?", new String[]{String.valueOf(id)});
+
+    }
+
     public void canceledStayLogin() {
 
         Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,null,null,null,null,null);

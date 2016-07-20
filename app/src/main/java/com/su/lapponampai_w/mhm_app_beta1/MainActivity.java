@@ -112,8 +112,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         //คลิก รายการยา
         clickMedicationList();
 
-        //คลิก ImageButtonAdherence
-        click_ImageButtonAdherence();
+
 
         click_News();
 
@@ -121,13 +120,22 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         clickTextViewMainDate();
 
-        setSpinner();
+        //คลิก ImageButtonAdherence
+        //click_ImageButtonAdherence();
+
+        setHeading();
 
     } //Main method
 
 
 
-    private void setSpinner() {
+    private void setHeading() {
+
+
+        MyHeadingDetail myHeadingDetail = new MyHeadingDetail(MainActivity.this);
+        myHeadingDetail.spinnersetup(MainActivity.this,imageAdherence,spinner);
+
+        /*
 
         final MyManage myManage = new MyManage(this);
         String[] sName = myManage.readAlluserTABLE(1);
@@ -146,6 +154,17 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(this, R.layout.my_spinner_item, strTextSpinner);
         spinner.setAdapter(stringArrayAdapter);
+
+        imageAdherence.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AdherenceActivity.class);
+                startActivity(intent);
+
+
+
+            }
+        });
 
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -183,7 +202,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                 ((TextView)view).setText(null); //สำคัญมากได้แล้ว
                 view.setVisibility(View.INVISIBLE);
-                Log.d("Spinner : ","Check : " + Integer.toString(position));
 
 
 
@@ -194,6 +212,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 //strDesk = strDeskSpinner[0];
             }
         });
+
+        */
 
     } //setSpinner
 
@@ -442,10 +462,11 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             displayMedicineByDay(today);
             clickAddbtn();
             clickMedicationList();
-            click_ImageButtonAdherence();
+            //click_ImageButtonAdherence();
             click_News();
             clickImagepill();
             clickTextViewMainDate();
+            setHeading();
         }
 
 
@@ -753,7 +774,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         textViewNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, NewsActivity.class));
+                Context context = MainActivity.this;
+                Log.d("20July16", "context :" + context.toString());
+                startActivity(new Intent(context, NewsActivity.class));
             }
         });
     }

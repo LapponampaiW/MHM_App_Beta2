@@ -64,6 +64,42 @@ public class MyHeadingDetail extends ContextWrapper {
             @Override
             public void onItemSelected(AdapterView<?> parent, final View view, int position, long id) {
 
+                if (strTextSpinner[position].equals("เพิ่มรายการยา")) {
+                    Intent intent = new Intent(context, AddMedicineActivity.class);
+                    startActivity(intent);
+                }
+
+                if (strTextSpinner[position].equals("เพิ่มวันนัด")) {
+                    Intent intent = new Intent(context, AppointmentActivity.class);
+                    startActivity(intent);
+                }
+
+                if (strTextSpinner[position].equals("เพิ่มค่าแล็ป")) {
+                    Intent intent = new Intent(context, LabActivity.class);
+                    startActivity(intent);
+                }
+
+                if (strTextSpinner[position].equals("เพิ่มบันทึกประจำวัน")) {
+                    Intent intent = new Intent(context, NoteActivity.class);
+                    startActivity(intent);
+                }
+
+                if (strTextSpinner[position].equals("ปฏิทิน")) {
+                    Intent intent = new Intent(context, AdherenceActivity.class);
+                    startActivity(intent);
+                }
+
+                if (strTextSpinner[position].equals("ตั้งค่าการใช้งาน")) {
+                    Intent intent = new Intent(context, SettingActivity.class);
+                    startActivity(intent);
+                }
+
+                if (strTextSpinner[position].equals("เกี่ยวกับ\nMHM Application")) {
+                    Intent intent = new Intent(context, AboutMHMActivity.class);
+                    startActivity(intent);
+                }
+
+
                 if (strTextSpinner[position].equals("ออกจากระบบ")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                     builder.setCancelable(false);
@@ -105,6 +141,7 @@ public class MyHeadingDetail extends ContextWrapper {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 //strDesk = strDeskSpinner[0];
+
             }
         });
     }

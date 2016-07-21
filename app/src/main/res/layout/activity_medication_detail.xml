@@ -369,4 +369,10 @@
         </LinearLayout>
     </ScrollView>
 
+    <Spinner
+        android:layout_width="63dp"
+        android:layout_height="64dp"
+        android:id="@+id/spinner5"
+        android:background="@drawable/btn_menu" />
+
 </RelativeLayout>

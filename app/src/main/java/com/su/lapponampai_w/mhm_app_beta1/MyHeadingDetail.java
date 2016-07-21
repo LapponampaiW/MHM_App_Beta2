@@ -65,38 +65,53 @@ public class MyHeadingDetail extends ContextWrapper {
             public void onItemSelected(AdapterView<?> parent, final View view, int position, long id) {
 
                 if (strTextSpinner[position].equals("เพิ่มรายการยา")) {
-                    Intent intent = new Intent(context, AddMedicineActivity.class);
+
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+                    startActivity(new Intent(context, AddMedicineActivity.class));
                 }
 
                 if (strTextSpinner[position].equals("เพิ่มวันนัด")) {
-                    Intent intent = new Intent(context, AppointmentActivity.class);
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+                    startActivity(new Intent(context, AppointmentActivity.class));
                 }
 
                 if (strTextSpinner[position].equals("เพิ่มค่าแล็ป")) {
-                    Intent intent = new Intent(context, LabActivity.class);
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+                    startActivity(new Intent(context, LabActivity.class));
                 }
 
                 if (strTextSpinner[position].equals("เพิ่มบันทึกประจำวัน")) {
-                    Intent intent = new Intent(context, NoteActivity.class);
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+                    startActivity(new Intent(context, NoteActivity.class));
                 }
 
                 if (strTextSpinner[position].equals("ปฏิทิน")) {
-                    Intent intent = new Intent(context, AdherenceActivity.class);
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+                    startActivity(new Intent(context, AdherenceActivity.class));
                 }
 
                 if (strTextSpinner[position].equals("ตั้งค่าการใช้งาน")) {
-                    Intent intent = new Intent(context, SettingActivity.class);
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+                    startActivity(new Intent(context, SettingActivity.class));
                 }
 
                 if (strTextSpinner[position].equals("เกี่ยวกับ\nMHM Application")) {
-                    Intent intent = new Intent(context, AboutMHMActivity.class);
+                    Intent intent = new Intent(context, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+                    startActivity(new Intent(context, AboutMHMActivity.class));
                 }
 
 
@@ -121,11 +136,9 @@ public class MyHeadingDetail extends ContextWrapper {
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 
-
                         } //OnClick
                     });
                     builder.show();
-
 
                 }
 

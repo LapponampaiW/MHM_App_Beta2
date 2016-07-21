@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         //Bind Widget
         bindWidget();
+        setHeading();
         showView();
         //Notification from SQLite
         //notificationFormSQLite();
@@ -123,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         //คลิก ImageButtonAdherence
         //click_ImageButtonAdherence();
 
-        setHeading();
+
 
     } //Main method
 
@@ -215,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         */
 
-    } //setSpinner
+    } //setHeading
 
 
 

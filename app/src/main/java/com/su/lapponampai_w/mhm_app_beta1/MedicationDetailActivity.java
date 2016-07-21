@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,11 +28,15 @@ public class MedicationDetailActivity extends AppCompatActivity {
             string8,string9,string10,string11,string12,string13,string14,string15,string16,
             string17,string18,string19,string20;
 
+    //Heading
+    Spinner spinner;
+    ImageButton imageAdherence;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medication_detail);
-
+        setHeading();
         bindWidget();
 
         //Receive From Intent
@@ -287,4 +293,15 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
 
     }
+
+    private void setHeading() {
+
+        imageAdherence = (ImageButton) findViewById(R.id.imageButton8);
+        spinner = (Spinner) findViewById(R.id.spinner5);
+
+        MyHeadingDetail myHeadingDetail = new MyHeadingDetail(MedicationDetailActivity.this);
+        myHeadingDetail.spinnersetup(MedicationDetailActivity.this,imageAdherence,spinner);
+
+
+    } //setHeading
 }

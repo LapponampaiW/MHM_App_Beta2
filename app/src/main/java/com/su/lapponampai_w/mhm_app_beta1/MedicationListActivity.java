@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 public class MedicationListActivity extends AppCompatActivity {
 
@@ -20,18 +21,23 @@ public class MedicationListActivity extends AppCompatActivity {
     private String[] strings_id, strings_tradname,strings_med_id, strings_generic_line, strings_appearance;
     ImageButton imageButtonCalendar;
 
+    //Heading
+    Spinner spinner;
+    ImageButton imageAdherence;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medication_list);
         activityMedicationListActivity = this;
+        setHeading();
 
         bindWidget();
 
 
         recieveValue_mainTABLE();
 
-        click_ImageButtonCalendar();
+
 
     } // Main Method
 
@@ -40,17 +46,11 @@ public class MedicationListActivity extends AppCompatActivity {
     @Override
     public void onResume(){
         super.onResume();
+        setHeading();
         recieveValue_mainTABLE();
+
     }
 
-    private void click_ImageButtonCalendar() {
-        imageButtonCalendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MedicationListActivity.this,MyCalendar.class));
-            }
-        });
-    }
 
     private void recieveValue_mainTABLE() {
         final MyManage myManage = new MyManage(this);
@@ -156,8 +156,18 @@ public class MedicationListActivity extends AppCompatActivity {
 
     private void bindWidget() {
         listView = (ListView) findViewById(R.id.listView_MedicationList);
-        imageButtonCalendar = (ImageButton) findViewById(R.id.imageButtonCalendar2);
     }
+
+    private void setHeading() {
+
+        imageAdherence = (ImageButton) findViewById(R.id.imageButtonCalendar2);
+        spinner = (Spinner) findViewById(R.id.spinner4);
+
+        MyHeadingDetail myHeadingDetail = new MyHeadingDetail(MedicationListActivity.this);
+        myHeadingDetail.spinnersetup(MedicationListActivity.this,imageAdherence,spinner);
+
+
+    } //setHeading
 
 
 }  // Main Class

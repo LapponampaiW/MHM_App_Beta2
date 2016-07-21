@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,13 +36,14 @@ public class AddMedicineActivity extends AppCompatActivity {
     String stringGenericLine;
     String[] strings_receiver;
 
-
-
     //widget
     EditText editTextAddTG;
     ListView listViewAddTG;
     Button buttonFilterListView;
 
+    //Heading
+    Spinner spinner;
+    ImageButton imageAdherence;
 
 
     @Override
@@ -52,6 +55,8 @@ public class AddMedicineActivity extends AppCompatActivity {
 
         myManage = new MyManage(this);
 
+        setHeading();
+
         bindWidget();
 
 
@@ -60,6 +65,31 @@ public class AddMedicineActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        setHeading();
+
+        bindWidget();
+
+
+        //pressbuttonfilterListView1();
+        pressbuttonfilterListView();
+
+    }
+
+    private void setHeading() {
+
+        imageAdherence = (ImageButton) findViewById(R.id.imageButton6);
+        spinner = (Spinner) findViewById(R.id.spinner2);
+
+        MyHeadingDetail myHeadingDetail = new MyHeadingDetail(AddMedicineActivity.this);
+        myHeadingDetail.spinnersetup(AddMedicineActivity.this,imageAdherence,spinner);
+
+
+    } //setHeading
 
     private void pressbuttonfilterListView() {
         buttonFilterListView.setOnClickListener(new View.OnClickListener() {

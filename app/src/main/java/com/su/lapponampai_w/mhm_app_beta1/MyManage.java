@@ -1,14 +1,18 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.AvoidXfermode;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.StringBuilderPrinter;
+import android.view.View;
 import android.widget.Toast;
 
 import java.math.BigInteger;
@@ -231,6 +235,56 @@ public class MyManage {
         writeSqLiteDatabase = helper.getWritableDatabase();
 
     } //Constructor
+
+
+    public long updateTotalAmountTABLE_minusTabBy_MainId_AmountTablet(String mainId,
+                                                                      String strAmountTablet) {
+
+        Cursor cursor = readSqLiteDatabase.query(totalAmountTABLE, column_totalAmountTABLE,
+                "Main_id " + "LIKE '" + mainId + "'", null, null, null, null);
+            cursor.moveToFirst();
+            Double doubleAmounTablet = cursor.getDouble(cursor.getColumnIndex(tcolumn_TotalAmount));
+            cursor.close();
+
+            //ลดค่า
+            Double amountTablet = Double.parseDouble(strAmountTablet);
+            doubleAmounTablet = doubleAmounTablet - amountTablet;
+
+            MyData myData = new MyData();
+            String strDateTime = myData.currentDateTime();
+
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(tcolumn_TotalAmount, doubleAmounTablet);
+            contentValues.put(tcolumn_DateUpdated, strDateTime);
+
+            return writeSqLiteDatabase.update(totalAmountTABLE, contentValues, "Main_id = " + mainId, null);
+
+
+
+
+    }
+
+
+    public long updateTotalAmountTABLE_AddTabBy_MainId_AmountTablet(String mainId, String strAmountTablet) {
+
+        Cursor cursor = readSqLiteDatabase.query(totalAmountTABLE, column_totalAmountTABLE, "Main_id " + "LIKE '" + mainId + "'", null, null, null, null);
+        cursor.moveToFirst();
+        Double doubleAmounTablet = cursor.getDouble(cursor.getColumnIndex(tcolumn_TotalAmount));
+        cursor.close();
+
+        //เพิ่มค่า
+        Double amountTablet = Double.parseDouble(strAmountTablet);
+        doubleAmounTablet = doubleAmounTablet + amountTablet;
+        MyData myData = new MyData();
+        String strDateTime = myData.currentDateTime();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(tcolumn_TotalAmount,doubleAmounTablet);
+        contentValues.put(tcolumn_DateUpdated,strDateTime);
+
+        return writeSqLiteDatabase.update(totalAmountTABLE, contentValues, "Main_id = " + mainId, null);
+
+    }
 
 
     public String[] readAlllabTABLE(int intColumn) {

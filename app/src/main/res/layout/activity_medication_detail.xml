@@ -365,6 +365,29 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/z2_margin_bigspace" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ยารับประทานได้ถึงวันที่ : "
+                        android:id="@+id/textView156"
+                        android:textSize="@dimen/heading4" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView157"
+                        android:textSize="@dimen/heading4"
+                        android:textColor="#f26f6f"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -14,6 +14,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class MedicationDetailActivity extends AppCompatActivity {
 
 
@@ -21,12 +26,12 @@ public class MedicationDetailActivity extends AppCompatActivity {
     private TextView textView1,textView2, textView3,textView4,textView5,textView6,textView7,
             textView8,textView9,textView10,textView11,textView12,textView13,textView14,textView15;
     private TextView textViewAddAmountMedicine, textViewtotalAmountTablet,
-            textViewDeleteMedicine,textViewAddDoseNow;
+            textViewDeleteMedicine,textViewAddDoseNow,textViewOutOfMedicine,textViewOutOfMedicineLabel;
     private ImageView imageView1;
     //receiveIntent
     private String string0,string1,string2,string3,string4,string5,string6,string7,string7_Translate,
             string8,string9,string10,string11,string12,string13,string14,string15,string16,
-            string17,string18,string19,string20;
+            string17,string18,string19,string20,s_Amount;
 
     //Heading
     Spinner spinner;
@@ -56,9 +61,68 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
         clickAddDose();
 
+        showAmountDateOut();
+
         //Log.d("MedicationDetail1","string0 : " + string0);
 
     }
+
+    private void showAmountDateOut() {
+
+        if (s_Amount != null) {
+            if (string7.equals("1") || string7.equals("2")) {
+                if (string11.equals("Y")) {
+                    textViewOutOfMedicineLabel.setVisibility(View.GONE);
+                    textViewOutOfMedicine.setVisibility(View.GONE);
+                } else {
+
+                    Calendar calendarCurrentDay = Calendar.getInstance();
+                    String[] stringsTimesPerDay = {string12, string13, string14, string15,
+                            string16, string17, string18, string19};
+                    int iCount = 0;
+                    for (int i = 0; i < stringsTimesPerDay.length; i++) {
+                        if (!stringsTimesPerDay[i].equals("")) {
+                            iCount = iCount + 1;
+                        }
+                    }
+
+                    Log.d("21July16", "s_Amount : " + s_Amount);
+                    //int x = Integer.parseInt(s_Amount) / (iCount * Integer.parseInt(string4));
+
+                    double y = Double.parseDouble(s_Amount) / (iCount * Double.parseDouble(string4));
+                    Log.d("21July16", "y : " + y);
+                    Log.d("21July16", "string4 : " + string4);
+                    String strGetDate;
+                    if (y == 0) {
+                        strGetDate = "ไม่มียา!!!";
+                        textViewOutOfMedicine.setText(strGetDate);
+                    } else if (y < 1) {
+                        strGetDate = "ยาเหลือไม่ถึง 1 วัน";
+                        textViewOutOfMedicine.setText(strGetDate);
+                    } else {
+
+                        int x = Integer.parseInt(s_Amount) / (iCount * Integer.parseInt(string4));
+                        calendarCurrentDay.add(Calendar.DAY_OF_MONTH, x - 1);
+
+                        Date date = calendarCurrentDay.getTime();
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        strGetDate = dateFormat.format(date);
+                        textViewOutOfMedicine.setText(strGetDate);
+                    }
+
+
+                } // if (string11.equals("Y"))
+
+            } else { //if (!stringsTimesPerDay[i].equals(""))
+                textViewOutOfMedicineLabel.setVisibility(View.GONE);
+                textViewOutOfMedicine.setVisibility(View.GONE);
+            } //for
+        } else {
+            textViewOutOfMedicine.setText("ไม่มียา!!!");
+        }  //if(s_amount !=null)
+
+
+    }  //showAmountDateOut
 
     private void clickAddDose() {
         textViewAddDoseNow.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +148,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
         super.onResume();
         //show จำนวนเม็ดยาคงเหลือ
         showtotalAmountTablet();
+        showAmountDateOut();
 
     }
 
@@ -144,13 +209,17 @@ public class MedicationDetailActivity extends AppCompatActivity {
             for(int i = 0;i<stringstotalAmountTABLE[0].length;i++) {
                 if (stringstotalAmountTABLE[1][i].equals(string0)) {
                     s_totalAmount = stringstotalAmountTABLE[2][i];
+                    s_Amount = s_totalAmount;
+                    Log.d("21July16", "s_Amount first :" + s_Amount);
                     s_totalAmount = s_totalAmount.concat(" ");
                     s_totalAmount_null = "N";
                 }
             }
 
             if (s_totalAmount_null.equals("Y")) {
-                s_totalAmount = "0 ";
+                s_totalAmount = "0";
+                s_Amount = s_totalAmount;
+                s_totalAmount = s_totalAmount.concat(" ");
             }
         }
 
@@ -239,7 +308,10 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
 
 
-    }
+
+
+
+    }  //showView
 
     private void receiveIntent() {
 
@@ -290,6 +362,8 @@ public class MedicationDetailActivity extends AppCompatActivity {
         textViewtotalAmountTablet = (TextView) findViewById(R.id.textView88); //จำนวนยาคงเหลือพร้อม UOM
         textViewDeleteMedicine = (TextView) findViewById(R.id.textView51); //ลบยาออกจากระบบ
         textViewAddDoseNow = (TextView) findViewById(R.id.textView82); //กินยาเพิ่มตอนนี้!!!
+        textViewOutOfMedicine = (TextView) findViewById(R.id.textView157); //วันที่ยาหมด
+        textViewOutOfMedicineLabel = (TextView) findViewById(R.id.textView156);
 
 
     }

@@ -1,6 +1,8 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.app.Activity;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -14,7 +16,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
 
     //Explicit
     public Activity activityTSMActivity;
-    String string1,string2,string3, string4,string5,string6,string7,stringId,stringDateRef;
+    String string1,string2,string3, string4,string5,string6,string7,stringId,stringDateRef,stringMain_id;
     TextView textView1,textView2, textView3;
     TextView textViewB1,textViewB2, textViewB3;
     ImageView imageView;
@@ -66,14 +68,26 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (string5.equals("") && string6.equals("")) {
-                    myManage.updatesumTABLE_ADD_DateCheckTimeCheck_Now(stringId);
-                    finish();
+                    Boolean aBoolean = checkAmountTablet(stringMain_id,string3);
+                    Log.d("22July16", "aBoolean :" + aBoolean);
+                    if (aBoolean) {
+                        myManage.updatesumTABLE_ADD_DateCheckTimeCheck_Now(stringId);
+                        myManage.updateTotalAmountTABLE_minusTabBy_MainId_AmountTablet(stringMain_id, string3);
+                        finish();
+                    }
+
                 } else if (!string5.equals("") && string6.equals("")) {
                     myManage.updatesumTABLE_Canceled_ADD_DateCheckTimeCheck(stringId);
+                    myManage.updateTotalAmountTABLE_AddTabBy_MainId_AmountTablet(stringMain_id, string3);
                     finish();
                 } else if (string5.equals("") && !string6.equals("")) {
-                    myManage.updatesumTABLE_ADD_DateCheckTimeCheck_Now(stringId);
-                    finish();
+                    Boolean aBoolean = checkAmountTablet(stringMain_id,string3);
+                    Log.d("22July16", "aBoolean :" + aBoolean);
+                    if (aBoolean) {
+                        myManage.updatesumTABLE_ADD_DateCheckTimeCheck_Now(stringId);
+                        myManage.updateTotalAmountTABLE_minusTabBy_MainId_AmountTablet(stringMain_id, string3);
+                        finish();
+                    }
                 }
             }
         });
@@ -83,6 +97,65 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private Boolean checkAmountTablet(String MainId, String strTabletUse) {
+
+        MyManage myManage = new MyManage(this);
+        String[] strMain_id = myManage.readAlltotalAmountTABLE(1);
+        String[] stringsAmountTABLE = myManage.readAlltotalAmountTABLE(2);
+        String strAmountTABLE = null;
+        for(int i = 0;i<strMain_id.length;i++) {
+            if (strMain_id[i].equals(MainId)) {
+                strAmountTABLE = stringsAmountTABLE[i];
+            }
+        }
+
+        if (strAmountTABLE == null) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setIcon(R.drawable.icon_question);
+            builder.setTitle("กรุณาเพิ่มเม็ดยา!!!");
+            builder.setMessage("ไม่สามารถดำเนินการได้เนื่องจาก\nจำนวนเม็ดยาไม่เพียงพอ\n\nท่านสามารถเพิ่มจำนวนยาที่" +
+                    " : \nรายการยา ==> เพิ่มจำนวนยา");
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    finish();
+                }
+            });
+            builder.show();
+            return false;
+        } else {
+
+            Double doubleAmountTABLE = Double.parseDouble(strAmountTABLE);
+            Double doubleTabletUse = Double.parseDouble(strTabletUse);
+            Double doubleResult = doubleAmountTABLE - doubleTabletUse;
+
+            if (doubleResult < 0) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setIcon(R.drawable.icon_question);
+                builder.setTitle("จำนวนเม็ดยาของท่านไม่เพียงพอ!!!");
+                builder.setMessage("ไม่สามารถดำเนินการได้เนื่องจาก\n" +
+                        "จำนวนเม็ดยาไม่เพียงพอ\n\n" +
+                        "ท่านสามารถเพิ่มจำนวนยาที่" +
+                        " : \nรายการยา ==> เพิ่มจำนวนยา");
+                builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        finish();
+                    }
+                });
+                builder.show();
+                return false;
+
+            } else {
+                return true;
+            }
+
+        }
+
     }
 
     private void setTextButton() {
@@ -139,6 +212,8 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         string6 = getIntent().getStringExtra("MainActivity_SkipHold");
         string7 = getIntent().getStringExtra("MainActivity_EA");
         stringId = getIntent().getStringExtra("MainActivity_Sum_id");
+        stringMain_id = getIntent().getStringExtra("MainActivity_Main_id");
+        Log.d("22July16", "MainActivity_Main_id : " + stringMain_id);
         stringDateRef = getIntent().getStringExtra("MainActivity_DateRef");
         Log.d("TakeSkip", "Tradename : " + string1);
         Log.d("TakeSkip", "Appearance : " + string2);

@@ -767,6 +767,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         intent.putExtra("MainActivity_SkipHold", strResult_SkipHold);
         intent.putExtra("MainActivity_EA", strResult_EA);
         intent.putExtra("MainActivity_Sum_id", strResult_Sum_id);
+        intent.putExtra("MainActivity_Main_id", strResult_Main_id);
         startActivity(intent);
 
     }

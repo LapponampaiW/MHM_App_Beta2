@@ -1482,8 +1482,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                 myManage.addValueToSumTable(strings1[0], currentDay, stringsT8[0], "", "", "");
             }
 
-
         }
+
         Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);
         startActivity(intent);
         //ปิด Activity สุดท้าย

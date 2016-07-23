@@ -742,13 +742,121 @@
                 android:layout_height="match_parent"
                 android:id="@+id/line4"
                 android:layout_marginTop="@dimen/z2_margin_bigspace"
-                android:background="#707070" >
+                android:background="#30abc4" >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" "
                     android:id="@+id/textView61"
+                    android:textSize="1sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/head5Layout"
+                android:gravity="right" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="จำนวนยา"
+                    android:id="@+id/textView158"
+                    android:gravity="right"
+                    android:textColor="#ff0000"
+                    android:background="@drawable/my_border_shadow"
+                    android:padding="5dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearBox5"
+                android:background="@drawable/my_border_shadow"
+                android:padding="10dp" >
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ระบุจำนวนยา : "
+                        android:id="@+id/textView159"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Text"
+                        android:id="@+id/textView160"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/linearLayout12" >
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-10"
+                        android:id="@+id/button6"
+                        android:layout_weight="2" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-1"
+                        android:id="@+id/button7"
+                        android:layout_weight="2" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editText13"
+                        android:layout_weight="1.8"
+                        android:inputType="numberDecimal"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:hint="ตัวเลข" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="+1"
+                        android:id="@+id/button8"
+                        android:layout_weight="2" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="+10"
+                        android:id="@+id/button9"
+                        android:layout_weight="2" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/line5"
+                android:layout_marginTop="@dimen/z2_margin_bigspace"
+                android:background="#707070" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" "
+                    android:id="@+id/textView163"
                     android:textSize="1sp" />
             </LinearLayout>
 

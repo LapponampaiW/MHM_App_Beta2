@@ -102,7 +102,7 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
 
                     }
                     finish();
-                }
+                }  //if (doubleAmountMedicine == 0)
 
             }
         });

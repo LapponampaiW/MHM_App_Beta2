@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -41,7 +42,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     private TextView textView1, textView2, textView3, textView4,
             textView5, textView6, textView7, textView8, textView9,
             textView10, textView11, textView12, textView13,
-            textView14, textView15, textView16, textViewStartDate, textViewFinishDate;
+            textView14, textView15, textView16, textViewStartDate,
+            textViewFinishDate,textViewEA;
 
     private String string1, string2, string3, string4, string5, string6,
             string7, string8, string9, string10, string11, string12,
@@ -67,6 +69,10 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             linearLayout5, linearLayout6, linearLayout7, linearLayout8, startDatelin,
             finishDatelin,linearLayoutTimePerDay,intervalLin,head4Layout,linBox4,
             linBox2Left,linBox2Right,linLine3;
+    private EditText editTextCalculationAmount;
+    private int integerAmountMedicine;
+    private double doubleAmountMedicine;
+    private Button buttonAdd1, buttonAdd10, buttonMinus1, buttonMinus10;
 
     private ArrayList<String> stringArrayListResultType2 = new ArrayList<String>();
     private ArrayList<String> stringArrayListResultType2Count = new ArrayList<String>();
@@ -828,11 +834,58 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         checkBox7.setChecked(true);
         checkBox8.setChecked(false);
 
-
-
+        //set linBox5
+        String string16_Translate2 = "(หน่วย : ".concat(string16_Translate).concat(" )");
+        textViewEA.setText(string16_Translate2);
+        clickCalculateAmountMedicine();
 
 
     }
+
+    private void clickCalculateAmountMedicine() {
+        integerAmountMedicine = Integer.parseInt(editTextCalculationAmount.getText().toString());
+        buttonAdd1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                integerAmountMedicine = integerAmountMedicine + 1;
+                editTextCalculationAmount.setText(Integer.toString(integerAmountMedicine));
+            }
+        });
+
+        buttonAdd10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                integerAmountMedicine = integerAmountMedicine + 10;
+                editTextCalculationAmount.setText(Integer.toString(integerAmountMedicine));
+            }
+        });
+
+        buttonMinus10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                integerAmountMedicine = integerAmountMedicine - 10;
+                if (integerAmountMedicine <= 0) {
+                    integerAmountMedicine = 0;
+                }
+                editTextCalculationAmount.setText(Integer.toString(integerAmountMedicine));
+            }
+        });
+
+        buttonMinus1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                integerAmountMedicine = integerAmountMedicine - 1;
+                if (integerAmountMedicine <= 0) {
+                    integerAmountMedicine = 0;
+                }
+                editTextCalculationAmount.setText(Integer.toString(integerAmountMedicine));
+            }
+        });
+
+
+
+    }  //clickCalculateAmountMedicine
+
 
     private void receiveIntent() {
         MyData myData = new MyData();
@@ -884,6 +937,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         textViewFinishDate = (TextView) findViewById(R.id.textViewFinishDate);
         //editText1 = (EditText) findViewById(R.id.editText1);
         textView16 = (TextView) findViewById(R.id.textView46);
+        textViewEA = (TextView) findViewById(R.id.textView160);
+        editTextCalculationAmount = (EditText) findViewById(R.id.editTextAmountMedicine2);
         checkBox1 = (CheckBox) findViewById(R.id.checkBox1);
         checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
         checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
@@ -892,6 +947,10 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         checkBox6 = (CheckBox) findViewById(R.id.checkBox6);
         checkBox7 = (CheckBox) findViewById(R.id.checkBox7);
         checkBox8 = (CheckBox) findViewById(R.id.checkBox8);
+        buttonAdd1 = (Button) findViewById(R.id.button8);
+        buttonAdd10 = (Button) findViewById(R.id.button9);
+        buttonMinus1 = (Button) findViewById(R.id.button7);
+        buttonMinus10 = (Button) findViewById(R.id.button6);
         linearLayout1 = (LinearLayout) findViewById(R.id.t1Layout);
         linearLayout2 = (LinearLayout) findViewById(R.id.t2Layout);
         linearLayout3 = (LinearLayout) findViewById(R.id.t3Layout);
@@ -1257,11 +1316,45 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
             }
             checkaddValueTomainTABLEandIntent();
+
             return;
         }
 
-        addValueTomainTABLEandIntent();
+        //addValueTomainTABLEandIntent();
+
+        checkZeroAmountTablet();
     }
+
+    private void checkZeroAmountTablet() {
+
+        doubleAmountMedicine = Double.parseDouble(editTextCalculationAmount.getText().toString());
+
+        if (doubleAmountMedicine == 0) {
+            final AlertDialog.Builder builder = new AlertDialog.Builder(AddMedicine2Activity.this);
+            builder.setIcon(R.drawable.icon_question);
+            builder.setTitle("จำนวนยาเท่ากับ 0!!!");
+            builder.setMessage("ท่านต้องการดำเนินการต่อหรือไม่ (สามารถเพิ่มจำนวนยาภายหลังได้)");
+            builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    addValueTomainTABLEandIntent();
+                    dialog.dismiss();
+
+                }
+            });
+
+        } else {
+            addValueTomainTABLEandIntent();
+        }   //if
+
+    }  //checkAmountTablet
+
 
 
 
@@ -1484,6 +1577,9 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
         }
 
+
+        //Add จำนวนยาเข้า 2 TABLE
+
         Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);
         startActivity(intent);
         //ปิด Activity สุดท้าย
@@ -1584,7 +1680,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         if (stringstype2.length == stringstype2Count.length &&
                 stringstype3.length == stringstype3Count.length) {
             Log.d("Flow_Test", "เข้า if .... เท่ากันแล้ว");
-            addValueTomainTABLEandIntent();
+            //addValueTomainTABLEandIntent();
+            checkZeroAmountTablet();
 
         }
 

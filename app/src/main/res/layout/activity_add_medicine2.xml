@@ -786,7 +786,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ระบุจำนวนยา : "
+                        android:text="ระบุจำนวนยา "
                         android:id="@+id/textView159"
                         android:textSize="20sp" />
 
@@ -821,11 +821,12 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/editText13"
+                        android:id="@+id/editTextAmountMedicine2"
                         android:layout_weight="1.8"
                         android:inputType="numberDecimal"
                         android:gravity="center_vertical|center_horizontal"
-                        android:hint="ตัวเลข" />
+                        android:hint="ตัวเลข"
+                        android:text="0" />
 
                     <Button
                         android:layout_width="match_parent"

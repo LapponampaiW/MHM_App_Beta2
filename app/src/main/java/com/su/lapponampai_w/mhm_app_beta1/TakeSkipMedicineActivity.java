@@ -68,7 +68,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (string5.equals("") && string6.equals("")) {
-                    Boolean aBoolean = checkAmountTablet(stringMain_id,string3);
+                    Boolean aBoolean = checkAmountTablet(stringMain_id,string3,activityTSMActivity);
                     Log.d("22July16", "aBoolean :" + aBoolean);
                     if (aBoolean) {
                         myManage.updatesumTABLE_ADD_DateCheckTimeCheck_Now(stringId);
@@ -81,7 +81,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
                     myManage.updateTotalAmountTABLE_AddTabBy_MainId_AmountTablet(stringMain_id, string3);
                     finish();
                 } else if (string5.equals("") && !string6.equals("")) {
-                    Boolean aBoolean = checkAmountTablet(stringMain_id,string3);
+                    Boolean aBoolean = checkAmountTablet(stringMain_id,string3,activityTSMActivity);
                     Log.d("22July16", "aBoolean :" + aBoolean);
                     if (aBoolean) {
                         myManage.updatesumTABLE_ADD_DateCheckTimeCheck_Now(stringId);
@@ -99,9 +99,9 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         });
     }
 
-    private Boolean checkAmountTablet(String MainId, String strTabletUse) {
+    public Boolean checkAmountTablet(String MainId, String strTabletUse,Activity activity) {
 
-        MyManage myManage = new MyManage(this);
+        MyManage myManage = new MyManage(activity);
         String[] strMain_id = myManage.readAlltotalAmountTABLE(1);
         String[] stringsAmountTABLE = myManage.readAlltotalAmountTABLE(2);
         String strAmountTABLE = null;
@@ -112,7 +112,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         }
 
         if (strAmountTABLE == null) {
-            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
             builder.setIcon(R.drawable.icon_question);
             builder.setTitle("กรุณาเพิ่มเม็ดยา!!!");
             builder.setMessage("ไม่สามารถดำเนินการได้เนื่องจาก\nจำนวนเม็ดยาไม่เพียงพอ\n\nท่านสามารถเพิ่มจำนวนยาที่" +
@@ -133,7 +133,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
             Double doubleResult = doubleAmountTABLE - doubleTabletUse;
 
             if (doubleResult < 0) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                 builder.setIcon(R.drawable.icon_question);
                 builder.setTitle("จำนวนเม็ดยาของท่านไม่เพียงพอ!!!");
                 builder.setMessage("ไม่สามารถดำเนินการได้เนื่องจาก\n" +

@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -32,7 +33,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
     private String string0,string1,string2,string3,string4,string5,string6,string7,string7_Translate,
             string8,string9,string10,string11,string12,string13,string14,string15,string16,
             string17,string18,string19,string20,s_Amount;
-
+    public Activity activityMedicationDetail;
     //Heading
     Spinner spinner;
     ImageButton imageAdherence;
@@ -41,6 +42,8 @@ public class MedicationDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medication_detail);
+
+        activityMedicationDetail = MedicationDetailActivity.this;
         setHeading();
         bindWidget();
 
@@ -130,13 +133,23 @@ public class MedicationDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 MyData myData = new MyData();
                 MyManage myManage = new MyManage(MedicationDetailActivity.this);
-                String strCurrentDay = myData.currentDay();
-                String strCurrentTime = myData.currentTime_Minus();
 
-                myManage.addValueToSumTable(string0, strCurrentDay, strCurrentTime, strCurrentDay, strCurrentTime, "");
-                Toast.makeText(MedicationDetailActivity.this,"เสร็จสิ้นการทำงาน",Toast.LENGTH_SHORT).show();
-                MedicationListActivity.activityMedicationListActivity.finish();
-                finish();
+                //Checkก่อนมีเม็ดยาให้กินป่าว
+                TakeSkipMedicineActivity takeSkipMedicineActivity = new TakeSkipMedicineActivity();
+                Boolean aBoolean = takeSkipMedicineActivity.checkAmountTablet(string0,string4,activityMedicationDetail);
+
+
+                if (aBoolean) {
+                    String strCurrentDay = myData.currentDay();
+                    String strCurrentTime = myData.currentTime_Minus();
+
+                    myManage.addValueToSumTable(string0, strCurrentDay, strCurrentTime, strCurrentDay, strCurrentTime, "");
+                    myManage.updateTotalAmountTABLE_minusTabBy_MainId_AmountTablet(string0, string4);
+                    Toast.makeText(MedicationDetailActivity.this,"เสร็จสิ้นการทำงาน",Toast.LENGTH_SHORT).show();
+                    MedicationListActivity.activityMedicationListActivity.finish();
+                    finish();
+                }
+
 
 
             }

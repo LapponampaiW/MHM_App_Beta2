@@ -30,7 +30,7 @@ public class MyHelper extends SQLiteOpenHelper {
 
     //Create table mainTABLE
     private static final String CREATE_mainTABLE = "create table mainTABLE" +
-            "(_id long primary key, Med_id integer, Trade_name text, " +
+            "(_id integer primary key, Med_id integer, Trade_name text, " +
             "Generic_line text, Amount_tablet double, Which_Date_D text, Appearance text, " +
             "EA text, pharmaco text, StartDate text, FinishDate text, PRN text, " +
             "T1 text, T2 text, T3 text, T4 text,T5 text, T6 text, " +

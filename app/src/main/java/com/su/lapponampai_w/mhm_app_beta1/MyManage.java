@@ -1133,7 +1133,8 @@ public class MyManage {
     } //filter_sumTABLE_by_Date
 
 
-    public long addValueTomainTABLE(String strMed_id,
+    public long addValueTomainTABLE(int i_id,
+                                    String strMed_id,
                                     String strTrade_name,
                                     String strGeneric_line,
                                     String strAmount_tablet,
@@ -1156,12 +1157,13 @@ public class MyManage {
 
         ContentValues contentValues = new ContentValues();
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-        String time = dateFormat.format(System.currentTimeMillis());
-        time = time.substring(2);
-        long longTime = Long.parseLong(time);
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        //String time = dateFormat.format(System.currentTimeMillis());
+        //time = time.substring(2);
+        //long longTime = Long.parseLong(time);
 
-        contentValues.put("_id", longTime);
+        //contentValues.put("_id", longTime);
+        contentValues.put("_id", i_id);
         contentValues.put("Med_id", strMed_id);
         contentValues.put("Trade_name", strTrade_name);
         contentValues.put("Generic_line", strGeneric_line);

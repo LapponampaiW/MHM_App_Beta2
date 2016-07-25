@@ -88,6 +88,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_medicine2);
 
+
+
         //BindWidget
         bindWidget();
 
@@ -109,6 +111,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
 
     } //Main Method
+
+
 
     @Override //จาก DatePickerFragment
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -1014,6 +1018,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             }
         }
 
+        Log.d("25July16", "ผ่านClickSaveAddMedication");
         checkDuplicate();
 
     } //clickSave
@@ -1095,6 +1100,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
         }
         // ไม่มีค่าอะไร add ข้อมูลเข้าไปได้เลย
+        Log.d("25July16", "ผ่านCheckDuplicate");
         checkDrugInteraction();
     }
 
@@ -1316,12 +1322,11 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
             }
             checkaddValueTomainTABLEandIntent();
-
             return;
         }
 
         //addValueTomainTABLEandIntent();
-
+        Log.d("25July16", "ผ่านClickDrugInteraction");
         checkZeroAmountTablet();
     }
 
@@ -1348,8 +1353,10 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
                 }
             });
+            builder.show();
 
         } else {
+            Log.d("25July16", "ผ่านcheckZeroAmountTablet");
             addValueTomainTABLEandIntent();
         }   //if
 
@@ -1476,6 +1483,32 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             string19 = "";
         }
         */
+
+        //ทำการสร้าง primarykey ใหม่
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyMMdd");
+        String strNewMain_id = dateFormat1.format(System.currentTimeMillis());
+        String[] strMain_id_Array = myManage.filterMainTABLE_Mainid6Digit(strNewMain_id);
+        if (strMain_id_Array[0].equals("")) {
+            strNewMain_id = strNewMain_id.concat("01");
+        } else {
+            //หาถ้าสูงสุด 1 อัน
+            Log.d("25July16", "strMain_id : " + strNewMain_id);
+            for(int i=0;i<strMain_id_Array.length;i++) {
+                Log.d("25July16", "strMain_id_Array : " + strMain_id_Array[i]);
+            }
+            int i = strMain_id_Array.length;
+            i = i + 1;
+            String s = Integer.toString(i);
+            if (s.length() == 1) {
+                s = "0".concat(s);
+            }
+            strNewMain_id = strNewMain_id.concat(s);
+            Log.d("25July16", "strMain_id_Array : " + strNewMain_id);
+
+        }
+        Log.d("25July16", "strMain_id : " + strNewMain_id);
+        int iMain_id = Integer.parseInt(strNewMain_id);
+        Log.d("25July16", "iMain_id : " + iMain_id);
 
 
         //เริ่มจากตรงนี้.... ถ้าไม่ได้เริ่มยาในวันนี้ต้องยังไม่แสดงหนะ

@@ -236,6 +236,26 @@ public class MyManage {
 
     } //Constructor
 
+    public String[] filterMainTABLE_Mainid6Digit(String strNewMain_id) {
+        String[] strREAD = null;
+
+        Cursor cursor = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, "_id LIKE '" + strNewMain_id + "%'", null, null, null, null);
+        int iCount = cursor.getCount();
+        if (iCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for(int i = 0;i<strREAD.length;i++) {
+                strREAD[i] = cursor.getString(cursor.getColumnIndex(mcolumn_id));
+                cursor.moveToNext();
+            }
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+
+        return strREAD;
+    }
+
 
     public long updateTotalAmountTABLE_minusTabBy_MainId_AmountTablet(String mainId,
                                                                       String strAmountTablet) {

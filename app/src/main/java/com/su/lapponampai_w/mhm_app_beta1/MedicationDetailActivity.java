@@ -25,7 +25,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
     //Explicit
     private TextView textView1,textView2, textView3,textView4,textView5,textView6,textView7,
-            textView8,textView9,textView10,textView11,textView12,textView13,textView14,textView15;
+            textView8,textView9,textView10,textView11,textView12,textView13,textView14,textView15,textView16;
     private TextView textViewAddAmountMedicine, textViewtotalAmountTablet,
             textViewDeleteMedicine,textViewAddDoseNow,textViewOutOfMedicine,textViewOutOfMedicineLabel;
     private ImageView imageView1;
@@ -53,6 +53,9 @@ public class MedicationDetailActivity extends AppCompatActivity {
         //Show View
         showView();
 
+        //ดูว่าเกินวันที่ต้องกินยาแล้ว.. ต้องการลบข้อมูลทิ้งหรือไม่
+        checkdateFinishAndCancel();
+
         //Click AddAmountMedicine
         clickAddAmountMedicine();
 
@@ -70,10 +73,59 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
     }
 
+    private void checkdateFinishAndCancel() {
+        MyData myData = new MyData();
+
+        //Checkวันที่ก่อนว่าถึงวันกินวันเริ่มต้น หรือว่าเลยวันสิ้นสุดไปแล้วหรือยัง
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String strCurrentDay = myData.currentDay();
+        Date dateFinish = new Date();
+        Date dateCurrent = new Date();
+
+        if (!string10.equals("")) {
+
+            try {
+                dateCurrent = simpleDateFormat.parse(strCurrentDay);
+                dateFinish = simpleDateFormat.parse(string10);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+            if (dateFinish.compareTo(dateCurrent) < 0) {
+                //ทำ DialogBox
+                AlertDialog.Builder builder = new AlertDialog.Builder(MedicationDetailActivity.this);
+                builder.setIcon(R.drawable.icon_question);
+                builder.setTitle("ครบกำหนดทานยาตัวดังกล่าวแล้ว");
+                builder.setMessage("ท่านต้องการลบยาออกจากฐานข้อมูล หรือไม่");
+                builder.setNegativeButton("ไม่ต้องการ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("ต้องการ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MyManage myManage = new MyManage(MedicationDetailActivity.this);
+                        myManage.updatemainTABLE_DateTimeCanceled(string0);
+                        dialog.dismiss();
+                        finish();
+                    }
+                });
+                builder.show();
+            }
+
+        }
+
+    } //checkdateFinishAndCancel
+
     private void showAmountDateOut() {
 
         if (s_Amount != null) {
-            if (string7.equals("1") || string7.equals("2")) {
+            if (string7.equals("1") || string7.equals("2")) { //เป็นยาเม็ดหรือ แคปซูล
+                //เป็น prn หรือไม่
                 if (string11.equals("Y")) {
                     textViewOutOfMedicineLabel.setVisibility(View.GONE);
                     textViewOutOfMedicine.setVisibility(View.GONE);
@@ -93,25 +145,61 @@ public class MedicationDetailActivity extends AppCompatActivity {
                     //int x = Integer.parseInt(s_Amount) / (iCount * Integer.parseInt(string4));
 
                     double y = Double.parseDouble(s_Amount) / (iCount * Double.parseDouble(string4));
+                    int x = Integer.parseInt(s_Amount) / (iCount * Integer.parseInt(string4));
                     Log.d("21July16", "y : " + y);
                     Log.d("21July16", "string4 : " + string4);
                     String strGetDate;
+
+                    //คำนวนวันในการจะแสดงผล
+                    MyData myData = new MyData();
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                    String strCurrentDay = myData.currentDay();
+                    Date dateInitial = new Date();
+                    Date dateFinish = new Date();
+                    Date dateCurrent = new Date();
+
                     if (y == 0) {
                         strGetDate = "ไม่มียา!!!";
                         textViewOutOfMedicine.setText(strGetDate);
-                    } else if (y < 1) {
-                        strGetDate = "ยาเหลือไม่ถึง 1 วัน";
-                        textViewOutOfMedicine.setText(strGetDate);
-                    } else {
-
-                        int x = Integer.parseInt(s_Amount) / (iCount * Integer.parseInt(string4));
-                        calendarCurrentDay.add(Calendar.DAY_OF_MONTH, x - 1);
-
-                        Date date = calendarCurrentDay.getTime();
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                        strGetDate = dateFormat.format(date);
-                        textViewOutOfMedicine.setText(strGetDate);
                     }
+
+                        try {
+                            dateInitial = simpleDateFormat.parse(string9);
+                            dateCurrent = simpleDateFormat.parse(strCurrentDay);
+
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (dateInitial.compareTo(dateCurrent) > 0) {
+                            if (y < 1 && y > 0) {
+                                //set วันตาม string 9
+                                strGetDate = simpleDateFormat.format(string9);
+                                textViewOutOfMedicine.setText(strGetDate);
+                            } else {
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.setTime(dateInitial);
+                                calendar.add(Calendar.DAY_OF_MONTH, x - 1);
+                                Date date = calendar.getTime();
+                                strGetDate = simpleDateFormat.format(date);
+                                textViewOutOfMedicine.setText(strGetDate);
+
+                            }
+                        } else {
+                            if (y < 1 && y > 0) {
+                                strGetDate = "ยาเหลือไม่ถึง 1 วัน";
+                                textViewOutOfMedicine.setText(strGetDate);
+                            } else {
+
+                                calendarCurrentDay.add(Calendar.DAY_OF_MONTH, x - 1);
+
+                                Date date = calendarCurrentDay.getTime();
+
+                                strGetDate = simpleDateFormat.format(date);
+                                textViewOutOfMedicine.setText(strGetDate);
+                            }
+                        }  //จบแบบไม่มี FinishDate
+
 
 
                 } // if (string11.equals("Y"))
@@ -128,11 +216,61 @@ public class MedicationDetailActivity extends AppCompatActivity {
     }  //showAmountDateOut
 
     private void clickAddDose() {
+
         textViewAddDoseNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("25JulyV2", "clickAddDose");
                 MyData myData = new MyData();
                 MyManage myManage = new MyManage(MedicationDetailActivity.this);
+
+                //Checkวันที่ก่อนว่าถึงวันกินวันเริ่มต้น หรือว่าเลยวันสิ้นสุดไปแล้วหรือยัง
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String strCurrentDay = myData.currentDay();
+                Date dateInitial = new Date();
+                Date dateFinish = new Date();
+                Date dateCurrent = new Date();
+
+                Log.d("25JulyV2", string10);
+
+                if (string10.equals("")) {
+                    try {
+                        dateInitial = simpleDateFormat.parse(string9);
+                        dateCurrent = simpleDateFormat.parse(strCurrentDay);
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (dateInitial.compareTo(dateCurrent) > 0) {
+                        Toast.makeText(MedicationDetailActivity.this, "ไม่สามารถทำรายการดังกล่าวได้ " +
+                                "เนื่องจากยังไม่ถึงวันที่กำหนด", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                } else {
+                    try {
+                        dateInitial = simpleDateFormat.parse(string9);
+                        dateCurrent = simpleDateFormat.parse(strCurrentDay);
+                        dateFinish = simpleDateFormat.parse(string10);
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    if (dateInitial.compareTo(dateCurrent) > 0) {
+                        Toast.makeText(MedicationDetailActivity.this, "ไม่สามารถทำรายการดังกล่าวได้ " +
+                                "เนื่องจากยังไม่ถึงวันที่กำหนด", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                    if (dateFinish.compareTo(dateCurrent) < 0) {
+                        Toast.makeText(MedicationDetailActivity.this, "ไม่สามารถทำรายการดังกล่าวได้ " +
+                                "เนื่องจากเกินวันที่กำหนดแล้ว", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                }
 
                 //Checkก่อนมีเม็ดยาให้กินป่าว
                 TakeSkipMedicineActivity takeSkipMedicineActivity = new TakeSkipMedicineActivity();
@@ -140,7 +278,6 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
 
                 if (aBoolean) {
-                    String strCurrentDay = myData.currentDay();
                     String strCurrentTime = myData.currentTime_Minus();
 
                     myManage.addValueToSumTable(string0, strCurrentDay, strCurrentTime, strCurrentDay, strCurrentTime, "");
@@ -277,6 +414,8 @@ public class MedicationDetailActivity extends AppCompatActivity {
         textView4.setText(string5_Translate);
 
         textView5.setText("วันที่เริ่มต้นรับประทานยา : " + string9);
+
+
         if (string10.equals("")) {
             textView6.setVisibility(View.GONE);
         } else {
@@ -370,6 +509,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
         textView13 = (TextView) findViewById(R.id.textView76); //t6
         textView14 = (TextView) findViewById(R.id.textView77); //t7
         textView15 = (TextView) findViewById(R.id.textView78); //t8
+
 
         textViewAddAmountMedicine = (TextView) findViewById(R.id.textView79); //เพิ่มจำนวนยา
         textViewtotalAmountTablet = (TextView) findViewById(R.id.textView88); //จำนวนยาคงเหลือพร้อม UOM

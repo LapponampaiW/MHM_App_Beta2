@@ -1612,6 +1612,41 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
 
         //Add จำนวนยาเข้า 2 TABLE
+        doubleAmountMedicine = Double.parseDouble(editTextCalculationAmount.getText().toString());
+        if (doubleAmountMedicine > 0) {
+
+            String[][] stringstotalAmountTABLE = {myManage.readAlltotalAmountTABLE(0),
+                    myManage.readAlltotalAmountTABLE(1),myManage.readAlltotalAmountTABLE(2),
+                    myManage.readAlltotalAmountTABLE(3)};
+
+            String sDate = myData.currentDateTime();
+            String string_Main_id = Integer.toString(iMain_id);
+            myManage.addValueTo_addUseTABLE(string_Main_id,"Add",doubleAmountMedicine,sDate);
+
+            String s = "N";
+            double doubleAmountInitialMedicine = 0;
+            String s_id = null;
+            for(int i = 0;i<stringstotalAmountTABLE[0].length;i++) {
+                if (stringstotalAmountTABLE[1][i].equals(string_Main_id)) {
+                    s = "Y";
+                    doubleAmountInitialMedicine = Double.parseDouble(stringstotalAmountTABLE[2][i]);
+                    s_id = stringstotalAmountTABLE[0][i];
+                }
+            }
+            if (s.equals("N")) {
+                myManage.addValueTo_totalAmountTABLE(string_Main_id, doubleAmountMedicine, sDate);
+            } else if (s.equals("Y")) {
+                //ทำการ UPdate
+                doubleAmountMedicine = doubleAmountInitialMedicine + doubleAmountMedicine;
+                String s_AmountMedicine = Double.toString(doubleAmountMedicine);
+                myManage.updateTotalAmountTABLE(s_id, s_AmountMedicine, sDate);
+                Log.d("MedicationAdd", "จำนวนเม็ดสะสม "+ s_AmountMedicine);
+
+            }
+
+        } //if(doubleAmountMedicine > 0)
+
+
 
         Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);
         startActivity(intent);
@@ -1771,6 +1806,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         });
         builder.show();
     }
+
 
 
 

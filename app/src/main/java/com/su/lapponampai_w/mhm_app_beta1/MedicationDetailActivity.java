@@ -174,8 +174,8 @@ public class MedicationDetailActivity extends AppCompatActivity {
                         if (dateInitial.compareTo(dateCurrent) > 0) {
                             if (y < 1 && y > 0) {
                                 //set วันตาม string 9
-                                strGetDate = simpleDateFormat.format(string9);
-                                textViewOutOfMedicine.setText(strGetDate);
+
+                                textViewOutOfMedicine.setText(string9);
                             } else {
                                 Calendar calendar = Calendar.getInstance();
                                 calendar.setTime(dateInitial);

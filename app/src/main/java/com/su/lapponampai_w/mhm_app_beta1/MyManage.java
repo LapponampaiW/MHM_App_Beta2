@@ -172,12 +172,12 @@ public class MyManage {
             ncolumn_appearance_News, ncolumn_criteria, ncolumn_activity};
 
     //totalAmountTABLE
-    private static final String totalAmountTABLE = "totalAmountTABLE";
+    public static final String totalAmountTABLE = "totalAmountTABLE";
     //tcolumn_id ใช้อันเดียวกั่บ timeTABLE
-    private static final String tcolumn_Main_id = "Main_id";
-    private static final String tcolumn_TotalAmount = "TotalAmount";
-    private static final String tcolumn_DateUpdated = "DateUpdated";
-    private static final String[] column_totalAmountTABLE = {tcolumn_id,
+    public static final String tcolumn_Main_id = "Main_id";
+    public static final String tcolumn_TotalAmount = "TotalAmount";
+    public static final String tcolumn_DateUpdated = "DateUpdated";
+    public static final String[] column_totalAmountTABLE = {tcolumn_id,
             tcolumn_Main_id, tcolumn_TotalAmount, tcolumn_DateUpdated};
 
     //addUseTABLE

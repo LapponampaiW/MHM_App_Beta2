@@ -108,6 +108,8 @@ public class SettingActivity extends AppCompatActivity {
 
                             updateDatasumTABLE_PHPMyAdmin(strAddVN);
 
+                            updateDatatotalAmountTABLE_PHPMyAdmin(strAddVN);
+
 
 
                         } else {
@@ -123,6 +125,47 @@ public class SettingActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void updateDatatotalAmountTABLE_PHPMyAdmin(String strAddVN) {
+        String strURL = "http://www.swiftcodingthai.com/mhm/add_totalAmountTABLE.php";
+
+        MyManage myManage = new MyManage(this);
+
+        String[][] strings_totalAmountTABLE = {myManage.readAlltotalAmountTABLE(0),
+                myManage.readAlltotalAmountTABLE(1), myManage.readAlltotalAmountTABLE(2),
+                myManage.readAlltotalAmountTABLE(3)};
+
+        if (!strings_totalAmountTABLE[0][0].equals("")) {
+            for(int i = 0;i<strings_totalAmountTABLE[0].length;i++) {
+                OkHttpClient okHttpClient = new OkHttpClient();
+                RequestBody requestBody = new FormEncodingBuilder()
+                        .add("isAdd", "true")
+                        .add("VN", strAddVN)
+                        .add(MyManage.tcolumn_Main_id, strings_totalAmountTABLE[1][i])
+                        .add(MyManage.tcolumn_TotalAmount, strings_totalAmountTABLE[2][i])
+                        .add(MyManage.tcolumn_DateUpdated, strings_totalAmountTABLE[3][i])
+                        .build();
+                Request.Builder builder = new Request.Builder();
+                Request request = builder.url(strURL).post(requestBody).build();
+                Call call = okHttpClient.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Request request, IOException e) {
+                        Log.d("26July16V3", "Failure in totalAmountTABLE");
+                    }
+
+                    @Override
+                    public void onResponse(Response response) throws IOException {
+                        Log.d("26July16V3", "success in totalAmountTABLE");
+                    }
+                });
+
+            }
+
+        }
+
 
     }
 
@@ -162,7 +205,7 @@ public class SettingActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(Response response) throws IOException {
-                        Log.d("26July16", "suscess in sumTABLE");
+                        Log.d("26July16", "success in sumTABLE");
 
                     }
                 });

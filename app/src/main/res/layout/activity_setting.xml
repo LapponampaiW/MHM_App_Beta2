@@ -16,4 +16,13 @@
         android:id="@+id/textView154"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TranferData"
+        android:id="@+id/btnForTransferData"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="39dp" />
 </RelativeLayout>

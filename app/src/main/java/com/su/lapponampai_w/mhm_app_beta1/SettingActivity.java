@@ -50,7 +50,7 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(SettingActivity.this,ForDoctorActivity.class));
+                startActivity(new Intent(SettingActivity.this,TransferDataActivity.class));
             }
         });
 
@@ -109,6 +109,19 @@ public class SettingActivity extends AppCompatActivity {
                             updateDatasumTABLE_PHPMyAdmin(strAddVN);
 
                             updateDatatotalAmountTABLE_PHPMyAdmin(strAddVN);
+
+
+                            AlertDialog.Builder builder = new AlertDialog.Builder(SettingActivity.this);
+                            builder.setIcon(R.drawable.icon_question);
+                            builder.setTitle("Index Number");
+                            builder.setMessage(strAddVN);
+                            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            builder.show();
 
 
 
@@ -242,23 +255,23 @@ public class SettingActivity extends AppCompatActivity {
                 String str2 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_Med_id));
                 String str3 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_trade_name));
                 String str4 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_generic_line));
-                String str21 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_amount_tablet));
-                String str5 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_which_date_d));
-                String str6 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_appearance));
-                String str7 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_ea));
-                String str8 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_Main_pharmaco));
-                String str9 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_startdate));
-                String str10 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_finishdate));
-                String str11 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_prn));
-                String str12 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t1));
-                String str13 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t2));
-                String str14 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t3));
-                String str15 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t4));
-                String str16 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t5));
-                String str17 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t6));
-                String str18 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t7));
-                String str19 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t8));
-                String str20 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_datetimecanceled));
+                String str5 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_amount_tablet));
+                String str6 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_which_date_d));
+                String str7 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_appearance));
+                String str8 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_ea));
+                String str9 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_Main_pharmaco));
+                String str10 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_startdate));
+                String str11 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_finishdate));
+                String str12 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_prn));
+                String str13 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t1));
+                String str14 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t2));
+                String str15 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t3));
+                String str16 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t4));
+                String str17 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t5));
+                String str18 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t6));
+                String str19 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t7));
+                String str20 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_t8));
+                String str21 = cursor.getString(cursor.getColumnIndex(MyManage.mcolumn_datetimecanceled));
 
                 OkHttpClient okHttpClient = new OkHttpClient();
                 RequestBody requestBody = new FormEncodingBuilder()
@@ -269,23 +282,23 @@ public class SettingActivity extends AppCompatActivity {
                         .add(MyManage.mcolumn_Med_id, str2)
                         .add(MyManage.mcolumn_trade_name, str3)
                         .add(MyManage.mcolumn_generic_line, str4)
-                        .add(MyManage.mcolumn_amount_tablet, str21)
-                        .add(MyManage.mcolumn_which_date_d, str5)
-                        .add(MyManage.mcolumn_appearance, str6)
-                        .add(MyManage.mcolumn_ea, str7)
-                        .add(MyManage.mcolumn_Main_pharmaco, str8)
-                        .add(MyManage.mcolumn_startdate, str9)
-                        .add(MyManage.mcolumn_finishdate, str10)
-                        .add(MyManage.mcolumn_prn, str11)
-                        .add(MyManage.mcolumn_t1, str12)
-                        .add(MyManage.mcolumn_t2, str13)
-                        .add(MyManage.mcolumn_t3, str14)
-                        .add(MyManage.mcolumn_t4, str15)
-                        .add(MyManage.mcolumn_t5, str16)
-                        .add(MyManage.mcolumn_t6, str17)
-                        .add(MyManage.mcolumn_t7, str18)
-                        .add(MyManage.mcolumn_t8, str19)
-                        .add(MyManage.mcolumn_datetimecanceled, str20)
+                        .add(MyManage.mcolumn_amount_tablet, str5)
+                        .add(MyManage.mcolumn_which_date_d, str6)
+                        .add(MyManage.mcolumn_appearance, str7)
+                        .add(MyManage.mcolumn_ea, str8)
+                        .add(MyManage.mcolumn_Main_pharmaco, str9)
+                        .add(MyManage.mcolumn_startdate, str10)
+                        .add(MyManage.mcolumn_finishdate, str11)
+                        .add(MyManage.mcolumn_prn, str12)
+                        .add(MyManage.mcolumn_t1, str13)
+                        .add(MyManage.mcolumn_t2, str14)
+                        .add(MyManage.mcolumn_t3, str15)
+                        .add(MyManage.mcolumn_t4, str16)
+                        .add(MyManage.mcolumn_t5, str17)
+                        .add(MyManage.mcolumn_t6, str18)
+                        .add(MyManage.mcolumn_t7, str19)
+                        .add(MyManage.mcolumn_t8, str20)
+                        .add(MyManage.mcolumn_datetimecanceled, str21)
                         .build();
 
                 Request.Builder builder = new Request.Builder();

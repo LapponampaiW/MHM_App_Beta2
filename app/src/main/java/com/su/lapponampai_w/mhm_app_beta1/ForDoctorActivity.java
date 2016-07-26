@@ -13,8 +13,8 @@ public class ForDoctorActivity extends AppCompatActivity {
     private EditText userEditText, passworeEditText;
     private String userString, passwordString;
 
-    private String[] userStrings = new String[]{"user1","user2","user3","user4","user5"};
-    private String[] passwordStrings = new String[]{"12345","12345","12345","12345","12345"};
+    private String[] userStrings = new String[]{"1","user2","user3","user4","user5"};
+    private String[] passwordStrings = new String[]{"1","12345","12345","12345","12345"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,7 @@ public class ForDoctorActivity extends AppCompatActivity {
             if (bolStatus) {
                 Toast.makeText(this, "User False", Toast.LENGTH_SHORT).show();
             } else if (passwordString.equals(truePassword)) {
-                startActivity(new Intent(ForDoctorActivity.this, ResultDoctorActivity.class));
+                startActivity(new Intent(ForDoctorActivity.this, TransferDataActivity.class));
             } else {
                 Toast.makeText(this, "Password False", Toast.LENGTH_SHORT).show();
             }

@@ -27,9 +27,11 @@ import java.io.IOException;
 public class ResultDoctorActivity extends AppCompatActivity {
 
     private EditText editText;
-    private String emailString, jsonString;
+    private String vnString, jsonString;
+    private String str1,str2,str3,str4,str5,str6,str7,str8,str9,str10,
+            str11,str12,str13,str14,str15,str16,str17,str18,str19,str20,str21,str22;
 
-    private static final String urlMainSTRING = "http://www.swiftcodingthai.com/mhm/get_main_where_email.php";
+    private static final String urlMainSTRING = "http://www.swiftcodingthai.com/mhm/get_main_where_email_edited.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class ResultDoctorActivity extends AppCompatActivity {
 
     } //Main Method
 
+    /* 26July
     private class SynMainTABLE extends AsyncTask<Void, Void, String> {
 
         //Explicit
@@ -62,6 +65,7 @@ public class ResultDoctorActivity extends AppCompatActivity {
         protected String doInBackground(Void... params) {
 
             try {
+           26July */
                 /*
                 OkHttpClient okHttpClient = new OkHttpClient();
                 RequestBody requestBody = new FormEncodingBuilder()
@@ -84,6 +88,9 @@ public class ResultDoctorActivity extends AppCompatActivity {
                     }
                 }));
                 */
+
+                //26July16 ทำการปิดถึงข้างล่าง
+                /*
                 return jsonString;
 
 
@@ -103,12 +110,15 @@ public class ResultDoctorActivity extends AppCompatActivity {
         } // onPost
     } // SynMain Class
 
+    */
+
+
     public void clickLoadData(View view) {
 
-        emailString = editText.getText().toString().trim();
+        vnString = editText.getText().toString().trim();
 
         //Check Space
-        if (emailString.equals("")) {
+        if (vnString.equals("")) {
             Toast.makeText(this,"Have Space",Toast.LENGTH_SHORT).show();
         } else {
             checkEmail();
@@ -120,7 +130,7 @@ public class ResultDoctorActivity extends AppCompatActivity {
         OkHttpClient okHttpClient = new OkHttpClient();
         RequestBody requestBody = new FormEncodingBuilder()
                 .add("isAdd", "true")
-                .add("EmailUser", emailString)
+                .add("VN", vnString)
                 .build();
 
         Request.Builder builder = new Request.Builder();
@@ -163,11 +173,12 @@ public class ResultDoctorActivity extends AppCompatActivity {
         String strJSON = jsonString;
         Log.d("6JulyV3", "JSON at Update ==>" + strJSON);
 
-        if (strJSON.length() != 4) {
+        if (!strJSON.equals("null")) {
             //email True
             Log.d("6JulyV3", "Email True");
 
-            deleteMainTABLE();
+            //deleteMainTABLE();
+
 
             updateValueFromServerToMain(strJSON);
 
@@ -175,6 +186,7 @@ public class ResultDoctorActivity extends AppCompatActivity {
         } else {
 
             Log.d("6JulyV3", "Email False");
+
         }
 
 
@@ -182,47 +194,55 @@ public class ResultDoctorActivity extends AppCompatActivity {
 
     private void updateValueFromServerToMain(String strJSON) {
 
+        Log.d("6JulyV3", "updateValueFromServerToMain");
+        MyManage myManage = new MyManage(this);
+
         try {
 
             JSONArray jsonArray = new JSONArray(strJSON);
-            for(int i=0;i<jsonArray.length();i++) {
+
+            for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                String strID = jsonObject.getString("id");
-                /*
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                String strID = jsonObject.getString("id");
-                */
-
-                MyManage myManage = new MyManage(this);
-                //myManage.addValueTomainTABLE();
+                //String strUnUse1 = jsonObject.getString("id");
+                str1 = jsonObject.getString("VN");
+                str2 = jsonObject.getString("Main_id");
+                //String strUnUse2 = jsonObject.getString("HN");
+                str3 = jsonObject.getString(MyManage.mcolumn_Med_id);
+                str4 = jsonObject.getString(MyManage.mcolumn_trade_name);
+                str5 = jsonObject.getString(MyManage.mcolumn_generic_line);
+                str6 = jsonObject.getString(MyManage.mcolumn_amount_tablet);
+                str7 = jsonObject.getString(MyManage.mcolumn_which_date_d);
+                str8 = jsonObject.getString(MyManage.mcolumn_appearance);
+                str9 = jsonObject.getString(MyManage.mcolumn_ea);
+                str10 = jsonObject.getString(MyManage.mcolumn_Main_pharmaco);
+                str11 = jsonObject.getString(MyManage.mcolumn_startdate);
+                str12 = jsonObject.getString(MyManage.mcolumn_finishdate);
+                str13 = jsonObject.getString(MyManage.mcolumn_prn);
+                str14 = jsonObject.getString(MyManage.mcolumn_t1);
+                str15 = jsonObject.getString(MyManage.mcolumn_t2);
+                str16 = jsonObject.getString(MyManage.mcolumn_t3);
+                str17 = jsonObject.getString(MyManage.mcolumn_t4);
+                str18 = jsonObject.getString(MyManage.mcolumn_t5);
+                str19 = jsonObject.getString(MyManage.mcolumn_t6);
+                str20 = jsonObject.getString(MyManage.mcolumn_t7);
+                str21 = jsonObject.getString(MyManage.mcolumn_t8);
+                str22 = jsonObject.getString(MyManage.mcolumn_datetimecanceled);
 
 
 
             }
 
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        Log.d("6JulyV3", str1);
+
+
     }
+
 
     private void deleteMainTABLE() {
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);

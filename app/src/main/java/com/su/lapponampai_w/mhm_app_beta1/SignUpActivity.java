@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -16,6 +17,7 @@ public class SignUpActivity extends AppCompatActivity {
     //Explicit_BindWidget
     private EditText editText_Username, editText_Password, editText_RePassword, editText_Email;
     private Button button_SignUp, button_ClearText;
+    private TextView textView;
 
     //Explicit String ที่รับค่าจาก EditText
     String string_rev_Username;
@@ -32,6 +34,9 @@ public class SignUpActivity extends AppCompatActivity {
         myManage = new MyManage(this);
 
         bindWidget();
+        textView.setText("Hospital Number :\n(optional)");
+
+
 
         click_button_SignUp_ClearText();
 
@@ -101,6 +106,9 @@ public class SignUpActivity extends AppCompatActivity {
         //Button
         button_SignUp = (Button) findViewById(R.id.button_SignUp_SignUp);
         button_ClearText = (Button) findViewById(R.id.button_SignUp_ClearText);
+
+        //TextView
+        textView = (TextView) findViewById(R.id.textView6);
 
     }
 

@@ -14,7 +14,7 @@ public class MyHelper extends SQLiteOpenHelper {
 
     //Create userTABLE
     private static final String CREATE_userTABLE = "create table userTABLE" +
-            "(_id integer primary key, User text, Password text, Stay text, Email text);";
+            "(_id integer primary key, User text, Password text, Stay text, HN text);";
 
     //Create table medTABLE
     private static final String CREATE_medTABLE = "create table medTABLE" +

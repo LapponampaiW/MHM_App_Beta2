@@ -362,7 +362,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         String strUser = cursor.getString(cursor.getColumnIndex(MyManage.ucolumn_User));
         String strPassword = cursor.getString(cursor.getColumnIndex(MyManage.ucolumn_Password));
         String strStay = cursor.getString(cursor.getColumnIndex(MyManage.ucolumn_Stay));
-        String strEmail = cursor.getString(cursor.getColumnIndex(MyManage.ucolumn_Email));
+        String strEmail = cursor.getString(cursor.getColumnIndex(MyManage.ucolumn_hn));
 
         /*
         RequestBody requestBody = new FormEncodingBuilder()

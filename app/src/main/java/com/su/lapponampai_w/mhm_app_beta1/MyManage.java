@@ -36,8 +36,9 @@ public class MyManage {
     public static final String ucolumn_User = "User";
     public static final String ucolumn_Password = "Password";
     public static final String ucolumn_Stay = "Stay";
-    public static final String ucolumn_Email = "Email";
-    public static final String[] column_userTABLE = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_Email};
+    //public static final String ucolumn_Email = "Email";
+    public static final String ucolumn_hn = "HN";
+    public static final String[] column_userTABLE = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_hn};
 
     //medTABLE
     public static final String medTABLE = "medTABLE";
@@ -1250,13 +1251,13 @@ public class MyManage {
     public void addValueSignUp(String user,
                                String password,
                                String stay,
-                               String email) {
+                               String hn) {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(ucolumn_User, user);
         contentValues.put(ucolumn_Password, password);
         contentValues.put(ucolumn_Stay, stay);
-        contentValues.put(ucolumn_Email, email);
+        contentValues.put(ucolumn_hn, hn);
         writeSqLiteDatabase.insert(userTABLE, null, contentValues);
     }
 
@@ -1282,7 +1283,7 @@ public class MyManage {
                         strAllFood[i] = cursor.getString(cursor.getColumnIndex(ucolumn_Stay));
                         break;
                     case 4:
-                        strAllFood[i] = cursor.getString(cursor.getColumnIndex(ucolumn_Email));
+                        strAllFood[i] = cursor.getString(cursor.getColumnIndex(ucolumn_hn));
                         break;
                     default:
                         break;

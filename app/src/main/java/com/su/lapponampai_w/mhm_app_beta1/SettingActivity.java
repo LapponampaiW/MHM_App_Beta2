@@ -26,7 +26,7 @@ import java.io.IOException;
 public class SettingActivity extends AppCompatActivity {
 
     //Explicit
-    Button buttonClickDoctor;
+    Button buttonConnect,buttonSuperUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +35,31 @@ public class SettingActivity extends AppCompatActivity {
 
         bindWidget();
 
-        clickDoctor();
+        clickConnect();
+
+        clickSuperUser();
+
+    }
+
+    private void clickSuperUser() {
+        buttonSuperUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
 
     }
 
     private void bindWidget() {
 
-        buttonClickDoctor = (Button) findViewById(R.id.btnForTransferData);
+        buttonConnect = (Button) findViewById(R.id.btnForTransferData);
+        buttonSuperUser = (Button) findViewById(R.id.btnForSuperUser);
     }
 
-    public void clickDoctor() {
-        buttonClickDoctor.setOnClickListener(new View.OnClickListener() {
+    public void clickConnect() {
+        buttonConnect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final EditText editText = new EditText(SettingActivity.this);
@@ -77,12 +91,12 @@ public class SettingActivity extends AppCompatActivity {
                                     MODE_PRIVATE, null);
                             Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM userTABLE", null);
                             cursor.moveToFirst();
-                            String strEmail = cursor.getString(cursor.getColumnIndex(MyManage.ucolumn_Email));
+                            String strHN = cursor.getString(cursor.getColumnIndex(MyManage.ucolumn_hn));
 
-                            Log.d("26July16", "strEmail :"+ strEmail);
+                            Log.d("26July16", "strEmail :"+ strHN);
 
                             //เริ่มทำการ Update Data to Server
-                            updateDatamainTABLE(strEmail);
+                            updateDatamainTABLE(strHN);
 
 
 

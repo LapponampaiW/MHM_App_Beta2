@@ -98,13 +98,13 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_marginBottom="@dimen/z2_margin_biggap" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="E-mail(Optional) :"
+                android:text="Hospital Number :"
                 android:id="@+id/textView6"
                 android:textSize="@dimen/heading3"
                 android:layout_marginLeft="@dimen/z2_margin_space"

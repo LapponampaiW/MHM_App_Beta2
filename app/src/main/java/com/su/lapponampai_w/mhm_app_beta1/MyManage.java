@@ -1596,7 +1596,9 @@ public class MyManage {
             if (!strREAD[i].equals("1")) {
                 Log.d("checkDrugInteraction", "strREAD :" + strREAD[i]);
 
-                Cursor cursormainTABLE = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null, null);
+                //เอาเฉพาะที่ยัง Active อยู่
+                //Cursor cursormainTABLE = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null, null);
+                Cursor cursormainTABLE = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, "DateTimeCanceled LIKE ''", null, null, null, null);
                 stringsMed_id = new String[cursormainTABLE.getCount()];
                 stringsGeneric1 = new String[cursormainTABLE.getCount()];
                 stringsGeneric2 = new String[cursormainTABLE.getCount()];

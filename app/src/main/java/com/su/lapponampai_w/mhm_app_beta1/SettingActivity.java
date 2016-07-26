@@ -22,11 +22,15 @@ import com.squareup.okhttp.RequestBody;
 import com.squareup.okhttp.Response;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class SettingActivity extends AppCompatActivity {
 
     //Explicit
     Button buttonConnect,buttonSuperUser;
+    String strAddVN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +50,7 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+                startActivity(new Intent(SettingActivity.this,ForDoctorActivity.class));
             }
         });
 
@@ -95,10 +99,14 @@ public class SettingActivity extends AppCompatActivity {
 
                             Log.d("26July16", "strEmail :"+ strHN);
 
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyMMddHHmmss");
+                            String time = simpleDateFormat.format(System.currentTimeMillis());
+                            strAddVN = time.concat(strHN);
+
                             //เริ่มทำการ Update Data to Server
-                            updateDatamainTABLE(strHN);
+                            updateDatamainTABLE_PHPMyAdmin(strHN,strAddVN);
 
-
+                            updateDatasumTABLE_PHPMyAdmin(strAddVN);
 
 
 
@@ -118,10 +126,66 @@ public class SettingActivity extends AppCompatActivity {
 
     }
 
-    private void updateDatamainTABLE(String strAddPrimaryKey) {
+    private void updateDatasumTABLE_PHPMyAdmin(String strAddVN) {
 
-        String strURL = "http://www.swiftcodingthai.com/mhm/add_mainTABLE.php";
-        //String strURL = "http://www.swiftcodingthai.com/mhm/add_mainTABLE_edited.php";
+        String strURL = "http://www.swiftcodingthai.com/mhm/add_sumTABLE.php";
+
+        MyManage myManage = new MyManage(this);
+
+        String[][] strings_sumTABLE = {myManage.readAllsumTABLE_Full(0),
+                myManage.readAllsumTABLE_Full(1),myManage.readAllsumTABLE_Full(2),
+                myManage.readAllsumTABLE_Full(3),myManage.readAllsumTABLE_Full(4),
+                myManage.readAllsumTABLE_Full(5),myManage.readAllsumTABLE_Full(6)};
+
+        if (!strings_sumTABLE[0][0].equals("")) {
+            //เริ่มใส่ค่า
+            for(int i = 0;i<strings_sumTABLE[0].length;i++) {
+                OkHttpClient okHttpClient = new OkHttpClient();
+                RequestBody requestBody = new FormEncodingBuilder()
+                        .add("isAdd", "true")
+                        .add("VN", strAddVN)
+                        .add(MyManage.column_Main_id, strings_sumTABLE[1][i])
+                        .add(MyManage.column_DateRef, strings_sumTABLE[2][i])
+                        .add(MyManage.column_TimeRef, strings_sumTABLE[3][i])
+                        .add(MyManage.column_DateCheck, strings_sumTABLE[4][i])
+                        .add(MyManage.column_TimeCheck, strings_sumTABLE[5][i])
+                        .add(MyManage.column_SkipHold, strings_sumTABLE[6][i])
+                        .build();
+                Request.Builder builder = new Request.Builder();
+                Request request = builder.url(strURL).post(requestBody).build();
+                Call call = okHttpClient.newCall(request);
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Request request, IOException e) {
+                        Log.d("26July16", "Failure in sumTABLE");
+                    }
+
+                    @Override
+                    public void onResponse(Response response) throws IOException {
+                        Log.d("26July16", "suscess in sumTABLE");
+
+                    }
+                });
+
+
+
+            }
+
+
+
+
+        }
+    }
+
+
+    private void updateDatamainTABLE_PHPMyAdmin(String strAddHN,String strAddVN) {
+
+        //ทำค่า VN ก่อน
+
+
+
+        //String strURL = "http://www.swiftcodingthai.com/mhm/add_mainTABLE.php";
+        String strURL = "http://www.swiftcodingthai.com/mhm/add_mainTABLE_edited2.php";
 
         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME,
                 MODE_PRIVATE, null);
@@ -156,8 +220,9 @@ public class SettingActivity extends AppCompatActivity {
                 OkHttpClient okHttpClient = new OkHttpClient();
                 RequestBody requestBody = new FormEncodingBuilder()
                         .add("isAdd", "true")
-                        .add("id", str1)
-                        .add("EmailUser", strAddPrimaryKey)
+                        .add("VN", strAddVN)
+                        .add("Main_id", str1)
+                        .add("HN", strAddHN)
                         .add(MyManage.mcolumn_Med_id, str2)
                         .add(MyManage.mcolumn_trade_name, str3)
                         .add(MyManage.mcolumn_generic_line, str4)
@@ -199,12 +264,6 @@ public class SettingActivity extends AppCompatActivity {
             } //for
             cursor.close();
         }
-
-
-
-
-
-
 
     }
 }

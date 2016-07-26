@@ -128,14 +128,14 @@ public class MyManage {
             mcolumn_t2, mcolumn_t3, mcolumn_t4, mcolumn_t5, mcolumn_t6, mcolumn_t7, mcolumn_t8, mcolumn_datetimecanceled};
 
     //sumTABLE
-    private static final String sum_table = "sumTABLE";
-    private static final String column_Main_id = "Main_id";
-    private static final String column_DateRef = "DateRef";
-    private static final String column_TimeRef = "TimeRef";
-    private static final String column_DateCheck = "DateCheck";
-    private static final String column_TimeCheck = "TimeCheck";
-    private static final String column_SkipHold = "SkipHold";
-    private static final String[] column_sumTABLE = {"_id", column_Main_id, column_DateRef, column_TimeRef, column_DateCheck, column_TimeCheck, column_SkipHold};
+    public static final String sum_table = "sumTABLE";
+    public static final String column_Main_id = "Main_id";
+    public static final String column_DateRef = "DateRef";
+    public static final String column_TimeRef = "TimeRef";
+    public static final String column_DateCheck = "DateCheck";
+    public static final String column_TimeCheck = "TimeCheck";
+    public static final String column_SkipHold = "SkipHold";
+    public static final String[] column_sumTABLE = {"_id", column_Main_id, column_DateRef, column_TimeRef, column_DateCheck, column_TimeCheck, column_SkipHold};
 
     //timeTABLE
     private static final String timeTABLE = "timeTABLE";

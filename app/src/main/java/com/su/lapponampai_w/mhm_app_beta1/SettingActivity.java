@@ -172,6 +172,7 @@ public class SettingActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Response response) throws IOException {
                         Log.d("26July16V3", "success in totalAmountTABLE");
+                        response.body().close();
                     }
                 });
 
@@ -219,6 +220,7 @@ public class SettingActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Response response) throws IOException {
                         Log.d("26July16", "success in sumTABLE");
+                        response.body().close();
 
                     }
                 });
@@ -313,6 +315,7 @@ public class SettingActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Response response) throws IOException {
                         Log.d("26July16", "mcolumn_id :"+ str1);
+                        response.body().close();
 
                     }
                 });

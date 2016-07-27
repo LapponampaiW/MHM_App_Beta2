@@ -1,6 +1,8 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -107,7 +109,7 @@ public class TransferDataActivity extends AppCompatActivity {
             //email True
             Log.d("6JulyV3", "Email True");
 
-            //deleteMainTABLE();
+            deleteMainTABLE();
 
 
             updateValueFromServerToMain(strJSON);
@@ -120,7 +122,16 @@ public class TransferDataActivity extends AppCompatActivity {
         }
     }
 
+    private void deleteMainTABLE() {
+
+        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
+        sqLiteDatabase.delete(MyManage.mainTABLE, null, null);
+
+    }
+
     private void updateValueFromServerToMain(String strJSON) {
+
+        MyManage myManage = new MyManage(this);
 
         try {
             jsonArray = new JSONArray(strJSON);
@@ -186,13 +197,21 @@ public class TransferDataActivity extends AppCompatActivity {
             Log.d("6July", "str21 : " + str21);
             Log.d("6July", "str22 : " + str22);
 
+            int i_id = Integer.parseInt(str2);
+
+            Log.d("6July", "i_id : " + i_id);
+            long l = myManage.addValueTomainTABLE(i_id, str3, str4, str5, str6, str7, str8, str9, str10,
+                    str11, str12, str13, str14, str15, str16, str17, str18, str19, str20, str21, str22);
+
 
 
 
         } //for
 
 
-
+        Intent intent = new Intent(TransferDataActivity.this,SplashScreen.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
 
 
         /*

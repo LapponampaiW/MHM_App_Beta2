@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -99,9 +100,11 @@ public class SettingActivity extends AppCompatActivity {
 
                             Log.d("26July16", "strEmail :"+ strHN);
 
-                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyMMddHHmmss");
-                            String time = simpleDateFormat.format(System.currentTimeMillis());
-                            strAddVN = time.concat(strHN);
+                            //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyMMddHHmmss");
+                            //String time = simpleDateFormat.format(System.currentTimeMillis());
+                            Random random = new Random();
+                            int myRandom = random.nextInt(9999);
+                            strAddVN = Integer.toString(myRandom);
 
                             //เริ่มทำการ Update Data to Server
                             updateDatamainTABLE_PHPMyAdmin(strHN,strAddVN);
@@ -193,6 +196,13 @@ public class SettingActivity extends AppCompatActivity {
                 myManage.readAllsumTABLE_Full(1),myManage.readAllsumTABLE_Full(2),
                 myManage.readAllsumTABLE_Full(3),myManage.readAllsumTABLE_Full(4),
                 myManage.readAllsumTABLE_Full(5),myManage.readAllsumTABLE_Full(6)};
+
+        Log.d("28July16", strings_sumTABLE[1][0]);
+        Log.d("28July16", strings_sumTABLE[2][0]);
+        Log.d("28July16", strings_sumTABLE[3][0]);
+        Log.d("28July16", strings_sumTABLE[4][0]);
+        Log.d("28July16", strings_sumTABLE[5][0]);
+        Log.d("28July16", strings_sumTABLE[6][0]);
 
         if (!strings_sumTABLE[0][0].equals("")) {
             //เริ่มใส่ค่า

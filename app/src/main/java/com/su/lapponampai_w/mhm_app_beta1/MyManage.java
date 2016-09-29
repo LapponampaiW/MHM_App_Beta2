@@ -606,7 +606,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
-
+        cursor.close();
         return strREAD;
     }
 
@@ -1079,6 +1079,7 @@ public class MyManage {
             }
 
         }
+        cursor.close();
         return strREAD;
 
     } //readAllmainTABLE1
@@ -1094,12 +1095,12 @@ public class MyManage {
                 strREAD[i] = cursor.getString(2);
                 cursor.moveToNext();
             }
-            cursor.close();
+
         } else {
             strREAD = new String[1];
             strREAD[0] = "";
         }
-
+        cursor.close();
         return strREAD;
 
     }
@@ -1152,6 +1153,7 @@ public class MyManage {
 
 
         }
+        cursor.close();
 
         return strREAD;
     } //filter_sumTABLE_by_Date
@@ -1555,7 +1557,7 @@ public class MyManage {
 
         String s;
         s = cursor.getString(cursor.getColumnIndex(gcolumn_generic_name));
-
+        cursor.close();
         return s;
     }
 
@@ -1685,12 +1687,12 @@ public class MyManage {
                             }
 
                         }
+                        cursorInteraction.close();
                     }
                 } //for mainTABLE
-
+                cursormainTABLE.close();
             } //first if
         } //first loop
-
     } //checkDrugInteraction
 
     //ทำ query drugInteractionTABLE_For_Query
@@ -1733,6 +1735,7 @@ public class MyManage {
                 cursor.moveToNext();
             }
         }
+        cursor.close();
         return strREAD;
     }
 

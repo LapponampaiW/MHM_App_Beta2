@@ -1081,6 +1081,27 @@ public class MyManage {
 
     } //readAllmainTABLE1
 
+    public String[] filter_sumTABLE_finding_DateRef_by_MainId_idDESC(String mainId) {
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE, "Main_id LIKE '" + mainId + "'", null, null, null, "_id DESC");
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for(int i = 0; i<cursor.getCount();i++) {
+                strREAD[i] = cursor.getString(2);
+                cursor.moveToNext();
+            }
+
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+
+        return strREAD;
+
+    }
+
 
     public String[] filter_sumTABLE__by_Date(String time, int intcolumn) {
 

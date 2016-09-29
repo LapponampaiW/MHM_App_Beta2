@@ -1593,11 +1593,23 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
             } else {  //ถ้าเป็น ED จะมี 0 1 2 3 4 5
 
+                if (stringDateBegin.equals(stringDateAfterProcess)) {
+                    addSumTABLE_Today = "Y";
+                } else {  //ถ้าไม่ใช่วันแรกแล้วเป็นวันอื่นๆ
+                    //อยากให้ทำการตรวจสอบจากครั้งหลังสุดใน sumTABLE ที่ได้ยาตัวนี้
 
+                    String stringDate_ED_Ref = Integer.toString(iMain_id);
+                    String[] stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(stringDate_ED_Ref);
+                    Log.d("29/09/16V1", stringsDate_ED_Ref[0]);
 
+                    if (queryDay[1].equals("0")) {
+                        addSumTABLE_Today = "Y";
+                    } else if (queryDay[1].equals("1")) {
+                        //วันเว้นวัน
+                    }
 
+                }
 
-                addSumTABLE_Today = "Y";
             }
 
             //addValueToSumTable

@@ -11,13 +11,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 public class SplashScreen extends AppCompatActivity {
 
     MyManage myManage;
     int anInt;
+    String stringDateRefAdd7, stringCurrentAdd7;
 
 
     @Override
@@ -82,6 +86,8 @@ public class SplashScreen extends AppCompatActivity {
     }  //Main Method
 
     private void updatesumTABLE00() {
+
+        Log.d("29/09/16V1", "เข้าupdatesumTABLE00");
         MyData myData = new MyData();
 
         String[] stringsREAD_mainTABLE = myManage.readAllMainTABLE_Full(11); //เอามา check ว่า mainTABLE มียาป่าว
@@ -90,6 +96,37 @@ public class SplashScreen extends AppCompatActivity {
 
         String[] stringsDateRef = myManage.readAllsumTABLE_Full(2); //check วันที่มีการ Add ยาลง sumTABLE ล่าสุด
         String currentDay = myData.currentDay();  //ค่าของวันนี้
+
+
+        // 29/09/16 ==>ดูว่าอีก 7 วันข้างหน้ามียาหรือยัง
+        Calendar calendarCurrent = Calendar.getInstance();
+        calendarCurrent.add(Calendar.DAY_OF_MONTH,7);
+        Date dateCurrent = calendarCurrent.getTime(); //อีก 7 วันนับจากวันนี้ ของ smartPhone
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        /*
+        Date date = new Date();
+        try {
+            date = dateFormat.parse(stringsDateRef[0]);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        */
+
+        //Calendar calendarRef = Calendar.getInstance();
+        //calendarRef.setTime(date);
+        //calendarRef.add(Calendar.DAY_OF_MONTH, 7);
+        //Date dateRef = calendarRef.getTime(); //อีก 7 วันนับจากวันล่าสุดที่อยู่ใน sumTABLE
+
+        //stringDateRefAdd7 = dateFormat.format(dateRef);
+        stringCurrentAdd7 = dateFormat.format(dateCurrent); //ใช้อันนี้
+
+        Log.d("29/09/16V1", stringCurrentAdd7);
+
+
+        // 29/09/16V1 ลอง.....แค่นี้ก่อน
+
+
 
         //ดูว่ามีแต่ prn ก็ต้องยกเลิก
         String strCheckPRN = "Y";

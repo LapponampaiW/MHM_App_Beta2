@@ -612,7 +612,7 @@ public class MyManage {
     public String[] readAllsumTABLE_Full(int intColumn) {
         String[] strREAD = null;
 
-        Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE, null, null, null, null, "DateRef DESC");
+        Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE, null, null, null, null, "Main_id DESC");
         int intCount = cursor.getCount();
         if (intCount > 0) {
             cursor.moveToFirst();

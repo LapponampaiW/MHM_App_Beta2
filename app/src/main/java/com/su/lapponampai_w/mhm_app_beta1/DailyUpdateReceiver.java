@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -19,7 +22,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
     //Explicit
     private String[] mainIDStrings, timeRefStrings;
-    private String dateString;
+    private String dateString,stringCurrentAdd7;
     private String[] stringsREAD0, stringsREAD1, stringsREAD2,
             stringsREAD3, stringsREAD4, stringsREAD5, stringsREAD6, stringsREAD7, stringsREAD8,
             stringsREAD9, stringsREAD10, stringsREAD11, stringsREAD12, stringsREAD13, stringsREAD14,
@@ -69,6 +72,19 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         stringsDateRef = myManage.readAllsumTABLE_Full(2); //ค่า DateRef แบบ DESC ถ้ามีค่าของวันนี้แล้ว ก็ return
         currentDay = myData.currentDay();  //ค่าของวันนี้
 
+        //ทำ Ref อีก 7 วันขึ้นหน้า
+        Calendar calendarCurrent = Calendar.getInstance();
+        calendarCurrent.add(Calendar.DAY_OF_MONTH,7);
+        Date dateCurrent = calendarCurrent.getTime(); //อีก 7 วันนับจากวันนี้ ของ smartPhone
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        stringCurrentAdd7 = dateFormat.format(dateCurrent); //ใช้อันนี้
+
+        Log.d("29/09/16V1", stringCurrentAdd7);
+
+        //29/09/16 เสร็จสิ้นที่ทำใหม่
+
+
         String strCheckPRN = "Y";
         for(int i = 0;i<stringsREAD11.length;i++) {
             if (stringsREAD11[i].equals("N")) {
@@ -78,7 +94,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         //มีวันนี้แล้วหรือยัง
         String strDateRef = "N";
         for(int x = 0;x<stringsDateRef.length;x++) {
-            if (stringsDateRef[x].equals(currentDay)) {
+            if (stringsDateRef[x].equals(currentDay)) { // 290916 เปลี่ยนจาก currentDay เป็น อีก 7 วัน
                 strDateRef = "Y";
             }
         }

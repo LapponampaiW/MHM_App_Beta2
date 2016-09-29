@@ -1514,6 +1514,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         //เริ่มจากตรงนี้.... ถ้าไม่ได้เริ่มยาในวันนี้ต้องยังไม่แสดงหนะ
         myManage.addValueTomainTABLE(iMain_id,string1, string2, string3, string15, string4, string5, string16, string6, string18, string19, string20, string7, string8, string9, string10, string11, string12, string13, string14, "");
 
+
         //เอาค่า Med_id เป็นตัว query ในตาราง mainTABLE โดยเรียงจาก _id แบบ DESC
         String[] strings1 = myManage.readAllMainTABLE_string(string1, 0); //เอาค่าMain_id
         String[] stringsT1 = myManage.readAllMainTABLE_string(string1, 7); //T1
@@ -1568,7 +1569,9 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                 }
             }
 
-        } else {
+        } else {  //ถ้าเป็น ED จะมี 0 1 2 3 4 5
+
+
 
             addSumTABLE_Today = "Y";
         }

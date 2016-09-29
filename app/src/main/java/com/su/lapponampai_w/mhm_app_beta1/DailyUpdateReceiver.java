@@ -55,7 +55,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         stringsREAD8 = myManage.readAllMainTABLE_Full(8);
         stringsREAD9 = myManage.readAllMainTABLE_Full(9); //StartDate
         stringsREAD10 = myManage.readAllMainTABLE_Full(10);
-        stringsREAD11 = myManage.readAllMainTABLE_Full(11);
+        stringsREAD11 = myManage.readAllMainTABLE_Full(11); //prn
         stringsREAD12 = myManage.readAllMainTABLE_Full(12); //t1
         stringsREAD13 = myManage.readAllMainTABLE_Full(13);
         stringsREAD14 = myManage.readAllMainTABLE_Full(14);
@@ -100,8 +100,8 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
             Toast.makeText(context,"มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
             return;
         }
-        //
         else {
+            //เริ่มทำการ Add ค่าของวันนี้ลงใน sumTABLE
             Log.d("UpdatesumTABLE", "ค่าตำแหน่งที่ 0 : " + stringsREAD0[0]);
             Log.d("UpdatesumTABLE", "ค่าตำแหน่งที่ 1 : " + stringsREAD1[0]);
             Log.d("UpdatesumTABLE", "ค่าตำแหน่งที่ 2 : " + stringsREAD2[0]);

@@ -618,7 +618,7 @@ public class MyManage {
             cursor.moveToFirst();
             strREAD = new String[cursor.getCount()];
             for (int i = 0; i < cursor.getCount(); i++) {
-                strREAD[i] = cursor.getString(intColumn);
+                strREAD[i] = cursor.getString(intColumn); //เอาเฉพาะค่าของ DateRef มา
                 cursor.moveToNext();
             } //for
         } else {

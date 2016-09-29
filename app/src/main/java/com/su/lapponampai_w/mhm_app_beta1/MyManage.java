@@ -237,6 +237,8 @@ public class MyManage {
 
     } //Constructor
 
+
+
     public String[] filterMainTABLE_Mainid6Digit(String strNewMain_id) {
         String[] strREAD = null;
 
@@ -1092,7 +1094,7 @@ public class MyManage {
                 strREAD[i] = cursor.getString(2);
                 cursor.moveToNext();
             }
-
+            cursor.close();
         } else {
             strREAD = new String[1];
             strREAD[0] = "";

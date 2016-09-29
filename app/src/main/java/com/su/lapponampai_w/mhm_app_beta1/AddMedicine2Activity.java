@@ -1600,13 +1600,55 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
                     String stringDate_ED_Ref = Integer.toString(iMain_id);
                     String[] stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(stringDate_ED_Ref);
-                    Log.d("29/09/16V1", stringsDate_ED_Ref[0]);
+
+                    Date dateRef = myData.stringChangetoDateWithOutTime(stringsDate_ED_Ref[0]); //dateRef ก่อนนำไป add ค่า
+                    Calendar calendarRef = Calendar.getInstance();
+                    calendarRef.setTime(dateRef);  //calendarRef ก่อนนำไป add ค่า
+
+                    //เทียบ date ที่ add ค่าแล้ว กับ dateAfterProcess จากข้างบน
 
                     if (queryDay[1].equals("0")) {
                         addSumTABLE_Today = "Y";
                     } else if (queryDay[1].equals("1")) {
                         //วันเว้นวัน
+                        calendarRef.add(Calendar.DAY_OF_MONTH,2);
+                        Date date = calendarRef.getTime();
+                        if (date.compareTo(dateAfterProcess) == 0) {
+                            addSumTABLE_Today = "Y";
+                        }
+                    } else if (queryDay[1].equals("2")) {
+                        //วันเว้นวัน
+                        calendarRef.add(Calendar.DAY_OF_MONTH,3);
+                        Date date = calendarRef.getTime();
+                        if (date.compareTo(dateAfterProcess) == 0) {
+                            addSumTABLE_Today = "Y";
+                        }
+                    } else if (queryDay[1].equals("3")) {
+                        //วันเว้นวัน
+                        calendarRef.add(Calendar.DAY_OF_MONTH,4);
+                        Date date = calendarRef.getTime();
+                        if (date.compareTo(dateAfterProcess) == 0) {
+                            addSumTABLE_Today = "Y";
+                        }
+                    } else if (queryDay[1].equals("4")) {
+                        //วันเว้นวัน
+                        calendarRef.add(Calendar.DAY_OF_MONTH,5);
+                        Date date = calendarRef.getTime();
+                        if (date.compareTo(dateAfterProcess) == 0) {
+                            addSumTABLE_Today = "Y";
+                        }
+                    } else if (queryDay[1].equals("5")) {
+                        //วันเว้นวัน
+                        calendarRef.add(Calendar.DAY_OF_MONTH,6);
+                        Date date = calendarRef.getTime();
+                        if (date.compareTo(dateAfterProcess) == 0) {
+                            addSumTABLE_Today = "Y";
+                        }
                     }
+
+
+
+
 
                 }
 

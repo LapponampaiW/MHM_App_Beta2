@@ -1528,6 +1528,162 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
 
         //ต้องทำอย่างไรก็ได้ check ให้ได้ก่อนว่าวันนี้ต้องกินยาหรือไม่
+
+        // 290916 ==>> เริ่มทำการวนลูป 7 วันเพื่อเพิ่มค่าเข้าไปนะ
+
+
+        for(int iAddDate = 0;iAddDate <=9;iAddDate++) {
+            String stringDateBegin = myData.currentDay(); //ค่าของวันที่เริ่มต้นก็คือวันนี้
+            String addSumTABLE_Today = "N";
+            String stringIntervalDate = "N"; // Date อยู่ระหว่าง StartDate & FinishDate
+
+
+            Date dateBegin = myData.stringChangetoDateWithOutTime(stringDateBegin);
+            Date dateStartDate = myData.stringChangetoDateWithOutTime(string18);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dateBegin);
+            calendar.add(Calendar.DAY_OF_MONTH,iAddDate);
+
+            Date dateAfterProcess = calendar.getTime();
+
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String stringDateAfterProcess = simpleDateFormat.format(dateAfterProcess);
+
+
+            if (dateAfterProcess.compareTo(dateStartDate) >= 0) {
+                stringIntervalDate = "Y";
+            }
+
+            if (!string19.equals("")) {
+                Date dateFinishDate = myData.stringChangetoDateWithOutTime(string19);
+                if (dateAfterProcess.compareTo(dateFinishDate) > 0) {
+                    stringIntervalDate = "N";
+                }
+            }
+
+
+            //ต่อไปจะทำ AddsumTABLEToday
+            String current_DayOfWeek = Integer.toString(calendar.get(Calendar.DAY_OF_WEEK)); //เอาค่าตัวเลขของวันประจำสัปดาห์จาก calendar ที่ทำการเพิ่มวันตั้งแต่ 0 - 6 เรียบร้อยแล้ว
+            String current_DayOfMonth = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)); //เอาค่าตัวเลขของวันประจำเดือนจาก calendar ที่ทำการเพิ่มวันตั้งแต่ 0 - 6 เรียบร้อยแล้ว
+
+            Log.d("queryDay", "current_DayofWeek : " + current_DayOfWeek);
+            Log.d("queryDay", "current_DayofMonth : " + current_DayOfMonth);
+
+            String[] queryDay = string4.split(":");
+            String[] querySelectedDay = null;
+
+            Log.d("queryDay", "queryDay0 : " + queryDay[0]);
+            Log.d("queryDay", "queryDay1 : " + queryDay[1]);
+
+            if (!queryDay[0].equals("ED")) {
+                querySelectedDay = queryDay[1].split(",");
+                for (int i = 0; i < querySelectedDay.length; i++) {
+                    Log.d("queryDay", "querySelectedDay[] : " + querySelectedDay[i]);
+                    if (queryDay[0].equals("DOW")) {
+                        if (querySelectedDay[i].equals(current_DayOfWeek)) {
+                            addSumTABLE_Today = "Y";
+                        }
+                    }
+                    if (queryDay[0].equals("DOM")) {
+                        if (querySelectedDay[i].equals(current_DayOfMonth)) {
+                            addSumTABLE_Today = "Y";
+                        }
+                    }
+                }
+
+            } else {  //ถ้าเป็น ED จะมี 0 1 2 3 4 5
+
+
+
+
+
+                addSumTABLE_Today = "Y";
+            }
+
+            //addValueToSumTable
+            //*** ดูว่าเป็นวันนั้นๆ ต้องใส่ข้อมูลลงไปใน sumTABLE หรือไม่
+            Log.d("addValueToSumTable", strings1[0] + " " + stringDateAfterProcess);
+
+            if (addSumTABLE_Today.equals("Y") && stringIntervalDate.equals("Y")) {
+
+                if (!stringsT1[0].equals("")) {
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT1[0], "", "", "");
+                }
+
+                if (!stringsT2[0].equals("")) {
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT2[0], "", "", "");
+                }
+                if (!stringsT3[0].equals("")) {
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT3[0], "", "", "");
+                }
+                if (!stringsT4[0].equals("")) {
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT4[0], "", "", "");
+                }
+                if (!stringsT5[0].equals("")) {
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT5[0], "", "", "");
+                }
+                if (!stringsT6[0].equals("")) {
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT6[0], "", "", "");
+                }
+                if (!stringsT7[0].equals("")) {
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT7[0], "", "", "");
+                }
+                if (!stringsT8[0].equals("")) {
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT8[0], "", "", "");
+                }
+
+            }
+
+        }  //for
+
+        //Add จำนวนยาเข้า 2 TABLE
+        doubleAmountMedicine = Double.parseDouble(editTextCalculationAmount.getText().toString());
+        if (doubleAmountMedicine > 0) {
+
+            String[][] stringstotalAmountTABLE = {myManage.readAlltotalAmountTABLE(0),
+                    myManage.readAlltotalAmountTABLE(1),myManage.readAlltotalAmountTABLE(2),
+                    myManage.readAlltotalAmountTABLE(3)};
+
+            String sDate = myData.currentDateTime();
+            String string_Main_id = Integer.toString(iMain_id);
+            myManage.addValueTo_addUseTABLE(string_Main_id,"Add",doubleAmountMedicine,sDate);
+
+            String s = "N";
+            double doubleAmountInitialMedicine = 0;
+            String s_id = null;
+            for(int i = 0;i<stringstotalAmountTABLE[0].length;i++) {
+                if (stringstotalAmountTABLE[1][i].equals(string_Main_id)) {
+                    s = "Y";
+                    doubleAmountInitialMedicine = Double.parseDouble(stringstotalAmountTABLE[2][i]);
+                    s_id = stringstotalAmountTABLE[0][i];
+                }
+            }
+            if (s.equals("N")) {
+                myManage.addValueTo_totalAmountTABLE(string_Main_id, doubleAmountMedicine, sDate);
+            } else if (s.equals("Y")) {
+                //ทำการ UPdate
+                doubleAmountMedicine = doubleAmountInitialMedicine + doubleAmountMedicine;
+                String s_AmountMedicine = Double.toString(doubleAmountMedicine);
+                myManage.updateTotalAmountTABLE(s_id, s_AmountMedicine, sDate);
+                Log.d("MedicationAdd", "จำนวนเม็ดสะสม "+ s_AmountMedicine);
+
+            }
+
+        } //if(doubleAmountMedicine > 0)
+
+
+
+        Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);
+        startActivity(intent);
+        //ปิด Activity สุดท้าย
+        finish();
+
+
+
+
+
+        /*
+
         String currentDay = myData.currentDay();  //ค่าของวันนี้ & ค่า String ของวันเริ่มต้น คือ string18
         String addSumTABLE_Today = "N";
         String startDateToday = "N";
@@ -1655,6 +1811,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         startActivity(intent);
         //ปิด Activity สุดท้าย
         finish();
+
+        */
 
     }
 

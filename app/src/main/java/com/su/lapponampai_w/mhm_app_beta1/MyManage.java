@@ -630,6 +630,27 @@ public class MyManage {
         return strREAD;
     }
 
+    public String[] readAllsumTABLE_Full_Order_id_DESC(int intColumn) {
+        String[] strREAD = null;
+
+        Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE, null, null, null, null, "_id DESC");
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for (int i = 0; i < cursor.getCount(); i++) {
+                strREAD[i] = cursor.getString(intColumn); //เอาเฉพาะค่าของ DateRef มา
+                cursor.moveToNext();
+            } //for
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+        return strREAD;
+    }
+
+
+
     //Read All displayTABLE
     public String[] readAlldisplayTABLE(int intColumn) {
         String[] strREAD = null;

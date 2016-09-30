@@ -91,23 +91,20 @@ public class SplashScreen extends AppCompatActivity {
         MyData myData = new MyData();
 
         String[] stringsREAD_mainTABLE = myManage.readAllMainTABLE_Full(11); //เอามา check ว่า mainTABLE มียาป่าว หรือมีแต่ PRN (N หรือ Y)
-
-        String[] stringsDateRef = myManage.readAllsumTABLE_Full(2); //check วันที่มีการ Add ยาลง sumTABLE ล่าสุด
-
-
+        String[] stringsDateRef = myManage.readAllsumTABLE_Full_Order_id_DESC(2); //check วันที่มีการ Add ยาลง sumTABLE ล่าสุด
         // ปัญหา ไม่สามารถหาวันของใน stringsDateRef ได้
         Date dateRef = myData.stringChangetoDateWithOutTime(stringsDateRef[0]); //ได้ค่า Date ที่มีอยู่ใน sumTABLE ล่าสุด
-
-
-
-
         Log.d("30/09/2559",myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateRef)); //แสดง Log ที่มีในปัจจุบัน
-
-
         //ดูว่าอีก 9 วันข้างหน้าเป็นวันที่เท่าไหร่
+        String currentDay = myData.currentDay();
+        Date dateInitial = myData.stringChangetoDateWithOutTime(currentDay);
         Calendar calendarCurrent = Calendar.getInstance();
+        calendarCurrent.setTime(dateInitial);
         calendarCurrent.add(Calendar.DAY_OF_MONTH,9);
         Date dateFinalProcess = calendarCurrent.getTime(); //ได้ Date ของวันที่ควรจะเป็นมาแล้ว(9 วันข้างหน้า)
+
+
+
         Log.d("30/09/2559",myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateFinalProcess)); //แสดง Log ที่วันควรจะเป็น
 
         //ดูว่ามีแต่ prn ก็ต้องยกเลิก
@@ -122,6 +119,9 @@ public class SplashScreen extends AppCompatActivity {
         if (dateRef.compareTo(dateFinalProcess) >= 0) {
             strDateRef = "Y";
         }
+        int x = dateRef.compareTo(dateFinalProcess);
+        Log.d("30/09/2559",Integer.toString(x));
+        Log.d("30/09/2559",strDateRef);
 
         if (stringsREAD_mainTABLE[0].equals("")) {
             Log.d("UpdatesumTABLE", "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver");
@@ -136,7 +136,7 @@ public class SplashScreen extends AppCompatActivity {
 
         }
         //ถ้าจะ Test การเอาเข้าให้เอา else if อันนี้ออกไป
-        else if (strDateRef.equals("Y")) {
+        else if(strDateRef.equals("Y")) {
             Log.d("UpdatesumTABLE", "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver");
             Toast.makeText(SplashScreen.this, "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
             return;

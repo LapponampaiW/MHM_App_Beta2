@@ -347,6 +347,12 @@ public class MyData {
         return date;
     }
 
+    public String string_ddMMyyyy_ConvertedFromSpecificDate(Date date) {
+        //ใช้เมื่อต้องการเปลี่ยน Date เป็น String
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return simpleDateFormat.format(date);
+    }
+
 
 
 

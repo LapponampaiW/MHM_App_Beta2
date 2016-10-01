@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -1377,7 +1378,14 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         String[] stringsREAD_mainTABLE = myManage.read_mainTABLE_InCluded_DateTimeCanceled(0); //เอาค่ามาซักค่านึกไว้ check ว่า mainTABLE มียาหรือไม่
         String[] stringsREAD_sumTABLE = myManage.readAllsumTABLE_Full(0);
         if (stringsREAD_mainTABLE[0].equals("") && stringsREAD_sumTABLE[0].equals("")) {
-            checkDailyUpdateReceiver(); //เริ่มต้นการทำ boardcast ที่ยา Add เข้าไปครั้งแรก
+
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    checkDailyUpdateReceiver(); //เริ่มต้นการทำ boardcast ที่ยา Add เข้าไปครั้งแรก
+                }
+            },2000); // 2 วินาที
         }
 
 

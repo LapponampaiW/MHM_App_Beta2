@@ -69,6 +69,8 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         stringsREAD19 = myManage.readAllMainTABLE_Full(19); //T8
         stringsREAD20 = myManage.readAllMainTABLE_Full(20);  //TimeDateCanceled
 
+
+
         stringsDateRef = myManage.readAllsumTABLE_Full(2); //ค่า DateRef แบบ DESC ถ้ามีค่าของวันนี้แล้ว ก็ return
         currentDay = myData.currentDay();  //ค่าของวันนี้
 

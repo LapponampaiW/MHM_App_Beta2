@@ -21,7 +21,6 @@ public class SplashScreen extends AppCompatActivity {
 
     MyManage myManage;
     int anInt;
-    String stringDateRefAdd7, stringCurrentAdd7;
 
 
     @Override

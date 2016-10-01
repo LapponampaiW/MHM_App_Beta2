@@ -71,20 +71,17 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
 
 
-        stringsDateRef = myManage.readAllsumTABLE_Full(2); //ค่า DateRef แบบ DESC ถ้ามีค่าของวันนี้แล้ว ก็ return
-        currentDay = myData.currentDay();  //ค่าของวันนี้
-
-        //ทำ Ref อีก 7 วันขึ้นหน้า
+        String[] stringsDateRef = myManage.readAllsumTABLE_Full_Order_id_DESC(2); //check วันที่มีการ Add ยาลง sumTABLE ล่าสุด
+        // ปัญหา ไม่สามารถหาวันของใน stringsDateRef ได้
+        Date dateRef = myData.stringChangetoDateWithOutTime(stringsDateRef[0]); //ได้ค่า Date ที่มีอยู่ใน sumTABLE ล่าสุด
+        Log.d("30/09/2559",myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateRef)); //แสดง Log ที่มีในปัจจุบัน
+        //ดูว่าอีก 9 วันข้างหน้าเป็นวันที่เท่าไหร่
+        String currentDay = myData.currentDay();
+        Date dateInitial = myData.stringChangetoDateWithOutTime(currentDay);
         Calendar calendarCurrent = Calendar.getInstance();
-        calendarCurrent.add(Calendar.DAY_OF_MONTH,7);
-        Date dateCurrent = calendarCurrent.getTime(); //อีก 7 วันนับจากวันนี้ ของ smartPhone
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        stringCurrentAdd7 = dateFormat.format(dateCurrent); //ใช้อันนี้
-
-        Log.d("29/09/16V1", stringCurrentAdd7);
-
-        //29/09/16 เสร็จสิ้นที่ทำใหม่
+        calendarCurrent.setTime(dateInitial);
+        calendarCurrent.add(Calendar.DAY_OF_MONTH,9);
+        Date dateFinalProcess = calendarCurrent.getTime(); //ได้ Date ของวันที่ควรจะเป็นมาแล้ว(9 วันข้างหน้า)
 
 
         String strCheckPRN = "Y";
@@ -93,12 +90,10 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                 strCheckPRN = "N";
             }
         }
-        //มีวันนี้แล้วหรือยัง
+        //มีถึงอีก 9 วันข้างหน้าแล้วหรือยัง
         String strDateRef = "N";
-        for(int x = 0;x<stringsDateRef.length;x++) {
-            if (stringsDateRef[x].equals(currentDay)) { // 290916 เปลี่ยนจาก currentDay เป็น อีก 7 วัน
-                strDateRef = "Y";
-            }
+        if (dateRef.compareTo(dateFinalProcess) >= 0) {
+            strDateRef = "Y";
         }
 
 
@@ -148,28 +143,164 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                     stringsREAD18, stringsREAD19, stringsREAD20};
 
 
+            //(1/10/16)
+            do {
+                //String stringDateRef = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateRef);
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(dateRef);
+                calendar.add(Calendar.DAY_OF_MONTH,1);
+                dateRef = calendar.getTime(); //เปลี่ยนค่าของ dateRef ให้มีค่าวันที่มากขึ้น 1 วัน
+
+                String stringDateRef = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateRef); // ค่า Text ของวันที่ที่ต้องการเพิ่มเข้าใน sumTABLE
+
+
+                //เริ่มยากจากตรงนี้!!!!
+                for (int i = 0; i < stringsReadAll_MainTABLE[i].length; i++) {  // Loop เท่ากับจำนวนแถว
+                    checkFinishDay = "N";
+                    checkStartDay = "N";
+                    checkWhich_Date_D = "N";
+                    if (stringsReadAll_MainTABLE[20][i].equals("")) { //ยาถูก Cancel ไปหรือยัง!!!
+                        Log.d("UpdatesumTABLE", "ค่าตำแหน่งที่ 20 ว่าง : " + i);
+                        //ถ้ายายัง Active อยู่!!!
+
+
+                        //currentDay = myData.currentDay();  //ค่าของวันนี้
+                        //Date dateToday = myData.stringChangetoDateWithOutTime(currentDay);
+                        Date dateStartDate = myData.stringChangetoDateWithOutTime(stringsReadAll_MainTABLE[9][i]); //ค่า Date ของ StartDate
+
+                        // เช็ค FinishDate ว่ายังต้องทานต่อหรือไม่
+                        if (!stringsReadAll_MainTABLE[10][i].equals("")) { //ถ้า FinishDate ไม่เท่ากับค่าว่าง แปลว่ามีวันที่ต้องหยุดทาน
+                            Date dateFinishDate = myData.stringChangetoDateWithOutTime(stringsReadAll_MainTABLE[10][i]); //ค่า Date ของ FinishDate
+                            Log.d("UpdatesumTABLE", "dateFinishDate  : " + dateFinishDate);
+                            if (dateRef.compareTo(dateFinishDate) <= 0) {
+                                checkFinishDay = "Y";
+                            } else {
+                                checkFinishDay = "N"; //แปลว่าเลยวันที่ต้องใช้มาแล้ว
+                            }
+
+                        } else {
+                            checkFinishDay = "Y";
+                        }
+
+                        //เช็ค StartDate ว่าเริ่มหรือยัง
+                        if (dateRef.compareTo(dateStartDate) >= 0) {
+                            checkStartDay = "Y";
+                        } else {
+                            checkStartDay = "N";
+                        }
 
 
 
-            for (int i = 0; i < stringsReadAll_MainTABLE[i].length; i++) {
+
+                        //String current_DayOfWeek = myData.current_DayOfWeek();  //ค่าเป็นเลข ของ DayofWeek
+                        //String current_DayOfMonth = myData.current_DayOfMonth(); //ค่าเป็นเลข ของ DayofMonth
+                        String current_DayOfWeek = Integer.toString(calendar.get(Calendar.DAY_OF_WEEK)); //เอาค่าตัวเลขของวันประจำสัปดาห์จาก calendar ที่ทำการเพิ่มวันตั้งแต่ 0 - 6 เรียบร้อยแล้ว
+                        String current_DayOfMonth = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)); //เอาค่าตัวเลขของวันประจำเดือนจาก calendar ที่ทำการเพิ่มวันตั้งแต่ 0 - 6 เรียบร้อยแล้ว
+                        //เช็ค ว่าตาม Which_Date_D วันนี้ต้องทานหรือไม่!!!
+                        String[] queryDay = stringsReadAll_MainTABLE[5][i].split(":");
+                        String[] querySelectedDay = null;
+
+
+                        if (!queryDay[0].equals("ED")) {
+                            querySelectedDay = queryDay[1].split(",");
+                            for (int w = 0; w < querySelectedDay.length; w++) {
+                                Log.d("queryDay", "querySelectedDay[] : " + querySelectedDay[w]);
+                                if (queryDay[0].equals("DOW")) {
+                                    if (querySelectedDay[w].equals(current_DayOfWeek)) {
+                                        checkWhich_Date_D = "Y";
+                                    }
+                                }
+                                if (queryDay[0].equals("DOM")) {
+                                    if (querySelectedDay[w].equals(current_DayOfMonth)) {
+                                        checkWhich_Date_D = "Y";
+                                    }
+                                }
+                            }
+
+                        } else {  //ถ้าเป็น ED จะมี 0 1 2 3 4 5
+                            checkWhich_Date_D = "Y";
+                        }
+
+                        /*
+
+                        if (!queryDay[0].equals("ED")) {
+                            querySelectedDay = queryDay[1].split(",");
+                            for (int w = 0; w < querySelectedDay.length; w++) {
+                                Log.d("queryDay", "querySelectedDay[] : " + querySelectedDay[w]);
+                                if (queryDay[0].equals("DOW")) {
+                                    if (querySelectedDay[w].equals(current_DayOfWeek)) {
+                                        checkWhich_Date_D = "Y";
+                                    }
+                                }
+                                if (queryDay[0].equals("DOM")) {
+                                    if (querySelectedDay[w].equals(current_DayOfMonth)) {
+                                        checkWhich_Date_D = "Y";
+                                    }
+                                }
+                            }
+
+                        } else {
+                            // เพิ่ม ED ตรงนี้
+                            checkWhich_Date_D = "Y";
+                        }
+
+                        */
+
+
+                    } // stringsReadAll_MainTABLE[10][i].equals("")
+
+                    //Check ค่าทั้งหมดแล้วว่าผ่าน ให้ทำการ add ค่าเข้ามาได้
+
+                    if (checkWhich_Date_D.equals("Y") && checkStartDay.equals("Y") && checkFinishDay.equals("Y")) {
+                        Log.d("UpdatesumTABLE", "ตำแหน่งที่ i addค่าเข้า SumTABLE ได้ : " + i);
+                        Toast.makeText(context,"Addข้อมูลลง sumTABLE : (Y,Y,Y)",Toast.LENGTH_LONG).show();
+
+                        //เริ่ม addข้อมูลลง sumTABLE
+                        //1 row ของ mainTABLE add ได้หลาย row ของ sumTABLE ตาม T1-T8 (column 12 - 19)
+                        for(int x = 12;x<=19;x++) {
+                            if (!stringsReadAll_MainTABLE[x][i].equals("")) {
+                                String stringMain_id = stringsReadAll_MainTABLE[0][i];  //Main_id
+                                String stringTimeRef = stringsReadAll_MainTABLE[x][i];  //TimeRef ตำแหน่งต่างๆ
+                                myManage.addValueToSumTable(stringMain_id, stringDateRef, stringTimeRef, "", "", "");
+                                Log.d("UpdatesumTABLE", "addValueToSumTable : " + stringMain_id + " " + stringDateRef + " " + stringTimeRef);
+                            }
+
+
+                        }
+
+                    } else {
+                        Log.d("UpdatesumTABLE", "ตำแหน่งที่ i addค่าเข้า SumTABLE ไม่ได้ : " + i);
+                    }
+
+
+                } //first "For"
+
+            } while (dateRef.compareTo(dateFinalProcess) < 0);
+
+
+
+            /*
+
+            for (int i = 0; i < stringsReadAll_MainTABLE[i].length; i++) {  // Loop เท่ากับจำนวนแถว
                 checkFinishDay = "N";
                 checkStartDay = "N";
                 checkWhich_Date_D = "N";
-                if (stringsReadAll_MainTABLE[20][i].equals("")) {
+                if (stringsReadAll_MainTABLE[20][i].equals("")) { //ยาถูก Cancel ไปหรือยัง!!!
                     Log.d("UpdatesumTABLE", "ค่าตำแหน่งที่ 20 ว่าง : " + i);
-
+                    //ถ้ายายัง Active อยู่!!!
                     currentDay = myData.currentDay();  //ค่าของวันนี้
                     Date dateToday = myData.stringChangetoDateWithOutTime(currentDay);
-                    Date dateStartDate = myData.stringChangetoDateWithOutTime(stringsReadAll_MainTABLE[9][i]);
+                    Date dateStartDate = myData.stringChangetoDateWithOutTime(stringsReadAll_MainTABLE[9][i]); //ค่า Date ของ StartDate
 
                     // เช็ค FinishDate ว่ายังต้องทานต่อหรือไม่
-                    if (!stringsReadAll_MainTABLE[10][i].equals("")) {
-                        Date dateFinishDate = myData.stringChangetoDateWithOutTime(stringsReadAll_MainTABLE[10][i]);
+                    if (!stringsReadAll_MainTABLE[10][i].equals("")) { //ถ้า FinishDate ไม่เท่ากับค่าว่าง แปลว่ามีวันที่ต้องหยุดทาน
+                        Date dateFinishDate = myData.stringChangetoDateWithOutTime(stringsReadAll_MainTABLE[10][i]); //ค่า Date ของ FinishDate
                         Log.d("UpdatesumTABLE", "dateFinishDate  : " + dateFinishDate);
                         if (dateToday.compareTo(dateFinishDate) <= 0) {
                             checkFinishDay = "Y";
                         } else {
-                            checkFinishDay = "N";
+                            checkFinishDay = "N"; //แปลว่าเลยวันที่ต้องใช้มาแล้ว
                         }
 
                     } else {
@@ -206,7 +337,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                         }
 
                     } else {
-
+                        // เพิ่ม ED ตรงนี้
                         checkWhich_Date_D = "Y";
                     }
 
@@ -238,6 +369,12 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
 
             } //first "For"
+
+
+            */
+
+
+
         }
 
 

@@ -91,6 +91,15 @@ public class SplashScreen extends AppCompatActivity {
 
         String[] stringsREAD_mainTABLE = myManage.readAllMainTABLE_Full(11); //เอามา check ว่า mainTABLE มียาป่าว หรือมีแต่ PRN (N หรือ Y)
         String[] stringsDateRef = myManage.readAllsumTABLE_Full_Order_id_DESC(2); //check วันที่มีการ Add ยาลง sumTABLE ล่าสุด
+
+        //2/10/2559.......ต้องแก้ 2 อัน....อันนี้กับ DailyupdateReceiver นะจ๊ะ
+
+
+
+
+
+
+
         // ปัญหา ไม่สามารถหาวันของใน stringsDateRef ได้
         Date dateRef = myData.stringChangetoDateWithOutTime(stringsDateRef[0]); //ได้ค่า Date ที่มีอยู่ใน sumTABLE ล่าสุด
         Log.d("30/09/2559",myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateRef)); //แสดง Log ที่มีในปัจจุบัน

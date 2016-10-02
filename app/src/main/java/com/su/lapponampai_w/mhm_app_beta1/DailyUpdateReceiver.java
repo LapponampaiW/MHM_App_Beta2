@@ -219,33 +219,60 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                             }
 
                         } else {  //ถ้าเป็น ED จะมี 0 1 2 3 4 5
-                            checkWhich_Date_D = "Y";
-                        }
 
-                        /*
 
-                        if (!queryDay[0].equals("ED")) {
-                            querySelectedDay = queryDay[1].split(",");
-                            for (int w = 0; w < querySelectedDay.length; w++) {
-                                Log.d("queryDay", "querySelectedDay[] : " + querySelectedDay[w]);
-                                if (queryDay[0].equals("DOW")) {
-                                    if (querySelectedDay[w].equals(current_DayOfWeek)) {
-                                        checkWhich_Date_D = "Y";
-                                    }
+                            String[] stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(stringsReadAll_MainTABLE[1][i]); //เอาค่า Main_id มา
+                            Date date_ED_Ref = myData.stringChangetoDateWithOutTime(stringsDate_ED_Ref[0]); //dateRef ก่อนนำไป add ค่Calendar calendarRef = Calendar.getInstance();
+
+                            Calendar calendarRef = Calendar.getInstance();
+                            calendarRef.setTime(date_ED_Ref);  //calendarRef ก่อนนำไป add ค่า
+
+                            //เทียบ date ที่ add ค่าแล้ว กับ dateAfterProcess จากข้างบน
+
+                            if (queryDay[1].equals("0")) {
+                                checkWhich_Date_D = "Y";
+                            } else if (queryDay[1].equals("1")) {
+                                //วันเว้นวัน
+                                calendarRef.add(Calendar.DAY_OF_MONTH,2);
+                                Date date = calendarRef.getTime();
+                                if (date.compareTo(dateRef) == 0) {
+                                    checkWhich_Date_D = "Y";
                                 }
-                                if (queryDay[0].equals("DOM")) {
-                                    if (querySelectedDay[w].equals(current_DayOfMonth)) {
-                                        checkWhich_Date_D = "Y";
-                                    }
+                            }  else if (queryDay[1].equals("2")) {
+                                //วันเว้นวัน
+                                calendarRef.add(Calendar.DAY_OF_MONTH,3);
+                                Date date = calendarRef.getTime();
+                                if (date.compareTo(dateRef) == 0) {
+                                    checkWhich_Date_D = "Y";
+                                }
+                            }  else if (queryDay[1].equals("3")) {
+                                //วันเว้นวัน
+                                calendarRef.add(Calendar.DAY_OF_MONTH,4);
+                                Date date = calendarRef.getTime();
+                                if (date.compareTo(dateRef) == 0) {
+                                    checkWhich_Date_D = "Y";
+                                }
+                            }  else if (queryDay[1].equals("4")) {
+                                //วันเว้นวัน
+                                calendarRef.add(Calendar.DAY_OF_MONTH,5);
+                                Date date = calendarRef.getTime();
+                                if (date.compareTo(dateRef) == 0) {
+                                    checkWhich_Date_D = "Y";
+                                }
+                            }  else if (queryDay[1].equals("5")) {
+                                //วันเว้นวัน
+                                calendarRef.add(Calendar.DAY_OF_MONTH,6);
+                                Date date = calendarRef.getTime();
+                                if (date.compareTo(dateRef) == 0) {
+                                    checkWhich_Date_D = "Y";
                                 }
                             }
 
-                        } else {
-                            // เพิ่ม ED ตรงนี้
-                            checkWhich_Date_D = "Y";
-                        }
 
-                        */
+
+
+
+                        }
 
 
                     } // stringsReadAll_MainTABLE[10][i].equals("")

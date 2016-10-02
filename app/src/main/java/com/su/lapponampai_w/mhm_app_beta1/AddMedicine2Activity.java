@@ -1733,6 +1733,9 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
         } //if(doubleAmountMedicine > 0)
 
+        String[] strUser = myManage.filter_userTABLE(1);
+        String strDate = myData.currentDay();
+        myManage.update_Last_updated(strUser[0],strDate);
 
 
         Intent intent = new Intent(AddMedicine2Activity.this, MainActivity.class);

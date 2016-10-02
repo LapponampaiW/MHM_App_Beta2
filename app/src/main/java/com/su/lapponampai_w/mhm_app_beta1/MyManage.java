@@ -38,6 +38,7 @@ public class MyManage {
     public static final String ucolumn_Stay = "Stay";
     //public static final String ucolumn_Email = "Email";
     public static final String ucolumn_hn = "HN";
+    public static final String ucolumn_last_updated = "Last_updated";
     public static final String[] column_userTABLE = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_hn};
 
     //medTABLE
@@ -1105,6 +1106,52 @@ public class MyManage {
 
     } //readAllmainTABLE1
 
+    public String[] filter_userTABLE(int intcolumn) {
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,null,null,null,null,null);
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+
+            for (int i = 0; i < cursor.getCount(); i++) {
+                switch (intcolumn) {
+                    case (0):
+                        strREAD[i] = cursor.getString(0);
+                        break;
+                    case (1):
+                        strREAD[i] = cursor.getString(1);
+                        break;
+                    case (2):
+                        strREAD[i] = cursor.getString(2);
+                        break;
+                    case (3):
+                        strREAD[i] = cursor.getString(3);
+                        break;
+                    case (4):
+                        strREAD[i] = cursor.getString(4);
+                        break;
+                    case (5):
+                        strREAD[i] = cursor.getString(5);
+                        break;
+                    default:
+                        break;
+
+                }
+                cursor.moveToNext();
+            }
+
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+
+
+        }
+        cursor.close();
+
+        return strREAD;
+    }
+
     public String[] filter_sumTABLE_finding_DateRef_by_MainId_idDESC(String mainId) {
         String[] strREAD = null;
         Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE, "Main_id LIKE '" + mainId + "'", null, null, null, "_id DESC");
@@ -1411,6 +1458,37 @@ public class MyManage {
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
 
     }
+
+    public void update_Last_updated(String username,String str_last_updated) {
+
+        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE, "User =?", new String[]{String.valueOf(username)}, null, null, null);
+
+        cursor.moveToFirst();
+
+
+        String id = cursor.getString(0);
+
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ucolumn_last_updated, str_last_updated);
+
+
+        writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public String[] filterAddMed(int intColumn, String strWord) {
         String[] strread = null;

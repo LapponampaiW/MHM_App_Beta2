@@ -68,6 +68,11 @@ public class SignUpActivity extends AppCompatActivity {
                         Toast t = Toast.makeText(SignUpActivity.this, "addValue _id,User,Password,Stay,Email", Toast.LENGTH_SHORT);
                         t.show();
                         myManage.addValueSignUp(string_rev_Username,string_rev_RePassword,"0",string_rev_Email);
+
+                        // (03/10/2559);; เพิ่ม Update_Last_updated
+                        myManage.update_Last_updated(string_rev_Username,"");
+
+
                         startActivity(new Intent(SignUpActivity.this,MainActivity.class));
                         finish();
 

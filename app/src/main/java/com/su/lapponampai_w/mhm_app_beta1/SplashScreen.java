@@ -90,17 +90,18 @@ public class SplashScreen extends AppCompatActivity {
         MyData myData = new MyData();
 
         String[] stringsREAD_mainTABLE = myManage.readAllMainTABLE_Full(11); //เอามา check ว่า mainTABLE มียาป่าว หรือมีแต่ PRN (N หรือ Y)
-        String[] stringsDateRef = myManage.readAllsumTABLE_Full_Order_id_DESC(2); //check วันที่มีการ Add ยาลง sumTABLE ล่าสุด
+        //String[] stringsDateRef = myManage.readAllsumTABLE_Full_Order_id_DESC(2); //check วันที่มีการ Add ยาลง sumTABLE ล่าสุด
 
         //2/10/2559.......ต้องแก้ 2 อัน....อันนี้กับ DailyupdateReceiver นะจ๊ะ
 
-
-
-
-
+        String[] strLast_updated = myManage.filter_userTABLE(5); //วันที่ในระบบล่าสุด
+        Date dateLast_updated = myData.stringChangetoDateWithOutTime(strLast_updated[0]);
+        String currentDay = myData.currentDay();
+        Date dateInitial = myData.stringChangetoDateWithOutTime(currentDay);
 
 
         // ปัญหา ไม่สามารถหาวันของใน stringsDateRef ได้
+        /*
         Date dateRef = myData.stringChangetoDateWithOutTime(stringsDateRef[0]); //ได้ค่า Date ที่มีอยู่ใน sumTABLE ล่าสุด
         Log.d("30/09/2559",myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateRef)); //แสดง Log ที่มีในปัจจุบัน
         //ดูว่าอีก 9 วันข้างหน้าเป็นวันที่เท่าไหร่
@@ -110,10 +111,10 @@ public class SplashScreen extends AppCompatActivity {
         calendarCurrent.setTime(dateInitial);
         calendarCurrent.add(Calendar.DAY_OF_MONTH,9);
         Date dateFinalProcess = calendarCurrent.getTime(); //ได้ Date ของวันที่ควรจะเป็นมาแล้ว(9 วันข้างหน้า)
+        */
 
 
-
-        Log.d("30/09/2559",myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateFinalProcess)); //แสดง Log ที่วันควรจะเป็น
+        //Log.d("30/09/2559",myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateFinalProcess)); //แสดง Log ที่วันควรจะเป็น
 
         //ดูว่ามีแต่ prn ก็ต้องยกเลิก
         String strCheckPRN = "Y";
@@ -124,12 +125,10 @@ public class SplashScreen extends AppCompatActivity {
         }
         //มีถึงอีก 9 วันข้างหน้าแล้วหรือยัง
         String strDateRef = "N";
-        if (dateRef.compareTo(dateFinalProcess) >= 0) {
-            strDateRef = "Y";
+        if (dateLast_updated.compareTo(dateInitial) >= 0) {
+            strDateRef = "Y"; //stopProcess
         }
-        int x = dateRef.compareTo(dateFinalProcess);
-        Log.d("30/09/2559",Integer.toString(x));
-        Log.d("30/09/2559",strDateRef);
+
 
         if (stringsREAD_mainTABLE[0].equals("")) {
             Log.d("UpdatesumTABLE", "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver");

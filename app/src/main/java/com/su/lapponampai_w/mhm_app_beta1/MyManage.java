@@ -1108,7 +1108,8 @@ public class MyManage {
 
     public String[] filter_userTABLE(int intcolumn) {
         String[] strREAD = null;
-        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,null,null,null,null,null);
+        String[] column_userTABLE_Extend = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_hn, ucolumn_last_updated};
+        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE_Extend,null,null,null,null,null);
         int intCount = cursor.getCount();
         if (intCount > 0) {
             cursor.moveToFirst();

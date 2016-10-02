@@ -69,8 +69,23 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         stringsREAD19 = myManage.readAllMainTABLE_Full(19); //T8
         stringsREAD20 = myManage.readAllMainTABLE_Full(20);  //TimeDateCanceled
 
+        String[] strLast_updated = myManage.filter_userTABLE(5); //วันที่ในระบบล่าสุด
+        Date dateLast_updated = myData.stringChangetoDateWithOutTime(strLast_updated[0]);
+        String currentDay = myData.currentDay();
+        Date dateInitial = myData.stringChangetoDateWithOutTime(currentDay);
+        Calendar calendarLast_updated = Calendar.getInstance();
+        calendarLast_updated.setTime(dateLast_updated);
+        calendarLast_updated.add(Calendar.DAY_OF_MONTH,9);
+        Date dateRef = calendarLast_updated.getTime();
 
 
+        Calendar calendarCurrent = Calendar.getInstance();
+        calendarCurrent.setTime(dateInitial);
+        calendarCurrent.add(Calendar.DAY_OF_MONTH,9);
+        Date dateFinalProcess = calendarCurrent.getTime();
+
+
+        /*
         String[] stringsDateRef = myManage.readAllsumTABLE_Full_Order_id_DESC(2); //check วันที่มีการ Add ยาลง sumTABLE ล่าสุด
         // ปัญหา ไม่สามารถหาวันของใน stringsDateRef ได้
         Date dateRef = myData.stringChangetoDateWithOutTime(stringsDateRef[0]); //ได้ค่า Date ที่มีอยู่ใน sumTABLE ล่าสุด
@@ -82,7 +97,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         calendarCurrent.setTime(dateInitial);
         calendarCurrent.add(Calendar.DAY_OF_MONTH,9);
         Date dateFinalProcess = calendarCurrent.getTime(); //ได้ Date ของวันที่ควรจะเป็นมาแล้ว(9 วันข้างหน้า)
-
+        */
 
         String strCheckPRN = "Y";
         for(int i = 0;i<stringsREAD11.length;i++) {
@@ -400,9 +415,10 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
             */
 
+            String[] strUser = myManage.filter_userTABLE(1);
+            myManage.update_Last_updated(strUser[0],currentDay);
 
-
-        }
+        } // จบกระบวนการ Else
 
 
 

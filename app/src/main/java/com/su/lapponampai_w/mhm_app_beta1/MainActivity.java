@@ -1072,7 +1072,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                             imageButtonM9.setVisibility(View.VISIBLE);
                         }
                         // มี M8 แล้ว เติม M9
-                    }
+                    } else if (strValue.equals("M9")) {
+                        String strCheckERR =  myManage.filterdisplayTABLE_Position_ERR();
+                        if (strCheckERR.equals("False")) {
+                            myManage.adddisplayTABLEValue("#ERR#", "", "", "", "", "", "","");
+                        }
+                    } //มี M9 แล้ว เติม #ERR#
 
                 } // if ของ Morning...
 
@@ -1215,7 +1220,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                             imageButtonA9.setVisibility(View.VISIBLE);
                         }
                         // มี A8 แล้ว เติม A9
-                    }
+                    } else if (strValue.equals("A9")) {
+                        String strCheckERR =  myManage.filterdisplayTABLE_Position_ERR();
+                        if (strCheckERR.equals("False")) {
+                            myManage.adddisplayTABLEValue("#ERR#", "", "", "", "", "", "","");
+                        }
+                    } //มี A9 แล้ว เติม #ERR#
 
                 } // if ของ Afternoon
 
@@ -1360,7 +1370,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                             imageButtonE9.setVisibility(View.VISIBLE);
                         }
                         // มี E8 แล้ว เติม E9
-                    }
+                    } else if (strValue.equals("E9")) {
+                        String strCheckERR =  myManage.filterdisplayTABLE_Position_ERR();
+                        if (strCheckERR.equals("False")) {
+                            myManage.adddisplayTABLEValue("#ERR#", "", "", "", "", "", "","");
+                        }
+                    } //มี E9 แล้ว เติม #ERR#
 
                 } // if ของ Evening
 
@@ -1504,7 +1519,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                             imageButtonB9.setVisibility(View.VISIBLE);
                         }
                         // มี B8 แล้ว เติม B9
-                    }
+                    } else if (strValue.equals("B9")) {
+                        String strCheckERR =  myManage.filterdisplayTABLE_Position_ERR();
+                        if (strCheckERR.equals("False")) {
+                            myManage.adddisplayTABLEValue("#ERR#", "", "", "", "", "", "","");
+                        }
+                    } //มี B9 แล้ว เติม #ERR#
 
                 } // if ของ Bedtime
 

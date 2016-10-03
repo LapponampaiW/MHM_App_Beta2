@@ -1008,6 +1008,26 @@ public class MyManage {
         return strREAD;
     }  //filterdisplayTABLE_MAEB_By_Position
 
+    public String filterdisplayTABLE_Position_ERR() {
+        String strREAD = null;
+
+        Cursor cursor = readSqLiteDatabase.query(displayTABLE, column_displayTABLE, "Position" + " LIKE '#ERR#'", null, null, null, null);
+
+        if (cursor != null) {
+            cursor.moveToFirst();
+            int i = cursor.getCount();
+            if (i > 0) {
+                strREAD = "True";
+            } else {
+                strREAD = "False";
+            }
+        }
+
+        return strREAD;
+
+    } //filterdisplayTABLE_Position_ERR
+
+
     public long adddisplayTABLEValue(String strdisplaycolumn_position,
                                      String strdisplaycolumn_sum_id,
                                      String strdisplaycolumn_main_id,

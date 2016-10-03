@@ -108,7 +108,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         delete_UnnecessaryData_sumTABLE();
 
-        displayMedicineByDay(today);
+        displayMedicineByDay(today); //แสดงเม็ดยาบนหน้าจอ
+        checkDisplay_ERR();
 
         //คลิก เพิ่มเติม
         clickAddbtn();
@@ -130,6 +131,27 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
 
     } //Main method
+
+    private void checkDisplay_ERR() {
+
+        //03/10/2559 ทำ AlertDialog
+        MyManage myManage = new MyManage(this);
+        String str_Check_ERR = myManage.filterdisplayTABLE_Position_ERR();
+        if (str_Check_ERR.equals("True")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setIcon(R.drawable.icon_question);
+            builder.setTitle("กล่องยาเต็ม!!!");
+            builder.setMessage("กล่องยาไม่สามารถแสดงจำนวนยาเกิด 9 รายการต่อ 1 มื้อได้ ท่านอาจเห็นยาที่ต้องรับประทานได้ไม่ครบทุกตัว");
+            builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
+        }
+
+    } //checkDisplay_ERR
 
     private void hideUnuse() {
 
@@ -457,6 +479,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             delete_UnnecessaryData_sumTABLE();
             textViewMainDate.setText("วันที่ : " + strResult_DateRef);
             displayMedicineByDay(strResult_DateRef);
+            //checkDisplay_ERR();
             clickAddbtn();
             clickMedicationList();
             click_ImageButtonAdherence();
@@ -469,6 +492,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             setDateAndTimeToday();
             textViewMainDate.setText("วันที่ : " + today);
             displayMedicineByDay(today);
+            //checkDisplay_ERR();
             clickAddbtn();
             clickMedicationList();
             //click_ImageButtonAdherence();
@@ -1528,11 +1552,11 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                 } // if ของ Bedtime
 
+            } //for
 
-            }
 
+        } //if แรก
 
-        }
 
 
     }

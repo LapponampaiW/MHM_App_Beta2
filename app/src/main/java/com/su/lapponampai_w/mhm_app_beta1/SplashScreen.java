@@ -336,6 +336,7 @@ public class SplashScreen extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+
                     Calendar calendar = Calendar.getInstance();
                     Calendar myCalendar1 = (Calendar) calendar.clone();
 
@@ -355,8 +356,14 @@ public class SplashScreen extends AppCompatActivity {
                     alarmManager.setRepeating(1, myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
                     Toast.makeText(getBaseContext(), "เริ่มทำการ BroadCAst", Toast.LENGTH_LONG).show();
+
                 }
-            },20000); // 3.5 วินาที
+            },10000); // 7 วินาที
+
+
+
+
+
 
 
         } //else  สุดท้าย

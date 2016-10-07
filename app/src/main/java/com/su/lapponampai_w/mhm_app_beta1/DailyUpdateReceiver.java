@@ -35,7 +35,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-
+        Toast.makeText(context, "เข้าหน้า DailyUpdateReceiver.Java", Toast.LENGTH_LONG).show();
         Log.d("UpdatesumTABLE", "เข้าที่หน้า DailyUpdateReceiver.Java แล้ว");
 
 

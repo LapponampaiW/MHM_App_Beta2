@@ -163,7 +163,7 @@ public class SplashScreen extends AppCompatActivity {
             Intent intent = new Intent(getBaseContext(), DailyUpdateReceiver.class);
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
-                    myRandom, intent, 0);
+                    myRandom, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 
             AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);

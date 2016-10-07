@@ -1374,7 +1374,6 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         MyManage myManage = new MyManage(this);
         MyData myData = new MyData();
 
-
         String[] stringsREAD_mainTABLE = myManage.read_mainTABLE_InCluded_DateTimeCanceled(0); //เอาค่ามาซักค่านึกไว้ check ว่า mainTABLE มียาหรือไม่
         String[] stringsREAD_sumTABLE = myManage.readAllsumTABLE_Full(0);
         if (stringsREAD_mainTABLE[0].equals("") && stringsREAD_sumTABLE[0].equals("")) {
@@ -1385,7 +1384,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                 public void run() {
                     checkDailyUpdateReceiver(); //เริ่มต้นการทำ boardcast ที่ยา Add เข้าไปครั้งแรก
                 }
-            },2000); // 2 วินาที
+            },1000); // 1 วินาที
         }
 
 
@@ -1608,7 +1607,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
                     String stringDate_ED_Ref = Integer.toString(iMain_id);
                     String[] stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(stringDate_ED_Ref);
-
+                    //Date dateRef = myData.stringChangetoDateWithOutTime(stringsDate_ED_Ref[0]); //dateRef ก่อนนำไป add ค่า
                     Date dateRef = myData.stringChangetoDateWithOutTime(stringsDate_ED_Ref[0]); //dateRef ก่อนนำไป add ค่า
                     Calendar calendarRef = Calendar.getInstance();
                     calendarRef.setTime(dateRef);  //calendarRef ก่อนนำไป add ค่า

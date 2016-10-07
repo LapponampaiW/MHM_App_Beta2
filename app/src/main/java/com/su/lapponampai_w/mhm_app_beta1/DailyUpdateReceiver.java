@@ -23,13 +23,13 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
     //Explicit
     private String[] mainIDStrings, timeRefStrings;
     private String dateString,stringCurrentAdd7;
-    private String[] stringsREAD0, stringsREAD1, stringsREAD2,
+    public String[] stringsREAD0, stringsREAD1, stringsREAD2,
             stringsREAD3, stringsREAD4, stringsREAD5, stringsREAD6, stringsREAD7, stringsREAD8,
             stringsREAD9, stringsREAD10, stringsREAD11, stringsREAD12, stringsREAD13, stringsREAD14,
             stringsREAD15, stringsREAD16, stringsREAD17, stringsREAD18, stringsREAD19, stringsREAD20,
             stringsDateRef;
 
-    private String currentDay, checkStartDay, checkFinishDay, checkWhich_Date_D;
+    public String currentDay, checkStartDay, checkFinishDay, checkWhich_Date_D;
 
 
     @Override

@@ -36,6 +36,7 @@ public class SplashScreen extends AppCompatActivity {
 
         updatesumTABLE00();
 
+
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -85,7 +86,7 @@ public class SplashScreen extends AppCompatActivity {
     }  //Main Method
 
 
-    private void updatesumTABLE00() {
+    public void updatesumTABLE00() {
 
         MyData myData = new MyData();
 
@@ -99,22 +100,6 @@ public class SplashScreen extends AppCompatActivity {
         String currentDay = myData.currentDay();
         Date dateInitial = myData.stringChangetoDateWithOutTime(currentDay);
 
-
-        // ปัญหา ไม่สามารถหาวันของใน stringsDateRef ได้
-        /*
-        Date dateRef = myData.stringChangetoDateWithOutTime(stringsDateRef[0]); //ได้ค่า Date ที่มีอยู่ใน sumTABLE ล่าสุด
-        Log.d("30/09/2559",myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateRef)); //แสดง Log ที่มีในปัจจุบัน
-        //ดูว่าอีก 9 วันข้างหน้าเป็นวันที่เท่าไหร่
-        String currentDay = myData.currentDay();
-        Date dateInitial = myData.stringChangetoDateWithOutTime(currentDay);
-        Calendar calendarCurrent = Calendar.getInstance();
-        calendarCurrent.setTime(dateInitial);
-        calendarCurrent.add(Calendar.DAY_OF_MONTH,9);
-        Date dateFinalProcess = calendarCurrent.getTime(); //ได้ Date ของวันที่ควรจะเป็นมาแล้ว(9 วันข้างหน้า)
-        */
-
-
-        //Log.d("30/09/2559",myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateFinalProcess)); //แสดง Log ที่วันควรจะเป็น
 
         //ดูว่ามีแต่ prn ก็ต้องยกเลิก
         String strCheckPRN = "Y";
@@ -157,19 +142,17 @@ public class SplashScreen extends AppCompatActivity {
             myCalendar1.set(Calendar.SECOND, 0);
             myCalendar1.set(Calendar.MILLISECOND, 10);
 
-            Random random = new Random();
-            int myRandom = random.nextInt(1000);
+
 
             Intent intent = new Intent(getBaseContext(), DailyUpdateReceiver.class);
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
-                    myRandom, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    1000, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 
             AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
             alarmManager.setRepeating(1, myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
-            Log.d("UpdatesumTABLE", "ทำ Alarm ขึ้นเองได้แล้ว" + myCalendar1.getTime().toString());
             Toast.makeText(getBaseContext(), "เริ่มทำการ BroadCAst", Toast.LENGTH_LONG).show();
 
         }

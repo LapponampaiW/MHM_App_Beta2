@@ -30,6 +30,8 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
             stringsDateRef;
 
     public String currentDay, checkStartDay, checkFinishDay, checkWhich_Date_D;
+    public MyManage myManage;
+    public MyData myData;
 
 
     @Override
@@ -42,10 +44,55 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         //เอาข้อมูลของยาที่ตั้งทานในวันนั้นๆ ทั้งหมดเข้ามาในหน้านี้
         //00:00 ถือเป็นของวันใหม่ไปเลยนะ
 
-        MyManage myManage = new MyManage(context);
-        MyData myData = new MyData();
+        myManage = new MyManage(context);
+        myData = new MyData();
 
         //รับค่า mainTABLE มาทั้งหมด
+
+        checkAndAddTabletInPillBox(context);
+
+
+
+        } // จบกระบวนการ Else
+
+
+
+
+
+        //เอาค่าจากตาราง mainTABLE มาให้หมด
+
+
+
+
+
+        /*
+        dateString = intent.getStringExtra("Date");
+
+        Toast.makeText(context, "Update sumTABLE Success", Toast.LENGTH_LONG).show();
+        Log.d("10MayV1", "Receive ทำงาน");
+        Log.d("10MayV1", "Date ที่ได้ ==>" + dateString);
+
+        MyManage myManage = new MyManage(context);
+        mainIDStrings = myManage.readAllMainTABLE(0);
+        timeRefStrings = myManage.readAllMainTABLE(1);
+
+        for(int i=0; i < mainIDStrings.length;i++) {
+            Log.d("10MayV1", "id = " + mainIDStrings[i]);
+            Log.d("10MayV1", "id = " + timeRefStrings[i]);
+
+            myManage.addValueToSumTable(mainIDStrings[i], dateString, timeRefStrings[i], "", "", "");
+
+
+
+        } //for
+
+
+        */
+
+
+
+    public void checkAndAddTabletInPillBox(Context context) {
+
 
         stringsREAD0 = myManage.readAllMainTABLE_Full(0);
         stringsREAD1 = myManage.readAllMainTABLE_Full(1);  //Main_id
@@ -75,13 +122,13 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         Date dateInitial = myData.stringChangetoDateWithOutTime(currentDay);
         Calendar calendarLast_updated = Calendar.getInstance();
         calendarLast_updated.setTime(dateLast_updated);
-        calendarLast_updated.add(Calendar.DAY_OF_MONTH,9);
+        calendarLast_updated.add(Calendar.DAY_OF_MONTH, 9);
         Date dateRef = calendarLast_updated.getTime();
 
 
         Calendar calendarCurrent = Calendar.getInstance();
         calendarCurrent.setTime(dateInitial);
-        calendarCurrent.add(Calendar.DAY_OF_MONTH,9);
+        calendarCurrent.add(Calendar.DAY_OF_MONTH, 9);
         Date dateFinalProcess = calendarCurrent.getTime();
 
 
@@ -100,7 +147,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         */
 
         String strCheckPRN = "Y";
-        for(int i = 0;i<stringsREAD11.length;i++) {
+        for (int i = 0; i < stringsREAD11.length; i++) {
             if (stringsREAD11[i].equals("N")) {
                 strCheckPRN = "N";
             }
@@ -114,21 +161,19 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
         if (stringsREAD0[0].equals("")) {
             Log.d("UpdatesumTABLE", "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver");
-            Toast.makeText(context,"ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
             return;
-        }
-        else if (strCheckPRN.equals("Y")) {
+        } else if (strCheckPRN.equals("Y")) {
             Log.d("UpdatesumTABLE", "ยาใน mainTABLE มีแต่ยา PRN : ยุติการ UpdateReceiver");
-            Toast.makeText(context,"ยาใน mainTABLE มีแต่ยา PRN :ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "ยาใน mainTABLE มีแต่ยา PRN :ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
             return;
         }
         //ถ้าจะ Test การเอาเข้าให้เอา else if อันนี้ออกไป
         else if (strDateRef.equals("Y")) {
             Log.d("UpdatesumTABLE", "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver");
-            Toast.makeText(context,"มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
             return;
-        }
-        else {
+        } else {
             //เริ่มทำการ Add ค่าของวันนี้ลงใน sumTABLE
             Log.d("UpdatesumTABLE", "ค่าตำแหน่งที่ 0 : " + stringsREAD0[0]);
             Log.d("UpdatesumTABLE", "ค่าตำแหน่งที่ 1 : " + stringsREAD1[0]);
@@ -164,7 +209,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(dateRef);
-                calendar.add(Calendar.DAY_OF_MONTH,1);
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
                 dateRef = calendar.getTime(); //เปลี่ยนค่าของ dateRef ให้มีค่าวันที่มากขึ้น 1 วัน
 
                 String stringDateRef = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateRef); // ค่า Text ของวันที่ที่ต้องการเพิ่มเข้าใน sumTABLE
@@ -204,8 +249,6 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                         } else {
                             checkStartDay = "N";
                         }
-
-
 
 
                         //String current_DayOfWeek = myData.current_DayOfWeek();  //ค่าเป็นเลข ของ DayofWeek
@@ -248,43 +291,40 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                                 checkWhich_Date_D = "Y";
                             } else if (queryDay[1].equals("1")) {
                                 //วันเว้นวัน
-                                calendarRef.add(Calendar.DAY_OF_MONTH,2);
+                                calendarRef.add(Calendar.DAY_OF_MONTH, 2);
                                 Date date = calendarRef.getTime();
                                 if (date.compareTo(dateRef) == 0) {
                                     checkWhich_Date_D = "Y";
                                 }
-                            }  else if (queryDay[1].equals("2")) {
+                            } else if (queryDay[1].equals("2")) {
                                 //วันเว้นวัน
-                                calendarRef.add(Calendar.DAY_OF_MONTH,3);
+                                calendarRef.add(Calendar.DAY_OF_MONTH, 3);
                                 Date date = calendarRef.getTime();
                                 if (date.compareTo(dateRef) == 0) {
                                     checkWhich_Date_D = "Y";
                                 }
-                            }  else if (queryDay[1].equals("3")) {
+                            } else if (queryDay[1].equals("3")) {
                                 //วันเว้นวัน
-                                calendarRef.add(Calendar.DAY_OF_MONTH,4);
+                                calendarRef.add(Calendar.DAY_OF_MONTH, 4);
                                 Date date = calendarRef.getTime();
                                 if (date.compareTo(dateRef) == 0) {
                                     checkWhich_Date_D = "Y";
                                 }
-                            }  else if (queryDay[1].equals("4")) {
+                            } else if (queryDay[1].equals("4")) {
                                 //วันเว้นวัน
-                                calendarRef.add(Calendar.DAY_OF_MONTH,5);
+                                calendarRef.add(Calendar.DAY_OF_MONTH, 5);
                                 Date date = calendarRef.getTime();
                                 if (date.compareTo(dateRef) == 0) {
                                     checkWhich_Date_D = "Y";
                                 }
-                            }  else if (queryDay[1].equals("5")) {
+                            } else if (queryDay[1].equals("5")) {
                                 //วันเว้นวัน
-                                calendarRef.add(Calendar.DAY_OF_MONTH,6);
+                                calendarRef.add(Calendar.DAY_OF_MONTH, 6);
                                 Date date = calendarRef.getTime();
                                 if (date.compareTo(dateRef) == 0) {
                                     checkWhich_Date_D = "Y";
                                 }
                             }
-
-
-
 
 
                         }
@@ -296,11 +336,11 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                     if (checkWhich_Date_D.equals("Y") && checkStartDay.equals("Y") && checkFinishDay.equals("Y")) {
                         Log.d("UpdatesumTABLE", "ตำแหน่งที่ i addค่าเข้า SumTABLE ได้ : " + i);
-                        Toast.makeText(context,"Addข้อมูลลง sumTABLE : (Y,Y,Y)",Toast.LENGTH_LONG).show();
+                        Toast.makeText(context, "Addข้อมูลลง sumTABLE : (Y,Y,Y)", Toast.LENGTH_LONG).show();
 
                         //เริ่ม addข้อมูลลง sumTABLE
                         //1 row ของ mainTABLE add ได้หลาย row ของ sumTABLE ตาม T1-T8 (column 12 - 19)
-                        for(int x = 12;x<=19;x++) {
+                        for (int x = 12; x <= 19; x++) {
                             if (!stringsReadAll_MainTABLE[x][i].equals("")) {
                                 String stringMain_id = stringsReadAll_MainTABLE[0][i];  //Main_id
                                 String stringTimeRef = stringsReadAll_MainTABLE[x][i];  //TimeRef ตำแหน่งต่างๆ
@@ -416,43 +456,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
             */
 
             String[] strUser = myManage.filter_userTABLE(1);
-            myManage.update_Last_updated(strUser[0],currentDay);
-
-        } // จบกระบวนการ Else
-
-
-
-
-
-        //เอาค่าจากตาราง mainTABLE มาให้หมด
-
-
-
-
-
-        /*
-        dateString = intent.getStringExtra("Date");
-
-        Toast.makeText(context, "Update sumTABLE Success", Toast.LENGTH_LONG).show();
-        Log.d("10MayV1", "Receive ทำงาน");
-        Log.d("10MayV1", "Date ที่ได้ ==>" + dateString);
-
-        MyManage myManage = new MyManage(context);
-        mainIDStrings = myManage.readAllMainTABLE(0);
-        timeRefStrings = myManage.readAllMainTABLE(1);
-
-        for(int i=0; i < mainIDStrings.length;i++) {
-            Log.d("10MayV1", "id = " + mainIDStrings[i]);
-            Log.d("10MayV1", "id = " + timeRefStrings[i]);
-
-            myManage.addValueToSumTable(mainIDStrings[i], dateString, timeRefStrings[i], "", "", "");
-
-
-
-        } //for
-
-
-        */
-
+            myManage.update_Last_updated(strUser[0], currentDay);
+        }
     }
 }  //Main Class

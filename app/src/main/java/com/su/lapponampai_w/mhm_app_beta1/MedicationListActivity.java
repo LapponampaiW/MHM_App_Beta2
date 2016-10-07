@@ -48,7 +48,6 @@ public class MedicationListActivity extends AppCompatActivity {
 
         recieveValue_mainTABLE();
 
-        //updatesumTABLE00();
 
 
 
@@ -64,78 +63,7 @@ public class MedicationListActivity extends AppCompatActivity {
 
     }
 
-    public void updatesumTABLE00() {
 
-        MyData myData = new MyData();
-
-        String[] stringsREAD_mainTABLE = myManage.readAllMainTABLE_Full(11); //เอามา check ว่า mainTABLE มียาป่าว หรือมีแต่ PRN (N หรือ Y)
-        //String[] stringsDateRef = myManage.readAllsumTABLE_Full_Order_id_DESC(2); //check วันที่มีการ Add ยาลง sumTABLE ล่าสุด
-
-        //2/10/2559.......ต้องแก้ 2 อัน....อันนี้กับ DailyupdateReceiver นะจ๊ะ
-
-        String[] strLast_updated = myManage.filter_userTABLE(5); //วันที่ในระบบล่าสุด
-        Date dateLast_updated = myData.stringChangetoDateWithOutTime(strLast_updated[0]);
-        String currentDay = myData.currentDay();
-        Date dateInitial = myData.stringChangetoDateWithOutTime(currentDay);
-
-
-        //ดูว่ามีแต่ prn ก็ต้องยกเลิก
-        String strCheckPRN = "Y";
-        for(int i = 0;i<stringsREAD_mainTABLE.length;i++) {
-            if (stringsREAD_mainTABLE[i].equals("N")) {
-                strCheckPRN = "N";
-            }
-        }
-        //มีถึงอีก 9 วันข้างหน้าแล้วหรือยัง
-        String strDateRef = "N";
-        if (dateLast_updated.compareTo(dateInitial) >= 0) {
-            strDateRef = "Y"; //stopProcess
-        }
-
-
-        if (stringsREAD_mainTABLE[0].equals("")) {
-            Log.d("UpdatesumTABLE", "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver");
-            Toast.makeText(MedicationListActivity.this,"ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
-            return;
-        }
-        //ดูว่าถ้ามีถ่าแต่ prn ก็ต้องยกเลิก
-        else if (strCheckPRN.equals("Y")) {
-            Log.d("UpdatesumTABLE", "ยาใน mainTABLE มีแต่ยา PRN : ยุติการ UpdateReceiver");
-            Toast.makeText(MedicationListActivity.this,"ยาใน mainTABLE มีแต่ยา PRN :ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
-            return;
-
-        }
-        //ถ้าจะ Test การเอาเข้าให้เอา else if อันนี้ออกไป
-        else if(strDateRef.equals("Y")) {
-            Log.d("UpdatesumTABLE", "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver");
-            Toast.makeText(MedicationListActivity.this, "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
-            return;
-        } else {
-
-            Calendar calendar = Calendar.getInstance();
-            Calendar myCalendar1 = (Calendar) calendar.clone();
-
-            myCalendar1.set(Calendar.HOUR_OF_DAY, 0);
-            myCalendar1.set(Calendar.MINUTE, 0);
-            myCalendar1.set(Calendar.SECOND, 0);
-            myCalendar1.set(Calendar.MILLISECOND, 10);
-
-            Random random = new Random();
-            int myRandom = random.nextInt(1000);
-
-            Intent intent = new Intent(getBaseContext(), DailyUpdateReceiver.class);
-
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
-                    myRandom, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-
-            AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-            alarmManager.setRepeating(1, myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-
-            Toast.makeText(getBaseContext(), "เริ่มทำการ BroadCAst", Toast.LENGTH_LONG).show();
-
-        }
-    } //updatesumTABLE00
 
 
     private void recieveValue_mainTABLE() {

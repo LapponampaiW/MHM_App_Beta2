@@ -75,7 +75,7 @@ public class SplashScreen extends AppCompatActivity {
 
 
             }
-        },2000); // 2 วินาที
+        },4000); // 2 วินาที
 
         myManage.nameGenericTABLEData();
         myManage.medTABLEData();

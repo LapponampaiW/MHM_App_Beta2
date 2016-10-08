@@ -62,6 +62,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
 
 
+
         //เอาค่าจากตาราง mainTABLE มาให้หมด
 
 

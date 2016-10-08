@@ -1,13 +1,20 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Handler;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -35,6 +42,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
     public String currentDay, checkStartDay, checkFinishDay, checkWhich_Date_D;
     public MyManage myManage;
     public MyData myData;
+    public int notifID = 100;
 
 
     @Override
@@ -50,20 +58,217 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         myManage = new MyManage(context);
         myData = new MyData();
 
-        //รับค่า mainTABLE มาทั้งหมด
-
-                checkAndAddTabletInPillBox(context);
 
 
+                //checkAndAddTabletInPillBox(context);
+                //สรุป ไม่ทำใน BoardCast แล้วจร้าาา
 
-        } // จบกระบวนการ Else
-
+        notificatonSetupAndDisplay(context);
 
 
 
 
 
-        //เอาค่าจากตาราง mainTABLE มาให้หมด
+        } // onReceive
+
+    private void notificatonSetupAndDisplay(final Context context) {
+
+        //
+
+
+        String strCurrentDay = myData.currentDay();
+        Date dateCurrent = myData.stringChangetoDateWithOutTime(strCurrentDay);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateCurrent);
+        Handler handler = new Handler();
+
+
+
+
+        for(int i = 0;i<10;i++) {
+            calendar.add(Calendar.DAY_OF_MONTH,i);
+            Date dateProcess = calendar.getTime(); // ได้วันที่ในการ หมุนแล้ว ใช้ในการ Search
+
+            String strDateProcess = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateProcess);
+            //ได้วันที่แบบ string
+
+            String[] str_sumTABLE_id = myManage.filter_sumTABLE__by_Date(strDateProcess, 0);
+            String[] str_sumTABLE_Mainid = myManage.filter_sumTABLE__by_Date(strDateProcess, 1);
+            String[] str_sumTABLE_DateRef = myManage.filter_sumTABLE__by_Date(strDateProcess, 2);
+            String[] str_sumTABLE_TimeRef = myManage.filter_sumTABLE__by_Date(strDateProcess, 3);
+
+            if (!str_sumTABLE_id[0].equals("")) {
+                String[][] strings_sumTABLE_Process = {str_sumTABLE_id,
+                        str_sumTABLE_Mainid, str_sumTABLE_DateRef, str_sumTABLE_TimeRef};
+
+                for(int x = 0; x < strings_sumTABLE_Process[0].length ; x++) {
+
+                    String strDateTimeNow = myData.currentDateTime_Withoutsecond();
+                    String strDateTimeTarget = strDateProcess + " " + str_sumTABLE_TimeRef[x];
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                    Date dateTimeNow = new Date();
+                    Date dateTimeTarget = new Date();
+                    Log.d("09/10/2559", "dateTimeTarget ==> " + " " + dateTimeTarget);
+                    try {
+                        dateTimeNow = dateFormat.parse(strDateTimeNow);
+                        dateTimeTarget = dateFormat.parse(strDateTimeTarget);
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    long milliSecNow = dateTimeNow.getTime();
+                    long millisecTarget = dateTimeTarget.getTime();
+
+                    final long lresult = millisecTarget - milliSecNow;
+                    Log.d("09/10/2559", Long.toString(lresult));
+
+                    if (lresult > 0) {
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                android.support.v4.app.NotificationCompat.Builder builder = new android.support.v4.app.NotificationCompat.Builder(context);
+                                builder.setSmallIcon(R.drawable.logo_carabao48);
+                                builder.setTicker("ถึงเวลาทานยาแล้ว");
+                                builder.setWhen(System.currentTimeMillis());
+                                builder.setContentTitle("มาสเตอร์ เตือนทานยาแล้ว");
+                                builder.setContentText("รายละเอียด");
+                                builder.setAutoCancel(true);
+
+                                Uri uri = RingtoneManager.getDefaultUri(Notification.DEFAULT_SOUND); //Defeault ของเสียง
+                                builder.setSound(uri);
+
+                                Notification notification = builder.build();
+                                NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                                notificationManager.notify(notifID,notification);
+                                notifID = notifID + 1;
+
+                            }
+                        },lresult); // 2 วินาที
+
+                    }
+
+                }
+
+            }
+
+        } //for
+
+
+
+
+
+
+
+        /*
+        Date currentDate = new Date(System.currentTimeMillis());
+        Log.d("1", currentDate.toString());
+
+        String string_date = "07/10/2016 20:00";
+        String string_date2 = "07/10/2016 20:01";
+
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date date = new Date();
+        Date date2 = new Date();
+        try {
+            date = dateFormat.parse(string_date);
+            date2 = dateFormat.parse(string_date2);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        long milliseconds = date.getTime();
+        long milliseconds2 = date2.getTime();
+        Log.d("12345", Long.toString(milliseconds));
+
+        final long lresult = milliseconds2 - milliseconds;
+
+        Log.d("12345", Long.toString(lresult));
+
+        showNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getBaseContext());
+                        builder.setContentTitle("Message");
+                        builder.setContentText("New Message");
+                        builder.setTicker("Alert New Message");
+                        builder.setSmallIcon(R.drawable.testdrawable);
+
+
+                        Intent moreInfoIntent = new Intent(getBaseContext(), MoreInfoNotification.class);
+
+                        //startActivity(moreInfoIntent);
+
+                        //เพื่อดูว่าหลังทำ InTent แล้ว....
+                        TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(getBaseContext());
+                        taskStackBuilder.addParentStack(MoreInfoNotification.class);
+                        taskStackBuilder.addNextIntent(moreInfoIntent);
+
+
+                        PendingIntent pendingIntent = taskStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                        builder.setContentIntent(pendingIntent);
+
+                        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                        notificationManager.notify(notifID,builder.build());
+
+                        isNotificActive = true;
+
+                    }
+                },lresult); // 2 วินาที
+
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getBaseContext());
+                        builder.setContentTitle("Message1");
+                        builder.setContentText("New Message1");
+                        builder.setTicker("Alert New Message1");
+                        builder.setSmallIcon(R.drawable.testdrawable);
+
+
+                        Intent moreInfoIntent = new Intent(getBaseContext(), MoreInfoNotification.class);
+
+                        //startActivity(moreInfoIntent);
+
+                        //เพื่อดูว่าหลังทำ InTent แล้ว....
+                        TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(getBaseContext());
+                        taskStackBuilder.addParentStack(MoreInfoNotification.class);
+                        taskStackBuilder.addNextIntent(moreInfoIntent);
+
+
+                        PendingIntent pendingIntent = taskStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                        builder.setContentIntent(pendingIntent);
+
+                        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                        notificationManager.notify(0,builder.build());
+
+                        isNotificActive = true;
+
+                    }
+                },6000); // 2 วินาที
+
+                */
+
+
+
+    }
+
+
+    //เอาค่าจากตาราง mainTABLE มาให้หมด
 
 
 
@@ -164,17 +369,17 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                 if (stringsREAD0[0].equals("")) {
                     Log.d("UpdatesumTABLE", "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver");
-                    //Toast.makeText(context, "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
                     return;
                 } else if (strCheckPRN.equals("Y")) {
                     Log.d("UpdatesumTABLE", "ยาใน mainTABLE มีแต่ยา PRN : ยุติการ UpdateReceiver");
-                    //Toast.makeText(context, "ยาใน mainTABLE มีแต่ยา PRN :ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "ยาใน mainTABLE มีแต่ยา PRN :ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
                     return;
                 }
                 //ถ้าจะ Test การเอาเข้าให้เอา else if อันนี้ออกไป
                 else if (strDateRef.equals("Y")) {
                     Log.d("UpdatesumTABLE", "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver");
-                    //Toast.makeText(context, "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
                     return;
                 } else {
                     //เริ่มทำการ Add ค่าของวันนี้ลงใน sumTABLE

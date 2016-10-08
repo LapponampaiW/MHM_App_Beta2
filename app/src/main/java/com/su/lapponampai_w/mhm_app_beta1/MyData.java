@@ -313,6 +313,14 @@ public class MyData {
         return today;
     }
 
+    public String currentDateTime_Withoutsecond() {
+        String today;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        today = dateFormat.format(System.currentTimeMillis());
+        return today;
+    }
+
+
     public String currentTime_Minus() {
         String today;
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");

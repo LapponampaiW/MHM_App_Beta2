@@ -136,35 +136,6 @@ public class SplashScreen extends AppCompatActivity {
         Date dateFinalProcess = calendarCurrent.getTime();
 
 
-        String strCheckPRN = "Y";
-        for (int i = 0; i < dailyUpdateReceiver.stringsREAD11.length; i++) {
-            if (dailyUpdateReceiver.stringsREAD11[i].equals("N")) {
-                strCheckPRN = "N";
-            }
-        }
-        //มีถึงอีก 9 วันข้างหน้าแล้วหรือยัง
-        String strDateRef = "N";
-        if (dateRef.compareTo(dateFinalProcess) >= 0) {
-            strDateRef = "Y";
-        }
-
-
-        if (dailyUpdateReceiver.stringsREAD0[0].equals("")) {
-            Log.d("UpdatesumTABLE", "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver");
-            Toast.makeText(getBaseContext(), "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
-            return;
-        } else if (strCheckPRN.equals("Y")) {
-            Log.d("UpdatesumTABLE", "ยาใน mainTABLE มีแต่ยา PRN : ยุติการ UpdateReceiver");
-            Toast.makeText(getBaseContext(), "ยาใน mainTABLE มีแต่ยา PRN :ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
-            return;
-        }
-        //ถ้าจะ Test การเอาเข้าให้เอา else if อันนี้ออกไป
-        else if (strDateRef.equals("Y")) {
-            Log.d("UpdatesumTABLE", "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver");
-            Toast.makeText(getBaseContext(), "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
-            return;
-        } else {
-
             String[][] stringsReadAll_MainTABLE = {dailyUpdateReceiver.stringsREAD0,
                     dailyUpdateReceiver.stringsREAD1, dailyUpdateReceiver.stringsREAD2,
                     dailyUpdateReceiver.stringsREAD3, dailyUpdateReceiver.stringsREAD4,
@@ -179,18 +150,18 @@ public class SplashScreen extends AppCompatActivity {
 
 
             //(1/10/16)
+        if (!stringsReadAll_MainTABLE[0][0].equals("")) {
             do {
-                //String stringDateRef = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateRef);
-
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(dateRef);
-                calendar.add(Calendar.DAY_OF_MONTH, 1);
+                //calendar.add(Calendar.DAY_OF_MONTH, 0);
                 dateRef = calendar.getTime(); //เปลี่ยนค่าของ dateRef ให้มีค่าวันที่มากขึ้น 1 วัน
 
                 String stringDateRef = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateRef); // ค่า Text ของวันที่ที่ต้องการเพิ่มเข้าใน sumTABLE
 
 
                 //เริ่มยากจากตรงนี้!!!!
+
                 for (int i = 0; i < stringsReadAll_MainTABLE[i].length; i++) {  // Loop เท่ากับจำนวนแถว
                     dailyUpdateReceiver.checkFinishDay = "N";
                     dailyUpdateReceiver.checkStartDay = "N";
@@ -335,9 +306,15 @@ public class SplashScreen extends AppCompatActivity {
 
                 } //first "For"
 
+
             } while (dateRef.compareTo(dateFinalProcess) < 0);
+        }
+
+
+
 
             //เปลี่ยนตรงนี้...08/10/2559
+
 
             Calendar calendar = Calendar.getInstance();  //ค้นหาเวลาในเครื่อง
             Calendar myCalendar1 = (Calendar) calendar.clone(); //clone เวลาในเครื่องเข้ามาใช้
@@ -352,7 +329,8 @@ public class SplashScreen extends AppCompatActivity {
 
 
 
-        } //else  สุดท้าย
+
+
 
     }
 

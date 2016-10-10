@@ -86,8 +86,11 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
 
         for(int i = 0;i<10;i++) {
-            calendar.add(Calendar.DAY_OF_MONTH,i);
-            Date dateProcess = calendar.getTime(); // ได้วันที่ในการ หมุนแล้ว ใช้ในการ Search
+            if (i != 0) {
+                calendar.add(Calendar.DAY_OF_MONTH,1);
+            }
+            Date dateProcess = calendar.getTime();
+             // ได้วันที่ในการ หมุนแล้ว ใช้ในการ Search
 
             String strDateProcess = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateProcess);
             //ได้วันที่แบบ string

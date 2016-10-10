@@ -26,7 +26,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         builder.setContentText("รายละเอียด");
         builder.setAutoCancel(true);
 
-        Uri uri = RingtoneManager.getDefaultUri(Notification.DEFAULT_SOUND); //Defeault ของเสียง
+        Uri uri = RingtoneManager.getDefaultUri(Notification.DEFAULT_VIBRATE); //Defeault ของเสียง
         builder.setSound(uri);
 
         Notification notification = builder.build();

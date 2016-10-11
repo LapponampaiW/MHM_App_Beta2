@@ -21,6 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Created by apple on 5/10/16.
@@ -43,6 +44,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
     public MyManage myManage;
     public MyData myData;
     public int notifID = 100;
+    public NotificationManager notificationManager;
 
 
     @Override
@@ -81,8 +83,16 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dateCurrent);
         Handler handler = new Handler();
+        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
 
+        for(int id = 100;id<500;id++) {
+
+            notifID = id;
+            //Log.d("09/10/2559",Integer.toString(id) );
+            notificationManager.cancel(id);
+
+        }
 
 
         for(int i = 0;i<10;i++) {
@@ -132,6 +142,39 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                             @Override
                             public void run() {
 
+
+                                NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+                                builder.setContentTitle("Message");
+                                builder.setContentText("New Message");
+                                builder.setTicker("Alert New Message");
+                                builder.setSmallIcon(R.drawable.logo_carabao48);
+
+
+                                Intent moreInfoIntent = new Intent(context, MainActivity.class);
+
+                                //startActivity(moreInfoIntent);
+
+                                //เพื่อดูว่าหลังทำ InTent แล้ว....
+                                TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(context);
+                                taskStackBuilder.addParentStack(MainActivity.class);
+                                taskStackBuilder.addNextIntent(moreInfoIntent);
+
+
+                                PendingIntent pendingIntent = taskStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                                builder.setContentIntent(pendingIntent);
+
+
+                                //Random random = new Random();
+                                //notifID = random.nextInt(10000);
+                                notifID = notifID + 1;
+
+
+                                notificationManager.notify(notifID,builder.build());
+
+                                //isNotificActive = true;
+
+                                /*
+
                                 android.support.v4.app.NotificationCompat.Builder builder = new android.support.v4.app.NotificationCompat.Builder(context);
                                 builder.setSmallIcon(R.drawable.logo_carabao48);
                                 builder.setTicker("ถึงเวลาทานยาแล้ว");
@@ -147,6 +190,8 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                                 NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
                                 notificationManager.notify(notifID,notification);
                                 notifID = notifID + 1;
+
+                                */
 
                             }
                         },lresult); // 2 วินาที

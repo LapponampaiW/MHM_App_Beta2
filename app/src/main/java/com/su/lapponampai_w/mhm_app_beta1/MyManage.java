@@ -525,6 +525,9 @@ public class MyManage {
         ContentValues contentValues = new ContentValues();
         contentValues.put(mcolumn_datetimecanceled,strDateTime);
         return writeSqLiteDatabase.update(mainTABLE, contentValues, "_id = " + str_id,null);
+
+
+
     }
 
     //Update totalAmountTABLE

@@ -316,23 +316,41 @@ public class SplashScreen extends AppCompatActivity {
             //เปลี่ยนตรงนี้...08/10/2559
 
 
-            Calendar calendar = Calendar.getInstance();  //ค้นหาเวลาในเครื่อง
-            Calendar myCalendar1 = (Calendar) calendar.clone(); //clone เวลาในเครื่องเข้ามาใช้
-            myCalendar1.add(Calendar.SECOND,1);
+        broadcastAndAddNotification(getBaseContext());
+        /*
+        Calendar calendar = Calendar.getInstance();  //ค้นหาเวลาในเครื่อง
+        Calendar myCalendar1 = (Calendar) calendar.clone(); //clone เวลาในเครื่องเข้ามาใช้
+        myCalendar1.add(Calendar.SECOND,1);
 
-            Intent alertIntent = new Intent(getBaseContext(), DailyUpdateReceiver.class);
+        Intent alertIntent = new Intent(getBaseContext(), DailyUpdateReceiver.class);
 
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(), 1000, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(), 1000, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-            alarmManager.set(1,myCalendar1.getTimeInMillis(),pendingIntent);
+        alarmManager.set(1,myCalendar1.getTimeInMillis(),pendingIntent);
+        */
 
+    }
 
+    public void broadcastAndAddNotification(Context context) {
 
+        Calendar calendar = Calendar.getInstance();  //ค้นหาเวลาในเครื่อง
+        Calendar myCalendar1 = (Calendar) calendar.clone(); //clone เวลาในเครื่องเข้ามาใช้
+        myCalendar1.add(Calendar.SECOND,1);
+
+        Intent alertIntent = new Intent(context, DailyUpdateReceiver.class);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 1000, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+
+        alarmManager.set(1,myCalendar1.getTimeInMillis(),pendingIntent);
+        Toast.makeText(context, "....broadcast สำเร็จ....", Toast.LENGTH_LONG).show();
 
 
 
     }
+
 
     private void updatesumTABLE00_New2() {
 

@@ -544,6 +544,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         }
 
 
+
+
+
         /*
         // ถ้ามีให้ลบทิ้งไป
         MyManage myManage = new MyManage(this);

@@ -512,6 +512,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         //เปิดmainTABLE จะเอาเฉพาะค่าที่ถูก cancel แล้ว
         String[] strMain_id_in_mainTABLE = myManage.read_mainTABLE_InCluded_DateTimeCanceled(0);
         String[] strDateTimeCanceled = myManage.read_mainTABLE_InCluded_DateTimeCanceled(20);
+        //11/10/59 เพิ่ม Prn
+        String[] strPRN = myManage.read_mainTABLE_InCluded_DateTimeCanceled(11);
         String[] strMain_id_in_sumTABlE_Today = myManage.filter_sumTABLE__by_Date(today, 1);
         String[] str_id_in_sumTABLE_Today = myManage.filter_sumTABLE__by_Date(today, 0);
         String[] str_DateCheck_in_sumTABLE_Today = myManage.filter_sumTABLE__by_Date(today, 4);
@@ -519,7 +521,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         int arrayIndex = 0;
         if (!strMain_id_in_mainTABLE.equals("") && !strMain_id_in_sumTABlE_Today.equals("")) {
             for(int i = 0;i<strMain_id_in_mainTABLE.length;i++) {
-                if (!strDateTimeCanceled[i].equals("")) {
+                //11/10/59 เพิ่ม Prn
+                if (!strDateTimeCanceled[i].equals("") || strPRN[i].equals("Y")) {
                     stringArrayList.add(arrayIndex, strMain_id_in_mainTABLE[i]);
                     arrayIndex = arrayIndex + 1;
                 }

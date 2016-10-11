@@ -1250,6 +1250,58 @@ public class MyManage {
         return strREAD;
     } //filter_sumTABLE_by_Date
 
+    public String[] filter_sumTABLE_by_Main_id_AND_DateRef(String main_id,String dateRef,int intcolumn) {
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE, "Main_id LIKE '" +
+                main_id + "' AND DateRef LIKE '" + dateRef + "'", null, null, null, "_id ASC");
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+
+            for (int i = 0; i < cursor.getCount(); i++) {
+
+                switch (intcolumn) {
+                    case (0):
+                        strREAD[i] = cursor.getString(0);
+                        break;
+                    case (1):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_Main_id));
+                        break;
+                    case (2):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_DateRef));
+                        break;
+                    case (3):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_TimeRef));
+                        break;
+                    case (4):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_DateCheck));
+                        break;
+                    case (5):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_TimeCheck));
+                        break;
+                    case (6):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_SkipHold));
+                        break;
+                    default:
+                        break;
+
+                }
+
+                cursor.moveToNext();
+            }
+
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+
+
+        }
+        cursor.close();
+
+        return strREAD;
+    }
+
 
     public long addValueTomainTABLE(int i_id,
                                     String strMed_id,

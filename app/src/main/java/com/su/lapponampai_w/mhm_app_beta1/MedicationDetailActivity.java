@@ -3,6 +3,7 @@ package com.su.lapponampai_w.mhm_app_beta1;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -318,6 +319,41 @@ public class MedicationDetailActivity extends AppCompatActivity {
                         Toast.makeText(MedicationDetailActivity.this,"ลบข้อมูลเสร็จสิ้น",Toast.LENGTH_SHORT).show();
                         MyManage myManage = new MyManage(MedicationDetailActivity.this);
                         myManage.updatemainTABLE_DateTimeCanceled(string0);
+                        //11/10/59.... ทำการลบตาม main_id..คือ string0 คัด id ของ sumTABLE ออกในลักษณะ loop
+                        for(int i = 0;i<=9;i++) {
+                            MyData myData = new MyData();
+                            String sDate = myData.currentDay();
+                            Date dDate = myData.stringChangetoDateWithOutTime(sDate);
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.setTime(dDate);
+                            calendar.add(Calendar.DAY_OF_MONTH,i);
+                            dDate = calendar.getTime();
+                            String sSpecificDate = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dDate);
+
+                            String[] strsumTABLE_filterID = myManage.filter_sumTABLE_by_Main_id_AND_DateRef
+                                    (string0, sSpecificDate, 0);
+                            //String[] strsumTABLE_filterMain_id = myManage.filter_sumTABLE_by_Main_id_AND_DateRef
+                            //        (string0, sSpecificDate, 1);
+                            //String[] strsumTABLE_filterDateRef = myManage.filter_sumTABLE_by_Main_id_AND_DateRef
+                            //        (string0, sSpecificDate, 2);
+                            String[] strsumTABLE_filterDateCheck = myManage.filter_sumTABLE_by_Main_id_AND_DateRef
+                                    (string0, sSpecificDate, 4);
+                            String[] strsumTABLE_filterSkipHold = myManage.filter_sumTABLE_by_Main_id_AND_DateRef
+                                    (string0, sSpecificDate, 6);
+
+                            if (!strsumTABLE_filterID[0].equals("")) {
+                                for(int x = 0;x < strsumTABLE_filterID.length;x++) {
+                                    if (strsumTABLE_filterDateCheck[x].equals("") &&
+                                            strsumTABLE_filterSkipHold[x].equals("")) {
+                                        //ลบ ตาม id ใน sumTABLE
+                                        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
+                                        sqLiteDatabase.delete("sumTABLE", "_id = " + strsumTABLE_filterID[x], null);
+                                    }
+                                } //for
+                            } // มีค่า ของ main_id ในวันนั้นๆ
+
+                        } //for ;;;ทำการลบค่าใน sumTABLE ค่าที่ต้องการลบ
+
                         MedicationListActivity.activityMedicationListActivity.finish();
                         dialog.dismiss();
                         finish();

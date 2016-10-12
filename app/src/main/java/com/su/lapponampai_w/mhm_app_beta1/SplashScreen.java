@@ -43,6 +43,8 @@ public class SplashScreen extends AppCompatActivity {
 
         //updatesumTABLE00_New2();
 
+        //updatesumTABLEAndBroadcast1();
+
         updatesumTABLEAndBroadcast();
 
 
@@ -95,6 +97,231 @@ public class SplashScreen extends AppCompatActivity {
     }  //Main Method
 
     private void updatesumTABLEAndBroadcast() {
+        DailyUpdateReceiver dailyUpdateReceiver = new DailyUpdateReceiver();
+        dailyUpdateReceiver.stringsREAD0 = myManage.readAllMainTABLE_Full(0);
+        dailyUpdateReceiver.stringsREAD1 = myManage.readAllMainTABLE_Full(1);  //Main_id
+        dailyUpdateReceiver.stringsREAD2 = myManage.readAllMainTABLE_Full(2);
+        dailyUpdateReceiver.stringsREAD3 = myManage.readAllMainTABLE_Full(3);
+        dailyUpdateReceiver.stringsREAD4 = myManage.readAllMainTABLE_Full(4);
+        dailyUpdateReceiver.stringsREAD5 = myManage.readAllMainTABLE_Full(5);
+        dailyUpdateReceiver.stringsREAD6 = myManage.readAllMainTABLE_Full(6);
+        dailyUpdateReceiver.stringsREAD7 = myManage.readAllMainTABLE_Full(7);
+        dailyUpdateReceiver.stringsREAD8 = myManage.readAllMainTABLE_Full(8);
+        dailyUpdateReceiver.stringsREAD9 = myManage.readAllMainTABLE_Full(9); //StartDate
+        dailyUpdateReceiver.stringsREAD10 = myManage.readAllMainTABLE_Full(10);
+        dailyUpdateReceiver.stringsREAD11 = myManage.readAllMainTABLE_Full(11); //prn
+        dailyUpdateReceiver.stringsREAD12 = myManage.readAllMainTABLE_Full(12); //t1
+        dailyUpdateReceiver.stringsREAD13 = myManage.readAllMainTABLE_Full(13);
+        dailyUpdateReceiver.stringsREAD14 = myManage.readAllMainTABLE_Full(14);
+        dailyUpdateReceiver.stringsREAD15 = myManage.readAllMainTABLE_Full(15);
+        dailyUpdateReceiver.stringsREAD16 = myManage.readAllMainTABLE_Full(16);
+        dailyUpdateReceiver.stringsREAD17 = myManage.readAllMainTABLE_Full(17);
+        dailyUpdateReceiver.stringsREAD18 = myManage.readAllMainTABLE_Full(18);
+        dailyUpdateReceiver.stringsREAD19 = myManage.readAllMainTABLE_Full(19); //T8
+        dailyUpdateReceiver.stringsREAD20 = myManage.readAllMainTABLE_Full(20);  //TimeDateCanceled
+
+        String[] strLast_updated = myManage.filter_userTABLE(5); //วันที่ในระบบล่าสุด
+        Date dateLast_updated = myData.stringChangetoDateWithOutTime(strLast_updated[0]); //ในระบบล่าสุด type Date
+        String currentDay = myData.currentDay(); //วันที่ของวันนี้
+        Date dateInitial = myData.stringChangetoDateWithOutTime(currentDay); //วันที่ของวันนี้ Type Date
+
+
+        Calendar calendarLast_updated = Calendar.getInstance();
+        calendarLast_updated.setTime(dateLast_updated);
+        calendarLast_updated.add(Calendar.DAY_OF_MONTH, 9); //วันที่ในระบบล่าสุด + 9 วัน
+        Date dateRef = calendarLast_updated.getTime(); //วันที่ในระบบล่าสุด + 9 วัน type Date
+
+
+        Calendar calendarCurrent = Calendar.getInstance();
+        calendarCurrent.setTime(dateInitial);  //วันนี้
+        calendarCurrent.add(Calendar.DAY_OF_MONTH, 9);
+        Date dateFinalProcess = calendarCurrent.getTime(); //วันที่วันนี้ในระบบล่าสุด + 9 วัน
+
+        String[][] stringsReadAll_MainTABLE = {dailyUpdateReceiver.stringsREAD0,
+                dailyUpdateReceiver.stringsREAD1, dailyUpdateReceiver.stringsREAD2,
+                dailyUpdateReceiver.stringsREAD3, dailyUpdateReceiver.stringsREAD4,
+                dailyUpdateReceiver.stringsREAD5, dailyUpdateReceiver.stringsREAD6,
+                dailyUpdateReceiver.stringsREAD7, dailyUpdateReceiver.stringsREAD8,
+                dailyUpdateReceiver.stringsREAD9, dailyUpdateReceiver.stringsREAD10,
+                dailyUpdateReceiver.stringsREAD11, dailyUpdateReceiver.stringsREAD12,
+                dailyUpdateReceiver.stringsREAD13, dailyUpdateReceiver.stringsREAD14,
+                dailyUpdateReceiver.stringsREAD15, dailyUpdateReceiver.stringsREAD16,
+                dailyUpdateReceiver.stringsREAD17, dailyUpdateReceiver.stringsREAD18,
+                dailyUpdateReceiver.stringsREAD19, dailyUpdateReceiver.stringsREAD20};
+
+        if (dateRef.compareTo(dateFinalProcess) == 0) {
+            Toast.makeText(getBaseContext(), "ได้ค่าเท่ากันของ dateRef กับ dateFinalProcess", Toast.LENGTH_SHORT);
+        }
+
+
+        //(1/10/16)
+        if (!stringsReadAll_MainTABLE[0][0].equals("")) {
+            while (dateRef.compareTo(dateFinalProcess) < 0) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(dateRef);
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
+                dateRef = calendar.getTime(); //เปลี่ยนค่าของ dateRef ให้มีค่าวันที่มากขึ้น 1 วัน
+
+                String stringDateRef = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateRef); // ค่า Text ของวันที่ที่ต้องการเพิ่มเข้าใน sumTABLE
+
+
+                //เริ่มยากจากตรงนี้!!!!
+
+                for (int i = 0; i < stringsReadAll_MainTABLE[i].length; i++) {  // Loop เท่ากับจำนวนแถว
+                    dailyUpdateReceiver.checkFinishDay = "N";
+                    dailyUpdateReceiver.checkStartDay = "N";
+                    dailyUpdateReceiver.checkWhich_Date_D = "N";
+                    if (stringsReadAll_MainTABLE[20][i].equals("")) { //ยาถูก Cancel ไปหรือยัง!!!
+                        Log.d("UpdatesumTABLE", "ค่าตำแหน่งที่ 20 ว่าง : " + i);
+                        //ถ้ายายัง Active อยู่!!!
+
+
+                        //currentDay = myData.currentDay();  //ค่าของวันนี้
+                        //Date dateToday = myData.stringChangetoDateWithOutTime(currentDay);
+                        Date dateStartDate = myData.stringChangetoDateWithOutTime(stringsReadAll_MainTABLE[9][i]); //ค่า Date ของ StartDate
+
+                        // เช็ค FinishDate ว่ายังต้องทานต่อหรือไม่
+                        if (!stringsReadAll_MainTABLE[10][i].equals("")) { //ถ้า FinishDate ไม่เท่ากับค่าว่าง แปลว่ามีวันที่ต้องหยุดทาน
+                            Date dateFinishDate = myData.stringChangetoDateWithOutTime(stringsReadAll_MainTABLE[10][i]); //ค่า Date ของ FinishDate
+                            Log.d("UpdatesumTABLE", "dateFinishDate  : " + dateFinishDate);
+                            if (dateRef.compareTo(dateFinishDate) <= 0) {
+                                dailyUpdateReceiver.checkFinishDay = "Y";
+                            } else {
+                                dailyUpdateReceiver.checkFinishDay = "N"; //แปลว่าเลยวันที่ต้องใช้มาแล้ว
+                            }
+
+                        } else {
+                            dailyUpdateReceiver.checkFinishDay = "Y";
+                        }
+
+                        //เช็ค StartDate ว่าเริ่มหรือยัง
+                        if (dateRef.compareTo(dateStartDate) >= 0) {
+                            dailyUpdateReceiver.checkStartDay = "Y";
+                        } else {
+                            dailyUpdateReceiver.checkStartDay = "N";
+                        }
+
+
+                        //String current_DayOfWeek = myData.current_DayOfWeek();  //ค่าเป็นเลข ของ DayofWeek
+                        //String current_DayOfMonth = myData.current_DayOfMonth(); //ค่าเป็นเลข ของ DayofMonth
+                        String current_DayOfWeek = Integer.toString(calendar.get(Calendar.DAY_OF_WEEK)); //เอาค่าตัวเลขของวันประจำสัปดาห์จาก calendar ที่ทำการเพิ่มวันตั้งแต่ 0 - 6 เรียบร้อยแล้ว
+                        String current_DayOfMonth = Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)); //เอาค่าตัวเลขของวันประจำเดือนจาก calendar ที่ทำการเพิ่มวันตั้งแต่ 0 - 6 เรียบร้อยแล้ว
+                        //เช็ค ว่าตาม Which_Date_D วันนี้ต้องทานหรือไม่!!!
+                        String[] queryDay = stringsReadAll_MainTABLE[5][i].split(":");
+                        String[] querySelectedDay = null;
+
+
+                        if (!queryDay[0].equals("ED")) {
+                            querySelectedDay = queryDay[1].split(",");
+                            for (int w = 0; w < querySelectedDay.length; w++) {
+                                Log.d("queryDay", "querySelectedDay[] : " + querySelectedDay[w]);
+                                if (queryDay[0].equals("DOW")) {
+                                    if (querySelectedDay[w].equals(current_DayOfWeek)) {
+                                        dailyUpdateReceiver.checkWhich_Date_D = "Y";
+                                    }
+                                }
+                                if (queryDay[0].equals("DOM")) {
+                                    if (querySelectedDay[w].equals(current_DayOfMonth)) {
+                                        dailyUpdateReceiver.checkWhich_Date_D = "Y";
+                                    }
+                                }
+                            }
+
+                        } else {  //ถ้าเป็น ED จะมี 0 1 2 3 4 5
+
+
+                            String[] stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(stringsReadAll_MainTABLE[1][i]); //เอาค่า Main_id มา
+                            Date date_ED_Ref = myData.stringChangetoDateWithOutTime(stringsDate_ED_Ref[0]); //dateRef ก่อนนำไป add ค่Calendar calendarRef = Calendar.getInstance();
+
+                            Calendar calendarRef = Calendar.getInstance();
+                            calendarRef.setTime(date_ED_Ref);  //calendarRef ก่อนนำไป add ค่า
+
+                            //เทียบ date ที่ add ค่าแล้ว กับ dateAfterProcess จากข้างบน
+
+                            if (queryDay[1].equals("0")) {
+                                dailyUpdateReceiver.checkWhich_Date_D = "Y";
+                            } else if (queryDay[1].equals("1")) {
+                                //วันเว้นวัน
+                                calendarRef.add(Calendar.DAY_OF_MONTH, 2);
+                                Date date = calendarRef.getTime();
+                                if (date.compareTo(dateRef) == 0) {
+                                    dailyUpdateReceiver.checkWhich_Date_D = "Y";
+                                }
+                            } else if (queryDay[1].equals("2")) {
+                                //วันเว้นวัน
+                                calendarRef.add(Calendar.DAY_OF_MONTH, 3);
+                                Date date = calendarRef.getTime();
+                                if (date.compareTo(dateRef) == 0) {
+                                    dailyUpdateReceiver.checkWhich_Date_D = "Y";
+                                }
+                            } else if (queryDay[1].equals("3")) {
+                                //วันเว้นวัน
+                                calendarRef.add(Calendar.DAY_OF_MONTH, 4);
+                                Date date = calendarRef.getTime();
+                                if (date.compareTo(dateRef) == 0) {
+                                    dailyUpdateReceiver.checkWhich_Date_D = "Y";
+                                }
+                            } else if (queryDay[1].equals("4")) {
+                                //วันเว้นวัน
+                                calendarRef.add(Calendar.DAY_OF_MONTH, 5);
+                                Date date = calendarRef.getTime();
+                                if (date.compareTo(dateRef) == 0) {
+                                    dailyUpdateReceiver.checkWhich_Date_D = "Y";
+                                }
+                            } else if (queryDay[1].equals("5")) {
+                                //วันเว้นวัน
+                                calendarRef.add(Calendar.DAY_OF_MONTH, 6);
+                                Date date = calendarRef.getTime();
+                                if (date.compareTo(dateRef) == 0) {
+                                    dailyUpdateReceiver.checkWhich_Date_D = "Y";
+                                }
+                            }
+
+
+                        }
+
+
+                    } // stringsReadAll_MainTABLE[10][i].equals("")
+
+                    //Check ค่าทั้งหมดแล้วว่าผ่าน ให้ทำการ add ค่าเข้ามาได้
+
+                    if (dailyUpdateReceiver.checkWhich_Date_D.equals("Y")
+                            && dailyUpdateReceiver.checkStartDay.equals("Y")
+                            && dailyUpdateReceiver.checkFinishDay.equals("Y")) {
+                        Log.d("UpdatesumTABLE", "ตำแหน่งที่ i addค่าเข้า SumTABLE ได้ : " + i);
+                        Toast.makeText(getBaseContext(), "Addข้อมูลลง sumTABLE : (Y,Y,Y)", Toast.LENGTH_SHORT).show();
+
+                        //เริ่ม addข้อมูลลง sumTABLE
+                        //1 row ของ mainTABLE add ได้หลาย row ของ sumTABLE ตาม T1-T8 (column 12 - 19)
+                        for (int x = 12; x <= 19; x++) {
+                            if (!stringsReadAll_MainTABLE[x][i].equals("")) {
+                                String stringMain_id = stringsReadAll_MainTABLE[0][i];  //Main_id
+                                String stringTimeRef = stringsReadAll_MainTABLE[x][i];  //TimeRef ตำแหน่งต่างๆ
+                                myManage.addValueToSumTable(stringMain_id, stringDateRef, stringTimeRef, "", "", "");
+                                Log.d("UpdatesumTABLE", "addValueToSumTable : " + stringMain_id + " " + stringDateRef + " " + stringTimeRef);
+                            }
+
+
+                        }
+
+                    } else {
+                        Log.d("UpdatesumTABLE", "ตำแหน่งที่ i addค่าเข้า SumTABLE ไม่ได้ : " + i);
+                    }
+
+
+                } //first "For"
+
+
+            } //while
+            String[] strUser = myManage.filter_userTABLE(1);
+            String strDate = myData.currentDay();
+            myManage.update_Last_updated(strUser[0],strDate);
+        }  //ถ้า ยังไม่มีค่าในนี้ให้ boardcast อย่างเดียว
+        //เปลี่ยนตรงนี้...08/10/2559
+        broadcastAndAddNotification(getBaseContext());
+    }
+
+    private void updatesumTABLEAndBroadcast1() {
 
 
         DailyUpdateReceiver dailyUpdateReceiver = new DailyUpdateReceiver();
@@ -121,19 +348,21 @@ public class SplashScreen extends AppCompatActivity {
         dailyUpdateReceiver.stringsREAD20 = myManage.readAllMainTABLE_Full(20);  //TimeDateCanceled
 
         String[] strLast_updated = myManage.filter_userTABLE(5); //วันที่ในระบบล่าสุด
-        Date dateLast_updated = myData.stringChangetoDateWithOutTime(strLast_updated[0]);
-        String currentDay = myData.currentDay();
-        Date dateInitial = myData.stringChangetoDateWithOutTime(currentDay);
+        Date dateLast_updated = myData.stringChangetoDateWithOutTime(strLast_updated[0]); //ในระบบล่าสุด type Date
+        String currentDay = myData.currentDay(); //วันที่ของวันนี้
+        Date dateInitial = myData.stringChangetoDateWithOutTime(currentDay); //วันที่ของวันนี้ Type Date
+
+
         Calendar calendarLast_updated = Calendar.getInstance();
         calendarLast_updated.setTime(dateLast_updated);
-        calendarLast_updated.add(Calendar.DAY_OF_MONTH, 9);
-        Date dateRef = calendarLast_updated.getTime();
+        calendarLast_updated.add(Calendar.DAY_OF_MONTH, 9); //วันที่ในระบบล่าสุด + 9 วัน
+        Date dateRef = calendarLast_updated.getTime(); //วันที่ในระบบล่าสุด + 9 วัน type Date
 
 
         Calendar calendarCurrent = Calendar.getInstance();
-        calendarCurrent.setTime(dateInitial);
+        calendarCurrent.setTime(dateInitial);  //วันนี้
         calendarCurrent.add(Calendar.DAY_OF_MONTH, 9);
-        Date dateFinalProcess = calendarCurrent.getTime();
+        Date dateFinalProcess = calendarCurrent.getTime(); //วันที่วันนี้ในระบบล่าสุด + 9 วัน
 
 
             String[][] stringsReadAll_MainTABLE = {dailyUpdateReceiver.stringsREAD0,
@@ -154,7 +383,7 @@ public class SplashScreen extends AppCompatActivity {
             do {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTime(dateRef);
-                //calendar.add(Calendar.DAY_OF_MONTH, 0);
+                calendar.add(Calendar.DAY_OF_MONTH, 1);
                 dateRef = calendar.getTime(); //เปลี่ยนค่าของ dateRef ให้มีค่าวันที่มากขึ้น 1 วัน
 
                 String stringDateRef = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateRef); // ค่า Text ของวันที่ที่ต้องการเพิ่มเข้าใน sumTABLE
@@ -308,7 +537,7 @@ public class SplashScreen extends AppCompatActivity {
 
 
             } while (dateRef.compareTo(dateFinalProcess) < 0);
-        }
+        }  //ถ้า ยังไม่มีค่าในนี้ให้ boardcast อย่างเดียว
 
 
 

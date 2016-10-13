@@ -2,6 +2,7 @@ package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,14 +10,55 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
+import java.util.Random;
+
 /**
  * Created by apple on 5/10/16.
  */
 public class AlarmReceiver extends BroadcastReceiver {
 
+
     @Override
     public void onReceive(Context context, Intent intent) {
 
+
+
+        createNotification(context, "Times Up", "5 Seconds Has Passed", "Alert");
+
+
+        createNotification(context, "second Time", "10 Seconds Has Passed", "Alert");
+
+    }
+
+    private void createNotification(Context context, String s, String s1, String alert) {
+
+        PendingIntent notificIntent = PendingIntent
+                .getActivity(context, 0, new Intent(context, MainActivity.class), 0); //ให้เปิด MainActivity
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                .setSmallIcon(R.drawable.logo_carabao48)
+                .setContentTitle(s)
+                .setTicker(alert)
+                .setContentText(s1);
+
+        builder.setContentIntent(notificIntent);
+        builder.setDefaults(NotificationCompat.DEFAULT_SOUND);
+        builder.setAutoCancel(true);
+
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Random random = new Random();
+        int m = random.nextInt(9999 - 1000) + 1000;
+
+        notificationManager.notify(m,builder.build());
+
+
+
+    }
+    /*
+    @Override
+    public void onReceive(Context context, Intent intent) {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setSmallIcon(R.drawable.logo_carabao48);
@@ -33,10 +75,12 @@ public class AlarmReceiver extends BroadcastReceiver {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(1000,notification);
 
+
         
 
 
 
 
     } // onReceive
+    */
 } //Main Class

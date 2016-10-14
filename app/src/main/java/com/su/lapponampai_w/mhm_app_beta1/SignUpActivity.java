@@ -72,6 +72,7 @@ public class SignUpActivity extends AppCompatActivity {
                         // (03/10/2559);; เพิ่ม Update_Last_updated
                         myManage.update_Last_updated(string_rev_Username,"");
                         myManage.update_notification(string_rev_Username,"Default");
+                        myManage.update_Allowed_notification(string_rev_Username,"Y");
 
 
                         startActivity(new Intent(SignUpActivity.this,MainActivity.class));

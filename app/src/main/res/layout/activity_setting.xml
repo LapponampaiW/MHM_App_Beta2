@@ -3,19 +3,152 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.su.lapponampai_w.mhm_app_beta1.SettingActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linSetting1">
+
+        <TextView
+            android:text="ตั้งค่า"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView172"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="@dimen/heading1"
+            android:background="#6643ff"
+            android:paddingTop="@dimen/z2_margin_space"
+            android:paddingBottom="@dimen/z2_margin_space"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/headSettingLayout"
+        android:layout_below="@+id/textView173"
+        android:gravity="left"
+        android:elevation="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="การแจ้งเตือน(Notification)"
+            android:id="@+id/textView45"
+            android:gravity="right"
+            android:textColor="@android:color/holo_red_light"
+            android:background="@drawable/my_border_shadow"
+            android:padding="5dp"
+            android:layout_marginBottom="@dimen/z2_margin_space"
+            android:textSize="@dimen/heading3" />
+
+        <TextView
+            android:text="ระบบการแจ้งเตือนเมื่อถึงเวลารับประทานยา"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView154" />
+
+        <Switch
+            android:text="ปิด / เปิด"
+            android:layout_width="205dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/switch1"
+            android:textSize="@dimen/heading4"
+            android:layout_marginTop="@dimen/z2_margin_bigspace"
+            android:layout_marginBottom="@dimen/z2_margin_bigspace"
+            android:layout_marginLeft="100dp"
+            android:textColor="@android:color/background_dark"
+            android:switchTextAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/headSettingLayout2"
+        android:gravity="left"
+        android:background="@color/colorHeading"
+        android:layout_below="@+id/headSettingLayout">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SettingActivity"
-        android:id="@+id/textView154"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:text="ข้อความการแจ้งเตือน"
+        android:id="@+id/textView156"
+        android:gravity="right"
+        android:textColor="@android:color/holo_red_light"
+        android:background="@drawable/my_border_shadow"
+        android:padding="5dp"
+        android:layout_marginBottom="@dimen/z2_margin_space"
+        android:textSize="@dimen/heading4" />
+
+    <TextView
+        android:text="ระบุข้อความที่ต้องการแจ้งเตือน"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView155" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ค่าเริ่มต้น"
+            android:id="@+id/checkBoxSetting1"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/heading3" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ตั้งค่าเอง"
+                android:id="@+id/checkBoxSetting2"
+                android:layout_weight="1"
+                android:layout_marginLeft="@dimen/heading3" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/editText14"
+                android:layout_weight="2"
+                android:inputType="text"
+                android:hint="โปรดระบุข้อความ" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linSettingButton" >
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ยกเลิก"
+            android:id="@+id/buttonSettingCancel"
+            android:layout_weight="1"
+             />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="บันทึก"
+            android:id="@+id/buttonSettingSave"
+            android:layout_weight="1"
+             />
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
@@ -33,4 +166,18 @@
         android:id="@+id/btnForSuperUser"
         android:layout_above="@+id/btnForTransferData"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linSetting1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView173"
+        android:textSize="@dimen/heading3"
+        android:layout_marginTop="@dimen/z2_margin_space"
+        android:layout_marginLeft="@dimen/z2_margin_space"
+        android:gravity="right" />
+
 </RelativeLayout>

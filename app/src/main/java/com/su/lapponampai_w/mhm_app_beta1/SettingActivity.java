@@ -10,7 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.okhttp.Call;
@@ -32,17 +37,117 @@ public class SettingActivity extends AppCompatActivity {
     //Explicit
     Button buttonConnect,buttonSuperUser;
     String strAddVN;
+    TextView textViewid;
+    MyManage myManage;
+    Switch aSwitch;
+    LinearLayout linearLayout;
+    CheckBox checkBoxDefault, checkBoxCustom;
+    EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+        myManage = new MyManage(this);
+
+
         bindWidget();
+        buttonConnect.setVisibility(View.GONE);
+        buttonSuperUser.setVisibility(View.GONE);
+        linearLayout.setVisibility(View.GONE);
+
+        setView();
+
+        clickSwithAllowedNotification();
+
+        clickCheckBox();
+
+
+
+
 
         clickConnect();
 
         clickSuperUser();
+
+    }
+
+    private void clickCheckBox() {
+
+        checkBoxDefault.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (checkBoxDefault.isChecked()) {
+                    checkBoxCustom.setChecked(false);
+                    editText.setText("");
+                } else {
+                    checkBoxDefault.setChecked(true);
+                }
+
+            }
+        });
+
+        checkBoxCustom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBoxCustom.isChecked()) {
+                    checkBoxDefault.setChecked(false);
+                } else {
+                    checkBoxCustom.setChecked(true);
+                }
+            }
+        });
+
+    }
+
+    private void clickSwithAllowedNotification() {
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String[] strUser = myManage.filter_userTABLE(1); //ค่า id
+                if (isChecked) {
+                    myManage.update_Allowed_notification(strUser[0], "Y");
+                    linearLayout.setVisibility(View.VISIBLE);
+                } else {
+                    myManage.update_Allowed_notification(strUser[0],"N");
+                    linearLayout.setVisibility(View.GONE);
+                }
+
+
+
+            }
+        });
+    }
+
+    private void setView() {
+
+
+        String[] strUser = myManage.filter_userTABLE(1); //ค่า id
+        String[] strAllowNotif = myManage.filter_userTABLE(7); //หา Allowed_notification
+        String[] strNotif = myManage.filter_userTABLE(6); // ดูข้อความ Notification
+        textViewid.setText("ไอดีผู้ใช้ : ".concat(strUser[0]));
+
+        if (strAllowNotif[0].equals("Y")) {
+            aSwitch.setChecked(true);
+            linearLayout.setVisibility(View.VISIBLE);
+        } else {
+            aSwitch.setChecked(false);
+        }
+
+        if (strNotif[0].equals("Default")) {
+            checkBoxDefault.setChecked(true);
+            checkBoxCustom.setChecked(false);
+            editText.setText("");
+        } else {
+            checkBoxDefault.setChecked(false);
+            checkBoxCustom.setChecked(true);
+            editText.setText(strNotif[0]);
+        }
+
+
+
 
     }
 
@@ -61,6 +166,13 @@ public class SettingActivity extends AppCompatActivity {
 
         buttonConnect = (Button) findViewById(R.id.btnForTransferData);
         buttonSuperUser = (Button) findViewById(R.id.btnForSuperUser);
+        textViewid = (TextView) findViewById(R.id.textView173);
+        aSwitch = (Switch) findViewById(R.id.switch1);
+        linearLayout = (LinearLayout) findViewById(R.id.headSettingLayout2);
+        checkBoxDefault = (CheckBox) findViewById(R.id.checkBoxSetting1);
+        checkBoxCustom = (CheckBox) findViewById(R.id.checkBoxSetting2);
+        editText = (EditText) findViewById(R.id.editText14);
+
     }
 
     public void clickConnect() {

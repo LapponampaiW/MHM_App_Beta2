@@ -357,6 +357,9 @@ public class MedicationDetailActivity extends AppCompatActivity {
                         MedicationListActivity.activityMedicationListActivity.finish();
                         dialog.dismiss();
                         finish();
+                        SplashScreen splashScreen = new SplashScreen();
+                        MyData myData = new MyData();
+                        splashScreen.broadcastAndAddNotification(getBaseContext(),myData,myManage);
                         //ลบข้อมูล
                     }
                 });

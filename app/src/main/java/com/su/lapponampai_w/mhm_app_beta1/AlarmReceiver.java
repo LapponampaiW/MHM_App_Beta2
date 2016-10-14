@@ -21,9 +21,18 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        MyManage myManage = new MyManage(context);
+        //String[] strUser = myManage.filter_userTABLE(1);
+        String[] strNotification = myManage.filter_userTABLE(6);
+
+        if (strNotification[0].equals("Default")) {
+            createNotification(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application");
+        } else {
+            createNotification(context,"MHM Application", strNotification[0], "MHM Application");
+        }
 
 
-        createNotification(context, "Times Up", "Success", "MHM Application");
+        //createNotification(context, "Times Up", "Success", "MHM Application");
 
 
         //createNotification(context, "second Time", "10 Seconds Has Passed", "Alert");

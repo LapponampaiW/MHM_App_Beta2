@@ -39,6 +39,7 @@ public class MyManage {
     //public static final String ucolumn_Email = "Email";
     public static final String ucolumn_hn = "HN";
     public static final String ucolumn_last_updated = "Last_updated";
+    public static final String ucolumn_notification = "Notification";
     public static final String[] column_userTABLE = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_hn};
 
     //medTABLE
@@ -1131,7 +1132,7 @@ public class MyManage {
 
     public String[] filter_userTABLE(int intcolumn) {
         String[] strREAD = null;
-        String[] column_userTABLE_Extend = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_hn, ucolumn_last_updated};
+        String[] column_userTABLE_Extend = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_hn, ucolumn_last_updated, ucolumn_notification};
         Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE_Extend,null,null,null,null,null);
         int intCount = cursor.getCount();
         if (intCount > 0) {
@@ -1157,6 +1158,9 @@ public class MyManage {
                         break;
                     case (5):
                         strREAD[i] = cursor.getString(5);
+                        break;
+                    case (6):
+                        strREAD[i] = cursor.getString(6);
                         break;
                     default:
                         break;
@@ -1537,7 +1541,8 @@ public class MyManage {
 
     public void update_Last_updated(String username,String str_last_updated) {
 
-        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE, "User =?", new String[]{String.valueOf(username)}, null, null, null);
+        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,
+                "User =?", new String[]{String.valueOf(username)}, null, null, null);
 
         cursor.moveToFirst();
 
@@ -1553,14 +1558,24 @@ public class MyManage {
 
     }
 
+    public void update_notification(String username,String str_notification) {
+
+        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,
+                "User =?", new String[]{String.valueOf(username)}, null, null, null);
+
+        cursor.moveToFirst();
 
 
+        String id = cursor.getString(0);
 
 
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ucolumn_notification, str_notification);
 
 
+        writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
 
-
+    }
 
 
 

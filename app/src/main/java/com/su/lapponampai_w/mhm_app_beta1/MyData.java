@@ -356,7 +356,7 @@ public class MyData {
     }
 
     public Date stringChangetoDate(String strDate) {
-        //ใช้ได้ในกรณี strDate เป็น dd/MM/yyyy เท่านั้นไม่รวม เวลา
+        //ใช้ได้ในกรณี strDate เป็น dd/MM/yyyy
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         Date date = new Date();
         try {

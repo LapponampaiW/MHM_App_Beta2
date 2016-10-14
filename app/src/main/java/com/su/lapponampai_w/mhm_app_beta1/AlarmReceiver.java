@@ -35,6 +35,11 @@ public class AlarmReceiver extends BroadcastReceiver {
         PendingIntent notificIntent = PendingIntent
                 .getActivity(context, 0, new Intent(context, MainActivity.class), 0); //ให้เปิด MainActivity
 
+
+
+
+
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.logo_carabao48)
                 .setContentTitle(s)

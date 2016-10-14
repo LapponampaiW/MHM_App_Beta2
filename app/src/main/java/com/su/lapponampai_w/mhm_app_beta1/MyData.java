@@ -355,6 +355,32 @@ public class MyData {
         return date;
     }
 
+    public Date stringChangetoDate(String strDate) {
+        //ใช้ได้ในกรณี strDate เป็น dd/MM/yyyy เท่านั้นไม่รวม เวลา
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date date = new Date();
+        try {
+            date = simpleDateFormat.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date;
+    }
+
+    public Date stringChangetoTime_Minute(String strDate) {
+        //ใช้ได้ในกรณี strDate เป็น dd/MM/yyyy เท่านั้นไม่รวม เวลา
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+        Date date = new Date();
+        try {
+            date = simpleDateFormat.parse(strDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return date;
+    }
+
     public String string_ddMMyyyy_ConvertedFromSpecificDate(Date date) {
         //ใช้เมื่อต้องการเปลี่ยน Date เป็น String
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");

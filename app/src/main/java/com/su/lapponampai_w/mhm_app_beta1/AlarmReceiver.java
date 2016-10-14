@@ -23,10 +23,10 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 
 
-        createNotification(context, "Times Up", "5 Seconds Has Passed", "Alert");
+        createNotification(context, "Times Up", "Success", "MHM Application");
 
 
-        createNotification(context, "second Time", "10 Seconds Has Passed", "Alert");
+        //createNotification(context, "second Time", "10 Seconds Has Passed", "Alert");
 
     }
 

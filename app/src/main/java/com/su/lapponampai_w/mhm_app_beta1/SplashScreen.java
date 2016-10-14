@@ -321,7 +321,8 @@ public class SplashScreen extends AppCompatActivity {
         //เปลี่ยนตรงนี้...08/10/2559
         //เปลี่ยนตรงนี้...14/10/2559
 
-        broadcastAndAddNotification(getBaseContext());
+        broadcastAndAddNotification(getBaseContext(),myData,myManage);
+
     }
 
     private void updatesumTABLEAndBroadcast2() {
@@ -556,7 +557,7 @@ public class SplashScreen extends AppCompatActivity {
 
 
 
-        broadcastAndAddNotification(getBaseContext());
+        //broadcastAndAddNotification(getBaseContext());
     }
 
     private void updatesumTABLEAndBroadcast1() {
@@ -783,7 +784,7 @@ public class SplashScreen extends AppCompatActivity {
             //เปลี่ยนตรงนี้...08/10/2559
 
 
-        broadcastAndAddNotification(getBaseContext());
+        broadcastAndAddNotification(getBaseContext(),myData,myManage);
         /*
         Calendar calendar = Calendar.getInstance();  //ค้นหาเวลาในเครื่อง
         Calendar myCalendar1 = (Calendar) calendar.clone(); //clone เวลาในเครื่องเข้ามาใช้
@@ -799,7 +800,8 @@ public class SplashScreen extends AppCompatActivity {
 
     }
 
-    private void broadcastAndAddNotification(Context baseContext) {
+    public void broadcastAndAddNotification(Context context,MyData myData,MyManage myManage) {
+
 
         String sDate = myData.currentDay();
         Date dDate = myData.stringChangetoDateWithOutTime(sDate);
@@ -810,6 +812,8 @@ public class SplashScreen extends AppCompatActivity {
         String sSpecificDate = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dDate);
         Date dSpecificDate = myData.stringChangetoDateWithOutTime(sSpecificDate);
 
+        Log.d("14/10/2559", "1 : sSpecificDate : " + sSpecificDate);
+
         String[] strings_sumTABLE_id = myManage.filter_sumTABLE__by_Date(sSpecificDate, 0);
         String[] strings_sumTABLE_MainId = myManage.filter_sumTABLE__by_Date(sSpecificDate, 1);
         //String[] strings_sumTABLE_DateRef = myManage.filter_sumTABLE__by_Date(sSpecificDate, 2);
@@ -819,12 +823,13 @@ public class SplashScreen extends AppCompatActivity {
         String[] strings_sumTABLE_SkipHold = myManage.filter_sumTABLE__by_Date(sSpecificDate, 6);
 
         if (!strings_sumTABLE_id[0].equals("")) {
-
+            Log.d("14/10/2559", "1 : เข้า if1 : ");
             String sCurrentTime = myData.currentTime_Minus();
             Date dCurrentTime = myData.stringChangetoTime_Minute(sCurrentTime);
 
             for (int x = 0; x < strings_sumTABLE_id.length; x++) {
-                if (!strings_sumTABLE_DateCheck[x].equals("") || !strings_sumTABLE_SkipHold[x].equals("")) {
+                if (strings_sumTABLE_DateCheck[x].equals("") && strings_sumTABLE_SkipHold[x].equals("")) {
+                    Log.d("14/10/2559", "1 : เข้า if2 และ for");
                     Date d_sumTABLE_TimeRef = myData.stringChangetoTime_Minute(strings_sumTABLE_TimeRef[x]);
 
                     if (dCurrentTime.compareTo(d_sumTABLE_TimeRef) <= 0) {
@@ -834,22 +839,35 @@ public class SplashScreen extends AppCompatActivity {
                         Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
 
                         String stringAlarm = sSpecificDate + " " + strings_sumTABLE_TimeRef[x];
+
+                        Log.d("14/10/2559", "2 : stringAlarm : " + stringAlarm);
                         Date dAlarm = myData.stringChangetoDate(stringAlarm);
                         myCalendarAlarm.setTime(dAlarm);
 
-                        Intent alertIntent = new Intent(getBaseContext(), AlarmReceiver.class);
+                        Intent alertIntent = new Intent(context, AlarmReceiver.class);
+
+
+
+
+
+
+
+
+
+
+
 
                         Random random = new Random();
                         int iRandom = random.nextInt(10000);
 
 
-                        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(), iRandom, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, iRandom, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
 
                         alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent);
-
+                        Log.d("14/10/2559", "3 : เข้า alarmManager" );
 
 
                     }

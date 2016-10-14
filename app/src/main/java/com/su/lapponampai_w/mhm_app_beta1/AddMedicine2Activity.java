@@ -1703,7 +1703,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
         //ทำการBoardCast
         SplashScreen splashScreen = new SplashScreen();
-        splashScreen.broadcastAndAddNotification(getBaseContext());
+        splashScreen.broadcastAndAddNotification(getBaseContext(),myData,myManage);
 
 
 

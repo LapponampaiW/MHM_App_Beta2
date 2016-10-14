@@ -36,7 +36,8 @@ public class MyHeadingDetail extends ContextWrapper {
         final MyManage myManage = new MyManage(context);
         String[] sName = myManage.readAlluserTABLE(1);
 
-        strTextSpinner = new String[9];
+        strTextSpinner = new String[8];
+        //strTextSpinner = new String[9];
         strTextSpinner[0] = "ไอดีผู้ใช้ : \n\n                 " + sName[0] + "\n=+=+=+=+=+=+=+=+";
         strTextSpinner[1] = "เพิ่มรายการยา";
         strTextSpinner[2] = "เพิ่มวันนัด";
@@ -44,8 +45,8 @@ public class MyHeadingDetail extends ContextWrapper {
         strTextSpinner[4] = "เพิ่มบันทึกประจำวัน";
         strTextSpinner[5] = "ปฏิทิน";
         strTextSpinner[6] = "ตั้งค่าการใช้งาน";
-        strTextSpinner[7] = "เกี่ยวกับ\nMHM Application";
-        strTextSpinner[8] = "ออกจากระบบ";
+        //strTextSpinner[7] = "เกี่ยวกับ\nMHM Application";
+        strTextSpinner[7] = "ออกจากระบบ";
 
         ArrayAdapter<String> stringArrayAdapter = new ArrayAdapter<String>(context, R.layout.my_spinner_item, strTextSpinner);
         spinner.setAdapter(stringArrayAdapter);
@@ -106,13 +107,14 @@ public class MyHeadingDetail extends ContextWrapper {
                     startActivity(intent);
                     startActivity(new Intent(context, SettingActivity.class));
                 }
-
+                /*
                 if (strTextSpinner[position].equals("เกี่ยวกับ\nMHM Application")) {
                     Intent intent = new Intent(context, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     startActivity(new Intent(context, AboutMHMActivity.class));
                 }
+                */
 
 
                 if (strTextSpinner[position].equals("ออกจากระบบ")) {

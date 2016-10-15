@@ -1706,7 +1706,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
         //ทำการBoardCast
         SplashScreen splashScreen = new SplashScreen();
-        splashScreen.broadcastAndAddNotification(getBaseContext(),myData,myManage);
+        splashScreen.updateDailyBroadcast(getBaseContext());
 
 
 

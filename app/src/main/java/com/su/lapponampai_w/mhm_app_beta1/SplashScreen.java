@@ -45,7 +45,9 @@ public class SplashScreen extends AppCompatActivity {
 
         //updatesumTABLEAndBroadcast1();
 
-        updatesumTABLEAndBroadcast();
+        //updatesumTABLEAndBroadcast();
+
+        updateDailyBroadcast(getBaseContext());
 
 
         Handler handler = new Handler();
@@ -95,6 +97,33 @@ public class SplashScreen extends AppCompatActivity {
         myManage.newsTABLEData();
 
     }  //Main Method
+
+    public void updateDailyBroadcast(Context context) {
+
+        Intent alertIntent = new Intent(context, DailyUpdateReceiver.class); //1
+
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE); //2
+
+        for(int a = 950;a <953;a++ ) {
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 101, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT); //3
+            pendingIntent.cancel();
+        }
+
+
+        Calendar calendarCurrent = Calendar.getInstance();
+        Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
+
+        myCalendarAlarm.set(Calendar.HOUR_OF_DAY,0);
+        myCalendarAlarm.set(Calendar.MINUTE, 0);
+        myCalendarAlarm.set(Calendar.SECOND,0);
+        myCalendarAlarm.set(Calendar.MILLISECOND,10);
+
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context,951, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT); //3
+
+        alarmManager.setInexactRepeating(1, myCalendarAlarm.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent); //4
+
+
+    }
 
     private void updatesumTABLEAndBroadcast() {
 

@@ -1366,6 +1366,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
     private void addValueTomainTABLEandIntent() {
 
+        MainActivity.activityMainActivity.finish();
+        AddMedicineActivity.activityAddMedicineActivity.finish();
         MyManage myManage = new MyManage(this);
         MyData myData = new MyData();
 

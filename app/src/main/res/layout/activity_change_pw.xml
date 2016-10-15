@@ -46,14 +46,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/z2_margin_smallgap"
-        android:layout_marginTop="@dimen/z2_margin_biggap">
+        android:layout_marginTop="@dimen/z2_margin_biggap"
+        android:layout_marginRight="@dimen/z2_margin_biggap">
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView175"
-            android:layout_weight="2" />
+            android:layout_weight="1" />
 
         <EditText
             android:layout_width="match_parent"
@@ -71,14 +72,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/z2_margin_smallgap"
-        android:layout_marginTop="@dimen/z2_margin_smallgap">
+        android:layout_marginTop="@dimen/z2_margin_smallgap"
+        android:layout_marginRight="@dimen/z2_margin_biggap">
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView176"
-            android:layout_weight="2" />
+            android:layout_weight="1" />
 
         <EditText
             android:layout_width="match_parent"
@@ -95,14 +97,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/z2_margin_smallgap"
-        android:layout_marginTop="@dimen/z2_margin_smallgap">
+        android:layout_marginTop="@dimen/z2_margin_smallgap"
+        android:layout_marginRight="@dimen/z2_margin_biggap">
 
         <TextView
             android:text="TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView177"
-            android:layout_weight="2" />
+            android:layout_weight="1" />
 
         <EditText
             android:layout_width="match_parent"
@@ -112,6 +115,29 @@
             android:id="@+id/editText17"
             android:layout_weight="1" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/z2_margin_biggap">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ยืนยัน"
+            android:id="@+id/buttonPWSave"
+            android:layout_weight="1"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="ยกเลิก"
+            android:id="@+id/buttonPWCancel"
+            android:layout_weight="1"
+            />
     </LinearLayout>
 
 

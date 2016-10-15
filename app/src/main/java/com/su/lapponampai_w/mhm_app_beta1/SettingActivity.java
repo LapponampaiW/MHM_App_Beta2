@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -35,9 +36,12 @@ import java.util.Random;
 public class SettingActivity extends AppCompatActivity {
 
     //Explicit
+    public static Activity settingActivity;
+
+
     Button buttonConnect,buttonSuperUser;
     String strAddVN;
-    TextView textViewid,textViewAbout;
+    TextView textViewid,textViewAbout,textViewChangePW;
     MyManage myManage;
     Switch aSwitch;
     LinearLayout linearLayout;
@@ -50,6 +54,7 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
 
         myManage = new MyManage(this);
+        settingActivity = this;
 
 
         bindWidget();
@@ -65,6 +70,8 @@ public class SettingActivity extends AppCompatActivity {
 
         clickAboutActivity();
 
+        clickPWActivity();
+
 
 
 
@@ -72,6 +79,18 @@ public class SettingActivity extends AppCompatActivity {
         clickConnect();
 
         clickSuperUser();
+
+    }
+
+    private void clickPWActivity() {
+
+        textViewChangePW.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingActivity.this, ChangePWActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -189,6 +208,7 @@ public class SettingActivity extends AppCompatActivity {
         checkBoxCustom = (CheckBox) findViewById(R.id.checkBoxSetting2);
         editText = (EditText) findViewById(R.id.editText14);
         textViewAbout = (TextView) findViewById(R.id.textView158);
+        textViewChangePW = (TextView) findViewById(R.id.textView157);
 
     }
 

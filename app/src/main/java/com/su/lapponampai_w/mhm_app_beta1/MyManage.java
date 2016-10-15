@@ -1583,6 +1583,25 @@ public class MyManage {
 
     }
 
+    public void update_New_PW(String username,String str_pw) {
+
+        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,
+                "User =?", new String[]{String.valueOf(username)}, null, null, null);
+
+        cursor.moveToFirst();
+
+
+        String id = cursor.getString(0);
+
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ucolumn_Password, str_pw);
+
+
+        writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
+
+    }
+
     public void update_Allowed_notification(String username,String str_allowed_notif) {
 
         Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,

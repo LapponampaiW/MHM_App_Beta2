@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,6 +23,7 @@
             android:paddingTop="@dimen/z2_margin_space"
             android:paddingBottom="@dimen/z2_margin_space"
             android:textColor="@android:color/white" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -34,12 +36,20 @@
         android:elevation="24dp">
 
         <TextView
+            android:text=" "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView174"
+            android:textSize="1sp"
+            android:background="@android:color/holo_red_dark" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="การแจ้งเตือน(Notification)"
             android:id="@+id/textView45"
             android:gravity="right"
-            android:textColor="@android:color/holo_red_light"
+            android:textColor="@android:color/holo_purple"
             android:background="@drawable/my_border_shadow"
             android:padding="5dp"
             android:layout_marginBottom="@dimen/z2_margin_space"
@@ -71,10 +81,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/headSettingLayout2"
         android:gravity="left"
-        android:background="@color/colorHeading"
+        android:background="@drawable/my_border_shadow"
         android:layout_below="@+id/headSettingLayout">
 
-    <TextView
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ข้อความการแจ้งเตือน"
@@ -98,7 +108,8 @@
             android:text="ค่าเริ่มต้น"
             android:id="@+id/checkBoxSetting1"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/heading3" />
+            android:layout_marginLeft="@dimen/heading3"
+            app:buttonTint="@android:color/holo_red_light" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -111,7 +122,8 @@
                 android:text="ตั้งค่าเอง"
                 android:id="@+id/checkBoxSetting2"
                 android:layout_weight="1"
-                android:layout_marginLeft="@dimen/heading3" />
+                android:layout_marginLeft="@dimen/heading3"
+                app:buttonTint="@android:color/holo_red_light" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -120,34 +132,69 @@
                 android:id="@+id/editText14"
                 android:layout_weight="2"
                 android:inputType="text"
-                android:hint="โปรดระบุข้อความ" />
+                android:hint="โปรดระบุข้อความ"
+                android:backgroundTint="@android:color/holo_red_light" />
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/linSettingButton" >
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="ยกเลิก"
+                android:id="@+id/buttonSettingCancel"
+                android:layout_weight="1"
+                 />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="บันทึก"
+                android:id="@+id/buttonSettingSave"
+                android:layout_weight="1"
+                 />
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/linSettingButton" >
+        android:layout_below="@+id/headSettingLayout2"
+        android:elevation="17dp"
+        android:layout_marginTop="@dimen/z2_margin_bigspace">
 
-        <Button
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ยกเลิก"
-            android:id="@+id/buttonSettingCancel"
-            android:layout_weight="1"
-             />
+            android:text="เปลี่ยนรหัสผ่าน"
+            android:id="@+id/textView157"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="@drawable/my_border_orange"
+            android:padding="10dp"
+            android:textSize="@dimen/heading3"
+            android:gravity="center"
+            android:layout_gravity="center" />
 
-        <Button
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="บันทึก"
-            android:id="@+id/buttonSettingSave"
-            android:layout_weight="1"
-             />
+            android:text="เกี่ยวกับโปรแกรม MHM"
+            android:id="@+id/textView158"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="@drawable/my_border_orange"
+            android:padding="10dp"
+            android:textSize="@dimen/heading3"
+            android:gravity="center"
+            android:layout_gravity="center" />
+
     </LinearLayout>
 
     <Button

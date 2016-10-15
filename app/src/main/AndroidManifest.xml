@@ -55,7 +55,8 @@
             android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".AboutMHMActivity" />
-        <activity android:name=".TransferDataActivity"></activity>
+        <activity android:name=".TransferDataActivity" />
+        <activity android:name=".ChangePWActivity"></activity>
     </application>
 
 </manifest>

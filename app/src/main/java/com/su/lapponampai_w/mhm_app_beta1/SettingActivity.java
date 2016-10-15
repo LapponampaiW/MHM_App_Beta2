@@ -37,7 +37,7 @@ public class SettingActivity extends AppCompatActivity {
     //Explicit
     Button buttonConnect,buttonSuperUser;
     String strAddVN;
-    TextView textViewid;
+    TextView textViewid,textViewAbout;
     MyManage myManage;
     Switch aSwitch;
     LinearLayout linearLayout;
@@ -63,6 +63,8 @@ public class SettingActivity extends AppCompatActivity {
 
         clickCheckBox();
 
+        clickAboutActivity();
+
 
 
 
@@ -70,6 +72,20 @@ public class SettingActivity extends AppCompatActivity {
         clickConnect();
 
         clickSuperUser();
+
+    }
+
+    private void clickAboutActivity() {
+
+        textViewAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(SettingActivity.this, AboutMHMActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
     }
 
@@ -172,6 +188,7 @@ public class SettingActivity extends AppCompatActivity {
         checkBoxDefault = (CheckBox) findViewById(R.id.checkBoxSetting1);
         checkBoxCustom = (CheckBox) findViewById(R.id.checkBoxSetting2);
         editText = (EditText) findViewById(R.id.editText14);
+        textViewAbout = (TextView) findViewById(R.id.textView158);
 
     }
 

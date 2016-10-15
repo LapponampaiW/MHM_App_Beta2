@@ -307,6 +307,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
     public void broadcastAndAddNotification(Context context,MyData myData,MyManage myManage) {
 
+
         Intent alertIntent = new Intent(context, AlarmReceiver.class); //1
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE); //2

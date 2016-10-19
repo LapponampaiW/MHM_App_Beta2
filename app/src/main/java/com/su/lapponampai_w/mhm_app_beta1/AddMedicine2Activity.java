@@ -44,7 +44,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             textView5, textView6, textView7, textView8, textView9,
             textView10, textView11, textView12, textView13,
             textView14, textView15, textView16, textViewStartDate,
-            textViewFinishDate,textViewEA;
+            textViewFinishDate,textViewEA,textViewChangeTG;
 
     private String string1, string2, string3, string4, string5, string6,
             string7, string8, string9, string10, string11, string12,
@@ -844,7 +844,26 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         textViewEA.setText(string16_Translate2);
         clickCalculateAmountMedicine();
 
+        //19/10/2559 ลองคลิกปุ่มเพื่อเปลี่ยน
 
+        clickChangeTG();
+
+    }
+
+    //19/10/2559
+    private void clickChangeTG() {
+        textViewChangeTG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(AddMedicine2Activity.this, PopUpChangeTradeGenericName.class);
+                intent.putExtra("sendTradeName", string2);
+                intent.putExtra("sendGenericName", string3);
+                startActivity(intent);
+
+
+            }
+        });
     }
 
     private void clickCalculateAmountMedicine() {
@@ -973,6 +992,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         linBox2Left = (LinearLayout) findViewById(R.id.linBox2Left);
         linBox2Right = (LinearLayout) findViewById(R.id.linBox2Right);
         linLine3 = (LinearLayout) findViewById(R.id.line3);
+        textViewChangeTG = (TextView) findViewById(R.id.textView180);
 
 
     }

@@ -109,11 +109,11 @@ public class AddMedicineActivity extends AppCompatActivity {
             public void onClick(View v) {
                 stringeditTextAddTG = editTextAddTG.getText().toString().trim();
                 //รับค่า
-                stringsId = myManage.filterAddMed(0, stringeditTextAddTG);
-                stringsTradename = myManage.filterAddMed(1, stringeditTextAddTG);
-                stringsGeneric1 = myManage.filterAddMed(3, stringeditTextAddTG);
-                stringsDosage1 = myManage.filterAddMed(4, stringeditTextAddTG);
-                stringsUOM1 = myManage.filterAddMed(5, stringeditTextAddTG);
+                stringsId = myManage.filterAddMed(0, stringeditTextAddTG); // id
+                stringsTradename = myManage.filterAddMed(1, stringeditTextAddTG); //Tradename
+                stringsGeneric1 = myManage.filterAddMed(3, stringeditTextAddTG); //Genericname
+                stringsDosage1 = myManage.filterAddMed(4, stringeditTextAddTG); //Dosage
+                stringsUOM1 = myManage.filterAddMed(5, stringeditTextAddTG); //UOM
                 stringsGeneric2 = myManage.filterAddMed(6, stringeditTextAddTG);
                 stringsDosage2 = myManage.filterAddMed(7, stringeditTextAddTG);
                 stringsUOM2 = myManage.filterAddMed(8, stringeditTextAddTG);

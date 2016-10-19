@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
@@ -49,6 +51,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     private String string1, string2, string3, string4, string5, string6,
             string7, string8, string9, string10, string11, string12,
             string13, string14, string15, string16, string17;
+
+    public String stringModTradeName, stringModGenericName;
     private String string18,string19,string20; //StartDate,FinishDate,PRN
 
     private CheckBox checkBox1, checkBox2, checkBox3, checkBox4,
@@ -82,12 +86,15 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
     private int pickerHour;
     private int pickerMin;
+    public static Activity activityAddMedicine2Activity;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_medicine2);
+
+        activityAddMedicine2Activity = this;
 
 
 
@@ -109,9 +116,22 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         //Click เพื่อใส่เวลา
         clickTimesAndDateTextView();
 
+        clickChangeTG();
+
 
 
     } //Main Method
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        receiveIntent();
+
+        //Show View
+        showView();
+
+    }
 
 
 
@@ -773,6 +793,25 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         //ลบ textView1 ที่เป็น Med_id ออกแต่ยังคงเก็บค่าไว้ที่ String 1
         textView2.setText(string2);
         textView3.setText(string3);
+        //19/10/2559
+
+        /*
+        if (stringModTradeName == null) {
+            textView2.setText(string2);
+        } else {
+            textView2.setText(stringModTradeName);
+            Log.d("19102559", stringModTradeName);
+        }
+        if (stringModGenericName == null) {
+            textView3.setText(string3);
+        } else {
+            textView3.setText(string3);
+        }
+        */
+
+
+
+
         //textView4.setText(string4);
         //textView5.setText(string5);
         stringsAppearance = new String[1];
@@ -846,7 +885,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
         //19/10/2559 ลองคลิกปุ่มเพื่อเปลี่ยน
 
-        clickChangeTG();
+
 
     }
 
@@ -857,9 +896,48 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             public void onClick(View v) {
 
                 Intent intent = new Intent(AddMedicine2Activity.this, PopUpChangeTradeGenericName.class);
-                intent.putExtra("sendTradeName", string2);
-                intent.putExtra("sendGenericName", string3);
+                //intent.putExtra("sendTradeName", string2);
+                //intent.putExtra("sendGenericName", string3);
+                intent.putExtra("Med_id",string1);
+                intent.putExtra("Trade_name", string2);
+                intent.putExtra("Generic_line", string3);
+                intent.putExtra("Amount_tablet", string15);
+                intent.putExtra("EA", string16);
+                intent.putExtra("Which_Date_D", string4);
+                intent.putExtra("Appearance", string5);
+                intent.putExtra("Pharmaco", string6);
+                intent.putExtra("T1",string7);
+                intent.putExtra("T2",string8);
+                intent.putExtra("T3",string9);
+                intent.putExtra("T4",string10);
+                intent.putExtra("T5",string11);
+                intent.putExtra("T6",string12);
+                intent.putExtra("T7",string13);
+                intent.putExtra("T8",string14);
+                intent.putExtra("TimesPerDay", string17);
                 startActivity(intent);
+                /*
+                string1 = getIntent().getStringExtra("Med_id");
+                string2 = getIntent().getStringExtra("Trade_name");
+                string3 = getIntent().getStringExtra("Generic_line");
+                string4 = getIntent().getStringExtra("Which_Date_D");
+                string5 = getIntent().getStringExtra("Appearance");
+                string6 = getIntent().getStringExtra("Pharmaco");
+                string7 = getIntent().getStringExtra("T1");
+                string8 = getIntent().getStringExtra("T2");
+                string9 = getIntent().getStringExtra("T3");
+                string10 = getIntent().getStringExtra("T4");
+                string11 = getIntent().getStringExtra("T5");
+                string12 = getIntent().getStringExtra("T6");
+                string13 = getIntent().getStringExtra("T7");
+                string14 = getIntent().getStringExtra("T8");
+                string15 = getIntent().getStringExtra("Amount_tablet");
+                string16 = getIntent().getStringExtra("EA");
+                string17 = getIntent().getStringExtra("TimesPerDay");
+                string18 = myData.currentDay(); //StartDate
+                string19 = ""; //FinishDate
+                string20 = "N"; //PRN
+                */
 
 
             }
@@ -934,6 +1012,16 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         string18 = myData.currentDay(); //StartDate
         string19 = ""; //FinishDate
         string20 = "N"; //PRN
+
+
+        stringModTradeName = "";
+        stringModGenericName = "";
+
+        /*
+        stringModTradeName = getIntent().getStringExtra("ModTradeName");
+        stringModGenericName = getIntent().getStringExtra("ModGenericName");
+        Toast.makeText(getBaseContext(),stringModTradeName,Toast.LENGTH_SHORT).show();
+        */
 
 
     }

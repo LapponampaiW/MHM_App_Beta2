@@ -125,6 +125,18 @@ public class SplashScreen extends AppCompatActivity {
 
     }
 
+
+
+
+
+
+
+
+
+
+
+
+    //ด้านล้างทั้งหมดลบทิ้งได้
     private void updatesumTABLEAndBroadcast() {
 
         DailyUpdateReceiver dailyUpdateReceiver = new DailyUpdateReceiver();

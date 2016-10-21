@@ -122,16 +122,6 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
     } //Main Method
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        receiveIntent();
-
-        //Show View
-        showView();
-
-    }
 
 
 

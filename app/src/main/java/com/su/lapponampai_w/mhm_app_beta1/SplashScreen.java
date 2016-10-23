@@ -61,15 +61,11 @@ public class SplashScreen extends AppCompatActivity {
 
                     // ต้องแยก Stay ว่า 0 หรือ 1
                     String[] strings = myManage.readSQLite_userTABLE(3);
-                    if (strings[0].equals("0")) {
+                    if (strings[0].equals("1") || strings[0].equals("2")) {
                         startActivity(new Intent(SplashScreen.this, LoginActivity.class));
-                        Toast t = Toast.makeText(SplashScreen.this, "Stay = 0", Toast.LENGTH_LONG); // ลบภายหลัง
-                        t.show();
                         finish();
-                    } else if (strings[0].equals("1")) {
+                    } else if (strings[0].equals("0")) {
                         startActivity(new Intent(SplashScreen.this, MainActivity.class));
-                        Toast t = Toast.makeText(SplashScreen.this, "Stay = 1", Toast.LENGTH_LONG); // ลบภายหลัง
-                        t.show();
                         finish();
                     } else {
                         Toast t = Toast.makeText(SplashScreen.this, "Stay != '0' or '1' What's happen", Toast.LENGTH_LONG); // ลบภายหลัง

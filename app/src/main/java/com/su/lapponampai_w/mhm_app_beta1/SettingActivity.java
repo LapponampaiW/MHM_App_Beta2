@@ -41,11 +41,11 @@ public class SettingActivity extends AppCompatActivity {
 
     Button buttonConnect,buttonSuperUser;
     String strAddVN;
-    TextView textViewid,textViewAbout,textViewChangePW;
+    TextView textViewid,textViewAbout,textViewChangePW,textViewSecurity;
     MyManage myManage;
     Switch aSwitch;
     LinearLayout linearLayout;
-    CheckBox checkBoxDefault, checkBoxCustom;
+    CheckBox checkBoxDefault, checkBoxCustom,checkBoxSecurityNone,checkBoxSecurity1,checkBoxSecurity2;
     EditText editText;
 
     @Override
@@ -63,13 +63,20 @@ public class SettingActivity extends AppCompatActivity {
         linearLayout.setVisibility(View.GONE);
 
         setView();
+        //set คำอธิบายใน Security
 
         clickSwithAllowedNotification();
 
+        //คลิก CheckBox ที่อยู่กับ Notification
         clickCheckBox();
 
+        //คลิก Checkbox ของการเปลี่ยนระดับของ Security
+        clickCheckBoxSecurity();
+
+        //คลิก AboutActivity
         clickAboutActivity();
 
+        //คลิกเปลี่ยน Password
         clickPWActivity();
 
 
@@ -79,6 +86,83 @@ public class SettingActivity extends AppCompatActivity {
         clickConnect();
 
         clickSuperUser();
+
+    }
+
+    private void setViewTextViewSecurity1() {
+        String sText;
+        if (checkBoxSecurityNone.isChecked()) {
+            sText = "คำอธิบาย\nไม่มีการทวนถาม 'รหัสผ่าน' ในทุกกระบวนการภายในแอพพลิเคชั่น";
+            textViewSecurity.setText(sText);
+        }
+
+        if (checkBoxSecurity1.isChecked()) {
+            sText = "คำอธิบาย\nมีการทวนถาม 'รหัสผ่าน' ในทุกกระบวนการภายในแอพพลิเคชั่น ยกเว้นหน้าแรกของการ Log-in";
+            textViewSecurity.setText(sText);
+        }
+
+        if (checkBoxSecurity2.isChecked()) {
+            sText = "คำอธิบาย\nมีการทวนถาม 'รหัสผ่าน' ในทุกกระบวนการภายในแอพพลิเคชั่น";
+            textViewSecurity.setText(sText);
+        }
+
+
+
+
+
+    }
+
+    private void clickCheckBoxSecurity() {
+
+        final String[] strUser = myManage.filter_userTABLE(1); //ค่า id
+
+        checkBoxSecurityNone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBoxSecurityNone.isChecked()) {
+                    checkBoxSecurity1.setChecked(false);
+                    checkBoxSecurity2.setChecked(false);
+                    myManage.updateStayLogin(strUser[0],"0");
+                    setViewTextViewSecurity("0");
+                } else {
+                    checkBoxSecurityNone.setChecked(true);
+                }
+            }
+        });
+
+
+        checkBoxSecurity1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBoxSecurity1.isChecked()) {
+                    checkBoxSecurityNone.setChecked(false);
+                    checkBoxSecurity2.setChecked(false);
+                    myManage.updateStayLogin(strUser[0],"1");
+                    setViewTextViewSecurity("1");
+                } else {
+                    checkBoxSecurity1.setChecked(true);
+                }
+            }
+        });
+
+
+
+        checkBoxSecurity2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBoxSecurity2.isChecked()) {
+                    checkBoxSecurityNone.setChecked(false);
+                    checkBoxSecurity1.setChecked(false);
+                    myManage.updateStayLogin(strUser[0],"2");
+                    setViewTextViewSecurity("2");
+                } else {
+                    checkBoxSecurity2.setChecked(true);
+                }
+            }
+        });
+
+
+
 
     }
 
@@ -160,6 +244,7 @@ public class SettingActivity extends AppCompatActivity {
 
 
         String[] strUser = myManage.filter_userTABLE(1); //ค่า id
+        String[] strStay = myManage.filter_userTABLE(3); //ค่า Stay (0,1,2)
         String[] strAllowNotif = myManage.filter_userTABLE(7); //หา Allowed_notification
         String[] strNotif = myManage.filter_userTABLE(6); // ดูข้อความ Notification
         textViewid.setText("ไอดีผู้ใช้ : ".concat(strUser[0]));
@@ -182,6 +267,32 @@ public class SettingActivity extends AppCompatActivity {
         }
 
 
+        setViewTextViewSecurity(strStay[0]);
+
+
+    }
+
+    private void setViewTextViewSecurity(String strStay) {
+
+
+
+        if (strStay.equals("0")) {
+            checkBoxSecurityNone.setChecked(true);
+            checkBoxSecurity1.setChecked(false);
+            checkBoxSecurity2.setChecked(false);
+            textViewSecurity.setText("คำอธิบาย :\nไม่มีการทวนถาม 'รหัสผ่าน' ในทุกกระบวนการภายในแอพพลิเคชั่น");
+        } else if (strStay.equals("1")) {
+            checkBoxSecurityNone.setChecked(false);
+            checkBoxSecurity1.setChecked(true);
+            checkBoxSecurity2.setChecked(false);
+            textViewSecurity.setText("คำอธิบาย :\nมีการทวนถาม 'รหัสผ่าน' ในทุกกระบวนการภายในแอพพลิเคชั่น ยกเว้นหน้าแรกของการ Log-in");
+
+        } else {
+            checkBoxSecurityNone.setChecked(false);
+            checkBoxSecurity1.setChecked(false);
+            checkBoxSecurity2.setChecked(true);
+            textViewSecurity.setText("คำอธิบาย :\nมีการทวนถาม 'รหัสผ่าน' ในทุกกระบวนการภายในแอพพลิเคชั่น");
+        }
 
 
     }
@@ -209,6 +320,11 @@ public class SettingActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.editText14);
         textViewAbout = (TextView) findViewById(R.id.textView158);
         textViewChangePW = (TextView) findViewById(R.id.textView157);
+        checkBoxSecurityNone = (CheckBox) findViewById(R.id.checkBoxSetting3);
+        checkBoxSecurity1 = (CheckBox) findViewById(R.id.checkBoxSetting4);
+        checkBoxSecurity2 = (CheckBox) findViewById(R.id.checkBoxSetting5);
+        textViewSecurity = (TextView) findViewById(R.id.textView187);
+
 
     }
 

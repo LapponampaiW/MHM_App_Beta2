@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // เชื่อมปุ่มต่างๆ
         bindWidget();
+        checkBoxlogin.setVisibility(View.GONE);
 
         // เมื่อทำการกดปุ่ม buttonLogin
         Click_buttonLogin();
@@ -82,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
              if (checkBoxlogin.isChecked()) {
 
                 //ทำการเพิ่มค่า Stay เป็น 1
-                myManage.updateStayLogin(stringUser);
+                myManage.updateStayLogin(stringUser,"1");
 
              }
 

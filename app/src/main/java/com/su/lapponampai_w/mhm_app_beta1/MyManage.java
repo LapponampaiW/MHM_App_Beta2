@@ -1528,7 +1528,7 @@ public class MyManage {
     }
 
 
-    public void updateStayLogin(String username) {
+    public void updateStayLogin(String username,String str_SecurityLevel) {
 
         Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE, "User =?", new String[]{String.valueOf(username)}, null, null, null);
 
@@ -1539,7 +1539,7 @@ public class MyManage {
 
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ucolumn_Stay, "1");
+        contentValues.put(ucolumn_Stay, str_SecurityLevel);
 
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
 

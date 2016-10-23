@@ -84,6 +84,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             strResult_AmountTablet, strResult_Tradename,strResult_DateTimeCheck,strResult_Sum_id,
             strResult_EA,strResult_SkipHold,strResult_DateRef = ""; //clickTakeMedicine
 
+    String popUpMaster;
+
     String[] strTextSpinner;
 
     Spinner spinner;
@@ -97,6 +99,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         activityMainActivity = this;
 
         hideUnuse();
+
+        //เปิดโดยใช้ Password(Intent)
+        receiveIntent();
+
 
         //Bind Widget
         bindWidget();
@@ -131,6 +137,23 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
 
     } //Main method
+
+    private void receiveIntent() {
+
+        popUpMaster = getIntent().getStringExtra("PopUpMaster");
+        if (popUpMaster != null) {
+            if (popUpMaster.equals("btn_pop1")) {
+                startActivity(new Intent(MainActivity.this, AddMedicineActivity.class));
+            } else if (popUpMaster.equals("btn_pop2")) {
+                startActivity(new Intent(MainActivity.this, AppointmentActivity.class));
+            } else if (popUpMaster.equals("btn_pop3")) {
+                startActivity(new Intent(MainActivity.this, LabActivity.class));
+            } else if (popUpMaster.equals("btn_pop4")) {
+                startActivity(new Intent(MainActivity.this, NoteActivity.class));
+            }
+        }
+
+    }
 
     private void checkDisplay_ERR() {
 
@@ -1583,6 +1606,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
 
     private void clickAddbtn() {
+        final MyManage myManage = new MyManage(this);
 
         textViewAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1606,7 +1630,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 imageButtonPop1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(MainActivity.this, AddMedicineActivity.class));
+                        String[] stringsStay = myManage.readSQLite_userTABLE(3);
+                        if (stringsStay[0].equals("0") || stringsStay[0].equals("1")) {
+                            startActivity(new Intent(MainActivity.this, AddMedicineActivity.class));
+                        } else {
+                            Intent intent = new Intent(MainActivity.this, PopUpGate.class);
+                            intent.putExtra("btn_pop1", "btn_pop1");
+                            startActivity(intent);
+                        }
                         popupWindow.dismiss();
                     }
                 });
@@ -1615,7 +1646,15 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 imageButtonPop2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(MainActivity.this, AppointmentActivity.class));
+                        //startActivity(new Intent(MainActivity.this, AppointmentActivity.class));
+                        String[] stringsStay = myManage.readSQLite_userTABLE(3);
+                        if (stringsStay[0].equals("0") || stringsStay[0].equals("1")) {
+                            startActivity(new Intent(MainActivity.this, AppointmentActivity.class));
+                        } else {
+                            Intent intent = new Intent(MainActivity.this, PopUpGate.class);
+                            intent.putExtra("btn_pop2", "btn_pop2");
+                            startActivity(intent);
+                        }
                         popupWindow.dismiss();
                     }
                 });
@@ -1624,7 +1663,15 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 imageButtonPop3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(MainActivity.this,LabActivity.class));
+                        //startActivity(new Intent(MainActivity.this,LabActivity.class));
+                        String[] stringsStay = myManage.readSQLite_userTABLE(3);
+                        if (stringsStay[0].equals("0") || stringsStay[0].equals("1")) {
+                            startActivity(new Intent(MainActivity.this, LabActivity.class));
+                        } else {
+                            Intent intent = new Intent(MainActivity.this, PopUpGate.class);
+                            intent.putExtra("btn_pop3", "btn_pop3");
+                            startActivity(intent);
+                        }
                         popupWindow.dismiss();
                     }
                 });
@@ -1634,9 +1681,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 imageButtonPop4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        String[] stringsStay = myManage.readSQLite_userTABLE(3);
+                        if (stringsStay[0].equals("0") || stringsStay[0].equals("1")) {
+                            startActivity(new Intent(MainActivity.this, NoteActivity.class));
+                        } else {
+                            Intent intent = new Intent(MainActivity.this, PopUpGate.class);
+                            intent.putExtra("btn_pop4", "btn_pop4");
+                            startActivity(intent);
+                        }
+                        popupWindow.dismiss();
+
+                        /*
                         final EditText editText = new EditText(MainActivity.this);
                         editText.setInputType(16);
-
                         final AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                         builder.setCancelable(false);
                         builder.setIcon(R.drawable.logo_carabao48);
@@ -1669,6 +1726,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                             }
                         });
                         builder.show();
+                        */
                     }
                 });
 

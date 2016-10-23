@@ -57,7 +57,8 @@
         <activity android:name=".AboutMHMActivity" />
         <activity android:name=".TransferDataActivity" />
         <activity android:name=".ChangePWActivity" />
-        <activity android:name=".PopUpChangeTradeGenericName"></activity>
+        <activity android:name=".PopUpChangeTradeGenericName" />
+        <activity android:name=".PopUpGate"></activity>
     </application>
 
 </manifest>

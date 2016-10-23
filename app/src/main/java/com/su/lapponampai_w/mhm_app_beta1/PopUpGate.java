@@ -18,7 +18,8 @@ public class PopUpGate extends AppCompatActivity {
     TextView textViewName,textViewOK,textViewCancel;
     EditText editTextPassword;
     MyManage myManage;
-    String string_btn_pop1,string_btn_pop2,string_btn_pop3,string_btn_pop4,string_btn_pop5,string_btn_pop6;
+    String string_btn_pop1,string_btn_pop2,string_btn_pop3,string_btn_pop4,string_MedicatinList,string_News,
+            string_setting;
 
 
     @Override
@@ -47,6 +48,11 @@ public class PopUpGate extends AppCompatActivity {
         string_btn_pop2 = getIntent().getStringExtra("btn_pop2");
         string_btn_pop3 = getIntent().getStringExtra("btn_pop3");
         string_btn_pop4 = getIntent().getStringExtra("btn_pop4");
+        string_MedicatinList = getIntent().getStringExtra("MedicationList");
+        string_News = getIntent().getStringExtra("News");
+        string_setting = getIntent().getStringExtra("Setting");
+
+
 
 
     }
@@ -65,7 +71,8 @@ public class PopUpGate extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "รหัสผ่านผิดพลาด", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    String[] stringsSendIntent = {string_btn_pop1,string_btn_pop2,string_btn_pop3,string_btn_pop4};
+                    String[] stringsSendIntent = {string_btn_pop1,string_btn_pop2,string_btn_pop3,
+                            string_btn_pop4,string_MedicatinList,string_News,string_setting};
                     for(int i = 0; i < stringsSendIntent.length;i++) {
                         if (stringsSendIntent[i] != null) {
                             if (stringsSendIntent[i].equals(string_btn_pop1) ||
@@ -75,6 +82,24 @@ public class PopUpGate extends AppCompatActivity {
                                 Intent intent = new Intent(PopUpGate.this, MainActivity.class);
                                 intent.putExtra("PopUpMaster", stringsSendIntent[i]);
                                 Toast.makeText(getBaseContext(),stringsSendIntent[i], Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
+                                finish();
+                            } else if (stringsSendIntent[i].equals(string_MedicatinList)) {
+                                Intent intent = new Intent(PopUpGate.this, MainActivity.class);
+                                intent.putExtra("PopUpMaster", stringsSendIntent[i]);
+                                Toast.makeText(getBaseContext(),stringsSendIntent[i], Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
+                                finish();
+                            } else if (stringsSendIntent[i].equals(string_News)) {
+                                Intent intent = new Intent(PopUpGate.this, MainActivity.class);
+                                intent.putExtra("PopUpMaster", stringsSendIntent[i]);
+                                Toast.makeText(getBaseContext(), stringsSendIntent[i], Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
+                                finish();
+                            } else if (stringsSendIntent[i].equals(string_setting)) {
+                                Intent intent = new Intent(PopUpGate.this, MainActivity.class);
+                                intent.putExtra("PopUpMaster", stringsSendIntent[i]);
+                                Toast.makeText(getBaseContext(), stringsSendIntent[i], Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();
                             }

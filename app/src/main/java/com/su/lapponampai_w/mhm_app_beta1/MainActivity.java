@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         hideUnuse();
 
         //เปิดโดยใช้ Password(Intent)
-        receiveIntent();
+        receiveIntentAndGoToAnotherActivity();
 
 
         //Bind Widget
@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     } //Main method
 
-    private void receiveIntent() {
+    private void receiveIntentAndGoToAnotherActivity() {
 
         popUpMaster = getIntent().getStringExtra("PopUpMaster");
         if (popUpMaster != null) {
@@ -150,6 +150,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 startActivity(new Intent(MainActivity.this, LabActivity.class));
             } else if (popUpMaster.equals("btn_pop4")) {
                 startActivity(new Intent(MainActivity.this, NoteActivity.class));
+            } else if (popUpMaster.equals("MedicationList")) {
+                startActivity(new Intent(MainActivity.this, MedicationListActivity.class));
+            } else if (popUpMaster.equals("News")) {
+                startActivity(new Intent(MainActivity.this, NewsActivity.class));
+            } else if (popUpMaster.equals("Setting")) {
+                startActivity(new Intent(MainActivity.this, SettingActivity.class));
             }
         }
 
@@ -837,18 +843,36 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         textViewNews.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context = MainActivity.this;
-                Log.d("20July16", "context :" + context.toString());
-                startActivity(new Intent(context, NewsActivity.class));
+                //Context context = MainActivity.this;
+                //startActivity(new Intent(context, NewsActivity.class));
+                final MyManage myManage = new MyManage(getBaseContext());
+                String[] stringsStay = myManage.readSQLite_userTABLE(3);
+                if (stringsStay[0].equals("0") || stringsStay[0].equals("1")) {
+                    startActivity(new Intent(MainActivity.this, NewsActivity.class));
+                } else {
+                    Intent intent = new Intent(MainActivity.this, PopUpGate.class);
+                    intent.putExtra("News", "News");
+                    startActivity(intent);
+                }
             }
         });
     }
 
     private void clickMedicationList() {
         textViewMedication.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, MedicationListActivity.class));
+                final MyManage myManage = new MyManage(getBaseContext());
+                //startActivity(new Intent(MainActivity.this, MedicationListActivity.class));
+                String[] stringsStay = myManage.readSQLite_userTABLE(3);
+                if (stringsStay[0].equals("0") || stringsStay[0].equals("1")) {
+                    startActivity(new Intent(MainActivity.this, MedicationListActivity.class));
+                } else {
+                    Intent intent = new Intent(MainActivity.this, PopUpGate.class);
+                    intent.putExtra("MedicationList", "MedicationList");
+                    startActivity(intent);
+                }
             }
         });
     }

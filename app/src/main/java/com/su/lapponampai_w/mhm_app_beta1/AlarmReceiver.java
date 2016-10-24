@@ -42,8 +42,6 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 
         //createNotification(context, "Times Up", "Success", "MHM Application");
-
-
         //createNotification(context, "second Time", "10 Seconds Has Passed", "Alert");
 
     }
@@ -55,17 +53,21 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     private void createNotification(Context context, String s, String s1, String alert) {
 
-        MyManage myManage = new MyManage(context);
-
-
-
-
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                .setSmallIcon(R.drawable.logo_carabao48)
+                .setContentTitle(s)
+                .setTicker(alert)
+                .setContentText(s1);
 
 
         Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra("PopUpMaster", "AlarmReceiver");
+        intent.putExtra("SumId_AlarmReceiver", string_sumId);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
 
         PendingIntent notificIntent = PendingIntent
-                .getActivity(context, 0, intent, 0); //ให้เปิด MainActivity
+                .getActivity(context, 1, intent, 0); //ให้เปิด MainActivity
 
         /*
         PendingIntent notificIntent = PendingIntent
@@ -74,18 +76,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 
 
-
-
-
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.logo_carabao48)
-                .setContentTitle(s)
-                .setTicker(alert)
-                .setContentText(s1);
-
         builder.setContentIntent(notificIntent);
-        builder.setDefaults(NotificationCompat.DEFAULT_SOUND);
+        builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE);
         builder.setAutoCancel(true);
 
         NotificationManager notificationManager =

@@ -19,7 +19,7 @@ public class PopUpGate extends AppCompatActivity {
     EditText editTextPassword;
     MyManage myManage;
     String string_btn_pop1,string_btn_pop2,string_btn_pop3,string_btn_pop4,string_MedicatinList,string_News,
-            string_setting;
+            string_setting,string_NotificationGate;
 
 
     @Override
@@ -51,6 +51,7 @@ public class PopUpGate extends AppCompatActivity {
         string_MedicatinList = getIntent().getStringExtra("MedicationList");
         string_News = getIntent().getStringExtra("News");
         string_setting = getIntent().getStringExtra("Setting");
+        string_NotificationGate = getIntent().getStringExtra("NotificationGate");
 
 
 
@@ -72,7 +73,7 @@ public class PopUpGate extends AppCompatActivity {
                     finish();
                 } else {
                     String[] stringsSendIntent = {string_btn_pop1,string_btn_pop2,string_btn_pop3,
-                            string_btn_pop4,string_MedicatinList,string_News,string_setting};
+                            string_btn_pop4,string_MedicatinList,string_News,string_setting,string_NotificationGate};
                     for(int i = 0; i < stringsSendIntent.length;i++) {
                         if (stringsSendIntent[i] != null) {
                             if (stringsSendIntent[i].equals(string_btn_pop1) ||
@@ -102,6 +103,8 @@ public class PopUpGate extends AppCompatActivity {
                                 Toast.makeText(getBaseContext(), stringsSendIntent[i], Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();
+                            } else if (stringsSendIntent[i].equals(string_NotificationGate)) {
+                                finish();
                             }
                         }
                     }
@@ -114,6 +117,7 @@ public class PopUpGate extends AppCompatActivity {
         textViewCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 finish();
 
             }

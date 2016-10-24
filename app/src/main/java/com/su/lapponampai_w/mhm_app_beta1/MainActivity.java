@@ -141,7 +141,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private void receiveIntentAndGoToAnotherActivity() {
 
         popUpMaster = getIntent().getStringExtra("PopUpMaster");
+
         if (popUpMaster != null) {
+            Log.d("24/10/2559", popUpMaster);
             if (popUpMaster.equals("btn_pop1")) {
                 startActivity(new Intent(MainActivity.this, AddMedicineActivity.class));
             } else if (popUpMaster.equals("btn_pop2")) {
@@ -156,7 +158,83 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 startActivity(new Intent(MainActivity.this, NewsActivity.class));
             } else if (popUpMaster.equals("Setting")) {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
+            } else if (popUpMaster.equals("AlarmReceiver")) {
+                Log.d("24/10/2559", "เข้า ให้หน้าที่ต้องการแล้ว AlarmReceiverIntent");
+                Toast.makeText(getBaseContext(), "เข้า ให้หน้าที่ต้องการแล้ว AlarmReceiverIntent", Toast.LENGTH_SHORT).show();
+                strResult_Sum_id = getIntent().getStringExtra("SumId_AlarmReceiver");
+                MyManage myManage = new MyManage(this);
+                MyData myData = new MyData();
+                String sCurrentDay = myData.currentDay();
+                stringsClick_Sum_id = myManage.filter_sumTABLE__by_Date(sCurrentDay, 0);
+                stringsClick_DateRef = myManage.filter_sumTABLE__by_Date(sCurrentDay, 2); //DateRef
+                stringsClick_Main_id = myManage.filter_sumTABLE__by_Date(sCurrentDay, 1); //Main_id
+                stringsClick_TimeRef = myManage.filter_sumTABLE__by_Date(sCurrentDay, 3); //TimeRef
+                stringsClick_SkipHold = myManage.filter_sumTABLE__by_Date(sCurrentDay, 6); //SkipHold
+
+                String[] strings_DateCheck = myManage.filter_sumTABLE__by_Date(sCurrentDay, 4); //DateCheck
+                String[] strings_TimeCheck = myManage.filter_sumTABLE__by_Date(sCurrentDay, 5); //TimeCheck
+
+                stringsClick_DateTimeCheck = new String[stringsClick_Main_id.length];
+                if (!stringsClick_Main_id[0].equals("")) {
+                    for (int x = 0; x < stringsClick_Main_id.length; x++) {
+                        if (!strings_DateCheck[x].equals("")) {
+                            stringsClick_DateTimeCheck[x] = strings_DateCheck[x] + " " + strings_TimeCheck[x];
+                        } else {
+                            stringsClick_DateTimeCheck[x] = "";
+                        }
+                    }
+
+                }
+
+
+                stringsMainTABLE_Main_id = myManage.readAllMainTABLE(0);
+                stringsMainTABLE_TradeName = myManage.readAllMainTABLE(3);
+                stringsMainTABLE_AmountTablet = myManage.readAllMainTABLE(6);
+                stringsMainTABLE_EA = myManage.readAllMainTABLE(7);
+                String[] stringsMainTABLE_Appearance = myManage.readAllMainTABLE(5);
+
+
+                for (int i = 0; i < stringsClick_Sum_id.length; i++) {
+                    if (stringsClick_Sum_id[i].equals(strResult_Sum_id)) {
+                        //ค่าที่จะเอาไปใช้ใน Pop up จริงๆ
+                        strResult_Main_id = stringsClick_Main_id[i];  //ต้องเอา Main_id ไปทำต่อ
+                        strResult_DateRef = stringsClick_DateRef[i];
+                        strResult_TimeRef = stringsClick_TimeRef[i];
+                        //strResult_Appearance = stringsClick_Appearance[i];
+                        strResult_DateTimeCheck = stringsClick_DateTimeCheck[i];
+                        strResult_SkipHold = stringsClick_SkipHold[i];
+                    }
+                }
+
+                for (int i = 0; i < stringsMainTABLE_Main_id.length; i++) {
+                    if (stringsMainTABLE_Main_id[i].equals(strResult_Main_id)) {
+                        strResult_Tradename = stringsMainTABLE_TradeName[i];  //Tradename
+                        strResult_AmountTablet = stringsMainTABLE_AmountTablet[i]; //จำนวนเม็ดที่กิน
+                        strResult_EA = stringsMainTABLE_EA[i]; //EA
+                        strResult_Appearance = stringsMainTABLE_Appearance[i]; //Appearance
+                    }
+
+                }
+
+
+                checkAndIntentToTakeSkipMedicineActivity();
+
+
+                //24/10/2559
+                String[] stringsStay = myManage.readSQLite_userTABLE(3);
+                if (stringsStay[0].equals("1") || stringsStay[0].equals("2")) {
+                    Intent intent = new Intent(MainActivity.this, PopUpGate.class);
+                    intent.putExtra("NotificationGate", "NotificationGate");
+                    startActivity(intent);
+                }
+
+
+
+
+
             }
+        } else {
+            Toast.makeText(getBaseContext(), "PopUpMaster == null",Toast.LENGTH_LONG);
         }
 
     }
@@ -675,6 +753,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             public void onClick(View v) {clickTakeMedicine("M7");}});
         imageButtonM8.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {clickTakeMedicine("M8");}});
+        imageButtonM9.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("M9");}});
 
         imageButtonA1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {clickTakeMedicine("A1");}});
@@ -692,6 +772,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             public void onClick(View v) {clickTakeMedicine("A7");}});
         imageButtonA8.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {clickTakeMedicine("A8");}});
+        imageButtonA9.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("A9");}});
 
         imageButtonE1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {clickTakeMedicine("E1");}});
@@ -709,6 +791,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             public void onClick(View v) {clickTakeMedicine("E7");}});
         imageButtonE8.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {clickTakeMedicine("E8");}});
+        imageButtonE9.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("E9");}});
 
         imageButtonB1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {clickTakeMedicine("B1");}});
@@ -726,6 +810,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             public void onClick(View v) {clickTakeMedicine("B7");}});
         imageButtonB8.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {clickTakeMedicine("B8");}});
+        imageButtonB9.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {clickTakeMedicine("B9");}});
 
     } //clickImagepill
 
@@ -761,6 +847,89 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 strResult_Tradename + " " + strResult_AmountTablet);
 
         //เริ่มทำการดูเวลา ถ้ามีการทานไปแล้ว หรือ skip ไปแล้วเกินเวลาที่กำหนดให้ Toast ขึ้นมาแล้วทำการ return
+
+        checkAndIntentToTakeSkipMedicineActivity();
+
+        /*
+        if (!strResult_DateTimeCheck.equals("")) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            Date date = new Date();
+            try {
+                date = dateFormat.parse(strResult_DateTimeCheck);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.HOUR_OF_DAY, -3);
+            Date dateRef = calendar.getTime();
+
+            if (date.compareTo(dateRef) < 0) {
+                Toast.makeText(MainActivity.this, "ไม่สามารถแก้ไข้เกินเวลาที่กำหนดได้", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+        if (!strResult_SkipHold.equals("")) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            Date date = new Date();
+            try {
+                date = dateFormat.parse(strResult_SkipHold);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.HOUR_OF_DAY, -3);
+            Date dateRef = calendar.getTime();
+
+            if (date.compareTo(dateRef) < 0) {
+                Toast.makeText(MainActivity.this, "ไม่สามารถแก้ไข้เกินเวลาที่กำหนดได้", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+        if (strResult_DateTimeCheck.equals("")) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+            Date date = new Date();
+
+            try {
+                date = dateFormat.parse(strResult_DateRef + " " + strResult_TimeRef);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(Calendar.DAY_OF_MONTH, -2);
+            Date dateRef = calendar.getTime();
+
+            if (date.compareTo(dateRef) < 0) {
+                Toast.makeText(MainActivity.this,"ไม่สามารถเปลี่ยนแปลงเกินเวลาที่กำหนดได้", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
+
+
+
+        Intent intent = new Intent(MainActivity.this, TakeSkipMedicineActivity.class);
+
+        //ทำการ copy ข้อมูลไป TakeSkipMedicineActivity
+        //intent.putExtra("Med_id",strings_receiver[0]);
+        intent.putExtra("MainActivity_Tradename", strResult_Tradename);
+        intent.putExtra("MainActivity_Appearance", strResult_Appearance);
+        intent.putExtra("MainActivity_AmountTablet", strResult_AmountTablet);
+        intent.putExtra("MainActivity_DateRef", strResult_DateRef);
+        intent.putExtra("MainActivity_TimeRef", strResult_TimeRef);
+        intent.putExtra("MainActivity_DateTimeCheck", strResult_DateTimeCheck);
+        intent.putExtra("MainActivity_SkipHold", strResult_SkipHold);
+        intent.putExtra("MainActivity_EA", strResult_EA);
+        intent.putExtra("MainActivity_Sum_id", strResult_Sum_id);
+        intent.putExtra("MainActivity_Main_id", strResult_Main_id);
+        startActivity(intent);
+        */
+
+    }
+
+    private void checkAndIntentToTakeSkipMedicineActivity() {
 
         if (!strResult_DateTimeCheck.equals("")) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -836,7 +1005,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         intent.putExtra("MainActivity_Sum_id", strResult_Sum_id);
         intent.putExtra("MainActivity_Main_id", strResult_Main_id);
         startActivity(intent);
-
     }
 
     private void click_News() {

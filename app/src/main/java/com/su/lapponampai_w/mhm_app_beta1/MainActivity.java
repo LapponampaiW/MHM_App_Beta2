@@ -141,6 +141,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private void receiveIntentAndGoToAnotherActivity() {
 
         popUpMaster = getIntent().getStringExtra("PopUpMaster");
+        MyManage myManage = new MyManage(this);
+        MyData myData = new MyData();
 
         if (popUpMaster != null) {
             Log.d("24/10/2559", popUpMaster);
@@ -159,11 +161,13 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             } else if (popUpMaster.equals("Setting")) {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
             } else if (popUpMaster.equals("AlarmReceiver")) {
-                Log.d("24/10/2559", "เข้า ให้หน้าที่ต้องการแล้ว AlarmReceiverIntent");
                 Toast.makeText(getBaseContext(), "เข้า ให้หน้าที่ต้องการแล้ว AlarmReceiverIntent", Toast.LENGTH_SHORT).show();
                 strResult_Sum_id = getIntent().getStringExtra("SumId_AlarmReceiver");
-                MyManage myManage = new MyManage(this);
-                MyData myData = new MyData();
+
+
+
+
+
                 String sCurrentDay = myData.currentDay();
                 stringsClick_Sum_id = myManage.filter_sumTABLE__by_Date(sCurrentDay, 0);
                 stringsClick_DateRef = myManage.filter_sumTABLE__by_Date(sCurrentDay, 2); //DateRef

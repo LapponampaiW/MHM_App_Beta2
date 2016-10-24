@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class TakeSkipMedicineActivity extends AppCompatActivity {
 
     //Explicit
-    public Activity activityTSMActivity;
+    public static Activity activityTSMActivity;
     String string1,string2,string3, string4,string5,string6,string7,stringId,stringDateRef,stringMain_id;
     TextView textView1,textView2, textView3;
     TextView textViewB1,textViewB2, textViewB3;

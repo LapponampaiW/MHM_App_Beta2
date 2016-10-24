@@ -118,7 +118,16 @@ public class PopUpGate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                finish();
+                if (string_NotificationGate != null) {
+                    //finish();
+                    //TakeSkipMedicineActivity.activityTSMActivity.finish();
+                    //MainActivity.activityMainActivity.finish();
+
+
+                } else {
+                    finish();
+                }
+
 
             }
         });

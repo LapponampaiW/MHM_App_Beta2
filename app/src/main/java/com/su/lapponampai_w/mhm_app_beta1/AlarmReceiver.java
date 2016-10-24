@@ -41,8 +41,17 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     private void createNotification(Context context, String s, String s1, String alert) {
 
+
+        Intent intent = new Intent(context, MainActivity.class);
+
+        PendingIntent notificIntent = PendingIntent
+                .getActivity(context, 0, intent, 0); //ให้เปิด MainActivity
+
+        /*
         PendingIntent notificIntent = PendingIntent
                 .getActivity(context, 0, new Intent(context, MainActivity.class), 0); //ให้เปิด MainActivity
+        */
+
 
 
 

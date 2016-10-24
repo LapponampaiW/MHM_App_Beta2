@@ -319,74 +319,80 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         }
         int a = 0;
 
-        for(int i = 0; i < 2; i++) {
-            String sDate = myData.currentDay();
-            Date dDate = myData.stringChangetoDateWithOutTime(sDate);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(dDate);
-            calendar.add(Calendar.DAY_OF_MONTH,i);
-            dDate = calendar.getTime();
-            String sSpecificDate = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dDate);
+        //เอาค่า Allow Nof
+        String[] strings_Allow_Nof = myManage.filter_userTABLE(7);
 
-            String sCurrentDateTime = myData.currentDateTime_Withoutsecond();
-            Date dCurrentDateTime = myData.stringChangetoDate(sCurrentDateTime);
+        if(strings_Allow_Nof[0].equals("Y")) {
+            for (int i = 0; i < 2; i++) {
+                String sDate = myData.currentDay();
+                Date dDate = myData.stringChangetoDateWithOutTime(sDate);
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(dDate);
+                calendar.add(Calendar.DAY_OF_MONTH, i);
+                dDate = calendar.getTime();
+                String sSpecificDate = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dDate);
 
-
-
-
-            Log.d("14/10/2559", "1 : sSpecificDate : " + sSpecificDate);
-
-            String[] strings_sumTABLE_id = myManage.filter_sumTABLE__by_Date(sSpecificDate, 0);
-            String[] strings_sumTABLE_MainId = myManage.filter_sumTABLE__by_Date(sSpecificDate, 1);
-            //String[] strings_sumTABLE_DateRef = myManage.filter_sumTABLE__by_Date(sSpecificDate, 2);
-            String[] strings_sumTABLE_TimeRef = myManage.filter_sumTABLE__by_Date(sSpecificDate, 3);
-            String[] strings_sumTABLE_DateCheck = myManage.filter_sumTABLE__by_Date(sSpecificDate, 4);
-            String[] strings_sumTABLE_TimeCheck = myManage.filter_sumTABLE__by_Date(sSpecificDate, 5);
-            String[] strings_sumTABLE_SkipHold = myManage.filter_sumTABLE__by_Date(sSpecificDate, 6);
-
-            if (!strings_sumTABLE_id[0].equals("")) {
-                Log.d("14/10/2559", "1 : เข้า if1 : ");
-                //String sCurrentTime = myData.currentTime_Minus();
-                //Date dCurrentTime = myData.stringChangetoTime_Minute(sCurrentTime);
-
-                for (int x = 0; x < strings_sumTABLE_id.length; x++) {
-                    if (strings_sumTABLE_DateCheck[x].equals("") && strings_sumTABLE_SkipHold[x].equals("")) {
-                        Log.d("14/10/2559", "1 : เข้า if2 และ for");
-
-                        //เพิ่ม
-                        String stringDateTime = sSpecificDate + " " + strings_sumTABLE_TimeRef[x];
-                        Date d_sumTABLE_DateTimeRef = myData.stringChangetoDate(stringDateTime);
-
-                        //Date d_sumTABLE_TimeRef = myData.stringChangetoTime_Minute(strings_sumTABLE_TimeRef[x]);
-
-                        if (dCurrentDateTime.compareTo(d_sumTABLE_DateTimeRef) <= 0) {
-                            //เริ่ม boardcast
-
-                            Calendar calendarCurrent = Calendar.getInstance();
-                            Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
-
-                            String stringAlarm = sSpecificDate + " " + strings_sumTABLE_TimeRef[x];
-
-                            Log.d("14/10/2559", "2 : stringAlarm : " + stringAlarm);
-                            Date dAlarm = myData.stringChangetoDate(stringAlarm);
-                            myCalendarAlarm.setTime(dAlarm);
+                String sCurrentDateTime = myData.currentDateTime_Withoutsecond();
+                Date dCurrentDateTime = myData.stringChangetoDate(sCurrentDateTime);
 
 
-                            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                            a = a + 1;
+                Log.d("14/10/2559", "1 : sSpecificDate : " + sSpecificDate);
 
-                            alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent); //4
-                            Log.d("14/10/2559", "3 : เข้า alarmManager");
+                String[] strings_sumTABLE_id = myManage.filter_sumTABLE__by_Date(sSpecificDate, 0);
+                String[] strings_sumTABLE_MainId = myManage.filter_sumTABLE__by_Date(sSpecificDate, 1);
+                //String[] strings_sumTABLE_DateRef = myManage.filter_sumTABLE__by_Date(sSpecificDate, 2);
+                String[] strings_sumTABLE_TimeRef = myManage.filter_sumTABLE__by_Date(sSpecificDate, 3);
+                String[] strings_sumTABLE_DateCheck = myManage.filter_sumTABLE__by_Date(sSpecificDate, 4);
+                String[] strings_sumTABLE_TimeCheck = myManage.filter_sumTABLE__by_Date(sSpecificDate, 5);
+                String[] strings_sumTABLE_SkipHold = myManage.filter_sumTABLE__by_Date(sSpecificDate, 6);
 
+                if (!strings_sumTABLE_id[0].equals("")) {
+                    Log.d("14/10/2559", "1 : เข้า if1 : ");
+                    //String sCurrentTime = myData.currentTime_Minus();
+                    //Date dCurrentTime = myData.stringChangetoTime_Minute(sCurrentTime);
+
+                    for (int x = 0; x < strings_sumTABLE_id.length; x++) {
+                        if (strings_sumTABLE_DateCheck[x].equals("") && strings_sumTABLE_SkipHold[x].equals("")) {
+                            Log.d("14/10/2559", "1 : เข้า if2 และ for");
+
+                            //เพิ่ม
+                            String stringDateTime = sSpecificDate + " " + strings_sumTABLE_TimeRef[x];
+                            Date d_sumTABLE_DateTimeRef = myData.stringChangetoDate(stringDateTime);
+
+                            //Date d_sumTABLE_TimeRef = myData.stringChangetoTime_Minute(strings_sumTABLE_TimeRef[x]);
+
+                            if (dCurrentDateTime.compareTo(d_sumTABLE_DateTimeRef) <= 0) {
+                                //เริ่ม boardcast
+
+                                Calendar calendarCurrent = Calendar.getInstance();
+                                Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
+
+                                String stringAlarm = sSpecificDate + " " + strings_sumTABLE_TimeRef[x];
+
+                                Log.d("14/10/2559", "2 : stringAlarm : " + stringAlarm);
+                                Date dAlarm = myData.stringChangetoDate(stringAlarm);
+                                myCalendarAlarm.setTime(dAlarm);
+
+
+                                PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                                a = a + 1;
+
+
+                                alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent); //4
+
+
+                                Log.d("14/10/2559", "3 : เข้า alarmManager");
+
+
+                            }
 
                         }
-
                     }
+
+
                 }
 
-
             }
-
         }
 
 

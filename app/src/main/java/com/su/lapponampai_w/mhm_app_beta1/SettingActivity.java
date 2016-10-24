@@ -39,7 +39,7 @@ public class SettingActivity extends AppCompatActivity {
     public static Activity settingActivity;
 
 
-    Button buttonConnect,buttonSuperUser;
+    Button buttonConnect,buttonSuperUser,buttonNofSave;
     String strAddVN;
     TextView textViewid,textViewAbout,textViewChangePW,textViewSecurity;
     MyManage myManage;
@@ -79,13 +79,40 @@ public class SettingActivity extends AppCompatActivity {
         //คลิกเปลี่ยน Password
         clickPWActivity();
 
-
+        //คลิก Save Nof
+        clickSaveNof();
 
 
 
         clickConnect();
 
         clickSuperUser();
+
+    }
+
+    private void clickSaveNof() {
+
+        buttonNofSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String s = editText.getText().toString().trim();
+
+                if (s.equals("") && checkBoxCustom.isChecked()) {
+                    Toast.makeText(getBaseContext(), "กรุณาระบุข้อความที่ต้องการก่อนบันทึก", Toast.LENGTH_SHORT).show();
+                } else if(!s.equals("") && checkBoxCustom.isChecked()) {
+
+                    String[] strUser = myManage.filter_userTABLE(1); //ค่า username
+                    myManage.update_notification(strUser[0],s);
+                    Toast.makeText(getBaseContext(), "เปลี่ยนแปลงข้อความเรียบร้อย", Toast.LENGTH_SHORT).show();
+                } else if (checkBoxDefault.isChecked()) {
+                    String[] strUser = myManage.filter_userTABLE(1); //ค่า username
+                    myManage.update_notification(strUser[0],"Default");
+                    Toast.makeText(getBaseContext(), "เปลี่ยนแปลงข้อความเรียบร้อย", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
     }
 
@@ -201,6 +228,7 @@ public class SettingActivity extends AppCompatActivity {
                 if (checkBoxDefault.isChecked()) {
                     checkBoxCustom.setChecked(false);
                     editText.setText("");
+                    Toast.makeText(getBaseContext(),"กรุณากดปุ่มบันทึกถ้าต้องการบันทึกความเปลี่ยนแปลง",Toast.LENGTH_SHORT).show();
                 } else {
                     checkBoxDefault.setChecked(true);
                 }
@@ -213,9 +241,18 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (checkBoxCustom.isChecked()) {
                     checkBoxDefault.setChecked(false);
+                    Toast.makeText(getBaseContext(),"กรุณากดปุ่มบันทึกถ้าต้องการบันทึกความเปลี่ยนแปลง",Toast.LENGTH_SHORT).show();
                 } else {
                     checkBoxCustom.setChecked(true);
                 }
+            }
+        });
+
+        editText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkBoxCustom.setChecked(true);
+                checkBoxDefault.setChecked(false);
             }
         });
 
@@ -234,7 +271,8 @@ public class SettingActivity extends AppCompatActivity {
                     linearLayout.setVisibility(View.GONE);
                 }
 
-
+                SplashScreen splashScreen = new SplashScreen();
+                splashScreen.updateDailyBroadcast(getBaseContext());
 
             }
         });
@@ -324,6 +362,7 @@ public class SettingActivity extends AppCompatActivity {
         checkBoxSecurity1 = (CheckBox) findViewById(R.id.checkBoxSetting4);
         checkBoxSecurity2 = (CheckBox) findViewById(R.id.checkBoxSetting5);
         textViewSecurity = (TextView) findViewById(R.id.textView187);
+        buttonNofSave = (Button) findViewById(R.id.buttonSettingSave);
 
 
     }

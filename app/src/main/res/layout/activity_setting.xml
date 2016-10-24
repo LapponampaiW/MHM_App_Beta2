@@ -149,14 +149,6 @@
                     <Button
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="ยกเลิก"
-                        android:id="@+id/buttonSettingCancel"
-                        android:layout_weight="1"
-                         />
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
                         android:text="บันทึก"
                         android:id="@+id/buttonSettingSave"
                         android:layout_weight="1"

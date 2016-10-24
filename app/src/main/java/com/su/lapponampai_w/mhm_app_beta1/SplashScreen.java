@@ -116,8 +116,8 @@ public class SplashScreen extends AppCompatActivity {
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context,951, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT); //3
 
-        alarmManager.setInexactRepeating(1, myCalendarAlarm.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent); //4
-
+        //alarmManager.setInexactRepeating(1, myCalendarAlarm.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent); //4
+        alarmManager.setRepeating(1, myCalendarAlarm.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent); //
 
     }
 

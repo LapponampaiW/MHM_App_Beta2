@@ -373,6 +373,8 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                                 Date dAlarm = myData.stringChangetoDate(stringAlarm);
                                 myCalendarAlarm.setTime(dAlarm);
 
+                                //24/10/2559 ส่งค่าไปกับ intent
+                                alertIntent.putExtra("DailyUpdateIntent", strings_sumTABLE_id[x]);
 
                                 PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                                 a = a + 1;

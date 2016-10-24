@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -17,6 +19,9 @@ import java.util.Random;
  */
 public class AlarmReceiver extends BroadcastReceiver {
 
+    //Explicit
+    String string_sumId;
+
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -24,6 +29,10 @@ public class AlarmReceiver extends BroadcastReceiver {
         MyManage myManage = new MyManage(context);
         //String[] strUser = myManage.filter_userTABLE(1);
         String[] strNotification = myManage.filter_userTABLE(6);
+
+        receiveIntent(intent);
+        //Toast.makeText(context,string_sumId,Toast.LENGTH_LONG).show();
+
 
         if (strNotification[0].equals("Default")) {
             createNotification(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application");
@@ -39,7 +48,18 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     }
 
+    private void receiveIntent(Intent intent) {
+
+        string_sumId = intent.getStringExtra("DailyUpdateIntent");
+    }
+
     private void createNotification(Context context, String s, String s1, String alert) {
+
+        MyManage myManage = new MyManage(context);
+
+
+
+
 
 
         Intent intent = new Intent(context, MainActivity.class);

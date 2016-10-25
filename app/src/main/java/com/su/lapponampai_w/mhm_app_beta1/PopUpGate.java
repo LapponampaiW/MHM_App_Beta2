@@ -19,7 +19,7 @@ public class PopUpGate extends AppCompatActivity {
     EditText editTextPassword;
     MyManage myManage;
     String string_btn_pop1,string_btn_pop2,string_btn_pop3,string_btn_pop4,string_MedicatinList,string_News,
-            string_setting,string_NotificationGate;
+            string_setting,string_NotificationGate,string_NotificationGate_Sum_id;
 
 
     @Override
@@ -52,8 +52,7 @@ public class PopUpGate extends AppCompatActivity {
         string_News = getIntent().getStringExtra("News");
         string_setting = getIntent().getStringExtra("Setting");
         string_NotificationGate = getIntent().getStringExtra("NotificationGate");
-
-
+        string_NotificationGate_Sum_id = getIntent().getStringExtra("NotificationGate_SumId");
 
 
     }
@@ -68,9 +67,17 @@ public class PopUpGate extends AppCompatActivity {
                 String[] stringsPassword = myManage.readSQLite_userTABLE(2); //Password
                 String strTestPassword = editTextPassword.getText().toString().trim();
 
-                if (!stringsPassword[0].equals(strTestPassword)) {
+                if (strTestPassword.equals("")) {
+                    Toast.makeText(getBaseContext(), "กรุณากรอกรหัสผ่าน", Toast.LENGTH_SHORT).show();
+                } else if (!stringsPassword[0].equals(strTestPassword)) {
                     Toast.makeText(getBaseContext(), "รหัสผ่านผิดพลาด", Toast.LENGTH_SHORT).show();
-                    finish();
+                    if (string_NotificationGate != null) {
+                        //int iCount = 0;
+
+                    } else {
+                        finish();
+                    }
+
                 } else {
                     String[] stringsSendIntent = {string_btn_pop1,string_btn_pop2,string_btn_pop3,
                             string_btn_pop4,string_MedicatinList,string_News,string_setting,string_NotificationGate};
@@ -81,29 +88,39 @@ public class PopUpGate extends AppCompatActivity {
                                     stringsSendIntent[i].equals(string_btn_pop3) ||
                                     stringsSendIntent[i].equals(string_btn_pop4)) {
                                 Intent intent = new Intent(PopUpGate.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.putExtra("PopUpMaster", stringsSendIntent[i]);
                                 Toast.makeText(getBaseContext(),stringsSendIntent[i], Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();
                             } else if (stringsSendIntent[i].equals(string_MedicatinList)) {
                                 Intent intent = new Intent(PopUpGate.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.putExtra("PopUpMaster", stringsSendIntent[i]);
                                 Toast.makeText(getBaseContext(),stringsSendIntent[i], Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();
                             } else if (stringsSendIntent[i].equals(string_News)) {
                                 Intent intent = new Intent(PopUpGate.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.putExtra("PopUpMaster", stringsSendIntent[i]);
                                 Toast.makeText(getBaseContext(), stringsSendIntent[i], Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();
                             } else if (stringsSendIntent[i].equals(string_setting)) {
                                 Intent intent = new Intent(PopUpGate.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.putExtra("PopUpMaster", stringsSendIntent[i]);
                                 Toast.makeText(getBaseContext(), stringsSendIntent[i], Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();
                             } else if (stringsSendIntent[i].equals(string_NotificationGate)) {
+                                Intent intent = new Intent(PopUpGate.this, MainActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                intent.putExtra("PopUpMaster", stringsSendIntent[i]);
+                                intent.putExtra("SumId_AlarmReceiver", string_NotificationGate_Sum_id);
+                                Toast.makeText(getBaseContext(), stringsSendIntent[i], Toast.LENGTH_SHORT).show();
+                                startActivity(intent);
                                 finish();
                             }
                         }
@@ -119,9 +136,9 @@ public class PopUpGate extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (string_NotificationGate != null) {
-                    //finish();
+                    finish();
                     //TakeSkipMedicineActivity.activityTSMActivity.finish();
-                    //MainActivity.activityMainActivity.finish();
+                    MainActivity.activityMainActivity.finish();
 
 
                 } else {

@@ -375,6 +375,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                                 //24/10/2559 ส่งค่าไปกับ intent
                                 alertIntent.putExtra("DailyUpdateIntent", strings_sumTABLE_id[x]);
+                                Log.d("25/10/2559", "3 : strings_sumTABLE_id : " + strings_sumTABLE_id[x]);
 
                                 PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                                 a = a + 1;

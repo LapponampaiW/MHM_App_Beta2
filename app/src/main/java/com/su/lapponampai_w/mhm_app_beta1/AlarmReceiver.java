@@ -10,6 +10,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -35,9 +36,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 
         if (strNotification[0].equals("Default")) {
-            createNotification(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application");
+            createNotification(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application",string_sumId);
         } else {
-            createNotification(context,"MHM Application", strNotification[0], "MHM Application");
+            createNotification(context,"MHM Application", strNotification[0], "MHM Application",string_sumId);
         }
 
 
@@ -49,9 +50,10 @@ public class AlarmReceiver extends BroadcastReceiver {
     private void receiveIntent(Intent intent) {
 
         string_sumId = intent.getStringExtra("DailyUpdateIntent");
+        Log.d("25/10/2559", "4 : DailyUpdateIntent : " + string_sumId);
     }
 
-    private void createNotification(Context context, String s, String s1, String alert) {
+    private void createNotification(Context context, String s, String s1, String alert,String sIntent) {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.logo_carabao48)
@@ -62,18 +64,23 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra("PopUpMaster", "AlarmReceiver");
-        intent.putExtra("SumId_AlarmReceiver", string_sumId);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("SumId_AlarmReceiver", sIntent);
+
+        for(int i = 0;i<=1;i++) {
+            PendingIntent notificIntent = PendingIntent
+                    .getActivity(context, 1, intent, 0); //ให้เปิด MainActivity
+            notificIntent.cancel();
+        }
 
 
-        PendingIntent notificIntent = PendingIntent
-                .getActivity(context, 1, intent, 0); //ให้เปิด MainActivity
 
         /*
         PendingIntent notificIntent = PendingIntent
                 .getActivity(context, 0, new Intent(context, MainActivity.class), 0); //ให้เปิด MainActivity
         */
 
+        PendingIntent notificIntent = PendingIntent
+                .getActivity(context, 1, intent, 0); //ให้เปิด MainActivity
 
 
         builder.setContentIntent(notificIntent);

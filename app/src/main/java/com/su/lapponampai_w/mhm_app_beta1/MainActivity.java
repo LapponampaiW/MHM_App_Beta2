@@ -141,8 +141,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     private void receiveIntentAndGoToAnotherActivity() {
 
         popUpMaster = getIntent().getStringExtra("PopUpMaster");
-        MyManage myManage = new MyManage(this);
-        MyData myData = new MyData();
 
         if (popUpMaster != null) {
             Log.d("24/10/2559", popUpMaster);
@@ -161,85 +159,89 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             } else if (popUpMaster.equals("Setting")) {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
             } else if (popUpMaster.equals("AlarmReceiver")) {
-                Toast.makeText(getBaseContext(), "เข้า ให้หน้าที่ต้องการแล้ว AlarmReceiverIntent", Toast.LENGTH_SHORT).show();
+
                 strResult_Sum_id = getIntent().getStringExtra("SumId_AlarmReceiver");
-
-
-
-
-
-                String sCurrentDay = myData.currentDay();
-                stringsClick_Sum_id = myManage.filter_sumTABLE__by_Date(sCurrentDay, 0);
-                stringsClick_DateRef = myManage.filter_sumTABLE__by_Date(sCurrentDay, 2); //DateRef
-                stringsClick_Main_id = myManage.filter_sumTABLE__by_Date(sCurrentDay, 1); //Main_id
-                stringsClick_TimeRef = myManage.filter_sumTABLE__by_Date(sCurrentDay, 3); //TimeRef
-                stringsClick_SkipHold = myManage.filter_sumTABLE__by_Date(sCurrentDay, 6); //SkipHold
-
-                String[] strings_DateCheck = myManage.filter_sumTABLE__by_Date(sCurrentDay, 4); //DateCheck
-                String[] strings_TimeCheck = myManage.filter_sumTABLE__by_Date(sCurrentDay, 5); //TimeCheck
-
-                stringsClick_DateTimeCheck = new String[stringsClick_Main_id.length];
-                if (!stringsClick_Main_id[0].equals("")) {
-                    for (int x = 0; x < stringsClick_Main_id.length; x++) {
-                        if (!strings_DateCheck[x].equals("")) {
-                            stringsClick_DateTimeCheck[x] = strings_DateCheck[x] + " " + strings_TimeCheck[x];
-                        } else {
-                            stringsClick_DateTimeCheck[x] = "";
-                        }
-                    }
-
-                }
-
-
-                stringsMainTABLE_Main_id = myManage.readAllMainTABLE(0);
-                stringsMainTABLE_TradeName = myManage.readAllMainTABLE(3);
-                stringsMainTABLE_AmountTablet = myManage.readAllMainTABLE(6);
-                stringsMainTABLE_EA = myManage.readAllMainTABLE(7);
-                String[] stringsMainTABLE_Appearance = myManage.readAllMainTABLE(5);
-
-
-                for (int i = 0; i < stringsClick_Sum_id.length; i++) {
-                    if (stringsClick_Sum_id[i].equals(strResult_Sum_id)) {
-                        //ค่าที่จะเอาไปใช้ใน Pop up จริงๆ
-                        strResult_Main_id = stringsClick_Main_id[i];  //ต้องเอา Main_id ไปทำต่อ
-                        strResult_DateRef = stringsClick_DateRef[i];
-                        strResult_TimeRef = stringsClick_TimeRef[i];
-                        //strResult_Appearance = stringsClick_Appearance[i];
-                        strResult_DateTimeCheck = stringsClick_DateTimeCheck[i];
-                        strResult_SkipHold = stringsClick_SkipHold[i];
-                    }
-                }
-
-                for (int i = 0; i < stringsMainTABLE_Main_id.length; i++) {
-                    if (stringsMainTABLE_Main_id[i].equals(strResult_Main_id)) {
-                        strResult_Tradename = stringsMainTABLE_TradeName[i];  //Tradename
-                        strResult_AmountTablet = stringsMainTABLE_AmountTablet[i]; //จำนวนเม็ดที่กิน
-                        strResult_EA = stringsMainTABLE_EA[i]; //EA
-                        strResult_Appearance = stringsMainTABLE_Appearance[i]; //Appearance
-                    }
-
-                }
-
-
-                checkAndIntentToTakeSkipMedicineActivity();
-
-
-                //24/10/2559
+                Log.d("25/10/2559", "strResult_Sum_id" + strResult_Sum_id);
+                Toast.makeText(getBaseContext(), "strResult_Sum_id = " + strResult_Sum_id, Toast.LENGTH_SHORT).show();
+                MyManage myManage = new MyManage(this);
                 String[] stringsStay = myManage.readSQLite_userTABLE(3);
                 if (stringsStay[0].equals("1") || stringsStay[0].equals("2")) {
                     Intent intent = new Intent(MainActivity.this, PopUpGate.class);
                     intent.putExtra("NotificationGate", "NotificationGate");
+                    intent.putExtra("NotificationGate_SumId", strResult_Sum_id);
                     startActivity(intent);
+                } else {
+                    receiveValueToPopUpTakeMedicine();
                 }
-
-
-
-
-
+            } else if (popUpMaster.equals("NotificationGate")) {
+                strResult_Sum_id = getIntent().getStringExtra("SumId_AlarmReceiver");
+                receiveValueToPopUpTakeMedicine();
             }
         } else {
             Toast.makeText(getBaseContext(), "PopUpMaster == null",Toast.LENGTH_LONG);
         }
+
+    }
+
+    private void receiveValueToPopUpTakeMedicine() {
+
+        MyManage myManage = new MyManage(this);
+        MyData myData = new MyData();
+        String sCurrentDay = myData.currentDay();
+        stringsClick_Sum_id = myManage.filter_sumTABLE__by_Date(sCurrentDay, 0);
+        stringsClick_DateRef = myManage.filter_sumTABLE__by_Date(sCurrentDay, 2); //DateRef
+        stringsClick_Main_id = myManage.filter_sumTABLE__by_Date(sCurrentDay, 1); //Main_id
+        stringsClick_TimeRef = myManage.filter_sumTABLE__by_Date(sCurrentDay, 3); //TimeRef
+        stringsClick_SkipHold = myManage.filter_sumTABLE__by_Date(sCurrentDay, 6); //SkipHold
+
+        String[] strings_DateCheck = myManage.filter_sumTABLE__by_Date(sCurrentDay, 4); //DateCheck
+        String[] strings_TimeCheck = myManage.filter_sumTABLE__by_Date(sCurrentDay, 5); //TimeCheck
+
+        stringsClick_DateTimeCheck = new String[stringsClick_Main_id.length];
+        if (!stringsClick_Main_id[0].equals("")) {
+            for (int x = 0; x < stringsClick_Main_id.length; x++) {
+                if (!strings_DateCheck[x].equals("")) {
+                    stringsClick_DateTimeCheck[x] = strings_DateCheck[x] + " " + strings_TimeCheck[x];
+                } else {
+                    stringsClick_DateTimeCheck[x] = "";
+                }
+            }
+
+        }
+
+
+        stringsMainTABLE_Main_id = myManage.readAllMainTABLE(0);
+        stringsMainTABLE_TradeName = myManage.readAllMainTABLE(3);
+        stringsMainTABLE_AmountTablet = myManage.readAllMainTABLE(6);
+        stringsMainTABLE_EA = myManage.readAllMainTABLE(7);
+        String[] stringsMainTABLE_Appearance = myManage.readAllMainTABLE(5);
+
+
+        for (int i = 0; i < stringsClick_Sum_id.length; i++) {
+            if (stringsClick_Sum_id[i].equals(strResult_Sum_id)) {
+                //ค่าที่จะเอาไปใช้ใน Pop up จริงๆ
+                strResult_Main_id = stringsClick_Main_id[i];  //ต้องเอา Main_id ไปทำต่อ
+                strResult_DateRef = stringsClick_DateRef[i];
+                strResult_TimeRef = stringsClick_TimeRef[i];
+                //strResult_Appearance = stringsClick_Appearance[i];
+                strResult_DateTimeCheck = stringsClick_DateTimeCheck[i];
+                strResult_SkipHold = stringsClick_SkipHold[i];
+
+            }
+        }
+
+        for (int i = 0; i < stringsMainTABLE_Main_id.length; i++) {
+            if (stringsMainTABLE_Main_id[i].equals(strResult_Main_id)) {
+                strResult_Tradename = stringsMainTABLE_TradeName[i];  //Tradename
+                strResult_AmountTablet = stringsMainTABLE_AmountTablet[i]; //จำนวนเม็ดที่กิน
+                strResult_EA = stringsMainTABLE_EA[i]; //EA
+                strResult_Appearance = stringsMainTABLE_Appearance[i]; //Appearance
+            }
+
+        }
+
+
+        checkAndIntentToTakeSkipMedicineActivity();
 
     }
 

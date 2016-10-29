@@ -595,7 +595,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             //checkDisplay_ERR();
             clickAddbtn();
             clickMedicationList();
-            click_ImageButtonAdherence();
+            //click_ImageButtonAdherence();
             click_News();
             clickImagepill();
             clickTextViewMainDate();

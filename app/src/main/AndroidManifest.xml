@@ -58,7 +58,8 @@
         <activity android:name=".TransferDataActivity" />
         <activity android:name=".ChangePWActivity" />
         <activity android:name=".PopUpChangeTradeGenericName" />
-        <activity android:name=".PopUpGate"></activity>
+        <activity android:name=".PopUpGate" />
+        <activity android:name=".PatientAdherenceActivity"></activity>
     </application>
 
 </manifest>

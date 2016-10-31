@@ -887,6 +887,29 @@ public class MyManage {
         return strREAD;
     }
 
+    public String[] filter_mainTABLE_T1T8_by_mainID(String string_mainID) {
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(mainTABLE,column_mainTABLE, "_id " + "LIKE '"+ string_mainID + "'", null, null, null, "_id ASC");
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+            strREAD = new String[8];
+            cursor.moveToFirst();
+            strREAD[0] = cursor.getString(cursor.getColumnIndex(mcolumn_t1));
+            strREAD[1] = cursor.getString(cursor.getColumnIndex(mcolumn_t2));
+            strREAD[2] = cursor.getString(cursor.getColumnIndex(mcolumn_t3));
+            strREAD[3] = cursor.getString(cursor.getColumnIndex(mcolumn_t4));
+            strREAD[4] = cursor.getString(cursor.getColumnIndex(mcolumn_t5));
+            strREAD[5] = cursor.getString(cursor.getColumnIndex(mcolumn_t6));
+            strREAD[6] = cursor.getString(cursor.getColumnIndex(mcolumn_t7));
+            strREAD[7] = cursor.getString(cursor.getColumnIndex(mcolumn_t8));
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+
+        return strREAD;
+    }
+
 
     // Read All mainTABLE
     public String[] readAllMainTABLE(int intColumn) { //0 หมายถึง ==> _id , 1 ==>T1

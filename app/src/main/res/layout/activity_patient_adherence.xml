@@ -66,6 +66,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1.33"></LinearLayout>
 
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/listViewPatientAdherence"
+            android:layout_below="@+id/linCalendar"
+            android:padding="@dimen/z2_margin_bigspace" />
+
     </LinearLayout>
 
 </LinearLayout>

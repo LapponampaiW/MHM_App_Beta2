@@ -65,17 +65,17 @@ public class DailyFragment extends Fragment {
         Log.d("DailyFragment", strDateRef);
 
         //เอาค่าของ sumTABLE มาทุกค่าโดย filter วันที่คลิกในปฏิทิน
-        String[] strings_id = myManage.filtersumTABLE_by_DateRef(strDateRef, 0);
-        String[] strings_Main_id = myManage.filtersumTABLE_by_DateRef(strDateRef, 1);
-        String[] strings_DateRef = myManage.filtersumTABLE_by_DateRef(strDateRef, 2);
-        String[] strings_TimeRef = myManage.filtersumTABLE_by_DateRef(strDateRef, 3);
-        String[] strings_DateCheck = myManage.filtersumTABLE_by_DateRef(strDateRef, 4);
-        String[] strings_TimeCheck = myManage.filtersumTABLE_by_DateRef(strDateRef, 5);
-        String[] strings_SkipHold = myManage.filtersumTABLE_by_DateRef(strDateRef, 6);
-        String[] stringsReadmainTABLE_id = myManage.read_mainTABLE_InCluded_DateTimeCanceled(0);
-        String[] stringsReadmainTABLE_Tradename = myManage.read_mainTABLE_InCluded_DateTimeCanceled(2);
-        String[] stringsReadmainTABLE_Pharmaco = myManage.read_mainTABLE_InCluded_DateTimeCanceled(8);
-        String[] stringsReadmainTABLE_Appearance = myManage.read_mainTABLE_InCluded_DateTimeCanceled(6);
+        String[] strings_id = myManage.filtersumTABLE_by_DateRef(strDateRef, 0); //id
+        String[] strings_Main_id = myManage.filtersumTABLE_by_DateRef(strDateRef, 1); //Main_id
+        String[] strings_DateRef = myManage.filtersumTABLE_by_DateRef(strDateRef, 2); //Date_Ref
+        String[] strings_TimeRef = myManage.filtersumTABLE_by_DateRef(strDateRef, 3); //Time_Ref
+        String[] strings_DateCheck = myManage.filtersumTABLE_by_DateRef(strDateRef, 4); //Date_Check
+        String[] strings_TimeCheck = myManage.filtersumTABLE_by_DateRef(strDateRef, 5); //Time_Check
+        String[] strings_SkipHold = myManage.filtersumTABLE_by_DateRef(strDateRef, 6); //SkipHold
+        String[] stringsReadmainTABLE_id = myManage.read_mainTABLE_InCluded_DateTimeCanceled(0); //Main_id
+        String[] stringsReadmainTABLE_Tradename = myManage.read_mainTABLE_InCluded_DateTimeCanceled(2);  //Tradename
+        String[] stringsReadmainTABLE_Pharmaco = myManage.read_mainTABLE_InCluded_DateTimeCanceled(8); //Pharmaco
+        String[] stringsReadmainTABLE_Appearance = myManage.read_mainTABLE_InCluded_DateTimeCanceled(6); //Appearance
 
         Log.d("DailyFragment", strings_Main_id[0]);
         Log.d("DailyFragment", strings_id[0]);
@@ -236,6 +236,7 @@ public class DailyFragment extends Fragment {
                     iAdaptorKPI[i] = R.drawable.bad_adherence;
                 }
             }
+
             int[] iAdaptorDisplay = myData.translate_Small_Appearance(strAdaptorDisplay);
 
             MyAdaptorAdherence myAdaptorAdherence = new

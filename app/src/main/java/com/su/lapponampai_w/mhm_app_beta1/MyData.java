@@ -193,6 +193,7 @@ public class MyData {
         return intsRead;
     }
 
+
     public int[] translate_Smallate_Appearance(String[] appearance) {
 
         int[] intsRead = new int[appearance.length];
@@ -255,6 +256,26 @@ public class MyData {
             }
 
         }
+        return intsRead;
+    }
+
+    public int[] translate_Star_Appearance(String[] stringsStar) {
+        int[] intsRead = new int[stringsStar.length];
+
+            for(int i = 0;i < stringsStar.length;i++) {
+                if (stringsStar[i].equals("G")) {
+                    intsRead[i] = R.drawable.star_gold;
+                } else if (stringsStar[i].equals("S")) {
+                    intsRead[i] = R.drawable.star_silver;
+                } else if (stringsStar[i].equals("W")) {
+                    intsRead[i] = R.drawable.star_blank;
+                } else if (stringsStar[i].equals("B")) {
+                    intsRead[i] = R.drawable.star_black;
+                } else if (stringsStar[i].equals("N")) {
+                    intsRead[i] = R.drawable.star_none;
+                }
+            }
+
         return intsRead;
     }
 

@@ -3,6 +3,7 @@ package com.su.lapponampai_w.mhm_app_beta1;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.CalendarView;
 import android.widget.ListView;
 
@@ -33,7 +34,8 @@ public class PatientAdherenceActivity extends AppCompatActivity {
             strAdaptorStar2, strAdaptorStar3, strAdaptorStar4,
             strAdaptorStar5, strAdaptorStar6, strAdaptorStar7, strAdaptorStar8;
 
-    int[] intsAdaptorAdherence;
+    int[] intsAdaptorAdherence,intsAdaptorStar1,intsAdaptorStar2,intsAdaptorStar3,intsAdaptorStar4
+            ,intsAdaptorStar5,intsAdaptorStar6,intsAdaptorStar7,intsAdaptorStar8,intsAdaptorMedicine;
 
     double[] dAdaptorAdherence;
 
@@ -41,22 +43,27 @@ public class PatientAdherenceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_adherence);
+        myManage = new MyManage(this);
+        myData = new MyData();
 
         bindWidget();
 
-        showListView();
+        strDateRef = myData.currentDay();
+        showListView(strDateRef);
 
-
-
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                String strDateRef = myData.createStringDay(dayOfMonth, month + 1, year);
+                showListView(strDateRef);
+            }
+        });
 
     }
 
-    private void showListView() {
 
-        myManage = new MyManage(this);
-        myData = new MyData();
-        strDateRef = myData.currentDay();
-        Log.d("DailyFragment", strDateRef);
+
+    private void showListView(String strDateRef) {
 
         //เอาค่าของ sumTABLE มาทุกค่าโดย filter วันที่คลิกในปฏิทิน
         strings_id = myManage.filtersumTABLE_by_DateRef(strDateRef, 0); //id
@@ -240,7 +247,7 @@ public class PatientAdherenceActivity extends AppCompatActivity {
             }
 
             //stringsIndex คือ main_id ที่เป็น Array เอามาหาค่า T1 - T8
-            for(int i = 0; i < stringsIndex.length;i++) {
+            for (int i = 0; i < stringsIndex.length; i++) {
                 strAdaptorStar1[i] = "N";
                 strAdaptorStar2[i] = "N";
                 strAdaptorStar3[i] = "N";
@@ -252,11 +259,9 @@ public class PatientAdherenceActivity extends AppCompatActivity {
             }
 
 
-
-            String[][] stringsStar = {strAdaptorStar1,strAdaptorStar2,strAdaptorStar3,
-                    strAdaptorStar4,strAdaptorStar5,strAdaptorStar6,strAdaptorStar7,strAdaptorStar8};
+            String[][] stringsStar = {strAdaptorStar1, strAdaptorStar2, strAdaptorStar3,
+                    strAdaptorStar4, strAdaptorStar5, strAdaptorStar6, strAdaptorStar7, strAdaptorStar8};
             //กำหนดให้ stringsStar ทั้งหมดมีค่าเป็น W
-
 
 
             for (int i = 0; i < stringsIndex.length; i++) {
@@ -317,9 +322,9 @@ public class PatientAdherenceActivity extends AppCompatActivity {
 
             } //first for
 
-            for(int i = 0;i< stringsStar[0].length;i++) { //row
-                for(int x = 0 ;x<stringsStar.length;x++) { //column
-                    Log.d("1/11/59", "T" + Integer.toString(x + 1) + "row: " + Integer.toString(i) +  " = " + stringsStar[x][i]);
+            for (int i = 0; i < stringsStar[0].length; i++) { //row
+                for (int x = 0; x < stringsStar.length; x++) { //column
+                    Log.d("1/11/59", "T" + Integer.toString(x + 1) + "row: " + Integer.toString(i) + " = " + stringsStar[x][i]);
                 }
             }
 
@@ -334,11 +339,27 @@ public class PatientAdherenceActivity extends AppCompatActivity {
             Log.d("1/11/59", "T8 = " + strAdaptorStar8[0]);
             */
 
+            intsAdaptorMedicine = myData.translate_Small_Appearance(strAdaptorMedicine);
+            intsAdaptorStar1 = myData.translate_Star_Appearance(strAdaptorStar1);
+            intsAdaptorStar2 = myData.translate_Star_Appearance(strAdaptorStar2);
+            intsAdaptorStar3 = myData.translate_Star_Appearance(strAdaptorStar3);
+            intsAdaptorStar4 = myData.translate_Star_Appearance(strAdaptorStar4);
+            intsAdaptorStar5 = myData.translate_Star_Appearance(strAdaptorStar5);
+            intsAdaptorStar6 = myData.translate_Star_Appearance(strAdaptorStar6);
+            intsAdaptorStar7 = myData.translate_Star_Appearance(strAdaptorStar7);
+            intsAdaptorStar8 = myData.translate_Star_Appearance(strAdaptorStar8);
 
 
+            MyAdaptorPatientAdherence myAdaptorPatientAdherence = new
+                    MyAdaptorPatientAdherence(getBaseContext(), strAdaptorTradename,
+                    intsAdaptorAdherence, intsAdaptorMedicine, intsAdaptorStar1, intsAdaptorStar2,
+                    intsAdaptorStar3, intsAdaptorStar4, intsAdaptorStar5, intsAdaptorStar6,
+                    intsAdaptorStar7, intsAdaptorStar8);
 
-
-
+            listView.setAdapter(myAdaptorPatientAdherence);
+            listView.setVisibility(View.VISIBLE);
+        } else {
+            listView.setVisibility(View.INVISIBLE);
         }
 
 

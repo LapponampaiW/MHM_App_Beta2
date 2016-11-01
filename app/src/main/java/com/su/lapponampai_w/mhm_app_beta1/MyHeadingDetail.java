@@ -174,7 +174,8 @@ public class MyHeadingDetail extends ContextWrapper {
                     Intent intent = new Intent(context, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                    startActivity(new Intent(context, AdherenceActivity.class));
+                    //startActivity(new Intent(context, AdherenceActivity.class));
+                    startActivity(new Intent(context, PatientAdherenceActivity.class));
                 }
 
                 if (strTextSpinner[position].equals("ตั้งค่าการใช้งาน")) {

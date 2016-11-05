@@ -18,7 +18,8 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="40dp"
         android:paddingBottom="@dimen/z2_margin_smallgap"
-        android:measureWithLargestChild="true">
+        android:measureWithLargestChild="true"
+        android:clickable="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,6 +54,14 @@
             android:layout_height="wrap_content"
             android:text="Always login"
             android:id="@+id/checkBox_login" />
+
+        <TextView
+            android:text="Forgot Password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="click_Forgot"
+            android:id="@+id/textView189"
+            android:layout_gravity="center_horizontal" />
 
         <Button
             android:layout_width="match_parent"

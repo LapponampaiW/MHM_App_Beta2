@@ -1,9 +1,12 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -38,6 +41,44 @@ public class LoginActivity extends AppCompatActivity {
 
 
     } //Main Method
+
+    public void click_Forgot(View view) {
+
+        Log.d("2nov11", "Click ForgotPassword");
+
+        /*
+        String strSubject = "Your Password";
+        String strBody = "Your Password 1234";
+        String[] TO = {"someone@gmail.com"};
+        String[] CC = {"xyz@gmail.com"};
+        Intent intent = new Intent(Intent.ACTION_SEND);
+
+        intent.setData(Uri.parse("mailto:" + "ballz_v@hotmail.com"));
+        intent.setType("text/plain");
+        //intent.putExtra(Intent.EXTRA_EMAIL, new String[]{ strEmail});
+        intent.putExtra(Intent.EXTRA_SUBJECT, strSubject);
+        intent.putExtra(Intent.EXTRA_TEXT, strBody);
+        */
+        String[] TO = {"ballz_v@hotmail.com"};
+        //String[] CC = {"weerachodphaesaj@gmail.com"};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+
+
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        //emailIntent.putExtra(Intent.EXTRA_CC, CC);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "โปรดเลือกโปรแกรมส่ง mail"));
+
+
+        } catch (android.content.ActivityNotFoundException e) {
+            Toast.makeText(this, "ไม่มีแอพส่งเมล นะ", Toast.LENGTH_LONG).show();
+        }
+    } //Forgot
 
     private void Click_buttonLogin() {
         buttonLogin.setOnClickListener(new View.OnClickListener() {

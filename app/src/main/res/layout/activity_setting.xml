@@ -271,6 +271,18 @@
                     android:gravity="center"
                     android:layout_gravity="center" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="กลับหน้าหลัก"
+                    android:id="@+id/textView199"
+                    android:textColor="@color/colorHeading"
+                    android:background="@drawable/my_border_gray"
+                    android:padding="10dp"
+                    android:textSize="@dimen/heading3"
+                    android:gravity="center"
+                    android:layout_gravity="center" />
+
             </LinearLayout>
 
         </LinearLayout>

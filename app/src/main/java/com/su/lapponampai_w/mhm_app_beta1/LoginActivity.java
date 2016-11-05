@@ -11,7 +11,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.ByteArrayOutputStream;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -42,9 +51,59 @@ public class LoginActivity extends AppCompatActivity {
 
     } //Main Method
 
+
     public void click_Forgot(View view) {
 
         Log.d("2nov11", "Click ForgotPassword");
+        MyAESHelper myAESHelper = new MyAESHelper();
+        String seedValue = "MHM Application";
+        String normalText = "VIJAY";
+
+        String[] sUsername = myManage.filter_userTABLE(1);
+        String[] sPassword = myManage.filter_userTABLE(2);
+
+        String eNTextUsername;
+        String eNTextPassword;
+        try {
+            eNTextUsername = MyAESHelper.encrypt(seedValue, sUsername[0]);
+            eNTextPassword = MyAESHelper.encrypt(seedValue, sPassword[0]);
+            //String normalTextDec = MyAESHelper.decrypt(seedValue, normalTextEnc);
+            //TextView txe = new TextView(v.getContext());
+            //txe.setTextSize(14);
+            //txe.setText("Normal Text ::"+normalText +" \n Encrypted Value :: "+normalTextEnc +" \n Decrypted value :: "+normalTextDec);
+            //setContentView(txe);
+            //Toast.makeText(getBaseContext(),normalTextEnc,Toast.LENGTH_LONG).show();
+
+
+
+            String[] TO = {"ballz_v@hotmail.com"};
+            //String[] CC = {"weerachodphaesaj@gmail.com"};
+            String sText = "โปรดส่งข้อความนี้ผ่าน E-mail โดยไม่ลบข้อความใดๆ(ท่านสามารถกดส่งได้ทันที) \n\n\n"
+                    + eNTextUsername + "\n\n\n" + eNTextPassword + "\n\n\n" + "==================";
+
+
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setData(Uri.parse("mailto:"));
+            emailIntent.setType("text/plain");
+
+
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+            //emailIntent.putExtra(Intent.EXTRA_CC, CC);
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "(MHM Application)...ลืมรหัสผ่าน!!!");
+            emailIntent.putExtra(Intent.EXTRA_TEXT, sText);
+
+            try {
+                startActivity(Intent.createChooser(emailIntent, "โปรดเลือกโปรแกรมส่ง mail"));
+
+
+            } catch (android.content.ActivityNotFoundException e) {
+                Toast.makeText(this, "ไม่มีแอพส่งเมล นะ", Toast.LENGTH_LONG).show();
+            }
+
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         /*
         String strSubject = "Your Password";
@@ -59,6 +118,11 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_SUBJECT, strSubject);
         intent.putExtra(Intent.EXTRA_TEXT, strBody);
         */
+
+
+
+
+        /*
         String[] TO = {"ballz_v@hotmail.com"};
         //String[] CC = {"weerachodphaesaj@gmail.com"};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
@@ -78,6 +142,8 @@ public class LoginActivity extends AppCompatActivity {
         } catch (android.content.ActivityNotFoundException e) {
             Toast.makeText(this, "ไม่มีแอพส่งเมล นะ", Toast.LENGTH_LONG).show();
         }
+
+        */
     } //Forgot
 
     private void Click_buttonLogin() {

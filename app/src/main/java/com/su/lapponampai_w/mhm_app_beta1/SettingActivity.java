@@ -41,7 +41,7 @@ public class SettingActivity extends AppCompatActivity {
 
     Button buttonConnect,buttonSuperUser,buttonNofSave;
     String strAddVN;
-    TextView textViewid,textViewAbout,textViewChangePW,textViewSecurity;
+    TextView textViewid,textViewAbout,textViewChangePW,textViewSecurity,textViewFinish;
     MyManage myManage;
     Switch aSwitch;
     LinearLayout linearLayout;
@@ -82,12 +82,25 @@ public class SettingActivity extends AppCompatActivity {
         //คลิก Save Nof
         clickSaveNof();
 
+        //คลิก Finish
+        clickFinish();
+
 
 
         clickConnect();
 
         clickSuperUser();
 
+    }
+
+    private void clickFinish() {
+
+        textViewFinish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void clickSaveNof() {
@@ -151,6 +164,7 @@ public class SettingActivity extends AppCompatActivity {
                     checkBoxSecurity2.setChecked(false);
                     myManage.updateStayLogin(strUser[0],"0");
                     setViewTextViewSecurity("0");
+                    Toast.makeText(getBaseContext(),"เปลี่ยนระดับการป้องกันเรียบร้อย",Toast.LENGTH_SHORT).show();
                 } else {
                     checkBoxSecurityNone.setChecked(true);
                 }
@@ -166,6 +180,7 @@ public class SettingActivity extends AppCompatActivity {
                     checkBoxSecurity2.setChecked(false);
                     myManage.updateStayLogin(strUser[0],"1");
                     setViewTextViewSecurity("1");
+                    Toast.makeText(getBaseContext(),"เปลี่ยนระดับการป้องกันเรียบร้อย",Toast.LENGTH_SHORT).show();
                 } else {
                     checkBoxSecurity1.setChecked(true);
                 }
@@ -182,11 +197,14 @@ public class SettingActivity extends AppCompatActivity {
                     checkBoxSecurity1.setChecked(false);
                     myManage.updateStayLogin(strUser[0],"2");
                     setViewTextViewSecurity("2");
+                    Toast.makeText(getBaseContext(),"เปลี่ยนระดับการป้องกันเรียบร้อย",Toast.LENGTH_SHORT).show();
                 } else {
                     checkBoxSecurity2.setChecked(true);
                 }
             }
         });
+
+
 
 
 
@@ -363,6 +381,7 @@ public class SettingActivity extends AppCompatActivity {
         checkBoxSecurity2 = (CheckBox) findViewById(R.id.checkBoxSetting5);
         textViewSecurity = (TextView) findViewById(R.id.textView187);
         buttonNofSave = (Button) findViewById(R.id.buttonSettingSave);
+        textViewFinish = (TextView) findViewById(R.id.textView199);
 
 
     }

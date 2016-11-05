@@ -1544,7 +1544,7 @@ public class MyManage {
 
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ucolumn_Stay, "0");
+        contentValues.put(ucolumn_Stay, "2");
 
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
 

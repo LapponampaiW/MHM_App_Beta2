@@ -2279,6 +2279,7 @@ public class MyManage {
             addNewsTABLEValue("3", "", "N1", "1", "DrugInformationActivity");
             addNewsTABLEValue("4", "", "N1", "1", "DrugInformationActivity");
             addNewsTABLEValue("5", "", "N1", "1", "DrugInformationActivity");
+            addNewsTABLEValue("6", "", "N1", "1", "DrugInformationActivity");
 
         }
     }

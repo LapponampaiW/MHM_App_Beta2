@@ -15,7 +15,7 @@ public class DrugInformationActivity extends AppCompatActivity {
     TextView textViewGenericName,textViewTradeName,textViewDetail,textViewOnline1,textViewOnline2;
     String string1;
     Button button;
-    String[] strings,str;
+    String[] strings,str,str1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +64,13 @@ public class DrugInformationActivity extends AppCompatActivity {
             textViewOnline1.setVisibility(View.GONE);
         }
         if (!strings[4].equals("")) {
-            str = strings[4].split(";");
-            textViewOnline2.setText(str[0]);
+            str1 = strings[4].split(";");
+            textViewOnline2.setText(str1[0]);
             textViewOnline2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(str[1]));
+                    intent.setData(Uri.parse(str1[1]));
                     startActivity(intent);
                 }
             });

@@ -86,11 +86,19 @@ public class SplashScreen extends AppCompatActivity {
             }
         },3000); // 2 วินาที
 
-        myManage.nameGenericTABLEData();
-        myManage.medTABLEData();
-        myManage.drugInteractionTABLEData();
-        myManage.timeTABLEData();
-        myManage.newsTABLEData();
+        MySQLiteDataBase mySQLiteDataBase = new MySQLiteDataBase(this);
+        mySQLiteDataBase.nameGenericTABLEData();
+        //myManage.nameGenericTABLEData();
+
+        mySQLiteDataBase.medTABLEData();
+        //myManage.medTABLEData();
+
+        //myManage.drugInteractionTABLEData();
+        mySQLiteDataBase.drugInteractionTABLEData();
+        //myManage.timeTABLEData();
+        mySQLiteDataBase.timeTABLEData();
+        //myManage.newsTABLEData();
+        mySQLiteDataBase.newsTABLEData();
 
     }  //Main Method
 

@@ -80,22 +80,22 @@ public class MyManage {
             mcolumn_t3, mcolumn_t4, mcolumn_t5, mcolumn_t6, mcolumn_t7, mcolumn_t8};
 
     //nameGenericTABLE
-    private static final String nameGenericTABLE = "nameGenericTABLE";
-    private static final String gcolumn_id = "_id";
-    private static final String gcolumn_generic_name = "Generic_name";
-    private static final String[] column_nameGenericTABLE = {gcolumn_id, gcolumn_generic_name};
+    public static final String nameGenericTABLE = "nameGenericTABLE";
+    public static final String gcolumn_id = "_id";
+    public static final String gcolumn_generic_name = "Generic_name";
+    public static final String[] column_nameGenericTABLE = {gcolumn_id, gcolumn_generic_name};
 
 
     //drugInteractionTABLE
-    private static final String drugInteractionTABLE = "drugInteractionTABLE";
-    private static final String dcolumn_id = "_id";
-    private static final String dcolumn_medicine1 = "Medicine1";
-    private static final String dcolumn_medicine2 = "Medicine2";
-    private static final String dcolumn_type_interaction = "Type_interaction";
-    private static final String dcolumn_message = "Message";
-    private static final String dcolumn_timeMedicine1_2 = "TimeMedicine1_2";
-    private static final String dcolumn_timeMedicine2_1 = "TimeMedicine2_1";
-    private static final String[] column_drugInteractionTABLE = {dcolumn_id, dcolumn_medicine1, dcolumn_medicine2,
+    public static final String drugInteractionTABLE = "drugInteractionTABLE";
+    public static final String dcolumn_id = "_id";
+    public static final String dcolumn_medicine1 = "Medicine1";
+    public static final String dcolumn_medicine2 = "Medicine2";
+    public static final String dcolumn_type_interaction = "Type_interaction";
+    public static final String dcolumn_message = "Message";
+    public static final String dcolumn_timeMedicine1_2 = "TimeMedicine1_2";
+    public static final String dcolumn_timeMedicine2_1 = "TimeMedicine2_1";
+    public static final String[] column_drugInteractionTABLE = {dcolumn_id, dcolumn_medicine1, dcolumn_medicine2,
             dcolumn_type_interaction, dcolumn_message, dcolumn_timeMedicine1_2, dcolumn_timeMedicine2_1};
 
 
@@ -141,12 +141,12 @@ public class MyManage {
     public static final String[] column_sumTABLE = {"_id", column_Main_id, column_DateRef, column_TimeRef, column_DateCheck, column_TimeCheck, column_SkipHold};
 
     //timeTABLE
-    private static final String timeTABLE = "timeTABLE";
-    private static final String tcolumn_id = "_id";
-    private static final String tcolumn_time_interval = "Time_interval";
-    private static final String tcolumn_start_time = "Start_time";
-    private static final String tcolumn_end_time = "End_time";
-    private static final String[] column_timeTABLE = {tcolumn_id, tcolumn_time_interval, tcolumn_start_time, tcolumn_end_time};
+    public static final String timeTABLE = "timeTABLE";
+    public static final String tcolumn_id = "_id";
+    public static final String tcolumn_time_interval = "Time_interval";
+    public static final String tcolumn_start_time = "Start_time";
+    public static final String tcolumn_end_time = "End_time";
+    public static final String[] column_timeTABLE = {tcolumn_id, tcolumn_time_interval, tcolumn_start_time, tcolumn_end_time};
 
     //displayTABLE
     private static final String displayTABLE = "displayTABLE";
@@ -164,14 +164,14 @@ public class MyManage {
             displaycolumn_datetimecheck, displaycolumn_appearance,displaycolumn_skiphold};
 
     //newsTABLE
-    private static final String newsTABLE = "newsTABLE";
-    private static final String ncolumn_id = "_id";
-    private static final String ncolumn_generic_id = "Generic_id";
-    private static final String ncolumn_message = "Message";
-    private static final String ncolumn_appearance_News = "Appearance_News";
-    private static final String ncolumn_criteria = "Criteria";
-    private static final String ncolumn_activity = "Activity";
-    private static final String[] column_newsTABLE = {ncolumn_id, ncolumn_generic_id, ncolumn_message,
+    public static final String newsTABLE = "newsTABLE";
+    public static final String ncolumn_id = "_id";
+    public static final String ncolumn_generic_id = "Generic_id";
+    public static final String ncolumn_message = "Message";
+    public static final String ncolumn_appearance_News = "Appearance_News";
+    public static final String ncolumn_criteria = "Criteria";
+    public static final String ncolumn_activity = "Activity";
+    public static final String[] column_newsTABLE = {ncolumn_id, ncolumn_generic_id, ncolumn_message,
             ncolumn_appearance_News, ncolumn_criteria, ncolumn_activity};
 
     //totalAmountTABLE
@@ -1410,6 +1410,7 @@ public class MyManage {
         return writeSqLiteDatabase.insert(sum_table, null, contentValues);
     } //addValueToSumTable
 
+    /*
     public long addValueToTimeTable(String strTime_interval,
                                     String strStart_time,
                                     String strEnd_time) {
@@ -1421,6 +1422,7 @@ public class MyManage {
 
         return writeSqLiteDatabase.insert(timeTABLE, null, contentValues);
     }
+    */
 
     public long addValueTodrugInteractionTABLE_For_Query(int d_initial_medicine, int d_medicine1, int d_medicine2, String d_type_interaction,
                                                          String d_message, int d_timemedicine1_2, int d_timemedicine2_1) {
@@ -2108,7 +2110,14 @@ public class MyManage {
         return writeSqLiteDatabase.insert(totalAmountTABLE, null, contentValues);
     }
 
+    public String filter_drugInteractionTABLE_Dialog() {
+        Cursor cursor = readSqLiteDatabase.query(drugInteractionTABLE_For_Query, column_drugInteractionTABLE_For_Query, "Type_interaction LIKE '2'", null, null, null, "_id ASC");
+        cursor.moveToFirst();
 
+        return null;
+    }
+
+    /*
     public long adddrugInteractionTABLEValue(int d_medicine1, int d_medicine2, String d_type_interaction,
                                              String d_message, int d_timemedicine1_2, int d_timemedicine2_1) {
 
@@ -2126,6 +2135,7 @@ public class MyManage {
 
     } //adddrugInteractionTABLEValue
 
+
     public long addNewsTABLEValue(String strGeneric_id, String strMessage,
                                   String strAppearence_News, String strCriteria,
                                   String strActivity) {
@@ -2139,7 +2149,7 @@ public class MyManage {
         contentValues.put(ncolumn_activity, strActivity);
         addlong = writeSqLiteDatabase.insert(newsTABLE, null, contentValues);
         return addlong;
-    }
+    } //addNewsTABLEValue
 
     public double addMedTABLEValue(String s_trade_name, String s_key_search,
                                    int s_generic_name1, String s_dosage1, String s_uom1,
@@ -2194,26 +2204,21 @@ public class MyManage {
 
         return writeSqLiteDatabase.insert(nameGenericTABLE, null, contentValues);
     }
+    */
 
     //ทำ Drug Interaction
-    public String filter_drugInteractionTABLE_Dialog() {
-        Cursor cursor = readSqLiteDatabase.query(drugInteractionTABLE_For_Query, column_drugInteractionTABLE_For_Query, "Type_interaction LIKE '2'", null, null, null, "_id ASC");
-        cursor.moveToFirst();
-
-        return null;
-    }
 
 
+    /*
     //ทำการ add ค่าเข้าไปถ้า table มันว่างอะนะ
     public void medTABLEData() {
 
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
 
         if (cursor.getCount() == 0) {
-            MySQLiteDataBase mySQLiteDataBase = new MySQLiteDataBase();
-            mySQLiteDataBase.medTABLE();
 
-            /*
+
+
             addMedTABLEValue("Efaviren GPO", "Efavirenz", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Stocrin", "Efavirenz", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "A", "08:00", "20:00", "", "", "", "", "", "");
@@ -2228,7 +2233,7 @@ public class MyManage {
             addMedTABLEValue("GPO-VIR Z250", "Nevirapine", 4, "200", "1", 2, "150", "1", 13, "250", "1", 1, null, null, "1", 1, "ED:0", "img0701", "A", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Ziagenavir", "Abacavir", 14, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Teevir", "", 6, "300", "1", 2, "600", "1", 15, "200", "1", 1, null, null, "1", 1, "ED:0", "img0304", "A", "22:00", "", "", "", "", "", "", "");
-            */
+
         }
 
     } //medTABLEDate
@@ -2270,7 +2275,7 @@ public class MyManage {
             adddrugInteractionTABLEValue(7, 10, "3", "ควรรับประทานยาห่างกัน", 240, 120);
 
         }
-    }
+    } //drugInteractionTABLEDate
 
     public void timeTABLEData() {
         Cursor cursor = readSqLiteDatabase.query(timeTABLE, column_timeTABLE, null, null, null, null, null);
@@ -2296,7 +2301,10 @@ public class MyManage {
             addNewsTABLEValue("13", "", "N1", "1", "DrugInformationActivity");
 
         }
-    }
+    } //newsTABLEData
+
+    */
+
 
 
 } //Main class

@@ -2220,6 +2220,8 @@ public class MyManage {
             addMedTABLEValue("Cafergot", "Ergotamine Tartrate", 8, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "8", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Prevacid", "Lansoprazole", 9, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "9", "", "07:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Antacin", "Antacid", 10, "100", "1", 11, "100", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "10", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Norvir", "Ritonavir", 12, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "11", "A", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("GPO-VIR Z250", "Nevirapine", 4, "200", "1", 2, "150", "1", 13, "250", "1", 1, null, null, "1", 1, "ED:0", "12", "A", "08:00", "20:00", "", "", "", "", "", "");
 
         }
 
@@ -2241,6 +2243,8 @@ public class MyManage {
             addnameGenericTABLEValue("Lansoprazole"); //9
             addnameGenericTABLEValue("Aluminium Hydroxide"); //10
             addnameGenericTABLEValue("Magnesium Hydroxide"); //11
+            addnameGenericTABLEValue("Ritonavir"); //12
+            addnameGenericTABLEValue("Zidovudine"); //13
 
 
         }
@@ -2280,6 +2284,7 @@ public class MyManage {
             addNewsTABLEValue("4", "", "N1", "1", "DrugInformationActivity");
             addNewsTABLEValue("5", "", "N1", "1", "DrugInformationActivity");
             addNewsTABLEValue("6", "", "N1", "1", "DrugInformationActivity");
+            addNewsTABLEValue("7", "", "N1", "1", "DrugInformationActivity");
 
         }
     }

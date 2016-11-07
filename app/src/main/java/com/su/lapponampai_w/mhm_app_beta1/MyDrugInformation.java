@@ -151,6 +151,25 @@ public class MyDrugInformation {
                     "\n     + ผื่นขึ้นร่วมกับปวดเมื่อยตามตัว";
             strREAD[3] = "Ya & You ยากับคุณ;http://www.yaandyou.net/index_list.php?drugname=ABACAVIR";
             strREAD[4] = "AIDSinfo;https://aidsinfo.nih.gov/drugs/257/abacavir/0/patient";
+        } else if (med_Id.equals("17")) {
+            strREAD[0] = "Rilpivirine";
+            strREAD[1] = "Edurant";
+            strREAD[2] = "- รับประทานยาตรงเวลา วันละ 1 ครั้ง ถ้าไม่ตรงเวลาบวกลบไม่เกิน 30 นาที เพื่อป้องกันการดื้อยา" +
+                    "\n- แนะนำให้รับประทานยาหลังอาหารทันทีเพื่อเพิ่มการดูดซึมและลดผลข้างเคียงทางเดินอาหาร" +
+                    "\n\n- อาการข้างเคียงระยะสั้น (หลังเริ่มรับประทานยาครั้งแรกไม่เกิน 6 เดือน)" +
+                    "\n     + คลื่นไส้" +
+                    "\n     + อาเจียน" +
+                    "\n     + ผื่นขึ้น" +
+                    "\n     + เวียนศีรษะ" +
+                    "\n     + มึนศึรษะ" +
+                    "\n     + ซึมเศร้า" +
+                    "\n     + ฝันร้าย" +
+                    "\n     + นอนไม่หลับ" +
+                    "\n\n- ห้ามรับประทานร่วมกับยาลดกรดในกระเพาะอาหารกลุ่ม proton pump inhibitor(PPI) " +
+                    "เช่น Miracid, Nexium, Prevacid, Pariet, Controloc";
+
+            strREAD[3] = "";
+            strREAD[4] = "AIDSinfo;https://aidsinfo.nih.gov/drugs/426/rilpivirine/0/patient";
         } else {
             strREAD[0] = "";
             strREAD[1] = "";

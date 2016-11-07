@@ -197,6 +197,7 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Reyataz", "Atazanavir", 7, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img90506", "A", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Cafergot", "Ergotamine Tartrate", 8, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Prevacid", "Lansoprazole", 9, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0607", "", "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Prevacid", "Lansoprazole", 9, "15", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0607", "", "07:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Antacin", "Antacid", 10, "100", "1", 11, "100", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "08:00", "13:00", "18:00", "", "", "", "", "");
             addMedTABLEValue("Norvir", "Ritonavir", 12, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0301", "A", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("GPO-VIR Z250", "Nevirapine", 4, "200", "1", 2, "150", "1", 13, "250", "1", 1, null, null, "1", 1, "ED:0", "img0701", "A", "08:00", "20:00", "", "", "", "", "", "");
@@ -216,6 +217,17 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Prezista", "Darunavir", 19, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0104", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Invirase", "Saquinavir", 20, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0304", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Kivexa", "Abacavir;Lamivudine", 14, "600", "1", 3, "300", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0304", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Stavir", "Stavudine", 5, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img90103", "A", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Opaz", "Omeprazole", 21, "20", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img91104", "", "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Nexium", "esomeprazole", 22, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0312", "", "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Nexium", "esomeprazole", 22, "40", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0312", "", "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Controloc", "Pantoprazole", 23, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0102", "", "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Controloc", "Pantoprazole", 23, "40", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0102", "", "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Pariet", "Rabeprazole", 24, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Pariet", "Rabeprazole", 24, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Dexilant", "Dexlansoprazole", 25, "30", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90813", "", "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Dexilant", "Dexlansoprazole", 25, "60", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90808", "", "07:00", "", "", "", "", "", "", "");
+
         }
 
     } //medTABLE_Data
@@ -246,6 +258,11 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Didanosine"); //18
             addnameGenericTABLEValue("Darunavir"); //19
             addnameGenericTABLEValue("Saquinavir"); //20
+            addnameGenericTABLEValue("Omeprazole"); //21
+            addnameGenericTABLEValue("esomeprazole"); //22
+            addnameGenericTABLEValue("Pantoprazole"); //23
+            addnameGenericTABLEValue("Rabeprazole"); //24
+            addnameGenericTABLEValue("Dexlansoprazole"); //25
 
         }
     }  //nameGenericTABLEData

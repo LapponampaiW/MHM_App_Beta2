@@ -33,6 +33,8 @@ public class MyData {
 
         if (ea.equals("1")) {
             strREAD = "เม็ด";
+        } else if (ea.equals("2")) {
+            strREAD = "แคปซูล";
         }
 
         return strREAD;

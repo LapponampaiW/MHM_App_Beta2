@@ -199,7 +199,15 @@ public class MySQLiteDataBase {
             addMedTABLEValue("GPO-VIR Z250", "Nevirapine", 4, "200", "1", 2, "150", "1", 13, "250", "1", 1, null, null, "1", 1, "ED:0", "img0701", "A", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Ziagenavir", "Abacavir", 14, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Teevir", "", 6, "300", "1", 2, "600", "1", 15, "200", "1", 1, null, null, "1", 1, "ED:0", "img0304", "A", "22:00", "", "", "", "", "", "", "");
-
+            addMedTABLEValue("Truvada", "Emtricitabine;Tenofovir", 15, "200", "1", 6, "300", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0203", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Ricovir-Em", "Emtricitabine;Tenofovir", 15, "200", "1", 6, "300", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0203", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Ricovir", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0603", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Antivir", "Zidovudine", 13, "100", "1", 1, null, null, 1, null, null, 1, null, null, "2", 3, "ED:0", "img90101", "A", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Aluvia", "Lopinavir;ritonavir", 16, "100", "1", 12, "25", "1", 1, null, null, 1, null, null, "1", 4, "ED:0", "img0304", "A", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Neravir", "Nevirapine", 4, "200", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0701", "A", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Edurant", "Rilpivirine", 17, "25", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Atripla", "Efavirenz;Tenofovir;Emtricitabine", 2, "600", "1", 6, "300", "1", 15, "200", "1", 1, null, null, "1", 1, "ED:0", "img0301", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Videx EC", "Didanosine;ddl", 18, "400", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90101", "A", "22:00", "", "", "", "", "", "", "");
         }
 
     } //medTABLE_Data
@@ -225,6 +233,9 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Zidovudine"); //13
             addnameGenericTABLEValue("Abacavir"); //14
             addnameGenericTABLEValue("Emtricitabine"); //15
+            addnameGenericTABLEValue("Lopinavir"); //16
+            addnameGenericTABLEValue("Rilpivirine"); //17
+            addnameGenericTABLEValue("Didanosine"); //18
 
         }
     }  //nameGenericTABLEData
@@ -263,8 +274,6 @@ public class MySQLiteDataBase {
 
             adddrugInteractionTABLEValue(7, 8, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
             adddrugInteractionTABLEValue(7, 9, "2", "ไม่ควรรับประทานร่วมกัน", 0, 0);
-            adddrugInteractionTABLEValue(7, 9, "2", "ไม่ควรรับประทานร่วมกัน", 0, 0);
-            adddrugInteractionTABLEValue(7, 10, "3", "ควรรับประทานยาห่างกัน", 240, 120);
             adddrugInteractionTABLEValue(7, 10, "3", "ควรรับประทานยาห่างกัน", 240, 120);
 
         }

@@ -1291,6 +1291,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                         //แต่ตอนนี้มีการทานที่บางวันไม่จำเป็นต้องทานด้วย
                         //เอาเป็นว่าเขียน message ในลักษณะ เกิด DrugInteraction ประเภทจำเป็นต้องทานห่างกัน
                         //ถ้าจำเป็นต้องทานร่วมกัน
+                        Log.d("filter_drugInteraction","ค่า Strings1[i] : " + strings1[i]);
+                        Log.d("filter_drugInteraction","ค่า Strings2[i] : " + strings2[i]);
                         if (strings1[i].equals(strings2[i])) {  //ชื่อยาเหมือนกัน ยาตัวแรกคือ strings1[i]
                             stringInteraction2 = strings3[i];  //ชื่อยาอีกตัวหนึ่ง
                             stringTimeMedicine1_2 = strings6[i]; //1 ไป 2 ไปข้างหน้า
@@ -1301,15 +1303,27 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                             stringTimeMedicine2_1 = strings6[i]; // 2 ไป 1 ไปข้างหลัง
                         }
                         //ต่อไปจะคำนวณช่วยเวลาที่เกิด Drug Interaction ในกรณีที่จำทานวันเดียวกัน ไม่ได้ดูถึงขนาดว่าคนละวัน ทำไม่ได้ครับ
+                        Log.d("filter_drugInteraction","ค่า StringInteractin2 : " + stringInteraction2);
 
-                        String[][] stringsInteraction2 = {myManage.readAllMainTABLE_string(stringInteraction2,7),
-                                myManage.readAllMainTABLE_string(stringInteraction2,8),
-                                myManage.readAllMainTABLE_string(stringInteraction2,9),
-                                myManage.readAllMainTABLE_string(stringInteraction2,10),
-                                myManage.readAllMainTABLE_string(stringInteraction2,11),
-                                myManage.readAllMainTABLE_string(stringInteraction2,12),
-                                myManage.readAllMainTABLE_string(stringInteraction2,13),
-                                myManage.readAllMainTABLE_string(stringInteraction2,14)};
+                        String[][] stringsInteraction2 = {myManage.readAllMainTABLE_string(strings1[i],7),
+                                myManage.readAllMainTABLE_string(strings1[i],8),
+                                myManage.readAllMainTABLE_string(strings1[i],9),
+                                myManage.readAllMainTABLE_string(strings1[i],10),
+                                myManage.readAllMainTABLE_string(strings1[i],11),
+                                myManage.readAllMainTABLE_string(strings1[i],12),
+                                myManage.readAllMainTABLE_string(strings1[i],13),
+                                myManage.readAllMainTABLE_string(strings1[i],14)};
+
+
+
+                        //String[] abc = myManage.readAllMainTABLE_string(string1, 7);
+                        //Log.d("filter_drugInteraction","ค่า abc : " + abc[0]);
+
+
+
+
+
+
                         //ค่าของเวลาที่อยู่ใน T1-8 ของตัวที่เกิด durg Interaction Type 3 เก็บเป็น 2 Dimention Array
                         // stringsInteraction2[1-8][] คือ ตัวที่ 1 ของแต่ละอัน
                         // stringsInteraction2[][ตำแหน่งใดๆ] คือตัวต่อๆ ไป

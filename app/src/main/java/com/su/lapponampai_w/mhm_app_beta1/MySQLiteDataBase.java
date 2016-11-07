@@ -251,6 +251,7 @@ public class MySQLiteDataBase {
             addNewsTABLEValue("6", "", "N1", "1", "DrugInformationActivity");
             addNewsTABLEValue("7", "", "N1", "1", "DrugInformationActivity");
             addNewsTABLEValue("13", "", "N1", "1", "DrugInformationActivity");
+            addNewsTABLEValue("14", "", "N1", "1", "DrugInformationActivity");
 
         }
     } //newsTABLEData

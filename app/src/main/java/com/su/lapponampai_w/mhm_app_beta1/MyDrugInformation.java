@@ -136,7 +136,22 @@ public class MyDrugInformation {
                     "\n     + ภาวะเลือดเป็นกรด";
             strREAD[3] = "Ya & You ยากับคุณ;http://www.yaandyou.net/index_list.php?drugname=Zidovudine";
             strREAD[4] = "AIDSinfo;https://aidsinfo.nih.gov/drugs/4/zidovudine/0/patient";
-        }else {
+        }else if (med_Id.equals("14")) {
+            strREAD[0] = "Abacavir";
+            strREAD[1] = "Ziagenavir";
+            strREAD[2] = "- รับประทานยาตรงเวลา วันละ 1 ครั้ง ถ้าไม่ตรงเวลาบวกลบไม่เกิน 30 นาที เพื่อป้องกันการดื้อยา" +
+                    "\n\n- อาการข้างเคียงระยะสั้น (หลังเริ่มรับประทานยาครั้งแรกไม่เกิน 6 เดือน)" +
+                    "\n     + คลื่นไส้" +
+                    "\n     + อาเจียน" +
+                    "\n     + ผื่นขึ้น มีไข้ ปวดเมื่อยตามตัว ปวดศีรษะ ท้องเสีย หายใจเร็ว" +
+                    "\n\n- อาการข้างเคียงระยะยาว (หลังเริ่มรับประทานยาครั้งแรกนานเกิน 6 เดือน)" +
+                    "\n     + ภาวะเลือดเป็นกรด : คลื่นไส้ อาเจียน หายใจเร็ว ใจเต้นเร็ว ความดันต่ำ ช็อคอาจมีแขนขาอ่อนแรงร่วมด้วย" +
+                    "\n\n- อาการที่ต้องรีบกลับมาพบแพทย์โดยเร็วที่สุด ห้ามหยุดยาเอง" +
+                    "\n     + ภาวะเลือดเป็นกรด" +
+                    "\n     + ผื่นขึ้นร่วมกับปวดเมื่อยตามตัว";
+            strREAD[3] = "Ya & You ยากับคุณ;http://www.yaandyou.net/index_list.php?drugname=ABACAVIR";
+            strREAD[4] = "AIDSinfo;https://aidsinfo.nih.gov/drugs/257/abacavir/0/patient";
+        } else {
             strREAD[0] = "";
             strREAD[1] = "";
             strREAD[2] = "";

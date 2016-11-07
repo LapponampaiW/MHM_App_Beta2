@@ -89,10 +89,8 @@ public class SplashScreen extends AppCompatActivity {
         MySQLiteDataBase mySQLiteDataBase = new MySQLiteDataBase(this);
         mySQLiteDataBase.nameGenericTABLEData();
         //myManage.nameGenericTABLEData();
-
         mySQLiteDataBase.medTABLEData();
         //myManage.medTABLEData();
-
         //myManage.drugInteractionTABLEData();
         mySQLiteDataBase.drugInteractionTABLEData();
         //myManage.timeTABLEData();

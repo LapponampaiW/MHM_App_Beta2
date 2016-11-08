@@ -227,6 +227,24 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Pariet", "Rabeprazole", 24, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "07:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Dexilant", "Dexlansoprazole", 25, "30", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90813", "", "07:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Dexilant", "Dexlansoprazole", 25, "60", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90808", "", "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Flucozole", "Fluconazole", 26, "50", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90103", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Flucozole", "Fluconazole", 26, "100", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90108", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Flucozole", "Fluconazole", 26, "150", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90808", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Flucozole", "Fluconazole", 26, "200", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90114", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Sporal", "Itraconazole", 27, "100", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90312", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Sponar", "Itraconazole", 27, "100", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90312", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Spazol", "Itraconazole", 27, "100", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90312", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Prednisolone", "Prednisolone", 28, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0607", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Dexamethasone", "Dexamethasone", 29, "0.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0309", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Dexamethasone", "Dexamethasone", 29, "4", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0609", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Valtrex", "Valacyclovir;Valaciclovir", 30, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0301", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Dalacin-C", "Clindamycin", 31, "300", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img91414", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Dalacin-C", "Clindamycin", 31, "150", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img91414", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Dacin-F", "Clindamycin", 31, "300", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img91414", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Vitamin B6", "Vitamin;B6;Pyridoxine", 32, "25", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0104", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Flagyl", "Metronidazole", 33, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0301", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Metrolex", "Metronidazole", 33, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+
 
         }
 
@@ -263,6 +281,14 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Pantoprazole"); //23
             addnameGenericTABLEValue("Rabeprazole"); //24
             addnameGenericTABLEValue("Dexlansoprazole"); //25
+            addnameGenericTABLEValue("Fluconazole"); //26
+            addnameGenericTABLEValue("Itraconazole"); //27
+            addnameGenericTABLEValue("Prednisolone"); //28
+            addnameGenericTABLEValue("Dexamethasone"); //29
+            addnameGenericTABLEValue("Valaciclovir"); //30
+            addnameGenericTABLEValue("Clindamycin"); //31
+            addnameGenericTABLEValue("Pyridoxine"); //32
+            addnameGenericTABLEValue("Metronidazole"); //33
 
         }
     }  //nameGenericTABLEData

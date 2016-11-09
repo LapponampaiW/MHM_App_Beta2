@@ -244,6 +244,21 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Vitamin B6", "Vitamin;B6;Pyridoxine", 32, "25", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0104", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Flagyl", "Metronidazole", 33, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0301", "", "08:00", "13:00", "18:00", "", "", "", "", "");
             addMedTABLEValue("Metrolex", "Metronidazole", 33, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("PAS", "Para-aminosalicylic acid;Paraaminosalicylic acid;PAS", 34, "1", "3", 1, null, null, 1, null, null, 1, null, null, "1", 2, "ED:0", "img0615", "", "08:00", "13:00", "18:00", "22:00", "", "", "", "");
+            addMedTABLEValue("Ricin", "Rifampicin", 35, "300", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img91515", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Ricin", "Rifampicin", 35, "450", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90910", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Ricin", "Rifampicin", 35, "600", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img0315", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Isoniazid(INH)", "INH", 36, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Dapsone", "Dapsone", 37, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Zentel", "Albendazole", 38, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Zithromax (Tablet)", "Azithromycin", 39, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 2, "ED:0", "img0301", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Zithromax (Capsule)", "Azithromycin", 39, "250", "1", 1, null, null, 1, null, null, 1, null, null, "2", 2, "ED:0", "img90101", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Azycin", "Azithromycin", 39, "250", "1", 1, null, null, 1, null, null, 1, null, null, "2", 2, "ED:0", "img90101", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Azith", "Azithromycin", 39, "250", "1", 1, null, null, 1, null, null, 1, null, null, "2", 2, "ED:0", "img90101", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Azithrin", "Azithromycin", 39, "250", "1", 1, null, null, 1, null, null, 1, null, null, "2", 2, "ED:0", "img90101", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Binozyt", "Azithromycin", 39, "250", "1", 1, null, null, 1, null, null, 1, null, null, "2", 2, "ED:0", "img90101", "", "08:00", "", "", "", "", "", "", "");
+
+
 
 
         }
@@ -289,6 +304,12 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Clindamycin"); //31
             addnameGenericTABLEValue("Pyridoxine"); //32
             addnameGenericTABLEValue("Metronidazole"); //33
+            addnameGenericTABLEValue("Para-aminosalicylic acid"); //34
+            addnameGenericTABLEValue("Rifampicin"); //35
+            addnameGenericTABLEValue("Isoniazid"); //36
+            addnameGenericTABLEValue("Dapsone"); //37
+            addnameGenericTABLEValue("Albendazole"); //38
+            addnameGenericTABLEValue("Azithromycin"); //39
 
         }
     }  //nameGenericTABLEData

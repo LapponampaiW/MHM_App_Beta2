@@ -87,6 +87,7 @@ public class SplashScreen extends AppCompatActivity {
         },3000); // 2 วินาที
 
         MySQLiteDataBase mySQLiteDataBase = new MySQLiteDataBase(this);
+
         mySQLiteDataBase.nameGenericTABLEData();
         //myManage.nameGenericTABLEData();
         mySQLiteDataBase.medTABLEData();

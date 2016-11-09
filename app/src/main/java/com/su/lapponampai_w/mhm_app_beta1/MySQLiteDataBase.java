@@ -257,8 +257,15 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Azith", "Azithromycin", 39, "250", "1", 1, null, null, 1, null, null, 1, null, null, "2", 2, "ED:0", "img90101", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Azithrin", "Azithromycin", 39, "250", "1", 1, null, null, 1, null, null, 1, null, null, "2", 2, "ED:0", "img90101", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Binozyt", "Azithromycin", 39, "250", "1", 1, null, null, 1, null, null, 1, null, null, "2", 2, "ED:0", "img90101", "", "08:00", "", "", "", "", "", "", "");
-
-
+            addMedTABLEValue("Vilerm", "Acyclovir;Aciclovir", 40, "200", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0803", "", "08:00", "11:00", "14:00", "17:00", "20:00", "", "", "");
+            addMedTABLEValue("Vilerm", "Acyclovir;Aciclovir", 40, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0802", "", "08:00", "11:00", "14:00", "17:00", "20:00", "", "", "");
+            addMedTABLEValue("Vilerm", "Acyclovir;Aciclovir", 40, "800", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0303", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Intelence", "Etravirine", 41, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "A", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Divir", "Didanosine", 18, "125", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0612", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cravit", "Levofloxacin", 42, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0204", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cravit", "Levofloxacin", 42, "750", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0204", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cravit", "Levofloxacin", 42, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0304", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lefloxin", "Levofloxacin", 42, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0201", "", "08:00", "", "", "", "", "", "", "");
 
 
         }
@@ -310,6 +317,9 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Dapsone"); //37
             addnameGenericTABLEValue("Albendazole"); //38
             addnameGenericTABLEValue("Azithromycin"); //39
+            addnameGenericTABLEValue("Acyclovir"); //40
+            addnameGenericTABLEValue("Etravirine"); //41
+            addnameGenericTABLEValue("Levofloxacin"); //42
 
         }
     }  //nameGenericTABLEData

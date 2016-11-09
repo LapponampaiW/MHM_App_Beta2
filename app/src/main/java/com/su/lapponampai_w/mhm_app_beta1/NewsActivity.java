@@ -35,7 +35,7 @@ public class NewsActivity extends AppCompatActivity {
     String[] stringsNewsTABLE_Generic_id,stringsNewsTABLE_Appearance_News,stringsNewsTABLE_Message,
             stringsNewsTABLE_Criteria,stringsNewsTABLE_Activity,stringsNewsTABLE_id;
 
-    String[] messageStrings,picStrings,criteriaStrings, activityStrings;
+    String[] messageStrings,picStrings,criteriaStrings, activityStrings, genIdStrings;
 
     //Heading
     Spinner spinner;
@@ -170,6 +170,7 @@ public class NewsActivity extends AppCompatActivity {
         ArrayList<String> arrayListStringPic = new ArrayList<String>();
         ArrayList<String> arrayListStringCriteria = new ArrayList<String>();
         ArrayList<String> arrayListStringActivity = new ArrayList<String>();
+        ArrayList<String> arrayListStringGenId = new ArrayList<String>();
         iIndex = 0;
         for(int i = 0;i<stringsArray_AllGeneric_NotDuplicated.length;i++) {
             for(int x = 0;x<stringsNewsTABLE_Generic_id.length;x++) {
@@ -182,6 +183,7 @@ public class NewsActivity extends AppCompatActivity {
                         arrayListStringPic.add(iIndex,stringsNewsTABLE_Appearance_News[x]);
                         arrayListStringCriteria.add(iIndex, stringsNewsTABLE_Criteria[x]);
                         arrayListStringActivity.add(iIndex, stringsNewsTABLE_Activity[x]);
+                        arrayListStringGenId.add(iIndex,stringsNewsTABLE_Generic_id[x]);
                         iIndex = iIndex + 1;
                     }
                 }
@@ -200,6 +202,9 @@ public class NewsActivity extends AppCompatActivity {
         activityStrings = new String[arrayListStringActivity.size()];
         activityStrings = arrayListStringActivity.toArray(activityStrings);
 
+        genIdStrings = new String[arrayListStringGenId.size()];
+        genIdStrings = arrayListStringGenId.toArray(genIdStrings);
+
         int[] intsIndex = myData.translate_Appearance_News(picStrings);
 
         MyNewsAdaptor myNewsAdaptor = new MyNewsAdaptor(NewsActivity.this, messageStrings, intsIndex);
@@ -213,7 +218,8 @@ public class NewsActivity extends AppCompatActivity {
                 if (activityStrings[position].equals("DrugInformationActivity")) {
 
                     Intent intent = new Intent(NewsActivity.this, DrugInformationActivity.class);
-                    intent.putExtra("NewsActivity_Med_id", stringsArray_AllGeneric_NotDuplicated[position]);
+                    //intent.putExtra("NewsActivity_Med_id", stringsArray_AllGeneric_NotDuplicated[position]);
+                    intent.putExtra("NewsActivity_Med_id", genIdStrings[position]);
                     startActivity(intent);
                 }
 

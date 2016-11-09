@@ -198,6 +198,11 @@ public class AddMedicineActivity extends AppCompatActivity {
                 MyAdaptor myAdaptor = new MyAdaptor(AddMedicineActivity.this, stringsTradename, stringsGenericLine1, intsIndex);
                 listViewAddTG.setAdapter(myAdaptor);
 
+                //ถ้า Search(filter) แล้วไม่เจออะไร
+                if (stringsGenericLine1.length == 0) {
+                    Toast.makeText(getBaseContext(),"ไม่มีข้อมูลกรุณาตรวจสอบชื่อยาอีกครั้งหรือเลือกการใส่ข้อมูลยาด้วยตนเอง",Toast.LENGTH_LONG).show();
+                }
+
 
                 //ทำการ Click listViewAddTG
                 listViewAddTG.setOnItemClickListener(new AdapterView.OnItemClickListener() {

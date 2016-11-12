@@ -286,6 +286,27 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Cycloserine Meiji", "Cycloserine", 48, "250", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90112", "", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Proserine", "Cycloserine", 48, "250", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90112", "", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Ethionamide", "Ethionamide", 49, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Ativan", "Lorazepam;Ativan", 50, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Ativan", "Lorazepam;Ativan", 50, "0.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0603", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lonza", "Lorazepam;Ativan", 50, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lonza", "Lorazepam;Ativan", 50, "0.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0603", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lorazepam", "Lorazepam;Ativan", 50, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lorazepam", "Lorazepam;Ativan", 50, "0.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0603", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Hawkcopak", "Lorazepam;Ativan", 50, "0.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0603", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Dormicum", "Midazolam", 51, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0703", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Alnax", "Triazolam", 52, "0.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0712", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Alnax", "Triazolam", 52, "0.25", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0701", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Alnax", "Triazolam", 52, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0714", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cordarone", "Amiodarone", 53, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Diazepam GPO", "Diazepam", 54, "2", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Diazepam GPO", "Diazepam", 54, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0902", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Phenobarbital Grian 1/2", "Phenobarbital", 55, "32.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Phenobarbital Grian 1", "Phenobarbital", 55, "65", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Tegretol", "Carbamazepine", 56, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Tegretol CR", "Carbamazepine", 56, "200", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0204", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Tegretol CR", "Carbamazepine", 56, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0204", "", "08:00", "20:00", "", "", "", "", "", "");
+
+
 
 
 
@@ -348,6 +369,13 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Cimetidine"); //47
             addnameGenericTABLEValue("Cycloserine"); //48
             addnameGenericTABLEValue("Ethionamide"); //49
+            addnameGenericTABLEValue("Lorazepam"); //50
+            addnameGenericTABLEValue("Midazolam"); //51
+            addnameGenericTABLEValue("Triazolam"); //52
+            addnameGenericTABLEValue("Amiodarone"); //53
+            addnameGenericTABLEValue("Diazepam"); //54
+            addnameGenericTABLEValue("Phenobarbital"); //55
+            addnameGenericTABLEValue("Carbamazepine"); //56
 
         }
     }  //nameGenericTABLEData

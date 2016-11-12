@@ -294,9 +294,9 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Lorazepam", "Lorazepam;Ativan", 50, "0.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0603", "", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Hawkcopak", "Lorazepam;Ativan", 50, "0.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0603", "", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Dormicum", "Midazolam", 51, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0703", "", "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Alnax", "Triazolam", 52, "0.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0712", "", "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Alnax", "Triazolam", 52, "0.25", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0701", "", "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Alnax", "Triazolam", 52, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0714", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Alnax", "Alprazolam", 52, "0.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0712", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Alnax", "Alprazolam", 52, "0.25", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0701", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Alnax", "Alprazolam", 52, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0714", "", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Cordarone", "Amiodarone", 53, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Diazepam GPO", "Diazepam", 54, "2", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Diazepam GPO", "Diazepam", 54, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0902", "", "22:00", "", "", "", "", "", "", "");
@@ -305,6 +305,17 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Tegretol", "Carbamazepine", 56, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "13:00", "18:00", "", "", "", "", "");
             addMedTABLEValue("Tegretol CR", "Carbamazepine", 56, "200", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0204", "", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Tegretol CR", "Carbamazepine", 56, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0204", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Tripta", "Amitriptyline", 57, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Tripta", "Amitriptyline", 57, "25", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0607", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Tripta", "Amitriptyline", 57, "50", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0611", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Tryptanol", "Amitriptyline", 57, "25", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Nortyline", "Nortriptyline", 58, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0603", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Zoloft", "Sertraline", 59, "50", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0201", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Zoloft", "Sertraline", 59, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0301", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Sertraline Sandoz FC", "Sertraline", 59, "50", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0201", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Dilantin", "Phenytoin", 60, "100", "1", 1, null, null, 1, null, null, 1, null, null, "2", 3, "ED:0", "img90115", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Dilantin", "Phenytoin", 60, "50", "1", 1, null, null, 1, null, null, 1, null, null, "1", 2, "ED:0", "img1002", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+
 
 
 
@@ -371,11 +382,15 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Ethionamide"); //49
             addnameGenericTABLEValue("Lorazepam"); //50
             addnameGenericTABLEValue("Midazolam"); //51
-            addnameGenericTABLEValue("Triazolam"); //52
+            addnameGenericTABLEValue("Alprazolam"); //52
             addnameGenericTABLEValue("Amiodarone"); //53
             addnameGenericTABLEValue("Diazepam"); //54
             addnameGenericTABLEValue("Phenobarbital"); //55
             addnameGenericTABLEValue("Carbamazepine"); //56
+            addnameGenericTABLEValue("Amitriptyline"); //57
+            addnameGenericTABLEValue("Nortriptyline"); //58
+            addnameGenericTABLEValue("Sertraline"); //59
+            addnameGenericTABLEValue("Phenytoin"); //60
 
         }
     }  //nameGenericTABLEData

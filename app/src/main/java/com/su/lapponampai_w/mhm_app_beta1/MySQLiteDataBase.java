@@ -219,6 +219,8 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Kivexa", "Abacavir;Lamivudine", 14, "600", "1", 3, "300", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0304", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Stavir", "Stavudine", 5, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img90103", "A", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Opaz", "Omeprazole", 21, "20", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img91104", "", "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Miracid", "Omeprazole", 21, "20", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img91104", "", "07:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Ocid", "Omeprazole", 21, "20", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img91104", "", "07:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Nexium", "esomeprazole", 22, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0312", "", "07:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Nexium", "esomeprazole", 22, "40", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0312", "", "07:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Controloc", "Pantoprazole", 23, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0102", "", "07:00", "", "", "", "", "", "", "");
@@ -266,6 +268,25 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Cravit", "Levofloxacin", 42, "750", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0204", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Cravit", "Levofloxacin", 42, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0304", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Lefloxin", "Levofloxacin", 42, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0201", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Hidil", "Gemfibrozil", 43, "300", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90115", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Hidil", "Gemfibrozil", 43, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0701", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Gemfibril FC", "Gemfibrozil", 43, "300", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90115", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Gemfibril FC", "Gemfibrozil", 43, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0701", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Fibril", "Fenofibrate", 44, "160", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90308", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Ranidine", "Ranitidine", 45, "300", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img0202", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Ranidine", "Ranitidine", 45, "150", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Xanidine", "Ranitidine", 45, "150", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Tarivid", "Ofloxacin", 46, "200", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Ofloxin FC", "Ofloxacin", 46, "200", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Ofloxin FC", "Ofloxacin", 46, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 2, "ED:0", "img0601", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Siamidine", "Cimetidine", 47, "200", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0609", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Siamidine", "Cimetidine", 47, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0309", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Cigamet", "Cimetidine", 47, "200", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0609", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Cigamet", "Cimetidine", 47, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0609", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Cycloserine Meiji", "Cycloserine", 48, "250", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90112", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Proserine", "Cycloserine", 48, "250", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90112", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Ethionamide", "Ethionamide", 49, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "08:00", "20:00", "", "", "", "", "", "");
+
 
 
         }
@@ -320,6 +341,13 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Acyclovir"); //40
             addnameGenericTABLEValue("Etravirine"); //41
             addnameGenericTABLEValue("Levofloxacin"); //42
+            addnameGenericTABLEValue("Gemfibrozil"); //43
+            addnameGenericTABLEValue("Fenofibrate"); //44
+            addnameGenericTABLEValue("Ranitidine"); //45
+            addnameGenericTABLEValue("Ofloxacin"); //46
+            addnameGenericTABLEValue("Cimetidine"); //47
+            addnameGenericTABLEValue("Cycloserine"); //48
+            addnameGenericTABLEValue("Ethionamide"); //49
 
         }
     }  //nameGenericTABLEData

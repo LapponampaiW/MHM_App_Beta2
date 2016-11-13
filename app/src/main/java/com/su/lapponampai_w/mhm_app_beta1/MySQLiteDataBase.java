@@ -196,6 +196,8 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Viread", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0501", "A", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Reyataz", "Atazanavir", 7, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img90506", "A", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Cafergot", "Ergotamine Tartrate", 8, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Tofago", "Ergotamine;Tartrate", 8, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0902", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Neuramizone", "Ergotamine;Tartrate;Phenobarbital", 8, "0.3", "1", 55, "20", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Prevacid", "Lansoprazole", 9, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0607", "", "07:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Prevacid", "Lansoprazole", 9, "15", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0607", "", "07:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Antacin", "Antacid", 10, "100", "1", 11, "100", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "08:00", "13:00", "18:00", "", "", "", "", "");
@@ -300,6 +302,8 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Cordarone", "Amiodarone", 53, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Diazepam GPO", "Diazepam", 54, "2", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Diazepam GPO", "Diazepam", 54, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0902", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Zam", "Diazepam", 54, "2", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Zam", "Diazepam", 54, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0902", "", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Phenobarbital Grian 1/2", "Phenobarbital", 55, "32.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Phenobarbital Grian 1", "Phenobarbital", 55, "65", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Tegretol", "Carbamazepine", 56, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "13:00", "18:00", "", "", "", "", "");
@@ -315,6 +319,45 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Sertraline Sandoz FC", "Sertraline", 59, "50", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0201", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Dilantin", "Phenytoin", 60, "100", "1", 1, null, null, 1, null, null, 1, null, null, "2", 3, "ED:0", "img90115", "", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Dilantin", "Phenytoin", 60, "50", "1", 1, null, null, 1, null, null, 1, null, null, "1", 2, "ED:0", "img1002", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Trazodone", "Trazodone", 61, "150", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0903", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Desirel", "Trazodone", 61, "150", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0903", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Zimmex", "Simvastatin", 62, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0712", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Zimmex", "Simvastatin", 62, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0712", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Zimmex", "Simvastatin", 62, "40", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0712", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Bestatin", "Simvastatin", 62, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0702", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Bestatin", "Simvastatin", 62, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0711", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Bestatin", "Simvastatin", 62, "40", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0712", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Vytorin 10/10", "Simvastatin;Ezetimibe", 63, "10", "1", 62, "10", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0301", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Vytorin 10/20", "Simvastatin;Ezetimibe", 63, "10", "1", 62, "20", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0301", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Vytorin 10/40", "Simvastatin;Ezetimibe", 63, "10", "1", 62, "40", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0301", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lipitor", "Atorvastatin", 64, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lipitor", "Atorvastatin", 64, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lipitor", "Atorvastatin", 64, "40", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lipitor", "Atorvastatin", 64, "80", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Xarator", "Atorvastatin", 64, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Xarator", "Atorvastatin", 64, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Xarator", "Atorvastatin", 64, "40", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Atorvastatin Sandoz", "Atorvastatin", 64, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Atorvastatin Sandoz", "Atorvastatin", 64, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Atorvastatin Sandoz", "Atorvastatin", 64, "40", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Befarin", "Warfarin", 65, "2", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Befarin", "Warfarin", 65, "3", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0903", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Befarin", "Warfarin", 65, "4", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0902", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Befarin", "Warfarin", 65, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0912", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Orfarin", "Warfarin", 65, "3", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0903", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Orfarin", "Warfarin", 65, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0912", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Famvir", "Famciclovir", 66, "125", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Famvir", "Famciclovir", 66, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Levitra", "Vardenafil", 67, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0611", "22:00", "", "", "", "", "", "", "","" );
+            addMedTABLEValue("Levitra", "Vardenafil", 67, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0611", "22:00", "", "", "", "", "", "", "","" );
+            addMedTABLEValue("Cialis", "Tedalafil", 68, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0511", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cialis", "Tedalafil", 68, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0511", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Viagra", "Sildenafil", 69, "50", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1103", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Viagra", "Sildenafil", 69, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1103", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Sidegra", "Sildenafil", 69, "50", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1103", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Sidegra", "Sildenafil", 69, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1103", "", "22:00", "", "", "", "", "", "", "");
+
+
 
 
 
@@ -391,6 +434,18 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Nortriptyline"); //58
             addnameGenericTABLEValue("Sertraline"); //59
             addnameGenericTABLEValue("Phenytoin"); //60
+            addnameGenericTABLEValue("Trazodone"); //61
+            addnameGenericTABLEValue("Simvastatin"); //62
+            addnameGenericTABLEValue("Ezetimibe"); //63
+            addnameGenericTABLEValue("Atorvastatin"); //64
+            addnameGenericTABLEValue("Warfarin"); //65
+            addnameGenericTABLEValue("Famciclovir"); //66
+            addnameGenericTABLEValue("Vardenafil"); //67
+            addnameGenericTABLEValue("Tedalafil"); //68
+            addnameGenericTABLEValue("Sildenafil"); //69
+
+
+
 
         }
     }  //nameGenericTABLEData

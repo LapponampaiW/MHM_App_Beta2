@@ -23,5 +23,23 @@
 
     </style>
 
+    <style name="MyDatePickerDialogTheme" parent="Base.Theme.AppCompat.Dialog">
+        <!-- this is new -->
+        <item name="colorAccent">@color/colorPrimary</item>
+
+    </style>
+
+    <style name="CustomTheme" parent="android:Theme.Light">
+        <item name="android:windowBackground">@color/colorPrimary</item>
+        <item name="android:colorBackground">@color/colorHeading</item>
+    </style>
+
+
+
+
+
+
+
+
 
 </resources>

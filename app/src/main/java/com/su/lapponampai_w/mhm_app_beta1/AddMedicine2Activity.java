@@ -39,7 +39,7 @@ import java.util.Date;
 import java.util.Random;
 
 public class AddMedicine2Activity extends AppCompatActivity implements
-        TimePickerDialog.OnTimeSetListener,DatePickerDialog.OnDateSetListener{
+        DatePickerDialog.OnDateSetListener,TimePickerDialog.OnTimeSetListener{
 
     //Explicit
     private TextView textView1, textView2, textView3, textView4,
@@ -124,7 +124,6 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
 
 
-
     @Override //จาก DatePickerFragment
     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
         MyData myData = new MyData();
@@ -185,6 +184,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
     }
 
+
+
     @Override //การนำค่าเวลามาอยู่ในค่า Int //จาก TimePickerFragment
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         MyData myData = new MyData();
@@ -217,6 +218,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             textView14.setText(string14);
         }
     }
+
 
 
     private void clickTimesAndDateTextView() {
@@ -282,7 +284,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
                 stringTime = "T8";
-                showTimePickerDialog(v);
+                //showTimePickerDialog(v);
             }
         });
 
@@ -307,8 +309,14 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
     }
 
+
+
+
+
+
     public void showDatePickerDialog(View v) {
         MyDatePickerFragment myDatePickerFragment = new MyDatePickerFragment();
+        myDatePickerFragment.setStyle(1,8);
         myDatePickerFragment.show(getFragmentManager(), "datePicker");
     }
 
@@ -318,6 +326,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         myTimePickerFragment.show(getFragmentManager(), "timePicker");
 
     }
+
 
     private void clickAmount_Tablet() {
 

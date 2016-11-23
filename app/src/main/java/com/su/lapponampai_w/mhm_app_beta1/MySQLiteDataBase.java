@@ -356,6 +356,12 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Viagra", "Sildenafil", 69, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1103", "", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Sidegra", "Sildenafil", 69, "50", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1103", "", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Sidegra", "Sildenafil", 69, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1103", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Plavix", "Clopidogrel", 70, "75", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0612", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Apolets", "Clopidogrel", 70, "75", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0612", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("CoPlavix", "Clopidogrel;Aspirin;acetylsalicylic;acid", 70, "75", "1", 71, "75", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Methadone", "Methadone", 72, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Mevalotin Protect", "Pravastatin", 73, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0202", "", "18:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Mevalotin Protect", "Pravastatin", 73, "40", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0202", "", "18:00", "", "", "", "", "", "", "");
 
 
 
@@ -443,6 +449,10 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Vardenafil"); //67
             addnameGenericTABLEValue("Tedalafil"); //68
             addnameGenericTABLEValue("Sildenafil"); //69
+            addnameGenericTABLEValue("Clopidogrel"); //70
+            addnameGenericTABLEValue("Aspirin"); //71
+            addnameGenericTABLEValue("Methadone"); //72
+            addnameGenericTABLEValue("Pravastatin"); //73
 
 
 

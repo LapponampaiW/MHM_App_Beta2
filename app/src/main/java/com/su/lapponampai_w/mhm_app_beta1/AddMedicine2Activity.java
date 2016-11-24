@@ -73,7 +73,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     private LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4,
             linearLayout5, linearLayout6, linearLayout7, linearLayout8, startDatelin,
             finishDatelin,linearLayoutTimePerDay,intervalLin,head4Layout,linBox4,
-            linBox2Left,linBox2Right,linLine3;
+            linBox2Left,linBox2Right,linLine3,linBox2_1;
     private EditText editTextCalculationAmount;
     private int integerAmountMedicine;
     private double doubleAmountMedicine;
@@ -786,6 +786,20 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     }
 
     private void showView() {
+
+        //show checkBox
+        /*
+        checkBox1.setVisibility(View.VISIBLE);
+        checkBox2.setVisibility(View.VISIBLE);
+        checkBox3.setVisibility(View.VISIBLE);
+        checkBox4.setVisibility(View.VISIBLE);
+        */
+        linBox2_1.setVisibility(View.VISIBLE);
+        linBox2Left.setVisibility(View.VISIBLE);
+        linearLayoutTimePerDay.setVisibility(View.VISIBLE);
+        checkBox8.setVisibility(View.VISIBLE);
+
+
         MyData myData = new MyData();
 
         textView1.setVisibility(View.INVISIBLE);
@@ -809,7 +823,28 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             checkBox1.setChecked(true);
             textView1.setText(stringsWhich_Date_D);
             textView1.setVisibility(View.VISIBLE);
+        } else if (stringsWhich_Date_D.equals("กินตามแบบแผนยาคุมกำเนิด")) {
+            String[] queryDay = string4.split(":");
+            String sInformation = "รับประทานครั้งละ 1 เม็ด\nกินตามแบบแผนยาคุมกำเนิด (ท่านเริ่มกินวันที่ : ";
+            sInformation = sInformation.concat(queryDay[6]);
+            sInformation = sInformation.concat(" )");
+            textView1.setText(sInformation);
+            textView1.setVisibility(View.VISIBLE);
+            linBox2Left.setVisibility(View.GONE);
+            linBox2_1.setVisibility(View.GONE);
+            linearLayoutTimePerDay.setVisibility(View.GONE);
+            checkBox8.setVisibility(View.GONE);
+            /*
+            checkBox1.setVisibility(View.GONE);
+            checkBox2.setVisibility(View.GONE);
+            checkBox3.setVisibility(View.GONE);
+            checkBox4.setVisibility(View.GONE);
+            */
+
+
         }
+
+
         /*
         else if (stringsWhich_Date_D.equals("กินตามแบบแผนยาคุมกำเนิด")) {
             textView1.setText(stringsWhich_Date_D);
@@ -1032,11 +1067,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         stringModTradeName = "";
         stringModGenericName = "";
 
-        /*
-        stringModTradeName = getIntent().getStringExtra("ModTradeName");
-        stringModGenericName = getIntent().getStringExtra("ModGenericName");
-        Toast.makeText(getBaseContext(),stringModTradeName,Toast.LENGTH_SHORT).show();
-        */
+        Toast.makeText(getBaseContext(),string4,Toast.LENGTH_SHORT).show();
 
 
     }
@@ -1095,6 +1126,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         linBox2Left = (LinearLayout) findViewById(R.id.linBox2Left);
         linBox2Right = (LinearLayout) findViewById(R.id.linBox2Right);
         linLine3 = (LinearLayout) findViewById(R.id.line3);
+        linBox2_1 = (LinearLayout) findViewById(R.id.linBox2_1);
         textViewChangeTG = (TextView) findViewById(R.id.textView180);
 
 

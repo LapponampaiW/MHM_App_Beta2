@@ -95,7 +95,7 @@ public class PopUpAddAmountOCs extends AppCompatActivity {
                 string4 = string4.concat(":");
                 string4 = string4.concat(stringDateRef);
 
-                Toast.makeText(getBaseContext(),string4,Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getBaseContext(),string4,Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(PopUpAddAmountOCs.this, AddMedicine2Activity.class);
                 intent.putExtra("Med_id",string1);

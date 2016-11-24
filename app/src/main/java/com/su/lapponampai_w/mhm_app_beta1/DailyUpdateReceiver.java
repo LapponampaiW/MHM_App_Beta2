@@ -40,7 +40,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
             stringsREAD15, stringsREAD16, stringsREAD17, stringsREAD18, stringsREAD19, stringsREAD20,
             stringsDateRef;
 
-    public String currentDay, checkStartDay, checkFinishDay, checkWhich_Date_D;
+    public String currentDay, checkStartDay, checkFinishDay, checkWhich_Date_D, checkAlternativeAppearance;
     public MyManage myManage;
     public MyData myData;
     public int notifID = 100;
@@ -151,6 +151,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                     dailyUpdateReceiver.checkFinishDay = "N";
                     dailyUpdateReceiver.checkStartDay = "N";
                     dailyUpdateReceiver.checkWhich_Date_D = "N";
+                    dailyUpdateReceiver.checkAlternativeAppearance = "N";
                     if (stringsReadAll_MainTABLE[20][i].equals("")) { //ยาถูก Cancel ไปหรือยัง!!!
                         Log.d("UpdatesumTABLE", "ค่าตำแหน่งที่ 20 ว่าง : " + i);
                         //ถ้ายายัง Active อยู่!!!
@@ -209,7 +210,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                         } else {  //ถ้าเป็น ED จะมี 0 1 2 3 4 5
 
-
+                            Toast.makeText(context, "เข้า ED", Toast.LENGTH_LONG).show();
                             String[] stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(stringsReadAll_MainTABLE[1][i]); //เอาค่า Main_id มา
                             Date date_ED_Ref = myData.stringChangetoDateWithOutTime(stringsDate_ED_Ref[0]); //dateRef ก่อนนำไป add ค่Calendar calendarRef = Calendar.getInstance();
 
@@ -259,7 +260,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                             //25/11/2559 เริ่มทำการ แสดงค่าตามวันที่ๆ กำหนดของยาคุมกำเนิด
                             else if (queryDay[1].equals("OCs")) {
-
+                                Toast.makeText(context, "เข้า OCs", Toast.LENGTH_LONG).show();
                                 //เอาวันที่เริ่มกินวันแรกก่อน
                                 Date dStartOCs = myData.stringChangetoDateWithOutTime(queryDay[6]);
                                 Calendar calendarStartOCs = Calendar.getInstance();
@@ -278,24 +279,25 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                                 int iPlaceboInterval = iTotalPill - iActivePill;
 
 
-
-
-                                calendarStartOCs.add(Calendar.DAY_OF_MONTH, iActivePill );
-                                dVariable = calendarStartOCs.getTime(); //ช่วงวันที่ยัง Active อยู่
-                                if (dVariable.compareTo(dateRef) >= 0) {
-                                    dailyUpdateReceiver.checkWhich_Date_D = "Y";
-                                } else {
-                                    calendarStartOCs.add(Calendar.DAY_OF_MONTH,iPlacebo);
-                                    dVariable = calendarStartOCs.getTime(); //ช่วงที่เลย Active แล้วยังอยู่ใน Placebo
+                                do {
+                                    calendarStartOCs.add(Calendar.DAY_OF_MONTH, iActivePill);
+                                    dVariable = calendarStartOCs.getTime(); //ช่วงวันที่ยัง Active อยู่
                                     if (dVariable.compareTo(dateRef) >= 0) {
-                                        if (sTake_everyDay_Pill.equals("N")) {
-                                            dailyUpdateReceiver.checkWhich_Date_D = "N";
-                                        } else {
-                                            //ใส่ค่า img ของรูปอื่นเข้าไป เพื่อใช้แสดง ในอีก TABlE หนึ่ง
+                                        dailyUpdateReceiver.checkWhich_Date_D = "Y";
+                                    } else {
+                                        calendarStartOCs.add(Calendar.DAY_OF_MONTH, iPlaceboInterval);
+                                        dVariable = calendarStartOCs.getTime(); //ช่วงที่เลย Active แล้วยังอยู่ใน Placebo
+                                        if (dVariable.compareTo(dateRef) >= 0) {
+                                            if (sTake_everyDay_Pill.equals("N")) {
+                                                dailyUpdateReceiver.checkWhich_Date_D = "N";
+                                            } else {
+                                                //ใส่ค่า img ของรูปอื่นเข้าไป เพื่อใช้แสดง ในอีก TABlE หนึ่ง
+                                                dailyUpdateReceiver.checkWhich_Date_D = "Y";
+                                                dailyUpdateReceiver.checkAlternativeAppearance = queryDay[5];
+                                            }
                                         }
                                     }
-
-                                }
+                                } while (dVariable.compareTo(dateRef) < 0);
 
 
 
@@ -346,6 +348,10 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                                 String stringTimeRef = stringsReadAll_MainTABLE[x][i];  //TimeRef ตำแหน่งต่างๆ
                                 myManage.addValueToSumTable(stringMain_id, stringDateRef, stringTimeRef, "", "", "");
                                 Log.d("UpdatesumTABLE", "addValueToSumTable : " + stringMain_id + " " + stringDateRef + " " + stringTimeRef);
+
+
+
+
                             }
 
 

@@ -1691,7 +1691,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String stringDateAfterProcess = simpleDateFormat.format(dateAfterProcess);
-
+            Log.d("24Nov16", stringDateAfterProcess);
 
             if (dateAfterProcess.compareTo(dateStartDate) >= 0) {
                 stringIntervalDate = "Y";
@@ -1718,6 +1718,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
             Log.d("queryDay", "queryDay0 : " + queryDay[0]);
             Log.d("queryDay", "queryDay1 : " + queryDay[1]);
+            String checkAlternativeAppearance = "N";
 
             if (!queryDay[0].equals("ED")) {
                 querySelectedDay = queryDay[1].split(",");
@@ -1789,12 +1790,53 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                             addSumTABLE_Today = "Y";
                         }
                     }
+                    //25/11/2559 เริ่มทำการ แสดงค่าตามวันที่ๆ กำหนดของยาคุมกำเนิด
+                    else if (queryDay[1].equals("OCs")) {
+                        //Toast.makeText(context, "เข้า OCs", Toast.LENGTH_LONG).show();
+                        //เอาวันที่เริ่มกินวันแรกก่อน
+                        Date dStartOCs = myData.stringChangetoDateWithOutTime(queryDay[6]);
+
+
+                        Calendar calendarStartOCs = Calendar.getInstance();
+                        calendarStartOCs.setTime(dStartOCs);  //calendarOCs ก่อนเพิ่มค่า วันที่เข้าไป
+                        Date dVariable = calendarStartOCs.getTime();
+
+                        int iActivePill = Integer.parseInt(queryDay[2]);
+                        int iPlacebo = Integer.parseInt(queryDay[3]);
+                        String sTake_everyDay_Pill;
+                        if (iPlacebo == 0) {
+                            sTake_everyDay_Pill = "N";
+                        } else {
+                            sTake_everyDay_Pill = "Y";
+                        }
+                        int iTotalPill = Integer.parseInt(queryDay[4]);
+                        int iPlaceboInterval = iTotalPill - iActivePill;
+
+
+                        do {
+                            calendarStartOCs.add(Calendar.DAY_OF_MONTH, iActivePill - 1);
+                            dVariable = calendarStartOCs.getTime(); //ช่วงวันที่ยัง Active อยู่
+                            if (dVariable.compareTo(dateAfterProcess) >= 0) {
+
+                                addSumTABLE_Today = "Y";
+                            } else {
+                                calendarStartOCs.add(Calendar.DAY_OF_MONTH, iPlaceboInterval);
+                                dVariable = calendarStartOCs.getTime(); //ช่วงที่เลย Active แล้วยังอยู่ใน Placebo
+                                if (dVariable.compareTo(dateAfterProcess) >= 0) {
+                                    if (sTake_everyDay_Pill.equals("N")) {
+                                        addSumTABLE_Today = "N";
+                                    } else {
+                                        //ใส่ค่า img ของรูปอื่นเข้าไป เพื่อใช้แสดง ในอีก TABlE หนึ่ง
+                                        addSumTABLE_Today = "Y";
+                                        checkAlternativeAppearance = queryDay[5];
+                                    }
+                                }
+                            }
+                        } while (dVariable.compareTo(dateAfterProcess) < 0);
 
 
 
-
-
-                }
+                    }
 
             }
 
@@ -1806,6 +1848,10 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
                 if (!stringsT1[0].equals("")) {
                     myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT1[0], "", "", "");
+                    if (!checkAlternativeAppearance.equals("N")) {
+                        Log.d("24Nov16", checkAlternativeAppearance + " " + stringDateAfterProcess);
+                    }
+                    }
                 }
 
                 if (!stringsT2[0].equals("")) {

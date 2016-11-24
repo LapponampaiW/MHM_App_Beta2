@@ -9,7 +9,7 @@
     android:paddingRight="5dp"
     android:paddingTop="5dp"
     tools:context="com.su.lapponampai_w.mhm_app_beta1.PopUpAddAmountOCs"
-    android:background="@android:color/darker_gray">
+    android:background="#deb1de">
 
 
     <LinearLayout

@@ -257,6 +257,70 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                                 }
                             }
 
+                            //25/11/2559 เริ่มทำการ แสดงค่าตามวันที่ๆ กำหนดของยาคุมกำเนิด
+                            else if (queryDay[1].equals("OCs")) {
+
+                                //เอาวันที่เริ่มกินวันแรกก่อน
+                                Date dStartOCs = myData.stringChangetoDateWithOutTime(queryDay[6]);
+                                Calendar calendarStartOCs = Calendar.getInstance();
+                                calendarStartOCs.setTime(dStartOCs);  //calendarOCs ก่อนเพิ่มค่า วันที่เข้าไป
+                                Date dVariable = calendarStartOCs.getTime();
+
+                                int iActivePill = Integer.parseInt(queryDay[2]);
+                                int iPlacebo = Integer.parseInt(queryDay[3]);
+                                String sTake_everyDay_Pill;
+                                if (iPlacebo == 0) {
+                                    sTake_everyDay_Pill = "N";
+                                } else {
+                                    sTake_everyDay_Pill = "Y";
+                                }
+                                int iTotalPill = Integer.parseInt(queryDay[4]);
+                                int iPlaceboInterval = iTotalPill - iActivePill;
+
+
+
+
+                                calendarStartOCs.add(Calendar.DAY_OF_MONTH, iActivePill );
+                                dVariable = calendarStartOCs.getTime(); //ช่วงวันที่ยัง Active อยู่
+                                if (dVariable.compareTo(dateRef) >= 0) {
+                                    dailyUpdateReceiver.checkWhich_Date_D = "Y";
+                                } else {
+                                    calendarStartOCs.add(Calendar.DAY_OF_MONTH,iPlacebo);
+                                    dVariable = calendarStartOCs.getTime(); //ช่วงที่เลย Active แล้วยังอยู่ใน Placebo
+                                    if (dVariable.compareTo(dateRef) >= 0) {
+                                        if (sTake_everyDay_Pill.equals("N")) {
+                                            dailyUpdateReceiver.checkWhich_Date_D = "N";
+                                        } else {
+                                            //ใส่ค่า img ของรูปอื่นเข้าไป เพื่อใช้แสดง ในอีก TABlE หนึ่ง
+                                        }
+                                    }
+
+                                }
+
+
+
+                                /*
+                                do {
+
+                                } while ();
+                                */
+
+
+
+
+
+
+
+
+                            }
+
+
+
+
+
+
+
+
 
 
 
@@ -406,247 +470,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
     }
 
-    private void notificatonSetupAndDisplay(final Context context) {
 
-        //
-
-
-        String strCurrentDay = myData.currentDay();
-        Date dateCurrent = myData.stringChangetoDateWithOutTime(strCurrentDay);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(dateCurrent);
-        Handler handler = new Handler();
-        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
-
-        for(int id = 100;id<500;id++) {
-
-            notifID = id;
-            //Log.d("09/10/2559",Integer.toString(id) );
-            notificationManager.cancel(id);
-
-        }
-
-
-        for(int i = 0;i<10;i++) {
-            if (i != 0) {
-                calendar.add(Calendar.DAY_OF_MONTH,1);
-            }
-            Date dateProcess = calendar.getTime();
-             // ได้วันที่ในการ หมุนแล้ว ใช้ในการ Search
-
-            String strDateProcess = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateProcess);
-            //ได้วันที่แบบ string
-
-            String[] str_sumTABLE_id = myManage.filter_sumTABLE__by_Date(strDateProcess, 0);
-            String[] str_sumTABLE_Mainid = myManage.filter_sumTABLE__by_Date(strDateProcess, 1);
-            String[] str_sumTABLE_DateRef = myManage.filter_sumTABLE__by_Date(strDateProcess, 2);
-            String[] str_sumTABLE_TimeRef = myManage.filter_sumTABLE__by_Date(strDateProcess, 3);
-
-            if (!str_sumTABLE_id[0].equals("")) {
-                String[][] strings_sumTABLE_Process = {str_sumTABLE_id,
-                        str_sumTABLE_Mainid, str_sumTABLE_DateRef, str_sumTABLE_TimeRef};
-
-                for(int x = 0; x < strings_sumTABLE_Process[0].length ; x++) {
-
-                    String strDateTimeNow = myData.currentDateTime_Withoutsecond();
-                    String strDateTimeTarget = strDateProcess + " " + str_sumTABLE_TimeRef[x];
-
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                    Date dateTimeNow = new Date();
-                    Date dateTimeTarget = new Date();
-                    Log.d("09/10/2559", "dateTimeTarget ==> " + " " + dateTimeTarget);
-                    try {
-                        dateTimeNow = dateFormat.parse(strDateTimeNow);
-                        dateTimeTarget = dateFormat.parse(strDateTimeTarget);
-
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-
-                    long milliSecNow = dateTimeNow.getTime();
-                    long millisecTarget = dateTimeTarget.getTime();
-
-                    final long lresult = millisecTarget - milliSecNow;
-                    Log.d("09/10/2559", Long.toString(lresult));
-
-                    if (lresult > 0) {
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-
-
-                                NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-                                builder.setContentTitle("Message");
-                                builder.setContentText("New Message");
-                                builder.setTicker("Alert New Message");
-                                builder.setSmallIcon(R.drawable.logo_carabao48);
-
-
-                                Intent moreInfoIntent = new Intent(context, MainActivity.class);
-
-                                //startActivity(moreInfoIntent);
-
-                                //เพื่อดูว่าหลังทำ InTent แล้ว....
-                                TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(context);
-                                taskStackBuilder.addParentStack(MainActivity.class);
-                                taskStackBuilder.addNextIntent(moreInfoIntent);
-
-
-                                PendingIntent pendingIntent = taskStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-                                builder.setContentIntent(pendingIntent);
-
-
-                                //Random random = new Random();
-                                //notifID = random.nextInt(10000);
-                                notifID = notifID + 1;
-
-
-                                notificationManager.notify(notifID,builder.build());
-
-                                //isNotificActive = true;
-
-                                /*
-
-                                android.support.v4.app.NotificationCompat.Builder builder = new android.support.v4.app.NotificationCompat.Builder(context);
-                                builder.setSmallIcon(R.drawable.logo_carabao48);
-                                builder.setTicker("ถึงเวลาทานยาแล้ว");
-                                builder.setWhen(System.currentTimeMillis());
-                                builder.setContentTitle("มาสเตอร์ เตือนทานยาแล้ว");
-                                builder.setContentText("รายละเอียด");
-                                builder.setAutoCancel(true);
-
-                                Uri uri = RingtoneManager.getDefaultUri(Notification.DEFAULT_SOUND); //Defeault ของเสียง
-                                builder.setSound(uri);
-
-                                Notification notification = builder.build();
-                                NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                                notificationManager.notify(notifID,notification);
-                                notifID = notifID + 1;
-
-                                */
-
-                            }
-                        },lresult); // 2 วินาที
-
-                    }
-
-                }
-
-            }
-
-        } //for
-
-
-
-
-
-
-
-        /*
-        Date currentDate = new Date(System.currentTimeMillis());
-        Log.d("1", currentDate.toString());
-
-        String string_date = "07/10/2016 20:00";
-        String string_date2 = "07/10/2016 20:01";
-
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        Date date = new Date();
-        Date date2 = new Date();
-        try {
-            date = dateFormat.parse(string_date);
-            date2 = dateFormat.parse(string_date2);
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
-        long milliseconds = date.getTime();
-        long milliseconds2 = date2.getTime();
-        Log.d("12345", Long.toString(milliseconds));
-
-        final long lresult = milliseconds2 - milliseconds;
-
-        Log.d("12345", Long.toString(lresult));
-
-        showNotification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-
-                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getBaseContext());
-                        builder.setContentTitle("Message");
-                        builder.setContentText("New Message");
-                        builder.setTicker("Alert New Message");
-                        builder.setSmallIcon(R.drawable.testdrawable);
-
-
-                        Intent moreInfoIntent = new Intent(getBaseContext(), MoreInfoNotification.class);
-
-                        //startActivity(moreInfoIntent);
-
-                        //เพื่อดูว่าหลังทำ InTent แล้ว....
-                        TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(getBaseContext());
-                        taskStackBuilder.addParentStack(MoreInfoNotification.class);
-                        taskStackBuilder.addNextIntent(moreInfoIntent);
-
-
-                        PendingIntent pendingIntent = taskStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-                        builder.setContentIntent(pendingIntent);
-
-                        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                        notificationManager.notify(notifID,builder.build());
-
-                        isNotificActive = true;
-
-                    }
-                },lresult); // 2 วินาที
-
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-
-                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getBaseContext());
-                        builder.setContentTitle("Message1");
-                        builder.setContentText("New Message1");
-                        builder.setTicker("Alert New Message1");
-                        builder.setSmallIcon(R.drawable.testdrawable);
-
-
-                        Intent moreInfoIntent = new Intent(getBaseContext(), MoreInfoNotification.class);
-
-                        //startActivity(moreInfoIntent);
-
-                        //เพื่อดูว่าหลังทำ InTent แล้ว....
-                        TaskStackBuilder taskStackBuilder = TaskStackBuilder.create(getBaseContext());
-                        taskStackBuilder.addParentStack(MoreInfoNotification.class);
-                        taskStackBuilder.addNextIntent(moreInfoIntent);
-
-
-                        PendingIntent pendingIntent = taskStackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-                        builder.setContentIntent(pendingIntent);
-
-                        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                        notificationManager.notify(0,builder.build());
-
-                        isNotificActive = true;
-
-                    }
-                },6000); // 2 วินาที
-
-                */
-
-
-
-    }
 
 
     //เอาค่าจากตาราง mainTABLE มาให้หมด

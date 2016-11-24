@@ -213,7 +213,6 @@ public class AddMedicineActivity extends AppCompatActivity {
                         stringGenericLine = stringsGenericLine1[position];
                         strings_receiver = myManage.searchById(stringSearchId); // search ที่จำเป็นต้องใช้มา
 
-
                         //นับว่า Default ให้ทานยาวันละกี่ครั้ง
                         ArrayList<String> arrayListstrings = new ArrayList<String>();
                         for(int i = 18;i<=25;i++) {
@@ -223,29 +222,63 @@ public class AddMedicineActivity extends AppCompatActivity {
                         }
                         String sCountTimesPerDay = Integer.toString(arrayListstrings.size());
 
+                        //24/11/2559
 
-                        //เปิดหน้าใหม่ พร้อมจำค่าใน putExtra
-                        Intent intent = new Intent(AddMedicineActivity.this,AddMedicine2Activity.class);
+                        String[] queryDay = strings_receiver[15].split(":");
+                        if (queryDay[0].equals("ED") && queryDay[1].equals("OCs")) {
+                            Intent intent = new Intent(AddMedicineActivity.this, PopUpAddAmountOCs.class);
 
-                        intent.putExtra("Med_id",strings_receiver[0]);
-                        intent.putExtra("Trade_name", strings_receiver[1]);
-                        intent.putExtra("Generic_line", stringGenericLine);
-                        intent.putExtra("Amount_tablet", strings_receiver[26]);
-                        intent.putExtra("EA", strings_receiver[27]);
-                        intent.putExtra("Which_Date_D", strings_receiver[15]);
-                        intent.putExtra("Appearance", strings_receiver[16]);
-                        intent.putExtra("Pharmaco", strings_receiver[17]);
-                        intent.putExtra("T1",strings_receiver[18]);
-                        intent.putExtra("T2",strings_receiver[19]);
-                        intent.putExtra("T3",strings_receiver[20]);
-                        intent.putExtra("T4",strings_receiver[21]);
-                        intent.putExtra("T5",strings_receiver[22]);
-                        intent.putExtra("T6",strings_receiver[23]);
-                        intent.putExtra("T7",strings_receiver[24]);
-                        intent.putExtra("T8",strings_receiver[25]);
-                        intent.putExtra("TimesPerDay", sCountTimesPerDay);
+                            intent.putExtra("ActivePill", queryDay[2]);
+                            intent.putExtra("Placebo", queryDay[3]);
 
-                        startActivity(intent);
+                            intent.putExtra("Med_id",strings_receiver[0]);
+                            intent.putExtra("Trade_name", strings_receiver[1]);
+                            intent.putExtra("Generic_line", stringGenericLine);
+                            intent.putExtra("Amount_tablet", strings_receiver[26]);
+                            intent.putExtra("EA", strings_receiver[27]);
+                            intent.putExtra("Which_Date_D", strings_receiver[15]);
+                            intent.putExtra("Appearance", strings_receiver[16]);
+                            intent.putExtra("Pharmaco", strings_receiver[17]);
+                            intent.putExtra("T1",strings_receiver[18]);
+                            intent.putExtra("T2",strings_receiver[19]);
+                            intent.putExtra("T3",strings_receiver[20]);
+                            intent.putExtra("T4",strings_receiver[21]);
+                            intent.putExtra("T5",strings_receiver[22]);
+                            intent.putExtra("T6",strings_receiver[23]);
+                            intent.putExtra("T7",strings_receiver[24]);
+                            intent.putExtra("T8",strings_receiver[25]);
+                            intent.putExtra("TimesPerDay", sCountTimesPerDay);
+
+
+                            startActivity(intent);
+                        } else {
+
+
+                            //เปิดหน้าใหม่ พร้อมจำค่าใน putExtra
+                            Intent intent = new Intent(AddMedicineActivity.this,AddMedicine2Activity.class);
+
+                            intent.putExtra("Med_id",strings_receiver[0]);
+                            intent.putExtra("Trade_name", strings_receiver[1]);
+                            intent.putExtra("Generic_line", stringGenericLine);
+                            intent.putExtra("Amount_tablet", strings_receiver[26]);
+                            intent.putExtra("EA", strings_receiver[27]);
+                            intent.putExtra("Which_Date_D", strings_receiver[15]);
+                            intent.putExtra("Appearance", strings_receiver[16]);
+                            intent.putExtra("Pharmaco", strings_receiver[17]);
+                            intent.putExtra("T1",strings_receiver[18]);
+                            intent.putExtra("T2",strings_receiver[19]);
+                            intent.putExtra("T3",strings_receiver[20]);
+                            intent.putExtra("T4",strings_receiver[21]);
+                            intent.putExtra("T5",strings_receiver[22]);
+                            intent.putExtra("T6",strings_receiver[23]);
+                            intent.putExtra("T7",strings_receiver[24]);
+                            intent.putExtra("T8",strings_receiver[25]);
+                            intent.putExtra("TimesPerDay", sCountTimesPerDay);
+
+                            startActivity(intent);
+                        }
+
+
 
                     }
                 });

@@ -8,9 +8,30 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.Calendar;
+import java.util.Date;
+
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string1;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string10;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string11;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string12;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string13;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string14;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string15;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string16;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string17;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string2;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string3;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string4;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string5;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string6;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string7;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string8;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string9;
 import static com.su.lapponampai_w.mhm_app_beta1.PopUpAddAmountMedicine.editTextAmountMedicine;
 import static com.su.lapponampai_w.mhm_app_beta1.PopUpAddAmountMedicine.buttonAdd10;
 import static com.su.lapponampai_w.mhm_app_beta1.PopUpAddAmountMedicine.buttonAdd1;
@@ -25,7 +46,7 @@ import static com.su.lapponampai_w.mhm_app_beta1.PopUpAddAmountMedicine.textView
 public class PopUpAddAmountOCs extends AppCompatActivity {
 
     //Explicit
-    private String stringStartPill,stringStartDate,stringActivePill,stringPlacebo;
+    private String stringStartPill,stringStartDate,stringActivePill,stringPlacebo,stringWhich_Date_D;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +62,77 @@ public class PopUpAddAmountOCs extends AppCompatActivity {
         showView();
 
         clickCalculateAmountMedicine();
+
+        //Click button(OK or Cancel)
+        clickOKCancel();
         
         
+    }
+
+    private void clickOKCancel() {
+
+        //Click OK
+        textViewOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //เอาค่าจาก Edittext มาเป็น int
+                int intAmountMedicine = Integer.parseInt(editTextAmountMedicine.getText().toString());
+                //เอามาลบ 1 เพื่อให้สามารถคำนวนได้จริง
+                intAmountMedicine = (intAmountMedicine - 1) * -1;
+
+                MyData myData = new MyData();
+                String sCurrentDate = myData.currentDay();
+                Date dateInitial = myData.stringChangetoDateWithOutTime(sCurrentDate); //วันที่ของวันนี้ Type Date
+
+                Calendar calendarCurrent = Calendar.getInstance();
+                calendarCurrent.setTime(dateInitial);  //วันนี้
+                calendarCurrent.add(Calendar.DAY_OF_MONTH, intAmountMedicine);
+                Date dateRef = calendarCurrent.getTime();
+                String stringDateRef = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateRef);
+
+                //string4 คือ Which_Date_D
+                string4 = string4.concat(":");
+                string4 = string4.concat(stringDateRef);
+
+                Toast.makeText(getBaseContext(),string4,Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(PopUpAddAmountOCs.this, AddMedicine2Activity.class);
+                intent.putExtra("Med_id",string1);
+                intent.putExtra("Trade_name", string2);
+                intent.putExtra("Generic_line", string3);
+                intent.putExtra("Amount_tablet", string15);
+                intent.putExtra("EA", string16);
+                intent.putExtra("Which_Date_D", string4);
+                intent.putExtra("Appearance", string5);
+                intent.putExtra("Pharmaco", string6);
+                intent.putExtra("T1",string7);
+                intent.putExtra("T2",string8);
+                intent.putExtra("T3",string9);
+                intent.putExtra("T4",string10);
+                intent.putExtra("T5",string11);
+                intent.putExtra("T6",string12);
+                intent.putExtra("T7",string13);
+                intent.putExtra("T8",string14);
+                intent.putExtra("TimesPerDay", string17);
+
+                startActivity(intent);
+                finish();
+
+
+            }
+        });
+
+        //Click Cancel
+        textViewCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
+
     }
 
     private void showView() {
@@ -122,6 +212,26 @@ public class PopUpAddAmountOCs extends AppCompatActivity {
 
         stringActivePill = getIntent().getStringExtra("ActivePill");
         stringPlacebo = getIntent().getStringExtra("Placebo");
+
+        // เรียงตาม AddMedicineActivity จะได้ง่ายๆเวลาลอกไป
+        string1 = getIntent().getStringExtra("Med_id");
+        string2 = getIntent().getStringExtra("Trade_name");
+        string3 = getIntent().getStringExtra("Generic_line");
+        string15 = getIntent().getStringExtra("Amount_tablet");
+        string16 = getIntent().getStringExtra("EA");
+        string4 = getIntent().getStringExtra("Which_Date_D");
+        string5 = getIntent().getStringExtra("Appearance");
+        string6 = getIntent().getStringExtra("Pharmaco");
+        string7 = getIntent().getStringExtra("T1");
+        string8 = getIntent().getStringExtra("T2");
+        string9 = getIntent().getStringExtra("T3");
+        string10 = getIntent().getStringExtra("T4");
+        string11 = getIntent().getStringExtra("T5");
+        string12 = getIntent().getStringExtra("T6");
+        string13 = getIntent().getStringExtra("T7");
+        string14 = getIntent().getStringExtra("T8");
+        string17 = getIntent().getStringExtra("TimesPerDay");
+
 
 
     }

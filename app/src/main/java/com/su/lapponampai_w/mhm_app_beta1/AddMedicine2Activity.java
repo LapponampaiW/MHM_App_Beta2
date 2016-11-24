@@ -48,7 +48,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             textView14, textView15, textView16, textViewStartDate,
             textViewFinishDate,textViewEA,textViewChangeTG;
 
-    private String string1, string2, string3, string4, string5, string6,
+    public static String string1, string2, string3, string4, string5, string6,
             string7, string8, string9, string10, string11, string12,
             string13, string14, string15, string16, string17;
 
@@ -809,23 +809,25 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             checkBox1.setChecked(true);
             textView1.setText(stringsWhich_Date_D);
             textView1.setVisibility(View.VISIBLE);
-        } else if (stringsWhich_Date_D.equals("กินตามแบบแผนยาคุมกำเนิด")) {
+        }
+        /*
+        else if (stringsWhich_Date_D.equals("กินตามแบบแผนยาคุมกำเนิด")) {
             textView1.setText(stringsWhich_Date_D);
             textView1.setVisibility(View.VISIBLE);
             String[] queryDay = string4.split(":");
-            if (queryDay.length == 5) {
+            if (queryDay.length == 6) {
                 Toast.makeText(getBaseContext(),"ทำการ popup",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AddMedicine2Activity.this, PopUpAddAmountOCs.class);
                 intent.putExtra("ActivePill", queryDay[2]);
                 intent.putExtra("Placebo", queryDay[3]);
                 startActivity(intent);
-            } else if (queryDay.length == 6) {
+            } else if (queryDay.length == 7) {
                 Toast.makeText(getBaseContext(),"ไม่ๆๆๆๆๆๆทำการ popup",Toast.LENGTH_SHORT).show();
             }
 
-
-
         }
+        */
+
 
 
 

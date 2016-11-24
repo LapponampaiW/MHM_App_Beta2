@@ -1,5 +1,7 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.widget.Toast;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -100,6 +102,12 @@ public class MyData {
                 s = s.concat(" ของทุกสัปดาห์");
                 strREAD = s;
 
+            }
+
+            if (queryDay[0].equals("ED")) {
+                if (queryDay[1].equals("OCs")) {
+                    strREAD = "กินตามแบบแผนยาคุมกำเนิด";
+                }
             }
 
         }

@@ -362,9 +362,13 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Methadone", "Methadone", 72, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Mevalotin Protect", "Pravastatin", 73, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0202", "", "18:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Mevalotin Protect", "Pravastatin", 73, "40", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0202", "", "18:00", "", "", "", "", "", "", "");
-
-
-
+            addMedTABLEValue("Lescol", "Fluvastatin", 74, "40", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img0602", "", "18:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lescol XL", "Fluvastatin", 74, "80", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "18:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Rosuvastatin Sandoz", "Rosuvastatin", 75, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0611", "", "18:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Rosuvastatin Sandoz", "Rosuvastatin", 75, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0611", "", "18:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Crestor", "Rosuvastatin", 75, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0611", "", "18:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Crestor", "Rosuvastatin", 75, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0611", "", "18:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Yaz", "Drospirenone;Ethinylestradiol", 76, "3", "1", 77, "0.02", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:24:4:img0601", "img0604", "", "20:00", "", "", "", "", "", "", "");
 
 
 
@@ -453,6 +457,10 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Aspirin"); //71
             addnameGenericTABLEValue("Methadone"); //72
             addnameGenericTABLEValue("Pravastatin"); //73
+            addnameGenericTABLEValue("Fluvastatin"); //74
+            addnameGenericTABLEValue("Rosuvastatin"); //75
+            addnameGenericTABLEValue("Drospirenone"); //76
+            addnameGenericTABLEValue("Ethinylestradiol"); //77
 
 
 

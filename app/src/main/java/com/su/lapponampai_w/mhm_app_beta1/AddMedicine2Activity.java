@@ -792,21 +792,6 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         //ลบ textView1 ที่เป็น Med_id ออกแต่ยังคงเก็บค่าไว้ที่ String 1
         textView2.setText(string2);
         textView3.setText(string3);
-        //19/10/2559
-
-        /*
-        if (stringModTradeName == null) {
-            textView2.setText(string2);
-        } else {
-            textView2.setText(stringModTradeName);
-            Log.d("19102559", stringModTradeName);
-        }
-        if (stringModGenericName == null) {
-            textView3.setText(string3);
-        } else {
-            textView3.setText(string3);
-        }
-        */
 
 
 
@@ -822,7 +807,35 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         String stringsWhich_Date_D = myData.translate_Which_Date_D(string4);
         if (stringsWhich_Date_D.equals("รับประทานยาทุกวัน")) {
             checkBox1.setChecked(true);
+            textView1.setText(stringsWhich_Date_D);
+            textView1.setVisibility(View.VISIBLE);
+        } else if (stringsWhich_Date_D.equals("กินตามแบบแผนยาคุมกำเนิด")) {
+            textView1.setText(stringsWhich_Date_D);
+            textView1.setVisibility(View.VISIBLE);
+            String[] queryDay = string4.split(":");
+            if (queryDay.length == 5) {
+                Toast.makeText(getBaseContext(),"ทำการ popup",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AddMedicine2Activity.this, PopUpAddAmountOCs.class);
+                intent.putExtra("ActivePill", queryDay[2]);
+                intent.putExtra("Placebo", queryDay[3]);
+                startActivity(intent);
+            } else if (queryDay.length == 6) {
+                Toast.makeText(getBaseContext(),"ไม่ๆๆๆๆๆๆทำการ popup",Toast.LENGTH_SHORT).show();
+            }
+
+
+
         }
+
+
+
+
+
+
+
+
+
+
         textView4.setText(string17);
 
         textView7.setText(string7); //T1
@@ -882,7 +895,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         textViewEA.setText(string16_Translate2);
         clickCalculateAmountMedicine();
 
-        //19/10/2559 ลองคลิกปุ่มเพื่อเปลี่ยน
+        //23/11/2559 Popup ข้อความขึ้นมาให้ใส่
+
 
 
 
@@ -1655,6 +1669,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                     stringIntervalDate = "N";
                 }
             }
+
 
 
             //ต่อไปจะทำ AddsumTABLEToday

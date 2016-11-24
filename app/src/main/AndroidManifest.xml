@@ -12,7 +12,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashScreen"
-            android:screenOrientation="portrait">//ตั้งจอทุกอัน
+            android:screenOrientation="portrait">
+            //ตั้งจอทุกอัน
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -109,7 +110,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".PatientAdherenceActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".PopUpAddAmountOCs"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pop_up_add_amount_ocs"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp"
+    tools:context="com.su.lapponampai_w.mhm_app_beta1.PopUpAddAmountOCs"
+    android:background="@android:color/darker_gray">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="+++ยาคุมกำเนิด+++"
+            android:id="@+id/textView195"
+            android:textSize="@dimen/heading3"
+            android:gravity="center_vertical|center_horizontal"
+            android:background="#252d60"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="new"
+            android:id="@+id/textView196"
+            android:layout_margin="@dimen/z2_margin_bigspace" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/z2_margin_space">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-10"
+                android:id="@+id/buttonOCsMinus10"
+                android:layout_weight="2" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-1"
+                android:id="@+id/buttonOCsMinus1"
+                android:layout_weight="2" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editTextOCsAmountMedicine"
+                android:layout_weight="1.8"
+                android:inputType="numberDecimal"
+                android:gravity="center_vertical|center_horizontal" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+1"
+                android:id="@+id/buttonOCsAdd1"
+                android:layout_weight="2" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+10"
+                android:id="@+id/buttonOCsAdd10"
+                android:layout_weight="2" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:background="#252d60">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:text="ยกเลิก"
+            android:id="@+id/textView197"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/heading3"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text=" "
+            android:id="@+id/textView198"
+            android:background="#ffffff"
+            android:layout_margin="@dimen/z2_margin_space"
+            android:textSize="12sp"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:text="ตกลง"
+            android:id="@+id/textView199"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/heading3"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal" />
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</RelativeLayout>

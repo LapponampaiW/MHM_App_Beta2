@@ -14,12 +14,12 @@ import android.widget.Toast;
 public class PopUpAddAmountMedicine extends AppCompatActivity {
 
     //Explicit
-    private Button buttonAdd10, buttonAdd1, buttonMinus1, buttonMinus10;
-    private String string_Main_id;
-    private EditText editTextAmountMedicine;
-    private Integer integerAmountMedicine;
-    private Double doubleAmountMedicine;
-    private TextView textViewOK, textViewCancel;
+    public static Button buttonAdd10, buttonAdd1, buttonMinus1, buttonMinus10;
+    public static String string_Main_id;
+    public static EditText editTextAmountMedicine;
+    public static Integer integerAmountMedicine;
+    public static Double doubleAmountMedicine;
+    public static TextView textViewOK, textViewCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,6 +187,6 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        getWindow().setLayout((int) (width*.8),(int) (height*.4));
+        getWindow().setLayout((int) (width*.85),(int) (height*.4));
     }
 }

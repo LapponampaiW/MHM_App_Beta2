@@ -231,6 +231,12 @@ public class MyManage {
             lcolumn_blood_glucose,lcolumn_blood_pressure,lcolumn_weight,
             lcolumn_temperature,lcolumn_ldl_cholesterol,lcolumn_cd4,lcolumn_viral_load};
 
+    //sumTABLE_alternativeImage
+    private static final String sumTABLE_alternativeImage = "sumTABLE_alternativeImage";
+    private static final String sucolumn_id = "_id";
+    private static final String sucolumn_Sum_id = "Sum_id";
+    private static final String sucolumn_Appearance = "Appearance";
+
 
     public MyManage(Context context) {
         helper = new MyHelper(context);
@@ -1231,6 +1237,30 @@ public class MyManage {
     }
 
 
+    public String[] filter_sumTABLE_finding_SumId_by_MainId_idDESC(String mainId) {
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE, "Main_id LIKE '" + mainId + "'", null, null, null, "_id DESC");
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for(int i = 0; i<cursor.getCount();i++) {
+                strREAD[i] = cursor.getString(0);
+                cursor.moveToNext();
+            }
+
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+        cursor.close();
+        return strREAD;
+
+    }
+
+
+
+
     public String[] filter_sumTABLE__by_Date(String time, int intcolumn) {
 
         String[] strREAD = null;
@@ -2109,6 +2139,17 @@ public class MyManage {
 
         return writeSqLiteDatabase.insert(totalAmountTABLE, null, contentValues);
     }
+
+    public long addValueTo_sumTABLE_alternativeImage
+            (String strSum_id, String strAppearance) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(sucolumn_Sum_id,strSum_id);
+        contentValues.put(sucolumn_Appearance,strAppearance);
+
+        return writeSqLiteDatabase.insert(sumTABLE_alternativeImage, null, contentValues);
+    }
+
+
 
     public String filter_drugInteractionTABLE_Dialog() {
         Cursor cursor = readSqLiteDatabase.query(drugInteractionTABLE_For_Query, column_drugInteractionTABLE_For_Query, "Type_interaction LIKE '2'", null, null, null, "_id ASC");

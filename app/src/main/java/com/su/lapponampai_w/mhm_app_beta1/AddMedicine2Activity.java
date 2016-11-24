@@ -1850,6 +1850,12 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                     myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT1[0], "", "", "");
                     if (!checkAlternativeAppearance.equals("N")) {
                         Log.d("24Nov16", checkAlternativeAppearance + " " + stringDateAfterProcess);
+                        //หา sumid ก่อน
+                        String[] stringsFindSum_id = myManage.filter_sumTABLE_finding_SumId_by_MainId_idDESC(strings1[0]);
+                        if (!stringsFindSum_id[0].equals("")) {
+                            myManage.addValueTo_sumTABLE_alternativeImage(stringsFindSum_id[0], checkAlternativeAppearance);
+
+                        }
                     }
                     }
                 }

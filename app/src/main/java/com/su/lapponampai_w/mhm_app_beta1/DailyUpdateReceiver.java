@@ -260,7 +260,6 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                             //25/11/2559 เริ่มทำการ แสดงค่าตามวันที่ๆ กำหนดของยาคุมกำเนิด
                             else if (queryDay[1].equals("OCs")) {
-                                Toast.makeText(context, "เข้า OCs", Toast.LENGTH_LONG).show();
                                 //เอาวันที่เริ่มกินวันแรกก่อน
                                 Date dStartOCs = myData.stringChangetoDateWithOutTime(queryDay[6]);
                                 Calendar calendarStartOCs = Calendar.getInstance();
@@ -280,7 +279,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
 
                                 do {
-                                    calendarStartOCs.add(Calendar.DAY_OF_MONTH, iActivePill);
+                                    calendarStartOCs.add(Calendar.DAY_OF_MONTH, iActivePill - 1);
                                     dVariable = calendarStartOCs.getTime(); //ช่วงวันที่ยัง Active อยู่
                                     if (dVariable.compareTo(dateRef) >= 0) {
                                         dailyUpdateReceiver.checkWhich_Date_D = "Y";
@@ -298,22 +297,6 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                                         }
                                     }
                                 } while (dVariable.compareTo(dateRef) < 0);
-
-
-
-                                /*
-                                do {
-
-                                } while ();
-                                */
-
-
-
-
-
-
-
-
                             }
 
 

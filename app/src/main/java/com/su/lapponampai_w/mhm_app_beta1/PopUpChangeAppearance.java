@@ -43,7 +43,8 @@ public class PopUpChangeAppearance extends AppCompatActivity {
     TextView textViewCancel, textViewOK;
     ListView listViewTablet2,listViewTablet3;
     int[] intsImageWhiteTablet,intsImageSelectedTablet;
-    String[] stringsWhiteTablet, stringsTotalTablet,stringsSelectedTablet,stringsBGColor;
+    String[] stringsWhiteTablet, stringsTotalTablet,stringsSelectedTablet,stringsBGColor,
+            stringsTotalCapsule;
     String stringProcessCompleted;
     LinearLayout linearLayoutCenter;
 
@@ -167,54 +168,6 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
     }
 
-    private void clickListViewAdaptor() {
-
-        listViewTablet2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
-                String[] stringsTotalTablet1 = {"img0101", "img0102", "img0104", "img0201",
-                        "img0202", "img0203", "img0204", "img0301", "img0302", "img0303", "img0304",
-                        "img0309", "img0312", "img0315", "img0501", "img0511", "img0601", "img0602",
-                        "img0603", "img0604", "img0607", "img0609", "img0611", "img0612", "img0615",
-                        "img0701", "img0702", "img0703", "img0711", "img0712", "img0714", "img0801",
-                        "img0802", "img0803", "img0901", "img0902", "img0903", "img0912", "img1002",
-                        "img1103"};
-
-
-                stringsTotalTablet = stringsTotalTablet1;
-
-
-                String sSubstring = stringsWhiteTablet[position].substring(3, 5);
-
-                //Toast.makeText(getBaseContext(), sSubstring, Toast.LENGTH_SHORT).show();
-
-                ArrayList<String> stringTablet3ArrayList = new ArrayList<String>();
-                int iIndex = 0;
-                for (int y = 0; y < stringsTotalTablet.length; y++) {
-                    if (stringsTotalTablet[y].substring(3, 5).equals(sSubstring)) {
-                        stringTablet3ArrayList.add(iIndex,stringsTotalTablet[y]);
-                        iIndex = iIndex + 1;
-
-                    }
-                }
-
-                stringsSelectedTablet = new String[stringTablet3ArrayList.size()];
-                stringsSelectedTablet = stringTablet3ArrayList.toArray(stringsSelectedTablet);
-                MyData myData = new MyData();
-                intsImageSelectedTablet = myData.translate_Appearance(stringsSelectedTablet);
-
-                MyAdaptorChangeAppearance myAdaptorChangeAppearance = new MyAdaptorChangeAppearance(getBaseContext(), intsImageSelectedTablet);
-                listViewTablet3.setAdapter(myAdaptorChangeAppearance);
-                listViewTablet3.setVisibility(View.VISIBLE);
-                textViewStep3Tablet.setVisibility(View.VISIBLE);
-
-            }
-        });
-
-
-    }
 
     private void clickAdaptor() {
 
@@ -236,14 +189,19 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                         "img0802", "img0803", "img0901", "img0902", "img0903", "img0912", "img1002",
                         "img1103"};
 
+                String[] stringsTotalCapsule1 = {"img90101","img90103","img90108","img90112",
+                        "img90114","img90115","img90308","img90312","img90506","img90808",
+                        "img90813","img90910","img91104","img91414","img91515"};
+
 
                 stringsTotalTablet = stringsTotalTablet1;
+                stringsTotalCapsule = stringsTotalCapsule1;
+
+                //String sFilterTabletCapsule =
 
 
                 String sSubstring = stringsWhiteTablet[position].substring(3, 5);
-
                 //Toast.makeText(getBaseContext(), sSubstring, Toast.LENGTH_SHORT).show();
-
                 ArrayList<String> stringTablet3ArrayList = new ArrayList<String>();
                 int iIndex = 0;
                 for (int y = 0; y < stringsTotalTablet.length; y++) {
@@ -268,6 +226,10 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
             }
         });
+
+
+
+
 
 
         //คลิกขั้นตอนที่ 3
@@ -325,12 +287,12 @@ public class PopUpChangeAppearance extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String[] stringsBGColor1 = {"bgc01", "bgc02", "bgc04", "bgc03", "bgc08", "bgc06", "bgc14"
+                String[] stringsBGColor1 = {"bgc00","bgc01", "bgc02", "bgc04", "bgc03", "bgc08", "bgc06", "bgc14"
                         , "bgc05", "bgc11", "bgc12", "bgc07", "bgc09", "bgc10", "bgc13"};
 
                 stringsBGColor = stringsBGColor1;
                 MyData myData = new MyData();
-                int[] intsImageBGColor = {R.drawable.bgc01,R.drawable.bgc02,R.drawable.bgc04,
+                int[] intsImageBGColor = {R.drawable.bgc00,R.drawable.bgc01,R.drawable.bgc02,R.drawable.bgc04,
                         R.drawable.bgc03,R.drawable.bgc08,R.drawable.bgc06,R.drawable.bgc14,
                         R.drawable.bgc05,R.drawable.bgc11,R.drawable.bgc12,R.drawable.bgc07,
                         R.drawable.bgc09,R.drawable.bgc10,R.drawable.bgc13};

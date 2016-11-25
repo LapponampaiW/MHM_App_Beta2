@@ -118,10 +118,26 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
         clickChangeTG();
 
+        clickImageViewAppearance();
+
 
 
     } //Main Method
 
+    private void clickImageViewAppearance() {
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(),PopUpChangeAppearance.class);
+
+
+                startActivity(intent);
+            }
+        });
+
+
+    }
 
 
     @Override //จาก DatePickerFragment

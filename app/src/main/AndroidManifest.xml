@@ -45,7 +45,6 @@
             android:name=".AlarmReceiver"
             android:process=":remote" />
 
-
         <activity
             android:name=".MedicationListActivity"
             android:screenOrientation="portrait" />
@@ -109,7 +108,8 @@
         <activity
             android:name=".PatientAdherenceActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".PopUpAddAmountOCs"></activity>
+        <activity android:name=".PopUpAddAmountOCs" />
+        <activity android:name=".PopUpChangeAppearance"></activity>
     </application>
 
 </manifest>

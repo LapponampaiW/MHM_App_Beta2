@@ -1085,6 +1085,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         String[] strings_DateCheck = myManage.filter_sumTABLE__by_Date(date_specific, 4); //ได้ DateCheck จาก sumTABLE
         String[] strings_TimeCheck = myManage.filter_sumTABLE__by_Date(date_specific, 5); //ได้ TimeCheck จาก sumTABLE
 
+
+
         String[] strings_DateTimeCheck = new String[strings_Main_id.length];
         if (!strings_Main_id[0].equals("")) {
             for(int i = 0;i<strings_Main_id.length;i++) {
@@ -1110,10 +1112,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 strings_Appearance[i] = strings_medTABLE[6];
             }
 
+            /*
             MyData myData = new MyData();
             int[] intsNotTakeYet = myData.translate_Small_Appearance(strings_Appearance); //รับค่ารูปจาก mainTABLE แล้วเปลี่ยนเป็นขนาดเล็ก
             int[] intsTake = myData.translate_Smallate_Appearance(strings_Appearance);
             int[] intsSkipHold = myData.translate_SmallSkipHold_Appearance(strings_Appearance);
+            */
 
             //เริ่มทำการใส่ภาพของใน MainActivity
 
@@ -1183,6 +1187,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     e.printStackTrace();
                 }
 
+
+                //24/11/16 เพิ่มการเปลี่ยนรูปเข้าไป
+                String[] stringsImageOCs = myManage.filter_sumTABLE_alternativeImage_finding_Appearance_by_sum_id(strings_Sum_id[z]);
+                //Toast.makeText(getBaseContext(),stringsImageOCs[0],Toast.LENGTH_SHORT).show();
+                if (!stringsImageOCs[0].equals("")) {
+                    strings_Appearance[z] = stringsImageOCs[0];
+                }
+                //ถ้าผิิดก็ตรงนี้แหละ!!!
+                //Toast.makeText(getBaseContext(),strings_Appearance[z],Toast.LENGTH_SHORT).show();
+                MyData myData = new MyData();
+                int[] intsNotTakeYet = myData.translate_Small_Appearance(strings_Appearance); //รับค่ารูปจาก mainTABLE แล้วเปลี่ยนเป็นขนาดเล็ก
+                int[] intsTake = myData.translate_Smallate_Appearance(strings_Appearance);
+                int[] intsSkipHold = myData.translate_SmallSkipHold_Appearance(strings_Appearance);
 
                 if (time.compareTo(convertedDateMorning1) >= 0 && time.compareTo(convertedDateMorning2) <= 0) {
                     Log.d("abc", "อยู่ระหว่าง 06:00 - 11:59");

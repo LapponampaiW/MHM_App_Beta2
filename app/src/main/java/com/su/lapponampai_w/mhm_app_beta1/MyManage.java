@@ -236,6 +236,7 @@ public class MyManage {
     private static final String sucolumn_id = "_id";
     private static final String sucolumn_Sum_id = "Sum_id";
     private static final String sucolumn_Appearance = "Appearance";
+    private static final String[] column_sumTABLE_alternativeImage = {sucolumn_id, sucolumn_Sum_id, sucolumn_Appearance};
 
 
     public MyManage(Context context) {
@@ -1256,6 +1257,25 @@ public class MyManage {
         cursor.close();
         return strREAD;
 
+    }
+
+    public String[] filter_sumTABLE_alternativeImage_finding_Appearance_by_sum_id(String sumId) {
+        String[] strREAD = null;
+        Cursor cursor = readSqLiteDatabase.query(sumTABLE_alternativeImage, column_sumTABLE_alternativeImage, "Sum_id LIKE '" + sumId + "'", null, null, null, "_id DESC");
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for(int i = 0; i<cursor.getCount();i++) {
+                strREAD[i] = cursor.getString(2);
+                cursor.moveToNext();
+            }
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+        cursor.close();
+        return strREAD;
     }
 
 

@@ -330,8 +330,18 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                                 String stringMain_id = stringsReadAll_MainTABLE[0][i];  //Main_id
                                 String stringTimeRef = stringsReadAll_MainTABLE[x][i];  //TimeRef ตำแหน่งต่างๆ
                                 myManage.addValueToSumTable(stringMain_id, stringDateRef, stringTimeRef, "", "", "");
-                                Log.d("UpdatesumTABLE", "addValueToSumTable : " + stringMain_id + " " + stringDateRef + " " + stringTimeRef);
+                                //Log.d("UpdatesumTABLE", "addValueToSumTable : " + stringMain_id + " " + stringDateRef + " " + stringTimeRef);
 
+
+                                if (!dailyUpdateReceiver.checkAlternativeAppearance.equals("N")) {
+                                    Log.d("24Nov16", checkAlternativeAppearance + " " + stringDateRef);
+                                    //หา sumid ก่อน
+                                    String[] stringsFindSum_id = myManage.filter_sumTABLE_finding_SumId_by_MainId_idDESC(stringMain_id);
+                                    if (!stringsFindSum_id[0].equals("")) {
+                                        myManage.addValueTo_sumTABLE_alternativeImage(stringsFindSum_id[0], dailyUpdateReceiver.checkAlternativeAppearance);
+
+                                    }
+                                }
 
 
 

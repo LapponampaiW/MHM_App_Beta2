@@ -9,6 +9,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,8 +43,10 @@ public class PopUpChangeAppearance extends AppCompatActivity {
     TextView textViewCancel, textViewOK;
     ListView listViewTablet2,listViewTablet3;
     int[] intsImageWhiteTablet,intsImageSelectedTablet;
-    String[] stringsWhiteTablet, stringsTotalTablet,stringsSelectedTablet;
+    String[] stringsWhiteTablet, stringsTotalTablet,stringsSelectedTablet,stringsBGColor;
     String stringProcessCompleted;
+    LinearLayout linearLayoutCenter;
+
 
 
     @Override
@@ -61,7 +64,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
         showView();
 
-        setValueInAllAdaptor(); //Setค่าของ Adaptor ทั้งหมดลงใน Adaptor
+        clickAdaptor(); //Setค่าของ Adaptor ทั้งหมดลงใน Adaptor
 
         clickImageView(); //คลิก ImageView เปลี่ยนสี
 
@@ -213,20 +216,11 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
     }
 
-    private void setValueInAllAdaptor() {
+    private void clickAdaptor() {
 
         //Step 2 Tablet
-        String[] stringsWhiteTablet1 = {"img0101", "img0201", "img0301", "img0501", "img0601",
-                "img0701", "img0801", "img0901"};
-
-        stringsWhiteTablet = stringsWhiteTablet1;
-
         final MyData myData = new MyData();
 
-        intsImageWhiteTablet = myData.translate_Appearance(stringsWhiteTablet);
-
-        MyAdaptorChangeAppearance myAdaptorChangeAppearance = new MyAdaptorChangeAppearance(getBaseContext(), intsImageWhiteTablet);
-        listViewTablet2.setAdapter(myAdaptorChangeAppearance);
 
 
         listViewTablet2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -254,7 +248,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                 int iIndex = 0;
                 for (int y = 0; y < stringsTotalTablet.length; y++) {
                     if (stringsTotalTablet[y].substring(3, 5).equals(sSubstring)) {
-                        stringTablet3ArrayList.add(iIndex,stringsTotalTablet[y]);
+                        stringTablet3ArrayList.add(iIndex, stringsTotalTablet[y]);
                         iIndex = iIndex + 1;
 
                     }
@@ -292,7 +286,6 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         });
 
 
-
     }
 
     private void clickImageView() {
@@ -300,6 +293,18 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         imageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String[] stringsWhiteTablet1 = {"img0101", "img0201", "img0301", "img0501", "img0601",
+                        "img0701", "img0801", "img0901"};
+                stringsWhiteTablet = stringsWhiteTablet1;
+                MyData myData = new MyData();
+                intsImageWhiteTablet = myData.translate_Appearance(stringsWhiteTablet);
+
+                MyAdaptorChangeAppearance myAdaptorChangeAppearance = new MyAdaptorChangeAppearance(getBaseContext(), intsImageWhiteTablet);
+                listViewTablet2.setAdapter(myAdaptorChangeAppearance);
+
+                textViewStep2Tablet.setText("ขั้นตอนที่ 2 :\nเลือกรูปแบบยาเม็ด");
+
 
                 imageView1.setImageResource(R.drawable.icon_tablet2);
                 imageView2.setImageResource(R.drawable.icon_capsule1);
@@ -310,26 +315,47 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                 listViewTablet3.setVisibility(View.INVISIBLE);
                 textViewStep4.setVisibility(View.INVISIBLE);
                 imageViewFinal.setVisibility(View.INVISIBLE);
-
+                linearLayoutCenter.setVisibility(View.VISIBLE);
+                stringProcessCompleted = "N";
             }
         });
+
 
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                String[] stringsBGColor1 = {"bgc01", "bgc02", "bgc04", "bgc03", "bgc08", "bgc06", "bgc14"
+                        , "bgc05", "bgc11", "bgc12", "bgc07", "bgc09", "bgc10", "bgc13"};
+
+                stringsBGColor = stringsBGColor1;
+                MyData myData = new MyData();
+                int[] intsImageBGColor = {R.drawable.bgc01,R.drawable.bgc02,R.drawable.bgc04,
+                        R.drawable.bgc03,R.drawable.bgc08,R.drawable.bgc06,R.drawable.bgc14,
+                        R.drawable.bgc05,R.drawable.bgc11,R.drawable.bgc12,R.drawable.bgc07,
+                        R.drawable.bgc09,R.drawable.bgc10,R.drawable.bgc13};
+
+                MyAdaptorChangeAppearance myAdaptorChangeAppearance = new MyAdaptorChangeAppearance(getBaseContext(), intsImageBGColor);
+                listViewTablet2.setAdapter(myAdaptorChangeAppearance);
+
+                textViewStep2Tablet.setText("ขั้นตอนที่ 2 :\nเลือกสีด้านแคปซูล");
+
                 imageView1.setImageResource(R.drawable.icon_tablet1);
                 imageView2.setImageResource(R.drawable.icon_capsule2);
 
-                listViewTablet2.setVisibility(View.INVISIBLE);
-                textViewStep2Tablet.setVisibility(View.INVISIBLE);
+                listViewTablet2.setVisibility(View.VISIBLE);
+                textViewStep2Tablet.setVisibility(View.VISIBLE);
                 textViewStep3Tablet.setVisibility(View.INVISIBLE);
                 listViewTablet3.setVisibility(View.INVISIBLE);
                 textViewStep4.setVisibility(View.INVISIBLE);
                 imageViewFinal.setVisibility(View.INVISIBLE);
+                linearLayoutCenter.setVisibility(View.VISIBLE);
+                stringProcessCompleted = "N";
+
 
             }
         });
+
 
         imageView3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -341,7 +367,8 @@ public class PopUpChangeAppearance extends AppCompatActivity {
     }
 
     private void showView() {
-        textViewStep2Tablet.setText("ขั้นตอนที่ 2 :\nเลือกรูปแบบยาเม็ด");
+
+
         textViewStep3Tablet.setText("ขั้นตอนที่ 3 :\nเลือกเม็ดยาที่ต้องการ");
         textViewStep4.setText("ขั้นตอนที่ 4\nเสร็จสิ้นการเลือกรูปเสมือนเม็ดยา\nกด 'เปลี่ยนรูป' เพื่อจบการทำงาน");
 
@@ -352,8 +379,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         listViewTablet3.setVisibility(View.INVISIBLE);
         textViewStep4.setVisibility(View.INVISIBLE);
         imageViewFinal.setVisibility(View.INVISIBLE);
-
-
+        linearLayoutCenter.setVisibility(View.INVISIBLE);
 
 
     }
@@ -374,6 +400,8 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
         listViewTablet2 = (ListView) findViewById(R.id.listViewTablet2);
         listViewTablet3 = (ListView) findViewById(R.id.listViewTablet3);
+
+        linearLayoutCenter = (LinearLayout) findViewById(R.id.linPUCACenter);
 
     }
 

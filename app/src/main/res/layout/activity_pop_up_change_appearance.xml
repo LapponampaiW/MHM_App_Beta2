@@ -164,7 +164,8 @@
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="#30abc4">
+                android:background="#30abc4"
+                android:id="@+id/linPUCACenter">
 
                 <TextView
                     android:text=" "

@@ -146,8 +146,14 @@ public class MedicationDetailActivity extends AppCompatActivity {
                     //int x = Integer.parseInt(s_Amount) / (iCount * Integer.parseInt(string4));
 
                     double y = Double.parseDouble(s_Amount) / (iCount * Double.parseDouble(string4));
-                    int x = Integer.parseInt(s_Amount) / (iCount * Integer.parseInt(string4));
+                    //int x = Integer.parseInt(s_Amount) / (iCount * Integer.parseInt(string4));
+
+                    double z = Math.ceil(y);
+                    int x = (int) z;
+
+
                     Log.d("21July16", "y : " + y);
+                    Log.d("21July16", "x : " + x);
                     Log.d("21July16", "string4 : " + string4);
                     String strGetDate;
 

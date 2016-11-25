@@ -335,14 +335,24 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
                 final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getContext());
-                final String[] strings = {"0.25(เศษหนึ่งส่วนสี่) เม็ด","0.5(ครึ่ง) เม็ด",
-                        "0.75(เศษสามส่วนสี่) เม็ด","1(หนึ่ง) เม็ด","1.25(หนึ่งเศษหนึ่งส่วนสี่) เม็ด",
-                        "1.5(หนึ่งครึ่ง) เม็ด","1.75(หนึ่งเศษสามส่วนสี่) เม็ด","2(สอง) เม็ด"};
-                builder.setTitle("โปรดระบุ!!! \nจำนวนครั้งที่ต้องทานยา(ใน 1 วัน)");
+                final String[] strings = {"0.25 (เศษหนึ่งส่วนสี่)","0.5 (ครึ่ง)",
+                        "0.75 (เศษสามส่วนสี่)","1 (หนึ่ง)","1.25 (หนึ่งเศษหนึ่งส่วนสี่)",
+                        "1.5 (หนึ่งครึ่ง)","1.75 (หนึ่งเศษสามส่วนสี่)","2 (สอง)","3 (สาม)",
+                        "4 (สี่)","5 (ห้า)","6 (หก)","7 (เจ็ด)","8 (แปด)",
+                        "9 (เก้า)","10 (สิบ)","11 (สิบเอ็ด)","12 (สิบสอง)","13 (สิบสาม)",
+                        "14 (สิบสี่)"};
+                builder.setTitle("โปรดระบุ!!! \nจำนวนยาที่ต้องรับประทาน(ต่อมื้อ)");
                 builder.setSingleChoiceItems(strings, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Double aDouble = (which + 1) * 0.25;
+                        Double aDouble;
+                        if (which <= 7) {
+                            aDouble = (which + 1) * 0.25;
+                        } else {
+                            aDouble = which - 5.00;
+                        }
+
+
                         string15 = Double.toString(aDouble);
                         textView15.setText(string15);
                         dialog.dismiss();

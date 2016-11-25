@@ -99,7 +99,14 @@ public class PatientAdherenceActivity extends AppCompatActivity {
                     if (strings_Main_id[i].equals(stringsReadmainTABLE_id[w])) {
                         strings_Tradename[i] = stringsReadmainTABLE_Tradename[w];
                         strings_AdherenceIndicator[i] = stringsReadmainTABLE_Pharmaco[w];
-                        strings_Appearance[i] = stringsReadmainTABLE_Appearance[w];
+
+                        //+++25/11/59 เปลี่ยนรูปยาคุม+++
+                        String[] stringsImageOCs = myManage.filter_sumTABLE_alternativeImage_finding_Appearance_by_sum_id(strings_id[i]);
+                        if (!stringsImageOCs[0].equals("")) {
+                            strings_Appearance[i] = stringsImageOCs[0];
+                        } else {
+                            strings_Appearance[i] = stringsReadmainTABLE_Appearance[w];
+                        }
                     }
                 }
             } //ได้ค่าครบทุกค่าแล้ว

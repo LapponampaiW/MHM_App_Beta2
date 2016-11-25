@@ -44,10 +44,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView188"
             android:layout_weight="1"
-            android:layout_marginLeft="@dimen/z2_margin_bigspace"
-            android:layout_marginRight="@dimen/z2_margin_bigspace"
             android:background="@color/colorHeading"
-            android:textSize="2sp" />
+            android:textSize="3sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -58,7 +56,8 @@
         android:id="@+id/linCalendar"
         android:weightSum="1"
         android:layout_alignParentEnd="true"
-        android:layout_weight="1.33">
+        android:layout_weight="1.33"
+        android:background="@color/colorBackground">
 
         <LinearLayout
             android:orientation="vertical"
@@ -70,9 +69,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/listViewPatientAdherence"
-            android:padding="@dimen/z2_margin_bigspace"
             android:fadingEdge="none"
-            android:background="@color/colorAccent" />
+            android:background="@color/colorBackground"
+            android:paddingBottom="@dimen/z2_margin_space"
+            android:paddingLeft="@dimen/z2_margin_space"
+            android:paddingRight="@dimen/z2_margin_space"
+            android:paddingTop="@dimen/z2_margin_space" />
 
     </LinearLayout>
 

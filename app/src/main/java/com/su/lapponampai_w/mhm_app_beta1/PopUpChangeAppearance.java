@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +15,9 @@ public class PopUpChangeAppearance extends AppCompatActivity {
     //Explicit
     ImageView imageView1,imageView2, imageView3;
     TextView textViewStep2Tablet;
+    ListView listViewTablet2;
+    int[] intsImageWhiteTablet;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +30,29 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
         showView();
 
+        setValueInAllAdaptor(); //Setค่าของ Adaptor ทั้งหมดลงใน Adaptor
+
         clickImageView(); //คลิก ImageView เปลี่ยนสี
         
         
+    }
+
+    private void setValueInAllAdaptor() {
+
+        //Step 2 Tablet
+        String[] stringsWhiteTablet = {"img0101","img0201","img0301","img0501","img0601",
+                "img0701","img0801","img0901"};
+        MyData myData = new MyData();
+
+        intsImageWhiteTablet = myData.translate_Appearance(stringsWhiteTablet);
+
+        MyAdaptorChangeAppearance myAdaptorChangeAppearance = new MyAdaptorChangeAppearance(getBaseContext(),intsImageWhiteTablet);
+        listViewTablet2.setAdapter(myAdaptorChangeAppearance);
+
+
+
+
+
     }
 
     private void clickImageView() {
@@ -40,6 +64,9 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                 imageView1.setImageResource(R.drawable.icon_tablet2);
                 imageView2.setImageResource(R.drawable.icon_capsule1);
 
+                listViewTablet2.setVisibility(View.VISIBLE);
+                textViewStep2Tablet.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -49,6 +76,9 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
                 imageView1.setImageResource(R.drawable.icon_tablet1);
                 imageView2.setImageResource(R.drawable.icon_capsule2);
+
+                listViewTablet2.setVisibility(View.INVISIBLE);
+                textViewStep2Tablet.setVisibility(View.INVISIBLE);
 
             }
         });
@@ -63,7 +93,11 @@ public class PopUpChangeAppearance extends AppCompatActivity {
     }
 
     private void showView() {
-        textViewStep2Tablet.setText("ขั้นตอนที่ 2 :\nรูปแบบยาเม็ด");
+        textViewStep2Tablet.setText("ขั้นตอนที่ 2 :\nเลือกรูปแบบยาเม็ด");
+        listViewTablet2.setVisibility(View.INVISIBLE);
+        textViewStep2Tablet.setVisibility(View.INVISIBLE);
+
+
     }
 
     private void bindWidget() {
@@ -73,6 +107,8 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         imageView3 = (ImageView) findViewById(R.id.imageView20);
 
         textViewStep2Tablet = (TextView) findViewById(R.id.textView209);
+
+        listViewTablet2 = (ListView) findViewById(R.id.listViewTablet2);
         
     }
 

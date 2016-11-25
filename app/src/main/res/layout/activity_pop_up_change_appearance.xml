@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="#9c2b9c"
         android:layout_gravity="center"
-        android:id="@+id/headingLayout">
+        android:id="@+id/linPUCAHeading">
 
         <TextView
             android:layout_width="fill_parent"
@@ -31,7 +31,9 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/headingLayout">
+        android:layout_below="@+id/linPUCAHeading"
+        android:id="@+id/linPUCAStep"
+        android:layout_above="@+id/linPUCAline2">
 
         <TextView
             android:text="ขั้นตอนที่ 1 : เลือกรูปแบบยา"
@@ -116,8 +118,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/linPUCAline1"
-            android:layout_marginTop="@dimen/z2_margin_bigspace"
-            android:layout_marginBottom="@dimen/z2_margin_bigspace"
+            android:layout_marginTop="@dimen/z2_margin_space"
+            android:layout_marginBottom="@dimen/z2_margin_space"
             android:background="#30abc4" >
 
             <TextView
@@ -147,16 +149,112 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/textView209"
                     android:gravity="center_horizontal" />
+
+                <ListView
+                    android:layout_width="90dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/z2_margin_bigspace"
+                    android:id="@+id/listViewTablet2" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="#30abc4">
+
+                <TextView
+                    android:text=" "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView204"
+                    android:textSize="2sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"></LinearLayout>
+                android:layout_weight="1">
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView211"
+                    android:gravity="center_horizontal" />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linPUCAline2"
+        android:layout_marginTop="@dimen/z2_margin_space"
+        android:layout_marginBottom="@dimen/z2_margin_space"
+        android:background="#30abc4"
+        android:layout_above="@+id/linPUCAResult">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:id="@+id/textView210"
+            android:textSize="1sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:id="@+id/linPUCAResult"
+        android:layout_above="@+id/linPUCABottom"
+        android:layout_height="80dp"></LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:background="#9c2b9c"
+        android:id="@+id/linPUCABottom">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:text="ยกเลิก"
+            android:id="@+id/textView182"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/heading3"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:text=" "
+            android:id="@+id/textView183"
+            android:background="#ffffff"
+            android:layout_margin="@dimen/z2_margin_space"
+            android:textSize="12sp"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:text="ตกลง"
+            android:id="@+id/textView184"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/heading3"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal" />
+
+    </LinearLayout>
+
 
 
 </RelativeLayout>

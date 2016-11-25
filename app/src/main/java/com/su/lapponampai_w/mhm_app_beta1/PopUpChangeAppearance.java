@@ -1,5 +1,8 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -11,6 +14,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string1;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string10;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string11;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string12;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string13;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string14;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string15;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string16;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string17;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string2;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string3;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string4;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string5;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string6;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string7;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string8;
+import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string9;
 
 public class PopUpChangeAppearance extends AppCompatActivity {
 
@@ -30,7 +51,11 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up_change_appearance);
 
+        stringProcessCompleted = "N";
+
         bindWidget();
+
+        receiveIntent();
 
         displayMetrics();
 
@@ -47,6 +72,26 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
     }
 
+    private void receiveIntent() {
+        string1 = getIntent().getStringExtra("Med_id");
+        string2 = getIntent().getStringExtra("Trade_name");
+        string3 = getIntent().getStringExtra("Generic_line");
+        string15 = getIntent().getStringExtra("Amount_tablet");
+        string16 = getIntent().getStringExtra("EA");
+        string4 = getIntent().getStringExtra("Which_Date_D");
+        string5 = getIntent().getStringExtra("Appearance");
+        string6 = getIntent().getStringExtra("Pharmaco");
+        string7 = getIntent().getStringExtra("T1");
+        string8 = getIntent().getStringExtra("T2");
+        string9 = getIntent().getStringExtra("T3");
+        string10 = getIntent().getStringExtra("T4");
+        string11 = getIntent().getStringExtra("T5");
+        string12 = getIntent().getStringExtra("T6");
+        string13 = getIntent().getStringExtra("T7");
+        string14 = getIntent().getStringExtra("T8");
+        string17 = getIntent().getStringExtra("TimesPerDay");
+    }
+
     private void clickOKCancelbutton() {
 
         textViewCancel.setOnClickListener(new View.OnClickListener() {
@@ -61,10 +106,57 @@ public class PopUpChangeAppearance extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (stringProcessCompleted.equals("N")) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    builder.setIcon(R.drawable.stop_sign);
+                    builder.setTitle("ไม่สามารถดำเนินการได้");
+                    builder.setMessage("กรุณาทำตามขั้นตอนที่ระบุไว้");
+                    builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.show();
+                } else {
+
+
+                    AddMedicine2Activity.activityAddMedicine2Activity.finish();
+                    //เปลี่ยน String 5
+                    string5 = stringProcessCompleted;
+                    Intent intent = new Intent(getBaseContext(), AddMedicine2Activity.class);
+                    intent.putExtra("Med_id",string1);
+                    intent.putExtra("Trade_name", string2);
+                    intent.putExtra("Generic_line", string3);
+                    intent.putExtra("Amount_tablet", string15);
+                    intent.putExtra("EA", string16);
+                    intent.putExtra("Which_Date_D", string4);
+                    intent.putExtra("Appearance", string5);
+                    intent.putExtra("Pharmaco", string6);
+                    intent.putExtra("T1",string7);
+                    intent.putExtra("T2",string8);
+                    intent.putExtra("T3",string9);
+                    intent.putExtra("T4",string10);
+                    intent.putExtra("T5",string11);
+                    intent.putExtra("T6",string12);
+                    intent.putExtra("T7",string13);
+                    intent.putExtra("T8",string14);
+                    intent.putExtra("TimesPerDay", string17);
+
+
+                    startActivity(intent);
+                    finish();
+
+
+
+
 
                 }
-
-
             }
         });
 
@@ -142,8 +234,6 @@ public class PopUpChangeAppearance extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-
-
                 String[] stringsTotalTablet1 = {"img0101", "img0102", "img0104", "img0201",
                         "img0202", "img0203", "img0204", "img0301", "img0302", "img0303", "img0304",
                         "img0309", "img0312", "img0315", "img0501", "img0511", "img0601", "img0602",
@@ -197,6 +287,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                 imageViewFinal.setImageResource(intsFinalImage[position]);
                 textViewStep4.setVisibility(View.VISIBLE);
                 imageViewFinal.setVisibility(View.VISIBLE);
+                stringProcessCompleted = stringsSelectedTablet[position];
             }
         });
 
@@ -262,7 +353,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         textViewStep4.setVisibility(View.INVISIBLE);
         imageViewFinal.setVisibility(View.INVISIBLE);
 
-        stringProcessCompleted = "N";
+
 
 
     }

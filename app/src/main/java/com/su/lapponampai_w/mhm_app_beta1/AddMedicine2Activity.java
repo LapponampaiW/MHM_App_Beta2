@@ -130,8 +130,23 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(),PopUpChangeAppearance.class);
-
-
+                intent.putExtra("Med_id",string1);
+                intent.putExtra("Trade_name", string2);
+                intent.putExtra("Generic_line", string3);
+                intent.putExtra("Amount_tablet", string15);
+                intent.putExtra("EA", string16);
+                intent.putExtra("Which_Date_D", string4);
+                intent.putExtra("Appearance", string5);
+                intent.putExtra("Pharmaco", string6);
+                intent.putExtra("T1",string7);
+                intent.putExtra("T2",string8);
+                intent.putExtra("T3",string9);
+                intent.putExtra("T4",string10);
+                intent.putExtra("T5",string11);
+                intent.putExtra("T6",string12);
+                intent.putExtra("T7",string13);
+                intent.putExtra("T8",string14);
+                intent.putExtra("TimesPerDay", string17);
                 startActivity(intent);
             }
         });

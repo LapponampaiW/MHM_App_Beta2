@@ -45,9 +45,7 @@
             android:name=".AlarmReceiver"
             android:process=":remote" />
 
-        <activity
-            android:name=".MyCalendar"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".MedicationListActivity"
             android:screenOrientation="portrait" />

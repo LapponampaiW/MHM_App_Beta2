@@ -42,9 +42,8 @@ public class PopUpChangeAppearance extends AppCompatActivity {
     TextView textViewStep2Tablet, textViewStep3Tablet,textViewStep4;
     TextView textViewCancel, textViewOK;
     ListView listViewTablet2,listViewTablet3;
-    int[] intsImageWhiteTablet,intsImageSelectedTablet;
-    String[] stringsWhiteTablet, stringsTotalTablet,stringsSelectedTablet,stringsBGColor,
-            stringsTotalCapsule;
+    int[] intsImageWhiteTablet,intsImageSelected;
+    String[] stringsTotalTablet,stringsSelected, stringsTotalCapsule,stringsStep2;
     String stringProcessCompleted;
     LinearLayout linearLayoutCenter;
 
@@ -55,7 +54,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up_change_appearance);
 
-        stringProcessCompleted = "N";
+
 
         bindWidget();
 
@@ -196,35 +195,85 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
                 stringsTotalTablet = stringsTotalTablet1;
                 stringsTotalCapsule = stringsTotalCapsule1;
-
-                //String sFilterTabletCapsule =
-
-
-                String sSubstring = stringsWhiteTablet[position].substring(3, 5);
-                //Toast.makeText(getBaseContext(), sSubstring, Toast.LENGTH_SHORT).show();
-                ArrayList<String> stringTablet3ArrayList = new ArrayList<String>();
+                ArrayList<String> stringStep3ArrayList = new ArrayList<String>();
                 int iIndex = 0;
-                for (int y = 0; y < stringsTotalTablet.length; y++) {
-                    if (stringsTotalTablet[y].substring(3, 5).equals(sSubstring)) {
-                        stringTablet3ArrayList.add(iIndex, stringsTotalTablet[y]);
-                        iIndex = iIndex + 1;
+
+                int iFilterTabletCapsule = stringsStep2[position].length();
+
+                if (iFilterTabletCapsule == 7) {
+                    String sSubstring = stringsStep2[position].substring(3, 5);
+                    //Toast.makeText(getBaseContext(), sSubstring, Toast.LENGTH_SHORT).show();
+
+                    for (int y = 0; y < stringsTotalTablet.length; y++) {
+                        if (stringsTotalTablet[y].substring(3, 5).equals(sSubstring)) {
+                            stringStep3ArrayList.add(iIndex, stringsTotalTablet[y]);
+                            iIndex = iIndex + 1;
+
+                        }
+                    }
+
+                    stringsSelected = new String[stringStep3ArrayList.size()];
+                    stringsSelected = stringStep3ArrayList.toArray(stringsSelected);
+                    //MyData myData = new MyData();
+                    intsImageSelected = myData.translate_Appearance(stringsSelected);
+
+                    MyAdaptorChangeAppearance myAdaptorChangeAppearance = new MyAdaptorChangeAppearance(getBaseContext(), intsImageSelected);
+                    listViewTablet3.setAdapter(myAdaptorChangeAppearance);
+
+                    setVisibleStep2Success();
+
+                } else if(iFilterTabletCapsule ==5){
+
+
+                    //Toast.makeText(getBaseContext(), "เข้า Capsule", Toast.LENGTH_SHORT).show();
+                    String sSubstring = stringsStep2[position].substring(3);
+                    if (sSubstring.equals("00")) {
+                        intsImageSelected = myData.translate_Appearance(stringsTotalCapsule);
+                        stringsSelected = stringsTotalCapsule;
+                        MyAdaptorChangeAppearance myAdaptorChangeAppearance = new MyAdaptorChangeAppearance(getBaseContext(), intsImageSelected);
+                        listViewTablet3.setAdapter(myAdaptorChangeAppearance);
+
+                        setVisibleStep2Success();
+                    } else {
+
+                        //สร้าง Arraylist ที่สามารถ Duplicate ได้ก่อน
+                        for(int i = 0; i < stringsTotalCapsule.length;i++) {
+                            String sSubStringCapsuleL = stringsTotalCapsule[i].substring(4, 6);
+                            String sSubStringCapsuleR = stringsTotalCapsule[i].substring(6);
+                            if (sSubstring.equals(sSubStringCapsuleL) || sSubstring.equals(sSubStringCapsuleR)) {
+                                stringStep3ArrayList.add(iIndex, stringsTotalCapsule[i]);
+                                iIndex = iIndex + 1;
+
+                            }
+
+                        }
+                        stringsSelected = new String[stringStep3ArrayList.size()];
+                        stringsSelected = stringStep3ArrayList.toArray(stringsSelected);
+
+
+                        //Toast.makeText(getBaseContext(),stringStep3ArrayList.size(),Toast.LENGTH_SHORT).show();
+                        if (stringsSelected.length == 0) {
+                            Toast.makeText(getBaseContext(),"ไม่มีรูปเสมือนเม็ดยา",Toast.LENGTH_SHORT).show();
+
+                            setVisibleStep1();
+                        } else {
+
+                            //MyData myData = new MyData();
+                            intsImageSelected = myData.translate_Appearance(stringsSelected);
+                            MyAdaptorChangeAppearance myAdaptorChangeAppearance = new MyAdaptorChangeAppearance(getBaseContext(), intsImageSelected);
+                            listViewTablet3.setAdapter(myAdaptorChangeAppearance);
+
+                            setVisibleStep2Success();
+
+                        }
 
                     }
-                }
 
-                stringsSelectedTablet = new String[stringTablet3ArrayList.size()];
-                stringsSelectedTablet = stringTablet3ArrayList.toArray(stringsSelectedTablet);
-                MyData myData = new MyData();
-                intsImageSelectedTablet = myData.translate_Appearance(stringsSelectedTablet);
+                } //จบ If
 
-                MyAdaptorChangeAppearance myAdaptorChangeAppearance = new MyAdaptorChangeAppearance(getBaseContext(), intsImageSelectedTablet);
-                listViewTablet3.setAdapter(myAdaptorChangeAppearance);
-                listViewTablet3.setVisibility(View.VISIBLE);
-                textViewStep3Tablet.setVisibility(View.VISIBLE);
-                textViewStep4.setVisibility(View.INVISIBLE);
-                imageViewFinal.setVisibility(View.INVISIBLE);
 
-            }
+
+            } //onItemClick
         });
 
 
@@ -238,12 +287,12 @@ public class PopUpChangeAppearance extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                int[] intsFinalImage = myData.translate_Appearance(stringsSelectedTablet);
+                int[] intsFinalImage = myData.translate_Appearance(stringsSelected);
 
                 imageViewFinal.setImageResource(intsFinalImage[position]);
                 textViewStep4.setVisibility(View.VISIBLE);
                 imageViewFinal.setVisibility(View.VISIBLE);
-                stringProcessCompleted = stringsSelectedTablet[position];
+                stringProcessCompleted = stringsSelected[position];
             }
         });
 
@@ -258,9 +307,9 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
                 String[] stringsWhiteTablet1 = {"img0101", "img0201", "img0301", "img0501", "img0601",
                         "img0701", "img0801", "img0901"};
-                stringsWhiteTablet = stringsWhiteTablet1;
+                stringsStep2 = stringsWhiteTablet1;
                 MyData myData = new MyData();
-                intsImageWhiteTablet = myData.translate_Appearance(stringsWhiteTablet);
+                intsImageWhiteTablet = myData.translate_Appearance(stringsStep2);
 
                 MyAdaptorChangeAppearance myAdaptorChangeAppearance = new MyAdaptorChangeAppearance(getBaseContext(), intsImageWhiteTablet);
                 listViewTablet2.setAdapter(myAdaptorChangeAppearance);
@@ -271,14 +320,9 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                 imageView1.setImageResource(R.drawable.icon_tablet2);
                 imageView2.setImageResource(R.drawable.icon_capsule1);
 
-                listViewTablet2.setVisibility(View.VISIBLE);
-                textViewStep2Tablet.setVisibility(View.VISIBLE);
-                textViewStep3Tablet.setVisibility(View.INVISIBLE);
-                listViewTablet3.setVisibility(View.INVISIBLE);
-                textViewStep4.setVisibility(View.INVISIBLE);
-                imageViewFinal.setVisibility(View.INVISIBLE);
-                linearLayoutCenter.setVisibility(View.VISIBLE);
-                stringProcessCompleted = "N";
+                setVisibleStep1();
+
+
             }
         });
 
@@ -290,7 +334,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                 String[] stringsBGColor1 = {"bgc00","bgc01", "bgc02", "bgc04", "bgc03", "bgc08", "bgc06", "bgc14"
                         , "bgc05", "bgc11", "bgc12", "bgc07", "bgc09", "bgc10", "bgc13"};
 
-                stringsBGColor = stringsBGColor1;
+                stringsStep2 = stringsBGColor1;
                 MyData myData = new MyData();
                 int[] intsImageBGColor = {R.drawable.bgc00,R.drawable.bgc01,R.drawable.bgc02,R.drawable.bgc04,
                         R.drawable.bgc03,R.drawable.bgc08,R.drawable.bgc06,R.drawable.bgc14,
@@ -305,14 +349,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                 imageView1.setImageResource(R.drawable.icon_tablet1);
                 imageView2.setImageResource(R.drawable.icon_capsule2);
 
-                listViewTablet2.setVisibility(View.VISIBLE);
-                textViewStep2Tablet.setVisibility(View.VISIBLE);
-                textViewStep3Tablet.setVisibility(View.INVISIBLE);
-                listViewTablet3.setVisibility(View.INVISIBLE);
-                textViewStep4.setVisibility(View.INVISIBLE);
-                imageViewFinal.setVisibility(View.INVISIBLE);
-                linearLayoutCenter.setVisibility(View.VISIBLE);
-                stringProcessCompleted = "N";
+                setVisibleStep1();
 
 
             }
@@ -334,7 +371,6 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         textViewStep3Tablet.setText("ขั้นตอนที่ 3 :\nเลือกเม็ดยาที่ต้องการ");
         textViewStep4.setText("ขั้นตอนที่ 4\nเสร็จสิ้นการเลือกรูปเสมือนเม็ดยา\nกด 'เปลี่ยนรูป' เพื่อจบการทำงาน");
 
-
         listViewTablet2.setVisibility(View.INVISIBLE);
         textViewStep2Tablet.setVisibility(View.INVISIBLE);
         textViewStep3Tablet.setVisibility(View.INVISIBLE);
@@ -342,7 +378,33 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         textViewStep4.setVisibility(View.INVISIBLE);
         imageViewFinal.setVisibility(View.INVISIBLE);
         linearLayoutCenter.setVisibility(View.INVISIBLE);
+        stringProcessCompleted = "N";
 
+    }
+
+    private void setVisibleStep1() {
+        listViewTablet2.setVisibility(View.VISIBLE);
+        textViewStep2Tablet.setVisibility(View.VISIBLE);
+        textViewStep3Tablet.setVisibility(View.INVISIBLE);
+        listViewTablet3.setVisibility(View.INVISIBLE);
+        textViewStep4.setVisibility(View.INVISIBLE);
+        imageViewFinal.setVisibility(View.INVISIBLE);
+        linearLayoutCenter.setVisibility(View.VISIBLE);
+        stringProcessCompleted = "N";
+
+    }
+
+    private void setVisibleStep2Success() {
+        listViewTablet3.setVisibility(View.VISIBLE);
+        textViewStep3Tablet.setVisibility(View.VISIBLE);
+        textViewStep4.setVisibility(View.INVISIBLE);
+        imageViewFinal.setVisibility(View.INVISIBLE);
+        stringProcessCompleted = "N";
+
+
+    }
+
+    private void setVisibleStep2NotSuccess() {
 
     }
 

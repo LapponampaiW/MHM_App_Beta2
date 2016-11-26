@@ -56,7 +56,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     private void createNotification(Context context, String s, String s1, String alert,String sIntent) {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
-                .setSmallIcon(R.drawable.logo_carabao48)
+                .setSmallIcon(R.drawable.logo_mhm48)
                 .setContentTitle(s)
                 .setTicker(alert)
                 .setContentText(s1);

@@ -141,7 +141,7 @@ public class AppointmentActivity extends AppCompatActivity implements
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setCancelable(false);
-                builder.setIcon(R.drawable.logo_carabao48);
+                builder.setIcon(R.drawable.logo_mhm);
                 builder.setTitle("ลบข้อมูลวันนัด");
                 builder.setMessage("ยืนยันการลบข้อมูลวันนัด");
                 builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {

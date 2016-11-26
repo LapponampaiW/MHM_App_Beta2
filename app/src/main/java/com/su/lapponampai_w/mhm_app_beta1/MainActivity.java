@@ -371,7 +371,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
-        builder.setIcon(R.drawable.logo_carabao48);
+        builder.setIcon(R.drawable.logo_mhm);
         builder.setTitle("Update All data to Server");
         builder.setMessage("คุณต้องการ Synchronize ขึ้น Server ของเราหรือไม่");
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

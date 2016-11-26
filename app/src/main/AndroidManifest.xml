@@ -6,7 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/mhm_app_icon"
+        android:icon="@drawable/logo_mhm"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -108,8 +108,10 @@
         <activity
             android:name=".PatientAdherenceActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".PopUpAddAmountOCs" />
-        <activity android:name=".PopUpChangeAppearance"></activity>
+        <activity android:name=".PopUpAddAmountOCs"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".PopUpChangeAppearance"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

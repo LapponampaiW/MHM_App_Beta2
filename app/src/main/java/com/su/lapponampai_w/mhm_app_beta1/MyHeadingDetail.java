@@ -216,7 +216,7 @@ public class MyHeadingDetail extends ContextWrapper {
                 if (strTextSpinner[position].equals("ออกจากระบบ")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                     builder.setCancelable(false);
-                    builder.setIcon(R.drawable.logo_carabao48);
+                    builder.setIcon(R.drawable.logo_mhm);
                     builder.setTitle("Log Out");
                     builder.setMessage("ยืนยันการ Log Out");
                     builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {

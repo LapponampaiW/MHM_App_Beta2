@@ -63,7 +63,7 @@ public class LabActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setCancelable(false);
-                builder.setIcon(R.drawable.logo_carabao48);
+                builder.setIcon(R.drawable.logo_mhm);
                 builder.setTitle("ลบข้อมูลค่าแล็ป");
                 builder.setMessage("ยืนยันการลบข้อมูลค่าแล็ป");
                 builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -152,7 +152,7 @@ public class LabActivity extends AppCompatActivity {
                         sDuplicate = "Y";
                         AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                         builder.setCancelable(false);
-                        builder.setIcon(R.drawable.logo_carabao48);
+                        builder.setIcon(R.drawable.logo_mhm);
                         builder.setTitle("คำเตือน!!!");
                         builder.setMessage("วันที่ " + sCalendar + " เคยมีการบันทึกไว้อยู่แล้วท่านต้องการบันทึกข้อมูลทับหรือไม่");
                         builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {

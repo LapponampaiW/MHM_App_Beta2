@@ -63,7 +63,7 @@ public class NoteActivity extends AppCompatActivity {
 
                 final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                 builder.setCancelable(false);
-                builder.setIcon(R.drawable.logo_carabao48);
+                builder.setIcon(R.drawable.logo_mhm);
                 builder.setTitle("ลบข้อมูลบันทึก");
                 builder.setMessage("ยืนยันการลบข้อมูลบันทึก");
                 builder.setPositiveButton("ยกเลิก", new DialogInterface.OnClickListener() {

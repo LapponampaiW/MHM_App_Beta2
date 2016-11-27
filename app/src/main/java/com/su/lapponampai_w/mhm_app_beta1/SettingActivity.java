@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -246,6 +247,7 @@ public class SettingActivity extends AppCompatActivity {
                 if (checkBoxDefault.isChecked()) {
                     checkBoxCustom.setChecked(false);
                     editText.setText("");
+                    editText.setVisibility(View.INVISIBLE);
                     Toast.makeText(getBaseContext(),"กรุณากดปุ่มบันทึกถ้าต้องการบันทึกความเปลี่ยนแปลง",Toast.LENGTH_SHORT).show();
                 } else {
                     checkBoxDefault.setChecked(true);
@@ -260,6 +262,7 @@ public class SettingActivity extends AppCompatActivity {
                 if (checkBoxCustom.isChecked()) {
                     checkBoxDefault.setChecked(false);
                     Toast.makeText(getBaseContext(),"กรุณากดปุ่มบันทึกถ้าต้องการบันทึกความเปลี่ยนแปลง",Toast.LENGTH_SHORT).show();
+                    editText.setVisibility(View.VISIBLE);
                 } else {
                     checkBoxCustom.setChecked(true);
                 }
@@ -316,14 +319,21 @@ public class SettingActivity extends AppCompatActivity {
             checkBoxDefault.setChecked(true);
             checkBoxCustom.setChecked(false);
             editText.setText("");
+            editText.setVisibility(View.INVISIBLE);
         } else {
             checkBoxDefault.setChecked(false);
             checkBoxCustom.setChecked(true);
+            editText.setVisibility(View.INVISIBLE);
+            editText.setVisibility(View.VISIBLE);
             editText.setText(strNotif[0]);
         }
 
 
         setViewTextViewSecurity(strStay[0]);
+
+
+
+
 
 
     }
@@ -349,6 +359,8 @@ public class SettingActivity extends AppCompatActivity {
             checkBoxSecurity2.setChecked(true);
             textViewSecurity.setText("คำอธิบาย :\nมีการทวนถาม 'รหัสผ่าน' ในทุกกระบวนการภายในแอพพลิเคชั่น");
         }
+
+
 
 
     }
@@ -657,5 +669,18 @@ public class SettingActivity extends AppCompatActivity {
             cursor.close();
         }
 
+    }
+
+    public void hideSoftKeyboard() {
+        if(getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
+    public void showSoftKeyboard(View view) {
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        view.requestFocus();
+        inputMethodManager.showSoftInput(view, 0);
     }
 }

@@ -234,6 +234,6 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        getWindow().setLayout((int) (width*.8),(int) (height*.4));
+        getWindow().setLayout((int) (width*.8),(int) (height*.33));
     }
 }

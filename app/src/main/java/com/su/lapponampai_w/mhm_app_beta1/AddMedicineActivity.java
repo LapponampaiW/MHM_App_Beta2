@@ -108,6 +108,14 @@ public class AddMedicineActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 stringeditTextAddTG = editTextAddTG.getText().toString().trim();
+
+                if (stringeditTextAddTG.length() < 2) {
+                    Toast.makeText(getBaseContext(),"กรุณาใส่ชื่อยาที่ต้องการค้นหา(อย่างน้อย 2 ตัวอักษร)",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+
                 //รับค่า
                 stringsId = myManage.filterAddMed(0, stringeditTextAddTG); // id
                 stringsTradename = myManage.filterAddMed(1, stringeditTextAddTG); //Tradename

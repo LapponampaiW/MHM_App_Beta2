@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -104,6 +106,9 @@ public class AddMedicineActivity extends AppCompatActivity {
     } //setHeading
 
     private void pressbuttonfilterListView() {
+
+
+
         buttonFilterListView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,7 +119,6 @@ public class AddMedicineActivity extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
-
 
                 //รับค่า
                 stringsId = myManage.filterAddMed(0, stringeditTextAddTG); // id
@@ -286,15 +290,18 @@ public class AddMedicineActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
 
-
-
                     }
                 });
 
 
             }
         });
+
+
     }
+
+
+
 
     private void pressbuttonfilterListView1() {
 

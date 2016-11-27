@@ -1797,35 +1797,35 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                         addSumTABLE_Today = "Y";
                     } else if (queryDay[1].equals("1")) {
                         //วันเว้นวัน
-                        calendarRef.add(Calendar.DAY_OF_MONTH,2);
+                        calendarRef.add(Calendar.DAY_OF_MONTH, 2);
                         Date date = calendarRef.getTime();
                         if (date.compareTo(dateAfterProcess) == 0) {
                             addSumTABLE_Today = "Y";
                         }
                     } else if (queryDay[1].equals("2")) {
                         //วันเว้นวัน
-                        calendarRef.add(Calendar.DAY_OF_MONTH,3);
+                        calendarRef.add(Calendar.DAY_OF_MONTH, 3);
                         Date date = calendarRef.getTime();
                         if (date.compareTo(dateAfterProcess) == 0) {
                             addSumTABLE_Today = "Y";
                         }
                     } else if (queryDay[1].equals("3")) {
                         //วันเว้นวัน
-                        calendarRef.add(Calendar.DAY_OF_MONTH,4);
+                        calendarRef.add(Calendar.DAY_OF_MONTH, 4);
                         Date date = calendarRef.getTime();
                         if (date.compareTo(dateAfterProcess) == 0) {
                             addSumTABLE_Today = "Y";
                         }
                     } else if (queryDay[1].equals("4")) {
                         //วันเว้นวัน
-                        calendarRef.add(Calendar.DAY_OF_MONTH,5);
+                        calendarRef.add(Calendar.DAY_OF_MONTH, 5);
                         Date date = calendarRef.getTime();
                         if (date.compareTo(dateAfterProcess) == 0) {
                             addSumTABLE_Today = "Y";
                         }
                     } else if (queryDay[1].equals("5")) {
                         //วันเว้นวัน
-                        calendarRef.add(Calendar.DAY_OF_MONTH,6);
+                        calendarRef.add(Calendar.DAY_OF_MONTH, 6);
                         Date date = calendarRef.getTime();
                         if (date.compareTo(dateAfterProcess) == 0) {
                             addSumTABLE_Today = "Y";
@@ -1876,9 +1876,9 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                         } while (dVariable.compareTo(dateAfterProcess) < 0);
 
 
-
                     }
 
+                }
             }
 
             //addValueToSumTable
@@ -1923,7 +1923,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                     myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT8[0], "", "", "");
                 }
 
-            }
+
 
         }  //for
 

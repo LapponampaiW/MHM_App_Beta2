@@ -744,6 +744,9 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                             } // stringsReadAll_MainTABLE[10][i].equals("")
 
+
+
+
                             //Check ค่าทั้งหมดแล้วว่าผ่าน ให้ทำการ add ค่าเข้ามาได้
 
                             if (checkWhich_Date_D.equals("Y") && checkStartDay.equals("Y") && checkFinishDay.equals("Y")) {

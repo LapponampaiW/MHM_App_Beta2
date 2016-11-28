@@ -151,12 +151,51 @@
                     android:id="@+id/textView209"
                     android:gravity="center_horizontal" />
 
-                <ListView
-                    android:layout_width="90dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/z2_margin_bigspace"
-                    android:id="@+id/listViewTablet2" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingTop="@dimen/z1_linearlayout_margin_top"
+                        android:paddingBottom="@dimen/z1_linearlayout_margin_top">
+
+                        <ImageView
+                            app:srcCompat="@drawable/scroll_up_down"
+                            android:id="@+id/imageView22"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:srcCompat="@drawable/scroll_up_down"
+                            android:id="@+id/imageView23"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:srcCompat="@drawable/scroll_up_down"
+                            android:id="@+id/imageView24"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/listViewTablet2"
+                        android:layout_gravity="right"
+                        android:layout_weight="1" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -188,12 +227,53 @@
                     android:id="@+id/textView211"
                     android:gravity="center_horizontal" />
 
-                <ListView
-                    android:layout_width="90dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/z2_margin_bigspace"
-                    android:id="@+id/listViewTablet3" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:paddingTop="@dimen/z1_linearlayout_margin_top"
+                        android:paddingBottom="@dimen/z1_linearlayout_margin_top">
+                        <ImageView
+                            app:srcCompat="@drawable/scroll_up_down"
+                            android:id="@+id/imageView25"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:srcCompat="@drawable/scroll_up_down"
+                            android:id="@+id/imageView26"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            app:srcCompat="@drawable/scroll_up_down"
+                            android:id="@+id/imageView27"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_weight="1" />
+
+
+
+                    </LinearLayout>
+
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:id="@+id/listViewTablet3"
+                        android:layout_weight="1" />
+                </LinearLayout>
 
             </LinearLayout>
         </LinearLayout>

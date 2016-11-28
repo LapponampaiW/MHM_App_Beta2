@@ -65,19 +65,227 @@ public class AddMedicineActivity extends AppCompatActivity {
         myManage = new MyManage(this);
 
 
-
         setHeading();
 
         bindWidget();
+
+        buttonFilterListView.setVisibility(View.INVISIBLE);
 
 
         //pressbuttonfilterListView1();
         pressbuttonfilterListView();
 
 
+        textChange();
+
+
     }
 
+    private void textChange() {
 
+        editTextAddTG.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                stringeditTextAddTG = s.toString();
+                if (stringeditTextAddTG.length() < 2) {
+                    listViewAddTG.setVisibility(View.INVISIBLE);
+                    return;
+                } else {
+                    listViewAddTG.setVisibility(View.VISIBLE);
+
+                    //รับค่า
+                    stringsId = myManage.filterAddMed(0, stringeditTextAddTG); // id
+
+
+                    stringsTradename = myManage.filterAddMed(1, stringeditTextAddTG); //Tradename
+                    stringsGeneric1 = myManage.filterAddMed(3, stringeditTextAddTG); //Genericname
+                    stringsDosage1 = myManage.filterAddMed(4, stringeditTextAddTG); //Dosage
+                    stringsUOM1 = myManage.filterAddMed(5, stringeditTextAddTG); //UOM
+                    stringsGeneric2 = myManage.filterAddMed(6, stringeditTextAddTG);
+                    stringsDosage2 = myManage.filterAddMed(7, stringeditTextAddTG);
+                    stringsUOM2 = myManage.filterAddMed(8, stringeditTextAddTG);
+                    stringsGeneric3 = myManage.filterAddMed(9, stringeditTextAddTG);
+                    stringsDosage3 = myManage.filterAddMed(10, stringeditTextAddTG);
+                    stringsUOM3 = myManage.filterAddMed(11, stringeditTextAddTG);
+                    stringsGeneric4 = myManage.filterAddMed(12, stringeditTextAddTG);
+                    stringsDosage4 = myManage.filterAddMed(13, stringeditTextAddTG);
+                    stringsUOM4 = myManage.filterAddMed(14, stringeditTextAddTG);
+                    stringsappearance = myManage.filterAddMed(16, stringeditTextAddTG);
+
+
+
+
+
+                    //แปลค่า
+                    MyData myData = new MyData();
+
+                    stringsGeneric1 = myManage.translate_GenericName(stringsGeneric1);
+                    stringsGeneric2 = myManage.translate_GenericName(stringsGeneric2);
+                    stringsGeneric3 = myManage.translate_GenericName(stringsGeneric3);
+                    stringsGeneric4 = myManage.translate_GenericName(stringsGeneric4);
+
+
+                    stringsUOM1 = myData.translate_uomArray(stringsUOM1);
+                    stringsUOM2t = new String[stringsUOM2.length];
+                    stringsUOM3t = new String[stringsUOM3.length];
+                    stringsUOM4t = new String[stringsUOM4.length];
+
+                    for (int x = 0; x < stringsUOM2.length; x++) {
+                        if (stringsUOM2[x] == null) {
+                            stringsUOM2t[x] = "N/A";
+                        } else {
+                            stringsUOM2t[x] = myData.translate_uom(stringsUOM2[x]);
+                        }
+
+                    }
+                    for (int x = 0; x < stringsUOM3.length; x++) {
+                        if (stringsUOM3[x] == null) {
+                            stringsUOM3t[x] = "N/A";
+                        } else {
+                            stringsUOM3t[x] = myData.translate_uom(stringsUOM3[x]);
+                        }
+
+                    }
+                    for (int x = 0; x < stringsUOM4.length; x++) {
+                        if (stringsUOM4[x] == null) {
+                            stringsUOM4t[x] = "N/A";
+                        } else {
+                            stringsUOM4t[x] = myData.translate_uom(stringsUOM4[x]);
+                        }
+
+                    }
+
+
+                    final String[] stringsGenericLine1 = new String[stringsGeneric1.length];
+                    for (int i = 0; i < stringsGeneric1.length; i++) {
+                        if (stringsGeneric2[i].equals("N/A")) {
+                            stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] + " " + stringsUOM1[i];
+                        } else if (stringsGeneric3[i].equals("N/A")) {
+                            stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
+                                    " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
+                                    stringsDosage2[i] + " " + stringsUOM2t[i];
+                        } else if (stringsGeneric4[i].equals("N/A")) {
+
+                            stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
+                                    " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
+                                    stringsDosage2[i] + " " + stringsUOM2t[i] + " / " +
+                                    stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
+                                    stringsUOM3t[i];
+                        } else {
+                            stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
+                                    " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
+                                    stringsDosage2[i] + " " + stringsUOM2t[i] + " / " +
+                                    stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
+                                    stringsUOM3t[i] + " / " + stringsGeneric4[i] + " " +
+                                    stringsDosage4[i] + " " + stringsUOM4t[i];
+                        }
+
+                    } //for
+
+                    int[] intsIndex = myData.translate_Appearance(stringsappearance);
+
+                    MyAdaptor myAdaptor = new MyAdaptor(AddMedicineActivity.this, stringsTradename, stringsGenericLine1, intsIndex);
+                    listViewAddTG.setAdapter(myAdaptor);
+
+                    //ถ้า Search(filter) แล้วไม่เจออะไร
+                    //if (stringsGenericLine1.length == 0) {
+                    //    listViewAddTG.setVisibility(View.INVISIBLE);
+                    //}
+
+                    //ทำการ Click listViewAddTG
+                    listViewAddTG.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            String stringSearchId = stringsId[position];
+                            stringGenericLine = stringsGenericLine1[position];
+                            strings_receiver = myManage.searchById(stringSearchId); // search ที่จำเป็นต้องใช้มา
+
+                            //นับว่า Default ให้ทานยาวันละกี่ครั้ง
+                            ArrayList<String> arrayListstrings = new ArrayList<String>();
+                            for (int i = 18; i <= 25; i++) {
+                                if (!strings_receiver[i].equals("")) {
+                                    arrayListstrings.add(strings_receiver[i]);
+                                }
+                            }
+                            String sCountTimesPerDay = Integer.toString(arrayListstrings.size());
+
+                            //24/11/2559
+
+                            String[] queryDay = strings_receiver[15].split(":");
+                            if (queryDay[0].equals("ED") && queryDay[1].equals("OCs")) {
+                                Intent intent = new Intent(AddMedicineActivity.this, PopUpAddAmountOCs.class);
+
+                                intent.putExtra("ActivePill", queryDay[2]);
+                                intent.putExtra("Placebo", queryDay[3]);
+
+                                intent.putExtra("Med_id", strings_receiver[0]);
+                                intent.putExtra("Trade_name", strings_receiver[1]);
+                                intent.putExtra("Generic_line", stringGenericLine);
+                                intent.putExtra("Amount_tablet", strings_receiver[26]);
+                                intent.putExtra("EA", strings_receiver[27]);
+                                intent.putExtra("Which_Date_D", strings_receiver[15]);
+                                intent.putExtra("Appearance", strings_receiver[16]);
+                                intent.putExtra("Pharmaco", strings_receiver[17]);
+                                intent.putExtra("T1", strings_receiver[18]);
+                                intent.putExtra("T2", strings_receiver[19]);
+                                intent.putExtra("T3", strings_receiver[20]);
+                                intent.putExtra("T4", strings_receiver[21]);
+                                intent.putExtra("T5", strings_receiver[22]);
+                                intent.putExtra("T6", strings_receiver[23]);
+                                intent.putExtra("T7", strings_receiver[24]);
+                                intent.putExtra("T8", strings_receiver[25]);
+                                intent.putExtra("TimesPerDay", sCountTimesPerDay);
+
+
+                                startActivity(intent);
+                            } else {
+
+
+                                //เปิดหน้าใหม่ พร้อมจำค่าใน putExtra
+                                Intent intent = new Intent(AddMedicineActivity.this, AddMedicine2Activity.class);
+
+                                intent.putExtra("Med_id", strings_receiver[0]);
+                                intent.putExtra("Trade_name", strings_receiver[1]);
+                                intent.putExtra("Generic_line", stringGenericLine);
+                                intent.putExtra("Amount_tablet", strings_receiver[26]);
+                                intent.putExtra("EA", strings_receiver[27]);
+                                intent.putExtra("Which_Date_D", strings_receiver[15]);
+                                intent.putExtra("Appearance", strings_receiver[16]);
+                                intent.putExtra("Pharmaco", strings_receiver[17]);
+                                intent.putExtra("T1", strings_receiver[18]);
+                                intent.putExtra("T2", strings_receiver[19]);
+                                intent.putExtra("T3", strings_receiver[20]);
+                                intent.putExtra("T4", strings_receiver[21]);
+                                intent.putExtra("T5", strings_receiver[22]);
+                                intent.putExtra("T6", strings_receiver[23]);
+                                intent.putExtra("T7", strings_receiver[24]);
+                                intent.putExtra("T8", strings_receiver[25]);
+                                intent.putExtra("TimesPerDay", sCountTimesPerDay);
+
+                                startActivity(intent);
+                            }
+
+                        }
+                    });
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+    }
 
 
     @Override
@@ -100,13 +308,12 @@ public class AddMedicineActivity extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.spinner2);
 
         MyHeadingDetail myHeadingDetail = new MyHeadingDetail(AddMedicineActivity.this);
-        myHeadingDetail.spinnersetup(AddMedicineActivity.this,imageAdherence,spinner);
+        myHeadingDetail.spinnersetup(AddMedicineActivity.this, imageAdherence, spinner);
 
 
     } //setHeading
 
     private void pressbuttonfilterListView() {
-
 
 
         buttonFilterListView.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +322,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                 stringeditTextAddTG = editTextAddTG.getText().toString().trim();
 
                 if (stringeditTextAddTG.length() < 2) {
-                    Toast.makeText(getBaseContext(),"กรุณาใส่ชื่อยาที่ต้องการค้นหา(อย่างน้อย 2 ตัวอักษร)",
+                    Toast.makeText(getBaseContext(), "กรุณาใส่ชื่อยาที่ต้องการค้นหา(อย่างน้อย 2 ตัวอักษร)",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -151,7 +358,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                 stringsUOM3t = new String[stringsUOM3.length];
                 stringsUOM4t = new String[stringsUOM4.length];
 
-                for(int x = 0; x <stringsUOM2.length;x++) {
+                for (int x = 0; x < stringsUOM2.length; x++) {
                     if (stringsUOM2[x] == null) {
                         stringsUOM2t[x] = "N/A";
                     } else {
@@ -159,7 +366,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                     }
 
                 }
-                for(int x = 0; x <stringsUOM3.length;x++) {
+                for (int x = 0; x < stringsUOM3.length; x++) {
                     if (stringsUOM3[x] == null) {
                         stringsUOM3t[x] = "N/A";
                     } else {
@@ -167,7 +374,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                     }
 
                 }
-                for(int x = 0; x <stringsUOM4.length;x++) {
+                for (int x = 0; x < stringsUOM4.length; x++) {
                     if (stringsUOM4[x] == null) {
                         stringsUOM4t[x] = "N/A";
                     } else {
@@ -177,9 +384,8 @@ public class AddMedicineActivity extends AppCompatActivity {
                 }
 
 
-
                 final String[] stringsGenericLine1 = new String[stringsGeneric1.length];
-                for(int i = 0;i < stringsGeneric1.length;i++) {
+                for (int i = 0; i < stringsGeneric1.length; i++) {
                     if (stringsGeneric2[i].equals("N/A")) {
                         stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] + " " + stringsUOM1[i];
                     } else if (stringsGeneric3[i].equals("N/A")) {
@@ -212,7 +418,7 @@ public class AddMedicineActivity extends AppCompatActivity {
 
                 //ถ้า Search(filter) แล้วไม่เจออะไร
                 if (stringsGenericLine1.length == 0) {
-                    Toast.makeText(getBaseContext(),"ไม่มีข้อมูลกรุณาตรวจสอบชื่อยาอีกครั้งหรือเลือกการใส่ข้อมูลยาด้วยตนเอง",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "ไม่มีข้อมูลกรุณาตรวจสอบชื่อยาอีกครั้งหรือเลือกการใส่ข้อมูลยาด้วยตนเอง", Toast.LENGTH_LONG).show();
                 }
 
 
@@ -227,7 +433,7 @@ public class AddMedicineActivity extends AppCompatActivity {
 
                         //นับว่า Default ให้ทานยาวันละกี่ครั้ง
                         ArrayList<String> arrayListstrings = new ArrayList<String>();
-                        for(int i = 18;i<=25;i++) {
+                        for (int i = 18; i <= 25; i++) {
                             if (!strings_receiver[i].equals("")) {
                                 arrayListstrings.add(strings_receiver[i]);
                             }
@@ -243,7 +449,7 @@ public class AddMedicineActivity extends AppCompatActivity {
                             intent.putExtra("ActivePill", queryDay[2]);
                             intent.putExtra("Placebo", queryDay[3]);
 
-                            intent.putExtra("Med_id",strings_receiver[0]);
+                            intent.putExtra("Med_id", strings_receiver[0]);
                             intent.putExtra("Trade_name", strings_receiver[1]);
                             intent.putExtra("Generic_line", stringGenericLine);
                             intent.putExtra("Amount_tablet", strings_receiver[26]);
@@ -251,14 +457,14 @@ public class AddMedicineActivity extends AppCompatActivity {
                             intent.putExtra("Which_Date_D", strings_receiver[15]);
                             intent.putExtra("Appearance", strings_receiver[16]);
                             intent.putExtra("Pharmaco", strings_receiver[17]);
-                            intent.putExtra("T1",strings_receiver[18]);
-                            intent.putExtra("T2",strings_receiver[19]);
-                            intent.putExtra("T3",strings_receiver[20]);
-                            intent.putExtra("T4",strings_receiver[21]);
-                            intent.putExtra("T5",strings_receiver[22]);
-                            intent.putExtra("T6",strings_receiver[23]);
-                            intent.putExtra("T7",strings_receiver[24]);
-                            intent.putExtra("T8",strings_receiver[25]);
+                            intent.putExtra("T1", strings_receiver[18]);
+                            intent.putExtra("T2", strings_receiver[19]);
+                            intent.putExtra("T3", strings_receiver[20]);
+                            intent.putExtra("T4", strings_receiver[21]);
+                            intent.putExtra("T5", strings_receiver[22]);
+                            intent.putExtra("T6", strings_receiver[23]);
+                            intent.putExtra("T7", strings_receiver[24]);
+                            intent.putExtra("T8", strings_receiver[25]);
                             intent.putExtra("TimesPerDay", sCountTimesPerDay);
 
 
@@ -267,9 +473,9 @@ public class AddMedicineActivity extends AppCompatActivity {
 
 
                             //เปิดหน้าใหม่ พร้อมจำค่าใน putExtra
-                            Intent intent = new Intent(AddMedicineActivity.this,AddMedicine2Activity.class);
+                            Intent intent = new Intent(AddMedicineActivity.this, AddMedicine2Activity.class);
 
-                            intent.putExtra("Med_id",strings_receiver[0]);
+                            intent.putExtra("Med_id", strings_receiver[0]);
                             intent.putExtra("Trade_name", strings_receiver[1]);
                             intent.putExtra("Generic_line", stringGenericLine);
                             intent.putExtra("Amount_tablet", strings_receiver[26]);
@@ -277,14 +483,14 @@ public class AddMedicineActivity extends AppCompatActivity {
                             intent.putExtra("Which_Date_D", strings_receiver[15]);
                             intent.putExtra("Appearance", strings_receiver[16]);
                             intent.putExtra("Pharmaco", strings_receiver[17]);
-                            intent.putExtra("T1",strings_receiver[18]);
-                            intent.putExtra("T2",strings_receiver[19]);
-                            intent.putExtra("T3",strings_receiver[20]);
-                            intent.putExtra("T4",strings_receiver[21]);
-                            intent.putExtra("T5",strings_receiver[22]);
-                            intent.putExtra("T6",strings_receiver[23]);
-                            intent.putExtra("T7",strings_receiver[24]);
-                            intent.putExtra("T8",strings_receiver[25]);
+                            intent.putExtra("T1", strings_receiver[18]);
+                            intent.putExtra("T2", strings_receiver[19]);
+                            intent.putExtra("T3", strings_receiver[20]);
+                            intent.putExtra("T4", strings_receiver[21]);
+                            intent.putExtra("T5", strings_receiver[22]);
+                            intent.putExtra("T6", strings_receiver[23]);
+                            intent.putExtra("T7", strings_receiver[24]);
+                            intent.putExtra("T8", strings_receiver[25]);
                             intent.putExtra("TimesPerDay", sCountTimesPerDay);
 
                             startActivity(intent);
@@ -293,85 +499,6 @@ public class AddMedicineActivity extends AppCompatActivity {
                     }
                 });
 
-
-            }
-        });
-
-
-    }
-
-
-
-
-    private void pressbuttonfilterListView1() {
-
-        buttonFilterListView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                stringeditTextAddTG = editTextAddTG.getText().toString().trim();
-                //รับค่า
-                stringsTradename = myManage.filterAddMed(1, stringeditTextAddTG);
-                stringsGeneric1 = myManage.filterAddMed(3, stringeditTextAddTG);
-                stringsDosage1 = myManage.filterAddMed(4, stringeditTextAddTG);
-                stringsUOM1 = myManage.filterAddMed(5, stringeditTextAddTG);
-                stringsGeneric2 = myManage.filterAddMed(6, stringeditTextAddTG);
-                stringsDosage2 = myManage.filterAddMed(7, stringeditTextAddTG);
-                stringsUOM2 = myManage.filterAddMed(8, stringeditTextAddTG);
-                stringsGeneric3 = myManage.filterAddMed(9, stringeditTextAddTG);
-                stringsDosage3 = myManage.filterAddMed(10, stringeditTextAddTG);
-                stringsUOM3 = myManage.filterAddMed(11, stringeditTextAddTG);
-                stringsGeneric4 = myManage.filterAddMed(12, stringeditTextAddTG);
-                stringsDosage4 = myManage.filterAddMed(13, stringeditTextAddTG);
-                stringsUOM4 = myManage.filterAddMed(14, stringeditTextAddTG);
-                stringsappearance = myManage.filterAddMed(16, stringeditTextAddTG);
-
-
-                //แปลค่า
-                MyData myData = new MyData();
-
-
-                stringsGeneric1 = myManage.translate_GenericName(stringsGeneric1);
-                stringsGeneric2 = myManage.translate_GenericName(stringsGeneric2);
-                stringsGeneric3 = myManage.translate_GenericName(stringsGeneric3);
-                stringsGeneric4 = myManage.translate_GenericName(stringsGeneric4);
-
-                stringsUOM1 = myData.translate_uomArray(stringsUOM1);
-                stringsUOM2 = myData.translate_uomArray(stringsUOM2);
-                stringsUOM3 = myData.translate_uomArray(stringsUOM3);
-                stringsUOM4 = myData.translate_uomArray(stringsUOM4);
-
-                //ทำ String ยาวๆ ของ 2 บรรทัด
-                String[] stringsGenericLine1 = new String[stringsGeneric1.length];
-                for(int i = 0;i < stringsGeneric1.length;i++) {
-                    if (!stringsGeneric4.equals("")) {
-                        stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
-                                " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
-                                stringsDosage2[i] + " " + stringsUOM2[i] + " / " +
-                                stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
-                                stringsUOM3[i] + " / " + stringsGeneric4[i] + " " +
-                                stringsDosage4[i] + " " + stringsUOM4[i];
-                    } else if (!stringsGeneric3.equals("")){
-                        stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
-                                " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
-                                stringsDosage2[i] + " " + stringsUOM2[i] + " / " +
-                                stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
-                                stringsUOM3[i];
-                    } else if (!stringsGeneric2.equals("")) {
-                        stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
-                                " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
-                                stringsDosage2[i] + " " + stringsUOM2[i];
-                    } else {
-                        stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] + " " + stringsUOM1[i];
-                    }
-                }
-
-
-                int[] intsIndex = myData.translate_Appearance(stringsappearance);
-
-
-                MyAdaptor myAdaptor = new MyAdaptor(AddMedicineActivity.this, stringsTradename, stringsGenericLine1, intsIndex);
-                listViewAddTG.setAdapter(myAdaptor);
 
             }
         });

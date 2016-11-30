@@ -48,7 +48,7 @@ public class AddMedicineActivity extends AppCompatActivity {
     //widget
     EditText editTextAddTG;
     ListView listViewAddTG;
-    Button buttonFilterListView;
+    Button buttonCustom;
 
     //Heading
     Spinner spinner;
@@ -69,14 +69,16 @@ public class AddMedicineActivity extends AppCompatActivity {
 
         bindWidget();
 
-        buttonFilterListView.setVisibility(View.INVISIBLE);
+        //buttonFilterListView.setVisibility(View.INVISIBLE);
 
 
         //pressbuttonfilterListView1();
-        pressbuttonfilterListView();
+        //pressbuttonfilterListView();
 
 
         textChange();
+
+        pressbuttonCustom();
 
 
     }
@@ -101,8 +103,6 @@ public class AddMedicineActivity extends AppCompatActivity {
 
                     //รับค่า
                     stringsId = myManage.filterAddMed(0, stringeditTextAddTG); // id
-
-
                     stringsTradename = myManage.filterAddMed(1, stringeditTextAddTG); //Tradename
                     stringsGeneric1 = myManage.filterAddMed(3, stringeditTextAddTG); //Genericname
                     stringsDosage1 = myManage.filterAddMed(4, stringeditTextAddTG); //Dosage
@@ -117,9 +117,6 @@ public class AddMedicineActivity extends AppCompatActivity {
                     stringsDosage4 = myManage.filterAddMed(13, stringeditTextAddTG);
                     stringsUOM4 = myManage.filterAddMed(14, stringeditTextAddTG);
                     stringsappearance = myManage.filterAddMed(16, stringeditTextAddTG);
-
-
-
 
 
                     //แปลค่า
@@ -159,6 +156,10 @@ public class AddMedicineActivity extends AppCompatActivity {
                             stringsUOM4t[x] = myData.translate_uom(stringsUOM4[x]);
                         }
 
+                    }
+
+                    if (stringsGeneric1.length == 0) {
+                        Toast.makeText(getBaseContext(),";sdfk;",Toast.LENGTH_SHORT).show();
                     }
 
 
@@ -298,8 +299,25 @@ public class AddMedicineActivity extends AppCompatActivity {
 
 
         //pressbuttonfilterListView1();
-        pressbuttonfilterListView();
+        //pressbuttonfilterListView();
+        pressbuttonCustom();
 
+        textChange();
+
+    }
+
+    private void pressbuttonCustom() {
+
+        buttonCustom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getBaseContext(), AddCustomMedicine.class);
+                startActivity(intent);
+
+
+            }
+        });
     }
 
     private void setHeading() {
@@ -316,7 +334,7 @@ public class AddMedicineActivity extends AppCompatActivity {
     private void pressbuttonfilterListView() {
 
 
-        buttonFilterListView.setOnClickListener(new View.OnClickListener() {
+        buttonCustom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 stringeditTextAddTG = editTextAddTG.getText().toString().trim();
@@ -509,7 +527,7 @@ public class AddMedicineActivity extends AppCompatActivity {
     private void bindWidget() {
         editTextAddTG = (EditText) findViewById(R.id.editText_Add_TG);
         listViewAddTG = (ListView) findViewById(R.id.listView_Add_TG);
-        buttonFilterListView = (Button) findViewById(R.id.buttonFilterListView);
+        buttonCustom = (Button) findViewById(R.id.buttonCustom);
 
     }
 }

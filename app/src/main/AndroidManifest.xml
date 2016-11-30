@@ -108,10 +108,13 @@
         <activity
             android:name=".PatientAdherenceActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".PopUpAddAmountOCs"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".PopUpChangeAppearance"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".PopUpAddAmountOCs"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PopUpChangeAppearance"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AddCustomMedicine"></activity>
     </application>
 
 </manifest>

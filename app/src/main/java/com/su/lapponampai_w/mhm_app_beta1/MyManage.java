@@ -1728,10 +1728,10 @@ public class MyManage {
     public String[] filterAddMed(int intColumn, String strWord) {
         String[] strread = null;
 
+        Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, "Trade_name" + " LIKE '%"
+                + strWord + "%'" + " or " + "Key_search" + " LIKE '%" + strWord + "%'", null, null, null, null);
 
-        //Cursor cursor = readSqLiteDatabase.query(medTABLE,column_medTABLE,"Trade_name =?",new String[]{String.valueOf(strWord)},null,null,null);
-        //ทำ Search ตัวอักษรแบบไม่ต้องเขียนครบก็ได้ โดย Search ตาม key search และ tradename
-        Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, "Trade_name" + " LIKE '%" + strWord + "%'" + " or " + "Key_search" + " LIKE '%" + strWord + "%'", null, null, null, null);
+
         if (cursor != null) {
             cursor.moveToFirst();
             strread = new String[cursor.getCount()];
@@ -1826,9 +1826,11 @@ public class MyManage {
                 }
                 cursor.moveToNext();
             }
+            cursor.close();
 
         } else {
-            strread = null;
+            strread = new String[1];
+            strread[0] = "";
         }
 
         return strread;

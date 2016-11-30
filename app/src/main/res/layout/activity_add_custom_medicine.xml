@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_add_custom_medicine"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.su.lapponampai_w.mhm_app_beta1.AddCustomMedicine">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#6643ff"
+        android:layout_gravity="center"
+        android:id="@+id/linHeading">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton23"
+            android:src="@drawable/btn_menu"
+            android:background="#00000000"
+            android:layout_weight="10"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:text="MHM Application"
+            android:id="@+id/textView210"
+            android:layout_weight="200"
+            android:textColor="#ffffff"
+            android:textSize="27sp"
+            android:gravity="center_vertical|center_horizontal" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageButton24"
+            android:src="@drawable/btn_calendar"
+            android:background="#00000000"
+            android:layout_weight="10" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linText"
+        android:layout_below="@+id/linHeading">
+
+        <TextView
+            android:text="การใส่ข้อมูลยาแบบกำหนดค่าเอง"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView217"
+            android:textSize="24sp" />
+
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView218"
+            android:layout_marginTop="@dimen/z2_margin_bigspace"
+            android:layout_marginLeft="@dimen/z2_margin_bigspace" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linLine1"
+        android:layout_marginTop="@dimen/z2_margin_space"
+        android:background="#30abc4"
+        android:layout_below="@+id/linText">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" "
+            android:id="@+id/textView11"
+            android:textSize="1sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linLine1"
+        android:id="@+id/linCustom"
+        android:layout_margin="@dimen/z2_margin_smallgap"
+        android:background="@drawable/my_border_shadow"
+        android:padding="@dimen/z2_margin_smallgap">
+
+        <TextView
+            android:text="กำหนดค่า"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView219"
+            android:gravity="center_vertical|center_horizontal"
+            android:textSize="@dimen/heading3" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/z2_margin_bigspace"
+            android:id="@+id/linCustomBox1">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp">
+
+                <ImageView
+                    android:layout_width="78dp"
+                    android:layout_height="70dp"
+                    app:srcCompat="@drawable/img0601"
+                    android:id="@+id/imageView28"
+                    android:background="@color/colorBackground"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:text="(คลิกที่รูป!!! เพื่อเปลี่ยนรูปเม็ดยา)"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView220"
+                android:layout_weight="1.08"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/z2_margin_bigspace" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linLine2"
+            android:background="#c16d3c"
+            android:layout_below="@+id/linText">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:id="@+id/textView222"
+                android:textSize="1sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linCustomBox2"
+            android:layout_marginTop="@dimen/z2_margin_bigspace">
+
+            <TextView
+                android:text="ชื่อการค้า :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView221"
+                android:layout_weight="0.32" />
+
+            <EditText
+                android:layout_width="191dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/editText20" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linCustomBox3"
+            android:layout_marginTop="@dimen/z2_margin_bigspace">
+
+            <TextView
+                android:text="ชื่อสามัญทางยา :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView223"
+                android:layout_weight="0.32" />
+
+            <EditText
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/editText21" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linCustomBox4"
+            android:layout_marginTop="@dimen/z2_margin_biggap">
+
+            <Button
+                android:text="ยกเลิก"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button10"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="ต่อไป"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

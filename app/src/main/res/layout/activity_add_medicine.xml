@@ -74,10 +74,14 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ค้นหา"
-                android:id="@+id/buttonFilterListView"
-                android:layout_weight="1"
-                android:layout_marginLeft="@dimen/z2_margin_bigspace" />
+                android:text="เพิ่มยาเอง"
+                android:id="@+id/buttonCustom"
+                android:layout_weight="9"
+                android:layout_gravity="bottom|right"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/spinner2"
+                android:layout_toEndOf="@+id/spinner2" />
+
         </LinearLayout>
 
         <TextView
@@ -92,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/listView_Add_TG"
-            android:layout_marginLeft="@dimen/z2_margin_smallgap"
+            android:layout_marginLeft="@dimen/z2_margin_biggap"
             android:layout_marginRight="@dimen/z2_margin_smallgap"
             android:layout_marginTop="@dimen/z2_margin_bigspace" />
 

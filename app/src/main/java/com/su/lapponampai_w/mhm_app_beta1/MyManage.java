@@ -41,6 +41,7 @@ public class MyManage {
     public static final String ucolumn_last_updated = "Last_updated";
     public static final String ucolumn_notification = "Notification";
     public static final String ucolumn_allowed_notif = "Allowed_notif";
+    public static final String ucolumn_always_username = "Always_username";
     public static final String[] column_userTABLE = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_hn};
 
     //medTABLE
@@ -320,6 +321,9 @@ public class MyManage {
     }
 
 
+
+
+
     public String[] readAlllabTABLE(int intColumn) {
         String[] strREAD = null;
 
@@ -427,7 +431,7 @@ public class MyManage {
     public String[] readAlluserTABLE(int intColumn) {
         String[] strREAD = null;
 
-        Cursor cursor = readSqLiteDatabase.query("userTABLE", new String[]{"_id", "User", "Password"}, null, null, null, null,null);
+        Cursor cursor = readSqLiteDatabase.query("userTABLE", new String[]{"_id", "User", "Password","Always_username"}, null, null, null, null,null);
         cursor.moveToFirst();
         strREAD = new String[cursor.getCount()];
         for (int i = 0; i < cursor.getCount(); i++) {
@@ -549,6 +553,24 @@ public class MyManage {
         contentValues.put(tcolumn_DateUpdated, strDateUpdated);
         readlong = writeSqLiteDatabase.update(totalAmountTABLE, contentValues, "_id = " + str_id,null);
         return readlong;
+    }
+
+    public void updateUserTABLE_Always_Username(String username, String str) {
+        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,
+                "User =?", new String[]{String.valueOf(username)}, null, null, null);
+
+        cursor.moveToFirst();
+
+
+        String id = cursor.getString(0);
+
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ucolumn_always_username, str);
+
+
+        writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
+
     }
 
     //Read All addUseTABLE
@@ -1165,7 +1187,7 @@ public class MyManage {
         String[] strREAD = null;
         String[] column_userTABLE_Extend = {ucolumn_id, ucolumn_User, ucolumn_Password,
                 ucolumn_Stay, ucolumn_hn, ucolumn_last_updated, ucolumn_notification,
-                ucolumn_allowed_notif};
+                ucolumn_allowed_notif,ucolumn_always_username};
         Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE_Extend,null,null,null,null,null);
         int intCount = cursor.getCount();
         if (intCount > 0) {
@@ -1197,6 +1219,9 @@ public class MyManage {
                         break;
                     case (7):
                         strREAD[i] = cursor.getString(7);
+                        break;
+                    case (8):
+                        strREAD[i] = cursor.getString(8);
                         break;
                     default:
                         break;
@@ -2267,104 +2292,6 @@ public class MyManage {
     }
     */
 
-    //ทำ Drug Interaction
-
-
-    /*
-    //ทำการ add ค่าเข้าไปถ้า table มันว่างอะนะ
-    public void medTABLEData() {
-
-        Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, null, null, null, null, null);
-
-        if (cursor.getCount() == 0) {
-
-
-
-            addMedTABLEValue("Efaviren GPO", "Efavirenz", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "A", "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Stocrin", "Efavirenz", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "A", "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "A", "08:00", "20:00", "", "", "", "", "", "");
-            addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null, "1", 1, "ED:0", "img0201", "A", "08:00", "20:00", "", "", "", "", "", "");
-            addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0203", "A", "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Viread", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0501", "A", "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Reyataz", "Atazanavir", 7, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img90506", "A", "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Cafergot", "Ergotamine Tartrate", 8, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Prevacid", "Lansoprazole", 9, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0607", "", "07:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Antacin", "Antacid", 10, "100", "1", 11, "100", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "08:00", "13:00", "18:00", "", "", "", "", "");
-            addMedTABLEValue("Norvir", "Ritonavir", 12, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0301", "A", "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("GPO-VIR Z250", "Nevirapine", 4, "200", "1", 2, "150", "1", 13, "250", "1", 1, null, null, "1", 1, "ED:0", "img0701", "A", "08:00", "20:00", "", "", "", "", "", "");
-            addMedTABLEValue("Ziagenavir", "Abacavir", 14, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "A", "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Teevir", "", 6, "300", "1", 2, "600", "1", 15, "200", "1", 1, null, null, "1", 1, "ED:0", "img0304", "A", "22:00", "", "", "", "", "", "", "");
-
-        }
-
-    } //medTABLEDate
-
-    public void nameGenericTABLEData() {
-        Cursor cursor = readSqLiteDatabase.query(nameGenericTABLE, column_nameGenericTABLE, null, null, null, null, null);
-
-        if (cursor.getCount() == 0) {
-
-            addnameGenericTABLEValue("N/A"); //1
-            addnameGenericTABLEValue("Efavirenz"); //2
-            addnameGenericTABLEValue("Lamivudine"); //3
-            addnameGenericTABLEValue("Nevirapine"); //4
-            addnameGenericTABLEValue("Stavudine"); //5
-            addnameGenericTABLEValue("Tenofovir"); //6
-            addnameGenericTABLEValue("Atazanavir"); //7
-            addnameGenericTABLEValue("Ergotamine Tartrate"); //8
-            addnameGenericTABLEValue("Lansoprazole"); //9
-            addnameGenericTABLEValue("Aluminium Hydroxide"); //10
-            addnameGenericTABLEValue("Magnesium Hydroxide"); //11
-            addnameGenericTABLEValue("Ritonavir"); //12
-            addnameGenericTABLEValue("Zidovudine"); //13
-            addnameGenericTABLEValue("Abacavir"); //14
-            addnameGenericTABLEValue("Emtricitabine"); //15
-
-
-        }
-    }  //nameGenericTABLEData
-
-    public void drugInteractionTABLEData() {
-        Cursor cursor = readSqLiteDatabase.query(drugInteractionTABLE, column_drugInteractionTABLE, null, null, null, null, null);
-
-        if (cursor.getCount() == 0) {
-
-            adddrugInteractionTABLEValue(7, 8, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
-            adddrugInteractionTABLEValue(7, 9, "2", "ไม่ควรรับประทานร่วมกัน", 0, 0);
-            adddrugInteractionTABLEValue(7, 9, "2", "ไม่ควรรับประทานร่วมกัน", 0, 0);
-            adddrugInteractionTABLEValue(7, 10, "3", "ควรรับประทานยาห่างกัน", 240, 120);
-            adddrugInteractionTABLEValue(7, 10, "3", "ควรรับประทานยาห่างกัน", 240, 120);
-
-        }
-    } //drugInteractionTABLEDate
-
-    public void timeTABLEData() {
-        Cursor cursor = readSqLiteDatabase.query(timeTABLE, column_timeTABLE, null, null, null, null, null);
-
-        if (cursor.getCount() == 0) {
-
-            addValueToTimeTable("เช้า", "00:00", "11:59");
-            addValueToTimeTable("กลางวัน", "12:00", "17:59");
-            addValueToTimeTable("เย็น", "18:00", "20:59");
-            addValueToTimeTable("ก่อนนอน", "21:00", "23:59");
-        }
-    }
-
-    public void newsTABLEData() {
-        Cursor cursor = readSqLiteDatabase.query(newsTABLE, column_newsTABLE, null, null, null, null, null);
-        if (cursor.getCount() == 0) {
-            addNewsTABLEValue("2", "", "N1","1", "DrugInformationActivity");
-            addNewsTABLEValue("3", "", "N1", "1", "DrugInformationActivity");
-            addNewsTABLEValue("4", "", "N1", "1", "DrugInformationActivity");
-            addNewsTABLEValue("5", "", "N1", "1", "DrugInformationActivity");
-            addNewsTABLEValue("6", "", "N1", "1", "DrugInformationActivity");
-            addNewsTABLEValue("7", "", "N1", "1", "DrugInformationActivity");
-            addNewsTABLEValue("13", "", "N1", "1", "DrugInformationActivity");
-
-        }
-    } //newsTABLEData
-
-    */
 
 
 

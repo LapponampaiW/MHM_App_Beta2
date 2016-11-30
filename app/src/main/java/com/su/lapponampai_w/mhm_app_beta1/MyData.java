@@ -262,6 +262,8 @@ public class MyData {
                 intsRead[i] = R.drawable.img1103;
             } else if (appearance[i].equals("img0801")) {
                 intsRead[i] = R.drawable.img0801;
+            } else if (appearance[i].equals("img0616")) {
+                intsRead[i] = R.drawable.img0616;
             }
         }
         return intsRead;
@@ -381,7 +383,9 @@ public class MyData {
             } else if (appearance[i].equals("img1103")) {
                 intsRead[i] = R.drawable.ib1103;
             } else if (appearance[i].equals("img0801")) {
-                intsRead[i] = R.drawable.img0801;
+                intsRead[i] = R.drawable.ib0801;
+            } else if (appearance[i].equals("img0616")) {
+                intsRead[i] = R.drawable.ib0616;
             }
         }
         return intsRead;
@@ -504,7 +508,9 @@ public class MyData {
             } else if (appearance[i].equals("img1103")) {
                 intsRead[i] = R.drawable.ibc1103;
             } else if (appearance[i].equals("img0801")) {
-                intsRead[i] = R.drawable.img0801;
+                intsRead[i] = R.drawable.ibc0801;
+            } else if (appearance[i].equals("img0616")) {
+                intsRead[i] = R.drawable.ibc0616;
             }
 
         }
@@ -626,7 +632,9 @@ public class MyData {
             } else if (appearance[i].equals("img1103")) {
                 intsRead[i] = R.drawable.ibs1103;
             } else if (appearance[i].equals("img0801")) {
-                intsRead[i] = R.drawable.img0801;
+                intsRead[i] = R.drawable.ibs0801;
+            } else if (appearance[i].equals("img0616")) {
+                intsRead[i] = R.drawable.ibs0616;
             }
 
         }

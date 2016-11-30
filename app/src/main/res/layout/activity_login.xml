@@ -52,8 +52,8 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Always login"
-            android:id="@+id/checkBox_login" />
+            android:text="Remember Username"
+            android:id="@+id/checkBox_MemUsername" />
 
         <TextView
             android:text="Forgot Password"
@@ -61,14 +61,17 @@
             android:layout_height="wrap_content"
             android:onClick="click_Forgot"
             android:id="@+id/textView189"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/z2_margin_biggap" />
 
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="LOGIN"
             android:id="@+id/buttonLogin"
-            android:layout_margin="50dp" />
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="50dp" />
 
     </LinearLayout>
 </RelativeLayout>

@@ -389,11 +389,12 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Sucee 28 (28)", "Cyproterone acetate;Ethinylestradiol", 80, "2", "1", 77, "0.035", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0601", "img0604", "", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Preme (21)", "Cyproterone acetate;Ethinylestradiol", 80, "2", "1", 77, "0.035", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:0:28:N/A", "img0604", "", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Exluton (28)", "Lynestrenol", 82, "0.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:OCs:28:0:28:N/A", "img0601", "", "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Cerazette", "Desogestrel", 78, "0.075", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:OCs:28:0:28:N/A", "img0601", "", "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Anna", "Levonorgestrel;Ethinylestradiol", 83, "0.15", "1", 77, "0.03", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0601", "img0602", "", "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Anamai", "Norethisterone;Mestranol", 84, "1", "1", 85, "0.05", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0604", "img0601", "", "20:00", "", "", "", "", "", "", "");
-
-
+            addMedTABLEValue("Cerazette (28)", "Desogestrel", 78, "0.075", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:OCs:28:0:28:N/A", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Anna (28)", "Levonorgestrel;Ethinylestradiol", 83, "0.15", "1", 77, "0.03", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0601", "img0602", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Anamai (28)", "Norethisterone;Mestranol", 84, "1", "1", 85, "0.05", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0604", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Marnon (28)", "Norgestrel;Ethinylestradiol", 86, "0.5", "1", 77, "0.05", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0616", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Primolut N", "Norethisterone", 84, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Tylenol", "Paracetamol", 87, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "", "", "", "", "", "", "");
 
 
         }
@@ -491,6 +492,8 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Levonorgestrel"); //83
             addnameGenericTABLEValue("Norethisterone"); //84
             addnameGenericTABLEValue("Mestranol"); //85
+            addnameGenericTABLEValue("Norgestrel"); //86
+            addnameGenericTABLEValue("Paracetamol"); //87
 
 
 

@@ -73,6 +73,7 @@ public class SignUpActivity extends AppCompatActivity {
                         myManage.update_Last_updated(string_rev_Username,"");
                         myManage.update_notification(string_rev_Username,"Default");
                         myManage.update_Allowed_notification(string_rev_Username,"Y");
+                        myManage.updateUserTABLE_Always_Username(string_rev_Username,"N");
 
 
                         startActivity(new Intent(SignUpActivity.this,MainActivity.class));

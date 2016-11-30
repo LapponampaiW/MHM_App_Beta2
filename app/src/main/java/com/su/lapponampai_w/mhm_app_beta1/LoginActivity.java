@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     //ปุ่มต่างๆจาก activity_login.xml
     Button buttonLogin;
     EditText editTextUser, editTextPassword;
-    CheckBox checkBoxlogin;
+    CheckBox checkBoxMemUsername;
 
     //ค่า String ของ editText
     String stringUser, stringPassword;
@@ -43,13 +43,29 @@ public class LoginActivity extends AppCompatActivity {
 
         // เชื่อมปุ่มต่างๆ
         bindWidget();
-        checkBoxlogin.setVisibility(View.GONE);
+
+        showView();
+
 
         // เมื่อทำการกดปุ่ม buttonLogin
         Click_buttonLogin();
 
 
     } //Main Method
+
+    private void showView() {
+
+        String[] strings = myManage.filter_userTABLE(8);
+        String[] strings1 = myManage.filter_userTABLE(1);
+        if (!strings[0].equals("")) {
+            if (strings[0].equals("Y")) {
+                editTextUser.setText(strings1[0]);
+                checkBoxMemUsername.setChecked(true);
+                editTextPassword.requestFocus();
+            }
+        }
+
+    }
 
 
     public void click_Forgot(View view) {
@@ -187,12 +203,12 @@ public class LoginActivity extends AppCompatActivity {
             t.show();
         } else if (arrayIndexStringUsername.equals(arrayIndexStringPassword)) {
 
-             if (checkBoxlogin.isChecked()) {
-
+            if (checkBoxMemUsername.isChecked()) {
                 //ทำการเพิ่มค่า Stay เป็น 1
-                myManage.updateStayLogin(stringUser,"1");
-
-             }
+                myManage.updateUserTABLE_Always_Username(strUsername[0], "Y");
+            } else {
+                myManage.updateUserTABLE_Always_Username(strUsername[0], "N");
+            }
 
                 //gotoMainActivity
                 startActivity(new Intent(LoginActivity.this,MainActivity.class));
@@ -210,7 +226,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin = (Button) findViewById(R.id.buttonLogin);
         editTextUser = (EditText) findViewById(R.id.editTextLoginUser);
         editTextPassword = (EditText) findViewById(R.id.editTextLoginPassword);
-        checkBoxlogin = (CheckBox) findViewById(R.id.checkBox_login);
+        checkBoxMemUsername = (CheckBox) findViewById(R.id.checkBox_MemUsername);
     } // bindWidget Method
 
 

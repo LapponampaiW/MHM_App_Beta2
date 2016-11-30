@@ -162,7 +162,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:paddingTop="@dimen/z1_linearlayout_margin_top"
-                        android:paddingBottom="@dimen/z1_linearlayout_margin_top">
+                        android:paddingBottom="@dimen/z1_linearlayout_margin_top"
+                        android:id="@+id/linImageViewL">
 
                         <ImageView
                             app:srcCompat="@drawable/scroll_up_down"
@@ -194,7 +195,8 @@
                         android:layout_height="match_parent"
                         android:id="@+id/listViewTablet2"
                         android:layout_gravity="right"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/z2_margin_bigspace" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -238,7 +240,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:paddingTop="@dimen/z1_linearlayout_margin_top"
-                        android:paddingBottom="@dimen/z1_linearlayout_margin_top">
+                        android:paddingBottom="@dimen/z1_linearlayout_margin_top"
+                        android:id="@+id/linImageViewR">
                         <ImageView
                             app:srcCompat="@drawable/scroll_up_down"
                             android:id="@+id/imageView25"
@@ -272,7 +275,8 @@
                         android:layout_height="match_parent"
                         android:layout_gravity="right"
                         android:id="@+id/listViewTablet3"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/z2_margin_bigspace" />
                 </LinearLayout>
 
             </LinearLayout>

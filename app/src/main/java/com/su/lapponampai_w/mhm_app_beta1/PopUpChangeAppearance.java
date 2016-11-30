@@ -2,6 +2,7 @@ package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,22 +39,21 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
 
     //Explicit
-    ImageView imageView1, imageView2, imageView3,imageViewFinal;
-    TextView textViewStep2Tablet, textViewStep3Tablet,textViewStep4;
+    ImageView imageView1, imageView2, imageView3, imageViewFinal;
+    ImageView imageViewL1, imageViewL2, imageViewL3, imageViewR1, imageViewR2, imageViewR3;
+    TextView textViewStep2Tablet, textViewStep3Tablet, textViewStep4;
     TextView textViewCancel, textViewOK;
-    ListView listViewTablet2,listViewTablet3;
-    int[] intsImageWhiteTablet,intsImageSelected;
-    String[] stringsTotalTablet,stringsSelected, stringsTotalCapsule,stringsStep2;
+    ListView listViewTablet2, listViewTablet3;
+    int[] intsImageWhiteTablet, intsImageSelected;
+    String[] stringsTotalTablet, stringsSelected, stringsTotalCapsule, stringsStep2;
     String stringProcessCompleted;
-    LinearLayout linearLayoutCenter;
-
+    LinearLayout linearLayoutCenter,linearLayoutL,linearLayoutR;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up_change_appearance);
-
 
 
         bindWidget();
@@ -71,6 +71,9 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         //clickListViewAdaptor();
 
         clickOKCancelbutton();
+
+        setImageViewL();
+        setImageViewR();
 
 
     }
@@ -133,7 +136,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                     //เปลี่ยน String 5
                     string5 = stringProcessCompleted;
                     Intent intent = new Intent(getBaseContext(), AddMedicine2Activity.class);
-                    intent.putExtra("Med_id",string1);
+                    intent.putExtra("Med_id", string1);
                     intent.putExtra("Trade_name", string2);
                     intent.putExtra("Generic_line", string3);
                     intent.putExtra("Amount_tablet", string15);
@@ -141,14 +144,14 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                     intent.putExtra("Which_Date_D", string4);
                     intent.putExtra("Appearance", string5);
                     intent.putExtra("Pharmaco", string6);
-                    intent.putExtra("T1",string7);
-                    intent.putExtra("T2",string8);
-                    intent.putExtra("T3",string9);
-                    intent.putExtra("T4",string10);
-                    intent.putExtra("T5",string11);
-                    intent.putExtra("T6",string12);
-                    intent.putExtra("T7",string13);
-                    intent.putExtra("T8",string14);
+                    intent.putExtra("T1", string7);
+                    intent.putExtra("T2", string8);
+                    intent.putExtra("T3", string9);
+                    intent.putExtra("T4", string10);
+                    intent.putExtra("T5", string11);
+                    intent.putExtra("T6", string12);
+                    intent.putExtra("T7", string13);
+                    intent.putExtra("T8", string14);
                     intent.putExtra("TimesPerDay", string17);
 
 
@@ -156,13 +159,9 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                     finish();
 
 
-
-
-
                 }
             }
         });
-
 
 
     }
@@ -172,7 +171,6 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
         //Step 2 Tablet
         final MyData myData = new MyData();
-
 
 
         listViewTablet2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -188,9 +186,9 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                         "img0802", "img0803", "img0901", "img0902", "img0903", "img0912", "img1002",
                         "img1103"};
 
-                String[] stringsTotalCapsule1 = {"img90101","img90103","img90108","img90112",
-                        "img90114","img90115","img90308","img90312","img90506","img90808",
-                        "img90813","img90910","img91104","img91414","img91515"};
+                String[] stringsTotalCapsule1 = {"img90101", "img90103", "img90108", "img90112",
+                        "img90114", "img90115", "img90308", "img90312", "img90506", "img90808",
+                        "img90813", "img90910", "img91104", "img91414", "img91515"};
 
 
                 stringsTotalTablet = stringsTotalTablet1;
@@ -222,7 +220,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
                     setVisibleStep2Success();
 
-                } else if(iFilterTabletCapsule ==5){
+                } else if (iFilterTabletCapsule == 5) {
 
 
                     //Toast.makeText(getBaseContext(), "เข้า Capsule", Toast.LENGTH_SHORT).show();
@@ -237,7 +235,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                     } else {
 
                         //สร้าง Arraylist ที่สามารถ Duplicate ได้ก่อน
-                        for(int i = 0; i < stringsTotalCapsule.length;i++) {
+                        for (int i = 0; i < stringsTotalCapsule.length; i++) {
                             String sSubStringCapsuleL = stringsTotalCapsule[i].substring(4, 6);
                             String sSubStringCapsuleR = stringsTotalCapsule[i].substring(6);
                             if (sSubstring.equals(sSubStringCapsuleL) || sSubstring.equals(sSubStringCapsuleR)) {
@@ -253,7 +251,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
                         //Toast.makeText(getBaseContext(),stringStep3ArrayList.size(),Toast.LENGTH_SHORT).show();
                         if (stringsSelected.length == 0) {
-                            Toast.makeText(getBaseContext(),"ไม่มีรูปเสมือนเม็ดยา",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(), "ไม่มีรูปเสมือนเม็ดยา", Toast.LENGTH_SHORT).show();
 
                             setVisibleStep1();
                         } else {
@@ -272,13 +270,8 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                 } //จบ If
 
 
-
             } //onItemClick
         });
-
-
-
-
 
 
         //คลิกขั้นตอนที่ 3
@@ -331,15 +324,15 @@ public class PopUpChangeAppearance extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String[] stringsBGColor1 = {"bgc00","bgc01", "bgc02", "bgc04", "bgc03", "bgc08", "bgc06", "bgc14"
+                String[] stringsBGColor1 = {"bgc00", "bgc01", "bgc02", "bgc04", "bgc03", "bgc08", "bgc06", "bgc14"
                         , "bgc05", "bgc11", "bgc12", "bgc07", "bgc09", "bgc10", "bgc13"};
 
                 stringsStep2 = stringsBGColor1;
                 MyData myData = new MyData();
-                int[] intsImageBGColor = {R.drawable.bgc00,R.drawable.bgc01,R.drawable.bgc02,R.drawable.bgc04,
-                        R.drawable.bgc03,R.drawable.bgc08,R.drawable.bgc06,R.drawable.bgc14,
-                        R.drawable.bgc05,R.drawable.bgc11,R.drawable.bgc12,R.drawable.bgc07,
-                        R.drawable.bgc09,R.drawable.bgc10,R.drawable.bgc13};
+                int[] intsImageBGColor = {R.drawable.bgc00, R.drawable.bgc01, R.drawable.bgc02, R.drawable.bgc04,
+                        R.drawable.bgc03, R.drawable.bgc08, R.drawable.bgc06, R.drawable.bgc14,
+                        R.drawable.bgc05, R.drawable.bgc11, R.drawable.bgc12, R.drawable.bgc07,
+                        R.drawable.bgc09, R.drawable.bgc10, R.drawable.bgc13};
 
                 MyAdaptorChangeAppearance myAdaptorChangeAppearance = new MyAdaptorChangeAppearance(getBaseContext(), intsImageBGColor);
                 listViewTablet2.setAdapter(myAdaptorChangeAppearance);
@@ -380,6 +373,9 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         linearLayoutCenter.setVisibility(View.INVISIBLE);
         stringProcessCompleted = "N";
 
+        linearLayoutL.setVisibility(View.INVISIBLE);
+        linearLayoutR.setVisibility(View.INVISIBLE);
+
     }
 
     private void setVisibleStep1() {
@@ -391,6 +387,14 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         imageViewFinal.setVisibility(View.INVISIBLE);
         linearLayoutCenter.setVisibility(View.VISIBLE);
         stringProcessCompleted = "N";
+        imageViewR1.setVisibility(View.INVISIBLE);
+        imageViewR2.setVisibility(View.INVISIBLE);
+        imageViewR3.setVisibility(View.INVISIBLE);
+        linearLayoutL.setVisibility(View.VISIBLE);
+
+
+        //ให้มีการ กระพริบของรูป
+
 
     }
 
@@ -400,6 +404,9 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         textViewStep4.setVisibility(View.INVISIBLE);
         imageViewFinal.setVisibility(View.INVISIBLE);
         stringProcessCompleted = "N";
+        linearLayoutR.setVisibility(View.VISIBLE);
+
+
 
 
     }
@@ -427,6 +434,18 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
         linearLayoutCenter = (LinearLayout) findViewById(R.id.linPUCACenter);
 
+        linearLayoutL = (LinearLayout) findViewById(R.id.linImageViewL);
+        linearLayoutR = (LinearLayout) findViewById(R.id.linImageViewR);
+
+
+        imageViewL1 = (ImageView) findViewById(R.id.imageView22);
+        imageViewL2 = (ImageView) findViewById(R.id.imageView23);
+        imageViewL3 = (ImageView) findViewById(R.id.imageView24);
+        imageViewR1 = (ImageView) findViewById(R.id.imageView25);
+        imageViewR2 = (ImageView) findViewById(R.id.imageView26);
+        imageViewR3 = (ImageView) findViewById(R.id.imageView27);
+
+
     }
 
     private void displayMetrics() {
@@ -438,5 +457,112 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         int height = displayMetrics.heightPixels;
 
         getWindow().setLayout((int) (width * .9), (int) (height * .9));
+    }
+
+    private void setImageViewR() {
+        final Handler handler = new Handler();
+
+        for(int i = 0;i <= 1000;i++) {
+            int x = i * 3000;
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            imageViewR1.setVisibility(View.VISIBLE);
+                            imageViewR2.setVisibility(View.INVISIBLE);
+                            imageViewR3.setVisibility(View.INVISIBLE);
+
+                        }
+
+                    }, 1000); // 2 วินาที
+
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            imageViewR1.setVisibility(View.INVISIBLE);
+                            imageViewR2.setVisibility(View.VISIBLE);
+                            imageViewR3.setVisibility(View.INVISIBLE);
+
+                        }
+                    }, 2000); // 2 วินาที
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            imageViewR1.setVisibility(View.INVISIBLE);
+                            imageViewR2.setVisibility(View.INVISIBLE);
+                            imageViewR3.setVisibility(View.VISIBLE);
+
+                        }
+                    }, 3000); // 2 วินาที
+
+                }
+
+            }, x); // 2 วินาที
+        }
+    }
+
+    private void setImageViewL() {
+
+        final Handler handler = new Handler();
+
+        for(int i = 0;i <= 1000;i++) {
+            int x = i * 3000;
+
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            imageViewL1.setVisibility(View.VISIBLE);
+                            imageViewL2.setVisibility(View.INVISIBLE);
+                            imageViewL3.setVisibility(View.INVISIBLE);
+
+                        }
+
+                    }, 1000); // 2 วินาที
+
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            imageViewL1.setVisibility(View.INVISIBLE);
+                            imageViewL2.setVisibility(View.VISIBLE);
+                            imageViewL3.setVisibility(View.INVISIBLE);
+
+                        }
+                    }, 2000); // 2 วินาที
+
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            imageViewL1.setVisibility(View.INVISIBLE);
+                            imageViewL2.setVisibility(View.INVISIBLE);
+                            imageViewL3.setVisibility(View.VISIBLE);
+
+                        }
+                    }, 3000); // 2 วินาที
+
+                }
+
+            }, x); // 2 วินาที
+
+        }
+
+
+
     }
 }

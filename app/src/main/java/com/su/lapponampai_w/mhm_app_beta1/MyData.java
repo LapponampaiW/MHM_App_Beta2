@@ -24,6 +24,8 @@ public class MyData {
                 strRead[i] = "cc";
             } else if (uom[i].equals("3")) {
                 strRead[i] = "gram";
+            } else if (uom[i].equals("4")) {
+                strRead[i] = "mcg";
             } else if (uom[i] == null || uom[i].equals("")) {
                 strRead[i] = "N/A";
             }

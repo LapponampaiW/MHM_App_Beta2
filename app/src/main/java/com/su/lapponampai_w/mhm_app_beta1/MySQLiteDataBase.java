@@ -368,10 +368,30 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Rosuvastatin Sandoz", "Rosuvastatin", 75, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0611", "", "18:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Crestor", "Rosuvastatin", 75, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0611", "", "18:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Crestor", "Rosuvastatin", 75, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0611", "", "18:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Yaz", "Drospirenone;Ethinylestradiol", 76, "3", "1", 77, "0.02", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:24:4:28:img0601", "img0604", "", "20:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Marvelon", "Desogestrel;Ethinylestradiol", 78, "0.15", "1", 77, "0.03", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:0:28:N/A", "img0601", "", "20:00", "", "", "", "", "", "", "");
-
-
+            addMedTABLEValue("Yaz (28)", "Drospirenone;Ethinylestradiol", 76, "3", "1", 77, "0.02", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:24:4:28:img0601", "img0604", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Marvelon (21)", "Desogestrel;Ethinylestradiol", 78, "0.15", "1", 77, "0.03", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:0:28:N/A", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Marvelon (28)", "Desogestrel;Ethinylestradiol", 78, "0.15", "1", 77, "0.03", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0601", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Diora 21 (21)", "D-Norgestrel;Ethinylestradiol", 81, "0.15", "1", 77, "0.03", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:0:28:N/A", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Diora 28 (81)", "D-Norgestrel;Ethinylestradiol", 81, "0.15", "1", 77, "0.03", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:0:28:img0601", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Minidoz (28)", "Gestodene;Ethinylestradiol", 79, "60", "4", 77, "15", "4", 1, null, null, 1, null, null, "1", 1, "ED:OCs:24:4:28:img0309", "img0604", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Meliane (21)", "Gestodene;Ethinylestradiol", 79, "0.075", "1", 77, "0.02", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:0:28:N/A", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Meliane ED (28)", "Gestodene;Ethinylestradiol", 79, "0.075", "1", 77, "0.02", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0604", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Mercilon (21)", "Desogestrel;Ethinylestradiol", 78, "0.15", "1", 77, "0.02", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:0:28:N/A", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Mercilon (28)", "Desogestrel;Ethinylestradiol", 78, "0.15", "1", 77, "0.02", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0601", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Synfonia (28)", "Drospirenone;Ethinylestradiol", 76, "3", "1", 77, "0.02", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:24:4:28:img0601", "img0604", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Yasmin (21)", "Drospirenone;Ethinylestradiol", 76, "3", "1", 77, "0.03", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:0:28:N/A", "img0602", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Melodia (21)", "Drospirenone;Ethinylestradiol", 76, "3", "1", 77, "0.03", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:0:28:N/A", "img0602", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Oilezz (28)", "Desogestrel;Ethinylestradiol", 78, "", "1", 77, "", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:7:21:28:img0601", "img0603", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Gynera (21)", "Gestodene;Ethinylestradiol", 79, "0.075", "1", 77, "0.03", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:0:28:N/A", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Gynera (28)", "Gestodene;Ethinylestradiol", 79, "0.075", "1", 77, "0.03", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0601", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Diane-35 (21)", "Cyproterone acetate;Ethinylestradiol", 80, "2", "1", 77, "0.035", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:0:28:N/A", "img0604", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Sucee (21)", "Cyproterone acetate;Ethinylestradiol", 80, "2", "1", 77, "0.035", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:0:28:N/A", "img0604", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Sucee 28 (28)", "Cyproterone acetate;Ethinylestradiol", 80, "2", "1", 77, "0.035", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0601", "img0604", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Preme (21)", "Cyproterone acetate;Ethinylestradiol", 80, "2", "1", 77, "0.035", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:0:28:N/A", "img0604", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Exluton (28)", "Lynestrenol", 82, "0.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:OCs:28:0:28:N/A", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cerazette", "Desogestrel", 78, "0.075", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:OCs:28:0:28:N/A", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Anna", "Levonorgestrel;Ethinylestradiol", 83, "0.15", "1", 77, "0.03", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0601", "img0602", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Anamai", "Norethisterone;Mestranol", 84, "1", "1", 85, "0.05", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0604", "img0601", "", "20:00", "", "", "", "", "", "", "");
 
 
 
@@ -464,6 +484,13 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Drospirenone"); //76
             addnameGenericTABLEValue("Ethinylestradiol"); //77
             addnameGenericTABLEValue("Desogestrel"); //78
+            addnameGenericTABLEValue("Gestodene"); //79
+            addnameGenericTABLEValue("Cyproterone acetate"); //80
+            addnameGenericTABLEValue("D-Norgestrel"); //81
+            addnameGenericTABLEValue("Lynestrenol"); //82
+            addnameGenericTABLEValue("Levonorgestrel"); //83
+            addnameGenericTABLEValue("Norethisterone"); //84
+            addnameGenericTABLEValue("Mestranol"); //85
 
 
 

@@ -49,14 +49,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/linText"
-        android:layout_below="@+id/linHeading">
+        android:layout_below="@+id/linHeading"
+        android:gravity="center_vertical|center_horizontal">
 
         <TextView
             android:text="การใส่ข้อมูลยาแบบกำหนดค่าเอง"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView217"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/colorPrimary" />
 
         <TextView
             android:text="TextView"
@@ -100,7 +103,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView219"
             android:gravity="center_vertical|center_horizontal"
-            android:textSize="@dimen/heading3" />
+            android:textSize="@dimen/heading3"
+            android:textColor="@color/colorPrimary" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -112,13 +116,13 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:background="@drawable/my_border_shadow3">
+                android:background="@drawable/my_border_shadow3"
+                android:layout_height="60dp">
 
                 <ImageView
-                    android:layout_width="78dp"
-                    android:layout_height="70dp"
-                    android:id="@+id/imageView28" />
+                    android:id="@+id/imageView28"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
             </LinearLayout>
 
             <TextView
@@ -128,7 +132,7 @@
                 android:id="@+id/textView220"
                 android:layout_weight="1.08"
                 android:gravity="center_vertical"
-                android:layout_marginLeft="@dimen/z2_margin_bigspace" />
+                android:layout_marginLeft="@dimen/z2_margin_smallgap" />
 
         </LinearLayout>
 

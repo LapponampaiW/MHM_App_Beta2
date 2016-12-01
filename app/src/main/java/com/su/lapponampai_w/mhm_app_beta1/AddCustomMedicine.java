@@ -1,7 +1,9 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -139,13 +141,35 @@ public class AddCustomMedicine extends AppCompatActivity {
             public void onClick(View v) {
 
                 setValueEditText_TextView();
-
+                string1 = "0"; //แปลว่าไม่มีค่า Med_id
+                if (string5.length() == 7) {
+                    string16 = "1";
+                } else if (string5.length() == 8) {
+                    string16 = "2";
+                }
+                Intent intent = new Intent(getBaseContext(), AddMedicine2Activity.class);
+                intent.putExtra("Med_id",string1); //set
+                intent.putExtra("Trade_name", string2); //set
+                intent.putExtra("Generic_line", string3); //set
+                intent.putExtra("Amount_tablet", "1");
+                intent.putExtra("EA", string16); //set
+                intent.putExtra("Which_Date_D", "ED:0");
+                intent.putExtra("Appearance", string5); //set
+                intent.putExtra("Pharmaco", "");
+                intent.putExtra("T1","08:00");
+                intent.putExtra("T2","");
+                intent.putExtra("T3","");
+                intent.putExtra("T4","");
+                intent.putExtra("T5","");
+                intent.putExtra("T6","");
+                intent.putExtra("T7","");
+                intent.putExtra("T8","");
+                intent.putExtra("TimesPerDay", "1");
+                startActivity(intent);
+                finish();
 
             }
         });
-
-
-
 
     }
 
@@ -154,6 +178,7 @@ public class AddCustomMedicine extends AppCompatActivity {
 
         String s = "คำเตือน!!!\nการเพิ่มข้อมูลยาแบบกำหนดเอง จะไม่สามารถตรวจสอบปฏิกิริยาระหว่างยาได้";
         textViewWarning.setText(s);
+        textViewWarning.setVisibility(View.GONE);
 
         if (!string5.equals("")) {
             stringsAppearance = new String[1];

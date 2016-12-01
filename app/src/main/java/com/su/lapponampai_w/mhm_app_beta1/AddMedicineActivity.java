@@ -50,6 +50,7 @@ public class AddMedicineActivity extends AppCompatActivity {
     ListView listViewAddTG;
     Button buttonCustom;
 
+
     //Heading
     Spinner spinner;
     ImageButton imageAdherence;
@@ -331,7 +332,6 @@ public class AddMedicineActivity extends AppCompatActivity {
                 intent.putExtra("T7", "");
                 intent.putExtra("T8", "");
                 intent.putExtra("TimesPerDay", "");
-
                 startActivity(intent);
 
 

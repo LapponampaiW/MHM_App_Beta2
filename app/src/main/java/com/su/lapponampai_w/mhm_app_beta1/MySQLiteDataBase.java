@@ -395,6 +395,25 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Marnon (28)", "Norgestrel;Ethinylestradiol", 86, "0.5", "1", 77, "0.05", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0616", "img0601", "", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Primolut N", "Norethisterone", 84, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "18:00", "", "", "", "", "", "");
             addMedTABLEValue("Tylenol", "Paracetamol", 87, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Claron", "Clarithromycin", 88, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Claron", "Clarithromycin", 88, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Klacid FC", "Clarithromycin", 88, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Klacid FC", "Clarithromycin", 88, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Klacid MR", "Clarithromycin", 88, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Pyrazinamide Atlantic", "Pyrazinamide", 89, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Rifafour e-275", "INH;Rifampicin,Pyrazinamide;Ethambutol,Isoniazid", 36, "75", "1", 35, "150", "1", 89, "400", "1", 90, "275", "1", "1", 1, "ED:0", "img0612", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lambutol", "Ethambutol", 90, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0902", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Lambutol", "Ethambutol", 90, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Tobutol", "Ethambutol", 90, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Ciprobay", "Ciprofloxacin", 91, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Ciprobay", "Ciprofloxacin", 91, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0201", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Ciproxyl", "Ciprofloxacin", 91, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "", "08:00","18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Ciploxin", "Ciprofloxacin", 91, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Floxcipro", "Ciprofloxacin", 91, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0201", "", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Metrim", "Trimethoprim;Sulfamethoxazole", 92, "80", "1", 93, "400", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "13:00", "20:00", "", "", "", "", "");
+            addMedTABLEValue("Metrim-F", "Trimethoprim;Sulfamethoxazole", 92, "160", "1", 93, "800", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0201", "", "08:00", "13:00", "20:00", "", "", "", "", "");
+
+
 
 
         }
@@ -494,7 +513,12 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Mestranol"); //85
             addnameGenericTABLEValue("Norgestrel"); //86
             addnameGenericTABLEValue("Paracetamol"); //87
-
+            addnameGenericTABLEValue("Clarithromycin"); //88
+            addnameGenericTABLEValue("Pyrazinamide"); //89
+            addnameGenericTABLEValue("Ethambutol"); //90
+            addnameGenericTABLEValue("Ciprofloxacin"); //91
+            addnameGenericTABLEValue("Trimethoprim"); //92
+            addnameGenericTABLEValue("Sulfamethoxazole"); //93
 
 
 

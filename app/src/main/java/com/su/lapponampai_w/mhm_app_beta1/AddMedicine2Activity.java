@@ -830,13 +830,11 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     private void showView() {
 
 
-        if (string1.equals("0")) {
+        if (string1.equals("N/A")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setIcon(R.drawable.logo_mhm);
             builder.setTitle("ระบุวิธีการรับประทานยา");
-            builder.setMessage("โปรดระบุ\n +++จำนวนยาในการรับประทาน\n" +
-                    " +++เวลาในการรับประทาน\n" +
-                    " +++จำนวนเม็ดยาที่ได้รับ\n\n\"คำเตือน!!!\n" +
+            builder.setMessage("คำเตือน!!!\n" +
                     "การเพิ่มข้อมูลยาแบบกำหนดเอง จะไม่สามารถตรวจสอบปฏิกิริยาระหว่างยาได้");
             builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
                 @Override
@@ -852,6 +850,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                 }
             });
             builder.show();
+
+            string1 = "0";
         }
 
 

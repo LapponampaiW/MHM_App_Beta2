@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string1;
 import static com.su.lapponampai_w.mhm_app_beta1.AddMedicine2Activity.string10;
@@ -140,33 +141,37 @@ public class AddCustomMedicine extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                setValueEditText_TextView();
-                string1 = "0"; //แปลว่าไม่มีค่า Med_id
-                if (string5.length() == 7) {
-                    string16 = "1";
-                } else if (string5.length() == 8) {
-                    string16 = "2";
+                if (string2.equals("")) {
+                    Toast.makeText(getBaseContext(), "โปรดระบุชื่อการค้าของยา", Toast.LENGTH_SHORT).show();
+                } else {
+                    setValueEditText_TextView();
+                    string1 = "N/A"; //แปลว่าไม่มีค่า Med_id
+                    if (string5.length() == 7) {
+                        string16 = "1";
+                    } else if (string5.length() == 8) {
+                        string16 = "2";
+                    }
+                    Intent intent = new Intent(getBaseContext(), AddMedicine2Activity.class);
+                    intent.putExtra("Med_id",string1); //set
+                    intent.putExtra("Trade_name", string2); //set
+                    intent.putExtra("Generic_line", string3); //set
+                    intent.putExtra("Amount_tablet", "1");
+                    intent.putExtra("EA", string16); //set
+                    intent.putExtra("Which_Date_D", "ED:0");
+                    intent.putExtra("Appearance", string5); //set
+                    intent.putExtra("Pharmaco", "");
+                    intent.putExtra("T1","08:00");
+                    intent.putExtra("T2","");
+                    intent.putExtra("T3","");
+                    intent.putExtra("T4","");
+                    intent.putExtra("T5","");
+                    intent.putExtra("T6","");
+                    intent.putExtra("T7","");
+                    intent.putExtra("T8","");
+                    intent.putExtra("TimesPerDay", "1");
+                    startActivity(intent);
+                    finish();
                 }
-                Intent intent = new Intent(getBaseContext(), AddMedicine2Activity.class);
-                intent.putExtra("Med_id",string1); //set
-                intent.putExtra("Trade_name", string2); //set
-                intent.putExtra("Generic_line", string3); //set
-                intent.putExtra("Amount_tablet", "1");
-                intent.putExtra("EA", string16); //set
-                intent.putExtra("Which_Date_D", "ED:0");
-                intent.putExtra("Appearance", string5); //set
-                intent.putExtra("Pharmaco", "");
-                intent.putExtra("T1","08:00");
-                intent.putExtra("T2","");
-                intent.putExtra("T3","");
-                intent.putExtra("T4","");
-                intent.putExtra("T5","");
-                intent.putExtra("T6","");
-                intent.putExtra("T7","");
-                intent.putExtra("T8","");
-                intent.putExtra("TimesPerDay", "1");
-                startActivity(intent);
-                finish();
 
             }
         });

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -42,7 +43,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
     ImageView imageView1, imageView2, imageView3, imageViewFinal;
     ImageView imageViewL1, imageViewL2, imageViewL3, imageViewR1, imageViewR2, imageViewR3;
     TextView textViewStep2Tablet, textViewStep3Tablet, textViewStep4;
-    TextView textViewCancel, textViewOK;
+    Button buttonCancel;
     ListView listViewTablet2, listViewTablet3;
     int[] intsImageWhiteTablet, intsImageSelected;
     String[] stringsTotalTablet, stringsSelected, stringsTotalCapsule, stringsStep2;
@@ -71,7 +72,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
         //clickListViewAdaptor();
 
-        clickOKCancelbutton();
+        clickCancelbutton();
 
         setImageViewL();
         setImageViewR();
@@ -100,91 +101,12 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         stringFrom = getIntent().getStringExtra("From");
     }
 
-    private void clickOKCancelbutton() {
+    private void clickCancelbutton() {
 
-        textViewCancel.setOnClickListener(new View.OnClickListener() {
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-            }
-        });
-
-        textViewOK.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (stringProcessCompleted.equals("N")) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                    builder.setIcon(R.drawable.stop_sign);
-                    builder.setTitle("ไม่สามารถดำเนินการได้");
-                    builder.setMessage("กรุณาทำตามขั้นตอนที่ระบุไว้");
-                    builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.show();
-                } else {
-                    if (stringFrom.equals("AddMedicine2Activity")) {
-                        AddMedicine2Activity.activityAddMedicine2Activity.finish();
-                        //เปลี่ยน String 5
-                        string5 = stringProcessCompleted;
-                        Intent intent = new Intent(getBaseContext(), AddMedicine2Activity.class);
-                        intent.putExtra("Med_id", string1);
-                        intent.putExtra("Trade_name", string2);
-                        intent.putExtra("Generic_line", string3);
-                        intent.putExtra("Amount_tablet", string15);
-                        intent.putExtra("EA", string16);
-                        intent.putExtra("Which_Date_D", string4);
-                        intent.putExtra("Appearance", string5);
-                        intent.putExtra("Pharmaco", string6);
-                        intent.putExtra("T1", string7);
-                        intent.putExtra("T2", string8);
-                        intent.putExtra("T3", string9);
-                        intent.putExtra("T4", string10);
-                        intent.putExtra("T5", string11);
-                        intent.putExtra("T6", string12);
-                        intent.putExtra("T7", string13);
-                        intent.putExtra("T8", string14);
-                        intent.putExtra("TimesPerDay", string17);
-                        startActivity(intent);
-                        finish();
-                    } else if (stringFrom.equals("AddCustomMedicine")) {
-                        AddCustomMedicine.activityAddCustomMedicine.finish();
-                        //เปลี่ยน String 5
-                        string5 = stringProcessCompleted;
-                        Intent intent = new Intent(getBaseContext(), AddCustomMedicine.class);
-                        intent.putExtra("Med_id", string1);
-                        intent.putExtra("Trade_name", string2);
-                        intent.putExtra("Generic_line", string3);
-                        intent.putExtra("Amount_tablet", string15);
-                        intent.putExtra("EA", string16);
-                        intent.putExtra("Which_Date_D", string4);
-                        intent.putExtra("Appearance", string5);
-                        intent.putExtra("Pharmaco", string6);
-                        intent.putExtra("T1", string7);
-                        intent.putExtra("T2", string8);
-                        intent.putExtra("T3", string9);
-                        intent.putExtra("T4", string10);
-                        intent.putExtra("T5", string11);
-                        intent.putExtra("T6", string12);
-                        intent.putExtra("T7", string13);
-                        intent.putExtra("T8", string14);
-                        intent.putExtra("TimesPerDay", string17);
-                        startActivity(intent);
-                        finish();
-                    }
-
-
-
-                }
             }
         });
 
@@ -311,6 +233,62 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                 textViewStep4.setVisibility(View.VISIBLE);
                 imageViewFinal.setVisibility(View.VISIBLE);
                 stringProcessCompleted = stringsSelected[position];
+
+
+                if (stringFrom.equals("AddMedicine2Activity")) {
+                    AddMedicine2Activity.activityAddMedicine2Activity.finish();
+                    //เปลี่ยน String 5
+                    string5 = stringProcessCompleted;
+                    Intent intent = new Intent(getBaseContext(), AddMedicine2Activity.class);
+                    intent.putExtra("Med_id", string1);
+                    intent.putExtra("Trade_name", string2);
+                    intent.putExtra("Generic_line", string3);
+                    intent.putExtra("Amount_tablet", string15);
+                    intent.putExtra("EA", string16);
+                    intent.putExtra("Which_Date_D", string4);
+                    intent.putExtra("Appearance", string5);
+                    intent.putExtra("Pharmaco", string6);
+                    intent.putExtra("T1", string7);
+                    intent.putExtra("T2", string8);
+                    intent.putExtra("T3", string9);
+                    intent.putExtra("T4", string10);
+                    intent.putExtra("T5", string11);
+                    intent.putExtra("T6", string12);
+                    intent.putExtra("T7", string13);
+                    intent.putExtra("T8", string14);
+                    intent.putExtra("TimesPerDay", string17);
+                    startActivity(intent);
+                    finish();
+                } else if (stringFrom.equals("AddCustomMedicine")) {
+                    AddCustomMedicine.activityAddCustomMedicine.finish();
+                    //เปลี่ยน String 5
+                    string5 = stringProcessCompleted;
+                    Intent intent = new Intent(getBaseContext(), AddCustomMedicine.class);
+                    intent.putExtra("Med_id", string1);
+                    intent.putExtra("Trade_name", string2);
+                    intent.putExtra("Generic_line", string3);
+                    intent.putExtra("Amount_tablet", string15);
+                    intent.putExtra("EA", string16);
+                    intent.putExtra("Which_Date_D", string4);
+                    intent.putExtra("Appearance", string5);
+                    intent.putExtra("Pharmaco", string6);
+                    intent.putExtra("T1", string7);
+                    intent.putExtra("T2", string8);
+                    intent.putExtra("T3", string9);
+                    intent.putExtra("T4", string10);
+                    intent.putExtra("T5", string11);
+                    intent.putExtra("T6", string12);
+                    intent.putExtra("T7", string13);
+                    intent.putExtra("T8", string14);
+                    intent.putExtra("TimesPerDay", string17);
+                    startActivity(intent);
+                    finish();
+                }
+
+
+
+
+
             }
         });
 
@@ -387,7 +365,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
 
         textViewStep3Tablet.setText("ขั้นตอนที่ 3 :\nเลือกเม็ดยาที่ต้องการ");
-        textViewStep4.setText("ขั้นตอนที่ 4\nเสร็จสิ้นการเลือกรูปเสมือนเม็ดยา\nกด 'เปลี่ยนรูป' เพื่อจบการทำงาน");
+        textViewStep4.setText("ขั้นตอนที่ 4\nเสร็จสิ้นการทำงาน");
 
         listViewTablet2.setVisibility(View.INVISIBLE);
         textViewStep2Tablet.setVisibility(View.INVISIBLE);
@@ -436,9 +414,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
     }
 
-    private void setVisibleStep2NotSuccess() {
 
-    }
 
     private void bindWidget() {
 
@@ -451,8 +427,9 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         textViewStep3Tablet = (TextView) findViewById(R.id.textView211);
         textViewStep4 = (TextView) findViewById(R.id.textView215);
 
-        textViewOK = (TextView) findViewById(R.id.textView213);
-        textViewCancel = (TextView) findViewById(R.id.textView212);
+        buttonCancel = (Button) findViewById(R.id.buttonAPUC);
+
+
 
         listViewTablet2 = (ListView) findViewById(R.id.listViewTablet2);
         listViewTablet3 = (ListView) findViewById(R.id.listViewTablet3);

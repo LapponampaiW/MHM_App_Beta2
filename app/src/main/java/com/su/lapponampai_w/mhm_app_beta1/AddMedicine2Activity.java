@@ -147,6 +147,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                 intent.putExtra("T7",string13);
                 intent.putExtra("T8",string14);
                 intent.putExtra("TimesPerDay", string17);
+                intent.putExtra("From", "AddMedicine2Activity");
                 startActivity(intent);
             }
         });

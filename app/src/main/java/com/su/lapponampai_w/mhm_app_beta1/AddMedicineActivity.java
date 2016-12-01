@@ -313,6 +313,25 @@ public class AddMedicineActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(getBaseContext(), AddCustomMedicine.class);
+
+                intent.putExtra("Med_id", "");
+                intent.putExtra("Trade_name", "");
+                intent.putExtra("Generic_line", "");
+                intent.putExtra("Amount_tablet", "");
+                intent.putExtra("EA", "");
+                intent.putExtra("Which_Date_D", "");
+                intent.putExtra("Appearance", "img0601");
+                intent.putExtra("Pharmaco", "");
+                intent.putExtra("T1", "");
+                intent.putExtra("T2", "");
+                intent.putExtra("T3", "");
+                intent.putExtra("T4", "");
+                intent.putExtra("T5", "");
+                intent.putExtra("T6", "");
+                intent.putExtra("T7", "");
+                intent.putExtra("T8", "");
+                intent.putExtra("TimesPerDay", "");
+
                 startActivity(intent);
 
 
@@ -331,6 +350,7 @@ public class AddMedicineActivity extends AppCompatActivity {
 
     } //setHeading
 
+    /*
     private void pressbuttonfilterListView() {
 
 
@@ -521,6 +541,7 @@ public class AddMedicineActivity extends AppCompatActivity {
             }
         });
     }
+    */
 
 
 

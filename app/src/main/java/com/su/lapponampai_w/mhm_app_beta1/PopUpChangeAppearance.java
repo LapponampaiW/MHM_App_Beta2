@@ -48,6 +48,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
     String[] stringsTotalTablet, stringsSelected, stringsTotalCapsule, stringsStep2;
     String stringProcessCompleted;
     LinearLayout linearLayoutCenter,linearLayoutL,linearLayoutR;
+    String stringFrom;
 
 
     @Override
@@ -96,6 +97,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
         string13 = getIntent().getStringExtra("T7");
         string14 = getIntent().getStringExtra("T8");
         string17 = getIntent().getStringExtra("TimesPerDay");
+        stringFrom = getIntent().getStringExtra("From");
     }
 
     private void clickOKCancelbutton() {
@@ -130,33 +132,56 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                     });
                     builder.show();
                 } else {
+                    if (stringFrom.equals("AddMedicine2Activity")) {
+                        AddMedicine2Activity.activityAddMedicine2Activity.finish();
+                        //เปลี่ยน String 5
+                        string5 = stringProcessCompleted;
+                        Intent intent = new Intent(getBaseContext(), AddMedicine2Activity.class);
+                        intent.putExtra("Med_id", string1);
+                        intent.putExtra("Trade_name", string2);
+                        intent.putExtra("Generic_line", string3);
+                        intent.putExtra("Amount_tablet", string15);
+                        intent.putExtra("EA", string16);
+                        intent.putExtra("Which_Date_D", string4);
+                        intent.putExtra("Appearance", string5);
+                        intent.putExtra("Pharmaco", string6);
+                        intent.putExtra("T1", string7);
+                        intent.putExtra("T2", string8);
+                        intent.putExtra("T3", string9);
+                        intent.putExtra("T4", string10);
+                        intent.putExtra("T5", string11);
+                        intent.putExtra("T6", string12);
+                        intent.putExtra("T7", string13);
+                        intent.putExtra("T8", string14);
+                        intent.putExtra("TimesPerDay", string17);
+                        startActivity(intent);
+                        finish();
+                    } else if (stringFrom.equals("AddCustomMedicine")) {
+                        AddCustomMedicine.activityAddCustomMedicine.finish();
+                        //เปลี่ยน String 5
+                        string5 = stringProcessCompleted;
+                        Intent intent = new Intent(getBaseContext(), AddCustomMedicine.class);
+                        intent.putExtra("Med_id", string1);
+                        intent.putExtra("Trade_name", string2);
+                        intent.putExtra("Generic_line", string3);
+                        intent.putExtra("Amount_tablet", string15);
+                        intent.putExtra("EA", string16);
+                        intent.putExtra("Which_Date_D", string4);
+                        intent.putExtra("Appearance", string5);
+                        intent.putExtra("Pharmaco", string6);
+                        intent.putExtra("T1", string7);
+                        intent.putExtra("T2", string8);
+                        intent.putExtra("T3", string9);
+                        intent.putExtra("T4", string10);
+                        intent.putExtra("T5", string11);
+                        intent.putExtra("T6", string12);
+                        intent.putExtra("T7", string13);
+                        intent.putExtra("T8", string14);
+                        intent.putExtra("TimesPerDay", string17);
+                        startActivity(intent);
+                        finish();
+                    }
 
-
-                    AddMedicine2Activity.activityAddMedicine2Activity.finish();
-                    //เปลี่ยน String 5
-                    string5 = stringProcessCompleted;
-                    Intent intent = new Intent(getBaseContext(), AddMedicine2Activity.class);
-                    intent.putExtra("Med_id", string1);
-                    intent.putExtra("Trade_name", string2);
-                    intent.putExtra("Generic_line", string3);
-                    intent.putExtra("Amount_tablet", string15);
-                    intent.putExtra("EA", string16);
-                    intent.putExtra("Which_Date_D", string4);
-                    intent.putExtra("Appearance", string5);
-                    intent.putExtra("Pharmaco", string6);
-                    intent.putExtra("T1", string7);
-                    intent.putExtra("T2", string8);
-                    intent.putExtra("T3", string9);
-                    intent.putExtra("T4", string10);
-                    intent.putExtra("T5", string11);
-                    intent.putExtra("T6", string12);
-                    intent.putExtra("T7", string13);
-                    intent.putExtra("T8", string14);
-                    intent.putExtra("TimesPerDay", string17);
-
-
-                    startActivity(intent);
-                    finish();
 
 
                 }

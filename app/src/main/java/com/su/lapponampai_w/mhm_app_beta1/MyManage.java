@@ -1383,7 +1383,8 @@ public class MyManage {
 
     public String[] filter_sumTABLE_by_Main_id_AND_DateRef(String main_id,String dateRef,int intcolumn) {
         String[] strREAD = null;
-        Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE, "Main_id LIKE '" +
+        String[] column_sumTABLE_Modified = {"_id", column_Main_id, column_DateRef, column_TimeRef, column_DateCheck, column_TimeCheck, column_SkipHold,column_AddMedicine};
+        Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE_Modified, "Main_id LIKE '" +
                 main_id + "' AND DateRef LIKE '" + dateRef + "'", null, null, null, "_id ASC");
         int intCount = cursor.getCount();
         if (intCount > 0) {
@@ -1413,6 +1414,9 @@ public class MyManage {
                         break;
                     case (6):
                         strREAD[i] = cursor.getString(cursor.getColumnIndex(column_SkipHold));
+                        break;
+                    case (7):
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(column_AddMedicine));
                         break;
                     default:
                         break;

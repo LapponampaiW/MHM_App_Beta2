@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -135,40 +136,65 @@ public class MedicationDetailActivity extends AppCompatActivity {
                     Calendar calendarCurrentDay = Calendar.getInstance();
                     String[] stringsTimesPerDay = {string12, string13, string14, string15,
                             string16, string17, string18, string19};
-                    int iCount = 0;
+                    double iCount = 0.00;
                     for (int i = 0; i < stringsTimesPerDay.length; i++) {
                         if (!stringsTimesPerDay[i].equals("")) { //ดูว่ารับประทานวันละกี่ครั้ง
                             iCount = iCount + 1;
                         }
                     }
-
-                    Log.d("21July16", "s_Amount : " + s_Amount);
-                    //int x = Integer.parseInt(s_Amount) / (iCount * Integer.parseInt(string4));
-
-                    double y = Double.parseDouble(s_Amount) / (iCount * Double.parseDouble(string4));
-                    //int x = Integer.parseInt(s_Amount) / (iCount * Integer.parseInt(string4));
-
-                    double z = Math.ceil(y);
-                    int x = (int) z;
-
-
-                    Log.d("21July16", "y : " + y);
-                    Log.d("21July16", "x : " + x);
-                    Log.d("21July16", "string4 : " + string4);
-                    String strGetDate;
-
-                    //คำนวนวันในการจะแสดงผล
+                    MyManage myManage = new MyManage(this);
                     MyData myData = new MyData();
+                    //คำนวนวันในการจะแสดงผล
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
                     String strCurrentDay = myData.currentDay();
                     Date dateInitial = new Date();
                     Date dateFinish = new Date();
                     Date dateCurrent = new Date();
 
+                    String[] stringsTakenMedicine = myManage.filter_sumTABLE_by_Main_id_AND_DateRef(string0, strCurrentDay, 4);
+                    String[] stringsTakenMedicineRef = myManage.filter_sumTABLE_by_Main_id_AND_DateRef(string0, strCurrentDay, 2);
+                    String[] stringsTakenAddMedicine = myManage.filter_sumTABLE_by_Main_id_AND_DateRef(string0, strCurrentDay, 7);
+                    String[] stringsSkip = myManage.filter_sumTABLE_by_Main_id_AND_DateRef(string0, strCurrentDay, 6);
+
+                    Double iTakeToday_Times = 0.00;
+                    if (!stringsTakenMedicineRef[0].equals("")) {
+                        Log.d("021259V1", "เข้า Loop1");
+                        for(int i = 0; i < stringsTakenMedicine.length;i++) {
+                            //2/12/59
+                            if (!stringsTakenMedicine[i].equals("") && stringsTakenAddMedicine[i].equals("")) {
+                                Log.d("021259V1", "เข้า Loop2");
+                                iTakeToday_Times = iTakeToday_Times + 1;
+                            } else if (!stringsSkip.equals("")) { //ข้ามการกินยา นับเป็น 1 มือแบบไม่ต้องตัดเม็ดยา
+                                iTakeToday_Times = iTakeToday_Times + 1;
+                            }
+
+                        }
+                    }
+
+                    Log.d("021259V1", Double.toString(iTakeToday_Times));
+
+                    double y = 0.00;
+                    if (Double.parseDouble(s_Amount) >= (iTakeToday_Times * Double.parseDouble(string4))) {
+                        y = (Double.parseDouble(s_Amount) + (iTakeToday_Times * Double.parseDouble(string4)))
+                                / (iCount * Double.parseDouble(string4));
+                    } else {
+                        y = Double.parseDouble(s_Amount) / (iCount * Double.parseDouble(string4));
+                    }
+
+
+
+                    //double z = Math.ceil(y);
+                    int x = (int) y; //จำนวนวันที่รับประทานยาได้แบบ เพื่อเอาไป add กับวันปัจจุบันจะได้รู้ว่าทานได้อีกกี่วัน
+                    Log.d("021259V1", "Double y = "+ Double.toString(y));
+                    Log.d("021259V1", "int x = "+ x);
+
+
+
+                    String strGetDate;
                     if (y == 0) {
                         strGetDate = "ไม่มียา!!!";
                         textViewOutOfMedicine.setText(strGetDate);
-                    }
+                    } else {
 
                         try {
                             dateInitial = simpleDateFormat.parse(string9);
@@ -178,8 +204,12 @@ public class MedicationDetailActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        if (dateInitial.compareTo(dateCurrent) > 0) {
+
+                        if (dateInitial.compareTo(dateCurrent) > 0) { //ยังไม่ถึงวันเริ่มต้น
                             Toast.makeText(getBaseContext(),"เข้า 1",Toast.LENGTH_SHORT).show();
+                            strGetDate = "ยังไม่คำนวณ (ยังไม่เริ่มรับประทาน)";
+                            textViewOutOfMedicine.setText(strGetDate);
+                            /*
                             if (y < 1 && y > 0) {
                                 //set วันตาม string 9
 
@@ -198,20 +228,37 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
 
                             }
+                            */
+
                         } else {
                             if (y < 1 && y > 0) {
                                 strGetDate = "ยาเหลือไม่ถึง 1 วัน";
                                 textViewOutOfMedicine.setText(strGetDate);
                             } else {
-                                MyManage myManage = new MyManage(this);
-                                String[] stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(string0); //เอาค่า Main_id มา
-                                Date date_ED_Ref = myData.stringChangetoDateWithOutTime(stringsDate_ED_Ref[0]); //dateRef ก่อนนำไป add ค่Calendar calendarRef = Calendar.getInstance();
 
+                                String[] stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(string0); //เอาค่า Main_id มา
+                                String[] stringsSumId_Ref = myManage.filter_sumTABLE_finding_SumId_by_MainId_idDESC(string0); //เอาค่าSum_id มา
+
+                                ArrayList<String> stringArrayList = new ArrayList<String>();
+                                int iIndex = 0;
+
+                                for (int a = 0; a < stringsDate_ED_Ref.length; a++) {
+
+                                    String[] stringsAddMedicine = myManage.filter_sumTABLE_AddMedicine_by_sum_id(stringsSumId_Ref[a]);
+                                    if (stringsAddMedicine[0].equals("")) {
+                                        stringArrayList.add(iIndex, stringsDate_ED_Ref[a]);
+                                        iIndex = iIndex + 1;
+                                    }
+                                } //for
+
+                                String[] stringsNewDate_ED_Ref = new String[stringArrayList.size()];
+                                stringsNewDate_ED_Ref = stringArrayList.toArray(stringsNewDate_ED_Ref);
+
+
+
+                                Date date_ED_Ref = myData.stringChangetoDateWithOutTime(stringsNewDate_ED_Ref[0]); //dateRef ก่อนนำไป add ค่Calendar calendarRef = Calendar.getInstance();
                                 Calendar calendarRef = Calendar.getInstance();
                                 calendarRef.setTime(date_ED_Ref);  //calendarRef ก่อนนำไป add ค่า
-
-
-
 
 
                                 if (string5.equals("ED:0")) {
@@ -220,18 +267,11 @@ public class MedicationDetailActivity extends AppCompatActivity {
                                     strGetDate = simpleDateFormat.format(date);
                                     textViewOutOfMedicine.setText(strGetDate);
                                 } else if (string5.equals("ED:1")) {
-
+                                    //02/05/2559
 
 
                                     Toast.makeText(getBaseContext(),"เข้า ED:1",Toast.LENGTH_SHORT).show();
                                     int a = x * 2;
-
-
-
-
-
-
-
                                     calendarCurrentDay.add(Calendar.DAY_OF_MONTH, a - 2);
                                     Date date = calendarCurrentDay.getTime();
                                     strGetDate = simpleDateFormat.format(date);
@@ -246,7 +286,10 @@ public class MedicationDetailActivity extends AppCompatActivity {
                                 textViewOutOfMedicine.setText(strGetDate);
                                 */
                             }
-                        }  //จบแบบไม่มี FinishDate
+                        }  //จบแบบไม่มี Finish
+                    }
+
+                        //Date
 
 
 

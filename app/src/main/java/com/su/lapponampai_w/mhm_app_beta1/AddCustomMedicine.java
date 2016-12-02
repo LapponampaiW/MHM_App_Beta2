@@ -141,6 +141,8 @@ public class AddCustomMedicine extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                string2 = editTextTradename.getText().toString().trim();
+
                 if (string2.equals("")) {
                     Toast.makeText(getBaseContext(), "โปรดระบุชื่อการค้าของยา", Toast.LENGTH_SHORT).show();
                 } else {

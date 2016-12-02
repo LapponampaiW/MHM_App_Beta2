@@ -210,8 +210,9 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                         } else {  //ถ้าเป็น ED จะมี 0 1 2 3 4 5
 
-                            Toast.makeText(context, "เข้า ED", Toast.LENGTH_LONG).show();
-                            String[] stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(stringsReadAll_MainTABLE[1][i]); //เอาค่า Main_id มา
+
+                            String[] stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(stringsReadAll_MainTABLE[0][i]); //เอาค่า Main_id มา
+                            Toast.makeText(context, stringsDate_ED_Ref[0], Toast.LENGTH_LONG).show();
                             Date date_ED_Ref = myData.stringChangetoDateWithOutTime(stringsDate_ED_Ref[0]); //dateRef ก่อนนำไป add ค่Calendar calendarRef = Calendar.getInstance();
 
                             Calendar calendarRef = Calendar.getInstance();
@@ -692,6 +693,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
 
                                     String[] stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(stringsReadAll_MainTABLE[1][i]); //เอาค่า Main_id มา
+                                    Toast.makeText(context,stringsDate_ED_Ref[0],Toast.LENGTH_SHORT).show();
                                     Date date_ED_Ref = myData.stringChangetoDateWithOutTime(stringsDate_ED_Ref[0]); //dateRef ก่อนนำไป add ค่Calendar calendarRef = Calendar.getInstance();
 
                                     Calendar calendarRef = Calendar.getInstance();

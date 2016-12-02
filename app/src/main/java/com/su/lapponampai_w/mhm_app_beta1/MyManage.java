@@ -1328,6 +1328,7 @@ public class MyManage {
 
 
 
+
     public String[] filter_sumTABLE__by_Date(String time, int intcolumn) {
 
         String[] strREAD = null;

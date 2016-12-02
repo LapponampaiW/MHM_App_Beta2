@@ -2154,8 +2154,9 @@ public class MyManage {
             if (cursor != null) {
                 cursor.moveToFirst();
                 strRead[i] = cursor.getString(cursor.getColumnIndex(gcolumn_generic_name));
+                cursor.close();
             } else {
-                strRead[i] = null;
+                strRead[i] = "";
             }
         }
 

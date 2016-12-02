@@ -159,36 +159,45 @@ public class AddMedicineActivity extends AppCompatActivity {
 
                     }
 
-                    if (stringsGeneric1.length == 0) {
-                        Toast.makeText(getBaseContext(),";sdfk;",Toast.LENGTH_SHORT).show();
-                    }
+
 
 
                     final String[] stringsGenericLine1 = new String[stringsGeneric1.length];
-                    for (int i = 0; i < stringsGeneric1.length; i++) {
-                        if (stringsGeneric2[i].equals("N/A")) {
-                            stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] + " " + stringsUOM1[i];
-                        } else if (stringsGeneric3[i].equals("N/A")) {
-                            stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
-                                    " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
-                                    stringsDosage2[i] + " " + stringsUOM2t[i];
-                        } else if (stringsGeneric4[i].equals("N/A")) {
 
-                            stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
-                                    " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
-                                    stringsDosage2[i] + " " + stringsUOM2t[i] + " / " +
-                                    stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
-                                    stringsUOM3t[i];
-                        } else {
-                            stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
-                                    " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
-                                    stringsDosage2[i] + " " + stringsUOM2t[i] + " / " +
-                                    stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
-                                    stringsUOM3t[i] + " / " + stringsGeneric4[i] + " " +
-                                    stringsDosage4[i] + " " + stringsUOM4t[i];
-                        }
 
-                    } //for
+                    if (!stringsGeneric1.equals("")) {
+                        for (int i = 0; i < stringsGeneric1.length; i++) {
+                            if (stringsGeneric2[i].equals("N/A")) {
+                                stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] + " " + stringsUOM1[i];
+                            } else if (stringsGeneric3[i].equals("N/A")) {
+                                stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
+                                        " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
+                                        stringsDosage2[i] + " " + stringsUOM2t[i];
+                            } else if (stringsGeneric4[i].equals("N/A")) {
+
+                                stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
+                                        " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
+                                        stringsDosage2[i] + " " + stringsUOM2t[i] + " / " +
+                                        stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
+                                        stringsUOM3t[i];
+                            } else {
+                                stringsGenericLine1[i] = stringsGeneric1[i] + " " + stringsDosage1[i] +
+                                        " " + stringsUOM1[i] + " / " + stringsGeneric2[i] + " " +
+                                        stringsDosage2[i] + " " + stringsUOM2t[i] + " / " +
+                                        stringsGeneric3[i] + " " + stringsDosage3[i] + " " +
+                                        stringsUOM3t[i] + " / " + stringsGeneric4[i] + " " +
+                                        stringsDosage4[i] + " " + stringsUOM4t[i];
+                            }
+
+                        } //for
+                    }
+
+
+
+
+
+
+
 
                     int[] intsIndex = myData.translate_Appearance(stringsappearance);
 

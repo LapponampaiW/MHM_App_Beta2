@@ -47,7 +47,7 @@ public class MyHelper extends SQLiteOpenHelper {
     //Create table sumTABLE
     private static final String CREATE_sumTABLE = "create table sumTABLE " +
             "(_id integer primary key, Main_id text, DateRef text, TimeRef text," +
-            "DateCheck text, TimeCheck text, SkipHold text);";
+            "DateCheck text, TimeCheck text, SkipHold text, AddMedicine text);";
 
     //Create table drugInteractionTABLE
     private static final String CREATE_drugInteractionTABLE = "create table drugInteractionTABLE " +

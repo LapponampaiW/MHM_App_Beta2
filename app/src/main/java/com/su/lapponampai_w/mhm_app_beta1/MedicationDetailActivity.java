@@ -328,7 +328,8 @@ public class MedicationDetailActivity extends AppCompatActivity {
                 if (aBoolean) {
                     String strCurrentTime = myData.currentTime_Minus();
 
-                    myManage.addValueToSumTable(string0, strCurrentDay, strCurrentTime, strCurrentDay, strCurrentTime, "");
+                    //myManage.addValueToSumTable(string0, strCurrentDay, strCurrentTime, strCurrentDay, strCurrentTime, "");
+                    myManage.addValueToSumTable_Custom(string0, strCurrentDay, strCurrentTime, strCurrentDay, strCurrentTime, "","Y");
                     myManage.updateTotalAmountTABLE_minusTabBy_MainId_AmountTablet(string0, string4);
                     Toast.makeText(MedicationDetailActivity.this,"เสร็จสิ้นการทำงาน",Toast.LENGTH_SHORT).show();
                     MedicationListActivity.activityMedicationListActivity.finish();

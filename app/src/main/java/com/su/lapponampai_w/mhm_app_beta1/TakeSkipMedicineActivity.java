@@ -2,6 +2,7 @@ package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,9 +54,27 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
                 if (string5.equals("") && string6.equals("")) {
                     myManage.updatesumTABLE_ADD_SkipHold_Now(stringId);
                     Toast.makeText(getBaseContext(), stringId, Toast.LENGTH_LONG).show();
+
+                    //ลบข้อมูลออก เพราะไม่จำเป็น
+                    String[] strings_AddMedicine = myManage.filter_sumTABLE_AddMedicine_by_sum_id(stringId);
+                    if (strings_AddMedicine[0].equals("Y")) {
+                        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
+                        sqLiteDatabase.delete("sumTABLE", "_id = " + stringId, null);
+                    }
+
+
                     finish();
                 } else if (!string5.equals("") && string6.equals("")) {
                     myManage.updatesumTABLE_ADD_SkipHold_Now(stringId);
+                    myManage.updateTotalAmountTABLE_AddTabBy_MainId_AmountTablet(stringMain_id, string3);
+
+                    //ลบข้อมูลออก เพราะไม่จำเป็น
+                    String[] strings_AddMedicine = myManage.filter_sumTABLE_AddMedicine_by_sum_id(stringId);
+                    if (strings_AddMedicine[0].equals("Y")) {
+                        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
+                        sqLiteDatabase.delete("sumTABLE", "_id = " + stringId, null);
+                    }
+
                     finish();
                 } else if (string5.equals("") && !string6.equals("")) {
                     myManage.updatesumTABLE_Canceled_SkipHold(stringId);
@@ -79,6 +98,15 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
                 } else if (!string5.equals("") && string6.equals("")) {
                     myManage.updatesumTABLE_Canceled_ADD_DateCheckTimeCheck(stringId);
                     myManage.updateTotalAmountTABLE_AddTabBy_MainId_AmountTablet(stringMain_id, string3);
+
+                    //ลบข้อมูลออก เพราะไม่จำเป็น
+                    String[] strings_AddMedicine = myManage.filter_sumTABLE_AddMedicine_by_sum_id(stringId);
+                    if (strings_AddMedicine[0].equals("Y")) {
+                        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
+                        sqLiteDatabase.delete("sumTABLE", "_id = " + stringId, null);
+                    }
+
+
                     finish();
                 } else if (string5.equals("") && !string6.equals("")) {
                     Boolean aBoolean = checkAmountTablet(stringMain_id,string3,activityTSMActivity);
@@ -164,7 +192,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
             textViewB2.setText("กินยาตอนนี้");
             textViewB3.setText("ยกเลิก");
         } else if (!string5.equals("") && string6.equals("")) {
-            textViewB1.setText("ข้ามการกิน");
+            textViewB1.setText("ข้ามการกิน"); //กินยาไปแล้วจะข้าม
             textViewB2.setText("ยกเลิกการกินยา");
             textViewB3.setText("ยกเลิก");
         } else if (string5.equals("") && !string6.equals("")) {

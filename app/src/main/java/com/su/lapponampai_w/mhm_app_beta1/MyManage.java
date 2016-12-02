@@ -139,6 +139,7 @@ public class MyManage {
     public static final String column_DateCheck = "DateCheck";
     public static final String column_TimeCheck = "TimeCheck";
     public static final String column_SkipHold = "SkipHold";
+    public static final String column_AddMedicine = "AddMedicine";
     public static final String[] column_sumTABLE = {"_id", column_Main_id, column_DateRef, column_TimeRef, column_DateCheck, column_TimeCheck, column_SkipHold};
 
     //timeTABLE
@@ -1304,6 +1305,27 @@ public class MyManage {
     }
 
 
+    public String[] filter_sumTABLE_AddMedicine_by_sum_id(String sumId) {
+        String[] strREAD = null;
+        String[] column_sumTABLE_alternative = {"_id", column_Main_id, column_DateRef, column_TimeRef, column_DateCheck, column_TimeCheck, column_SkipHold,column_AddMedicine};
+        Cursor cursor = readSqLiteDatabase.query(sum_table, column_sumTABLE_alternative, "_id LIKE '" + sumId + "'", null, null, null, "_id DESC");
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for(int i = 0; i<cursor.getCount();i++) {
+                strREAD[i] = cursor.getString(7);
+                cursor.moveToNext();
+            }
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+        cursor.close();
+        return strREAD;
+    }
+
+
 
 
     public String[] filter_sumTABLE__by_Date(String time, int intcolumn) {
@@ -1484,6 +1506,26 @@ public class MyManage {
 
         return writeSqLiteDatabase.insert(sum_table, null, contentValues);
     } //addValueToSumTable
+
+
+    public long addValueToSumTable_Custom(String strMain_id,
+                                          String strDateRef,
+                                          String strTimeRef,
+                                          String strDateCheck,
+                                          String strTimeCheck,
+                                          String strSkipHold,String strAddMedicine) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(column_Main_id, strMain_id);
+        contentValues.put(column_DateRef, strDateRef);
+        contentValues.put(column_TimeRef, strTimeRef);
+        contentValues.put(column_DateCheck, strDateCheck);
+        contentValues.put(column_TimeCheck, strTimeCheck);
+        contentValues.put(column_SkipHold, strSkipHold);
+        contentValues.put(column_AddMedicine,strAddMedicine);
+
+        return writeSqLiteDatabase.insert(sum_table, null, contentValues);
+    }
 
     /*
     public long addValueToTimeTable(String strTime_interval,

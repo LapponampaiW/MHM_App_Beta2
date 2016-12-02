@@ -155,23 +155,48 @@ public class MedicationDetailActivity extends AppCompatActivity {
                     String[] stringsTakenMedicineRef = myManage.filter_sumTABLE_by_Main_id_AND_DateRef(string0, strCurrentDay, 2);
                     String[] stringsTakenAddMedicine = myManage.filter_sumTABLE_by_Main_id_AND_DateRef(string0, strCurrentDay, 7);
                     String[] stringsSkip = myManage.filter_sumTABLE_by_Main_id_AND_DateRef(string0, strCurrentDay, 6);
-
+                    Log.d("021259V1", "Main_id :" + string0);
                     Double iTakeToday_Times = 0.00;
+                    int iDaySkipFor_Ed = 0;
                     if (!stringsTakenMedicineRef[0].equals("")) {
                         Log.d("021259V1", "เข้า Loop1");
-                        for(int i = 0; i < stringsTakenMedicine.length;i++) {
+                        for (int i = 0; i < stringsTakenMedicine.length; i++) {
                             //2/12/59
                             if (!stringsTakenMedicine[i].equals("") && stringsTakenAddMedicine[i].equals("")) {
-                                Log.d("021259V1", "เข้า Loop2");
+                                Log.d("021259V1", "เข้า Criteria1");
                                 iTakeToday_Times = iTakeToday_Times + 1;
-                            } else if (!stringsSkip.equals("")) { //ข้ามการกินยา นับเป็น 1 มือแบบไม่ต้องตัดเม็ดยา
+                            } else if (!stringsSkip[i].equals("")) { //ข้ามการกินยา นับเป็น 1 มือแบบไม่ต้องตัดเม็ดยา
+                                Log.d("021259V1", "เข้า Criteria2");
                                 iTakeToday_Times = iTakeToday_Times + 1;
                             }
+                            //ดูiDaySkipFor_Ed
+                            if (stringsTakenAddMedicine[i].equals("")) {
+                                iDaySkipFor_Ed = 0;
+                            }
+                        }
+                    } else {
+                        Boolean aBoolean = true;
+                        Calendar calendarAdd = Calendar.getInstance();
+                        while (aBoolean) {
 
+                            iDaySkipFor_Ed = iDaySkipFor_Ed + 1;
+                            calendarAdd.add(Calendar.DAY_OF_MONTH,1);
+                            Date date = calendarAdd.getTime();
+                            String sDate = myData.string_ddMMyyyy_ConvertedFromSpecificDate(date);
+
+                            String[] stringsTakenMedicineRef1 = myManage.filter_sumTABLE_by_Main_id_AND_DateRef(string0, sDate, 2);
+                            String[] stringsTakenAddMedicine1 = myManage.filter_sumTABLE_by_Main_id_AND_DateRef(string0, sDate, 7);
+
+
+                            if (!stringsTakenMedicineRef1[0].equals("") && stringsTakenAddMedicine1[0].equals("")) {
+                                //เอาแค่ 0 เพราะไม่มีใครสามารถ AddMedicine ในวันพรุ่งนี้ไ้ด
+                                aBoolean = false;
+                            }
                         }
                     }
 
-                    Log.d("021259V1", Double.toString(iTakeToday_Times));
+
+                    Log.d("021259V1", "iTakeToday_Times :" + Double.toString(iTakeToday_Times));
 
                     double y = 0.00;
                     if (Double.parseDouble(s_Amount) >= (iTakeToday_Times * Double.parseDouble(string4))) {
@@ -236,6 +261,10 @@ public class MedicationDetailActivity extends AppCompatActivity {
                                 textViewOutOfMedicine.setText(strGetDate);
                             } else {
 
+
+
+
+                                /*
                                 String[] stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(string0); //เอาค่า Main_id มา
                                 String[] stringsSumId_Ref = myManage.filter_sumTABLE_finding_SumId_by_MainId_idDESC(string0); //เอาค่าSum_id มา
 
@@ -259,6 +288,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
                                 Date date_ED_Ref = myData.stringChangetoDateWithOutTime(stringsNewDate_ED_Ref[0]); //dateRef ก่อนนำไป add ค่Calendar calendarRef = Calendar.getInstance();
                                 Calendar calendarRef = Calendar.getInstance();
                                 calendarRef.setTime(date_ED_Ref);  //calendarRef ก่อนนำไป add ค่า
+                                */
 
 
                                 if (string5.equals("ED:0")) {
@@ -268,11 +298,46 @@ public class MedicationDetailActivity extends AppCompatActivity {
                                     textViewOutOfMedicine.setText(strGetDate);
                                 } else if (string5.equals("ED:1")) {
                                     //02/05/2559
-
-
-                                    Toast.makeText(getBaseContext(),"เข้า ED:1",Toast.LENGTH_SHORT).show();
-                                    int a = x * 2;
-                                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH, a - 2);
+                                    //เอาวันที่ต้องเริ่มทานมาก่อน
+                                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH,iDaySkipFor_Ed);
+                                    //จากนั้นค่อยเอาจำนวนวันเข้ามา
+                                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH, (x - 1) * 2);
+                                    Date date = calendarCurrentDay.getTime();
+                                    strGetDate = simpleDateFormat.format(date);
+                                    textViewOutOfMedicine.setText(strGetDate);
+                                } else if (string5.equals("ED:2")) {
+                                    //02/05/2559
+                                    //เอาวันที่ต้องเริ่มทานมาก่อน
+                                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH,iDaySkipFor_Ed);
+                                    //จากนั้นค่อยเอาจำนวนวันเข้ามา
+                                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH, (x - 1) * 3);
+                                    Date date = calendarCurrentDay.getTime();
+                                    strGetDate = simpleDateFormat.format(date);
+                                    textViewOutOfMedicine.setText(strGetDate);
+                                } else if (string5.equals("ED:3")) {
+                                    //02/05/2559
+                                    //เอาวันที่ต้องเริ่มทานมาก่อน
+                                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH,iDaySkipFor_Ed);
+                                    //จากนั้นค่อยเอาจำนวนวันเข้ามา
+                                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH, (x - 1) * 4);
+                                    Date date = calendarCurrentDay.getTime();
+                                    strGetDate = simpleDateFormat.format(date);
+                                    textViewOutOfMedicine.setText(strGetDate);
+                                } else if (string5.equals("ED:4")) {
+                                    //02/05/2559
+                                    //เอาวันที่ต้องเริ่มทานมาก่อน
+                                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH,iDaySkipFor_Ed);
+                                    //จากนั้นค่อยเอาจำนวนวันเข้ามา
+                                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH, (x - 1) * 5);
+                                    Date date = calendarCurrentDay.getTime();
+                                    strGetDate = simpleDateFormat.format(date);
+                                    textViewOutOfMedicine.setText(strGetDate);
+                                } else if (string5.equals("ED:5")) {
+                                    //02/05/2559
+                                    //เอาวันที่ต้องเริ่มทานมาก่อน
+                                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH,iDaySkipFor_Ed);
+                                    //จากนั้นค่อยเอาจำนวนวันเข้ามา
+                                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH, (x - 1) * 6);
                                     Date date = calendarCurrentDay.getTime();
                                     strGetDate = simpleDateFormat.format(date);
                                     textViewOutOfMedicine.setText(strGetDate);

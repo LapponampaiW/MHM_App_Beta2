@@ -127,7 +127,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
         if (s_Amount != null) {
             if (string7.equals("1") || string7.equals("2")) { //เป็นยาเม็ดหรือ แคปซูล
                 //เป็น prn หรือไม่
-                if (string11.equals("Y")) {
+                if (string11.equals("Y")) { //prn
                     textViewOutOfMedicineLabel.setVisibility(View.GONE);
                     textViewOutOfMedicine.setVisibility(View.GONE);
                 } else {
@@ -137,7 +137,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
                             string16, string17, string18, string19};
                     int iCount = 0;
                     for (int i = 0; i < stringsTimesPerDay.length; i++) {
-                        if (!stringsTimesPerDay[i].equals("")) {
+                        if (!stringsTimesPerDay[i].equals("")) { //ดูว่ารับประทานวันละกี่ครั้ง
                             iCount = iCount + 1;
                         }
                     }
@@ -179,17 +179,23 @@ public class MedicationDetailActivity extends AppCompatActivity {
                         }
 
                         if (dateInitial.compareTo(dateCurrent) > 0) {
+                            Toast.makeText(getBaseContext(),"เข้า 1",Toast.LENGTH_SHORT).show();
                             if (y < 1 && y > 0) {
                                 //set วันตาม string 9
 
                                 textViewOutOfMedicine.setText(string9);
                             } else {
-                                Calendar calendar = Calendar.getInstance();
-                                calendar.setTime(dateInitial);
-                                calendar.add(Calendar.DAY_OF_MONTH, x - 1);
-                                Date date = calendar.getTime();
-                                strGetDate = simpleDateFormat.format(date);
-                                textViewOutOfMedicine.setText(strGetDate);
+
+                                if (string5.equals("ED:0")) {
+                                    Toast.makeText(getBaseContext(),"เข้า ED:0",Toast.LENGTH_SHORT).show();
+                                    Calendar calendar = Calendar.getInstance();
+                                    calendar.setTime(dateInitial);
+                                    calendar.add(Calendar.DAY_OF_MONTH, x - 1);
+                                    Date date = calendar.getTime();
+                                    strGetDate = simpleDateFormat.format(date);
+                                    textViewOutOfMedicine.setText(strGetDate);
+                                }
+
 
                             }
                         } else {
@@ -198,12 +204,34 @@ public class MedicationDetailActivity extends AppCompatActivity {
                                 textViewOutOfMedicine.setText(strGetDate);
                             } else {
 
+                                if (string5.equals("ED:0")) {
+                                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH, x - 1);
+                                    Date date = calendarCurrentDay.getTime();
+                                    strGetDate = simpleDateFormat.format(date);
+                                    textViewOutOfMedicine.setText(strGetDate);
+                                } else if (string5.equals("ED:1")) {
+                                    Toast.makeText(getBaseContext(),"เข้า ED:1",Toast.LENGTH_SHORT).show();
+                                    int a = x * 2;
+
+
+
+
+
+
+
+                                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH, a - 2);
+                                    Date date = calendarCurrentDay.getTime();
+                                    strGetDate = simpleDateFormat.format(date);
+                                    textViewOutOfMedicine.setText(strGetDate);
+                                }
+
+
+                                /*
                                 calendarCurrentDay.add(Calendar.DAY_OF_MONTH, x - 1);
-
                                 Date date = calendarCurrentDay.getTime();
-
                                 strGetDate = simpleDateFormat.format(date);
                                 textViewOutOfMedicine.setText(strGetDate);
+                                */
                             }
                         }  //จบแบบไม่มี FinishDate
 

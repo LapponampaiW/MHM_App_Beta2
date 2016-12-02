@@ -32,7 +32,7 @@ public class TransferDataActivity extends AppCompatActivity {
     private String vnString, jsonString;
     private String str1,str2,str3,str4,str5,str6,str7,str8,str9,str10,
             str11,str12,str13,str14,str15,str16,str17,str18,str19,str20,str21,str22;
-    private String s1,s2,s3,s4,s5,s6;
+    private String s1,s2,s3,s4,s5,s6,s7;
     private String m1,m2, m3;
     private boolean aBoolean = false;
 
@@ -185,6 +185,8 @@ public class TransferDataActivity extends AppCompatActivity {
                         s4 = jsonObject.getString(MyManage.column_DateCheck);
                         s5 = jsonObject.getString(MyManage.column_TimeCheck);
                         s6 = jsonObject.getString(MyManage.column_SkipHold);
+                        s7 = jsonObject.getString(MyManage.column_AddMedicine);
+
 
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -198,7 +200,7 @@ public class TransferDataActivity extends AppCompatActivity {
                     Log.d("28July16", "s6 :" + s6 );
 
 
-                    long l = myManage.addValueToSumTable(s1, s2, s3, s4, s5, s6);
+                    long l = myManage.addValueToSumTable(s1, s2, s3, s4, s5, s6,s7);
 
                 }//for
 

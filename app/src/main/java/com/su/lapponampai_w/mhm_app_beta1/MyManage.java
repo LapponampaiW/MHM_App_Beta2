@@ -1494,7 +1494,7 @@ public class MyManage {
                                    String strTimeRef,
                                    String strDateCheck,
                                    String strTimeCheck,
-                                   String strSkipHold) {
+                                   String strSkipHold,String strAddMedicine) {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(column_Main_id, strMain_id);
@@ -1503,6 +1503,7 @@ public class MyManage {
         contentValues.put(column_DateCheck, strDateCheck);
         contentValues.put(column_TimeCheck, strTimeCheck);
         contentValues.put(column_SkipHold, strSkipHold); // ใช้ Clrl + Enter
+        contentValues.put(column_AddMedicine,strAddMedicine);
 
         return writeSqLiteDatabase.insert(sum_table, null, contentValues);
     } //addValueToSumTable

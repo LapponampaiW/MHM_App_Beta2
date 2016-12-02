@@ -2162,7 +2162,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             if (addSumTABLE_Today.equals("Y") && stringIntervalDate.equals("Y")) {
 
                 if (!stringsT1[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT1[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT1[0], "", "", "","");
                     if (!checkAlternativeAppearance.equals("N")) {
                         Log.d("24Nov16", checkAlternativeAppearance + " " + stringDateAfterProcess);
                         //หา sumid ก่อน
@@ -2176,25 +2176,25 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                 }
 
                 if (!stringsT2[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT2[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT2[0], "", "", "","");
                 }
                 if (!stringsT3[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT3[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT3[0], "", "", "","");
                 }
                 if (!stringsT4[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT4[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT4[0], "", "", "","");
                 }
                 if (!stringsT5[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT5[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT5[0], "", "", "","");
                 }
                 if (!stringsT6[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT6[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT6[0], "", "", "","");
                 }
                 if (!stringsT7[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT7[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT7[0], "", "", "","");
                 }
                 if (!stringsT8[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT8[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT8[0], "", "", "","");
                 }
 
 
@@ -2498,7 +2498,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                                 if (!stringsReadAll_MainTABLE[x][i].equals("")) {
                                     String stringMain_id = stringsReadAll_MainTABLE[0][i];  //Main_id
                                     String stringTimeRef = stringsReadAll_MainTABLE[x][i];  //TimeRef ตำแหน่งต่างๆ
-                                    myManage.addValueToSumTable(stringMain_id, stringDateRef, stringTimeRef, "", "", "");
+                                    myManage.addValueToSumTable(stringMain_id, stringDateRef, stringTimeRef, "", "", "","");
                                     Log.d("UpdatesumTABLE", "addValueToSumTable : " + stringMain_id + " " + stringDateRef + " " + stringTimeRef);
                                 }
 
@@ -2800,29 +2800,29 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             if (addSumTABLE_Today.equals("Y") && stringIntervalDate.equals("Y")) {
 
                 if (!stringsT1[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT1[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT1[0], "", "", "", "");
                 }
 
                 if (!stringsT2[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT2[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT2[0], "", "", "", "");
                 }
                 if (!stringsT3[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT3[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT3[0], "", "", "", "");
                 }
                 if (!stringsT4[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT4[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT4[0], "", "", "", "");
                 }
                 if (!stringsT5[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT5[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT5[0], "", "", "", "");
                 }
                 if (!stringsT6[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT6[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT6[0], "", "", "", "");
                 }
                 if (!stringsT7[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT7[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT7[0], "", "", "", "");
                 }
                 if (!stringsT8[0].equals("")) {
-                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT8[0], "", "", "");
+                    myManage.addValueToSumTable(strings1[0], stringDateAfterProcess, stringsT8[0], "", "", "", "");
                 }
 
             }

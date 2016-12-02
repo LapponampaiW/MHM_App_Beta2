@@ -329,7 +329,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                             if (!stringsReadAll_MainTABLE[x][i].equals("")) {
                                 String stringMain_id = stringsReadAll_MainTABLE[0][i];  //Main_id
                                 String stringTimeRef = stringsReadAll_MainTABLE[x][i];  //TimeRef ตำแหน่งต่างๆ
-                                myManage.addValueToSumTable(stringMain_id, stringDateRef, stringTimeRef, "", "", "");
+                                myManage.addValueToSumTable(stringMain_id, stringDateRef, stringTimeRef, "", "", "", "");
                                 //Log.d("UpdatesumTABLE", "addValueToSumTable : " + stringMain_id + " " + stringDateRef + " " + stringTimeRef);
 
 
@@ -759,7 +759,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                                     if (!stringsReadAll_MainTABLE[x][i].equals("")) {
                                         String stringMain_id = stringsReadAll_MainTABLE[0][i];  //Main_id
                                         String stringTimeRef = stringsReadAll_MainTABLE[x][i];  //TimeRef ตำแหน่งต่างๆ
-                                        myManage.addValueToSumTable(stringMain_id, stringDateRef, stringTimeRef, "", "", "");
+                                        myManage.addValueToSumTable(stringMain_id, stringDateRef, stringTimeRef, "", "", "", "");
                                         Log.d("UpdatesumTABLE", "addValueToSumTable : " + stringMain_id + " " + stringDateRef + " " + stringTimeRef);
                                     }
 

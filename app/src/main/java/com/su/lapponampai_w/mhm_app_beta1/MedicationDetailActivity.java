@@ -203,6 +203,16 @@ public class MedicationDetailActivity extends AppCompatActivity {
                                 strGetDate = "ยาเหลือไม่ถึง 1 วัน";
                                 textViewOutOfMedicine.setText(strGetDate);
                             } else {
+                                MyManage myManage = new MyManage(this);
+                                String[] stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(string0); //เอาค่า Main_id มา
+                                Date date_ED_Ref = myData.stringChangetoDateWithOutTime(stringsDate_ED_Ref[0]); //dateRef ก่อนนำไป add ค่Calendar calendarRef = Calendar.getInstance();
+
+                                Calendar calendarRef = Calendar.getInstance();
+                                calendarRef.setTime(date_ED_Ref);  //calendarRef ก่อนนำไป add ค่า
+
+
+
+
 
                                 if (string5.equals("ED:0")) {
                                     calendarCurrentDay.add(Calendar.DAY_OF_MONTH, x - 1);
@@ -210,6 +220,9 @@ public class MedicationDetailActivity extends AppCompatActivity {
                                     strGetDate = simpleDateFormat.format(date);
                                     textViewOutOfMedicine.setText(strGetDate);
                                 } else if (string5.equals("ED:1")) {
+
+
+
                                     Toast.makeText(getBaseContext(),"เข้า ED:1",Toast.LENGTH_SHORT).show();
                                     int a = x * 2;
 

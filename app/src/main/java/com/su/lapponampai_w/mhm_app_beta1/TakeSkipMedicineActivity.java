@@ -107,6 +107,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
                     }
 
 
+
                     finish();
                 } else if (string5.equals("") && !string6.equals("")) {
                     Boolean aBoolean = checkAmountTablet(stringMain_id,string3,activityTSMActivity);

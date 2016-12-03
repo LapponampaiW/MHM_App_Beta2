@@ -465,6 +465,18 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Nicardia", "Nifedipine", 102, "10", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img99911", "", "08:00", "13:00", "18:00", "", "", "", "", "");
             addMedTABLEValue("Nicardia Retard", "Nifedipine", 102, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "18:00", "", "", "", "", "", "");
             addMedTABLEValue("Nicardia Retard", "Nifedipine", 102, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Amlopine", "Amlodipine", 103, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1301", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Amlopine", "Amlodipine", 103, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1301", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Norvasc", "Amlodipine", 103, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1301", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Norvasc", "Amlodipine", 103, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1301", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Deten", "Amlodipine", 103, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1301", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Deten", "Amlodipine", 103, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1301", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Caduet 10/20", "Amlodipine;Atorvastatin", 103, "10", "1", 64, "20", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0113", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Caduet 10/40", "Amlodipine;Atorvastatin", 103, "10", "1", 64, "40", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0113", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Caduet 5/10", "Amlodipine;Atorvastatin", 103, "5", "1", 64, "10", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Caduet 10/10", "Amlodipine;Atorvastatin", 103, "10", "1", 64, "10", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0113", "", "08:00", "", "", "", "", "", "", "");
+
+
 
 
         }
@@ -579,7 +591,7 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Lercanidipine"); //100
             addnameGenericTABLEValue("Felodipine"); //101
             addnameGenericTABLEValue("Nifedipine"); //102
-
+            addnameGenericTABLEValue("Amlodipine"); //103
 
 
 

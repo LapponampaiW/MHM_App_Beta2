@@ -289,8 +289,158 @@ public class MedicationDetailActivity extends AppCompatActivity {
                                 Calendar calendarRef = Calendar.getInstance();
                                 calendarRef.setTime(date_ED_Ref);  //calendarRef ก่อนนำไป add ค่า
                                 */
+                                String[] queryDay = string5.split(":");
+                                String[] querySelectedDay = null;
+                                Log.d("021259V1", "queryDay[0] : " + queryDay[0]);
+                                if (!queryDay[0].equals("ED")) {
+                                    //03/12/2559 ทำ DOM,DOW
+                                    if (queryDay[0].equals("DOW")) {
+                                        //เริ่มจากวันนี้
+                                        Log.d("021259V1", "เข้า DOW");
+                                        Calendar calendarAdd = Calendar.getInstance(); //calendar ของวันนี้
+                                        int i_CountDate = 0;
+                                        int i_CountForStop = 0;
+                                        Boolean aBoolean = true;
+                                        while (aBoolean) {
+                                            Log.d("021259V1", "เข้า aBoolean");
+                                            //เริ่ม Check ตั้งแต่วันนี้เป็นต้นไป
+                                            String sDayOfWeek = Integer.toString(calendarAdd.get(Calendar.DAY_OF_WEEK)); //เอาค่าตัวเลขของวันประจำสัปดาห์จาก calendar ที่ทำการเพิ่มวันตั้งแต่ 0 - 6 เรียบร้อยแล้ว
+                                            String sCheckInclusionCriteria = "N";
+                                            querySelectedDay = queryDay[1].split(",");
+                                            //วันนี้มีค่าใน DOW หรือไม่
+                                            for(int i = 0 ; i< querySelectedDay.length;i++) {
+                                                if (sDayOfWeek.equals(querySelectedDay[i])) {
+                                                    sCheckInclusionCriteria = "Y";
+                                                }
+                                            }
+                                            if (sCheckInclusionCriteria.equals("N")) {
+                                                //ถ้าไม่มีค่าของวันนี้
+                                                calendarAdd.add(Calendar.DAY_OF_MONTH, 1);
+                                                i_CountForStop = i_CountForStop + 1;
+                                            } else {
+                                                calendarAdd.add(Calendar.DAY_OF_MONTH, 1);
+                                                i_CountDate = i_CountDate + 1;
+                                                i_CountForStop = i_CountForStop + 1;
+                                            }
+                                            Log.d("021259V1", "i_CountDate : " + i_CountDate);
+                                            if (x == i_CountDate) {
+                                                aBoolean = false;
+                                                calendarAdd.add(Calendar.DAY_OF_MONTH, -1);
+                                            }
+                                            if (i_CountForStop > 120) {
+                                                aBoolean = false;
+                                            }
 
+                                        } //while
 
+                                        Date date = calendarAdd.getTime();
+                                        strGetDate = simpleDateFormat.format(date);
+                                        if (i_CountForStop > 120) {
+                                            textViewOutOfMedicine.setText("มียามากกว่า 4 เดือน");
+                                        } else {
+                                            textViewOutOfMedicine.setText(strGetDate);
+                                        }
+
+                                    } else if (queryDay[0].equals("DOM")) {
+                                        //เริ่มจากวันนี้
+                                        Log.d("021259V1", "เข้า DOM");
+                                        Calendar calendarAdd = Calendar.getInstance(); //calendar ของวันนี้
+                                        int i_CountDate = 0;
+                                        int i_CountForStop = 0;
+                                        Boolean aBoolean = true;
+                                        while (aBoolean) {
+                                            Log.d("021259V1", "เข้า aBoolean");
+                                            //เริ่ม Check ตั้งแต่วันนี้เป็นต้นไป
+                                            String sDayOfMonth = Integer.toString(calendarAdd.get(Calendar.DAY_OF_MONTH)); //เอาค่าตัวเลขของวันประจำสัปดาห์จาก calendar ที่ทำการเพิ่มวันตั้งแต่ 0 - 6 เรียบร้อยแล้ว
+                                            String sCheckInclusionCriteria = "N";
+                                            querySelectedDay = queryDay[1].split(",");
+                                            //วันนี้มีค่าใน DOM หรือไม่
+                                            for(int i = 0 ; i< querySelectedDay.length;i++) {
+                                                if (sDayOfMonth.equals(querySelectedDay[i])) {
+                                                    sCheckInclusionCriteria = "Y";
+                                                }
+                                            }
+                                            if (sCheckInclusionCriteria.equals("N")) {
+                                                //ถ้าไม่มีค่าของวันนี้
+                                                calendarAdd.add(Calendar.DAY_OF_MONTH, 1);
+                                                i_CountForStop = i_CountForStop + 1;
+                                            } else {
+                                                calendarAdd.add(Calendar.DAY_OF_MONTH, 1);
+                                                i_CountDate = i_CountDate + 1;
+                                                i_CountForStop = i_CountForStop + 1;
+                                            }
+                                            Log.d("021259V1", "i_CountDate : " + i_CountDate);
+                                            if (x == i_CountDate) {
+                                                aBoolean = false;
+                                                calendarAdd.add(Calendar.DAY_OF_MONTH, -1);
+                                            }
+                                            if (i_CountForStop > 120) {
+                                                aBoolean = false;
+                                            }
+                                        } //while
+                                        Date date = calendarAdd.getTime();
+                                        strGetDate = simpleDateFormat.format(date);
+                                        if (i_CountForStop > 120) {
+                                            textViewOutOfMedicine.setText("มียามากกว่า 4 เดือน");
+                                        } else {
+                                            textViewOutOfMedicine.setText(strGetDate);
+                                        }
+                                    }
+                                } else {
+                                    if (queryDay[1].equals("0")) {
+                                        calendarCurrentDay.add(Calendar.DAY_OF_MONTH, x - 1);
+                                        Date date = calendarCurrentDay.getTime();
+                                        strGetDate = simpleDateFormat.format(date);
+                                        textViewOutOfMedicine.setText(strGetDate);
+                                    } else if (queryDay[1].equals("1")) {
+                                        //02/05/2559
+                                        //เอาวันที่ต้องเริ่มทานมาก่อน
+                                        calendarCurrentDay.add(Calendar.DAY_OF_MONTH, iDaySkipFor_Ed);
+                                        //จากนั้นค่อยเอาจำนวนวันเข้ามา
+                                        calendarCurrentDay.add(Calendar.DAY_OF_MONTH, (x - 1) * 2);
+                                        Date date = calendarCurrentDay.getTime();
+                                        strGetDate = simpleDateFormat.format(date);
+                                        textViewOutOfMedicine.setText(strGetDate);
+                                    } else if (queryDay[1].equals("2")) {
+                                        //02/05/2559
+                                        //เอาวันที่ต้องเริ่มทานมาก่อน
+                                        calendarCurrentDay.add(Calendar.DAY_OF_MONTH, iDaySkipFor_Ed);
+                                        //จากนั้นค่อยเอาจำนวนวันเข้ามา
+                                        calendarCurrentDay.add(Calendar.DAY_OF_MONTH, (x - 1) * 3);
+                                        Date date = calendarCurrentDay.getTime();
+                                        strGetDate = simpleDateFormat.format(date);
+                                        textViewOutOfMedicine.setText(strGetDate);
+                                    } else if (queryDay[1].equals("3")) {
+                                        //02/05/2559
+                                        //เอาวันที่ต้องเริ่มทานมาก่อน
+                                        calendarCurrentDay.add(Calendar.DAY_OF_MONTH, iDaySkipFor_Ed);
+                                        //จากนั้นค่อยเอาจำนวนวันเข้ามา
+                                        calendarCurrentDay.add(Calendar.DAY_OF_MONTH, (x - 1) * 4);
+                                        Date date = calendarCurrentDay.getTime();
+                                        strGetDate = simpleDateFormat.format(date);
+                                        textViewOutOfMedicine.setText(strGetDate);
+                                    } else if (queryDay[1].equals("4")) {
+                                        //02/05/2559
+                                        //เอาวันที่ต้องเริ่มทานมาก่อน
+                                        calendarCurrentDay.add(Calendar.DAY_OF_MONTH, iDaySkipFor_Ed);
+                                        //จากนั้นค่อยเอาจำนวนวันเข้ามา
+                                        calendarCurrentDay.add(Calendar.DAY_OF_MONTH, (x - 1) * 5);
+                                        Date date = calendarCurrentDay.getTime();
+                                        strGetDate = simpleDateFormat.format(date);
+                                        textViewOutOfMedicine.setText(strGetDate);
+                                    } else if (queryDay[1].equals("5")) {
+                                        //02/05/2559
+                                        //เอาวันที่ต้องเริ่มทานมาก่อน
+                                        calendarCurrentDay.add(Calendar.DAY_OF_MONTH, iDaySkipFor_Ed);
+                                        //จากนั้นค่อยเอาจำนวนวันเข้ามา
+                                        calendarCurrentDay.add(Calendar.DAY_OF_MONTH, (x - 1) * 6);
+                                        Date date = calendarCurrentDay.getTime();
+                                        strGetDate = simpleDateFormat.format(date);
+                                        textViewOutOfMedicine.setText(strGetDate);
+                                    }
+                                }
+
+                                /*
                                 if (string5.equals("ED:0")) {
                                     calendarCurrentDay.add(Calendar.DAY_OF_MONTH, x - 1);
                                     Date date = calendarCurrentDay.getTime();
@@ -342,13 +492,6 @@ public class MedicationDetailActivity extends AppCompatActivity {
                                     strGetDate = simpleDateFormat.format(date);
                                     textViewOutOfMedicine.setText(strGetDate);
                                 }
-
-
-                                /*
-                                calendarCurrentDay.add(Calendar.DAY_OF_MONTH, x - 1);
-                                Date date = calendarCurrentDay.getTime();
-                                strGetDate = simpleDateFormat.format(date);
-                                textViewOutOfMedicine.setText(strGetDate);
                                 */
                             }
                         }  //จบแบบไม่มี Finish

@@ -337,7 +337,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                 int[] intsImageBGColor = {R.drawable.bgc00, R.drawable.bgc01, R.drawable.bgc02, R.drawable.bgc04,
                         R.drawable.bgc03, R.drawable.bgc08, R.drawable.bgc06, R.drawable.bgc14,
                         R.drawable.bgc05, R.drawable.bgc11, R.drawable.bgc12, R.drawable.bgc07,
-                        R.drawable.bgc09, R.drawable.bgc10, R.drawable.bgc13};
+                        R.drawable.bgc09, R.drawable.bgc10, R.drawable.bgc13,R.drawable.bgc16,R.drawable.bgc99};
 
                 MyAdaptorChangeAppearance myAdaptorChangeAppearance = new MyAdaptorChangeAppearance(getBaseContext(), intsImageBGColor);
                 listViewTablet2.setAdapter(myAdaptorChangeAppearance);

@@ -65,8 +65,19 @@ public class SignUpActivity extends AppCompatActivity {
                         t.show();
                     } else {
                         // ทำการบันทึกค่าได้
-                        Toast t = Toast.makeText(SignUpActivity.this, "addValue _id,User,Password,Stay,Email", Toast.LENGTH_SHORT);
-                        t.show();
+                        //Toast t = Toast.makeText(SignUpActivity.this, "addValue _id,User,Password,Stay,Email", Toast.LENGTH_SHORT);
+                        //t.show();
+
+                        //03/12/2559
+                        //ใส่ค่าเป็นแบบ Beta
+                        if (!string_rev_Username.equals("Test") && !string_rev_Password.equals("12345")) {
+                            Toast.makeText(getBaseContext(),"Beta Version 1.02 Please SignUp again",Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+
+
+
                         myManage.addValueSignUp(string_rev_Username,string_rev_RePassword,"2",string_rev_Email);
 
                         // (03/10/2559);; เพิ่ม Update_Last_updated

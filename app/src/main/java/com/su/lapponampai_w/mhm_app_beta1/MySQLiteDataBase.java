@@ -450,14 +450,21 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Felodipin Stada", "Felodipine", 101, "2.5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Felodipine Sandoz SR", "Felodipine", 101, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0612", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Felodipine Sandoz SR", "Felodipine", 101, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0612", "", "08:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Feloten XR", "Felodipine", 101, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0612", "", "08:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Feloten XR", "Felodipine", 101, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Feloten XR", "Felodipine", 101, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Feloten XR", "Felodipine", 101, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0612", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Topidil", "Felodipine", 101, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "", "", "", "", "", "", "");
-
-
-
-
-
+            addMedTABLEValue("Plendil", "Felodipine", 101, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Plendil", "Felodipine", 101, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0612", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Adalat CR", "Nifedipine", 102, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0612", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Adalat CR", "Nifedipine", 102, "60", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0612", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Adalat CR", "Nifedipine", 102, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0612", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Nelapine", "Nifedipine", 102, "10", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img99911", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Nelapine", "Nifedipine", 102, "10", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img91316", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Nelapine", "Nifedipine", 102, "5", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img99912", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Nicardia", "Nifedipine", 102, "5", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img99911", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Nicardia", "Nifedipine", 102, "10", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img99911", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Nicardia Retard", "Nifedipine", 102, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Nicardia Retard", "Nifedipine", 102, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "18:00", "", "", "", "", "", "");
 
 
         }
@@ -571,6 +578,7 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Nimodipine"); //99
             addnameGenericTABLEValue("Lercanidipine"); //100
             addnameGenericTABLEValue("Felodipine"); //101
+            addnameGenericTABLEValue("Nifedipine"); //102
 
 
 

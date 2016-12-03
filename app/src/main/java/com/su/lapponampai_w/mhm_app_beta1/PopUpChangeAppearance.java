@@ -135,7 +135,9 @@ public class PopUpChangeAppearance extends AppCompatActivity {
 
                 String[] stringsTotalCapsule1 = {"img90101", "img90103", "img90107", "img90108", "img90112",
                         "img90114", "img90115", "img90308", "img90312", "img90506", "img90808",
-                        "img90813", "img90910", "img91104", "img91414", "img91515"};
+                        "img90813", "img90910", "img91104", "img91316", "img91414", "img91515", "img99911", "img99912"};
+
+
 
 
                 stringsTotalTablet = stringsTotalTablet1;
@@ -328,7 +330,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
             public void onClick(View v) {
 
                 String[] stringsBGColor1 = {"bgc00", "bgc01", "bgc02", "bgc04", "bgc03", "bgc08", "bgc06", "bgc14"
-                        , "bgc05", "bgc11", "bgc12", "bgc07", "bgc09", "bgc10", "bgc13"};
+                        , "bgc05", "bgc11", "bgc12", "bgc07", "bgc09", "bgc10", "bgc13", "bgc16", "bgc99"};
 
                 stringsStep2 = stringsBGColor1;
                 MyData myData = new MyData();

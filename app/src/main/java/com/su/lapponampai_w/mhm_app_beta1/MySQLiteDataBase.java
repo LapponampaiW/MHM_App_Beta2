@@ -426,8 +426,16 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Monolin SR", "isosorbide;5-mononitrate", 95, "20", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90101", "", "08:00", "18:00", "", "", "", "", "", "");
             addMedTABLEValue("Monolin", "isosorbide;5-mononitrate", 95, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "18:00", "", "", "", "", "", "");
             addMedTABLEValue("Monosorb", "isosorbide;5-mononitrate", 95, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "18:00", "", "", "", "", "", "");
-
-
+            addMedTABLEValue("Harnal OCAS", "Tamsulosin", 96, "0.4", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Uroflow PR", "Tamsulosin", 96, "0.4", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cardil CR", "Diltiazem", 97, "120", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0201", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Dilcardia", "Diltiazem", 97, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0607", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Dilizem", "Diltiazem", 97, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0917", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Dilizem", "Diltiazem", 97, "60", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0902", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Ditizem", "Diltiazem", 97, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Ditizem", "Diltiazem", 97, "60", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Herbesser R200", "Diltiazem", 97, "200", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90115", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Herbesser R100", "Diltiazem", 97, "100", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90101", "", "08:00", "", "", "", "", "", "", "");
 
 
 
@@ -536,6 +544,8 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Sulfamethoxazole"); //93
             addnameGenericTABLEValue("Isosorbide dinitrate"); //94
             addnameGenericTABLEValue("isosorbide 5-mononitrate"); //95
+            addnameGenericTABLEValue("Tamsulosin"); //96
+            addnameGenericTABLEValue("Diltiazem"); //97
 
 
 

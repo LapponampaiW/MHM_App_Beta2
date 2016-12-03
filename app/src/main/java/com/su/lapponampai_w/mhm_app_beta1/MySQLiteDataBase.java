@@ -413,6 +413,20 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Floxcipro", "Ciprofloxacin", 91, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0201", "", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Metrim", "Trimethoprim;Sulfamethoxazole", 92, "80", "1", 93, "400", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "13:00", "20:00", "", "", "", "", "");
             addMedTABLEValue("Metrim-F", "Trimethoprim;Sulfamethoxazole", 92, "160", "1", 93, "800", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0201", "", "08:00", "13:00", "20:00", "", "", "", "", "");
+            addMedTABLEValue("Corodil", "isosorbide;dinitrate", 94, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Hartsorb sublingual", "isosorbide;dinitrate", 94, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0907", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Hartsorb", "isosorbide;dinitrate", 94, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Hartsorb", "isosorbide;dinitrate", 94, "30", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("isobinate", "isosorbide;dinitrate", 94, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0702", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("isotrate", "isosorbide;dinitrate", 94, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Imdex CR", "isosorbide;5-mononitrate", 95, "60", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0702", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Ismo-20", "isosorbide;5-mononitrate", 95, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Isopen-20", "isosorbide;5-mononitrate", 95, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Monolin SR", "isosorbide;5-mononitrate", 95, "60", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90107", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Monolin SR", "isosorbide;5-mononitrate", 95, "20", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90101", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Monolin", "isosorbide;5-mononitrate", 95, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "18:00", "", "", "", "", "", "");
+            addMedTABLEValue("Monosorb", "isosorbide;5-mononitrate", 95, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "08:00", "18:00", "", "", "", "", "", "");
+
 
 
 
@@ -520,6 +534,8 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Ciprofloxacin"); //91
             addnameGenericTABLEValue("Trimethoprim"); //92
             addnameGenericTABLEValue("Sulfamethoxazole"); //93
+            addnameGenericTABLEValue("Isosorbide dinitrate"); //94
+            addnameGenericTABLEValue("isosorbide 5-mononitrate"); //95
 
 
 

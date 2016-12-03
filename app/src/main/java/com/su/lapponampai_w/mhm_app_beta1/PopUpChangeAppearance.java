@@ -130,7 +130,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                         "img0309", "img0312", "img0315", "img0501", "img0511", "img0601", "img0602",
                         "img0603", "img0604", "img0607", "img0609", "img0611", "img0612", "img0615","img0616",
                         "img0701", "img0702", "img0703", "img0711", "img0712", "img0714", "img0801",
-                        "img0802", "img0803", "img0901", "img0902", "img0903", "img0912", "img1002",
+                        "img0802", "img0803", "img0901", "img0902", "img0903", "img0907", "img0912", "img1002",
                         "img1103"};
 
                 String[] stringsTotalCapsule1 = {"img90101", "img90103", "img90108", "img90112",

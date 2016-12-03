@@ -584,6 +584,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
                     myManage.updateTotalAmountTABLE_minusTabBy_MainId_AmountTablet(string0, string4);
                     Toast.makeText(MedicationDetailActivity.this,"เสร็จสิ้นการทำงาน",Toast.LENGTH_SHORT).show();
                     MedicationListActivity.activityMedicationListActivity.finish();
+                    startActivity(new Intent(getBaseContext(),MainActivity.class));
                     finish();
                 }
 

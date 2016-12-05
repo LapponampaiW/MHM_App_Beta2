@@ -197,9 +197,11 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Ziffix Fc", "Lamivudine", 3, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "A", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Zovilam FC", "Lamivudine;zidovudine", 3, "150", "1", 13, "300", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0301", "A", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("GPO-vir S30", null, 3, "150", "1", 4, "200", "1", 5, "30", "1", 1, null, null, "1", 1, "ED:0", "img0201", "A", "08:00", "20:00", "", "", "", "", "", "");
-            addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0203", "A", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Tenofovir GPO", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0503", "A", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Tenof", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0503", "A", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Viread", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0501", "A", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Reyataz", "Atazanavir", 7, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img90506", "A", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Stribild FC", "Elivitegravir;Cabicistat;Emtricitabine;Tenofovir", 106, "150", "1", 107, "150", "1", 15, "200", "1", 6, "300", "1", "1", 1, "ED:0", "img0301", "A", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Cafergot", "Ergotamine Tartrate", 8, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Avamigran", "Ergotamine Tartrate", 8, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Tofago", "Ergotamine;Tartrate", 8, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0902", "", "08:00", "", "", "", "", "", "", "");
@@ -604,6 +606,8 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Amlodipine"); //103
             addnameGenericTABLEValue("Sulfadiazine"); //104
             addnameGenericTABLEValue("Pyrimethamine"); //105
+            addnameGenericTABLEValue("Elivitegravir"); //106
+            addnameGenericTABLEValue("Cabicistat"); //107
 
 
 

@@ -188,8 +188,8 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Efaviren GPO", "Efavirenz", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Stocrin", "Efavirenz", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Stocrin", "Efavirenz", 2, "200", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "A", "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Efamat", "Efavirenz", 2, "200", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0104", "A", "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Efamat", "Efavirenz", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0304", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Efamat FC", "Efavirenz", 2, "200", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0104", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Efamat FC", "Efavirenz", 2, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0304", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Lamivir", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "A", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Combid 300 FC", "Lamivudine;zidovudine", 3, "150", "1", 13, "300", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0301", "A", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Epivir FC", "Lamivudine", 3, "150", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1101", "A", "08:00", "20:00", "", "", "", "", "", "");
@@ -212,7 +212,7 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Norvir", "Ritonavir", 12, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0301", "A", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("GPO-VIR Z250", "Nevirapine", 4, "200", "1", 2, "150", "1", 13, "250", "1", 1, null, null, "1", 1, "ED:0", "img0701", "A", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Ziagenavir", "Abacavir", 14, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "A", "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Teevir", "", 6, "300", "1", 2, "600", "1", 15, "200", "1", 1, null, null, "1", 1, "ED:0", "img0304", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Teevir FC", "", 6, "300", "1", 2, "600", "1", 15, "200", "1", 1, null, null, "1", 1, "ED:0", "img0304", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Truvada", "Emtricitabine;Tenofovir", 15, "200", "1", 6, "300", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0303", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Ricovir-Em", "Emtricitabine;Tenofovir", 15, "200", "1", 6, "300", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0303", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Ricovir", "Tenofovir", 6, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0603", "A", "22:00", "", "", "", "", "", "", "");
@@ -220,11 +220,12 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Antivir", "Zidovudine", 13, "300", "1", 1, null, null, 1, null, null, 1, null, null, "2", 3, "ED:0", "img90910", "A", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Aluvia", "Lopinavir;ritonavir", 16, "100", "1", 12, "25", "1", 1, null, null, 1, null, null, "1", 4, "ED:0", "img0304", "A", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Neravir", "Nevirapine", 4, "200", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0701", "A", "08:00", "20:00", "", "", "", "", "", "");
+            addMedTABLEValue("Nevirapine Mylan", "Nevirapine", 4, "200", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0701", "A", "08:00", "20:00", "", "", "", "", "", "");
             addMedTABLEValue("Edurant", "Rilpivirine", 17, "25", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Atripla", "Efavirenz;Tenofovir;Emtricitabine", 2, "600", "1", 6, "300", "1", 15, "200", "1", 1, null, null, "1", 1, "ED:0", "img0301", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Videx EC", "Didanosine;ddl", 18, "400", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90101", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Videx EC", "Didanosine;ddl", 18, "250", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90101", "A", "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Prezista", "Darunavir", 19, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0104", "A", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Prezista", "Darunavir", 19, "600", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0101", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Prezista", "Darunavir", 19, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0104", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Invirase", "Saquinavir", 20, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0304", "A", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Kivexa", "Abacavir;Lamivudine", 14, "600", "1", 3, "300", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0304", "A", "22:00", "", "", "", "", "", "", "");
@@ -484,7 +485,8 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Caduet 10/10", "Amlodipine;Atorvastatin", 103, "10", "1", 64, "10", "1", 1, null, null, 1, null, null, "1", 1, "ED:0", "img0103", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Sulfadiazine GDH", "Sulfadiazine", 104, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 3, "ED:0", "img0601", "", "06:00", "12:00", "18:00", "24:00", "", "", "", "");
             addMedTABLEValue("Pyrimethamine", "Pyrimethamine", 105, "25", "1", 1, null, null, 1, null, null, 1, null, null, "1", 3, "ED:0", "img0602", "", "08:00", "", "", "", "", "", "", "");
-
+            addMedTABLEValue("Celsentri", "Maraviroc", 108, "300", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0103", "A", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Isentress FC", "Raltegravir", 109, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED", "img1413", "A", "20:00", "", "", "", "", "", "", "");
 
 
 
@@ -608,6 +610,8 @@ public class MySQLiteDataBase {
             addnameGenericTABLEValue("Pyrimethamine"); //105
             addnameGenericTABLEValue("Elivitegravir"); //106
             addnameGenericTABLEValue("Cabicistat"); //107
+            addnameGenericTABLEValue("Maraviroc"); //108
+            addnameGenericTABLEValue("Raltegravir"); //109
 
 
 

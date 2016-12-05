@@ -131,7 +131,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                         "img0603", "img0604", "img0607", "img0609", "img0611", "img0612", "img0615","img0616",
                         "img0701", "img0702", "img0703", "img0711", "img0712", "img0714", "img0801",
                         "img0802", "img0803", "img0901", "img0902", "img0903", "img0907", "img0912",
-                        "img0917", "img1002", "img1101", "img1103", "img1201", "img1301"};
+                        "img0917", "img1002", "img1101", "img1103", "img1201", "img1301", "img1401", "img1413"};
 
                 String[] stringsTotalCapsule1 = {"img90101", "img90103", "img90107", "img90108", "img90112",
                         "img90114", "img90115", "img90308", "img90312", "img90506", "img90808",
@@ -304,7 +304,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
             public void onClick(View v) {
 
                 String[] stringsWhiteTablet1 = {"img0101", "img0201", "img0301", "img0501", "img0601",
-                        "img0701", "img0801", "img0901", "img1101", "img1201", "img1301"};
+                        "img0701", "img0801", "img0901", "img1101", "img1201", "img1301", "img1401"};
                 stringsStep2 = stringsWhiteTablet1;
                 MyData myData = new MyData();
                 intsImageWhiteTablet = myData.translate_Appearance(stringsStep2);

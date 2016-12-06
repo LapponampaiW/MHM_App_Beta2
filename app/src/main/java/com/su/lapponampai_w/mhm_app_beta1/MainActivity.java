@@ -226,14 +226,50 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         Log.d("061259V1", "เข้า read_SumId_From_alarmReceiverTABLE" );
 
         String[] strings_id = myManage.readAllalarmReceiverTABLE(0);
-        String[] strings_Alarm_SumId = {myManage.readAllalarmReceiverTABLE(2)[0],
-                myManage.readAllalarmReceiverTABLE(3)[0], myManage.readAllalarmReceiverTABLE(4)[0],
-                myManage.readAllalarmReceiverTABLE(5)[0], myManage.readAllalarmReceiverTABLE(6)[0],
-                myManage.readAllalarmReceiverTABLE(7)[0], myManage.readAllalarmReceiverTABLE(8)[0],
-                myManage.readAllalarmReceiverTABLE(9)[0], myManage.readAllalarmReceiverTABLE(10)[0]};
+        String[] strings_SumidColumn1 = myManage.readAllalarmReceiverTABLE(2);
+        String[] strings_SumidColumn2 = myManage.readAllalarmReceiverTABLE(3);
+        String[] strings_SumidColumn3 = myManage.readAllalarmReceiverTABLE(4);
+        String[] strings_SumidColumn4 = myManage.readAllalarmReceiverTABLE(5);
+        String[] strings_SumidColumn5 = myManage.readAllalarmReceiverTABLE(6);
+        String[] strings_SumidColumn6 = myManage.readAllalarmReceiverTABLE(7);
+        String[] strings_SumidColumn7 = myManage.readAllalarmReceiverTABLE(8);
+        String[] strings_SumidColumn8 = myManage.readAllalarmReceiverTABLE(9);
+        String[] strings_SumidColumn9 = myManage.readAllalarmReceiverTABLE(10);
+
+
 
         for (int i = 0; i < strings_id.length; i++) {
+            if (strAlarmTABLE.equals(strings_id[i])) {
+                String[] strings_SumidSelectived = {strings_SumidColumn1[i],strings_SumidColumn2[i],
+                        strings_SumidColumn3[i],strings_SumidColumn4[i],strings_SumidColumn5[i],
+                        strings_SumidColumn6[i],strings_SumidColumn7[i],strings_SumidColumn8[i],
+                        strings_SumidColumn9[i]};
 
+                Boolean aBoolean = true;
+                int x = 0;
+                while (aBoolean) {
+                    Log.d("061259V1", "strings_Alarm_SumId[x] : " + strings_SumidSelectived[x]);
+
+                    if (strings_SumidSelectived[x].equals("") || x >= strings_SumidSelectived.length) {
+                        Log.d("061259V1", "เข้า ifif 1" );
+                        aBoolean = false;
+                        //ไม่มียาแล้ว หรือ x มีค่า  <9
+                    } else {
+                        Log.d("061259V1", "เข้า else" );
+                        strResult_Sum_id = strings_SumidSelectived[x];
+                        Log.d("061259V1", "strResult_sum_id : " + strResult_Sum_id );
+                        receiveValueToPopUpTakeMedicine();
+                        x = x + 1;
+
+                    }
+                }
+
+
+
+            }
+
+
+            /*
             if (strings_id[i].equals(strAlarmTABLE)) {
                 Log.d("061259V1", "เข้า if แรก" );
                 Boolean aBoolean = true;
@@ -255,10 +291,17 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     }
                 }
             }
+            */
+
+
+
+
         }
     }
 
     private void receiveValueToPopUpTakeMedicine() {
+
+        Log.d("061259V1", "เข้า receiveValueToPopUpTakeMedicine");
 
         MyManage myManage = new MyManage(this);
         MyData myData = new MyData();
@@ -269,19 +312,30 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         stringsClick_TimeRef = myManage.filter_sumTABLE__by_Date(sCurrentDay, 3); //TimeRef
         stringsClick_SkipHold = myManage.filter_sumTABLE__by_Date(sCurrentDay, 6); //SkipHold
 
+        Log.d("061259V1", "1 : " + stringsClick_Sum_id[0]);
+        Log.d("061259V1", "Main_id  : " + stringsClick_Sum_id[0]);
+
+
+
+
         String[] strings_DateCheck = myManage.filter_sumTABLE__by_Date(sCurrentDay, 4); //DateCheck
         String[] strings_TimeCheck = myManage.filter_sumTABLE__by_Date(sCurrentDay, 5); //TimeCheck
 
         stringsClick_DateTimeCheck = new String[stringsClick_Main_id.length];
+
         if (!stringsClick_Main_id[0].equals("")) {
             for (int x = 0; x < stringsClick_Main_id.length; x++) {
                 if (!strings_DateCheck[x].equals("")) {
                     stringsClick_DateTimeCheck[x] = strings_DateCheck[x] + " " + strings_TimeCheck[x];
+                    Log.d("061259V1", "DateTimeCheck  : " + stringsClick_DateTimeCheck[x]);
                 } else {
                     stringsClick_DateTimeCheck[x] = "";
+                    Log.d("061259V1", "DateTimeCheck  : " + stringsClick_DateTimeCheck[x]);
                 }
             }
         }
+
+
 
 
         stringsMainTABLE_Main_id = myManage.readAllMainTABLE(0);
@@ -289,16 +343,18 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         stringsMainTABLE_AmountTablet = myManage.readAllMainTABLE(6);
         stringsMainTABLE_EA = myManage.readAllMainTABLE(7);
         String[] stringsMainTABLE_Appearance = myManage.readAllMainTABLE(5);
-
+        Log.d("061259V1", "stringClick_Sum_id  : " + stringsClick_Sum_id[0]);
 
         for (int i = 0; i < stringsClick_Sum_id.length; i++) {
             if (stringsClick_Sum_id[i].equals(strResult_Sum_id)) {
+                Log.d("061259V1", "stringClick_Sum_id  : " + stringsClick_Sum_id[i]);
                 //ค่าที่จะเอาไปใช้ใน Pop up จริงๆ
                 strResult_Main_id = stringsClick_Main_id[i];  //ต้องเอา Main_id ไปทำต่อ
                 strResult_DateRef = stringsClick_DateRef[i];
                 strResult_TimeRef = stringsClick_TimeRef[i];
                 //strResult_Appearance = stringsClick_Appearance[i];
                 strResult_DateTimeCheck = stringsClick_DateTimeCheck[i];
+
                 strResult_SkipHold = stringsClick_SkipHold[i];
 
             }

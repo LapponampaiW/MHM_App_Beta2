@@ -242,7 +242,7 @@ public class MyManage {
     private static final String[] column_sumTABLE_alternativeImage = {sucolumn_id, sucolumn_Sum_id, sucolumn_Appearance};
 
     //alarmReceiverTABLE
-    private static final String alarmReceiverTABLE = "alarmReceiverTABLE";
+    public static final String alarmReceiverTABLE = "alarmReceiverTABLE";
     private static final String alcolumn_id = "_id";
     private static final String alcolumn_DateTimeReceiver = "Date_time_receiver";
     private static final String alcolumn_sumId1 = "Sum_id1";
@@ -505,6 +505,71 @@ public class MyManage {
 
         return strREAD;
     }
+
+    public String[] filteralarmReceiverTABLE_by_DateTimereceiver(String strDateTime, int intColumn) {
+        String[] strREAD = null;
+        String[] strColumnAlarmReceiver = {alcolumn_id,alcolumn_DateTimeReceiver,alcolumn_sumId1,
+                alcolumn_sumId2,alcolumn_sumId3,alcolumn_sumId4,alcolumn_sumId5,alcolumn_sumId6,
+                alcolumn_sumId7,alcolumn_sumId8,alcolumn_sumId9};
+
+        Cursor cursor = readSqLiteDatabase.query(alarmReceiverTABLE, strColumnAlarmReceiver, "Date_time_receiver " + "LIKE '" + strDateTime + "'", null, null, null, null);
+        int iCount = cursor.getCount();
+        if (iCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for (int i = 0; i < cursor.getCount(); i++) {
+                switch (intColumn) {
+                    case 0:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_id));
+                        break;
+                    case 1:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_DateTimeReceiver));
+                        break;
+                    case 2:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId1));
+                        break;
+                    case 3:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId2));
+                        break;
+                    case 4:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId3));
+                        break;
+                    case 5:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId4));
+                        break;
+                    case 6:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId5));
+                        break;
+                    case 7:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId6));
+                        break;
+                    case 8:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId7));
+                        break;
+                    case 9:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId8));
+                        break;
+                    case 10:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId9));
+                        break;
+                    default:
+                        break;
+                }
+                cursor.moveToNext();
+            }
+
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+
+        return strREAD;
+    }
+
+
+
+
+
 
     //Update sumTABLE ยกเลิก การAdd DateCheck DateTime
     public long updatesumTABLE_Canceled_ADD_DateCheckTimeCheck(String str_id) {
@@ -2241,6 +2306,19 @@ public class MyManage {
         return writeSqLiteDatabase.insert(addUseTABLE, null, contentValues);
     }
 
+    public long addValueTo_alarmReceiverTABLE_Sumid1(String strDateTime,
+                                       String sum_id) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(alcolumn_DateTimeReceiver, strDateTime);
+        contentValues.put(alcolumn_sumId1,sum_id);
+
+
+        return writeSqLiteDatabase.insert(alarmReceiverTABLE, null, contentValues);
+    }
+
+
+
     public long addValueTo_totalAmountTABLE(String strMain_id,
                                             double doubleTotalAmount,
                                             String strDateUpdated) {
@@ -2260,6 +2338,8 @@ public class MyManage {
 
         return writeSqLiteDatabase.insert(sumTABLE_alternativeImage, null, contentValues);
     }
+
+
 
 
 

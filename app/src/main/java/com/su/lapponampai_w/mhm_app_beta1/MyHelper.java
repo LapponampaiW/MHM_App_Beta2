@@ -147,4 +147,9 @@ public class MyHelper extends SQLiteOpenHelper {
         this.close();
         super.finalize();
     }
+
+
+
+
+
 }  //Main Class

@@ -1178,6 +1178,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
             sqLiteDatabase.delete("displayTABLE", null, null);
 
+
+
             //เริ่มใส่ข้อมูลเข้าไปใน displayTABLE
             for (int z = 0; z < strings_TimeRef.length; z++) {
                 String strValue;

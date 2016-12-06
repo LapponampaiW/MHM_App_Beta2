@@ -49,7 +49,10 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
     public MyData myData;
     public int notifID = 100;
     public NotificationManager notificationManager;
-    private SQLiteDatabase sqLiteDatabase;
+    private SQLiteDatabase writeSqLiteDatabase;
+
+    MyHelper myHelper;
+
 
 
     @Override
@@ -64,6 +67,8 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
         myManage = new MyManage(context);
         myData = new MyData();
+        myHelper = new MyHelper(context);
+        writeSqLiteDatabase = myHelper.getWritableDatabase();
 
 
         //checkAndAddTabletInPillBox(context);
@@ -389,8 +394,10 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
     private void addDataToBroadcastTABLE(Context context, MyData myData, MyManage myManage) {
 
-        Intent alertIntent = new Intent(context, AlarmReceiver.class); //1
+        //ลบข้อมูลท้งหมดในตาราง alarmReceiverTABLE
+        writeSqLiteDatabase.delete("alarmReceiverTABLE", null, null);
 
+        Intent alertIntent = new Intent(context, AlarmReceiver.class); //1
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE); //2
 
 
@@ -405,6 +412,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
 
         if (strings_Allow_Nof[0].equals("Y")) {
+
             for (int i = 0; i < 2; i++) {
                 String sDate = myData.currentDay();
                 Date dDate = myData.stringChangetoDateWithOutTime(sDate);
@@ -437,47 +445,35 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                         if (strings_sumTABLE_DateCheck[x].equals("") && strings_sumTABLE_SkipHold[x].equals("")) {
                             Log.d("14/10/2559", "1 : เข้า if2 และ for"); //DateCheck เป็นค่าว่างและ SkipHold เป็นค่าว่าง
                             //หมายถึง ต้องการค่าให้ ทำการ AlarmReceiver
-
-                            //เพิ่ม
+                            //061256 เริ่ม update ข้อมูลลงในตาราง alarmreceiverTABLET
                             String stringDateTime = sSpecificDate + " " + strings_sumTABLE_TimeRef[x];
                             Date d_sumTABLE_DateTimeRef = myData.stringChangetoDate(stringDateTime);
 
-                            //Date d_sumTABLE_TimeRef = myData.stringChangetoTime_Minute(strings_sumTABLE_TimeRef[x]);
-
                             if (dCurrentDateTime.compareTo(d_sumTABLE_DateTimeRef) <= 0) {
-                                //เริ่ม boardcast
+                                //เริ่ม ใส่ข้อมูล ต้องทำ mymanage เป็น addValue + update + filter
+                                String[] strings_id = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 0);
 
-                                Calendar calendarCurrent = Calendar.getInstance();
-                                Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
+                                if (strings_id[0].equals("")) {
+                                    //ถ้าเป็นค่าว่างแปลว่าให้ addValue ลงไปโดยมี 3 ค่า
+                                    //_id,DateTime,Sum_id1
+                                    myManage.addValueTo_alarmReceiverTABLE_Sumid1(stringDateTime, strings_sumTABLE_id[x]);
 
-                                String stringAlarm = sSpecificDate + " " + strings_sumTABLE_TimeRef[x];
+                                } else {
 
-                                Log.d("14/10/2559", "2 : stringAlarm : " + stringAlarm);
-                                Date dAlarm = myData.stringChangetoDate(stringAlarm);
-                                myCalendarAlarm.setTime(dAlarm);
-
-                                //24/10/2559 ส่งค่าไปกับ intent
-                                alertIntent.putExtra("DailyUpdateIntent", strings_sumTABLE_id[x]);
-                                Log.d("25/10/2559", "3 : strings_sumTABLE_id : " + strings_sumTABLE_id[x]);
-
-                                PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                                a = a + 1;
+                                }
 
 
-                                alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent); //4
 
 
-                                Log.d("14/10/2559", "3 : เข้า alarmManager");
+
+
+
+
                             }
                         }
                     }
                 }
             }
-        } else {
-            //ลบข้อมูลในตารางใหม่อย่างเดียว
-            //sqLiteDatabase
-            //SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
-            //sqLiteDatabase.delete("displayTABLE", null, null);
         }
 
 

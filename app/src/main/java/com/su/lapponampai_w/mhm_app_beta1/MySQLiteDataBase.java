@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AppCompatActivity;
 
 import static com.su.lapponampai_w.mhm_app_beta1.MyManage.column_drugInteractionTABLE;
 import static com.su.lapponampai_w.mhm_app_beta1.MyManage.column_medTABLE;
@@ -64,7 +65,7 @@ import static com.su.lapponampai_w.mhm_app_beta1.MyManage.timeTABLE;
  */
 
 
-public class MySQLiteDataBase {
+public class MySQLiteDataBase extends AppCompatActivity {
     MyHelper helper;
     SQLiteDatabase readSqLiteDatabase, writeSqLiteDatabase;
 
@@ -660,6 +661,8 @@ public class MySQLiteDataBase {
 
         }
     } //drugInteractionTABLEDate
+
+
 
 
 

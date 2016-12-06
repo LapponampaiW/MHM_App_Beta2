@@ -166,7 +166,18 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 strAlarmTABLE = getIntent().getStringExtra("SumId_AlarmReceiver");
                 Log.d("061259V1", "strAlarmTABLE" + strAlarmTABLE);
 
-
+                MyManage myManage = new MyManage(this);
+                String[] stringsStay = myManage.readSQLite_userTABLE(3);
+                if (stringsStay[0].equals("1") || stringsStay[0].equals("2")) {
+                    Intent intent = new Intent(MainActivity.this, PopUpGate.class);
+                    intent.putExtra("NotificationGate", "NotificationGate");
+                    intent.putExtra("NotificationGate_SumId", strAlarmTABLE);
+                    startActivity(intent);
+                } else {
+                    //receiveValueToPopUpTakeMedicine();
+                    //06122559 ทำตรงนี้ก่อน เดี่ยวต้องไปทำข้างล่างด้วยนะ
+                    read_SumId_From_alarmReceiverTABLE();
+                }
 
 
 
@@ -192,8 +203,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
 
             else if (popUpMaster.equals("NotificationGate")) {
-                strResult_Sum_id = getIntent().getStringExtra("SumId_AlarmReceiver");
-                receiveValueToPopUpTakeMedicine();
+                strAlarmTABLE = getIntent().getStringExtra("SumId_AlarmReceiver");
+                //receiveValueToPopUpTakeMedicine();
+                read_SumId_From_alarmReceiverTABLE();
             }
 
 
@@ -206,6 +218,44 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             Toast.makeText(getBaseContext(), "PopUpMaster == null",Toast.LENGTH_LONG);
         }
 
+    }
+
+    private void read_SumId_From_alarmReceiverTABLE() {
+        MyManage myManage = new MyManage(this);
+
+        Log.d("061259V1", "เข้า read_SumId_From_alarmReceiverTABLE" );
+
+        String[] strings_id = myManage.readAllalarmReceiverTABLE(0);
+        String[] strings_Alarm_SumId = {myManage.readAllalarmReceiverTABLE(2)[0],
+                myManage.readAllalarmReceiverTABLE(3)[0], myManage.readAllalarmReceiverTABLE(4)[0],
+                myManage.readAllalarmReceiverTABLE(5)[0], myManage.readAllalarmReceiverTABLE(6)[0],
+                myManage.readAllalarmReceiverTABLE(7)[0], myManage.readAllalarmReceiverTABLE(8)[0],
+                myManage.readAllalarmReceiverTABLE(9)[0], myManage.readAllalarmReceiverTABLE(10)[0]};
+
+        for (int i = 0; i < strings_id.length; i++) {
+
+            if (strings_id[i].equals(strAlarmTABLE)) {
+                Log.d("061259V1", "เข้า if แรก" );
+                Boolean aBoolean = true;
+                int x = 0;
+                while (aBoolean) {
+                    Log.d("061259V1", "strings_Alarm_SumId[x] : " + strings_Alarm_SumId[x] );
+
+                    if (strings_Alarm_SumId[x].equals("") || x >= strings_Alarm_SumId.length) {
+                        Log.d("061259V1", "เข้า ifif 1" );
+                        aBoolean = false;
+                        //ไม่มียาแล้ว หรือ x มีค่า  <9
+                    } else {
+                        Log.d("061259V1", "เข้า else" );
+                        strResult_Sum_id = strings_Alarm_SumId[x];
+                        Log.d("061259V1", "strResult_sum_id : " + strResult_Sum_id );
+                        receiveValueToPopUpTakeMedicine();
+                        x = x + 1;
+
+                    }
+                }
+            }
+        }
     }
 
     private void receiveValueToPopUpTakeMedicine() {
@@ -231,7 +281,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     stringsClick_DateTimeCheck[x] = "";
                 }
             }
-
         }
 
 

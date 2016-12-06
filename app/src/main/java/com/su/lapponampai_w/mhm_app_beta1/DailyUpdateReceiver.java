@@ -548,7 +548,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                 a = a + 1;
                 alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent); //4
                 a = a + 1;
-                myCalendarAlarm.add(Calendar.MINUTE,15);
+                myCalendarAlarm.add(Calendar.MINUTE,1);
                 PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.set(1,myCalendarAlarm.getTimeInMillis(),pendingIntent1);
             } //for

@@ -1009,6 +1009,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
     }
 
+
     private void checkAndIntentToTakeSkipMedicineActivity() {
 
         if (!strResult_DateTimeCheck.equals("")) {

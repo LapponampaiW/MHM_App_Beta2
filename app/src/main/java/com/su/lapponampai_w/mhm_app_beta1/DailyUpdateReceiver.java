@@ -513,26 +513,54 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         Calendar calendarCurrent = Calendar.getInstance();
         Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
 
+        String[] strTimeNof = myManage.filter_userTABLE(9); //หา TimeNof ว่าเป็น 1 หรือ 2
+        if (strTimeNof[0].equals("1")) {
+            for(int x =0 ;x < stringsAlarmId.length;x++) {
+                String stringAlarm = stringsAlarmDateTime[x];
+                Date dAlarm = myData.stringChangetoDate(stringAlarm);
+                myCalendarAlarm.setTime(dAlarm);
 
-        for(int x =0 ;x < stringsAlarmId.length;x++) {
-            String stringAlarm = stringsAlarmDateTime[x];
-            Date dAlarm = myData.stringChangetoDate(stringAlarm);
-            myCalendarAlarm.setTime(dAlarm);
+                //24/10/2559 ส่งค่าไปกับ intent
+                alertIntent.putExtra("DailyUpdateIntent", stringsAlarmId[x]);
+                Log.d("25/10/2559", "3 : strings_sumTABLE_id : " + stringsAlarmId[x]);
 
-            //24/10/2559 ส่งค่าไปกับ intent
-            alertIntent.putExtra("DailyUpdateIntent", stringsAlarmId[x]);
-            Log.d("25/10/2559", "3 : strings_sumTABLE_id : " + stringsAlarmId[x]);
-
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-            a = a + 1;
-
-
-            alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent); //4
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                a = a + 1;
 
 
-            Log.d("14/10/2559", "3 : เข้า alarmManager");
+                alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent); //4
 
-        } //for
+
+                Log.d("14/10/2559", "3 : เข้า alarmManager");
+
+            } //for
+        } else if (strTimeNof[0].equals("2")) {
+            for(int x =0 ;x < stringsAlarmId.length;x++) {
+                String stringAlarm = stringsAlarmDateTime[x];
+                Date dAlarm = myData.stringChangetoDate(stringAlarm);
+                myCalendarAlarm.setTime(dAlarm);
+
+                //24/10/2559 ส่งค่าไปกับ intent
+                alertIntent.putExtra("DailyUpdateIntent", stringsAlarmId[x]);
+
+
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                a = a + 1;
+                alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent); //4
+                a = a + 1;
+                myCalendarAlarm.add(Calendar.MINUTE,15);
+                PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                alarmManager.set(1,myCalendarAlarm.getTimeInMillis(),pendingIntent1);
+            } //for
+        }
+
+
+
+
+
+
+
+
     }
 
 

@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     String[] stringsMainTABLE_TradeName, stringsMainTABLE_AmountTablet,
             stringsMainTABLE_Main_id,stringsMainTABLE_EA; //clickTakeMedicine
     String strResult_Position, strResult_Main_id, strResult_TimeRef, strResult_Appearance,
-            strResult_AmountTablet, strResult_Tradename,strResult_DateTimeCheck,strResult_Sum_id,
+            strResult_AmountTablet, strResult_Tradename,strResult_DateTimeCheck,strResult_Sum_id, strAlarmTABLE ,
             strResult_EA,strResult_SkipHold,strResult_DateRef = ""; //clickTakeMedicine
 
     String popUpMaster;
@@ -158,8 +158,20 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 startActivity(new Intent(MainActivity.this, NewsActivity.class));
             } else if (popUpMaster.equals("Setting")) {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
-            } else if (popUpMaster.equals("AlarmReceiver")) {
+            }
 
+
+            else if (popUpMaster.equals("AlarmReceiver")) {
+
+                strAlarmTABLE = getIntent().getStringExtra("SumId_AlarmReceiver");
+                Log.d("061259V1", "strAlarmTABLE" + strAlarmTABLE);
+
+
+
+
+
+
+                /*
                 strResult_Sum_id = getIntent().getStringExtra("SumId_AlarmReceiver");
                 Log.d("25/10/2559", "strResult_Sum_id" + strResult_Sum_id);
                 Toast.makeText(getBaseContext(), "strResult_Sum_id = " + strResult_Sum_id, Toast.LENGTH_SHORT).show();
@@ -173,10 +185,23 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 } else {
                     receiveValueToPopUpTakeMedicine();
                 }
-            } else if (popUpMaster.equals("NotificationGate")) {
+
+                */
+            }
+
+
+
+            else if (popUpMaster.equals("NotificationGate")) {
                 strResult_Sum_id = getIntent().getStringExtra("SumId_AlarmReceiver");
                 receiveValueToPopUpTakeMedicine();
             }
+
+
+
+
+
+
+
         } else {
             Toast.makeText(getBaseContext(), "PopUpMaster == null",Toast.LENGTH_LONG);
         }

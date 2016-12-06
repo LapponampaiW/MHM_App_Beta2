@@ -241,6 +241,21 @@ public class MyManage {
     private static final String sucolumn_Appearance = "Appearance";
     private static final String[] column_sumTABLE_alternativeImage = {sucolumn_id, sucolumn_Sum_id, sucolumn_Appearance};
 
+    //alarmReceiverTABLE
+    private static final String alarmReceiverTABLE = "alarmReceiverTABLE";
+    private static final String alcolumn_id = "_id";
+    private static final String alcolumn_DateTimeReceiver = "Date_time_receiver";
+    private static final String alcolumn_sumId1 = "Sum_id1";
+    private static final String alcolumn_sumId2 = "Sum_id2";
+    private static final String alcolumn_sumId3 = "Sum_id3";
+    private static final String alcolumn_sumId4 = "Sum_id4";
+    private static final String alcolumn_sumId5 = "Sum_id5";
+    private static final String alcolumn_sumId6 = "Sum_id6";
+    private static final String alcolumn_sumId7 = "Sum_id7";
+    private static final String alcolumn_sumId8 = "Sum_id8";
+    private static final String alcolumn_sumId9 = "Sum_id9";
+
+
 
     public MyManage(Context context) {
         helper = new MyHelper(context);
@@ -1729,18 +1744,6 @@ public class MyManage {
             contentValues.put(ucolumn_times_notif, str_notification);
         }
 
-        writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
-    }
-
-
-    public void update_TimesNof(String username,String str_TimesNof) {
-
-        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,
-                "User =?", new String[]{String.valueOf(username)}, null, null, null);
-        cursor.moveToFirst();
-        String id = cursor.getString(0);
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(ucolumn_times_notif, str_TimesNof);
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
     }
 

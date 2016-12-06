@@ -579,6 +579,48 @@ public class MyManage {
         return writeSqLiteDatabase.update(sum_table,contentValues, "_id = " + str_id,null);
     }
 
+    public long update_alarmReceiverTABLE_SumId(String strId, int sumIdPosition, String sumId) {
+        ContentValues contentValues = new ContentValues();
+        switch (sumIdPosition) {
+            case 0:
+                contentValues.put(alcolumn_sumId1, sumId);
+                break;
+            case 1:
+                contentValues.put(alcolumn_sumId2, sumId);
+                break;
+            case 2:
+                contentValues.put(alcolumn_sumId3, sumId);
+                break;
+            case 3:
+                contentValues.put(alcolumn_sumId4, sumId);
+                break;
+            case 4:
+                contentValues.put(alcolumn_sumId5, sumId);
+                break;
+            case 5:
+                contentValues.put(alcolumn_sumId6, sumId);
+                break;
+            case 6:
+                contentValues.put(alcolumn_sumId7, sumId);
+                break;
+            case 7:
+                contentValues.put(alcolumn_sumId8, sumId);
+                break;
+            case 8:
+                contentValues.put(alcolumn_sumId9, sumId);
+                break;
+            default:
+                break;
+        }
+
+            return writeSqLiteDatabase.update(alarmReceiverTABLE,contentValues, "_id = " + strId,null);
+
+
+    }
+
+
+
+
     //Update ยกเลิก SkipHold ใน sumTABLE
     public long updatesumTABLE_Canceled_SkipHold(String str_id) {
         ContentValues contentValues = new ContentValues();
@@ -2312,6 +2354,14 @@ public class MyManage {
         ContentValues contentValues = new ContentValues();
         contentValues.put(alcolumn_DateTimeReceiver, strDateTime);
         contentValues.put(alcolumn_sumId1,sum_id);
+        contentValues.put(alcolumn_sumId2,"");
+        contentValues.put(alcolumn_sumId3,"");
+        contentValues.put(alcolumn_sumId4,"");
+        contentValues.put(alcolumn_sumId5,"");
+        contentValues.put(alcolumn_sumId6,"");
+        contentValues.put(alcolumn_sumId7,"");
+        contentValues.put(alcolumn_sumId8,"");
+        contentValues.put(alcolumn_sumId9,"");
 
 
         return writeSqLiteDatabase.insert(alarmReceiverTABLE, null, contentValues);

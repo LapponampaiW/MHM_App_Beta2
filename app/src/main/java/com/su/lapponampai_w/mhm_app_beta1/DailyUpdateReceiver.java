@@ -50,6 +50,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
     public int notifID = 100;
     public NotificationManager notificationManager;
     private SQLiteDatabase writeSqLiteDatabase;
+    String[] strings_alarmReceiverTABLE_id;
 
     MyHelper myHelper;
 
@@ -451,30 +452,54 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                             if (dCurrentDateTime.compareTo(d_sumTABLE_DateTimeRef) <= 0) {
                                 //เริ่ม ใส่ข้อมูล ต้องทำ mymanage เป็น addValue + update + filter
-                                String[] strings_id = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 0);
+                                strings_alarmReceiverTABLE_id = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 0);
 
-                                if (strings_id[0].equals("")) {
+                                if (strings_alarmReceiverTABLE_id[0].equals("")) {
                                     //ถ้าเป็นค่าว่างแปลว่าให้ addValue ลงไปโดยมี 3 ค่า
                                     //_id,DateTime,Sum_id1
                                     myManage.addValueTo_alarmReceiverTABLE_Sumid1(stringDateTime, strings_sumTABLE_id[x]);
 
                                 } else {
+                                    //ถ้าไม่เป็นค่าว่างแปลว่ามีค่าอยู่แล้ว
+                                    //String[] strings_DateTime = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 1);
+                                    String[] strings_Sumid1 = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 2);
+                                    String[] strings_Sumid2 = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 3);
+                                    String[] strings_Sumid3 = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 4);
+                                    String[] strings_Sumid4 = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 5);
+                                    String[] strings_Sumid5 = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 6);
+                                    String[] strings_Sumid6 = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 7);
+                                    String[] strings_Sumid7 = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 8);
+                                    String[] strings_Sumid8 = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 9);
+                                    String[] strings_Sumid9 = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 10);
 
+                                    String[] strings_alarmReceiverTABLE_SumId = {strings_Sumid1[0],strings_Sumid2[0],
+                                            strings_Sumid3[0],strings_Sumid4[0],strings_Sumid5[0],strings_Sumid6[0],strings_Sumid7[0],strings_Sumid8[0]
+                                            ,strings_Sumid9[0]};
+
+                                    if (strings_alarmReceiverTABLE_SumId[8].equals("")) {
+                                        Boolean aBoolean = true;
+                                        int ss = 1;
+                                        while (aBoolean) {
+                                            if (strings_alarmReceiverTABLE_SumId[ss].equals("")) {
+                                                myManage.update_alarmReceiverTABLE_SumId(strings_alarmReceiverTABLE_id[0], ss, strings_sumTABLE_id[x]);
+                                                aBoolean = false;
+                                            } else {
+                                                ss = ss + 1;
+                                            }
+
+                                        } //while
+                                    } //ถ้าไม่ใช่ค่าว่างก็ข้ามไปเลยเพราะ แสดงบนหน้าจอไม่ได้แล้ว
                                 }
 
-
-
-
-
-
-
-
-                            }
+                                //ทำ alarmReceiverTABLE สำเร็จ
+                            } //if
                         }
-                    }
+                    } //for
                 }
             }
-        }
+        } //first if
+
+
 
 
     } //addDataToBroadcastTABLE

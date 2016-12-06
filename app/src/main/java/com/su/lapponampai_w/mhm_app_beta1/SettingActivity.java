@@ -45,8 +45,9 @@ public class SettingActivity extends AppCompatActivity {
     TextView textViewid,textViewAbout,textViewChangePW,textViewSecurity,textViewFinish;
     MyManage myManage;
     Switch aSwitch;
-    LinearLayout linearLayout;
-    CheckBox checkBoxDefault, checkBoxCustom,checkBoxSecurityNone,checkBoxSecurity1,checkBoxSecurity2;
+    LinearLayout linearLayout,linearLayoutTimesNof;
+    CheckBox checkBoxDefault, checkBoxCustom,checkBoxSecurityNone,
+            checkBoxSecurity1,checkBoxSecurity2,checkBoxNof1,checkBoxNof2;
     EditText editText;
 
     @Override
@@ -62,6 +63,7 @@ public class SettingActivity extends AppCompatActivity {
         buttonConnect.setVisibility(View.GONE);
         buttonSuperUser.setVisibility(View.GONE);
         linearLayout.setVisibility(View.GONE);
+        linearLayoutTimesNof.setVisibility(View.GONE);
 
         setView();
         //set คำอธิบายใน Security
@@ -73,6 +75,9 @@ public class SettingActivity extends AppCompatActivity {
 
         //คลิก Checkbox ของการเปลี่ยนระดับของ Security
         clickCheckBoxSecurity();
+
+        //คลิก CheckBok Times_nof
+        clickCheckBoxNof();
 
         //คลิก AboutActivity
         clickAboutActivity();
@@ -91,6 +96,30 @@ public class SettingActivity extends AppCompatActivity {
         clickConnect();
 
         clickSuperUser();
+
+    }
+
+    private void clickCheckBoxNof() {
+        checkBoxNof1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    checkBoxNof1.setChecked(true);
+                    checkBoxNof2.setChecked(false);
+                String[] strUser = myManage.filter_userTABLE(1); //ค่า id
+                myManage.update_notification(strUser[0],"1","2");
+            }
+        });
+
+
+        checkBoxNof2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkBoxNof1.setChecked(false);
+                checkBoxNof2.setChecked(true);
+                String[] strUser = myManage.filter_userTABLE(1); //ค่า id
+                myManage.update_notification(strUser[0],"2","2");
+            }
+        });
 
     }
 
@@ -117,11 +146,11 @@ public class SettingActivity extends AppCompatActivity {
                 } else if(!s.equals("") && checkBoxCustom.isChecked()) {
 
                     String[] strUser = myManage.filter_userTABLE(1); //ค่า username
-                    myManage.update_notification(strUser[0],s);
+                    myManage.update_notification(strUser[0],s,"1");
                     Toast.makeText(getBaseContext(), "เปลี่ยนแปลงข้อความเรียบร้อย", Toast.LENGTH_SHORT).show();
                 } else if (checkBoxDefault.isChecked()) {
                     String[] strUser = myManage.filter_userTABLE(1); //ค่า username
-                    myManage.update_notification(strUser[0],"Default");
+                    myManage.update_notification(strUser[0],"Default","1");
                     Toast.makeText(getBaseContext(), "เปลี่ยนแปลงข้อความเรียบร้อย", Toast.LENGTH_SHORT).show();
                 }
 
@@ -287,9 +316,11 @@ public class SettingActivity extends AppCompatActivity {
                 if (isChecked) {
                     myManage.update_Allowed_notification(strUser[0], "Y");
                     linearLayout.setVisibility(View.VISIBLE);
+                    linearLayoutTimesNof.setVisibility(View.VISIBLE);
                 } else {
                     myManage.update_Allowed_notification(strUser[0],"N");
                     linearLayout.setVisibility(View.GONE);
+                    linearLayoutTimesNof.setVisibility(View.GONE);
                 }
 
                 SplashScreen splashScreen = new SplashScreen();
@@ -306,11 +337,14 @@ public class SettingActivity extends AppCompatActivity {
         String[] strStay = myManage.filter_userTABLE(3); //ค่า Stay (0,1,2)
         String[] strAllowNotif = myManage.filter_userTABLE(7); //หา Allowed_notification
         String[] strNotif = myManage.filter_userTABLE(6); // ดูข้อความ Notification
+        String[] strTimeNof = myManage.filter_userTABLE(9); //หา TimeNof ว่าเป็น 1 หรือ 2
+        Log.d("061259V1", strTimeNof[0]);
         textViewid.setText("ไอดีผู้ใช้ : ".concat(strUser[0]));
 
         if (strAllowNotif[0].equals("Y")) {
             aSwitch.setChecked(true);
             linearLayout.setVisibility(View.VISIBLE);
+            linearLayoutTimesNof.setVisibility(View.VISIBLE);
         } else {
             aSwitch.setChecked(false);
         }
@@ -328,6 +362,13 @@ public class SettingActivity extends AppCompatActivity {
             editText.setText(strNotif[0]);
         }
 
+        if (strTimeNof[0].equals("1")) {
+            checkBoxNof1.setChecked(true);
+            checkBoxNof2.setChecked(false);
+        } else if (strTimeNof[0].equals("2")) {
+            checkBoxNof2.setChecked(true);
+            checkBoxNof1.setChecked(false);
+        }
 
         setViewTextViewSecurity(strStay[0]);
 
@@ -383,6 +424,7 @@ public class SettingActivity extends AppCompatActivity {
         textViewid = (TextView) findViewById(R.id.textView173);
         aSwitch = (Switch) findViewById(R.id.switch1);
         linearLayout = (LinearLayout) findViewById(R.id.headSettingLayout2);
+        linearLayoutTimesNof = (LinearLayout) findViewById(R.id.linNotification);
         checkBoxDefault = (CheckBox) findViewById(R.id.checkBoxSetting1);
         checkBoxCustom = (CheckBox) findViewById(R.id.checkBoxSetting2);
         editText = (EditText) findViewById(R.id.editText14);
@@ -391,6 +433,8 @@ public class SettingActivity extends AppCompatActivity {
         checkBoxSecurityNone = (CheckBox) findViewById(R.id.checkBoxSetting3);
         checkBoxSecurity1 = (CheckBox) findViewById(R.id.checkBoxSetting4);
         checkBoxSecurity2 = (CheckBox) findViewById(R.id.checkBoxSetting5);
+        checkBoxNof1 = (CheckBox) findViewById(R.id.checkBoxNof1);
+        checkBoxNof2 = (CheckBox) findViewById(R.id.checkBoxNof2);
         textViewSecurity = (TextView) findViewById(R.id.textView187);
         buttonNofSave = (Button) findViewById(R.id.buttonSettingSave);
         textViewFinish = (TextView) findViewById(R.id.textView199);

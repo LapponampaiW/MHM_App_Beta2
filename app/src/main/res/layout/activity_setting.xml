@@ -80,6 +80,44 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linNotification">
+
+                <TextView
+                    android:text="กำหนดจำนวนครั้งในการเตือน"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView212" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1 ครั้ง"
+                        android:id="@+id/checkBoxNof1"
+                        android:layout_weight="2"
+                        android:layout_marginLeft="@dimen/heading3"
+                        app:buttonTint="@android:color/holo_red_light" />
+
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2 ครั้ง (ห่างกัน 15 นาที)"
+                        android:id="@+id/checkBoxNof2"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/heading3"
+                        app:buttonTint="@android:color/holo_red_light" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/headSettingLayout2"
                 android:gravity="left"

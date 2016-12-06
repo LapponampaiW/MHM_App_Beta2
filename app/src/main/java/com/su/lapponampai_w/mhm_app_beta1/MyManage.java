@@ -42,6 +42,7 @@ public class MyManage {
     public static final String ucolumn_notification = "Notification";
     public static final String ucolumn_allowed_notif = "Allowed_notif";
     public static final String ucolumn_always_username = "Always_username";
+    public static final String ucolumn_times_notif = "Times_notif";
     public static final String[] column_userTABLE = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_hn};
 
     //medTABLE
@@ -1188,7 +1189,7 @@ public class MyManage {
         String[] strREAD = null;
         String[] column_userTABLE_Extend = {ucolumn_id, ucolumn_User, ucolumn_Password,
                 ucolumn_Stay, ucolumn_hn, ucolumn_last_updated, ucolumn_notification,
-                ucolumn_allowed_notif,ucolumn_always_username};
+                ucolumn_allowed_notif,ucolumn_always_username,ucolumn_times_notif};
         Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE_Extend,null,null,null,null,null);
         int intCount = cursor.getCount();
         if (intCount > 0) {
@@ -1223,6 +1224,9 @@ public class MyManage {
                         break;
                     case (8):
                         strREAD[i] = cursor.getString(8);
+                        break;
+                    case (9):
+                        strREAD[i] = cursor.getString(9);
                         break;
                     default:
                         break;
@@ -1712,23 +1716,32 @@ public class MyManage {
 
     }
 
-    public void update_notification(String username,String str_notification) {
+    public void update_notification(String username,String str_notification,String str_Criteria) {
 
         Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,
                 "User =?", new String[]{String.valueOf(username)}, null, null, null);
-
         cursor.moveToFirst();
-
-
         String id = cursor.getString(0);
-
-
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ucolumn_notification, str_notification);
-
+        if (str_Criteria.equals("1")) { //Notification ==> Y N
+            contentValues.put(ucolumn_notification, str_notification);
+        } else if (str_Criteria.equals("2")) { // TimeNof ==> 1 2
+            contentValues.put(ucolumn_times_notif, str_notification);
+        }
 
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
+    }
 
+
+    public void update_TimesNof(String username,String str_TimesNof) {
+
+        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,
+                "User =?", new String[]{String.valueOf(username)}, null, null, null);
+        cursor.moveToFirst();
+        String id = cursor.getString(0);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ucolumn_times_notif, str_TimesNof);
+        writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
     }
 
     public void update_New_PW(String username,String str_pw) {

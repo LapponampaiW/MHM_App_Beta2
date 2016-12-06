@@ -412,6 +412,7 @@ public class MySQLiteDataBase {
             addMedTABLEValue("Klacid MR", "Clarithromycin", 88, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Pyrazinamide Atlantic", "Pyrazinamide", 89, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Rifafour e-275", "INH;Rifampicin,Pyrazinamide;Ethambutol,Isoniazid", 36, "75", "1", 35, "150", "1", 89, "400", "1", 90, "275", "1", "1", 1, "ED:0", "img0612", "", "20:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Rimstar 4-FDC", "INH;Isoniazid;Rifampicin,Pyrazinamide;Ethambutol", 36, "75", "1", 35, "150", "1", 89, "400", "1", 90, "275", "1", "1", 1, "ED:0", "img0304", "", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Lambutol", "Ethambutol", 90, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0902", "", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Lambutol", "Ethambutol", 90, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Tobutol", "Ethambutol", 90, "400", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0901", "", "20:00", "", "", "", "", "", "", "");
@@ -655,6 +656,7 @@ public class MySQLiteDataBase {
             adddrugInteractionTABLEValue(7, 8, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
             adddrugInteractionTABLEValue(7, 9, "2", "ไม่ควรรับประทานร่วมกัน", 0, 0);
             adddrugInteractionTABLEValue(7, 10, "3", "ควรรับประทานยาห่างกัน", 240, 120);
+            adddrugInteractionTABLEValue(7, 21, "2", "ไม่ควรรับประทานร่วมกัน", 0, 0);
 
         }
     } //drugInteractionTABLEDate

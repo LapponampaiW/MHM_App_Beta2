@@ -21,36 +21,36 @@ import java.util.Random;
 public class AlarmReceiver extends BroadcastReceiver {
 
     //Explicit
-    String string_sumId;
+    String string_AlarmTABLEId;
 
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
         MyManage myManage = new MyManage(context);
-        //String[] strUser = myManage.filter_userTABLE(1);
         String[] strNotification = myManage.filter_userTABLE(6);
 
+
+
         receiveIntent(intent);
-        //Toast.makeText(context,string_sumId,Toast.LENGTH_LONG).show();
+
 
 
         if (strNotification[0].equals("Default")) {
-            createNotification(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application",string_sumId);
+            createNotification(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId);
         } else {
-            createNotification(context,"MHM Application", strNotification[0], "MHM Application",string_sumId);
+            createNotification(context,"MHM Application", strNotification[0], "MHM Application",string_AlarmTABLEId);
         }
 
 
-        //createNotification(context, "Times Up", "Success", "MHM Application");
-        //createNotification(context, "second Time", "10 Seconds Has Passed", "Alert");
+
 
     }
 
     private void receiveIntent(Intent intent) {
 
-        string_sumId = intent.getStringExtra("DailyUpdateIntent");
-        Log.d("25/10/2559", "4 : DailyUpdateIntent : " + string_sumId);
+        string_AlarmTABLEId = intent.getStringExtra("DailyUpdateIntent");
+        Log.d("25/10/2559", "4 : DailyUpdateIntent : " + string_AlarmTABLEId);
     }
 
     private void createNotification(Context context, String s, String s1, String alert,String sIntent) {
@@ -94,35 +94,5 @@ public class AlarmReceiver extends BroadcastReceiver {
         int m = random.nextInt(9999 - 1000) + 1000;
 
         notificationManager.notify(m,builder.build());
-
-
-
     }
-    /*
-    @Override
-    public void onReceive(Context context, Intent intent) {
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        builder.setSmallIcon(R.drawable.logo_carabao48);
-        builder.setTicker("ถึงเวลาทานยาแล้ว");
-        builder.setWhen(System.currentTimeMillis());
-        builder.setContentTitle("มาสเตอร์ เตือนทานยาแล้ว");
-        builder.setContentText("รายละเอียด");
-        builder.setAutoCancel(true);
-
-        Uri uri = RingtoneManager.getDefaultUri(Notification.DEFAULT_VIBRATE); //Defeault ของเสียง
-        builder.setSound(uri);
-
-        Notification notification = builder.build();
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1000,notification);
-
-
-        
-
-
-
-
-    } // onReceive
-    */
 } //Main Class

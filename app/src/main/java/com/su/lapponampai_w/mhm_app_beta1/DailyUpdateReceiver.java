@@ -461,7 +461,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                                 } else {
                                     //ถ้าไม่เป็นค่าว่างแปลว่ามีค่าอยู่แล้ว
-                                    //String[] strings_DateTime = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 1);
+                                    String[] strings_DateTime = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 1);
                                     String[] strings_Sumid1 = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 2);
                                     String[] strings_Sumid2 = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 3);
                                     String[] strings_Sumid3 = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 4);
@@ -497,15 +497,43 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                     } //for
                 }
             }
+            //เอาค่าทั้งหมดของ _id กับ DateTime ในตาราง alarmReceiverTABLE มา
+            if (!myManage.readAllalarmReceiverTABLE(0)[0].equals("")) {
+                updateAlarmReceiver(context,myManage.readAllalarmReceiverTABLE(0),myManage.readAllalarmReceiverTABLE(1));
+            }
         } //first if
-
-
-
-
     } //addDataToBroadcastTABLE
 
+    private void updateAlarmReceiver(Context context,String[] stringsAlarmId,String[] stringsAlarmDateTime) {
+
+        Intent alertIntent = new Intent(context, AlarmReceiver.class); //1
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE); //2
+        int a = 0;
+
+        Calendar calendarCurrent = Calendar.getInstance();
+        Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
 
 
+        for(int x =0 ;x < stringsAlarmId.length;x++) {
+            String stringAlarm = stringsAlarmDateTime[x];
+            Date dAlarm = myData.stringChangetoDate(stringAlarm);
+            myCalendarAlarm.setTime(dAlarm);
+
+            //24/10/2559 ส่งค่าไปกับ intent
+            alertIntent.putExtra("DailyUpdateIntent", stringsAlarmId[x]);
+            Log.d("25/10/2559", "3 : strings_sumTABLE_id : " + stringsAlarmId[x]);
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            a = a + 1;
+
+
+            alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent); //4
+
+
+            Log.d("14/10/2559", "3 : เข้า alarmManager");
+
+        } //for
+    }
 
 
     public void broadcastAndAddNotification(Context context, MyData myData, MyManage myManage) {

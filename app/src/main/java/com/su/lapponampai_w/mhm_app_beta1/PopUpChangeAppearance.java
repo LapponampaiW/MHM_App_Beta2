@@ -181,6 +181,32 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                         listViewTablet3.setAdapter(myAdaptorChangeAppearance);
 
                         setVisibleStep2Success();
+                    } else if (sSubstring.equals("99")) {
+                        //จิงๆ ไม่ต้อง Arraylist ก้ได้แต่ว่าขี้เกียจทำ
+                        //สร้าง Arraylist ที่สามารถ Duplicate ได้ก่อน
+                        for (int i = 0; i < stringsTotalCapsule.length; i++) {
+                            String sSubStringCapsuleL = stringsTotalCapsule[i].substring(4, 6);
+                            String sSubStringCapsuleR = stringsTotalCapsule[i].substring(6);
+                            //แก้ให้ capsule นิ่มไม่ขึ้น
+                            if (sSubstring.equals(sSubStringCapsuleL) || sSubstring.equals(sSubStringCapsuleR)) {
+
+                                    stringStep3ArrayList.add(iIndex, stringsTotalCapsule[i]);
+                                    iIndex = iIndex + 1;
+
+                            }
+
+                        }
+                        stringsSelected = new String[stringStep3ArrayList.size()];
+                        stringsSelected = stringStep3ArrayList.toArray(stringsSelected);
+
+
+                        //MyData myData = new MyData();
+                        intsImageSelected = myData.translate_Appearance(stringsSelected);
+                        MyAdaptorChangeAppearance myAdaptorChangeAppearance = new MyAdaptorChangeAppearance(getBaseContext(), intsImageSelected);
+                        listViewTablet3.setAdapter(myAdaptorChangeAppearance);
+
+                        setVisibleStep2Success();
+
                     } else {
 
                         //สร้าง Arraylist ที่สามารถ Duplicate ได้ก่อน
@@ -189,9 +215,10 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                             String sSubStringCapsuleR = stringsTotalCapsule[i].substring(6);
                             //แก้ให้ capsule นิ่มไม่ขึ้น
                             if (sSubstring.equals(sSubStringCapsuleL) || sSubstring.equals(sSubStringCapsuleR)) {
-                                stringStep3ArrayList.add(iIndex, stringsTotalCapsule[i]);
-                                iIndex = iIndex + 1;
-
+                                if (!sSubStringCapsuleL.equals("99")) {
+                                    stringStep3ArrayList.add(iIndex, stringsTotalCapsule[i]);
+                                    iIndex = iIndex + 1;
+                                }
                             }
 
                         }

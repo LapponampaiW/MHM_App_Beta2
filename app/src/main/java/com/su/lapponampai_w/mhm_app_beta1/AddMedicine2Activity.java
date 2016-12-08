@@ -73,7 +73,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     private LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4,
             linearLayout5, linearLayout6, linearLayout7, linearLayout8, startDatelin,
             finishDatelin,linearLayoutTimePerDay,intervalLin,head4Layout,linBox4,
-            linBox2Left,linBox2Right,linLine3,linBox2_1;
+            linBox2Left,linBox2Right,linLine3,linBox2_1,linName;
     private EditText editTextCalculationAmount;
     private int integerAmountMedicine;
     private double doubleAmountMedicine;
@@ -1027,32 +1027,40 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                 intent.putExtra("T8",string14);
                 intent.putExtra("TimesPerDay", string17);
                 startActivity(intent);
-                /*
-                string1 = getIntent().getStringExtra("Med_id");
-                string2 = getIntent().getStringExtra("Trade_name");
-                string3 = getIntent().getStringExtra("Generic_line");
-                string4 = getIntent().getStringExtra("Which_Date_D");
-                string5 = getIntent().getStringExtra("Appearance");
-                string6 = getIntent().getStringExtra("Pharmaco");
-                string7 = getIntent().getStringExtra("T1");
-                string8 = getIntent().getStringExtra("T2");
-                string9 = getIntent().getStringExtra("T3");
-                string10 = getIntent().getStringExtra("T4");
-                string11 = getIntent().getStringExtra("T5");
-                string12 = getIntent().getStringExtra("T6");
-                string13 = getIntent().getStringExtra("T7");
-                string14 = getIntent().getStringExtra("T8");
-                string15 = getIntent().getStringExtra("Amount_tablet");
-                string16 = getIntent().getStringExtra("EA");
-                string17 = getIntent().getStringExtra("TimesPerDay");
-                string18 = myData.currentDay(); //StartDate
-                string19 = ""; //FinishDate
-                string20 = "N"; //PRN
-                */
-
 
             }
         });
+
+
+        linName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(AddMedicine2Activity.this, PopUpChangeTradeGenericName.class);
+                //intent.putExtra("sendTradeName", string2);
+                //intent.putExtra("sendGenericName", string3);
+                intent.putExtra("Med_id",string1);
+                intent.putExtra("Trade_name", string2);
+                intent.putExtra("Generic_line", string3);
+                intent.putExtra("Amount_tablet", string15);
+                intent.putExtra("EA", string16);
+                intent.putExtra("Which_Date_D", string4);
+                intent.putExtra("Appearance", string5);
+                intent.putExtra("Pharmaco", string6);
+                intent.putExtra("T1",string7);
+                intent.putExtra("T2",string8);
+                intent.putExtra("T3",string9);
+                intent.putExtra("T4",string10);
+                intent.putExtra("T5",string11);
+                intent.putExtra("T6",string12);
+                intent.putExtra("T7",string13);
+                intent.putExtra("T8",string14);
+                intent.putExtra("TimesPerDay", string17);
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     private void clickCalculateAmountMedicine() {
@@ -1189,6 +1197,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         linLine3 = (LinearLayout) findViewById(R.id.line3);
         linBox2_1 = (LinearLayout) findViewById(R.id.linBox2_1);
         textViewChangeTG = (TextView) findViewById(R.id.textView180);
+        linName = (LinearLayout) findViewById(R.id.linName);
 
 
     }

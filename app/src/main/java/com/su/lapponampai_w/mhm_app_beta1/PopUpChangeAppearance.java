@@ -187,6 +187,7 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                         for (int i = 0; i < stringsTotalCapsule.length; i++) {
                             String sSubStringCapsuleL = stringsTotalCapsule[i].substring(4, 6);
                             String sSubStringCapsuleR = stringsTotalCapsule[i].substring(6);
+                            //แก้ให้ capsule นิ่มไม่ขึ้น
                             if (sSubstring.equals(sSubStringCapsuleL) || sSubstring.equals(sSubStringCapsuleR)) {
                                 stringStep3ArrayList.add(iIndex, stringsTotalCapsule[i]);
                                 iIndex = iIndex + 1;

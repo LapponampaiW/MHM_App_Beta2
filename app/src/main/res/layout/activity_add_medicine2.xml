@@ -83,7 +83,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginLeft="10sp" >
+                android:layout_marginLeft="10sp"
+                android:id="@+id/linName">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -124,7 +125,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="กดเพื่อเปลี่ยนชื่อการค้าและสามัญทางยา"
+            android:text="กดที่ชื่อเพื่อเปลี่ยนชื่อการค้าและสามัญทางยา"
             android:id="@+id/textView180"
             android:gravity="right"
             android:textColor="@android:color/background_dark"

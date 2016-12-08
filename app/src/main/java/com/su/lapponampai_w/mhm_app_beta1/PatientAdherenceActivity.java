@@ -249,7 +249,7 @@ public class PatientAdherenceActivity extends AppCompatActivity {
                 } else if (dAdaptorAdherence[i] == 0) {
                     intsAdaptorAdherence[i] = R.drawable.bad_adherence;
                 } else {
-                    intsAdaptorAdherence[i] = R.drawable.bad_adherence;
+                    intsAdaptorAdherence[i] = R.drawable.soso_adhearence;
                 }
             }
 

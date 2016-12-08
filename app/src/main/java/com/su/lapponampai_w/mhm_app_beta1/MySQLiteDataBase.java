@@ -405,7 +405,7 @@ public class MySQLiteDataBase extends AppCompatActivity {
             addMedTABLEValue("Anamai (28)", "Norethisterone;Mestranol", 84, "1", "1", 85, "0.05", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0604", "img0601", "", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Marnon (28)", "Norgestrel;Ethinylestradiol", 86, "0.5", "1", 77, "0.05", "1", 1, null, null, 1, null, null, "1", 1, "ED:OCs:21:7:28:img0616", "img0601", "", "20:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Primolut N", "Norethisterone", 84, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "18:00", "", "", "", "", "", "");
-            addMedTABLEValue("Tylenol", "Paracetamol", 87, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Tylenol", "Paracetamol", 87, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0301", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Claron", "Clarithromycin", 88, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "", "08:00", "18:00", "", "", "", "", "", "");
             addMedTABLEValue("Claron", "Clarithromycin", 88, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "", "08:00", "18:00", "", "", "", "", "", "");
             addMedTABLEValue("Klacid FC", "Clarithromycin", 88, "500", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0302", "", "08:00", "18:00", "", "", "", "", "", "");

@@ -22,6 +22,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     //Explicit
     String string_AlarmTABLEId;
+    String string_AlarmTABLEDateTime;
 
 
     @Override
@@ -37,9 +38,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 
         if (strNotification[0].equals("Default")) {
-            createNotification(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId);
+            createNotification(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
         } else {
-            createNotification(context,"MHM Application", strNotification[0], "MHM Application",string_AlarmTABLEId);
+            createNotification(context,"MHM Application", strNotification[0], "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
         }
 
 
@@ -50,10 +51,11 @@ public class AlarmReceiver extends BroadcastReceiver {
     private void receiveIntent(Intent intent) {
 
         string_AlarmTABLEId = intent.getStringExtra("DailyUpdateIntent");
+        string_AlarmTABLEDateTime = intent.getStringExtra("DailyUpdateIntentTime");
         Log.d("25/10/2559", "4 : DailyUpdateIntent : " + string_AlarmTABLEId);
     }
 
-    private void createNotification(Context context, String s, String s1, String alert,String sIntent) {
+    private void createNotification(Context context, String s, String s1, String alert,String sIntent,String sDateTime) {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.logo_mhm48)
@@ -65,6 +67,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra("PopUpMaster", "AlarmReceiver");
         intent.putExtra("SumId_AlarmReceiver", sIntent);
+        intent.putExtra("SumDateTime_AlarmReceiver", sDateTime);
 
         for(int i = 0;i<=1;i++) {
             PendingIntent notificIntent = PendingIntent

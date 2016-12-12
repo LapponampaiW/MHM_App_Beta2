@@ -158,14 +158,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 startActivity(new Intent(MainActivity.this, NewsActivity.class));
             } else if (popUpMaster.equals("Setting")) {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
-            }
-
-
-            else if (popUpMaster.equals("AlarmReceiver")) {
+            } else if (popUpMaster.equals("AlarmReceiver")) {
 
                 strAlarmTABLE = getIntent().getStringExtra("SumId_AlarmReceiver");
                 Log.d("061259V1", "strAlarmTABLE" + strAlarmTABLE);
-
                 MyManage myManage = new MyManage(this);
                 String[] stringsStay = myManage.readSQLite_userTABLE(3);
                 if (stringsStay[0].equals("1") || stringsStay[0].equals("2")) {
@@ -176,28 +172,41 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 } else {
                     //receiveValueToPopUpTakeMedicine();
                     //06122559 ทำตรงนี้ก่อน เดี่ยวต้องไปทำข้างล่างด้วยนะ
-                    read_SumId_From_alarmReceiverTABLE();
+                    //12/12/2559 readAllalarmReceiverTABLE
+                    String strReadDateTime = getIntent().getStringExtra("SumDateTime_AlarmReceiver");
+                    String sSubstring = strReadDateTime.substring(0, 10);
+                    Log.d("121216V1", strAlarmTABLE);
+                    Log.d("121216V1", sSubstring);
+                    MyData myData = new MyData();
+                    String sCurrentDay = myData.currentDay();
+                    Log.d("121216V1", sCurrentDay);
+                    if (!sSubstring.equals(sCurrentDay)) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setIcon(R.drawable.logo_mhm);
+                        builder.setTitle("ท่านรับประทานยาข้ามวัน!!!");
+                        builder.setMessage("ระบบไม่สามารถทำงานอัตโนมัติได้เนื่องจาก\n" +
+                                "เป็นยาที่ต้องรับประทานวันก่อนหน้านี้ ท่านสามารถระบุการรับประทาน\n" +
+                                "ได้ด้วยตนเองโดยการเปลี่ยนวันที่");
+                        builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+
+                            }
+                        });
+                        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.show();
+                    } else {
+                        read_SumId_From_alarmReceiverTABLE();
+                    }
+
                 }
 
-
-
-
-                /*
-                strResult_Sum_id = getIntent().getStringExtra("SumId_AlarmReceiver");
-                Log.d("25/10/2559", "strResult_Sum_id" + strResult_Sum_id);
-                Toast.makeText(getBaseContext(), "strResult_Sum_id = " + strResult_Sum_id, Toast.LENGTH_SHORT).show();
-                MyManage myManage = new MyManage(this);
-                String[] stringsStay = myManage.readSQLite_userTABLE(3);
-                if (stringsStay[0].equals("1") || stringsStay[0].equals("2")) {
-                    Intent intent = new Intent(MainActivity.this, PopUpGate.class);
-                    intent.putExtra("NotificationGate", "NotificationGate");
-                    intent.putExtra("NotificationGate_SumId", strResult_Sum_id);
-                    startActivity(intent);
-                } else {
-                    receiveValueToPopUpTakeMedicine();
-                }
-
-                */
             }
 
 
@@ -205,7 +214,37 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             else if (popUpMaster.equals("NotificationGate")) {
                 strAlarmTABLE = getIntent().getStringExtra("SumId_AlarmReceiver");
                 //receiveValueToPopUpTakeMedicine();
-                read_SumId_From_alarmReceiverTABLE();
+                //12/12/2559 readAllalarmReceiverTABLE
+                String strReadDateTime = getIntent().getStringExtra("SumDateTime_AlarmReceiver");
+                String sSubstring = strReadDateTime.substring(0, 10);
+                Log.d("121216V1", sSubstring);
+                MyData myData = new MyData();
+                String sCurrentDay = myData.currentDay();
+                Log.d("121216V1", sCurrentDay);
+                if (!sSubstring.equals(sCurrentDay)) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setIcon(R.drawable.logo_mhm);
+                    builder.setTitle("ท่านรับประทานยาข้ามวัน!!!");
+                    builder.setMessage("ระบบไม่สามารถทำงานอัตโนมัติได้เนื่องจาก\n" +
+                            "เป็นยาที่ต้องรับประทานวันก่อนหน้านี้ ท่านสามารถระบุการรับประทาน\n" +
+                            "ได้ด้วยตนเองโดยการเปลี่ยนวันที่");
+                    builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+
+                        }
+                    });
+                    builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.show();
+                } else {
+                    read_SumId_From_alarmReceiverTABLE();
+                }
             }
 
 
@@ -297,7 +336,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
 
         }
-    }
+    } //readSumid
 
     private void receiveValueToPopUpTakeMedicine() {
 

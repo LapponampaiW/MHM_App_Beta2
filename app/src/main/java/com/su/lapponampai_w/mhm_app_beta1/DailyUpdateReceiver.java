@@ -513,13 +513,15 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         String[] strTimeNof = myManage.filter_userTABLE(9); //หา TimeNof ว่าเป็น 1 หรือ 2
         if (strTimeNof[0].equals("1")) {
             for(int x =0 ;x < stringsAlarmId.length;x++) {
+
                 String stringAlarm = stringsAlarmDateTime[x];
                 Date dAlarm = myData.stringChangetoDate(stringAlarm);
                 myCalendarAlarm.setTime(dAlarm);
 
                 //24/10/2559 ส่งค่าไปกับ intent
                 alertIntent.putExtra("DailyUpdateIntent", stringsAlarmId[x]);
-                Log.d("25/10/2559", "3 : strings_sumTABLE_id : " + stringsAlarmId[x]);
+                alertIntent.putExtra("DailyUpdateIntentTime", stringsAlarmDateTime[x]);
+                //Log.d("25/10/2559", "3 : strings_sumTABLE_id : " + stringsAlarmId[x]);
 
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 a = a + 1;

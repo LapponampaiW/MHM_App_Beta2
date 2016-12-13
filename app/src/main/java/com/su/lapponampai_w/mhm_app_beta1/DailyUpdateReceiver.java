@@ -493,7 +493,11 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                         }
                     } //for
                 }
-            }
+            } //for แรก!!!
+
+
+
+
             //เอาค่าทั้งหมดของ _id กับ DateTime ในตาราง alarmReceiverTABLE มา
             if (!myManage.readAllalarmReceiverTABLE(0)[0].equals("")) {
                 updateAlarmReceiver(context,myManage.readAllalarmReceiverTABLE(0),myManage.readAllalarmReceiverTABLE(1));

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.FragmentTransaction;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -159,6 +160,16 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             } else if (popUpMaster.equals("Setting")) {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
             } else if (popUpMaster.equals("AlarmReceiver")) {
+
+                //13/12/2559
+                for(int a = 0 ; a<= 200;a++) {
+                    NotificationManager notificationManager =
+                            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    notificationManager.cancel(a);
+                }
+
+
+
 
                 strAlarmTABLE = getIntent().getStringExtra("SumId_AlarmReceiver");
                 Log.d("061259V1", "strAlarmTABLE" + strAlarmTABLE);

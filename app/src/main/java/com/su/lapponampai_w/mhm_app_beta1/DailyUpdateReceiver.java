@@ -400,10 +400,12 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE); //2
 
 
-        for (int a = 0; a <= 200; a++) {
+        for (int a = 0; a <= 40; a++) {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT); //3
             pendingIntent.cancel();
+
         }
+
         int a = 0;
 
         //เอาค่า Allow Nof
@@ -599,6 +601,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
             alertIntent.putExtra("DailyUpdateIntent", stringsAlarmId[x]);
             alertIntent.putExtra("DailyUpdateIntentTime", stringsAlarmDateTime[x]);
             alertIntent.putExtra("DailyUpdateTimeNof", "1");
+            alertIntent.putExtra("notifID", a);
                 //Log.d("25/10/2559", "3 : strings_sumTABLE_id : " + stringsAlarmId[x]);
 
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -619,6 +622,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                 alertIntent.putExtra("DailyUpdateIntent", stringsAlarmId2[x]);
                 alertIntent.putExtra("DailyUpdateIntentTime", stringsAlarmDateTime2[x]);
                 alertIntent.putExtra("DailyUpdateTimeNof", "2");
+                alertIntent.putExtra("notifID", a);
 
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 a = a + 1;

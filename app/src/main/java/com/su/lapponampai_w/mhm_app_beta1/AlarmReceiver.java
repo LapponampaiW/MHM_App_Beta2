@@ -24,6 +24,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     String string_AlarmTABLEId;
     String string_AlarmTABLEDateTime;
     String string_DailyUpdateTimeNof;
+    int notifID;
 
 
     @Override
@@ -64,6 +65,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         string_AlarmTABLEId = intent.getStringExtra("DailyUpdateIntent");
         string_AlarmTABLEDateTime = intent.getStringExtra("DailyUpdateIntentTime");
         string_DailyUpdateTimeNof = intent.getStringExtra("DailyUpdateTimeNof");
+        notifID = intent.getIntExtra("notifID", 10000);
         Log.d("25/10/2559", "4 : DailyUpdateIntent : " + string_AlarmTABLEId);
     }
 
@@ -81,34 +83,36 @@ public class AlarmReceiver extends BroadcastReceiver {
         intent.putExtra("SumId_AlarmReceiver", sIntent);
         intent.putExtra("SumDateTime_AlarmReceiver", sDateTime);
 
-
+        /*
         for(int i = 0;i<=1;i++) {
             PendingIntent notificIntent = PendingIntent
                     .getActivity(context, 1, intent, 0); //ให้เปิด MainActivity
             notificIntent.cancel();
         }
-
-
-
-        /*
-        PendingIntent notificIntent = PendingIntent
-                .getActivity(context, 0, new Intent(context, MainActivity.class), 0); //ให้เปิด MainActivity
         */
+        for (int x = notifID; x <= 40; x++) {
+            PendingIntent notificIntent = PendingIntent
+                    .getActivity(context, notifID, intent, 0); //ให้เปิด MainActivity
+            notificIntent.cancel();
+
+        }
 
         PendingIntent notificIntent = PendingIntent
-                .getActivity(context, 1, intent, 0); //ให้เปิด MainActivity
+                .getActivity(context, notifID, intent, 0); //ให้เปิด MainActivity
+
 
 
         builder.setContentIntent(notificIntent);
         builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE);
-        builder.setAutoCancel(true);
+        builder.setAutoCancel(false);
 
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Random random = new Random();
-        int m = random.nextInt(9999 - 1000) + 1000;
+        //Random random = new Random();
+        //int m = random.nextInt(9999 - 1000) + 1000;
 
-        notificationManager.notify(m,builder.build());
+        //notificationManager.notify(m,builder.build());
+        notificationManager.notify(notifID,builder.build());
     }
 } //Main Class

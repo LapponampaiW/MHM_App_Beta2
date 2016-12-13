@@ -23,6 +23,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     //Explicit
     String string_AlarmTABLEId;
     String string_AlarmTABLEDateTime;
+    String string_DailyUpdateTimeNof;
 
 
     @Override
@@ -38,9 +39,19 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 
         if (strNotification[0].equals("Default")) {
-            createNotification(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+            if (string_DailyUpdateTimeNof.equals("1")) {
+                createNotification(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+            } else if (string_DailyUpdateTimeNof.equals("2")) {
+                createNotification(context, "MHM Application", "(ครั้งที่ 2) ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+            }
+
         } else {
-            createNotification(context,"MHM Application", strNotification[0], "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+            if (string_DailyUpdateTimeNof.equals("1")) {
+                createNotification(context,"MHM Application", strNotification[0], "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+            } else if (string_DailyUpdateTimeNof.equals("2")) {
+                createNotification(context,"MHM Application", "(ครั้งที่ 2 )" + strNotification[0], "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+            }
+
         }
 
 
@@ -52,6 +63,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         string_AlarmTABLEId = intent.getStringExtra("DailyUpdateIntent");
         string_AlarmTABLEDateTime = intent.getStringExtra("DailyUpdateIntentTime");
+        string_DailyUpdateTimeNof = intent.getStringExtra("DailyUpdateTimeNof");
         Log.d("25/10/2559", "4 : DailyUpdateIntent : " + string_AlarmTABLEId);
     }
 
@@ -68,6 +80,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         intent.putExtra("PopUpMaster", "AlarmReceiver");
         intent.putExtra("SumId_AlarmReceiver", sIntent);
         intent.putExtra("SumDateTime_AlarmReceiver", sDateTime);
+
 
         for(int i = 0;i<=1;i++) {
             PendingIntent notificIntent = PendingIntent

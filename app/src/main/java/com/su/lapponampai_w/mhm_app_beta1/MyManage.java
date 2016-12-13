@@ -388,6 +388,29 @@ public class MyManage {
 
     }
 
+    public String[] readAllalarmReceiverTABLEAfter15Min(int intColumn) {
+        String[] strREAD = null;
+        String[] strColumnAlarmReceiver = {alcolumn_id,al15column_DateTimeReceiver,alcolumn_sumId1,
+                alcolumn_sumId2,alcolumn_sumId3,alcolumn_sumId4,alcolumn_sumId5,alcolumn_sumId6,
+                alcolumn_sumId7,alcolumn_sumId8,alcolumn_sumId9};
+        Cursor cursor = readSqLiteDatabase.query(alarmReceiverTABLEAfter15Min, strColumnAlarmReceiver, null, null, null, null, "_id DESC");
+        int iCount = cursor.getCount();
+        if (iCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for (int i = 0; i < cursor.getCount(); i++) {
+                strREAD[i] = cursor.getString(intColumn);
+                cursor.moveToNext();
+            } //for
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+
+        return strREAD;
+
+    }
+
 
 
 

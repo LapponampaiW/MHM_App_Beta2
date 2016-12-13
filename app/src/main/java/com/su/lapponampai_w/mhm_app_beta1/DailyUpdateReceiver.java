@@ -559,13 +559,6 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                             } //if จบ 13/12/59
 
-
-
-
-
-
-
-
                         } //ถ้าต้องมีการแจ้งเตือน
                     } //First for
                 }
@@ -576,12 +569,16 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
             //เอาค่าทั้งหมดของ _id กับ DateTime ในตาราง alarmReceiverTABLE มา
             if (!myManage.readAllalarmReceiverTABLE(0)[0].equals("")) {
-                updateAlarmReceiver(context,myManage.readAllalarmReceiverTABLE(0),myManage.readAllalarmReceiverTABLE(1));
+                updateAlarmReceiver(context,myManage.readAllalarmReceiverTABLE(0),myManage.readAllalarmReceiverTABLE(1),
+                        myManage.readAllalarmReceiverTABLEAfter15Min(0),myManage.readAllalarmReceiverTABLEAfter15Min(1));
             }
         } //first if
     } //addDataToBroadcastTABLE
 
-    private void updateAlarmReceiver(Context context,String[] stringsAlarmId,String[] stringsAlarmDateTime) {
+    private void updateAlarmReceiver(Context context,String[] stringsAlarmId,
+                                     String[] stringsAlarmDateTime,
+                                     String[] stringsAlarmId2,
+                                     String[] stringsAlarmDateTime2) {
 
         Intent alertIntent = new Intent(context, AlarmReceiver.class); //1
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE); //2
@@ -590,30 +587,51 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         Calendar calendarCurrent = Calendar.getInstance();
         Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
 
-        String[] strTimeNof = myManage.filter_userTABLE(9); //หา TimeNof ว่าเป็น 1 หรือ 2
-        if (strTimeNof[0].equals("1")) {
-            for(int x =0 ;x < stringsAlarmId.length;x++) {
+        //String[] strTimeNof = myManage.filter_userTABLE(9); //หา TimeNof ว่าเป็น 1 หรือ 2
 
-                String stringAlarm = stringsAlarmDateTime[x];
+        for(int x =0 ;x < stringsAlarmId.length;x++) {
+
+            String stringAlarm = stringsAlarmDateTime[x];
+            Date dAlarm = myData.stringChangetoDate(stringAlarm);
+            myCalendarAlarm.setTime(dAlarm);
+
+                //24/10/2559 ส่งค่าไปกับ intent
+            alertIntent.putExtra("DailyUpdateIntent", stringsAlarmId[x]);
+            alertIntent.putExtra("DailyUpdateIntentTime", stringsAlarmDateTime[x]);
+            alertIntent.putExtra("DailyUpdateTimeNof", "1");
+                //Log.d("25/10/2559", "3 : strings_sumTABLE_id : " + stringsAlarmId[x]);
+
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            a = a + 1;
+            alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent); //4
+
+        } //for
+
+
+        if (!stringsAlarmId2[0].equals("")) {
+            for(int x =0;x <stringsAlarmId2.length;x++) {
+
+                String stringAlarm = stringsAlarmDateTime2[x];
                 Date dAlarm = myData.stringChangetoDate(stringAlarm);
                 myCalendarAlarm.setTime(dAlarm);
 
                 //24/10/2559 ส่งค่าไปกับ intent
-                alertIntent.putExtra("DailyUpdateIntent", stringsAlarmId[x]);
-                alertIntent.putExtra("DailyUpdateIntentTime", stringsAlarmDateTime[x]);
-                //Log.d("25/10/2559", "3 : strings_sumTABLE_id : " + stringsAlarmId[x]);
+                alertIntent.putExtra("DailyUpdateIntent", stringsAlarmId2[x]);
+                alertIntent.putExtra("DailyUpdateIntentTime", stringsAlarmDateTime2[x]);
+                alertIntent.putExtra("DailyUpdateTimeNof", "2");
 
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
                 a = a + 1;
-
-
                 alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent); //4
 
 
-                Log.d("14/10/2559", "3 : เข้า alarmManager");
-
-            } //for
+            }
         }
+
+
+
+
+
 
         /*
         else if (strTimeNof[0].equals("2")) {

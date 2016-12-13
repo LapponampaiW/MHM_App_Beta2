@@ -62,7 +62,9 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
                         sqLiteDatabase.delete("sumTABLE", "_id = " + stringId, null);
                     }
 
-
+                    //ทำการBoardCast
+                    SplashScreen splashScreen = new SplashScreen();
+                    splashScreen.updateDailyBroadcast(getBaseContext());
                     finish();
                 } else if (!string5.equals("") && string6.equals("")) {
                     myManage.updatesumTABLE_ADD_SkipHold_Now(stringId);
@@ -74,10 +76,15 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
                         SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
                         sqLiteDatabase.delete("sumTABLE", "_id = " + stringId, null);
                     }
-
+                    //ทำการBoardCast
+                    SplashScreen splashScreen = new SplashScreen();
+                    splashScreen.updateDailyBroadcast(getBaseContext());
                     finish();
                 } else if (string5.equals("") && !string6.equals("")) {
                     myManage.updatesumTABLE_Canceled_SkipHold(stringId);
+                    //ทำการBoardCast
+                    SplashScreen splashScreen = new SplashScreen();
+                    splashScreen.updateDailyBroadcast(getBaseContext());
                     finish();
                 }
             }
@@ -92,6 +99,9 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
                     if (aBoolean) {
                         myManage.updatesumTABLE_ADD_DateCheckTimeCheck_Now(stringId);
                         myManage.updateTotalAmountTABLE_minusTabBy_MainId_AmountTablet(stringMain_id, string3);
+                        //ทำการBoardCast
+                        SplashScreen splashScreen = new SplashScreen();
+                        splashScreen.updateDailyBroadcast(getBaseContext());
                         finish();
                     }
 
@@ -107,7 +117,9 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
                     }
 
 
-
+                    //ทำการBoardCast
+                    SplashScreen splashScreen = new SplashScreen();
+                    splashScreen.updateDailyBroadcast(getBaseContext());
                     finish();
                 } else if (string5.equals("") && !string6.equals("")) {
                     Boolean aBoolean = checkAmountTablet(stringMain_id,string3,activityTSMActivity);
@@ -115,6 +127,9 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
                     if (aBoolean) {
                         myManage.updatesumTABLE_ADD_DateCheckTimeCheck_Now(stringId);
                         myManage.updateTotalAmountTABLE_minusTabBy_MainId_AmountTablet(stringMain_id, string3);
+                        //ทำการBoardCast
+                        SplashScreen splashScreen = new SplashScreen();
+                        splashScreen.updateDailyBroadcast(getBaseContext());
                         finish();
                     }
                 }

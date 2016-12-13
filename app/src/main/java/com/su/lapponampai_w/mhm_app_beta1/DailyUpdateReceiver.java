@@ -50,7 +50,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
     public int notifID = 100;
     public NotificationManager notificationManager;
     private SQLiteDatabase writeSqLiteDatabase;
-    String[] strings_alarmReceiverTABLE_id;
+    String[] strings_alarmReceiverTABLE_id,strings_alarmReceiverTABLEAfter15Min_id;
 
     MyHelper myHelper;
 
@@ -394,6 +394,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
         //ลบข้อมูลท้งหมดในตาราง alarmReceiverTABLE
         writeSqLiteDatabase.delete("alarmReceiverTABLE", null, null);
+        writeSqLiteDatabase.delete("alarmReceiverTABLEAfter15Min", null, null);
 
         Intent alertIntent = new Intent(context, AlarmReceiver.class); //1
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE); //2
@@ -434,6 +435,9 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                 String[] strings_sumTABLE_TimeCheck = myManage.filter_sumTABLE__by_Date(sSpecificDate, 5);
                 String[] strings_sumTABLE_SkipHold = myManage.filter_sumTABLE__by_Date(sSpecificDate, 6);
 
+
+                String[] strTimeNof = myManage.filter_userTABLE(9); //หา TimeNof ว่าเป็น 1 หรือ 2
+
                 if (!strings_sumTABLE_id[0].equals("")) { //มีค่าของวันนี้
                     Log.d("14/10/2559", "1 : เข้า if1 : ");
                     //String sCurrentTime = myData.currentTime_Minus();
@@ -446,6 +450,21 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                             //061256 เริ่ม update ข้อมูลลงในตาราง alarmreceiverTABLET
                             String stringDateTime = sSpecificDate + " " + strings_sumTABLE_TimeRef[x];
                             Date d_sumTABLE_DateTimeRef = myData.stringChangetoDate(stringDateTime);
+
+                            //เริ่มวันที่ 13/12/59 เพิ่มการลบ 15 นาทีเข้าไป
+                            Calendar calendarMinus_15Min = Calendar.getInstance();
+                            calendarMinus_15Min.setTime(d_sumTABLE_DateTimeRef);
+                            calendarMinus_15Min.add(Calendar.MINUTE,-15);
+                            Date d_sumTABLE_DateTimeMinus_15Min = calendarMinus_15Min.getTime();
+
+                            Calendar calendarAdd_15Min = Calendar.getInstance();
+                            calendarAdd_15Min.setTime(d_sumTABLE_DateTimeRef);
+                            calendarAdd_15Min.add(Calendar.MINUTE,15);
+                            Date d_sumTABLE_DateTimeAdd_15Min = calendarAdd_15Min.getTime();
+                            String stringDateTimeAfter15Min = myData.string_ddMMyyyy_HHmm_ConvertedFromSpecificDate(d_sumTABLE_DateTimeAdd_15Min);
+
+
+                            //ทำ 13/12/59 ถึงตรงนี้
 
                             if (dCurrentDateTime.compareTo(d_sumTABLE_DateTimeRef) <= 0) {
                                 //เริ่ม ใส่ข้อมูล ต้องทำ mymanage เป็น addValue + update + filter
@@ -490,8 +509,65 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                                 //ทำ alarmReceiverTABLE สำเร็จ
                             } //if
-                        }
-                    } //for
+
+                            //13/12/59 เพิ่ม Notification เป็น 2 ครั้ง
+                            if (strTimeNof[0].equals("2")) {
+                                    if (dCurrentDateTime.compareTo(d_sumTABLE_DateTimeAdd_15Min) <= 0) {
+                                        //ดูว่า 15 นาทีก่อนหน้านี้มียาที่ยังไม่ได้กินอยู่หรือไม่จะได้ทำการ Notification หลังจากเวลา
+                                        strings_alarmReceiverTABLEAfter15Min_id = myManage.filteralarmReceiverTABLEAfter15Min_by_DateTimereceiver
+                                                (stringDateTimeAfter15Min, 0);
+
+                                        if (strings_alarmReceiverTABLEAfter15Min_id[0].equals("")) {
+                                            //ถ้าเป็นค่าว่างแปลว่าให้ addValue ลงไปโดยมี 3 ค่า
+                                            //_id,DateTime,Sum_id1
+                                            myManage.addValueTo_alarmReceiverTABLEAfter15Min_Sumid1(stringDateTimeAfter15Min, strings_sumTABLE_id[x]);
+
+                                        } else {
+                                            //ถ้าไม่เป็นค่าว่างแปลว่ามีค่าอยู่แล้ว
+                                            String[] strings_DateTime = myManage.filteralarmReceiverTABLEAfter15Min_by_DateTimereceiver(stringDateTimeAfter15Min, 1);
+                                            String[] strings_Sumid1 = myManage.filteralarmReceiverTABLEAfter15Min_by_DateTimereceiver(stringDateTimeAfter15Min, 2);
+                                            String[] strings_Sumid2 = myManage.filteralarmReceiverTABLEAfter15Min_by_DateTimereceiver(stringDateTimeAfter15Min, 3);
+                                            String[] strings_Sumid3 = myManage.filteralarmReceiverTABLEAfter15Min_by_DateTimereceiver(stringDateTimeAfter15Min, 4);
+                                            String[] strings_Sumid4 = myManage.filteralarmReceiverTABLEAfter15Min_by_DateTimereceiver(stringDateTimeAfter15Min, 5);
+                                            String[] strings_Sumid5 = myManage.filteralarmReceiverTABLEAfter15Min_by_DateTimereceiver(stringDateTimeAfter15Min, 6);
+                                            String[] strings_Sumid6 = myManage.filteralarmReceiverTABLEAfter15Min_by_DateTimereceiver(stringDateTimeAfter15Min, 7);
+                                            String[] strings_Sumid7 = myManage.filteralarmReceiverTABLEAfter15Min_by_DateTimereceiver(stringDateTimeAfter15Min, 8);
+                                            String[] strings_Sumid8 = myManage.filteralarmReceiverTABLEAfter15Min_by_DateTimereceiver(stringDateTimeAfter15Min, 9);
+                                            String[] strings_Sumid9 = myManage.filteralarmReceiverTABLEAfter15Min_by_DateTimereceiver(stringDateTimeAfter15Min, 10);
+
+                                            String[] strings_alarmReceiverTABLE_SumId = {strings_Sumid1[0], strings_Sumid2[0],
+                                                    strings_Sumid3[0], strings_Sumid4[0], strings_Sumid5[0], strings_Sumid6[0], strings_Sumid7[0], strings_Sumid8[0]
+                                                    , strings_Sumid9[0]};
+
+
+                                            if (strings_alarmReceiverTABLE_SumId[8].equals("")) {
+                                                Boolean aBoolean = true;
+                                                int ss = 1;
+                                                while (aBoolean) {
+                                                    if (strings_alarmReceiverTABLE_SumId[ss].equals("")) {
+                                                        myManage.update_alarmReceiverTABLEAfter15Min_SumId
+                                                                (strings_alarmReceiverTABLEAfter15Min_id[0], ss, strings_sumTABLE_id[x]);
+                                                        aBoolean = false;
+                                                    } else {
+                                                        ss = ss + 1;
+                                                    }
+
+                                                } //while
+                                            } //ถ้าไม่ใช่ค่าว่างก็ข้ามไปเลยเพราะ แสดงบนหน้าจอไม่ได้แล้ว
+                                        }
+                                    }
+
+                            } //if จบ 13/12/59
+
+
+
+
+
+
+
+
+                        } //ถ้าต้องมีการแจ้งเตือน
+                    } //First for
                 }
             } //for แรก!!!
 
@@ -537,7 +613,10 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                 Log.d("14/10/2559", "3 : เข้า alarmManager");
 
             } //for
-        } else if (strTimeNof[0].equals("2")) {
+        }
+
+        /*
+        else if (strTimeNof[0].equals("2")) {
             for(int x =0 ;x < stringsAlarmId.length;x++) {
                 String stringAlarm = stringsAlarmDateTime[x];
                 Date dAlarm = myData.stringChangetoDate(stringAlarm);
@@ -556,7 +635,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                 alarmManager.set(1,myCalendarAlarm.getTimeInMillis(),pendingIntent1);
             } //for
         }
-
+        */
 
 
 

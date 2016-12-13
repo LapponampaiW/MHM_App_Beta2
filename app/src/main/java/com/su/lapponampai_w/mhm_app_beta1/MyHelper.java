@@ -108,6 +108,11 @@ public class MyHelper extends SQLiteOpenHelper {
             ", Sum_id3 Text, Sum_id4 Text, Sum_id5 Text, Sum_id6 Text, Sum_id7 Text" +
             ", Sum_id8 Text, Sum_id9 Text);";
 
+    //Create table alarmReceiverTABLEAfter15Min
+    private static final String CREATE_alarmReceiverTABLEAfter15Min = "create table alarmReceiverTABLEAfter15Min " +
+            "(_id integer primary key, Date_time_receiver_After15Min Text, Sum_id1 Text, Sum_id2 Text" +
+            ", Sum_id3 Text, Sum_id4 Text, Sum_id5 Text, Sum_id6 Text, Sum_id7 Text" +
+            ", Sum_id8 Text, Sum_id9 Text);";
 
     public MyHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -134,6 +139,7 @@ public class MyHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_labTABLE);
         db.execSQL(CREATE_sumTABLE_alternativeImage);
         db.execSQL(CREATE_alarmReceiverTABLE);
+        db.execSQL(CREATE_alarmReceiverTABLEAfter15Min);
 
     }
 

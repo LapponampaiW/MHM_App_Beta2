@@ -894,6 +894,11 @@ public class MyData {
         return simpleDateFormat.format(date);
     }
 
+    public String string_ddMMyyyy_HHmm_ConvertedFromSpecificDate(Date date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        return simpleDateFormat.format(date);
+    }
+
 
 
 

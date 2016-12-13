@@ -255,6 +255,9 @@ public class MyManage {
     private static final String alcolumn_sumId8 = "Sum_id8";
     private static final String alcolumn_sumId9 = "Sum_id9";
 
+    //alarmReceiverTABLEAfter15Min
+    public static final String alarmReceiverTABLEAfter15Min = "alarmReceiverTABLEAfter15Min";
+    private static final String al15column_DateTimeReceiver = "Date_time_receiver_After15Min";
 
 
     public MyManage(Context context) {
@@ -593,6 +596,66 @@ public class MyManage {
     }
 
 
+    public String[] filteralarmReceiverTABLEAfter15Min_by_DateTimereceiver(String strDateTime, int intColumn) {
+        String[] strREAD = null;
+        String[] strColumnAlarmReceiver = {alcolumn_id,al15column_DateTimeReceiver,alcolumn_sumId1,
+                alcolumn_sumId2,alcolumn_sumId3,alcolumn_sumId4,alcolumn_sumId5,alcolumn_sumId6,
+                alcolumn_sumId7,alcolumn_sumId8,alcolumn_sumId9};
+
+        Cursor cursor = readSqLiteDatabase.query(alarmReceiverTABLEAfter15Min, strColumnAlarmReceiver, "Date_time_receiver_After15Min " + "LIKE '" + strDateTime + "'", null, null, null, null);
+        int iCount = cursor.getCount();
+        if (iCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for (int i = 0; i < cursor.getCount(); i++) {
+                switch (intColumn) {
+                    case 0:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_id));
+                        break;
+                    case 1:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(al15column_DateTimeReceiver));
+                        break;
+                    case 2:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId1));
+                        break;
+                    case 3:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId2));
+                        break;
+                    case 4:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId3));
+                        break;
+                    case 5:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId4));
+                        break;
+                    case 6:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId5));
+                        break;
+                    case 7:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId6));
+                        break;
+                    case 8:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId7));
+                        break;
+                    case 9:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId8));
+                        break;
+                    case 10:
+                        strREAD[i] = cursor.getString(cursor.getColumnIndex(alcolumn_sumId9));
+                        break;
+                    default:
+                        break;
+                }
+                cursor.moveToNext();
+            }
+
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+
+        return strREAD;
+    }
+
 
 
 
@@ -643,6 +706,51 @@ public class MyManage {
 
 
     }
+
+
+    public long update_alarmReceiverTABLEAfter15Min_SumId(String strId, int sumIdPosition, String sumId) {
+        ContentValues contentValues = new ContentValues();
+        switch (sumIdPosition) {
+            case 0:
+                contentValues.put(alcolumn_sumId1, sumId);
+                break;
+            case 1:
+                contentValues.put(alcolumn_sumId2, sumId);
+                break;
+            case 2:
+                contentValues.put(alcolumn_sumId3, sumId);
+                break;
+            case 3:
+                contentValues.put(alcolumn_sumId4, sumId);
+                break;
+            case 4:
+                contentValues.put(alcolumn_sumId5, sumId);
+                break;
+            case 5:
+                contentValues.put(alcolumn_sumId6, sumId);
+                break;
+            case 6:
+                contentValues.put(alcolumn_sumId7, sumId);
+                break;
+            case 7:
+                contentValues.put(alcolumn_sumId8, sumId);
+                break;
+            case 8:
+                contentValues.put(alcolumn_sumId9, sumId);
+                break;
+            default:
+                break;
+        }
+
+        return writeSqLiteDatabase.update(alarmReceiverTABLEAfter15Min,contentValues, "_id = " + strId,null);
+
+
+    }
+
+
+
+
+
 
 
 
@@ -2391,6 +2499,25 @@ public class MyManage {
 
 
         return writeSqLiteDatabase.insert(alarmReceiverTABLE, null, contentValues);
+    }
+
+    public long addValueTo_alarmReceiverTABLEAfter15Min_Sumid1(String strDateTime,
+                                                     String sum_id) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(al15column_DateTimeReceiver, strDateTime);
+        contentValues.put(alcolumn_sumId1,sum_id);
+        contentValues.put(alcolumn_sumId2,"");
+        contentValues.put(alcolumn_sumId3,"");
+        contentValues.put(alcolumn_sumId4,"");
+        contentValues.put(alcolumn_sumId5,"");
+        contentValues.put(alcolumn_sumId6,"");
+        contentValues.put(alcolumn_sumId7,"");
+        contentValues.put(alcolumn_sumId8,"");
+        contentValues.put(alcolumn_sumId9,"");
+
+
+        return writeSqLiteDatabase.insert(alarmReceiverTABLEAfter15Min, null, contentValues);
     }
 
 

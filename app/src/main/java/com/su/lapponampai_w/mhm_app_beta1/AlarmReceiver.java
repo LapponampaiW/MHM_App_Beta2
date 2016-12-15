@@ -94,8 +94,8 @@ public class AlarmReceiver extends BroadcastReceiver {
             PendingIntent notificIntent = PendingIntent
                     .getActivity(context, notifID, intent, 0); //ให้เปิด MainActivity
             notificIntent.cancel();
-
         }
+
 
         PendingIntent notificIntent = PendingIntent
                 .getActivity(context, notifID, intent, 0); //ให้เปิด MainActivity
@@ -114,5 +114,6 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         //notificationManager.notify(m,builder.build());
         notificationManager.notify(notifID,builder.build());
+
     }
 } //Main Class

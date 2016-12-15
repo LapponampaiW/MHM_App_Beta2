@@ -160,18 +160,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             } else if (popUpMaster.equals("Setting")) {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
             } else if (popUpMaster.equals("AlarmReceiver")) {
-
-                //13/12/2559
-                for(int a = 0 ; a<= 200;a++) {
+                for (int x = 0; x <= 40; x++) {
                     NotificationManager notificationManager =
                             (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                    notificationManager.cancel(a);
+                    notificationManager.cancel(x);
                 }
 
-
-
-
                 strAlarmTABLE = getIntent().getStringExtra("SumId_AlarmReceiver");
+                String strReadDateTime = getIntent().getStringExtra("SumDateTime_AlarmReceiver");
                 Log.d("061259V1", "strAlarmTABLE" + strAlarmTABLE);
                 MyManage myManage = new MyManage(this);
                 String[] stringsStay = myManage.readSQLite_userTABLE(3);
@@ -179,12 +175,13 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     Intent intent = new Intent(MainActivity.this, PopUpGate.class);
                     intent.putExtra("NotificationGate", "NotificationGate");
                     intent.putExtra("NotificationGate_SumId", strAlarmTABLE);
+                    intent.putExtra("SumDateTime_AlarmReceiver", strReadDateTime);
                     startActivity(intent);
                 } else {
                     //receiveValueToPopUpTakeMedicine();
                     //06122559 ทำตรงนี้ก่อน เดี่ยวต้องไปทำข้างล่างด้วยนะ
                     //12/12/2559 readAllalarmReceiverTABLE
-                    String strReadDateTime = getIntent().getStringExtra("SumDateTime_AlarmReceiver");
+
                     String sSubstring = strReadDateTime.substring(0, 10);
                     Log.d("121216V1", strAlarmTABLE);
                     Log.d("121216V1", sSubstring);
@@ -218,11 +215,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                 }
 
-            }
-
-
-
-            else if (popUpMaster.equals("NotificationGate")) {
+            } else if (popUpMaster.equals("NotificationGate")) {
                 strAlarmTABLE = getIntent().getStringExtra("SumId_AlarmReceiver");
                 //receiveValueToPopUpTakeMedicine();
                 //12/12/2559 readAllalarmReceiverTABLE

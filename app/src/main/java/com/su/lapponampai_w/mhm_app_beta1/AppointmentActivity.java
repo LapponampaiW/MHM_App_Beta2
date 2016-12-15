@@ -48,13 +48,13 @@ public class AppointmentActivity extends AppCompatActivity implements
 
         bindWidget();
 
-        clickAppointmentDateTime();
+        //clickAppointmentDateTime();
 
-        showView();
+        //showView();
 
         showListView();
 
-        clickSaveCancel();
+        //clickSaveCancel();
 
         clickDeleteInListView();
 
@@ -282,14 +282,14 @@ public class AppointmentActivity extends AppCompatActivity implements
 
     private void bindWidget() {
 
-        doctoreditText = (EditText) findViewById(R.id.editText4);
-        noteEditText = (EditText) findViewById(R.id.editText5);
-        dateTextView = (TextView) findViewById(R.id.textView108); //ปุ่ม Date
-        timeTextView = (TextView) findViewById(R.id.textView110); //ปุ่ม Time
-        checkBox = (CheckBox) findViewById(R.id.checkBox); //checkBox ว่าต้องมีเวลาหรือไม่
-        linearLayout = (LinearLayout) findViewById(R.id.linAppointmentTime);
-        saveButton = (Button) findViewById(R.id.buttonAppointmentSave);
-        cancelButton = (Button) findViewById(R.id.buttonAppointmentCancel);
+        //doctoreditText = (EditText) findViewById(R.id.editText4);
+        //noteEditText = (EditText) findViewById(R.id.editText5);
+        //dateTextView = (TextView) findViewById(R.id.textView108); //ปุ่ม Date
+        //timeTextView = (TextView) findViewById(R.id.textView110); //ปุ่ม Time
+        //checkBox = (CheckBox) findViewById(R.id.checkBox); //checkBox ว่าต้องมีเวลาหรือไม่
+        //linearLayout = (LinearLayout) findViewById(R.id.linAppointmentTime);
+        //saveButton = (Button) findViewById(R.id.buttonAppointmentSave);
+        //cancelButton = (Button) findViewById(R.id.buttonAppointmentCancel);
         listView = (ListView) findViewById(R.id.listViewAppointment);
 
 

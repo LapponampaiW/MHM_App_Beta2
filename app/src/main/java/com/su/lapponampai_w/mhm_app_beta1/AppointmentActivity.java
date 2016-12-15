@@ -218,7 +218,7 @@ public class AppointmentActivity extends AppCompatActivity implements
                         MyData myData = new MyData();
                         String strCurrentDateTime = myData.currentDateTime();
                         myManage.addValueToAppointmentTABLE(strCurrentDateTime, stringDate,
-                                stringTime, stringDoctor, stringNote);
+                                stringTime, stringDoctor, stringNote,"Y");
 
                         Intent intent = new Intent(AppointmentActivity.this,AppointmentActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

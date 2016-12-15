@@ -86,6 +86,7 @@ public class SignUpActivity extends AppCompatActivity {
                         myManage.update_notification(string_rev_Username,"1","2");
                         myManage.update_Allowed_notification(string_rev_Username,"Y");
                         myManage.updateUserTABLE_Always_Username(string_rev_Username,"N");
+                        myManage.update_Appointment_notif(string_rev_Username,"3;09:00");
 
 
                         startActivity(new Intent(SignUpActivity.this,MainActivity.class));

@@ -16,7 +16,8 @@ public class MyHelper extends SQLiteOpenHelper {
     private static final String CREATE_userTABLE = "create table userTABLE" +
             "(_id integer primary key, " +
             "User text, Password text, Stay text, " +
-            "HN text, Last_updated text, Notification text, Allowed_notif text, Always_username text, Times_notif text);";
+            "HN text, Last_updated text, Notification text, Allowed_notif text," +
+            " Always_username text, Times_notif text, Appointment_notif text);";
 
     //Create table medTABLE
     private static final String CREATE_medTABLE = "create table medTABLE" +
@@ -85,7 +86,7 @@ public class MyHelper extends SQLiteOpenHelper {
     //Create table appointmentTABLE
     private static final String CREATE_appointmentTABLE = "create table appointmentTABLE " +
             "(_id integer primary key, DateTimeSave Text, AppointmentDate Text, " +
-            "AppointmentTime Text, AppointmentDoctor Text, AppointmentNote Text);";
+            "AppointmentTime Text, AppointmentDoctor Text, AppointmentNote Text, AppointmentSnooze text);";
 
     //Create table noteTABLE
     private static final String CREATE_noteTABLE = "create table noteTABLE " +

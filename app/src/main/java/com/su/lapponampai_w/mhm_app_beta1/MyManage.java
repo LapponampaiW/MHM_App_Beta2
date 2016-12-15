@@ -43,6 +43,7 @@ public class MyManage {
     public static final String ucolumn_allowed_notif = "Allowed_notif";
     public static final String ucolumn_always_username = "Always_username";
     public static final String ucolumn_times_notif = "Times_notif";
+    public static final String ucolumn_appointment_notif = "Appointment_notif";
     public static final String[] column_userTABLE = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_hn};
 
     //medTABLE
@@ -204,9 +205,10 @@ public class MyManage {
     private static final String appcolumn_appointment_time = "AppointmentTime";
     private static final String appcolumn_appointment_doctor = "AppointmentDoctor";
     private static final String appcolumn_appointment_note = "AppointmentNote";
+    private static final String appcolumn_appointment_snooze = "AppointmentSnooze";
     private static final String[] column_appointmentTABLE = {appcolumn_id, appcolumn_datetimesave,
              appcolumn_appointment_date, appcolumn_appointment_time,
-            appcolumn_appointment_doctor,appcolumn_appointment_note};
+            appcolumn_appointment_doctor,appcolumn_appointment_note,appcolumn_appointment_snooze};
 
     //noteTABLE
     private static final String noteTABLE = "noteTABLE";
@@ -483,7 +485,7 @@ public class MyManage {
 
     public long addValueToAppointmentTABLE(String strDateTimeSave, String strAppointment_Date,
                                            String strAppointment_Time, String strAppointment_Doctor,
-                                           String strAppointment_Note) {
+                                           String strAppointment_Note, String strAppointment_Snooze) {
         ContentValues contentValues = new ContentValues();
         long addlong = 0;
         contentValues.put(appcolumn_datetimesave,strDateTimeSave);
@@ -491,6 +493,7 @@ public class MyManage {
         contentValues.put(appcolumn_appointment_time,strAppointment_Time);
         contentValues.put(appcolumn_appointment_doctor,strAppointment_Doctor);
         contentValues.put(appcolumn_appointment_note,strAppointment_Note);
+        contentValues.put(appcolumn_appointment_snooze,strAppointment_Snooze);
 
         addlong = writeSqLiteDatabase.insert(appointmentTABLE, null, contentValues);
         return addlong;
@@ -1468,7 +1471,7 @@ public class MyManage {
         String[] strREAD = null;
         String[] column_userTABLE_Extend = {ucolumn_id, ucolumn_User, ucolumn_Password,
                 ucolumn_Stay, ucolumn_hn, ucolumn_last_updated, ucolumn_notification,
-                ucolumn_allowed_notif,ucolumn_always_username,ucolumn_times_notif};
+                ucolumn_allowed_notif,ucolumn_always_username,ucolumn_times_notif,ucolumn_appointment_notif};
         Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE_Extend,null,null,null,null,null);
         int intCount = cursor.getCount();
         if (intCount > 0) {
@@ -1506,6 +1509,9 @@ public class MyManage {
                         break;
                     case (9):
                         strREAD[i] = cursor.getString(9);
+                        break;
+                    case (10):
+                        strREAD[i] = cursor.getString(10);
                         break;
                     default:
                         break;
@@ -2048,6 +2054,28 @@ public class MyManage {
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
 
     }
+
+
+
+    public void update_Appointment_notif(String username,String str_Appointment_notif) {
+
+        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,
+                "User =?", new String[]{String.valueOf(username)}, null, null, null);
+
+        cursor.moveToFirst();
+
+
+        String id = cursor.getString(0);
+
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ucolumn_appointment_notif, str_Appointment_notif);
+
+        writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
+
+    }
+
+
 
 
 

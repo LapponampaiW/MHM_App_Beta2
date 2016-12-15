@@ -75,8 +75,48 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         //notificatonSetupAndDisplay(context);
         updatesumTABLE_AND_Notification(context);
 
+        updateAppointment_AND_Notification(context);
+
 
     } // onReceive
+
+    private void updateAppointment_AND_Notification(Context context) {
+
+
+        String[] stringsAppointmentId = myManage.readAllappointmentTABLE(0);
+        String[] stringsAppointmentDate = myManage.readAllappointmentTABLE(2);
+
+
+        /*
+        //อ่านค่า วันและเวลาที่ต้องทำการ Notificationจาก userTABLE
+        String[] stringsUserTABLE_Appointment_notif = myManage.filter_userTABLE(10);
+        if (!stringsUserTABLE_Appointment_notif.equals("N")) {
+            String[] queryDateTimeAppointmentRef = stringsUserTABLE_Appointment_notif[0].split(";");
+
+            String sCurrentDateTime = myData.currentDateTime_Withoutsecond(); //วันเวลาปัจจุบันไม่เอาวินาที
+            Date dCurrentDateTime = myData.stringChangetoDate(sCurrentDateTime); //เปรียนเป็น Date ใช้ในการเปรียบเทียบ
+
+            for(int i =0; i < stringsAppointmentId.length ;i++) {
+                Calendar calendar = Calendar.getInstance();
+                Date dateAppointment = myData.stringChangetoDateWithOutTime(stringsAppointmentDate[i] + " " + queryDateTimeAppointmentRef[1]); //หา Date ของวันที่อยู่ใน SQL
+                calendar.setTime(dateAppointment);
+                calendar.add(Calendar.DAY_OF_MONTH,Integer.parseInt(queryDateTimeAppointmentRef[0])); // ลบ วันที่ออกตามที่กำหนดใน usetTABLE ช่อง Appointment_notif
+                Date dateAppointmentRef = calendar.getTime();
+
+
+                if(dCurrentDateTime.compareTo(dateAppointmentRef) )
+
+            }
+
+
+
+
+
+        }
+        */
+
+
+    }
 
     private void updatesumTABLE_AND_Notification(Context context) {
 

@@ -42,7 +42,7 @@ public class SettingActivity extends AppCompatActivity {
 
     Button buttonConnect,buttonSuperUser,buttonNofSave;
     String strAddVN;
-    TextView textViewid,textViewAbout,textViewChangePW,textViewSecurity,textViewFinish;
+    TextView textViewid,textViewAbout,textViewChangePW,textViewSecurity,textViewFinish,textViewNotif_Explain;
     MyManage myManage;
     Switch aSwitch;
     LinearLayout linearLayout,linearLayoutTimesNof;
@@ -332,6 +332,8 @@ public class SettingActivity extends AppCompatActivity {
 
     private void setView() {
 
+        textViewNotif_Explain.setText("ปิด/เปิด การเตือน\nเมื่อถึงเวลารับประทานยา");
+
 
         String[] strUser = myManage.filter_userTABLE(1); //ค่า id
         String[] strStay = myManage.filter_userTABLE(3); //ค่า Stay (0,1,2)
@@ -438,6 +440,7 @@ public class SettingActivity extends AppCompatActivity {
         textViewSecurity = (TextView) findViewById(R.id.textView187);
         buttonNofSave = (Button) findViewById(R.id.buttonSettingSave);
         textViewFinish = (TextView) findViewById(R.id.textView199);
+        textViewNotif_Explain = (TextView) findViewById(R.id.textView154);
 
 
     }

@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.su.lapponampai_w.mhm_app_beta1.AppointmentActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView105"
+        android:layout_alignParentRight="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/add_doctor"
+            android:id="@+id/imageView29"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/z2_margin_bigspace"
+            android:layout_marginRight="@dimen/z2_margin_bigspace" />
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
@@ -16,31 +34,12 @@
         android:textColor="#ffffff"
         android:autoText="false" />
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:id="@+id/listViewAppointment"
-        android:layout_below="@+id/textView105"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/textView106" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=" "
-        android:id="@+id/textView106"
-        android:textSize="1sp"
-        android:background="#fd3b3b"
-        android:layout_margin="5dp"
-        android:layout_above="@+id/linAppointment" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linAppointmentButton"
-        android:id="@+id/linAppointment">
+        android:id="@+id/linAppointment"
+        android:layout_below="@+id/textView105">
 
         <TextView
             android:layout_width="wrap_content"
@@ -52,12 +51,13 @@
             android:layout_marginTop="@dimen/z2_margin_bigspace" />
 
         <EditText
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editText4"
             android:hint="ชื่อแพทย์ :"
             android:inputType="text"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="@dimen/z2_margin_smallgap"
+            android:layout_marginRight="@dimen/z2_margin_smallgap" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -122,12 +122,13 @@
         </LinearLayout>
 
         <EditText
-            android:layout_width="200dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editText5"
             android:hint="หมายเหตุ :"
             android:inputType="text"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="@dimen/z2_margin_smallgap"
+            android:layout_marginRight="@dimen/z2_margin_smallgap" />
 
     </LinearLayout>
 

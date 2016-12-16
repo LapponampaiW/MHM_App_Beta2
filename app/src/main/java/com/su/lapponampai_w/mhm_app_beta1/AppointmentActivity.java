@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ public class AppointmentActivity extends AppCompatActivity implements
     CheckBox checkBox;
     LinearLayout linearLayout;
     Button cancelButton, saveButton;
+    ImageButton imageButton;
     ListView listView;
 
     @Override
@@ -58,8 +60,21 @@ public class AppointmentActivity extends AppCompatActivity implements
 
         clickDeleteInListView();
 
+        //161259 เพิ่ม Add Popup
+        clickImageButton();
+
     }
 
+    private void clickImageButton() {
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), PopUpAppointmentActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
 
     private void showListView() {
@@ -291,6 +306,8 @@ public class AppointmentActivity extends AppCompatActivity implements
         //saveButton = (Button) findViewById(R.id.buttonAppointmentSave);
         //cancelButton = (Button) findViewById(R.id.buttonAppointmentCancel);
         listView = (ListView) findViewById(R.id.listViewAppointment);
+        imageButton = (ImageButton) findViewById(R.id.imageButton11);
+
 
 
 

@@ -8,10 +8,28 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_below="@+id/textView105"
         android:id="@+id/lin1"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:padding="@dimen/z2_margin_space">
+
+        <TextView
+            android:text="เพิ่มวันนัด ==>  "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView213"
+            android:layout_weight="1" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButton11"
+            app:srcCompat="@drawable/btn_add_pink"
+            android:background="?android:attr/colorBackground" />
 
     </LinearLayout>
 

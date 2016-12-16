@@ -82,40 +82,75 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
     private void updateAppointment_AND_Notification(Context context) {
 
+        Toast.makeText(context,"เข้า 1",Toast.LENGTH_LONG).show();
+
 
         String[] stringsAppointmentId = myManage.readAllappointmentTABLE(0);
-        String[] stringsAppointmentDate = myManage.readAllappointmentTABLE(2);
+        String[] stringsAppointmentDate = myManage.readAllappointmentTABLE(2); //วันนัด
+        String[] stringsAppointmentSnooze = myManage.readAllappointmentTABLE(6); //ดูว่าเตือน Notif หรือไม่
+
+        Intent alertIntent = new Intent(context, AlarmReceiver.class); //1
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE); //2
 
 
-        /*
-        //อ่านค่า วันและเวลาที่ต้องทำการ Notificationจาก userTABLE
-        String[] stringsUserTABLE_Appointment_notif = myManage.filter_userTABLE(10);
-        if (!stringsUserTABLE_Appointment_notif.equals("N")) {
-            String[] queryDateTimeAppointmentRef = stringsUserTABLE_Appointment_notif[0].split(";");
-
-            String sCurrentDateTime = myData.currentDateTime_Withoutsecond(); //วันเวลาปัจจุบันไม่เอาวินาที
-            Date dCurrentDateTime = myData.stringChangetoDate(sCurrentDateTime); //เปรียนเป็น Date ใช้ในการเปรียบเทียบ
-
-            for(int i =0; i < stringsAppointmentId.length ;i++) {
-                Calendar calendar = Calendar.getInstance();
-                Date dateAppointment = myData.stringChangetoDateWithOutTime(stringsAppointmentDate[i] + " " + queryDateTimeAppointmentRef[1]); //หา Date ของวันที่อยู่ใน SQL
-                calendar.setTime(dateAppointment);
-                calendar.add(Calendar.DAY_OF_MONTH,Integer.parseInt(queryDateTimeAppointmentRef[0])); // ลบ วันที่ออกตามที่กำหนดใน usetTABLE ช่อง Appointment_notif
-                Date dateAppointmentRef = calendar.getTime();
-
-
-                if(dCurrentDateTime.compareTo(dateAppointmentRef) )
-
-            }
-
-
-
-
+        for (int a = 100; a <= 140; a++) {
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT); //3
+            pendingIntent.cancel();
 
         }
-        */
+
+        int a = 100;
 
 
+        if (!stringsAppointmentId[0].equals("")) {
+            Toast.makeText(context,"เข้า 2",Toast.LENGTH_LONG).show();
+            //อ่านค่า วันที่ต้องทำการ Notificationจาก userTABLE
+            String[] stringsUserTABLE_Appointment_notif = myManage.filter_userTABLE(10); //วันที่ก่อนต้องการ Notif
+            if (!stringsUserTABLE_Appointment_notif.equals("N")) {
+                String[] queryDateTimeAppointmentRef = stringsUserTABLE_Appointment_notif[0].split(";");
+                String sCurrentDay = myData.currentDay(); //วันที่วันนี้ไม่ต้องเอาเวลา
+                Date dCurrentDay = myData.stringChangetoDate(sCurrentDay); //Date
+                Toast.makeText(context,"เข้า 3",Toast.LENGTH_LONG).show();
+
+                for(int i = 0;i< stringsAppointmentId.length;i++) {
+                    Toast.makeText(context,"เข้า 4",Toast.LENGTH_LONG).show();
+                    if (stringsAppointmentSnooze[i].equals("Y")) {
+                        Toast.makeText(context,"เข้า 5",Toast.LENGTH_LONG).show();
+                        Date dateAppointment = myData.stringChangetoDateWithOutTime(stringsAppointmentDate[i]); //ค่า Date วันนัด
+                        //ต้องหาค่า Date ของ 3 วันก่อนด้วย
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(dateAppointment);
+                        calendar.add(Calendar.DAY_OF_MONTH,Integer.parseInt(queryDateTimeAppointmentRef[0]) * -1);
+                        Date dateAppointmentMinusRef = calendar.getTime(); //ค่า Date ก่อนวันนัด ลบตาม Ref
+
+
+                        if (dCurrentDay.compareTo(dateAppointment) <= 0 &&
+                                dCurrentDay.compareTo(dateAppointmentMinusRef) >= 0) {
+
+                            Toast.makeText(context,"เตรียมทำ Noti",Toast.LENGTH_LONG).show();
+
+                            Calendar calendarCurrent = Calendar.getInstance();
+                            Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
+                            String sTime = dCurrentDay + " " + queryDateTimeAppointmentRef[1];
+                            Date dTime = myData.stringChangetoDate(sTime);
+                            myCalendarAlarm.setTime(dTime);
+
+                            //16/12/2559 ส่งค่าไปกับ intent
+                            alertIntent.putExtra("DailyUpdateIntent", stringsAppointmentId[i]);
+                            alertIntent.putExtra("DailyUpdateIntentTime", sTime);
+                            alertIntent.putExtra("DailyUpdateTimeNof", "AppointmentTABLE");
+                            alertIntent.putExtra("notifID", a);
+                            //Log.d("25/10/2559", "3 : strings_sumTABLE_id : " + stringsAlarmId[x]);
+
+
+                            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                            a = a + 1;
+                            alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent); //4
+                        }
+                    }
+                } //for
+            }
+        }
     }
 
     private void updatesumTABLE_AND_Notification(Context context) {
@@ -705,95 +740,5 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
 
 
-    }
-
-
-    public void broadcastAndAddNotification(Context context, MyData myData, MyManage myManage) {
-
-
-        Intent alertIntent = new Intent(context, AlarmReceiver.class); //1
-
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE); //2
-
-
-        for (int a = 0; a <= 200; a++) {
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT); //3
-            pendingIntent.cancel();
-        }
-        int a = 0;
-
-        //เอาค่า Allow Nof
-        String[] strings_Allow_Nof = myManage.filter_userTABLE(7); //อนุญาติให้มี notification ได้
-
-        if (strings_Allow_Nof[0].equals("Y")) {
-            for (int i = 0; i < 2; i++) {
-                String sDate = myData.currentDay();
-                Date dDate = myData.stringChangetoDateWithOutTime(sDate);
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(dDate);
-                calendar.add(Calendar.DAY_OF_MONTH, i); //ตั้งไว้ 2 วัน วันนี้กับพรุ่งนี้
-                dDate = calendar.getTime();
-                String sSpecificDate = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dDate);
-
-                String sCurrentDateTime = myData.currentDateTime_Withoutsecond(); //วันเวลาปัจจุบันไม่เอาวินาที
-                Date dCurrentDateTime = myData.stringChangetoDate(sCurrentDateTime); //เปรียนเป็น Date ใช้ในการเปรียบเทียบ
-
-
-                Log.d("14/10/2559", "1 : sSpecificDate : " + sSpecificDate);
-
-                String[] strings_sumTABLE_id = myManage.filter_sumTABLE__by_Date(sSpecificDate, 0);
-                String[] strings_sumTABLE_MainId = myManage.filter_sumTABLE__by_Date(sSpecificDate, 1);
-                //String[] strings_sumTABLE_DateRef = myManage.filter_sumTABLE__by_Date(sSpecificDate, 2);
-                String[] strings_sumTABLE_TimeRef = myManage.filter_sumTABLE__by_Date(sSpecificDate, 3);
-                String[] strings_sumTABLE_DateCheck = myManage.filter_sumTABLE__by_Date(sSpecificDate, 4);
-                String[] strings_sumTABLE_TimeCheck = myManage.filter_sumTABLE__by_Date(sSpecificDate, 5);
-                String[] strings_sumTABLE_SkipHold = myManage.filter_sumTABLE__by_Date(sSpecificDate, 6);
-
-                if (!strings_sumTABLE_id[0].equals("")) { //มีค่าของวันนี้
-                    Log.d("14/10/2559", "1 : เข้า if1 : ");
-                    //String sCurrentTime = myData.currentTime_Minus();
-                    //Date dCurrentTime = myData.stringChangetoTime_Minute(sCurrentTime);
-
-                    for (int x = 0; x < strings_sumTABLE_id.length; x++) { //เอาทุกค่าของวันนี้มา Check //start ที่นี่
-                        if (strings_sumTABLE_DateCheck[x].equals("") && strings_sumTABLE_SkipHold[x].equals("")) {
-                            Log.d("14/10/2559", "1 : เข้า if2 และ for"); //DateCheck เป็นค่าว่างและ SkipHold เป็นค่าว่าง
-                            //หมายถึง ต้องการค่าให้ ทำการ AlarmReceiver
-
-                            //เพิ่ม
-                            String stringDateTime = sSpecificDate + " " + strings_sumTABLE_TimeRef[x];
-                            Date d_sumTABLE_DateTimeRef = myData.stringChangetoDate(stringDateTime);
-
-                            //Date d_sumTABLE_TimeRef = myData.stringChangetoTime_Minute(strings_sumTABLE_TimeRef[x]);
-
-                            if (dCurrentDateTime.compareTo(d_sumTABLE_DateTimeRef) <= 0) {
-                                //เริ่ม boardcast
-
-                                Calendar calendarCurrent = Calendar.getInstance();
-                                Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
-
-                                String stringAlarm = sSpecificDate + " " + strings_sumTABLE_TimeRef[x];
-
-                                Log.d("14/10/2559", "2 : stringAlarm : " + stringAlarm);
-                                Date dAlarm = myData.stringChangetoDate(stringAlarm);
-                                myCalendarAlarm.setTime(dAlarm);
-
-                                //24/10/2559 ส่งค่าไปกับ intent
-                                alertIntent.putExtra("DailyUpdateIntent", strings_sumTABLE_id[x]);
-                                Log.d("25/10/2559", "3 : strings_sumTABLE_id : " + strings_sumTABLE_id[x]);
-
-                                PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                                a = a + 1;
-
-
-                                alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent); //4
-
-
-                                Log.d("14/10/2559", "3 : เข้า alarmManager");
-                            }
-                        }
-                    }
-                }
-            }
-        } //first If
     }
 }  //Main Class

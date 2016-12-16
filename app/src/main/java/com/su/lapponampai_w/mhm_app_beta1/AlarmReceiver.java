@@ -37,23 +37,27 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         receiveIntent(intent);
 
+        if (notifID < 50) {
+            if (strNotification[0].equals("Default")) {
+                if (string_DailyUpdateTimeNof.equals("1")) {
+                    createNotification(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+                } else if (string_DailyUpdateTimeNof.equals("2")) {
+                    createNotification(context, "MHM Application", "(ครั้งที่ 2) ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+                }
 
+            } else {
+                if (string_DailyUpdateTimeNof.equals("1")) {
+                    createNotification(context,"MHM Application", strNotification[0], "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+                } else if (string_DailyUpdateTimeNof.equals("2")) {
+                    createNotification(context,"MHM Application", "(ครั้งที่ 2 )" + strNotification[0], "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+                }
 
-        if (strNotification[0].equals("Default")) {
-            if (string_DailyUpdateTimeNof.equals("1")) {
-                createNotification(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
-            } else if (string_DailyUpdateTimeNof.equals("2")) {
-                createNotification(context, "MHM Application", "(ครั้งที่ 2) ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
             }
+        } else if (notifID < 150) {
 
-        } else {
-            if (string_DailyUpdateTimeNof.equals("1")) {
-                createNotification(context,"MHM Application", strNotification[0], "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
-            } else if (string_DailyUpdateTimeNof.equals("2")) {
-                createNotification(context,"MHM Application", "(ครั้งที่ 2 )" + strNotification[0], "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
-            }
 
         }
+
 
 
 

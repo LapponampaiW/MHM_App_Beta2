@@ -36,7 +36,7 @@ public class AppointmentActivity extends AppCompatActivity implements
 
     //Explicit
     EditText doctoreditText, noteEditText;
-    TextView dateTextView, timeTextView;
+    TextView dateTextView, timeTextView,textViewBackToMain;
     CheckBox checkBox;
     LinearLayout linearLayout;
     Button cancelButton, saveButton;
@@ -62,6 +62,20 @@ public class AppointmentActivity extends AppCompatActivity implements
 
         //161259 เพิ่ม Add Popup
         clickImageButton();
+
+        clickBackToMain();
+
+    }
+
+    private void clickBackToMain() {
+
+        textViewBackToMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
     }
 
@@ -307,6 +321,7 @@ public class AppointmentActivity extends AppCompatActivity implements
         //cancelButton = (Button) findViewById(R.id.buttonAppointmentCancel);
         listView = (ListView) findViewById(R.id.listViewAppointment);
         imageButton = (ImageButton) findViewById(R.id.imageButton11);
+        textViewBackToMain = (TextView) findViewById(R.id.textView106);
 
 
 

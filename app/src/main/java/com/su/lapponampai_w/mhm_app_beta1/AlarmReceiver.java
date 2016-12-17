@@ -40,29 +40,24 @@ public class AlarmReceiver extends BroadcastReceiver {
         if (notifID < 50) {
             if (strNotification[0].equals("Default")) {
                 if (string_DailyUpdateTimeNof.equals("1")) {
-                    createNotification(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+                    createNotificationMedicine(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
                 } else if (string_DailyUpdateTimeNof.equals("2")) {
-                    createNotification(context, "MHM Application", "(ครั้งที่ 2) ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+                    createNotificationMedicine(context, "MHM Application", "(ครั้งที่ 2) ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
                 }
 
             } else {
                 if (string_DailyUpdateTimeNof.equals("1")) {
-                    createNotification(context,"MHM Application", strNotification[0], "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+                    createNotificationMedicine(context,"MHM Application", strNotification[0], "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
                 } else if (string_DailyUpdateTimeNof.equals("2")) {
-                    createNotification(context,"MHM Application", "(ครั้งที่ 2 )" + strNotification[0], "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
+                    createNotificationMedicine(context,"MHM Application", "(ครั้งที่ 2 )" + strNotification[0], "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
                 }
 
             }
         } else if (notifID < 150) {
 
-
+            createNotificationAppointment(context,"MHM Application","เตือนวันนัด!!","MHMApplication",string_AlarmTABLEId,string_AlarmTABLEDateTime); // id,CurrentDay
         }
-
-
-
-
-
-    }
+    } // onReceive
 
     private void receiveIntent(Intent intent) {
 
@@ -73,7 +68,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         Log.d("25/10/2559", "4 : DailyUpdateIntent : " + string_AlarmTABLEId);
     }
 
-    private void createNotification(Context context, String s, String s1, String alert,String sIntent,String sDateTime) {
+    private void createNotificationMedicine(Context context, String s, String s1, String alert,String sIntent,String sDateTime) {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.logo_mhm48)
@@ -95,6 +90,55 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
         */
         for (int x = notifID; x <= 40; x++) {
+            PendingIntent notificIntent = PendingIntent
+                    .getActivity(context, notifID, intent, 0); //ให้เปิด MainActivity
+            notificIntent.cancel();
+        }
+
+
+        PendingIntent notificIntent = PendingIntent
+                .getActivity(context, notifID, intent, 0); //ให้เปิด MainActivity
+
+
+
+        builder.setContentIntent(notificIntent);
+        builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE);
+        builder.setAutoCancel(false);
+
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        //Random random = new Random();
+        //int m = random.nextInt(9999 - 1000) + 1000;
+
+        //notificationManager.notify(m,builder.build());
+        notificationManager.notify(notifID,builder.build());
+
+    }
+
+
+    private void createNotificationAppointment(Context context, String s, String s1, String alert,String sIdAppointment,String sDay) {
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                .setSmallIcon(R.drawable.logo_mhm48)
+                .setContentTitle(s)
+                .setTicker(alert)
+                .setContentText(s1);
+
+
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra("PopUpMaster", "AlarmAppointment");
+        intent.putExtra("SumId_AlarmReceiver", sIdAppointment);
+        intent.putExtra("SumDateTime_AlarmReceiver", sDay);
+
+        /*
+        for(int i = 0;i<=1;i++) {
+            PendingIntent notificIntent = PendingIntent
+                    .getActivity(context, 1, intent, 0); //ให้เปิด MainActivity
+            notificIntent.cancel();
+        }
+        */
+        for (int x = notifID; x <= 140; x++) {
             PendingIntent notificIntent = PendingIntent
                     .getActivity(context, notifID, intent, 0); //ให้เปิด MainActivity
             notificIntent.cancel();

@@ -159,6 +159,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 startActivity(new Intent(MainActivity.this, NewsActivity.class));
             } else if (popUpMaster.equals("Setting")) {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
+            } else if (popUpMaster.equals("AlarmAppointment")) {
+                //ทำ แค่แจ้งข่าวสารขึ้นในหน้าแรก โดย builder
+
             } else if (popUpMaster.equals("AlarmReceiver")) {
                 for (int x = 0; x <= 40; x++) {
                     NotificationManager notificationManager =
@@ -250,13 +253,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     read_SumId_From_alarmReceiverTABLE();
                 }
             }
-
-
-
-
-
-
-
         } else {
             Toast.makeText(getBaseContext(), "PopUpMaster == null",Toast.LENGTH_LONG);
         }

@@ -68,22 +68,24 @@
             android:layout_margin="@dimen/z2_margin_bigspace">
 
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="วันนัด :"
                 android:id="@+id/textView107"
                 android:textSize="20sp"
-                android:gravity="left|center" />
+                android:gravity="left|center"
+                android:layout_weight="2" />
 
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="12/12/2016"
                 android:id="@+id/textView108"
                 android:textSize="20sp"
                 android:textColor="#e78d4d"
                 android:gravity="center_horizontal"
-                android:background="@drawable/my_border_red" />
+                android:background="@drawable/my_border_red"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <CheckBox
@@ -104,21 +106,23 @@
             android:id="@+id/linAppointmentTime">
 
             <TextView
-                android:layout_width="100dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="เวลานัด :"
                 android:id="@+id/textView109"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:layout_weight="2" />
 
             <TextView
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="New Text"
                 android:id="@+id/textView110"
                 android:textSize="20sp"
                 android:gravity="center_horizontal"
                 android:textColor="#c959d8"
-                android:background="@drawable/my_border_orange" />
+                android:background="@drawable/my_border_orange"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <EditText

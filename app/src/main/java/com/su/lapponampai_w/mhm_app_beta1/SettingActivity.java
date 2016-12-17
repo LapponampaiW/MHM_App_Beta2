@@ -1,6 +1,7 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.app.Activity;
+import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.squareup.okhttp.Call;
@@ -36,7 +38,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends AppCompatActivity implements
+        TimePickerDialog.OnTimeSetListener{
 
     //Explicit
     public static Activity settingActivity;
@@ -44,7 +47,8 @@ public class SettingActivity extends AppCompatActivity {
 
     Button buttonConnect,buttonSuperUser,buttonNofSave;
     String strAddVN,stringEditText;
-    TextView textViewid,textViewAbout,textViewChangePW,textViewSecurity,textViewFinish,textViewNotif_Explain;
+    TextView textViewid,textViewAbout,textViewChangePW,textViewSecurity,textViewFinish,
+            textViewNotif_Explain,textViewAppointmentDay,textViewAppointmentTime;
     MyManage myManage;
     Switch aSwitch;
     LinearLayout linearLayout,linearLayoutTimesNof;
@@ -95,13 +99,57 @@ public class SettingActivity extends AppCompatActivity {
         //คลิก Finish
         clickFinish();
 
-
+        clickActiveTextView();
 
         clickConnect();
 
         clickSuperUser();
 
     }
+
+    private void clickActiveTextView() {
+
+        textViewAppointmentDay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(v.getContext());
+                final String[] strings = {"0 (ศูนย์)","1 (หนึ่ง)","2 (สอง)","3 (สาม)",
+                        "4 (สี่)","5 (ห้า)","6 (หก)","7 (เจ็ด)","8 (แปด)",
+                        "9 (เก้า)","10 (สิบ)","11 (สิบเอ็ด)","12 (สิบสอง)","13 (สิบสาม)",
+                        "14 (สิบสี่)"};
+                builder.setTitle("โปรดระบุ!!! \nจำนวนวันที่ต้องการเตือนก่อนถึงนัด");
+                builder.setSingleChoiceItems(strings, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Toast.makeText(getBaseContext(),Integer.toString(which),Toast.LENGTH_LONG).show();
+                        textViewAppointmentDay.setText(strings[which]);
+                        String s1 = Integer.toString(which); //ตัวเลข จาก integer
+                        String[] strAppointmentNof = myManage.filter_userTABLE(10); //หา AppointmentNof
+                        String[] queryDateTimeAppointmentRef = strAppointmentNof[0].split(";");
+                        String s2 = queryDateTimeAppointmentRef[1];
+                        String[] strUser = myManage.filter_userTABLE(1); //ค่า username
+                        s1 = s1 + ";" + s2;
+                        myManage.update_Appointment_notif(strUser[0],s1);
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
+            }
+
+        }); //textViewAppointmentDay
+
+        textViewAppointmentTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTimePickerDialog(v);
+            }
+        });
+
+
+
+
+    } //clickActiveTextView
+
 
     private void saveEditText() {
 
@@ -381,6 +429,7 @@ public class SettingActivity extends AppCompatActivity {
         String[] strAllowNotif = myManage.filter_userTABLE(7); //หา Allowed_notification
         String[] strNotif = myManage.filter_userTABLE(6); // ดูข้อความ Notification
         String[] strTimeNof = myManage.filter_userTABLE(9); //หา TimeNof ว่าเป็น 1 หรือ 2
+        String[] strAppointmentNof = myManage.filter_userTABLE(10); //หา AppointmentNof
         Log.d("061259V1", strTimeNof[0]);
         textViewid.setText("ไอดีผู้ใช้ : ".concat(strUser[0]));
 
@@ -416,6 +465,10 @@ public class SettingActivity extends AppCompatActivity {
         }
 
         setViewTextViewSecurity(strStay[0]);
+
+        String[] queryDateTimeAppointmentRef = strAppointmentNof[0].split(";");
+        textViewAppointmentDay.setText(queryDateTimeAppointmentRef[0]);
+        textViewAppointmentTime.setText(queryDateTimeAppointmentRef[1]);
 
 
 
@@ -485,7 +538,8 @@ public class SettingActivity extends AppCompatActivity {
         //buttonNofSave = (Button) findViewById(R.id.buttonSettingSave);
         textViewFinish = (TextView) findViewById(R.id.textView199);
         textViewNotif_Explain = (TextView) findViewById(R.id.textView154);
-
+        textViewAppointmentDay = (TextView) findViewById(R.id.textView224);
+        textViewAppointmentTime = (TextView) findViewById(R.id.textView228);
 
     }
 
@@ -773,5 +827,33 @@ public class SettingActivity extends AppCompatActivity {
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         view.requestFocus();
         inputMethodManager.showSoftInput(view, 0);
+    }
+
+
+
+    public void showTimePickerDialog(View v) {
+
+        MyTimePickerFragment myTimePickerFragment = new MyTimePickerFragment();
+        myTimePickerFragment.show(getFragmentManager(), "timePicker");
+
+    } //showTimePickerDialog
+
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+        MyData myData = new MyData();
+        String sTime = myData.createStringTime(hourOfDay, minute);
+        textViewAppointmentTime.setText(sTime);
+        String[] strAppointmentNof = myManage.filter_userTABLE(10); //หา AppointmentNof
+        String[] queryDateTimeAppointmentRef = strAppointmentNof[0].split(";");
+        String s1 = queryDateTimeAppointmentRef[0];
+
+        //textViewAppointmentDay.setText(strings[which]);
+        String[] strUser = myManage.filter_userTABLE(1); //ค่า username
+        s1 = s1 + ";" + sTime;
+        myManage.update_Appointment_notif(strUser[0],s1);
+        //dialog.dismiss();
+
+
     }
 }

@@ -253,7 +253,7 @@
                         android:layout_height="wrap_content"
                         android:text="เตือนก่อนถึงวันนัด"
                         android:id="@+id/textView223"
-                        android:layout_weight="1.33"
+                        android:layout_weight="1.1"
                         android:textSize="14sp"
                         android:layout_marginLeft="@dimen/z2_margin_smallgap" />
 

@@ -116,7 +116,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                 Date dQueryTime = myData.stringChangetoTime_Minute(queryDateTimeAppointmentRef[1]);
 
                 for(int i = 0;i< stringsAppointmentId.length;i++) {
-                    //Toast.makeText(context,"เข้า 4",Toast.LENGTH_LONG).show();
+                    //Toast.makeText(context,Integer.toString(stringsAppointmentId.length),Toast.LENGTH_LONG).show();
                     if (stringsAppointmentSnooze[i].equals("Y") && dCurrentTime.compareTo(dQueryTime) <= 0) {
                         Toast.makeText(context,"เข้า 5",Toast.LENGTH_LONG).show();
                         Date dateAppointment = myData.stringChangetoDateWithOutTime(stringsAppointmentDate[i]); //ค่า Date วันนัด
@@ -134,7 +134,9 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                             Calendar calendarCurrent = Calendar.getInstance();
                             Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
-                            String sTime = dCurrentDay + " " + queryDateTimeAppointmentRef[1];
+
+                            String sTime = sCurrentDay + " " + queryDateTimeAppointmentRef[1];
+
                             Toast.makeText(context,sTime,Toast.LENGTH_LONG).show();
                             Date dTime = myData.stringChangetoDate(sTime);
                             myCalendarAlarm.setTime(dTime);

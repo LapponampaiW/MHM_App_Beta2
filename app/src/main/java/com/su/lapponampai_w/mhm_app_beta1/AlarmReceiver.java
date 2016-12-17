@@ -130,6 +130,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         intent.putExtra("PopUpMaster", "AlarmAppointment");
         intent.putExtra("SumId_AlarmReceiver", sIdAppointment);
         intent.putExtra("SumDateTime_AlarmReceiver", sDay);
+        intent.putExtra("sId", Integer.toString(notifID));
 
         /*
         for(int i = 0;i<=1;i++) {

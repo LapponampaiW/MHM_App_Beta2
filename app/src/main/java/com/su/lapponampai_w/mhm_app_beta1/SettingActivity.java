@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -41,7 +43,7 @@ public class SettingActivity extends AppCompatActivity {
 
 
     Button buttonConnect,buttonSuperUser,buttonNofSave;
-    String strAddVN;
+    String strAddVN,stringEditText;
     TextView textViewid,textViewAbout,textViewChangePW,textViewSecurity,textViewFinish,textViewNotif_Explain;
     MyManage myManage;
     Switch aSwitch;
@@ -86,7 +88,9 @@ public class SettingActivity extends AppCompatActivity {
         clickPWActivity();
 
         //คลิก Save Nof
-        clickSaveNof();
+        //clickSaveNof();
+
+        saveEditText();
 
         //คลิก Finish
         clickFinish();
@@ -97,6 +101,36 @@ public class SettingActivity extends AppCompatActivity {
 
         clickSuperUser();
 
+    }
+
+    private void saveEditText() {
+
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                stringEditText = s.toString();
+                if (stringEditText.equals("") || stringEditText.length() < 1) {
+                    String[] strUser = myManage.filter_userTABLE(1); //ค่า username
+                    myManage.update_notification(strUser[0], "Default", "1");
+                } else {
+                    String[] strUser = myManage.filter_userTABLE(1); //ค่า username
+                    myManage.update_notification(strUser[0],stringEditText,"1");
+                }
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     private void clickCheckBoxNof() {
@@ -275,9 +309,10 @@ public class SettingActivity extends AppCompatActivity {
 
                 if (checkBoxDefault.isChecked()) {
                     checkBoxCustom.setChecked(false);
-                    editText.setText("");
+                    String[] strUser = myManage.filter_userTABLE(1); //ค่า username
+                    myManage.update_notification(strUser[0],"Default","1");
+                    //editText.setText("");
                     editText.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getBaseContext(),"กรุณากดปุ่มบันทึกถ้าต้องการบันทึกความเปลี่ยนแปลง",Toast.LENGTH_SHORT).show();
                 } else {
                     checkBoxDefault.setChecked(true);
                 }
@@ -290,8 +325,14 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (checkBoxCustom.isChecked()) {
                     checkBoxDefault.setChecked(false);
-                    Toast.makeText(getBaseContext(),"กรุณากดปุ่มบันทึกถ้าต้องการบันทึกความเปลี่ยนแปลง",Toast.LENGTH_SHORT).show();
                     editText.setVisibility(View.VISIBLE);
+                    if (!stringEditText.equals("")) {
+                        String[] strUser = myManage.filter_userTABLE(1); //ค่า username
+                        myManage.update_notification(strUser[0], stringEditText, "1");
+                    } else {
+                        String[] strUser = myManage.filter_userTABLE(1); //ค่า username
+                        myManage.update_notification(strUser[0], "Default", "1");
+                    }
                 } else {
                     checkBoxCustom.setChecked(true);
                 }
@@ -356,12 +397,14 @@ public class SettingActivity extends AppCompatActivity {
             checkBoxCustom.setChecked(false);
             editText.setText("");
             editText.setVisibility(View.INVISIBLE);
+            stringEditText = "";
         } else {
             checkBoxDefault.setChecked(false);
             checkBoxCustom.setChecked(true);
             editText.setVisibility(View.INVISIBLE);
             editText.setVisibility(View.VISIBLE);
             editText.setText(strNotif[0]);
+            stringEditText = editText.getText().toString();
         }
 
         if (strTimeNof[0].equals("1")) {
@@ -373,6 +416,7 @@ public class SettingActivity extends AppCompatActivity {
         }
 
         setViewTextViewSecurity(strStay[0]);
+
 
 
 
@@ -438,7 +482,7 @@ public class SettingActivity extends AppCompatActivity {
         checkBoxNof1 = (CheckBox) findViewById(R.id.checkBoxNof1);
         checkBoxNof2 = (CheckBox) findViewById(R.id.checkBoxNof2);
         textViewSecurity = (TextView) findViewById(R.id.textView187);
-        buttonNofSave = (Button) findViewById(R.id.buttonSettingSave);
+        //buttonNofSave = (Button) findViewById(R.id.buttonSettingSave);
         textViewFinish = (TextView) findViewById(R.id.textView199);
         textViewNotif_Explain = (TextView) findViewById(R.id.textView154);
 

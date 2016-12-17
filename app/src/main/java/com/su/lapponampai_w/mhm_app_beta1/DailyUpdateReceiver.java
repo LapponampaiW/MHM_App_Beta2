@@ -135,6 +135,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                             Calendar calendarCurrent = Calendar.getInstance();
                             Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
                             String sTime = dCurrentDay + " " + queryDateTimeAppointmentRef[1];
+                            Toast.makeText(context,sTime,Toast.LENGTH_LONG).show();
                             Date dTime = myData.stringChangetoDate(sTime);
                             myCalendarAlarm.setTime(dTime);
 

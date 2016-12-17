@@ -218,7 +218,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/z2_margin_space"
-                    android:paddingBottom="@dimen/z2_margin_space">
+                    android:paddingBottom="@dimen/z2_margin_space"
+                    android:id="@+id/linApp1">
 
                     <TextView
                         android:text="เตือนเมื่อใกล้ถึงวันนัด"
@@ -246,7 +247,8 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:id="@+id/linApp2">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -287,7 +289,8 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1.33"
                     android:layout_marginTop="@dimen/z2_margin_bigspace"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:id="@+id/linApp3">
 
                     <TextView
                         android:layout_width="0dp"

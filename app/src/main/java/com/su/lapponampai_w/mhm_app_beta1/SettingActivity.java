@@ -46,12 +46,12 @@ public class SettingActivity extends AppCompatActivity implements
 
 
     Button buttonConnect,buttonSuperUser,buttonNofSave;
-    String strAddVN,stringEditText;
+    String strAddVN,stringEditText,s1,s2;
     TextView textViewid,textViewAbout,textViewChangePW,textViewSecurity,textViewFinish,
             textViewNotif_Explain,textViewAppointmentDay,textViewAppointmentTime;
     MyManage myManage;
-    Switch aSwitch;
-    LinearLayout linearLayout,linearLayoutTimesNof;
+    Switch aSwitch,aSwitch2;
+    LinearLayout linearLayout,linearLayoutTimesNof,linearLayoutApp2,linearLayoutApp3;
     CheckBox checkBoxDefault, checkBoxCustom,checkBoxSecurityNone,
             checkBoxSecurity1,checkBoxSecurity2,checkBoxNof1,checkBoxNof2;
     EditText editText;
@@ -123,13 +123,13 @@ public class SettingActivity extends AppCompatActivity implements
                     public void onClick(DialogInterface dialog, int which) {
                         //Toast.makeText(getBaseContext(),Integer.toString(which),Toast.LENGTH_LONG).show();
                         textViewAppointmentDay.setText(strings[which]);
-                        String s1 = Integer.toString(which); //ตัวเลข จาก integer
+                        s1 = Integer.toString(which); //ตัวเลข จาก integer
                         String[] strAppointmentNof = myManage.filter_userTABLE(10); //หา AppointmentNof
-                        String[] queryDateTimeAppointmentRef = strAppointmentNof[0].split(";");
-                        String s2 = queryDateTimeAppointmentRef[1];
+                        //String[] queryDateTimeAppointmentRef = strAppointmentNof[0].split(";");
+                        //s2 = queryDateTimeAppointmentRef[1];
                         String[] strUser = myManage.filter_userTABLE(1); //ค่า username
-                        s1 = s1 + ";" + s2;
-                        myManage.update_Appointment_notif(strUser[0],s1);
+                        String s = s1 + ";" + s2;
+                        myManage.update_Appointment_notif(strUser[0],s);
                         dialog.dismiss();
                     }
                 });
@@ -176,9 +176,11 @@ public class SettingActivity extends AppCompatActivity implements
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                SplashScreen splashScreen = new SplashScreen();
+                splashScreen.updateDailyBroadcast(getBaseContext());
             }
         });
+
     }
 
     private void clickCheckBoxNof() {
@@ -398,10 +400,11 @@ public class SettingActivity extends AppCompatActivity implements
     }
 
     private void clickSwithAllowedNotification() {
+        final String[] strUser = myManage.filter_userTABLE(1); //ค่า id
         aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                String[] strUser = myManage.filter_userTABLE(1); //ค่า id
+
                 if (isChecked) {
                     myManage.update_Allowed_notification(strUser[0], "Y");
                     linearLayout.setVisibility(View.VISIBLE);
@@ -417,6 +420,25 @@ public class SettingActivity extends AppCompatActivity implements
 
             }
         });
+
+        aSwitch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    linearLayoutApp2.setVisibility(View.VISIBLE);
+                    linearLayoutApp3.setVisibility(View.VISIBLE);
+                    String s = s1 + ";" + s2;
+                    myManage.update_Appointment_notif(strUser[0],s);
+                } else {
+                    myManage.update_Appointment_notif(strUser[0],"N");
+                    linearLayoutApp2.setVisibility(View.GONE);
+                    linearLayoutApp3.setVisibility(View.GONE);
+                }
+                SplashScreen splashScreen = new SplashScreen();
+                splashScreen.updateDailyBroadcast(getBaseContext());
+            }
+        });
+
     }
 
     private void setView() {
@@ -466,12 +488,23 @@ public class SettingActivity extends AppCompatActivity implements
 
         setViewTextViewSecurity(strStay[0]);
 
-        String[] queryDateTimeAppointmentRef = strAppointmentNof[0].split(";");
-        textViewAppointmentDay.setText(queryDateTimeAppointmentRef[0]);
-        textViewAppointmentTime.setText(queryDateTimeAppointmentRef[1]);
-
-
-
+        //Set วันของ Appointment
+        if (strAppointmentNof[0].equals("N")) {
+            aSwitch2.setChecked(false);
+            linearLayoutApp2.setVisibility(View.GONE);
+            linearLayoutApp3.setVisibility(View.GONE);
+            textViewAppointmentDay.setText("3 (สาม)");
+            textViewAppointmentTime.setText("09:00");
+            s1 = "3";
+            s2 = "09:00";
+        } else {
+            aSwitch2.setChecked(true);
+            String[] queryDateTimeAppointmentRef = strAppointmentNof[0].split(";");
+            textViewAppointmentDay.setText(queryDateTimeAppointmentRef[0]);
+            textViewAppointmentTime.setText(queryDateTimeAppointmentRef[1]);
+            s1 = queryDateTimeAppointmentRef[0];
+            s2 = queryDateTimeAppointmentRef[1];
+        }
 
 
 
@@ -540,6 +573,9 @@ public class SettingActivity extends AppCompatActivity implements
         textViewNotif_Explain = (TextView) findViewById(R.id.textView154);
         textViewAppointmentDay = (TextView) findViewById(R.id.textView224);
         textViewAppointmentTime = (TextView) findViewById(R.id.textView228);
+        linearLayoutApp2 = (LinearLayout) findViewById(R.id.linApp2);
+        linearLayoutApp3 = (LinearLayout) findViewById(R.id.linApp3);
+        aSwitch2 = (Switch) findViewById(R.id.switch2);
 
     }
 
@@ -844,15 +880,17 @@ public class SettingActivity extends AppCompatActivity implements
         MyData myData = new MyData();
         String sTime = myData.createStringTime(hourOfDay, minute);
         textViewAppointmentTime.setText(sTime);
-        String[] strAppointmentNof = myManage.filter_userTABLE(10); //หา AppointmentNof
-        String[] queryDateTimeAppointmentRef = strAppointmentNof[0].split(";");
-        String s1 = queryDateTimeAppointmentRef[0];
+        //String[] strAppointmentNof = myManage.filter_userTABLE(10); //หา AppointmentNof
+        //String[] queryDateTimeAppointmentRef = strAppointmentNof[0].split(";");
+        s2 = sTime;
 
         //textViewAppointmentDay.setText(strings[which]);
         String[] strUser = myManage.filter_userTABLE(1); //ค่า username
-        s1 = s1 + ";" + sTime;
-        myManage.update_Appointment_notif(strUser[0],s1);
+        String s = s1 + ";" + s2;
+        myManage.update_Appointment_notif(strUser[0],s);
         //dialog.dismiss();
+        SplashScreen splashScreen = new SplashScreen();
+        splashScreen.updateDailyBroadcast(getBaseContext());
 
 
     }

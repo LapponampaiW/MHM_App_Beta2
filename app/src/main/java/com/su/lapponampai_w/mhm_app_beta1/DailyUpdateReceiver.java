@@ -106,7 +106,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
             Toast.makeText(context,"เข้า 2",Toast.LENGTH_LONG).show();
             //อ่านค่า วันที่ต้องทำการ Notificationจาก userTABLE
             String[] stringsUserTABLE_Appointment_notif = myManage.filter_userTABLE(10); //วันที่ก่อนต้องการ Notif
-            if (!stringsUserTABLE_Appointment_notif.equals("N")) {
+            if (!stringsUserTABLE_Appointment_notif[0].equals("N")) {
                 String[] queryDateTimeAppointmentRef = stringsUserTABLE_Appointment_notif[0].split(";");
                 String sCurrentDay = myData.currentDay(); //วันที่วันนี้ไม่ต้องเอาเวลา
                 Date dCurrentDay = myData.stringChangetoDate(sCurrentDay); //Date

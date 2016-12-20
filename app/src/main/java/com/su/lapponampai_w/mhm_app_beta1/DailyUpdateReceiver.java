@@ -507,7 +507,6 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                 String sCurrentDateTime = myData.currentDateTime_Withoutsecond(); //วันเวลาปัจจุบันไม่เอาวินาที
                 Date dCurrentDateTime = myData.stringChangetoDate(sCurrentDateTime); //เปรียนเป็น Date ใช้ในการเปรียบเทียบ
 
-
                 Log.d("14/10/2559", "1 : sSpecificDate : " + sSpecificDate);
 
                 String[] strings_sumTABLE_id = myManage.filter_sumTABLE__by_Date(sSpecificDate, 0);

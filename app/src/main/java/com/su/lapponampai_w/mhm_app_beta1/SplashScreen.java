@@ -79,8 +79,6 @@ public class SplashScreen extends AppCompatActivity {
                     }
 
 
-
-
                 } else {
                     startActivity(new Intent(SplashScreen.this, SignUpActivity.class)); // เดี่ยวต้องเปลี่ยน
                     Toast t = Toast.makeText(SplashScreen.this, Integer.toString(anInt) , Toast.LENGTH_LONG); //ลบภายหลัง
@@ -90,7 +88,7 @@ public class SplashScreen extends AppCompatActivity {
 
 
             }
-        },3000); // 2 วินาที
+        },2500); // 2 วินาที
 
 
 

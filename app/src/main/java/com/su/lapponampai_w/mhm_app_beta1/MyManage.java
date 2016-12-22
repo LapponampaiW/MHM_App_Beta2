@@ -225,16 +225,21 @@ public class MyManage {
     private static final String lcolumn_id = "_id";
     private static final String lcolumn_datetimesave = "DateTimeSave";
     private static final String lcolumn_lab_date = "LabDate";
-    private static final String lcolumn_blood_glucose = "BloodGlucose";
-    private static final String lcolumn_blood_pressure = "BloodPressure";
-    private static final String lcolumn_weight = "Weight";
-    private static final String lcolumn_temperature = "Temperature";
-    private static final String lcolumn_ldl_cholesterol = "LDLCholesterol";
+    private static final String lcolumn_body_weight = "Body_weight";
+    private static final String lcolumn_fbs = "FBS";
+    private static final String lcolumn_blood_pressure = "Blood_pressure";
+    private static final String lcolumn_total_chol = "Total_chol";
+    private static final String lcolumn_triglyceride = "Triglyceride";
+    private static final String lcolumn_hdl = "HDL";
+    private static final String lcolumn_ldl = "LDL";
+    private static final String lcolumn_sgpt_alt = "SGPT_ALT";
+    private static final String lcolumn_creatinine = "Creatinine";
+    private static final String lcolumn_bun = "BUN";
     private static final String lcolumn_cd4 = "CD4";
-    private static final String lcolumn_viral_load = "ViralLoad";
+    private static final String lcolumn_viral_load = "Viral_load";
     private static final String[] column_labTABLE = {lcolumn_id,lcolumn_datetimesave,lcolumn_lab_date,
-            lcolumn_blood_glucose,lcolumn_blood_pressure,lcolumn_weight,
-            lcolumn_temperature,lcolumn_ldl_cholesterol,lcolumn_cd4,lcolumn_viral_load};
+            lcolumn_body_weight,lcolumn_fbs,lcolumn_blood_pressure,lcolumn_total_chol,lcolumn_triglyceride,lcolumn_hdl,lcolumn_ldl,
+            lcolumn_sgpt_alt,lcolumn_creatinine,lcolumn_bun,lcolumn_cd4,lcolumn_viral_load};
 
     //sumTABLE_alternativeImage
     private static final String sumTABLE_alternativeImage = "sumTABLE_alternativeImage";
@@ -443,6 +448,7 @@ public class MyManage {
         ContentValues contentValues = new ContentValues();
         contentValues.put(lcolumn_datetimesave,strDateTimeSave);
         contentValues.put(lcolumn_lab_date,strLabDate);
+        /*
         contentValues.put(lcolumn_blood_glucose,strBloodGlucose);
         contentValues.put(lcolumn_blood_pressure,strBloodPressure);
         contentValues.put(lcolumn_weight,strWeight);
@@ -450,6 +456,7 @@ public class MyManage {
         contentValues.put(lcolumn_ldl_cholesterol,strLDLChloresterol);
         contentValues.put(lcolumn_cd4,strCD4);
         contentValues.put(lcolumn_viral_load,strViralLoad);
+        */
 
         return writeSqLiteDatabase.insert(labTABLE, null, contentValues);
 
@@ -1936,6 +1943,7 @@ public class MyManage {
         ContentValues contentValues = new ContentValues();
         contentValues.put(lcolumn_datetimesave,strDateTimeSave);
         contentValues.put(lcolumn_lab_date,strLabDate);
+        /*
         contentValues.put(lcolumn_blood_glucose,strBloodGlucose);
         contentValues.put(lcolumn_blood_pressure,strBloodPressure);
         contentValues.put(lcolumn_weight,strWeight);
@@ -1943,6 +1951,7 @@ public class MyManage {
         contentValues.put(lcolumn_ldl_cholesterol,strLDLChloresterol);
         contentValues.put(lcolumn_cd4,strCD4);
         contentValues.put(lcolumn_viral_load,strViralLoad);
+        */
 
         writeSqLiteDatabase.update(labTABLE,contentValues, "_id =?", new String[]{String.valueOf(id)});
 

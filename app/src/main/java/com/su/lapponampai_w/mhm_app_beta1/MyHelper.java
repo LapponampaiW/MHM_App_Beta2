@@ -93,10 +93,19 @@ public class MyHelper extends SQLiteOpenHelper {
             "(_id integer primary key, DateTimeSave Text, NoteDate Text, " +
             "NoteText Text, Allergy_SideEffect Text);";
 
-    //Create table labTABLE
+
+    /*
     private static final String CREATE_labTABLE = "create table labTABLE " +
             "(_id integer primary key, DateTimeSave Text, LabDate Text, BloodGlucose Text, BloodPressure Text, " +
             "Weight Text, Temperature Text, LDLCholesterol Text, CD4 Text, ViralLoad Text);";
+    */
+    //Create table labTABLE
+    private static final String CREATE_labTABLE = "create table labTABLE " +
+            "(_id integer primary key, DateTimeSave Text, LabDate Text, Body_weight Text, FBS Text, " +
+            "Blood_pressure Text, Total_chol Text, Triglyceride Text, HDL Text, LDL Text, SGPT_ALT Text, " +
+            "Creatinine Text, BUN Text, CD4 Text, Viral_load Text);";
+
+
 
     //Create table sumTABLE_alternativeImage
     private static final String CREATE_sumTABLE_alternativeImage = "create table sumTABLE_alternativeImage " +

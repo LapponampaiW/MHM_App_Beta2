@@ -115,7 +115,8 @@
             android:name=".PopUpChangeAppearance"
             android:screenOrientation="portrait" />
         <activity android:name=".AddCustomMedicine" />
-        <activity android:name=".PopUpAppointmentActivity"></activity>
+        <activity android:name=".PopUpAppointmentActivity" />
+        <activity android:name=".PopUpLabActivity"></activity>
     </application>
 
 </manifest>

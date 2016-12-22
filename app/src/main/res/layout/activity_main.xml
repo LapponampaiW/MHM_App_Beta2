@@ -300,12 +300,7 @@
         android:layout_height="fill_parent"
         android:gravity="bottom">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Button"
-            android:id="@+id/buttonForDoctor"
-            android:layout_gravity="center_horizontal" />
+
 
         <LinearLayout
             android:orientation="horizontal"
@@ -421,6 +416,8 @@
                     android:id="@+id/iB_E3"
                     android:src="@drawable/b1_yellowtablet"
                     android:background="#00000000" />
+
+
 
                 <ImageButton
                     android:layout_width="wrap_content"
@@ -590,5 +587,15 @@
         android:layout_height="64dp"
         android:id="@+id/spinner"
         android:background="@drawable/btn_menu" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:text="New Button"
+        android:id="@+id/buttonForDoctor"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_weight="1"
+        android:foregroundGravity="center_vertical|center_horizontal"
+        android:layout_height="wrap_content" />
+
 
 </RelativeLayout>

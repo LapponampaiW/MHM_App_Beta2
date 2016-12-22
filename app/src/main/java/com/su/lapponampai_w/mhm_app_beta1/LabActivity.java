@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ public class LabActivity extends AppCompatActivity {
 
     EditText editText1,editText2,editText3,editText4,editText5,editText6, editText7;
     String s1,s2,s3,s4,s5,s6, s7,sCalendar;
+    ImageButton imageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +39,29 @@ public class LabActivity extends AppCompatActivity {
 
         bindwidget();
 
-        textViewCalendar.setText("");
+        clickImageButton();
 
-        showListView();
+        //textViewCalendar.setText("");
 
-        clickTextViewCalendar();
+        //showListView();
 
-        clickButtonSaveCancel();
+        //clickTextViewCalendar();
 
-        clickDeleteListView();
+        //clickButtonSaveCancel();
 
+        //clickDeleteListView();
+
+    }
+
+    private void clickImageButton() {
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getBaseContext(), PopUpLabActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void clickDeleteListView() {
@@ -277,6 +292,7 @@ public class LabActivity extends AppCompatActivity {
 
     private void bindwidget() {
 
+        /*
         textViewCalendar = (TextView) findViewById(R.id.textView128);
         listView = (ListView) findViewById(R.id.listViewLab);
         saveButton = (Button) findViewById(R.id.buttonLabSave);
@@ -288,6 +304,9 @@ public class LabActivity extends AppCompatActivity {
         editText5 = (EditText) findViewById(R.id.editText10);
         editText6 = (EditText) findViewById(R.id.editText11);
         editText7 = (EditText) findViewById(R.id.editText12);
+        */
+        imageButton = (ImageButton) findViewById(R.id.imageButton11);
+
 
     } //bindwidget
 }

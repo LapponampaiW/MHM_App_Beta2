@@ -181,8 +181,8 @@ public class LabActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 //ทำการ Overwite (Update) ข้อมูลใน labTABLE
 
-                                myManage.updateLabTABLE(stringsList[0][ii],sSaveDateTime,sCalendar
-                                        ,s1,s2,s3,s4,s5,s6,s7);
+                                //myManage.updateLabTABLE(stringsList[0][ii],sSaveDateTime,sCalendar
+                                //        ,s1,s2,s3,s4,s5,s6,s7);
 
                                 Intent intent = new Intent(LabActivity.this,LabActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -199,7 +199,7 @@ public class LabActivity extends AppCompatActivity {
 
 
                 if (sDuplicate.equals("N")) {
-                    myManage.addValueToLabTABLE(sSaveDateTime, sCalendar, s1, s2, s3, s4, s5, s6, s7);
+                    //myManage.addValueToLabTABLE(sSaveDateTime, sCalendar, s1, s2, s3, s4, s5, s6, s7);
                     Toast.makeText(LabActivity.this,"Success!!!!",Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(LabActivity.this,LabActivity.class);

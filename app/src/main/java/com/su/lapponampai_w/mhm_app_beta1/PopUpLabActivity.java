@@ -1,6 +1,8 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -19,7 +21,7 @@ public class PopUpLabActivity extends AppCompatActivity {
 
     //Explicit
     TextView textViewCalendar;
-    String strReceiveIntent;
+    String strReceiveIntent,sCalendar;
     String[] stringslab;
     EditText[]  editTexts = new EditText[12];
     Button saveButton, cancelButton;
@@ -47,10 +49,17 @@ public class PopUpLabActivity extends AppCompatActivity {
     }
 
     private void setInitialParameter() {
+
         stringslab = new String[12];
+        sCalendar = "";
         for(int i =0;i < stringslab.length;i++) {
             stringslab[i] = "";
+
         }
+
+
+
+
 
 
 
@@ -69,10 +78,99 @@ public class PopUpLabActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Boolean aBoolean = true;
                 for(int i =0;i < stringslab.length;i++) {
                     stringslab[i] = editTexts[i].getText().toString().trim();
+                    if (!stringslab[i].equals("")) {
+                        aBoolean = false;
+                    } else {
+                        //aBoolean เป็น true เหมือนเดิม !!!!
+                    }
                 }
+
+                sCalendar = textViewCalendar.getText().toString();
+                if (sCalendar.equals("")) {
+                    Toast.makeText(getBaseContext(),"กรุณาระบุวันทีที่ต้องการบันทึก",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (aBoolean) {
+                    Toast.makeText(getBaseContext(), "กรุณาระบุค่าแล็ปอย่างน้อย 1 ค่า", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    Log.d("221216V1", "เข้า 1");
+                    //aBoolean = false
+                    final MyManage myManage = new MyManage(v.getContext());
+                    MyData myData = new MyData();
+                    final String sSaveDateTime = myData.currentDateTime();
+                    final String[] stringsDate = myManage.readAlllabTABLE(2);
+                    final String[] stringsId = myManage.readAlllabTABLE(0);
+                    for(int x = 0;x<stringsDate.length;x++) {
+                        if (stringsDate[x].equals(sCalendar)) {
+                            final int i = x;
+                            aBoolean = true;
+                            AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                            builder.setCancelable(false);
+                            builder.setIcon(R.drawable.logo_mhm);
+                            builder.setTitle("คำเตือน!!!");
+                            builder.setMessage("วันที่ " + sCalendar + " เคยมีการบันทึกไว้อยู่แล้วท่านต้องการบันทึกข้อมูลทับหรือไม่");
+                            builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            builder.setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //ทำการ Overwite (Update) ข้อมูลใน labTABLE
+
+
+                                    myManage.updateLabTABLE(stringsId[i], sSaveDateTime, sCalendar, stringslab[0],
+                                            stringslab[1], stringslab[2], stringslab[3], stringslab[4], stringslab[5],
+                                            stringslab[6],
+                                            stringslab[7], stringslab[8], stringslab[9], stringslab[10], stringslab[11]);
+
+                                    Intent intent = new Intent(PopUpLabActivity.this,LabActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(intent);
+                                    finish();
+
+                                }
+                            });
+                            builder.show();
+                        }
+                    }
+
+
+                    Log.d("221216V1","เข้า 2");
+
+
+                    if (!aBoolean) {
+                        //Toast.makeText(getBaseContext(), "s;dfjsl;djf;dsj", Toast.LENGTH_LONG).show();
+                        Log.d("221216V1", "False");
+                        myManage.addValueToLabTABLE(sSaveDateTime, sCalendar, stringslab[0],
+                                stringslab[1], stringslab[2], stringslab[3], stringslab[4], stringslab[5],
+                                stringslab[6],
+                                stringslab[7], stringslab[8], stringslab[9], stringslab[10], stringslab[11]);
+                        Toast.makeText(PopUpLabActivity.this,"Success!!!!",Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(PopUpLabActivity.this,LabActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+
+                    } else {
+                        Log.d("221216V1", "True");
+                    }
+
+
+
+
+                } //else
+
             }
+
         });
 
 

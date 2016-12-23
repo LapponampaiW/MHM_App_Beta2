@@ -441,13 +441,27 @@ public class MyManage {
         return strREAD;
     }
 
-    public long addValueToLabTABLE(String strDateTimeSave, String strLabDate, String strBloodGlucose,
-                                   String strBloodPressure, String strWeight, String strTemperature,
-                                   String strLDLChloresterol, String strCD4, String strViralLoad) {
+    public long addValueToLabTABLE(String strDateTimeSave, String strLabDate, String strBody_weight,
+                                   String strFBS, String strBlood_pressure, String strTotal_chol,
+                                   String strTriglyceride, String strHDL, String strLDL,
+                                   String strSGPT_ALT, String strCreatinine, String strBUN, String strCD4,
+                                   String strViral_load) {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(lcolumn_datetimesave,strDateTimeSave);
         contentValues.put(lcolumn_lab_date,strLabDate);
+        contentValues.put(lcolumn_body_weight,strBody_weight);
+        contentValues.put(lcolumn_fbs,strFBS);
+        contentValues.put(lcolumn_blood_pressure,strBlood_pressure);
+        contentValues.put(lcolumn_total_chol,strTotal_chol);
+        contentValues.put(lcolumn_triglyceride,strTriglyceride);
+        contentValues.put(lcolumn_hdl,strHDL);
+        contentValues.put(lcolumn_ldl,strLDL);
+        contentValues.put(lcolumn_sgpt_alt,strSGPT_ALT);
+        contentValues.put(lcolumn_creatinine,strCreatinine);
+        contentValues.put(lcolumn_bun,strBUN);
+        contentValues.put(lcolumn_cd4,strCD4);
+        contentValues.put(lcolumn_viral_load,strViral_load);
         /*
         contentValues.put(lcolumn_blood_glucose,strBloodGlucose);
         contentValues.put(lcolumn_blood_pressure,strBloodPressure);
@@ -1933,9 +1947,12 @@ public class MyManage {
         return Integer.toString(fake);
     }
 
-    public void updateLabTABLE(String id,String strDateTimeSave, String strLabDate, String strBloodGlucose,
-                               String strBloodPressure, String strWeight, String strTemperature,
-                               String strLDLChloresterol, String strCD4, String strViralLoad) {
+
+    public void updateLabTABLE(String id,String strDateTimeSave, String strLabDate, String strBody_weight,
+                               String strFBS, String strBlood_pressure, String strTotal_chol,
+                               String strTriglyceride, String strHDL, String strLDL,
+                               String strSGPT_ALT, String strCreatinine, String strBUN, String strCD4,
+                               String strViral_load) {
 
         Cursor cursor = readSqLiteDatabase.query(labTABLE, column_labTABLE, null, null, null, null, null);
         cursor.moveToFirst();
@@ -1943,6 +1960,19 @@ public class MyManage {
         ContentValues contentValues = new ContentValues();
         contentValues.put(lcolumn_datetimesave,strDateTimeSave);
         contentValues.put(lcolumn_lab_date,strLabDate);
+        contentValues.put(lcolumn_body_weight,strBody_weight);
+        contentValues.put(lcolumn_fbs,strFBS);
+        contentValues.put(lcolumn_blood_pressure,strBlood_pressure);
+        contentValues.put(lcolumn_total_chol,strTotal_chol);
+        contentValues.put(lcolumn_triglyceride,strTriglyceride);
+        contentValues.put(lcolumn_hdl,strHDL);
+        contentValues.put(lcolumn_ldl,strLDL);
+        contentValues.put(lcolumn_sgpt_alt,strSGPT_ALT);
+        contentValues.put(lcolumn_creatinine,strCreatinine);
+        contentValues.put(lcolumn_bun,strBUN);
+        contentValues.put(lcolumn_cd4,strCD4);
+        contentValues.put(lcolumn_viral_load,strViral_load);
+
         /*
         contentValues.put(lcolumn_blood_glucose,strBloodGlucose);
         contentValues.put(lcolumn_blood_pressure,strBloodPressure);

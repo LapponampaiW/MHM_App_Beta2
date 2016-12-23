@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:text="Body weight"
                         android:id="@+id/textViewL1"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:textSize="@dimen/heading5"
                         android:gravity="center_vertical|center_horizontal" />
 
@@ -129,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:text="FBS"
                         android:id="@+id/textViewL2"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:textSize="@dimen/heading5"
                         android:gravity="center_vertical|center_horizontal" />
 
@@ -161,7 +161,7 @@
                         android:layout_height="wrap_content"
                         android:text="Blood pressure"
                         android:id="@+id/textViewL3"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:textSize="@dimen/heading5"
                         android:gravity="center_vertical|center_horizontal" />
 
@@ -194,7 +194,7 @@
                         android:layout_height="wrap_content"
                         android:text="Total chol."
                         android:id="@+id/textViewL4"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:textSize="@dimen/heading5"
                         android:gravity="center_vertical|center_horizontal" />
 
@@ -229,7 +229,7 @@
                         android:layout_height="wrap_content"
                         android:text="Triglyceride"
                         android:id="@+id/textViewL5"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:textSize="@dimen/heading5"
                         android:gravity="center_vertical|center_horizontal" />
 
@@ -262,7 +262,7 @@
                         android:layout_height="wrap_content"
                         android:text="HDL"
                         android:id="@+id/textViewL6"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:textSize="@dimen/heading5"
                         android:gravity="center_vertical|center_horizontal" />
 
@@ -294,7 +294,7 @@
                         android:layout_height="wrap_content"
                         android:text="LDL"
                         android:id="@+id/textViewL7"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:textSize="@dimen/heading5"
                         android:gravity="center_vertical|center_horizontal" />
 
@@ -326,7 +326,7 @@
                         android:layout_height="wrap_content"
                         android:text="SGPT/ALT"
                         android:id="@+id/textViewL8"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:textSize="@dimen/heading5"
                         android:gravity="center_vertical|center_horizontal" />
 
@@ -358,7 +358,7 @@
                         android:layout_height="wrap_content"
                         android:text="creatinine"
                         android:id="@+id/textViewL9"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:textSize="@dimen/heading5"
                         android:gravity="center_vertical|center_horizontal" />
 
@@ -390,7 +390,7 @@
                         android:layout_height="wrap_content"
                         android:text="BUN"
                         android:id="@+id/textViewL10"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:textSize="@dimen/heading5"
                         android:gravity="center_vertical|center_horizontal" />
 
@@ -423,7 +423,7 @@
                         android:layout_height="wrap_content"
                         android:text="CD4"
                         android:id="@+id/textViewL11"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:textSize="@dimen/heading5"
                         android:gravity="center_vertical|center_horizontal" />
 
@@ -455,7 +455,7 @@
                         android:layout_height="wrap_content"
                         android:text="Viral load"
                         android:id="@+id/textViewL12"
-                        android:layout_weight="1"
+                        android:layout_weight="0.8"
                         android:textSize="@dimen/heading5"
                         android:gravity="center_vertical|center_horizontal" />
 
@@ -507,7 +507,7 @@
                 android:layout_height="wrap_content"
                 android:text="ค่าแล๊ป"
                 android:id="@+id/textView37"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:textSize="20sp"
                 android:gravity="center_vertical|center_horizontal"
                 android:textColor="@android:color/holo_red_dark" />

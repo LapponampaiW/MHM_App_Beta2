@@ -15,7 +15,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="5">
+            android:layout_weight="7">
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -50,16 +50,17 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/z2_margin_bigspace">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="DateAppointment"
+                    android:text="ค่าแล๊ปที่ตรวจ :"
                     android:id="@+id/textView113"
                     android:paddingLeft="@dimen/z2_margin_smallgap"
                     android:paddingTop="@dimen/z2_margin_space"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:textStyle="bold" />
 
                 <TextView

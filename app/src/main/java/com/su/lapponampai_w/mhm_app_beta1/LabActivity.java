@@ -226,9 +226,15 @@ public class LabActivity extends AppCompatActivity {
                 myManage.readAlllabTABLE(8), myManage.readAlllabTABLE(9), myManage.readAlllabTABLE(10)
                 , myManage.readAlllabTABLE(11), myManage.readAlllabTABLE(12), myManage.readAlllabTABLE(13)
                 , myManage.readAlllabTABLE(14)};
-        String[] stringsDateLab = myManage.readAlladdUseTABLE(2);
+        String[] stringsDateLab = myManage.readAlllabTABLE(2);
+
+
 
         if (!stringsDateLab.equals("")) {
+
+            for(int i = 0;i<stringsDateLab.length;i++) {
+                stringsDateLab[i] = "วันที่ตรวจแล๊ป : ".concat(stringsDateLab[i]);
+            }
 
             String[] stringsLabHeading = {"Body weight", "FBS", "Blood pressure", "Total Chlol",
                     "Triglyceride", "HDL", "LDL", "SGPT/ALT", "Creatinine", "BUN", "CD4", "Viral load"};
@@ -239,6 +245,9 @@ public class LabActivity extends AppCompatActivity {
                 stringsExplainLab[i] = "";
             }
 
+
+
+
             //ArrayList<String> stringArrayList = new ArrayList<String>();
             //int iIndex = 0;
             for(int r = 0;r < stringsLab[r].length;r++) { //loop เท่าจำนวนแถว
@@ -246,24 +255,23 @@ public class LabActivity extends AppCompatActivity {
                     if (!stringsLab[c][r].equals("")) {
                         Log.d("231256V1", stringsLab[c][r]);
 
-                        /*
-                        if (stringsExplainLab[c].equals("")) {
-                            stringsExplainLab[c] = stringsLabHeading[c];
+
+                        if (stringsExplainLab[r].equals("")) {
+                            stringsExplainLab[r] = "".concat(stringsLabHeading[c]);//stringsLabHeading[c];
                         } else {
-                            stringsExplainLab[c] = stringsExplainLab[c].concat(", ");
-                            stringsExplainLab[c] = stringsExplainLab[c].concat(stringsLabHeading[c]);
+                            stringsExplainLab[r] = stringsExplainLab[r].concat(", ");//stringsExplainLab[c].concat(", ");
+                            stringsExplainLab[r] = stringsExplainLab[r].concat(stringsLabHeading[c]);//stringsExplainLab[c].concat(stringsLabHeading[c]);
                         }
-                        */
+
 
                     }
 
                 }
 
             }
-            String[] strings = {"0", "1"};
 
-
-            MyAdaptorLab myAdaptorLab = new MyAdaptorLab(getBaseContext(), strings, strings);
+            //String[] strings = {"0", "1"};
+            MyAdaptorLab myAdaptorLab = new MyAdaptorLab(getBaseContext(), stringsDateLab, stringsExplainLab);
             listView.setAdapter(myAdaptorLab);
 
 

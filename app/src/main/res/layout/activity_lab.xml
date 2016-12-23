@@ -48,7 +48,7 @@
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:id="@+id/listViewAppointment"
+        android:id="@+id/listViewLab"
         android:layout_below="@+id/textView107"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

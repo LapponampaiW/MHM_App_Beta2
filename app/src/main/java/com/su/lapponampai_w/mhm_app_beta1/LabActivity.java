@@ -18,12 +18,13 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class LabActivity extends AppCompatActivity {
 
     //Explicit
-    TextView textViewCalendar;
+    TextView textViewCalendar,textViewBackToMainActivity;
     String strReceiveIntent;
     ListView listView;
     Button saveButton, cancelButton;
@@ -43,7 +44,7 @@ public class LabActivity extends AppCompatActivity {
 
         //textViewCalendar.setText("");
 
-        //showListView();
+        showListView();
 
         //clickTextViewCalendar();
 
@@ -220,13 +221,68 @@ public class LabActivity extends AppCompatActivity {
         MyManage myManage = new MyManage(this);
         MyData myData = new MyData();
 
+        String[][] stringsLab = {myManage.readAlllabTABLE(3), myManage.readAlllabTABLE(4),
+                myManage.readAlllabTABLE(5), myManage.readAlllabTABLE(6), myManage.readAlllabTABLE(7),
+                myManage.readAlllabTABLE(8), myManage.readAlllabTABLE(9), myManage.readAlllabTABLE(10)
+                , myManage.readAlllabTABLE(11), myManage.readAlllabTABLE(12), myManage.readAlllabTABLE(13)
+                , myManage.readAlllabTABLE(14)};
+        String[] stringsDateLab = myManage.readAlladdUseTABLE(2);
+
+        if (!stringsDateLab.equals("")) {
+
+            String[] stringsLabHeading = {"Body weight", "FBS", "Blood pressure", "Total Chlol",
+                    "Triglyceride", "HDL", "LDL", "SGPT/ALT", "Creatinine", "BUN", "CD4", "Viral load"};
+
+
+            String[] stringsExplainLab = new String[stringsLab[0].length];
+            for(int i = 0;i < stringsExplainLab.length;i++) {
+                stringsExplainLab[i] = "";
+            }
+
+            //ArrayList<String> stringArrayList = new ArrayList<String>();
+            //int iIndex = 0;
+            for(int r = 0;r < stringsLab[r].length;r++) { //loop เท่าจำนวนแถว
+                for(int c = 0;c <stringsLab.length;c++) { //loop ตามจำนวน Column
+                    if (!stringsLab[c][r].equals("")) {
+                        Log.d("231256V1", stringsLab[c][r]);
+
+                        /*
+                        if (stringsExplainLab[c].equals("")) {
+                            stringsExplainLab[c] = stringsLabHeading[c];
+                        } else {
+                            stringsExplainLab[c] = stringsExplainLab[c].concat(", ");
+                            stringsExplainLab[c] = stringsExplainLab[c].concat(stringsLabHeading[c]);
+                        }
+                        */
+
+                    }
+
+                }
+
+            }
+            String[] strings = {"0", "1"};
+
+
+            MyAdaptorLab myAdaptorLab = new MyAdaptorLab(getBaseContext(), strings, strings);
+            listView.setAdapter(myAdaptorLab);
+
+
+        }
+
+
+
+
+
+        /*
         String[][] stringsList = {myManage.readAlllabTABLE(0),myManage.readAlllabTABLE(1),
                 myManage.readAlllabTABLE(2),myManage.readAlllabTABLE(3),myManage.readAlllabTABLE(4),
                 myManage.readAlllabTABLE(5),myManage.readAlllabTABLE(6),myManage.readAlllabTABLE(7),
                 myManage.readAlllabTABLE(8),myManage.readAlllabTABLE(9)};
 
 
+
         if (!stringsList[0][0].equals("")) {
+
 
             MyAdaptorLab myAdaptorLab = new MyAdaptorLab(LabActivity.this, stringsList[3],
                     stringsList[4], stringsList[5], stringsList[6], stringsList[7], stringsList[8],
@@ -235,7 +291,9 @@ public class LabActivity extends AppCompatActivity {
 
 
 
+
         }
+    */
 
 
     } //showListView
@@ -306,6 +364,8 @@ public class LabActivity extends AppCompatActivity {
         editText7 = (EditText) findViewById(R.id.editText12);
         */
         imageButton = (ImageButton) findViewById(R.id.imageButton11);
+        listView = (ListView) findViewById(R.id.listViewLab);
+        textViewBackToMainActivity = (TextView) findViewById(R.id.textView106);
 
 
     } //bindwidget

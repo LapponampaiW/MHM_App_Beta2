@@ -46,6 +46,7 @@ public class LabActivity extends AppCompatActivity {
 
         showListView();
 
+
         //clickTextViewCalendar();
 
         //clickButtonSaveCancel();
@@ -53,6 +54,7 @@ public class LabActivity extends AppCompatActivity {
         //clickDeleteListView();
 
     }
+
 
     private void clickImageButton() {
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -221,14 +223,13 @@ public class LabActivity extends AppCompatActivity {
         MyManage myManage = new MyManage(this);
         MyData myData = new MyData();
 
-        String[][] stringsLab = {myManage.readAlllabTABLE(3), myManage.readAlllabTABLE(4),
+        final String[][] stringsLab = {myManage.readAlllabTABLE(3), myManage.readAlllabTABLE(4),
                 myManage.readAlllabTABLE(5), myManage.readAlllabTABLE(6), myManage.readAlllabTABLE(7),
                 myManage.readAlllabTABLE(8), myManage.readAlllabTABLE(9), myManage.readAlllabTABLE(10)
                 , myManage.readAlllabTABLE(11), myManage.readAlllabTABLE(12), myManage.readAlllabTABLE(13)
                 , myManage.readAlllabTABLE(14)};
-        String[] stringsDateLab = myManage.readAlllabTABLE(2);
-
-
+        final String[] stringsDateLab = myManage.readAlllabTABLE(2);
+        final String[] stringsId = myManage.readAlllabTABLE(0);
 
         if (!stringsDateLab.equals("")) {
 
@@ -236,18 +237,16 @@ public class LabActivity extends AppCompatActivity {
                 stringsDateLab[i] = "วันที่ตรวจแล๊ป : ".concat(stringsDateLab[i]);
             }
 
-            String[] stringsLabHeading = {"Body weight", "FBS", "Blood pressure", "Total Chlol",
+            final String[] stringsLabHeading = {"Body weight", "FBS", "Blood pressure", "Total Chlol",
                     "Triglyceride", "HDL", "LDL", "SGPT/ALT", "Creatinine", "BUN", "CD4", "Viral load"};
 
+
+            //เรียง ตามวันที่ ให้วันที่มากๆ มาก่อน (2)
 
             String[] stringsExplainLab = new String[stringsLab[0].length];
             for(int i = 0;i < stringsExplainLab.length;i++) {
                 stringsExplainLab[i] = "";
             }
-
-
-
-
             //ArrayList<String> stringArrayList = new ArrayList<String>();
             //int iIndex = 0;
             for(int r = 0;r < stringsLab[r].length;r++) { //loop เท่าจำนวนแถว
@@ -263,7 +262,6 @@ public class LabActivity extends AppCompatActivity {
                             stringsExplainLab[r] = stringsExplainLab[r].concat(stringsLabHeading[c]);//stringsExplainLab[c].concat(stringsLabHeading[c]);
                         }
 
-
                     }
 
                 }
@@ -275,33 +273,84 @@ public class LabActivity extends AppCompatActivity {
             listView.setAdapter(myAdaptorLab);
 
 
-        }
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String[] stringsUnitLab = {"Kg.", "mg/dL", "mmHg", "mg/dL", "mg/dL", "mg/dL",
+                            "mg/dL", "U/L", "mg/dL", "mg/dL", "cell/mm3", "copies/ml"};
+                    String s = stringsDateLab[position] + "\n\nค่าแล็ป :";
+                    for (int i = 0; i < stringsLab.length; i++) {
+                        if (!stringsLab[i][position].equals("")) {
+                            s = s + "\n     " + stringsLabHeading[i]
+                                    + " " + stringsLab[i][position] + " " + stringsUnitLab[i];
+                        }
+                    } //for
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    builder.setIcon(R.drawable.logo_mhm);
+                    builder.setTitle("ค่าแล็ป");
+                    builder.setMessage(s);
+                    builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialog) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.show();
+                }
+            });
+
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    builder.setCancelable(false);
+                    builder.setIcon(R.drawable.logo_mhm);
+                    builder.setTitle("ลบข้อมูลค่าแล็ป");
+                    builder.setMessage("ยืนยันการลบข้อมูลค่าแล็ป");
+                    builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+
+                            //231259
+                            String id = stringsId[position];
+                            SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME,
+                                    MODE_PRIVATE, null);
+                            sqLiteDatabase.delete("LabTABLE", "_id = " + id, null);
+
+
+                            Intent intent = new Intent(LabActivity.this, LabActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    builder.show();
+                    return true;
+                }
+            });
 
 
 
 
 
-        /*
-        String[][] stringsList = {myManage.readAlllabTABLE(0),myManage.readAlllabTABLE(1),
-                myManage.readAlllabTABLE(2),myManage.readAlllabTABLE(3),myManage.readAlllabTABLE(4),
-                myManage.readAlllabTABLE(5),myManage.readAlllabTABLE(6),myManage.readAlllabTABLE(7),
-                myManage.readAlllabTABLE(8),myManage.readAlllabTABLE(9)};
+
+        } //first if
 
 
-
-        if (!stringsList[0][0].equals("")) {
-
-
-            MyAdaptorLab myAdaptorLab = new MyAdaptorLab(LabActivity.this, stringsList[3],
-                    stringsList[4], stringsList[5], stringsList[6], stringsList[7], stringsList[8],
-                    stringsList[9], stringsList[2]);
-            listView.setAdapter(myAdaptorLab);
-
-
-
-
-        }
-    */
 
 
     } //showListView

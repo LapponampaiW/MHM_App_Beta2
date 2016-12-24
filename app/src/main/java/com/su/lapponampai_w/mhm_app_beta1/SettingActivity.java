@@ -48,13 +48,14 @@ public class SettingActivity extends AppCompatActivity implements
     Button buttonConnect,buttonSuperUser,buttonNofSave;
     String strAddVN,stringEditText,s1,s2;
     TextView textViewid,textViewAbout,textViewChangePW,textViewSecurity,textViewFinish,
-            textViewNotif_Explain,textViewAppointmentDay,textViewAppointmentTime;
+            textViewNotif_Explain,textViewAppointmentDay,textViewAppointmentTime,textViewUser;
     MyManage myManage;
     Switch aSwitch,aSwitch2;
     LinearLayout linearLayout,linearLayoutTimesNof,linearLayoutApp2,linearLayoutApp3;
     CheckBox checkBoxDefault, checkBoxCustom,checkBoxSecurityNone,
             checkBoxSecurity1,checkBoxSecurity2,checkBoxNof1,checkBoxNof2;
     EditText editText;
+    int iUserTimes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +105,51 @@ public class SettingActivity extends AppCompatActivity implements
         clickConnect();
 
         clickSuperUser();
+
+        clickUserTextView();
+
+    }
+
+    private void clickUserTextView() {
+
+        textViewUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iUserTimes = iUserTimes + 1;
+                if (iUserTimes >= 10) {
+
+
+                        final EditText editText = new EditText(getApplicationContext());
+                        editText.setInputType(16);
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                        builder.setCancelable(false);
+                        builder.setIcon(R.drawable.logo_mhm);
+                        builder.setTitle("Advance Setting");
+                        builder.setMessage("Please Enter Password");
+                        builder.setView(editText);
+                        builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String s = editText.getText().toString().trim();
+                                if (s.equals("123")) {
+                                    Toast.makeText(getBaseContext(), "Success!!!!", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(getBaseContext(), "Fail!!!", Toast.LENGTH_LONG).show();
+                                }
+
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.show();
+                }
+            }
+        });
 
     }
 
@@ -444,6 +490,7 @@ public class SettingActivity extends AppCompatActivity implements
     private void setView() {
 
         textViewNotif_Explain.setText("ปิด/เปิด การเตือน\nเมื่อถึงเวลารับประทานยา");
+        iUserTimes = 0;
 
 
         String[] strUser = myManage.filter_userTABLE(1); //ค่า id
@@ -573,6 +620,7 @@ public class SettingActivity extends AppCompatActivity implements
         textViewNotif_Explain = (TextView) findViewById(R.id.textView154);
         textViewAppointmentDay = (TextView) findViewById(R.id.textView224);
         textViewAppointmentTime = (TextView) findViewById(R.id.textView228);
+        textViewUser = (TextView) findViewById(R.id.textView173);
         linearLayoutApp2 = (LinearLayout) findViewById(R.id.linApp2);
         linearLayoutApp3 = (LinearLayout) findViewById(R.id.linApp3);
         aSwitch2 = (Switch) findViewById(R.id.switch2);

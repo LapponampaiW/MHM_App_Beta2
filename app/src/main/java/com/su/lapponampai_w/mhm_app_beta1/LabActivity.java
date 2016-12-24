@@ -42,6 +42,8 @@ public class LabActivity extends AppCompatActivity {
 
         clickImageButton();
 
+        listView.setVisibility(View.INVISIBLE);
+
         //textViewCalendar.setText("");
 
         showListView();
@@ -231,7 +233,8 @@ public class LabActivity extends AppCompatActivity {
         final String[] stringsDateLab = myManage.readAlllabTABLE(2);
         final String[] stringsId = myManage.readAlllabTABLE(0);
 
-        if (!stringsDateLab.equals("")) {
+        if (!stringsDateLab[0].equals("")) {
+            Log.d("241259V1", "เข้า if");
 
             for(int i = 0;i<stringsDateLab.length;i++) {
                 stringsDateLab[i] = "วันที่ตรวจแล๊ป : ".concat(stringsDateLab[i]);
@@ -271,6 +274,7 @@ public class LabActivity extends AppCompatActivity {
             //String[] strings = {"0", "1"};
             MyAdaptorLab myAdaptorLab = new MyAdaptorLab(getBaseContext(), stringsDateLab, stringsExplainLab);
             listView.setAdapter(myAdaptorLab);
+            listView.setVisibility(View.VISIBLE);
 
 
 
@@ -342,12 +346,6 @@ public class LabActivity extends AppCompatActivity {
                     return true;
                 }
             });
-
-
-
-
-
-
         } //first if
 
 

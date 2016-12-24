@@ -51,7 +51,8 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="@dimen/z2_margin_bigspace">
+                android:paddingBottom="@dimen/z2_margin_bigspace"
+                android:layout_gravity="center_vertical">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -60,7 +61,7 @@
                     android:id="@+id/textView113"
                     android:paddingLeft="@dimen/z2_margin_smallgap"
                     android:paddingTop="@dimen/z2_margin_space"
-                    android:layout_weight="1.5"
+                    android:layout_weight="1.7"
                     android:textStyle="bold" />
 
                 <TextView
@@ -68,7 +69,9 @@
                     android:layout_height="wrap_content"
                     android:text="TimeAppointment"
                     android:id="@+id/textView114"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColor="@color/colorAccent"
+                    android:foregroundGravity="center_vertical" />
             </LinearLayout>
 
         </LinearLayout>

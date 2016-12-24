@@ -8,8 +8,8 @@ android {
         applicationId "com.su.lapponampai_w.mhm_app_beta1"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 3
-        versionName "1.04"
+        versionCode 4
+        versionName "1.05"
     }
     buildTypes {
         release {

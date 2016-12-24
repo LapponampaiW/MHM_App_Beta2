@@ -44,6 +44,7 @@ public class MyManage {
     public static final String ucolumn_always_username = "Always_username";
     public static final String ucolumn_times_notif = "Times_notif";
     public static final String ucolumn_appointment_notif = "Appointment_notif";
+    public static final String ucolumn_Advance_mode = "Advance_mode";
     public static final String[] column_userTABLE = {ucolumn_id, ucolumn_User, ucolumn_Password, ucolumn_Stay, ucolumn_hn};
 
     //medTABLE
@@ -2089,6 +2090,24 @@ public class MyManage {
         ContentValues contentValues = new ContentValues();
         contentValues.put(ucolumn_allowed_notif, str_allowed_notif);
 
+
+        writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
+
+    }
+
+    public void update_Advance_mode(String username,String str_Advance_mode) {
+
+        Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE,
+                "User =?", new String[]{String.valueOf(username)}, null, null, null);
+
+        cursor.moveToFirst();
+
+
+        String id = cursor.getString(0);
+
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ucolumn_Advance_mode, str_Advance_mode);
 
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
 

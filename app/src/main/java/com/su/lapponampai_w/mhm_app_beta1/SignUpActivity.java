@@ -47,7 +47,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void click_button_SignUp_SignUp() {
 
-
         button_SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,9 +73,6 @@ public class SignUpActivity extends AppCompatActivity {
                             Toast.makeText(getBaseContext(),"Beta Version 1.02 Please SignUp again",Toast.LENGTH_LONG).show();
                             return;
                         }
-
-
-
 
                         myManage.addValueSignUp(string_rev_Username,string_rev_RePassword,"2",string_rev_Email);
 

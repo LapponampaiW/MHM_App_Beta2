@@ -133,6 +133,10 @@ public class SettingActivity extends AppCompatActivity implements
                                 String s = editText.getText().toString().trim();
                                 if (s.equals("123")) {
                                     Toast.makeText(getBaseContext(), "Success!!!!", Toast.LENGTH_LONG).show();
+
+                                    //241259V1 เปลี่ยน Advance Mode เป็น Y
+                                    String[] strings = myManage.readAlluserTABLE(1);
+                                    myManage.update_Advance_mode(strings[0],"Y");
                                 } else {
                                     Toast.makeText(getBaseContext(), "Fail!!!", Toast.LENGTH_LONG).show();
                                 }

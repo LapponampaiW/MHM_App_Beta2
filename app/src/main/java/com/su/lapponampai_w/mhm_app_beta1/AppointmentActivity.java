@@ -34,6 +34,8 @@ import static com.su.lapponampai_w.mhm_app_beta1.R.id.buttonAppointmentSave;
 public class AppointmentActivity extends AppCompatActivity implements
         TimePickerDialog.OnTimeSetListener,DatePickerDialog.OnDateSetListener{
 
+
+
     //Explicit
     EditText doctoreditText, noteEditText;
     TextView dateTextView, timeTextView,textViewBackToMain;
@@ -376,4 +378,10 @@ public class AppointmentActivity extends AppCompatActivity implements
         timeTextView.setText(sTime);
 
     }
+
+
+
+
+
+
 } //Main Class

@@ -1,14 +1,10 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -99,7 +95,7 @@ public class MyHeadingDetail extends ContextWrapper {
                         Intent intent = new Intent(context, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        startActivity(new Intent(context, AppointmentActivity.class));
+                        startActivity(new Intent(context, AppointmentBetaActivity.class));
                     } else {
                         Intent intent = new Intent(context, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -115,7 +111,7 @@ public class MyHeadingDetail extends ContextWrapper {
                     Intent intent = new Intent(context, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                    startActivity(new Intent(context, AppointmentActivity.class));
+                    startActivity(new Intent(context, AppointmentBetaActivity.class));
                     */
                 }
 

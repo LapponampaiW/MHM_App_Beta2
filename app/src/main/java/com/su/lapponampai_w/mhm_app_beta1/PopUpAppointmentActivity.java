@@ -14,7 +14,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -70,10 +69,10 @@ public class PopUpAppointmentActivity extends AppCompatActivity implements
                 String stringNote = noteEditText.getText().toString();
                 String stringDate = dateTextView.getText().toString();
                 String stringTime = timeTextView.getText().toString();
-                Log.d("AppointmentActivity", "stringTime : " + stringTime);
+                Log.d("AppointmentBetaActivity", "stringTime : " + stringTime);
                 String sSkip;
                 stringNote = noteEditText.getText().toString().trim();
-                Log.d("AppointmentActivity", stringDoctor);
+                Log.d("AppointmentBetaActivity", stringDoctor);
 
                 if (checkBox.isChecked()) {
                     sSkip = "Y";
@@ -95,7 +94,7 @@ public class PopUpAppointmentActivity extends AppCompatActivity implements
                         myManage.addValueToAppointmentTABLE(strCurrentDateTime, stringDate,
                                 stringTime, stringDoctor, stringNote,"Y");
 
-                        Intent intent = new Intent(PopUpAppointmentActivity.this,AppointmentActivity.class);
+                        Intent intent = new Intent(PopUpAppointmentActivity.this,AppointmentBetaActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         finish();

@@ -75,7 +75,7 @@
             android:name=".ResultDoctorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AppointmentActivity"
+            android:name=".AppointmentBetaActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".LabActivity"
@@ -116,7 +116,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".AddCustomMedicine" />
         <activity android:name=".PopUpAppointmentActivity" />
-        <activity android:name=".PopUpLabActivity"></activity>
+        <activity android:name=".PopUpLabActivity" />
+        <activity android:name=".AppointmentActivity"></activity>
     </application>
 
 </manifest>

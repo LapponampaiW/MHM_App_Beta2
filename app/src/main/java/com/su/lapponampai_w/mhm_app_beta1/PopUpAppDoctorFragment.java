@@ -22,7 +22,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class PopUpAppointmentActivity extends AppCompatActivity implements
+public class PopUpAppDoctorFragment extends AppCompatActivity implements
         TimePickerDialog.OnTimeSetListener,DatePickerDialog.OnDateSetListener{
 
     //Explicit
@@ -69,10 +69,10 @@ public class PopUpAppointmentActivity extends AppCompatActivity implements
                 String stringNote = noteEditText.getText().toString();
                 String stringDate = dateTextView.getText().toString();
                 String stringTime = timeTextView.getText().toString();
-                Log.d("AppointmentBetaActivity", "stringTime : " + stringTime);
+                Log.d("AppDoctorFragment", "stringTime : " + stringTime);
                 String sSkip;
                 stringNote = noteEditText.getText().toString().trim();
-                Log.d("AppointmentBetaActivity", stringDoctor);
+                Log.d("AppDoctorFragment", stringDoctor);
 
                 if (checkBox.isChecked()) {
                     sSkip = "Y";
@@ -88,13 +88,13 @@ public class PopUpAppointmentActivity extends AppCompatActivity implements
                     } else {
                         Toast.makeText(getBaseContext(), "success!!", Toast.LENGTH_SHORT).show();
                         //ทำไปต่อจากตรงนี้
-                        MyManage myManage = new MyManage(PopUpAppointmentActivity.this);
+                        MyManage myManage = new MyManage(PopUpAppDoctorFragment.this);
                         MyData myData = new MyData();
                         String strCurrentDateTime = myData.currentDateTime();
                         myManage.addValueToAppointmentTABLE(strCurrentDateTime, stringDate,
                                 stringTime, stringDoctor, stringNote,"Y");
 
-                        Intent intent = new Intent(PopUpAppointmentActivity.this,AppointmentBetaActivity.class);
+                        Intent intent = new Intent(PopUpAppDoctorFragment.this,AppointmentActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         finish();

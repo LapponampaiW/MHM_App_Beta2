@@ -102,14 +102,14 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
 
         if (!stringsAppointmentId[0].equals("")) {
-            //Toast.makeText(context,"เข้า 2",Toast.LENGTH_LONG).show();
+            Toast.makeText(context,"เข้า 2",Toast.LENGTH_LONG).show();
             //อ่านค่า วันที่ต้องทำการ Notificationจาก userTABLE
             String[] stringsUserTABLE_Appointment_notif = myManage.filter_userTABLE(10); //วันที่ก่อนต้องการ Notif
             if (!stringsUserTABLE_Appointment_notif[0].equals("N")) {
                 String[] queryDateTimeAppointmentRef = stringsUserTABLE_Appointment_notif[0].split(";");
                 String sCurrentDay = myData.currentDay(); //วันที่วันนี้ไม่ต้องเอาเวลา
                 Date dCurrentDay = myData.stringChangetoDate(sCurrentDay); //Date
-                //Toast.makeText(context,"เข้า 3",Toast.LENGTH_LONG).show();
+                Toast.makeText(context,"เข้า 3",Toast.LENGTH_LONG).show();
 
                 String sCurrentTime = myData.currentTime_Minus();
                 Date dCurrentTime = myData.stringChangetoTime_Minute(sCurrentTime);
@@ -118,7 +118,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                 for(int i = 0;i< stringsAppointmentId.length;i++) {
                     //Toast.makeText(context,Integer.toString(stringsAppointmentId.length),Toast.LENGTH_LONG).show();
                     if (stringsAppointmentSnooze[i].equals("Y") && dCurrentTime.compareTo(dQueryTime) <= 0) {
-                        //Toast.makeText(context,"เข้า 5",Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,"เข้า 5",Toast.LENGTH_LONG).show();
                         Date dateAppointment = myData.stringChangetoDateWithOutTime(stringsAppointmentDate[i]); //ค่า Date วันนัด
                         //ต้องหาค่า Date ของ 3 วันก่อนด้วย
                         Calendar calendar = Calendar.getInstance();
@@ -130,7 +130,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                         if (dCurrentDay.compareTo(dateAppointment) <= 0 &&
                                 dCurrentDay.compareTo(dateAppointmentMinusRef) >= 0) {
 
-                            //Toast.makeText(context,"เตรียมทำ Noti",Toast.LENGTH_LONG).show();
+                            Toast.makeText(context,"เตรียมทำ Noti",Toast.LENGTH_LONG).show();
 
                             Calendar calendarCurrent = Calendar.getInstance();
                             Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
@@ -711,39 +711,6 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
             }
         }
-
-
-
-
-
-
-        /*
-        else if (strTimeNof[0].equals("2")) {
-            for(int x =0 ;x < stringsAlarmId.length;x++) {
-                String stringAlarm = stringsAlarmDateTime[x];
-                Date dAlarm = myData.stringChangetoDate(stringAlarm);
-                myCalendarAlarm.setTime(dAlarm);
-
-                //24/10/2559 ส่งค่าไปกับ intent
-                alertIntent.putExtra("DailyUpdateIntent", stringsAlarmId[x]);
-
-
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                a = a + 1;
-                alarmManager.set(1, myCalendarAlarm.getTimeInMillis(), pendingIntent); //4
-                a = a + 1;
-                myCalendarAlarm.add(Calendar.MINUTE,1);
-                PendingIntent pendingIntent1 = PendingIntent.getBroadcast(context, a, alertIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-                alarmManager.set(1,myCalendarAlarm.getTimeInMillis(),pendingIntent1);
-            } //for
-        }
-        */
-
-
-
-
-
-
 
     }
 }  //Main Class

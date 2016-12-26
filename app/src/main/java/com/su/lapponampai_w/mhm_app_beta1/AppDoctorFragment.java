@@ -1,13 +1,20 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -15,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -63,6 +71,66 @@ public class AppDoctorFragment extends Fragment {
 
         clickBackToMain(view);
 
+        clickDeleteInListView(view);
+
+
+    }
+
+    private void clickDeleteInListView(final View v) {
+
+        MyManage myManage = new MyManage(v.getContext());
+        final String[][] stringsAppointment = {myManage.readAllappointmentTABLE(0),
+                myManage.readAllappointmentTABLE(2),
+                myManage.readAllappointmentTABLE(3),myManage.readAllappointmentTABLE(4)
+                ,myManage.readAllappointmentTABLE(5)};
+
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, final View view, final int position, long id) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setCancelable(false);
+                builder.setIcon(R.drawable.logo_mhm);
+                builder.setTitle("ลบข้อมูลวันนัด");
+                builder.setMessage("ยืนยันการลบข้อมูลวันนัด");
+                builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        String id = stringsAppointment[0][position];
+                        Log.d("13JulyV1", "id : " + id);
+
+
+                        MyHelper helper = new MyHelper(v.getContext());
+
+                        helper = new MyHelper(v.getContext());
+
+                        SQLiteDatabase readSqLiteDatabase = helper.getReadableDatabase();
+                        readSqLiteDatabase.delete("appointmentTABLE", "_id = " + id, null);
+
+
+                        Toast.makeText(getActivity().getBaseContext(),"Delete in appointmentTABLE",Toast.LENGTH_SHORT).show();
+
+
+                        Intent intent = new Intent(getActivity().getBaseContext(),AppointmentActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        getActivity().finish();
+
+
+                    }
+                });
+                builder.show();
+
+                return false;
+            }
+        });
 
     }
 

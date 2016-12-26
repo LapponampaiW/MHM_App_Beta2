@@ -31,7 +31,7 @@ public class AppointmentActivity extends AppCompatActivity {
     private void addFragmentAndDisplay() {
         myViewPagerAdaptor = new MyViewPagerAdaptor(getSupportFragmentManager());
         myViewPagerAdaptor.addFragments(new AppDoctorFragment(),"วันนัดพบแพทย์");
-        myViewPagerAdaptor.addFragments(new WeeklyFragment(),"วันนัดตรวจค่าแล๊ป");
+        myViewPagerAdaptor.addFragments(new AppLabFragment(),"วันนัดตรวจค่าแล๊ป");
 
         viewPager.setAdapter(myViewPagerAdaptor);
         tabLayout.setupWithViewPager(viewPager);

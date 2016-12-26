@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pop_up_app_lab"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.su.lapponampai_w.mhm_app_beta1.PopUpAppLabActivity">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView105"
+        android:layout_alignParentRight="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView29"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/z2_margin_bigspace"
+            android:layout_marginRight="@dimen/z2_margin_bigspace" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="วันนัดแพทย์"
+        android:id="@+id/textView105"
+        android:textSize="@dimen/heading3"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="#b500b8"
+        android:textColor="#ffffff"
+        android:autoText="false" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linLabAppointment"
+        android:layout_below="@+id/textView105">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:layout_margin="@dimen/z2_margin_bigspace">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="วันนัด :"
+                android:id="@+id/textView107"
+                android:textSize="20sp"
+                android:gravity="left|center"
+                android:layout_weight="2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12/12/2016"
+                android:id="@+id/textView108"
+                android:textSize="20sp"
+                android:textColor="#e78d4d"
+                android:gravity="center_horizontal"
+                android:background="@drawable/my_border_red"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ไม่ระบุเวลานัด"
+            android:id="@+id/checkBox"
+            android:layout_marginLeft="@dimen/z2_margin_biggap" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:layout_marginLeft="@dimen/z2_margin_bigspace"
+            android:layout_marginRight="@dimen/z2_margin_bigspace"
+            android:id="@+id/linAppointmentTime">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="เวลานัด :"
+                android:id="@+id/textView109"
+                android:textSize="20sp"
+                android:layout_weight="2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView110"
+                android:textSize="20sp"
+                android:gravity="center_horizontal"
+                android:textColor="#c959d8"
+                android:background="@drawable/my_border_orange"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linLabAppointment"
+        android:id="@+id/linLabTest">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/z2_margin_smallgap"
+            android:paddingRight="@dimen/z2_margin_smallgap">
+
+            <CheckBox
+                android:text="Body weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxL0"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:text="FBS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxL1"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/z2_margin_smallgap"
+            android:paddingRight="@dimen/z2_margin_smallgap">
+
+            <CheckBox
+                android:text="Blood pressure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxL2"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:text="Total chol"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxL3"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/z2_margin_smallgap"
+            android:paddingRight="@dimen/z2_margin_smallgap">
+
+            <CheckBox
+                android:text="Triglyceride"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxL4"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:text="HDL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxL5"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/z2_margin_smallgap"
+            android:paddingRight="@dimen/z2_margin_smallgap">
+
+            <CheckBox
+                android:text="LDL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxL6"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:text="SGPT/ALT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxL7"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/z2_margin_smallgap"
+            android:paddingRight="@dimen/z2_margin_smallgap">
+
+            <CheckBox
+                android:text="Creatinine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxL8"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:text="BUN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxL9"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/z2_margin_smallgap"
+            android:paddingRight="@dimen/z2_margin_smallgap">
+
+            <CheckBox
+                android:text="CD4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxL10"
+                android:layout_weight="1" />
+
+            <CheckBox
+                android:text="Viral load"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBoxL11"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linLabTest">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText5"
+            android:hint="หมายเหตุ :"
+            android:inputType="text"
+            android:layout_marginLeft="@dimen/z2_margin_smallgap"
+            android:layout_marginRight="@dimen/z2_margin_smallgap"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linAppointmentButton"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="กลับหน้ากลัก"
+            android:id="@+id/buttonAppointmentCancel"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="บันทึก"
+            android:id="@+id/buttonAppointmentSave"
+            android:layout_weight="1" />
+    </LinearLayout>
+</RelativeLayout>

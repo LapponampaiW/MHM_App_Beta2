@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
             } else if (popUpMaster.equals("AlarmAppointment")) {
                 //ทำ แค่แจ้งข่าวสารขึ้นในหน้าแรก โดย builder
-                String sReadAppointment = getIntent().getStringExtra("SumId_AlarmReceiver");//รับค่า id จาก AppointmentTABLE
+                final String sReadAppointment = getIntent().getStringExtra("SumId_AlarmReceiver");//รับค่า id จาก AppointmentTABLE
                 String sId = getIntent().getStringExtra("sId");
 
                 //Toast.makeText(getBaseContext(),sId,Toast.LENGTH_LONG).show();
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
 
 
-                MyManage myManage = new MyManage(this);
+                final MyManage myManage = new MyManage(this);
                 String[] stringsAppTAB_id = myManage.readAllappointmentTABLE(0);
                 if (!stringsAppTAB_id[0].equals("")) {
                     String sDay = "";
@@ -242,7 +242,14 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     builder.setIcon(R.drawable.logo_mhm48);
                     builder.setTitle("แจ้งนัดหมาย");
                     builder.setMessage(sInformation);
-                    builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton("ยกเลิกการเตือน", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            myManage.updateAppointmentTABLE_AppointmentSnooze(sReadAppointment, "N");
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setNegativeButton("เตือนอีกครั้งในวันพรุ่งนี้", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();

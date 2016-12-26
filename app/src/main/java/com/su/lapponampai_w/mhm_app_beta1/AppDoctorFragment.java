@@ -1,15 +1,12 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -150,7 +147,7 @@ public class AppDoctorFragment extends Fragment {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), PopUpAppDoctorFragment.class);
+                Intent intent = new Intent(v.getContext(), PopUpAppDoctorActivity.class);
                 startActivity(intent);
             }
         });

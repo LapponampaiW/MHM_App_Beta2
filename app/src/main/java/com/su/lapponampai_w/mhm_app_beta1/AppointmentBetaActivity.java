@@ -81,7 +81,7 @@ public class AppointmentBetaActivity extends AppCompatActivity implements
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), PopUpAppDoctorFragment.class);
+                Intent intent = new Intent(getBaseContext(), PopUpAppDoctorActivity.class);
                 startActivity(intent);
             }
         });

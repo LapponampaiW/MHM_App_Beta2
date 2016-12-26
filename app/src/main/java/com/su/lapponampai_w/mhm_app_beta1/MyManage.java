@@ -716,6 +716,12 @@ public class MyManage {
         return writeSqLiteDatabase.update(sum_table,contentValues, "_id = " + str_id,null);
     }
 
+    public long updateAppointmentTABLE_AppointmentSnooze(String str_id,String strText) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(appcolumn_appointment_snooze,strText);
+        return  writeSqLiteDatabase.update(appointmentTABLE,contentValues, "_id = " + str_id,null);
+    }
+
     public long update_alarmReceiverTABLE_SumId(String strId, int sumIdPosition, String sumId) {
         ContentValues contentValues = new ContentValues();
         switch (sumIdPosition) {

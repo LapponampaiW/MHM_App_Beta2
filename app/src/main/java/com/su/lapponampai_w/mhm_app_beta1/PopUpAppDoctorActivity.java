@@ -22,7 +22,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class PopUpAppDoctorFragment extends AppCompatActivity implements
+public class PopUpAppDoctorActivity extends AppCompatActivity implements
         TimePickerDialog.OnTimeSetListener,DatePickerDialog.OnDateSetListener{
 
     //Explicit
@@ -88,13 +88,13 @@ public class PopUpAppDoctorFragment extends AppCompatActivity implements
                     } else {
                         Toast.makeText(getBaseContext(), "success!!", Toast.LENGTH_SHORT).show();
                         //ทำไปต่อจากตรงนี้
-                        MyManage myManage = new MyManage(PopUpAppDoctorFragment.this);
+                        MyManage myManage = new MyManage(PopUpAppDoctorActivity.this);
                         MyData myData = new MyData();
                         String strCurrentDateTime = myData.currentDateTime();
                         myManage.addValueToAppointmentTABLE(strCurrentDateTime, stringDate,
                                 stringTime, stringDoctor, stringNote,"Y");
 
-                        Intent intent = new Intent(PopUpAppDoctorFragment.this,AppointmentActivity.class);
+                        Intent intent = new Intent(PopUpAppDoctorActivity.this,AppointmentActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         finish();

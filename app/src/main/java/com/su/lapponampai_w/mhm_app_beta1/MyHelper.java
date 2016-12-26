@@ -86,7 +86,8 @@ public class MyHelper extends SQLiteOpenHelper {
     //Create table appointmentTABLE
     private static final String CREATE_appointmentTABLE = "create table appointmentTABLE " +
             "(_id integer primary key, DateTimeSave Text, AppointmentDate Text, " +
-            "AppointmentTime Text, AppointmentDoctor Text, AppointmentNote Text, AppointmentSnooze text);";
+            "AppointmentTime Text, AppointmentDoctor Text, AppointmentNote Text, " +
+            "AppointmentSnooze text, AppointmentLab text);";
 
     //Create table noteTABLE
     private static final String CREATE_noteTABLE = "create table noteTABLE " +

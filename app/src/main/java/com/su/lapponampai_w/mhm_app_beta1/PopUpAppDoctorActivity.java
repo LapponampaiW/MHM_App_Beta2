@@ -92,7 +92,7 @@ public class PopUpAppDoctorActivity extends AppCompatActivity implements
                         MyData myData = new MyData();
                         String strCurrentDateTime = myData.currentDateTime();
                         myManage.addValueToAppointmentTABLE(strCurrentDateTime, stringDate,
-                                stringTime, stringDoctor, stringNote,"Y");
+                                stringTime, stringDoctor, stringNote,"Y","");
 
                         Intent intent = new Intent(PopUpAppDoctorActivity.this,AppointmentActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

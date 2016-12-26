@@ -51,7 +51,7 @@ public class AppLabFragment extends Fragment {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), PopUpAppDoctorActivity.class);
+                Intent intent = new Intent(v.getContext(), PopUpAppLabActivity.class);
                 startActivity(intent);
             }
         });

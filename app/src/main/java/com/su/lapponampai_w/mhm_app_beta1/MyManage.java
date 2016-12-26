@@ -207,9 +207,11 @@ public class MyManage {
     private static final String appcolumn_appointment_doctor = "AppointmentDoctor";
     private static final String appcolumn_appointment_note = "AppointmentNote";
     private static final String appcolumn_appointment_snooze = "AppointmentSnooze";
+    private static final String appcolumn_appointment_lap = "AppointmentLap";
     private static final String[] column_appointmentTABLE = {appcolumn_id, appcolumn_datetimesave,
              appcolumn_appointment_date, appcolumn_appointment_time,
-            appcolumn_appointment_doctor,appcolumn_appointment_note,appcolumn_appointment_snooze};
+            appcolumn_appointment_doctor,appcolumn_appointment_note,
+            appcolumn_appointment_snooze,appcolumn_appointment_lap};
 
     //noteTABLE
     private static final String noteTABLE = "noteTABLE";
@@ -507,7 +509,8 @@ public class MyManage {
 
     public long addValueToAppointmentTABLE(String strDateTimeSave, String strAppointment_Date,
                                            String strAppointment_Time, String strAppointment_Doctor,
-                                           String strAppointment_Note, String strAppointment_Snooze) {
+                                           String strAppointment_Note, String strAppointment_Snooze,
+                                           String strAppointment_Lap) {
         ContentValues contentValues = new ContentValues();
         long addlong = 0;
         contentValues.put(appcolumn_datetimesave,strDateTimeSave);
@@ -516,6 +519,7 @@ public class MyManage {
         contentValues.put(appcolumn_appointment_doctor,strAppointment_Doctor);
         contentValues.put(appcolumn_appointment_note,strAppointment_Note);
         contentValues.put(appcolumn_appointment_snooze,strAppointment_Snooze);
+        contentValues.put(appcolumn_appointment_lap,strAppointment_Lap);
 
         addlong = writeSqLiteDatabase.insert(appointmentTABLE, null, contentValues);
         return addlong;

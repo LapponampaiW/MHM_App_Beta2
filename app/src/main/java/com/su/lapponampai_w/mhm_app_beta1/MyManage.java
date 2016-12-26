@@ -207,7 +207,7 @@ public class MyManage {
     private static final String appcolumn_appointment_doctor = "AppointmentDoctor";
     private static final String appcolumn_appointment_note = "AppointmentNote";
     private static final String appcolumn_appointment_snooze = "AppointmentSnooze";
-    private static final String appcolumn_appointment_lap = "AppointmentLap";
+    private static final String appcolumn_appointment_lap = "AppointmentLab";
     private static final String[] column_appointmentTABLE = {appcolumn_id, appcolumn_datetimesave,
              appcolumn_appointment_date, appcolumn_appointment_time,
             appcolumn_appointment_doctor,appcolumn_appointment_note,

@@ -87,6 +87,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
         String[] stringsAppointmentId = myManage.readAllappointmentTABLE(0);
         String[] stringsAppointmentDate = myManage.readAllappointmentTABLE(2); //วันนัด
+        String[] stringsAppointmentDoctor = myManage.readAllappointmentTABLE(4); //ชื่อแพทย์
         String[] stringsAppointmentSnooze = myManage.readAllappointmentTABLE(6); //ดูว่าเตือน Notif หรือไม่
 
         Intent alertIntent = new Intent(context, AlarmReceiver.class); //1
@@ -114,6 +115,9 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                 String sCurrentTime = myData.currentTime_Minus();
                 Date dCurrentTime = myData.stringChangetoTime_Minute(sCurrentTime);
                 Date dQueryTime = myData.stringChangetoTime_Minute(queryDateTimeAppointmentRef[1]);
+
+
+
 
                 for(int i = 0;i< stringsAppointmentId.length;i++) {
                     //Toast.makeText(context,Integer.toString(stringsAppointmentId.length),Toast.LENGTH_LONG).show();
@@ -152,7 +156,13 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                             //16/12/2559 ส่งค่าไปกับ intent
                             alertIntent.putExtra("DailyUpdateIntent", stringsAppointmentId[i]); //id ของ Appointment
                             alertIntent.putExtra("DailyUpdateIntentTime", dCurrentDay); //วันนี้ เอาไว้ไปเทียบกับวันจริง
-                            alertIntent.putExtra("DailyUpdateTimeNof", "AppointmentTABLE"); //เอาไปอ้างอิง
+
+                            if (!stringsAppointmentDoctor[i].equals("")) {
+                                alertIntent.putExtra("DailyUpdateTimeNof", "AppointmentDoctor"); //เอาไปอ้างอิง
+                            } else {
+                                alertIntent.putExtra("DailyUpdateTimeNof", "AppointmentLap"); //เอาไปอ้างอิง
+                            }
+
                             alertIntent.putExtra("notifID", a);
                             //Log.d("25/10/2559", "3 : strings_sumTABLE_id : " + stringsAlarmId[x]);
 

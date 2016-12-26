@@ -55,7 +55,10 @@ public class AlarmReceiver extends BroadcastReceiver {
             }
         } else if (notifID < 150) {
 
-            createNotificationAppointment(context,"MHM Application","เตือนวันนัด!!","MHMApplication",string_AlarmTABLEId,string_AlarmTABLEDateTime); // id,CurrentDay
+            if (string_DailyUpdateTimeNof.equals("AppointmentDoctor")) {
+                createNotificationAppointment(context,"MHM Application","เตือนวันนัด!!","MHMApplication",string_AlarmTABLEId,string_AlarmTABLEDateTime); // id,CurrentDay
+            }
+
         }
     } // onReceive
 

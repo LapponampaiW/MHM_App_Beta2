@@ -213,23 +213,26 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
                     }
 
+                    String sDate;
+                    if (iCount_Day == 0) {
+                        sDate = "ในวันนี้";
+                    } else {
+                        sDate = "ในอีก : " + Integer.toString(iCount_Day) + " วัน";
+                    }
+
                     String sInformation;
                     if (sTime.equals("") && sNote.equals("")) {
-                        sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\nในอีก "
-                                + Integer.toString(iCount_Day) + " วัน (วันที่ " + sDay + ")" +
+                        sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\n" + sDate + " (วันที่ " + sDay + ")" +
                                 "\nเวลานัดหมาย : ไม่ได้ระบุ";
                     } else if (!sTime.equals("") && sNote.equals("")) {
-                        sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\nในอีก "
-                                + Integer.toString(iCount_Day) + " วัน (วันที่ " + sDay + ")" +
+                        sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\n" + sDate + " (วันที่ " + sDay + ")" +
                                 "\nเวลานัดหมาย : "+ sTime;
                     } else if (sTime.equals("") && !sNote.equals("")) {
-                        sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\nในอีก "
-                                + Integer.toString(iCount_Day) + " วัน (วันที่ " + sDay + ")" +
+                        sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\n" + sDate + " (วันที่ " + sDay + ")" +
                                 "\nเวลานัดหมาย : ไม่ได้ระบุ" +
                                 "\nหมายเหตุ : " + sNote;
                     } else {
-                        sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\nในอีก "
-                                + Integer.toString(iCount_Day) + " วัน (วันที่ " + sDay + ")" +
+                        sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\n" + sDate + " (วันที่ " + sDay + ")" +
                                 "\nเวลานัดหมาย : "+ sTime +
                                 "\nหมายเหตุ : " + sNote;
                     }

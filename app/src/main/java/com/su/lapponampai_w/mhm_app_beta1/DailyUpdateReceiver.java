@@ -102,14 +102,14 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
 
         if (!stringsAppointmentId[0].equals("")) {
-            Toast.makeText(context,"เข้า 2",Toast.LENGTH_LONG).show();
+            //Toast.makeText(context,"เข้า 2",Toast.LENGTH_LONG).show();
             //อ่านค่า วันที่ต้องทำการ Notificationจาก userTABLE
             String[] stringsUserTABLE_Appointment_notif = myManage.filter_userTABLE(10); //วันที่ก่อนต้องการ Notif
             if (!stringsUserTABLE_Appointment_notif[0].equals("N")) {
                 String[] queryDateTimeAppointmentRef = stringsUserTABLE_Appointment_notif[0].split(";");
                 String sCurrentDay = myData.currentDay(); //วันที่วันนี้ไม่ต้องเอาเวลา
-                Date dCurrentDay = myData.stringChangetoDate(sCurrentDay); //Date
-                Toast.makeText(context,"เข้า 3",Toast.LENGTH_LONG).show();
+                Date dCurrentDay = myData.stringChangetoDateWithOutTime(sCurrentDay); //Date
+                //Toast.makeText(context,"เข้า 3",Toast.LENGTH_LONG).show();
 
                 String sCurrentTime = myData.currentTime_Minus();
                 Date dCurrentTime = myData.stringChangetoTime_Minute(sCurrentTime);
@@ -118,13 +118,21 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                 for(int i = 0;i< stringsAppointmentId.length;i++) {
                     //Toast.makeText(context,Integer.toString(stringsAppointmentId.length),Toast.LENGTH_LONG).show();
                     if (stringsAppointmentSnooze[i].equals("Y") && dCurrentTime.compareTo(dQueryTime) <= 0) {
-                        Toast.makeText(context,"เข้า 5",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(context,"เข้า 5",Toast.LENGTH_LONG).show();
                         Date dateAppointment = myData.stringChangetoDateWithOutTime(stringsAppointmentDate[i]); //ค่า Date วันนัด
                         //ต้องหาค่า Date ของ 3 วันก่อนด้วย
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTime(dateAppointment);
                         calendar.add(Calendar.DAY_OF_MONTH,Integer.parseInt(queryDateTimeAppointmentRef[0]) * -1);
                         Date dateAppointmentMinusRef = calendar.getTime(); //ค่า Date ก่อนวันนัด ลบตาม Ref
+
+                        //ลองลบได้
+                        //String sCurrentDay1 = myData.string_ddMMyyyy_HHmm_ConvertedFromSpecificDate(dCurrentDay);
+                        //String sDateAppointment = myData.string_ddMMyyyy_HHmm_ConvertedFromSpecificDate(dateAppointment);
+                        //String sdateApoointmentMinusRef = myData.string_ddMMyyyy_HHmm_ConvertedFromSpecificDate(dateAppointmentMinusRef);
+                        //Toast.makeText(context,sCurrentDay1,Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context,sDateAppointment,Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context,sdateApoointmentMinusRef,Toast.LENGTH_SHORT).show();
 
 
                         if (dCurrentDay.compareTo(dateAppointment) <= 0 &&

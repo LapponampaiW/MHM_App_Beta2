@@ -2,13 +2,16 @@ package com.su.lapponampai_w.mhm_app_beta1;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -27,6 +30,7 @@ public class PopUpAppLabActivity extends AppCompatActivity implements
             checkBoxL9,checkBoxL10,checkBoxL11;
     Button saveButton, cancelButton;
     LinearLayout linearLayout;
+    EditText noteEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,77 @@ public class PopUpAppLabActivity extends AppCompatActivity implements
         clickAppointmentDateTime();
 
         displayMetrics();
+
+        clickSaveCancel();
+
+
+    }
+
+    private void clickSaveCancel() {
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String stringNote = noteEditText.getText().toString().trim();
+                String stringDate = dateTextView.getText().toString();
+                String stringTime = timeTextView.getText().toString();
+
+                Boolean aBooleanTime = true;
+                if (!checkBox.isChecked() && stringTime.equals("")) {
+                    aBooleanTime = false;
+                }
+
+                CheckBox[] checkBoxes = {checkBoxL0,checkBoxL1,checkBoxL2,checkBoxL3,checkBoxL4,
+                        checkBoxL5,checkBoxL6,checkBoxL7,checkBoxL8,checkBoxL9,checkBoxL10,checkBoxL11};
+                String[] strings = new String[12];
+
+                Boolean aBooleanLabDetail = true;
+                for(int i = 0;i <checkBoxes.length;i++) {
+                    if (checkBoxes[i].isChecked()) {
+                        strings[i] = "1";
+                        aBooleanLabDetail = false;
+                    } else {
+                        strings[i] = "0";
+                    }
+                } //for
+
+                String s = "";
+                for(int x =0;x <strings.length;x++) {
+                    if (s.equals("")) {
+                        s = strings[x];
+                    } else {
+                        s = s + "," + strings[x];
+                    }
+                } //for
+
+                if (aBooleanTime && !stringDate.equals("") && !aBooleanLabDetail) {
+
+                    MyManage myManage = new MyManage(PopUpAppLabActivity.this);
+                    MyData myData = new MyData();
+                    String strCurrentDateTime = myData.currentDateTime();
+                    myManage.addValueToAppointmentTABLE(strCurrentDateTime, stringDate,
+                            stringTime, "", stringNote, "Y", s);
+
+                    Intent intent = new Intent(PopUpAppLabActivity.this, AppointmentActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+
+                } else {
+                    Toast.makeText(getBaseContext(), "โปรดกรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
 
 
     }
@@ -93,6 +168,7 @@ public class PopUpAppLabActivity extends AppCompatActivity implements
         checkBoxL9 = (CheckBox) findViewById(R.id.checkBoxL9);
         checkBoxL10 = (CheckBox) findViewById(R.id.checkBoxL10);
         checkBoxL11 = (CheckBox) findViewById(R.id.checkBoxL11);
+        noteEditText = (EditText) findViewById(R.id.editText5);
 
     }
 

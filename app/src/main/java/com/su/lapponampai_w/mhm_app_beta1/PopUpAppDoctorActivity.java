@@ -71,7 +71,7 @@ public class PopUpAppDoctorActivity extends AppCompatActivity implements
                 String stringTime = timeTextView.getText().toString();
                 Log.d("AppDoctorFragment", "stringTime : " + stringTime);
                 String sSkip;
-                stringNote = noteEditText.getText().toString().trim();
+                //stringNote = noteEditText.getText().toString().trim();
                 Log.d("AppDoctorFragment", stringDoctor);
 
                 if (checkBox.isChecked()) {

@@ -160,7 +160,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                             if (!stringsAppointmentDoctor[i].equals("")) {
                                 alertIntent.putExtra("DailyUpdateTimeNof", "AppointmentDoctor"); //เอาไปอ้างอิง
                             } else {
-                                alertIntent.putExtra("DailyUpdateTimeNof", "AppointmentLap"); //เอาไปอ้างอิง
+                                alertIntent.putExtra("DailyUpdateTimeNof", "AppointmentLab"); //เอาไปอ้างอิง
                             }
 
                             alertIntent.putExtra("notifID", a);

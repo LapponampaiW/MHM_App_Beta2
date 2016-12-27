@@ -19,7 +19,8 @@ public class PopUpGate extends AppCompatActivity {
     EditText editTextPassword;
     MyManage myManage;
     String string_btn_pop1,string_btn_pop2,string_btn_pop3,string_btn_pop4,string_MedicatinList,string_News,
-            string_setting,string_NotificationGate,string_NotificationGate_Sum_id,string_SumDateTime_AlarmReceiver;
+            string_setting,string_NotificationGate,string_NotificationGate_Sum_id,
+            string_SumDateTime_AlarmReceiver,string_GateType;
 
 
     @Override
@@ -54,6 +55,7 @@ public class PopUpGate extends AppCompatActivity {
         string_NotificationGate = getIntent().getStringExtra("NotificationGate");
         string_NotificationGate_Sum_id = getIntent().getStringExtra("NotificationGate_SumId");
         string_SumDateTime_AlarmReceiver = getIntent().getStringExtra("SumDateTime_AlarmReceiver");
+        string_GateType = getIntent().getStringExtra("Gate_type");
 
 
     }
@@ -121,6 +123,7 @@ public class PopUpGate extends AppCompatActivity {
                                 intent.putExtra("PopUpMaster", stringsSendIntent[i]);
                                 intent.putExtra("SumId_AlarmReceiver", string_NotificationGate_Sum_id);
                                 intent.putExtra("SumDateTime_AlarmReceiver", string_SumDateTime_AlarmReceiver);
+                                intent.putExtra("Gate_type", string_GateType);
                                 Toast.makeText(getBaseContext(), stringsSendIntent[i], Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();

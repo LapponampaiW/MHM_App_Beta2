@@ -69,7 +69,7 @@ public class AppDoctorFragment extends Fragment {
 
         clickBackToMain(view);
 
-        clickDeleteInListView(view);
+        //clickDeleteInListView(view);
 
 
     }
@@ -233,6 +233,58 @@ public class AppDoctorFragment extends Fragment {
             MyAdaptorAppointment myAdaptorAppointment = new MyAdaptorAppointment(v.getContext(),
                     stringsSelectedDoctor, stringsSelectedDate, stringsSelectedTime, stringsSelectedNote);
             listView.setAdapter(myAdaptorAppointment);
+
+
+            final String[] strings = stringsSelectedId;
+
+
+            listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, final View view, final int position, long id) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                    builder.setCancelable(false);
+                    builder.setIcon(R.drawable.logo_mhm);
+                    builder.setTitle("ลบข้อมูลวันนัด");
+                    builder.setMessage("ยืนยันการลบข้อมูลวันนัด");
+                    builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            String id = strings[position];
+                            Log.d("13JulyV1", "id : " + id);
+
+
+                            MyHelper helper = new MyHelper(view.getContext());
+
+                            SQLiteDatabase readSqLiteDatabase = helper.getReadableDatabase();
+                            readSqLiteDatabase.delete("appointmentTABLE", "_id = " + id, null);
+
+
+                            Toast.makeText(getActivity().getBaseContext(),"Delete in appointmentTABLE",Toast.LENGTH_SHORT).show();
+
+
+                            Intent intent = new Intent(getActivity().getBaseContext(),AppointmentActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            getActivity().finish();
+
+
+                        }
+                    });
+                    builder.show();
+
+
+                    return false;
+                }
+            });
+
+
 
 
 

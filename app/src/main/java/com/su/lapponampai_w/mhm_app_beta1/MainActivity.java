@@ -153,7 +153,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 startActivity(new Intent(MainActivity.this, NewsActivity.class));
             } else if (popUpMaster.equals("Setting")) {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
-            } else if (popUpMaster.equals("AlarmAppointment")) {
+            } else if (popUpMaster.equals("AlarmAppointmentDoctor")) {
+
+
                 //ทำ แค่แจ้งข่าวสารขึ้นในหน้าแรก โดย builder
                 final String sReadAppointment = getIntent().getStringExtra("SumId_AlarmReceiver");//รับค่า id จาก AppointmentTABLE
                 String sId = getIntent().getStringExtra("sId");
@@ -164,107 +166,19 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 notificationManager.cancel(Integer.parseInt(sId));
 
-
-
+                //271259
                 final MyManage myManage = new MyManage(this);
-                String[] stringsAppTAB_id = myManage.readAllappointmentTABLE(0);
-                if (!stringsAppTAB_id[0].equals("")) {
-                    String sDay = "";
-                    String sTime = "";
-                    String sDoctor = "";
-                    String sNote = "";
-                    Boolean aBoolean = true;
-                    int i = 0;
-                    while (aBoolean) {
-                        if (stringsAppTAB_id[i].equals(sReadAppointment)) {
-                            sDay = myManage.readAllappointmentTABLE(2)[i];
-                            sTime = myManage.readAllappointmentTABLE(3)[i];
-                            sDoctor = myManage.readAllappointmentTABLE(4)[i];
-                            sNote = myManage.readAllappointmentTABLE(5)[i];
-                            aBoolean = false;
-                        } else {
-                            i = i + 1;
-                        }
-                    }
-
-                    //ตัวอย่าง.... ท่านมีนัดพบแพทย์ (วิชิต.......)
-                    //ตัวอย่าง.... ในอีก 3 วัน(วันที่ 19/03/2016)
-                    //.......... หมายเหตุ :
-                    MyData mydata = new MyData();
-                    String sCurrentDay = mydata.currentDay();
-                    Date dCurrentDay = mydata.stringChangetoDateWithOutTime(sCurrentDay);
-                    Date dAppointmentDay = mydata.stringChangetoDateWithOutTime(sDay);
-                    Calendar calendarCurrentDay = Calendar.getInstance();
-                    calendarCurrentDay.setTime(dCurrentDay);
-                    Calendar calendarAppointmentDay = Calendar.getInstance();
-                    calendarAppointmentDay.setTime(dAppointmentDay);
-
-                    Boolean aBoolean1 = true;
-                    int iCount_Day = 0;
-                    while (aBoolean1) {
-                        dCurrentDay = calendarCurrentDay.getTime();
-                        dAppointmentDay = calendarAppointmentDay.getTime();
-                        if (dAppointmentDay.compareTo(dCurrentDay) == 0) {
-                            aBoolean1 = false;
-                        } else {
-                            calendarCurrentDay.add(Calendar.DAY_OF_MONTH,1);
-                            iCount_Day = iCount_Day + 1;
-                        }
-
-                    }
-
-                    String sDate;
-                    if (iCount_Day == 0) {
-                        sDate = "ในวันนี้";
-                    } else {
-                        sDate = "ในอีก : " + Integer.toString(iCount_Day) + " วัน";
-                    }
-
-                    String sInformation;
-                    if (sTime.equals("") && sNote.equals("")) {
-                        sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\n" + sDate + " (วันที่ " + sDay + ")" +
-                                "\nเวลานัดหมาย : ไม่ได้ระบุ";
-                    } else if (!sTime.equals("") && sNote.equals("")) {
-                        sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\n" + sDate + " (วันที่ " + sDay + ")" +
-                                "\nเวลานัดหมาย : "+ sTime;
-                    } else if (sTime.equals("") && !sNote.equals("")) {
-                        sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\n" + sDate + " (วันที่ " + sDay + ")" +
-                                "\nเวลานัดหมาย : ไม่ได้ระบุ" +
-                                "\nหมายเหตุ : " + sNote;
-                    } else {
-                        sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\n" + sDate + " (วันที่ " + sDay + ")" +
-                                "\nเวลานัดหมาย : "+ sTime +
-                                "\nหมายเหตุ : " + sNote;
-                    }
-
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setIcon(R.drawable.logo_mhm48);
-                    builder.setTitle("แจ้งนัดหมาย");
-                    builder.setMessage(sInformation);
-                    builder.setPositiveButton("ยกเลิกการเตือน", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            myManage.updateAppointmentTABLE_AppointmentSnooze(sReadAppointment, "N");
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.setNegativeButton("เตือนอีกครั้งในวันพรุ่งนี้", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-                        }
-                    });
-                    builder.show();
-                }
-
-
-
+                String[] stringsStay = myManage.readSQLite_userTABLE(3);
+                if (stringsStay[0].equals("1") || stringsStay[0].equals("2")) {
+                    Intent intent = new Intent(MainActivity.this, PopUpGate.class);
+                    intent.putExtra("NotificationGate", "NotificationGate");
+                    intent.putExtra("NotificationGate_SumId", sReadAppointment);
+                    //intent.putExtra("SumDateTime_AlarmReceiver", strReadDateTime);
+                    intent.putExtra("Gate_type", "Doctor");
+                    startActivity(intent);
+                } else {
+                    appointmentDoctorBuilder(sReadAppointment);
+                } //else
 
             } else if (popUpMaster.equals("AlarmReceiver")) {
                 for (int x = 0; x <= 40; x++) {
@@ -283,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     intent.putExtra("NotificationGate", "NotificationGate");
                     intent.putExtra("NotificationGate_SumId", strAlarmTABLE);
                     intent.putExtra("SumDateTime_AlarmReceiver", strReadDateTime);
+                    intent.putExtra("Gate_type", "Medicine");
                     startActivity(intent);
                 } else {
                     //receiveValueToPopUpTakeMedicine();
@@ -323,43 +238,157 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 }
 
             } else if (popUpMaster.equals("NotificationGate")) {
-                strAlarmTABLE = getIntent().getStringExtra("SumId_AlarmReceiver");
-                //receiveValueToPopUpTakeMedicine();
-                //12/12/2559 readAllalarmReceiverTABLE
-                String strReadDateTime = getIntent().getStringExtra("SumDateTime_AlarmReceiver");
-                String sSubstring = strReadDateTime.substring(0, 10);
-                Log.d("121216V1", sSubstring);
-                MyData myData = new MyData();
-                String sCurrentDay = myData.currentDay();
-                Log.d("121216V1", sCurrentDay);
-                if (!sSubstring.equals(sCurrentDay)) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setIcon(R.drawable.logo_mhm);
-                    builder.setTitle("ท่านรับประทานยาข้ามวัน!!!");
-                    builder.setMessage("ระบบไม่สามารถทำงานอัตโนมัติได้เนื่องจาก\n" +
-                            "เป็นยาที่ต้องรับประทานวันก่อนหน้านี้ ท่านสามารถระบุการรับประทาน\n" +
-                            "ได้ด้วยตนเองโดยการเปลี่ยนวันที่");
-                    builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
+                String sGateType = getIntent().getStringExtra("Gate_type");
+                if (sGateType.equals("Medicine")) {
+                    strAlarmTABLE = getIntent().getStringExtra("SumId_AlarmReceiver");
+                    //receiveValueToPopUpTakeMedicine();
+                    //12/12/2559 readAllalarmReceiverTABLE
+                    String strReadDateTime = getIntent().getStringExtra("SumDateTime_AlarmReceiver");
+                    String sSubstring = strReadDateTime.substring(0, 10);
+                    Log.d("121216V1", sSubstring);
+                    MyData myData = new MyData();
+                    String sCurrentDay = myData.currentDay();
+                    Log.d("121216V1", sCurrentDay);
+                    if (!sSubstring.equals(sCurrentDay)) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setIcon(R.drawable.logo_mhm);
+                        builder.setTitle("ท่านรับประทานยาข้ามวัน!!!");
+                        builder.setMessage("ระบบไม่สามารถทำงานอัตโนมัติได้เนื่องจาก\n" +
+                                "เป็นยาที่ต้องรับประทานวันก่อนหน้านี้ ท่านสามารถระบุการรับประทาน\n" +
+                                "ได้ด้วยตนเองโดยการเปลี่ยนวันที่");
+                        builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
 
-                        }
-                    });
-                    builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                        @Override
-                        public void onDismiss(DialogInterface dialog) {
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.show();
-                } else {
-                    read_SumId_From_alarmReceiverTABLE();
+                            }
+                        });
+                        builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.show();
+                    } else {
+                        read_SumId_From_alarmReceiverTABLE();
+                    }
+                } else if (sGateType.equals("Doctor")) {
+
+                    final String sReadAppointment = getIntent().getStringExtra("SumId_AlarmReceiver");
+                    //Toast.makeText(getBaseContext(),"Doctor",Toast.LENGTH_LONG).show();
+                    appointmentDoctorBuilder(sReadAppointment);
+
                 }
+
             }
         } else {
             Toast.makeText(getBaseContext(), "PopUpMaster == null",Toast.LENGTH_LONG);
         }
+
+    }
+
+    private void appointmentDoctorBuilder(final String sReadAppointment) {
+
+        final MyManage myManage = new MyManage(this);
+
+        String[] stringsAppTAB_id = myManage.readAllappointmentTABLE(0);
+        if (!stringsAppTAB_id[0].equals("")) {
+            String sDay = "";
+            String sTime = "";
+            String sDoctor = "";
+            String sNote = "";
+            Boolean aBoolean = true;
+            int i = 0;
+            while (aBoolean) {
+                if (stringsAppTAB_id[i].equals(sReadAppointment)) {
+                    sDay = myManage.readAllappointmentTABLE(2)[i];
+                    sTime = myManage.readAllappointmentTABLE(3)[i];
+                    sDoctor = myManage.readAllappointmentTABLE(4)[i];
+                    sNote = myManage.readAllappointmentTABLE(5)[i];
+                    aBoolean = false;
+                } else {
+                    i = i + 1;
+                }
+            }
+
+            //ตัวอย่าง.... ท่านมีนัดพบแพทย์ (วิชิต.......)
+            //ตัวอย่าง.... ในอีก 3 วัน(วันที่ 19/03/2016)
+            //.......... หมายเหตุ :
+            MyData mydata = new MyData();
+            String sCurrentDay = mydata.currentDay();
+            Date dCurrentDay = mydata.stringChangetoDateWithOutTime(sCurrentDay);
+            Date dAppointmentDay = mydata.stringChangetoDateWithOutTime(sDay);
+            Calendar calendarCurrentDay = Calendar.getInstance();
+            calendarCurrentDay.setTime(dCurrentDay);
+            Calendar calendarAppointmentDay = Calendar.getInstance();
+            calendarAppointmentDay.setTime(dAppointmentDay);
+
+            Boolean aBoolean1 = true;
+            int iCount_Day = 0;
+            while (aBoolean1) {
+                dCurrentDay = calendarCurrentDay.getTime();
+                dAppointmentDay = calendarAppointmentDay.getTime();
+                if (dAppointmentDay.compareTo(dCurrentDay) == 0) {
+                    aBoolean1 = false;
+                } else {
+                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH,1);
+                    iCount_Day = iCount_Day + 1;
+                }
+
+            }
+
+            String sDate;
+            if (iCount_Day == 0) {
+                sDate = "ในวันนี้";
+            } else {
+                sDate = "ในอีก : " + Integer.toString(iCount_Day) + " วัน";
+            }
+
+            String sInformation;
+            if (sTime.equals("") && sNote.equals("")) {
+                sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\n" + sDate + " (วันที่ " + sDay + ")" +
+                        "\nเวลานัดหมาย : ไม่ได้ระบุ";
+            } else if (!sTime.equals("") && sNote.equals("")) {
+                sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\n" + sDate + " (วันที่ " + sDay + ")" +
+                        "\nเวลานัดหมาย : "+ sTime;
+            } else if (sTime.equals("") && !sNote.equals("")) {
+                sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\n" + sDate + " (วันที่ " + sDay + ")" +
+                        "\nเวลานัดหมาย : ไม่ได้ระบุ" +
+                        "\nหมายเหตุ : " + sNote;
+            } else {
+                sInformation = "ท่านมีนัดพบแพทย์ (" + sDoctor + ")\n" + sDate + " (วันที่ " + sDay + ")" +
+                        "\nเวลานัดหมาย : "+ sTime +
+                        "\nหมายเหตุ : " + sNote;
+            }
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setIcon(R.drawable.logo_mhm48);
+            builder.setTitle("แจ้งนัดหมาย");
+            builder.setMessage(sInformation);
+            builder.setPositiveButton("ยกเลิกการเตือน", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myManage.updateAppointmentTABLE_AppointmentSnooze(sReadAppointment, "N");
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton("เตือนอีกครั้งในวันพรุ่งนี้", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                }
+            });
+            builder.show();
+        }
+
+
 
     }
 

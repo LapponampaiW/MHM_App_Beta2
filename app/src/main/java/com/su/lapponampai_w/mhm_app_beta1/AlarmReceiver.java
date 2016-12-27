@@ -57,6 +57,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
             if (string_DailyUpdateTimeNof.equals("AppointmentDoctor")) {
                 createNotificationAppointment(context,"MHM Application","เตือนวันนัด!!","MHMApplication",string_AlarmTABLEId,string_AlarmTABLEDateTime); // id,CurrentDay
+            } else if (string_DailyUpdateTimeNof.equals("AppointmentLab")) {
+                createNotificationAppointment(context,"MHM Application","เตือนวันนัด!!","MHMApplication",string_AlarmTABLEId,string_AlarmTABLEDateTime); // id,CurrentDay
             }
 
         }
@@ -130,7 +132,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 
         Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra("PopUpMaster", "AlarmAppointment");
+        intent.putExtra("PopUpMaster", "AlarmAppointmentDoctor");
         intent.putExtra("SumId_AlarmReceiver", sIdAppointment);
         intent.putExtra("SumDateTime_AlarmReceiver", sDay);
         intent.putExtra("sId", Integer.toString(notifID));

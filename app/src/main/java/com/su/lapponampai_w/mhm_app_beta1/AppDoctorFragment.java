@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -157,6 +158,10 @@ public class AppDoctorFragment extends Fragment {
 
         MyManage myManage = new MyManage(v.getContext());
         MyData myData = new MyData();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date_Specific = new Date();
+        Date date_current = new Date();
+        String sDate = myData.currentDay();
 
         //ShowListView ขึ้นมา
         final String[][] stringsAppointment = {myManage.readAllappointmentTABLE(0),
@@ -165,9 +170,82 @@ public class AppDoctorFragment extends Fragment {
                 ,myManage.readAllappointmentTABLE(5)};
         //0 id,1 Date,2 Time,3 Doctor,4 Note
 
+        Boolean aBoolean = true; //ตรวจสอบว่า Doctor ตำแหน่งที่ 3 เป็นค่าว่างทั้งหมดหรือปล่าว
+        ArrayList<String> stringArrayListId = new ArrayList<String>();
+        int iIndex = 0;
         if (!stringsAppointment[0][0].equals("")) {
+            for (int i = 0; i < stringsAppointment[0].length; i++) {
+                // Check ว่ายังไม่เกินวันที่กำหนด
+                try {
+                    date_Specific = dateFormat.parse(stringsAppointment[1][i]);
+                    date_current = dateFormat.parse(sDate);
 
-            //ArrayList<String> stringArrayList = new ArrayList<String>();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                String test_Specific = dateFormat.format(date_Specific);
+                String test_current = dateFormat.format(date_current);
+                Log.d("12July16V1", "test_Specific : " + test_Specific);
+                Log.d("12July16V1", "test_current : " + test_current);
+
+                if (!stringsAppointment[3][i].equals("") && date_Specific.compareTo(date_current) >= 0) {
+                    stringArrayListId.add(iIndex,stringsAppointment[0][i]); //เอาค่า id ของ AppointmentTABLE มาทำ ArrayList
+                    iIndex = iIndex + 1;
+                    aBoolean = false;
+                }
+            } //for
+        } // if
+
+        if (!aBoolean) { //มีค่า ของ Doctor ให้ทำ listView
+            String[] stringsSelectedId = new String[stringArrayListId.size()];
+            stringsSelectedId = stringArrayListId.toArray(stringsSelectedId); //สร้าง Array
+            String[] stringsSelectedDate = new String[stringsSelectedId.length];
+            String[] stringsSelectedTime = new String[stringsSelectedId.length];
+            String[] stringsSelectedDoctor = new String[stringsSelectedId.length];
+            String[] stringsSelectedNote = new String[stringsSelectedId.length];
+
+
+
+            for(int i = 0;i <stringsAppointment[0].length;i++) {
+                for(int x =0 ;x <stringsSelectedId.length;x++) {
+                    if (stringsAppointment[0][i].equals(stringsSelectedId[x])) {
+
+                        //stringsSelectedDate[x] = stringsAppointment[1][i];
+                        //stringsSelectedTime[x] = stringsAppointment[2][i];
+                        //stringsSelectedDoctor[x] = stringsAppointment[3][i];
+                        //stringsSelectedNote[x] = stringsAppointment[4][i];
+                        if (!stringsAppointment[4][i].equals("")) {
+                            stringsSelectedNote[x] = "หมายเหตุ :".concat(stringsAppointment[4][i]);
+                        } else {
+                            stringsSelectedNote[x] = "";
+                        }
+                        stringsSelectedDate[x] = "วันที่นัด : ".concat(stringsAppointment[1][i]);
+                        if (!stringsAppointment[2][i].equals("")) {
+                            stringsSelectedTime[x] = "เวลาที่นัด : ".concat(stringsAppointment[2][i]);
+                        } else {
+                            stringsSelectedTime[x] = "เวลาที่นัด : ไม่ได้ระบุ";
+                        }
+                        stringsSelectedDoctor[x] = "ชื่อแพทย์ผู้นัด : ".concat(stringsAppointment[3][i]);
+                    }
+                } //for2
+            } //for
+            MyAdaptorAppointment myAdaptorAppointment = new MyAdaptorAppointment(v.getContext(),
+                    stringsSelectedDoctor, stringsSelectedDate, stringsSelectedTime, stringsSelectedNote);
+            listView.setAdapter(myAdaptorAppointment);
+
+
+
+        }
+
+
+
+
+
+
+
+        /*
+        if (!stringsAppointment[0][0].equals("")) {
 
             //int intIndex = 0;
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -175,7 +253,7 @@ public class AppDoctorFragment extends Fragment {
             Date date_current = new Date();
             String sDate = myData.currentDay();
 
-            for(int i = 0;i<stringsAppointment[0].length;i++) {
+            for(int i = 0;i<stringsAppointment[0].length;i++) { //row
 
                 try {
                     date_Specific = dateFormat.parse(stringsAppointment[1][i]);
@@ -215,7 +293,9 @@ public class AppDoctorFragment extends Fragment {
             listView.setAdapter(myAdaptorAppointment);
 
 
-        }
+        } //if
+        */
+
     }
 
     private void bindWidget(View v) {

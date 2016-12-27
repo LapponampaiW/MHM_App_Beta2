@@ -32,6 +32,11 @@ public class LabActivity extends AppCompatActivity {
     EditText editText1,editText2,editText3,editText4,editText5,editText6, editText7;
     String s1,s2,s3,s4,s5,s6, s7,sCalendar;
     ImageButton imageButton;
+    final public String[] stringsLabHeading = {"Body weight", "FBS", "Blood pressure", "Total Chlol",
+            "Triglyceride", "HDL", "LDL", "SGPT/ALT", "Creatinine", "BUN", "CD4", "Viral load"};
+
+    final public String[] stringsUnitLab = {"Kg.", "mg/dL", "mmHg", "mg/dL", "mg/dL", "mg/dL",
+            "mg/dL", "U/L", "mg/dL", "mg/dL", "cell/mm3", "copies/ml"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +53,26 @@ public class LabActivity extends AppCompatActivity {
 
         showListView();
 
+        clickBackToMain();
+
 
         //clickTextViewCalendar();
 
         //clickButtonSaveCancel();
 
         //clickDeleteListView();
+
+    }
+
+    private void clickBackToMain() {
+
+        textViewBackToMainActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
     }
 
@@ -240,8 +259,7 @@ public class LabActivity extends AppCompatActivity {
                 stringsDateLab[i] = "วันที่ตรวจแล๊ป : ".concat(stringsDateLab[i]);
             }
 
-            final String[] stringsLabHeading = {"Body weight", "FBS", "Blood pressure", "Total Chlol",
-                    "Triglyceride", "HDL", "LDL", "SGPT/ALT", "Creatinine", "BUN", "CD4", "Viral load"};
+
 
 
             //เรียง ตามวันที่ ให้วันที่มากๆ มาก่อน (2)
@@ -281,8 +299,7 @@ public class LabActivity extends AppCompatActivity {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String[] stringsUnitLab = {"Kg.", "mg/dL", "mmHg", "mg/dL", "mg/dL", "mg/dL",
-                            "mg/dL", "U/L", "mg/dL", "mg/dL", "cell/mm3", "copies/ml"};
+
                     String s = stringsDateLab[position] + "\n\nค่าแล็ป :";
                     for (int i = 0; i < stringsLab.length; i++) {
                         if (!stringsLab[i][position].equals("")) {

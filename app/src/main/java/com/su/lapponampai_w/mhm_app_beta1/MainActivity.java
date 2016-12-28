@@ -153,19 +153,35 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 startActivity(new Intent(MainActivity.this, NewsActivity.class));
             } else if (popUpMaster.equals("Setting")) {
                 startActivity(new Intent(MainActivity.this, SettingActivity.class));
-            } else if (popUpMaster.equals("AlarmAppointmentDoctor")) {
-
-
+            } else if (popUpMaster.equals("AlarmAppointmentLab")) {
                 //ทำ แค่แจ้งข่าวสารขึ้นในหน้าแรก โดย builder
-                final String sReadAppointment = getIntent().getStringExtra("SumId_AlarmReceiver");//รับค่า id จาก AppointmentTABLE
+                final String sReadAppointmentLab = getIntent().getStringExtra("SumId_AlarmReceiver");//รับค่า id จาก AppointmentTABLE
                 String sId = getIntent().getStringExtra("sId");
-
-                //Toast.makeText(getBaseContext(),sId,Toast.LENGTH_LONG).show();
-
                 NotificationManager notificationManager =
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 notificationManager.cancel(Integer.parseInt(sId));
+                //271259
+                final MyManage myManage = new MyManage(this);
+                String[] stringsStay = myManage.readSQLite_userTABLE(3);
+                if (stringsStay[0].equals("1") || stringsStay[0].equals("2")) {
+                    Intent intent = new Intent(MainActivity.this, PopUpGate.class);
+                    intent.putExtra("NotificationGate", "NotificationGate");
+                    intent.putExtra("NotificationGate_SumId", sReadAppointmentLab);
+                    //intent.putExtra("SumDateTime_AlarmReceiver", strReadDateTime);
+                    intent.putExtra("Gate_type", "Lab");
+                    startActivity(intent);
+                } else {
+                    appointmentLabBuilder(sReadAppointmentLab);
+                }
 
+            } else if (popUpMaster.equals("AlarmAppointmentDoctor")) {
+                //ทำ แค่แจ้งข่าวสารขึ้นในหน้าแรก โดย builder
+                final String sReadAppointment = getIntent().getStringExtra("SumId_AlarmReceiver");//รับค่า id จาก AppointmentTABLE
+                String sId = getIntent().getStringExtra("sId");
+                //Toast.makeText(getBaseContext(),sId,Toast.LENGTH_LONG).show();
+                NotificationManager notificationManager =
+                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.cancel(Integer.parseInt(sId));
                 //271259
                 final MyManage myManage = new MyManage(this);
                 String[] stringsStay = myManage.readSQLite_userTABLE(3);
@@ -179,14 +195,12 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 } else {
                     appointmentDoctorBuilder(sReadAppointment);
                 } //else
-
             } else if (popUpMaster.equals("AlarmReceiver")) {
                 for (int x = 0; x <= 40; x++) {
                     NotificationManager notificationManager =
                             (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     notificationManager.cancel(x);
                 }
-
                 strAlarmTABLE = getIntent().getStringExtra("SumId_AlarmReceiver");
                 String strReadDateTime = getIntent().getStringExtra("SumDateTime_AlarmReceiver");
                 Log.d("061259V1", "strAlarmTABLE" + strAlarmTABLE);
@@ -236,7 +250,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     }
 
                 }
-
             } else if (popUpMaster.equals("NotificationGate")) {
                 String sGateType = getIntent().getStringExtra("Gate_type");
                 if (sGateType.equals("Medicine")) {
@@ -279,12 +292,136 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     //Toast.makeText(getBaseContext(),"Doctor",Toast.LENGTH_LONG).show();
                     appointmentDoctorBuilder(sReadAppointment);
 
+                } else if (sGateType.equals("Lab")) {
+                    final String sReadAppointmentLab = getIntent().getStringExtra("SumId_AlarmReceiver");
+                    appointmentLabBuilder(sReadAppointmentLab);
                 }
 
             }
         } else {
             Toast.makeText(getBaseContext(), "PopUpMaster == null",Toast.LENGTH_LONG);
         }
+
+    }
+
+    private void appointmentLabBuilder(final String sReadAppointmentLab) {
+        final MyManage myManage = new MyManage(this);
+        String[] stringsAppTAB_id = myManage.readAllappointmentTABLE(0);
+        if (!stringsAppTAB_id[0].equals("")) {
+            String sDay = "";
+            String sTime = "";
+            String sNote = "";
+            String sLabDetail = "";
+            Boolean aBoolean = true;
+            int i = 0;
+            while (aBoolean) {
+                if (stringsAppTAB_id[i].equals(sReadAppointmentLab)) {
+                    sDay = myManage.readAllappointmentTABLE(2)[i];
+                    sTime = myManage.readAllappointmentTABLE(3)[i];
+                    sNote = myManage.readAllappointmentTABLE(5)[i];
+                    sLabDetail = myManage.readAllappointmentTABLE(7)[i];
+                    aBoolean = false;
+                } else {
+                    i = i + 1;
+                }
+            } //while
+            MyData mydata = new MyData();
+            String sCurrentDay = mydata.currentDay();
+            Date dCurrentDay = mydata.stringChangetoDateWithOutTime(sCurrentDay);
+            Date dAppointmentDay = mydata.stringChangetoDateWithOutTime(sDay);
+            Calendar calendarCurrentDay = Calendar.getInstance();
+            calendarCurrentDay.setTime(dCurrentDay);
+            Calendar calendarAppointmentDay = Calendar.getInstance();
+            calendarAppointmentDay.setTime(dAppointmentDay);
+
+            Boolean aBoolean1 = true;
+            int iCount_Day = 0;
+            while (aBoolean1) {
+                dCurrentDay = calendarCurrentDay.getTime();
+                dAppointmentDay = calendarAppointmentDay.getTime();
+                if (dAppointmentDay.compareTo(dCurrentDay) == 0) {
+                    aBoolean1 = false;
+                } else {
+                    calendarCurrentDay.add(Calendar.DAY_OF_MONTH,1);
+                    iCount_Day = iCount_Day + 1;
+                }
+
+            } //while
+
+            String sDate;
+            if (iCount_Day == 0) {
+                sDate = "ในวันนี้";
+            } else {
+                sDate = "ในอีก : " + Integer.toString(iCount_Day) + " วัน";
+            } //if
+
+            String[] stringsQueryLab = sLabDetail.split(",");
+            String sLabDetailTranslate = "";
+            LabActivity labActivity = new LabActivity();
+            for(int x = 0;x<stringsQueryLab.length;x++) {
+                if (stringsQueryLab[x].equals("1")) {
+                    if (sLabDetailTranslate.equals("")) {
+                        sLabDetailTranslate = "รายละเอียดการตรวจ : " + labActivity.stringsLabHeading[x];
+                    } else {
+                        sLabDetailTranslate = sLabDetailTranslate + ", " + labActivity.stringsLabHeading[x];
+                    }
+                } else {
+                    //empty เพราะจะไม่ทำอะไร
+                }
+            } //for
+
+            if (sLabDetailTranslate.equals("")) {
+                sLabDetailTranslate = "รายละเอียดการตรวจ : ไม่ได้ระบุ";
+            }
+
+            String sInformation;
+            if (sTime.equals("") && sNote.equals("")) {
+                sInformation = "ท่านมีนัดตรวจแล๊ป" + "\n" + sDate + " (วันที่ " + sDay + ")" +
+                        "\nเวลานัดหมาย : ไม่ได้ระบุ" + "\n" + sLabDetailTranslate;
+            } else if (!sTime.equals("") && sNote.equals("")) {
+                sInformation = "ท่านมีนัดตรวจแล๊ป" + "\n" + sDate + " (วันที่ " + sDay + ")" +
+                        "\nเวลานัดหมาย : "+ sTime + "\n" + sLabDetailTranslate;
+            } else if (sTime.equals("") && !sNote.equals("")) {
+                sInformation = "ท่านมีนัดตรวจแล๊ป" + "\n" + sDate + " (วันที่ " + sDay + ")" +
+                        "\nเวลานัดหมาย : ไม่ได้ระบุ" + "\n" + sLabDetailTranslate +
+                        "\nหมายเหตุ : " + sNote;
+            } else {
+                sInformation = "ท่านมีนัดตรวจแล๊ป" + "\n" + sDate + " (วันที่ " + sDay + ")" +
+                        "\nเวลานัดหมาย : "+ sTime + "\n" + sLabDetailTranslate +
+                        "\nหมายเหตุ : " + sNote;
+            }
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setIcon(R.drawable.logo_mhm);
+            builder.setTitle("แจ้งนัดหมาย(ตรวจแล๊ป)");
+            builder.setMessage(sInformation);
+            builder.setPositiveButton("ยกเลิกการเตือน", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    myManage.updateAppointmentTABLE_AppointmentSnooze(sReadAppointmentLab, "N");
+                    dialog.dismiss();
+                }
+            });
+            builder.setNegativeButton("เตือนอีกครั้งในวันพรุ่งนี้", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                }
+            });
+            builder.show();
+
+
+
+
+        } //if
+
+
+
 
     }
 
@@ -310,7 +447,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 } else {
                     i = i + 1;
                 }
-            }
+            } //while
 
             //ตัวอย่าง.... ท่านมีนัดพบแพทย์ (วิชิต.......)
             //ตัวอย่าง.... ในอีก 3 วัน(วันที่ 19/03/2016)

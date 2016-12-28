@@ -56,9 +56,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         } else if (notifID < 150) {
 
             if (string_DailyUpdateTimeNof.equals("AppointmentDoctor")) {
-                createNotificationAppointment(context,"MHM Application","เตือนวันนัด!!","MHMApplication",string_AlarmTABLEId,string_AlarmTABLEDateTime); // id,CurrentDay
+                createNotificationAppointmentDoctor(context,"MHM Application","เตือนวันนัด!!","MHMApplication",string_AlarmTABLEId,string_AlarmTABLEDateTime); // id,CurrentDay
             } else if (string_DailyUpdateTimeNof.equals("AppointmentLab")) {
-                createNotificationAppointment(context,"MHM Application","เตือนวันนัด!!","MHMApplication",string_AlarmTABLEId,string_AlarmTABLEDateTime); // id,CurrentDay
+                createNotificationAppointmentLab(context,"MHM Application","เตือนวันนัด!!","MHMApplication",string_AlarmTABLEId,string_AlarmTABLEDateTime); // id,CurrentDay
             }
 
         }
@@ -122,7 +122,9 @@ public class AlarmReceiver extends BroadcastReceiver {
     }
 
 
-    private void createNotificationAppointment(Context context, String s, String s1, String alert,String sIdAppointment,String sDay) {
+    private void createNotificationAppointmentDoctor(Context context, String s, String s1,
+                                               String alert,String sIdAppointment,
+                                               String sDay) {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.logo_mhm48)
@@ -133,6 +135,57 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra("PopUpMaster", "AlarmAppointmentDoctor");
+        intent.putExtra("SumId_AlarmReceiver", sIdAppointment);
+        intent.putExtra("SumDateTime_AlarmReceiver", sDay);
+        intent.putExtra("sId", Integer.toString(notifID));
+
+        /*
+        for(int i = 0;i<=1;i++) {
+            PendingIntent notificIntent = PendingIntent
+                    .getActivity(context, 1, intent, 0); //ให้เปิด MainActivity
+            notificIntent.cancel();
+        }
+        */
+        for (int x = notifID; x <= 140; x++) {
+            PendingIntent notificIntent = PendingIntent
+                    .getActivity(context, notifID, intent, 0); //ให้เปิด MainActivity
+            notificIntent.cancel();
+        }
+
+
+        PendingIntent notificIntent = PendingIntent
+                .getActivity(context, notifID, intent, 0); //ให้เปิด MainActivity
+
+
+
+        builder.setContentIntent(notificIntent);
+        builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE);
+        builder.setAutoCancel(false);
+
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        //Random random = new Random();
+        //int m = random.nextInt(9999 - 1000) + 1000;
+
+        //notificationManager.notify(m,builder.build());
+        notificationManager.notify(notifID,builder.build());
+
+    }
+
+    private void createNotificationAppointmentLab(Context context, String s, String s1,
+                                                     String alert,String sIdAppointment,
+                                                     String sDay) {
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+                .setSmallIcon(R.drawable.logo_mhm48)
+                .setContentTitle(s)
+                .setTicker(alert)
+                .setContentText(s1);
+
+
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra("PopUpMaster", "AlarmAppointmentLab");
         intent.putExtra("SumId_AlarmReceiver", sIdAppointment);
         intent.putExtra("SumDateTime_AlarmReceiver", sDay);
         intent.putExtra("sId", Integer.toString(notifID));

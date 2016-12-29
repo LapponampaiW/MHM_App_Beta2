@@ -20,7 +20,7 @@ public class MyHeadingDetail extends ContextWrapper {
     //Explicit
     String[] strTextSpinner;
     Context context;
-    public final String[] strTextSpinnerLab = {"+โปรดเลือกค่าแล๊ป+","CD4","Viral load"};
+    public final String[] strTextSpinnerLab = {"+โปรดเลือกค่าแล๊ป+", "CD4", "Viral load"};
 
     public MyHeadingDetail(Context base) {
         super(base);

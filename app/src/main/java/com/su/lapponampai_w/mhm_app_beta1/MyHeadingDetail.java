@@ -20,6 +20,7 @@ public class MyHeadingDetail extends ContextWrapper {
     //Explicit
     String[] strTextSpinner;
     Context context;
+    public final String[] strTextSpinnerLab = {"+โปรดเลือกค่าแล๊ป+","CD4","Viral load"};
 
     public MyHeadingDetail(Context base) {
         super(base);
@@ -251,7 +252,46 @@ public class MyHeadingDetail extends ContextWrapper {
 
             }
         });
+    } //spinnersetup
+
+
+    public void spinnerLabSetup(final Context context,Spinner spinner) {
+
+        this.context = context.getApplicationContext();
+
+
+
+
+        ArrayAdapter<String> stringArrayLabAdapter = new ArrayAdapter<String>(context, R.layout.my_spinner_item2, strTextSpinnerLab);
+        spinner.setAdapter(stringArrayLabAdapter);
+
+        /*
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (strTextSpinnerLab[position].equals(strTextSpinnerLab[0])) {
+                    //need Isempty
+                } else if (strTextSpinnerLab[position].equals(strTextSpinnerLab[1])) {
+
+
+
+                } else if (strTextSpinnerLab[position].equals(strTextSpinnerLab[2])) {
+
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        */
+
+
     }
+
 
 
 

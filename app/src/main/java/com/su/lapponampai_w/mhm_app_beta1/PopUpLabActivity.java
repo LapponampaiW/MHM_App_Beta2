@@ -95,7 +95,7 @@ public class PopUpLabActivity extends AppCompatActivity {
                             builder.setCancelable(false);
                             builder.setIcon(R.drawable.logo_mhm);
                             builder.setTitle("Blood Pressure");
-                            builder.setMessage("โปรดใส่ Systolic Blood pressure : \n(ความดันตัวล่าง)");
+                            builder.setMessage("โปรดใส่ Diastolic Blood pressure : \n(ความดันตัวล่าง)");
                             builder.setView(editText);
                             builder.setPositiveButton("ตกลง", new DialogInterface.OnClickListener() {
                                 @Override

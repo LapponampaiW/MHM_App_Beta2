@@ -20,18 +20,20 @@
         android:autoText="false"
         android:textStyle="normal|bold" />
 
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView105"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:id="@+id/lin1">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2">
+            android:layout_weight="1">
 
             <LinearLayout
                 android:orientation="horizontal"
@@ -41,16 +43,15 @@
                 android:layout_marginTop="@dimen/z2_margin_bigspace"
                 android:layout_marginBottom="@dimen/z2_margin_bigspace">
 
-                <TextView
-                    android:text="TextView"
-                    android:layout_width="wrap_content"
+                <Spinner
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView132"
+                    android:id="@+id/spinner6"
                     android:layout_weight="1"
-                    android:textColor="@android:color/background_light"
-                    android:textSize="@dimen/heading3"
+                    android:paddingTop="@dimen/z2_margin_space"
                     android:paddingBottom="@dimen/z2_margin_space"
-                    android:paddingTop="@dimen/z2_margin_space" />
+                    android:layout_marginTop="@dimen/z2_margin_space" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -58,8 +59,29 @@
             android:text=" "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/textView131"
+            android:id="@+id/textView100"
             android:layout_weight="1" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" "
+        android:id="@+id/textView107"
+        android:textSize="1sp"
+        android:background="@android:color/holo_blue_light"
+        android:layout_margin="1dp"
+        android:layout_below="@+id/lin1" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView133"
+        android:layout_below="@+id/textView107"
+        android:textSize="@dimen/heading3"
+        android:layout_marginTop="@dimen/z2_margin_space"
+        android:layout_marginLeft="@dimen/z2_margin_space" />
+
 </RelativeLayout>

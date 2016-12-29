@@ -154,7 +154,8 @@
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -165,13 +166,16 @@
                         android:textSize="@dimen/heading5"
                         android:gravity="center_vertical|center_horizontal" />
 
-                    <EditText
+                    <TextView
+                        android:text=" "
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:ems="10"
-                        android:id="@+id/editText3"
-                        android:layout_weight="1" />
+                        android:id="@+id/textViewBP"
+                        android:layout_weight="1"
+                        android:textSize="18sp"
+                        android:background="@drawable/my_border_shadow"
+                        android:paddingTop="@dimen/z2_margin_space"
+                        android:paddingBottom="@dimen/z2_margin_space" />
 
                     <TextView
                         android:layout_width="match_parent"

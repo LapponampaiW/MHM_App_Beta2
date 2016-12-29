@@ -96,21 +96,33 @@ public class LabBarChartActivity extends AppCompatActivity {
                 , myManage.readAlllabTABLE(14)};
 
 
-        ArrayList<Integer> integerArrayList = new ArrayList<Integer>();
+        ArrayList<String> yAxisArrayList = new ArrayList<String>();
         ArrayList<String> dateArrayList = new ArrayList<String>();
         int iIndex = 0;
         Boolean aBoolean = true;
         if (!stringsLab[0][0].equals("")) {
             for(int i = 0;i<stringsLab[0].length;i++) { // หา row
                 if (!stringsLab[iSpecificColumnChoose][i].equals("")) { //ถ้ามีค่าตัวเลขอยู่
-                    integerArrayList.add(iIndex, i);
+                    yAxisArrayList.add(iIndex, stringsLab[iSpecificColumnChoose][i]);
                     dateArrayList.add(iIndex, stringsLab[2][i]);
                     iIndex = iIndex + 1;
                     aBoolean = false;
                 } //if
             } //for
 
+            String[] yStrings = new String[yAxisArrayList.size()];
+            String[] xStrings = new String[dateArrayList.size()];
+            yStrings = yAxisArrayList.toArray(yStrings);
+            xStrings = dateArrayList.toArray(xStrings);
 
+            //test
+            for(int i = 0;i<yStrings.length;i++) {
+                Log.d("291259V1","y : " + yStrings[i]);
+                Log.d("291259V1","x : " + xStrings[i]);
+
+            }
+
+            String[][] stringsChart = {xStrings, yStrings};
 
             if (!aBoolean) {
                 //ถ้ามีค่าของ ตัวนั้นๆ ใน LabActivity ได้ตำแหน่งของ row มาแล้ว
@@ -127,13 +139,29 @@ public class LabBarChartActivity extends AppCompatActivity {
                     }
                 }); //Collection
 
-                /*
-                String[] sTry = new String[dateArrayList.size()];
-                sTry = dateArrayList.toArray(sTry);
-                for(int i = 0;i<sTry.length;i++) {
-                    Log.d("291259V1","sTry2 : " + sTry[i]);
+                String[] xAxis = new String[dateArrayList.size()];
+                xAxis = dateArrayList.toArray(xAxis);
+                String[] yAxis = new String[xAxis.length];
+
+                for(int i =0;i<xAxis.length;i++) {
+                    for(int z=0;z<stringsChart[0].length;z++) {
+                        if (xAxis[i].equals(stringsChart[0][z])) {
+                            yAxis[i] = stringsChart[1][z];
+                        }
+                    }
+                } //for
+
+                //test
+                for(int i = 0;i<yStrings.length;i++) {
+                    Log.d("291259V1","y : " + yAxis[i]);
+                    Log.d("291259V1","x : " + xAxis[i]);
+
                 }
-                */
+
+                //ถูกต้องถึงตรงนี้แล้ว
+
+
+
 
 
             }

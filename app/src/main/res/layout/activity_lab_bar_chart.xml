@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_lab_bar_chart"
     android:layout_width="match_parent"
@@ -75,6 +76,16 @@
         android:layout_below="@+id/lin1" />
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=" "
+        android:id="@+id/textView108"
+        android:textSize="1sp"
+        android:background="@android:color/holo_blue_light"
+        android:layout_margin="1dp"
+        android:layout_above="@+id/linComment" />
+
+    <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,5 +94,64 @@
         android:textSize="@dimen/heading3"
         android:layout_marginTop="@dimen/z2_margin_space"
         android:layout_marginLeft="@dimen/z2_margin_space" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="กลับหน้าหลัก"
+        android:id="@+id/textView106"
+        android:textSize="24sp"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="#ffffff"
+        android:autoText="false"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView133"
+        android:layout_above="@+id/textView108" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/z1_linearlayout_icon"
+        android:id="@+id/linComment"
+        android:layout_above="@+id/textView106"
+        android:gravity="left">
+
+        <TextView
+            android:text="Comment!!"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView131"
+            android:layout_marginLeft="@dimen/z2_margin_space"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left|center_vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/logo_mhm48"
+                android:id="@+id/imageView32"
+                android:layout_weight="3" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView132"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -82,6 +82,7 @@ public class LabActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), LabBarChartActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

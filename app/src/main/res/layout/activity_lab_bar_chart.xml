@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_lab_bar_chart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.su.lapponampai_w.mhm_app_beta1.LabBarChartActivity">
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="แสดงค่าแล๊ป (รูปภาพ)"
+        android:id="@+id/textView105"
+        android:textSize="@dimen/heading3"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="#ffffff"
+        android:autoText="false"
+        android:textStyle="normal|bold" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView105"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/holo_blue_dark"
+                android:layout_marginTop="@dimen/z2_margin_bigspace"
+                android:layout_marginBottom="@dimen/z2_margin_bigspace">
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView132"
+                    android:layout_weight="1"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="@dimen/heading3"
+                    android:paddingBottom="@dimen/z2_margin_space"
+                    android:paddingTop="@dimen/z2_margin_space" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:text=" "
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView131"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,7 @@ public class LabActivity extends AppCompatActivity {
 
     EditText editText1,editText2,editText3,editText4,editText5,editText6, editText7;
     String s1,s2,s3,s4,s5,s6, s7,sCalendar;
+    ImageView imageView;
     ImageButton imageButton;
     final public String[] stringsLabHeading = {"Body weight", "FBS", "Blood pressure", "Total Chlol",
             "Triglyceride", "HDL", "LDL", "SGPT/ALT", "Creatinine", "BUN", "CD4", "Viral load"};
@@ -48,6 +50,7 @@ public class LabActivity extends AppCompatActivity {
         clickImageButton();
 
         listView.setVisibility(View.INVISIBLE);
+        imageView.setVisibility(View.INVISIBLE);
 
         //textViewCalendar.setText("");
 
@@ -55,6 +58,7 @@ public class LabActivity extends AppCompatActivity {
 
         clickBackToMain();
 
+        showImageView();
 
         //clickTextViewCalendar();
 
@@ -62,6 +66,22 @@ public class LabActivity extends AppCompatActivity {
 
         //clickDeleteListView();
 
+    }
+
+    private void showImageView() {
+
+        MyManage myManage = new MyManage(this);
+        String[] strings = myManage.filter_userTABLE(11);
+        if (strings[0].equals("Y")) {
+            imageView.setVisibility(View.VISIBLE);
+        }
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), LabBarChartActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void clickBackToMain() {
@@ -438,6 +458,7 @@ public class LabActivity extends AppCompatActivity {
         imageButton = (ImageButton) findViewById(R.id.imageButton11);
         listView = (ListView) findViewById(R.id.listViewLab);
         textViewBackToMainActivity = (TextView) findViewById(R.id.textView106);
+        imageView = (ImageView) findViewById(R.id.imageView31);
 
 
     } //bindwidget

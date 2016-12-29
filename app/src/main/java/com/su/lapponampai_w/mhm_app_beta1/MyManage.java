@@ -1503,7 +1503,8 @@ public class MyManage {
         String[] strREAD = null;
         String[] column_userTABLE_Extend = {ucolumn_id, ucolumn_User, ucolumn_Password,
                 ucolumn_Stay, ucolumn_hn, ucolumn_last_updated, ucolumn_notification,
-                ucolumn_allowed_notif,ucolumn_always_username,ucolumn_times_notif,ucolumn_appointment_notif};
+                ucolumn_allowed_notif,ucolumn_always_username,ucolumn_times_notif,
+                ucolumn_appointment_notif,ucolumn_Advance_mode};
         Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE_Extend,null,null,null,null,null);
         int intCount = cursor.getCount();
         if (intCount > 0) {
@@ -1544,6 +1545,9 @@ public class MyManage {
                         break;
                     case (10):
                         strREAD[i] = cursor.getString(10);
+                        break;
+                    case (11):
+                        strREAD[i] = cursor.getString(11);
                         break;
                     default:
                         break;

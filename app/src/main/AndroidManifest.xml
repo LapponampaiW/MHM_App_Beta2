@@ -118,7 +118,8 @@
         <activity android:name=".PopUpAppDoctorActivity" />
         <activity android:name=".PopUpLabActivity" />
         <activity android:name=".AppointmentActivity" />
-        <activity android:name=".PopUpAppLabActivity"></activity>
+        <activity android:name=".PopUpAppLabActivity" />
+        <activity android:name=".LabBarChartActivity"></activity>
     </application>
 
 </manifest>

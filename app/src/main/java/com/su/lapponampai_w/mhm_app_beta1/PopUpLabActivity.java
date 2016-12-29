@@ -56,13 +56,6 @@ public class PopUpLabActivity extends AppCompatActivity {
             stringslab[i] = "";
 
         }
-
-
-
-
-
-
-
     }
 
     private void clickButtonSaveCancel() {
@@ -82,6 +75,15 @@ public class PopUpLabActivity extends AppCompatActivity {
                 for(int i =0;i < stringslab.length;i++) {
                     stringslab[i] = editTexts[i].getText().toString().trim();
                     if (!stringslab[i].equals("")) {
+                        //291259
+                        try {
+                            Double aDouble = Double.parseDouble(stringslab[i]);
+                        } catch(NumberFormatException e) {
+                            //not a double
+                            Toast.makeText(getBaseContext(),"Error!! คุณใส่ตัวหนังสือลงในช่องค่า lab",Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
                         aBoolean = false;
                     } else {
                         //aBoolean เป็น true เหมือนเดิม !!!!

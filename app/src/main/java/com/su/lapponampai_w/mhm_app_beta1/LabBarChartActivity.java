@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.graphics.Color;
 import android.support.annotation.BoolRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,14 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import org.w3c.dom.Text;
 
@@ -23,7 +32,8 @@ public class LabBarChartActivity extends AppCompatActivity {
 
 
     Spinner spinner;
-    TextView textViewHeading;
+    TextView textViewHeading,textViewTailing;
+    BarChart barChart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +44,18 @@ public class LabBarChartActivity extends AppCompatActivity {
 
         setAndclickSpinner();
 
+        goBackToMain();
+
+    }
+
+    private void goBackToMain() {
+
+        textViewTailing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void setAndclickSpinner() {
@@ -49,6 +71,7 @@ public class LabBarChartActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (strTextSpinnerLab[position].equals(strTextSpinnerLab[0])) {
+
                     //need IsEmpty
                 } else if (strTextSpinnerLab[position].equals(strTextSpinnerLab[1])) {
 
@@ -58,6 +81,7 @@ public class LabBarChartActivity extends AppCompatActivity {
                 } else if (strTextSpinnerLab[position].equals(strTextSpinnerLab[2])) {
 
                     textViewHeading.setText(strTextSpinnerLab[2]);
+                    createChart(strTextSpinnerLab[2]);
                 }
 
 
@@ -77,6 +101,7 @@ public class LabBarChartActivity extends AppCompatActivity {
 
         LabActivity labActivity = new LabActivity();
         final String[] strLabHeading = labActivity.stringsLabHeading;
+        final String[] strUnitLab = labActivity.stringsUnitLab;
 
         int iSpecificColumnChoose = 100;
         for(int i = 0;i<strLabHeading.length;i++) {
@@ -139,29 +164,138 @@ public class LabBarChartActivity extends AppCompatActivity {
                     }
                 }); //Collection
 
-                String[] xAxis = new String[dateArrayList.size()];
-                xAxis = dateArrayList.toArray(xAxis);
-                String[] yAxis = new String[xAxis.length];
+                String[] xAxisChart = new String[dateArrayList.size()];
+                xAxisChart = dateArrayList.toArray(xAxisChart);
+                String[] yAxisChart = new String[xAxisChart.length];
 
-                for(int i =0;i<xAxis.length;i++) {
+                for(int i =0;i<xAxisChart.length;i++) {
                     for(int z=0;z<stringsChart[0].length;z++) {
-                        if (xAxis[i].equals(stringsChart[0][z])) {
-                            yAxis[i] = stringsChart[1][z];
+                        if (xAxisChart[i].equals(stringsChart[0][z])) {
+                            yAxisChart[i] = stringsChart[1][z];
                         }
                     }
                 } //for
 
                 //test
                 for(int i = 0;i<yStrings.length;i++) {
-                    Log.d("291259V1","y : " + yAxis[i]);
-                    Log.d("291259V1","x : " + xAxis[i]);
-
+                    Log.d("291259V1","y : " + yAxisChart[i]);
+                    Log.d("291259V1","x : " + xAxisChart[i]);
                 }
 
                 //ถูกต้องถึงตรงนี้แล้ว
 
+                int iArray = yAxisChart.length;
+                ArrayList<BarEntry> barEntries = new ArrayList<>();
+                BarDataSet barDataSet;
+                String[] xAxisName;
+                if (iArray >= 7) {
+                    barEntries.add(new BarEntry(7f, Float.parseFloat(yAxisChart[iArray - 1])));
+                    barEntries.add(new BarEntry(6f, Float.parseFloat(yAxisChart[iArray - 2])));
+                    barEntries.add(new BarEntry(5f, Float.parseFloat(yAxisChart[iArray - 3])));
+                    barEntries.add(new BarEntry(4f, Float.parseFloat(yAxisChart[iArray - 4])));
+                    barEntries.add(new BarEntry(3f, Float.parseFloat(yAxisChart[iArray - 5])));
+                    barEntries.add(new BarEntry(2f, Float.parseFloat(yAxisChart[iArray - 6])));
+                    barEntries.add(new BarEntry(1f, Float.parseFloat(yAxisChart[iArray - 7])));
+                    barDataSet = new BarDataSet(barEntries, sLabName + "(" + strUnitLab[iSpecificColumnChoose - 3] + ")"); //เดี๋ยวต้องแก้
 
 
+                    xAxisName = new String[7];
+                    int iCount = yAxisChart.length;
+                    for (int i = 6; i >= 0; i--) { //ทำ 7 loop
+                        xAxisName[i] = xAxisChart[iCount - 1];
+                        xAxisName[i] = xAxisName[i].substring(0, 6) + xAxisName[i].substring(8);
+                        iCount = iCount - 1;
+                        Log.d("291259V1", "xAxisName[i] : "+ i +":" + xAxisName[i]);
+                    } //for
+
+                    final String[] xNameLabel = xAxisName;
+
+                    IAxisValueFormatter formatter = new IAxisValueFormatter() {
+                        @Override
+                        public String getFormattedValue(float value, AxisBase axis) {
+
+                            return xNameLabel[(int) value - 1];
+                        }
+                    };
+
+                    XAxis xAxis = barChart.getXAxis();
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxis.setTextSize(9f);
+                    xAxis.setTextColor(Color.RED);
+                    xAxis.setDrawAxisLine(true);
+                    xAxis.setDrawGridLines(false);
+                    xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
+                    xAxis.setValueFormatter(formatter);
+
+                    BarData data = new BarData(barDataSet);
+                    data.setBarWidth(0.7f); // set custom bar width
+                    barChart.setData(data);
+                    barChart.setFitBars(true); // make the x-axis fit exactly all bars
+                    barChart.invalidate(); // refresh
+
+                } else {
+                    Toast.makeText(getBaseContext(),"Array มีค่าน้อยกว่า 7 ค่า",Toast.LENGTH_SHORT).show();
+                    xAxisName = new String[iArray];
+                    Toast.makeText(getBaseContext(),Integer.toString(xAxisName.length),Toast.LENGTH_SHORT).show(); //2
+                    for(int i = iArray;i>=1;i = i-1) {
+                        Log.d("301259V1", "เข้า loop ค่า i = " + i);
+                        barEntries.add(new BarEntry(i, Float.parseFloat(yAxisChart[i - 1])));
+                        xAxisName[i-1] = xAxisChart[i-1];
+                        xAxisName[i-1] = xAxisName[i-1].substring(0, 6) + xAxisName[i-1].substring(8);
+                    } //for
+                    barDataSet = new BarDataSet(barEntries, sLabName + "(" + strUnitLab[iSpecificColumnChoose - 3] + ")"); //เดี๋ยวต้องแก้
+
+                    final String[] xNameLabel = xAxisName;
+
+                    /*
+                    IAxisValueFormatter valueFormatter = new IAxisValueFormatter() {
+                        @Override
+                        public String getFormattedValue(float value, AxisBase axis) {
+                            return xNameLabel[(int) value - 1];
+                        }
+                    };
+
+                    XAxis xAxis = barChart.getXAxis();
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                    xAxis.setTextSize(9f);
+                    xAxis.setTextColor(Color.RED);
+                    xAxis.setDrawAxisLine(true);
+                    xAxis.setDrawGridLines(false);
+                    xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
+                    xAxis.setValueFormatter(valueFormatter);
+                    */
+
+                    BarData data = new BarData(barDataSet);
+                    data.setBarWidth(0.7f); // set custom bar width
+                    barChart.setData(data);
+                    barChart.setFitBars(true); // make the x-axis fit exactly all bars
+                    barChart.invalidate(); // refresh
+                } //elseif
+
+
+                /*
+                IAxisValueFormatter formatter = new IAxisValueFormatter() {
+                    @Override
+                    public String getFormattedValue(float value, AxisBase axis) {
+                        return xAxisName[(int) value - 1];
+                    }
+                };
+
+                XAxis xAxis = barChart.getXAxis();
+                xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                xAxis.setTextSize(9f);
+                xAxis.setTextColor(Color.RED);
+                xAxis.setDrawAxisLine(true);
+                xAxis.setDrawGridLines(false);
+                xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
+                xAxis.setValueFormatter(formatter);
+
+                BarData data = new BarData(barDataSet);
+                data.setBarWidth(0.7f); // set custom bar width
+                barChart.setData(data);
+                barChart.setFitBars(true); // make the x-axis fit exactly all bars
+                barChart.invalidate(); // refresh
+                */
 
 
             }
@@ -180,6 +314,9 @@ public class LabBarChartActivity extends AppCompatActivity {
         //textViewSpinner = (TextView) findViewById(R.id.textView132);
         spinner = (Spinner) findViewById(R.id.spinner6);
         textViewHeading = (TextView) findViewById(R.id.textView133);
+        barChart = (BarChart) findViewById(R.id.chart);
+        textViewTailing = (TextView) findViewById(R.id.textView106);
+
 
     }
 }

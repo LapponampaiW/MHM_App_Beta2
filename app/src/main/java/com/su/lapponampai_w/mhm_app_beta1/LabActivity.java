@@ -293,7 +293,7 @@ public class LabActivity extends AppCompatActivity {
             }
             //ArrayList<String> stringArrayList = new ArrayList<String>();
             //int iIndex = 0;
-            for(int r = 0;r < stringsLab[r].length;r++) { //loop เท่าจำนวนแถว
+            for(int r = 0;r < stringsLab[0].length;r++) { //loop เท่าจำนวนแถว
                 for(int c = 0;c <stringsLab.length;c++) { //loop ตามจำนวน Column
                     if (!stringsLab[c][r].equals("")) {
                         Log.d("231256V1", stringsLab[c][r]);

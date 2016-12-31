@@ -34,6 +34,7 @@ public class LabBarChartActivity extends AppCompatActivity {
     Spinner spinner;
     TextView textViewHeading,textViewTailing;
     BarChart barChart;
+    BarChart barChart2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +43,21 @@ public class LabBarChartActivity extends AppCompatActivity {
 
         bindWidget();
 
+        setView();
+
         setAndclickSpinner();
 
         goBackToMain();
 
+
+
+
+
+    }
+
+    private void setView() {
+        barChart.setVisibility(View.INVISIBLE);
+        barChart2.setVisibility(View.INVISIBLE);
     }
 
     private void goBackToMain() {
@@ -61,7 +73,6 @@ public class LabBarChartActivity extends AppCompatActivity {
     private void setAndclickSpinner() {
 
         MyHeadingDetail myHeadingDetail = new MyHeadingDetail(getBaseContext());
-
         myHeadingDetail.spinnerLabSetup(getBaseContext(),spinner);
         final String[] strTextSpinnerLab = myHeadingDetail.strTextSpinnerLab;
 
@@ -208,7 +219,9 @@ public class LabBarChartActivity extends AppCompatActivity {
                         Log.d("291259V1", "xAxisName[i] : "+ i +":" + xAxisName[i]);
                     } //for
 
+
                     final String[] xNameLabel = xAxisName;
+
 
                     IAxisValueFormatter formatter = new IAxisValueFormatter() {
                         @Override
@@ -227,16 +240,22 @@ public class LabBarChartActivity extends AppCompatActivity {
                     xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
                     xAxis.setValueFormatter(formatter);
 
+
                     BarData data = new BarData(barDataSet);
                     data.setBarWidth(0.7f); // set custom bar width
                     barChart.setData(data);
                     barChart.setFitBars(true); // make the x-axis fit exactly all bars
                     barChart.invalidate(); // refresh
 
+                    barChart.setVisibility(View.VISIBLE);
+                    barChart2.setVisibility(View.INVISIBLE);
+
                 } else {
-                    Toast.makeText(getBaseContext(),"Array มีค่าน้อยกว่า 7 ค่า",Toast.LENGTH_SHORT).show();
+
+
+                    //Toast.makeText(getBaseContext(),"Array มีค่าน้อยกว่า 7 ค่า",Toast.LENGTH_SHORT).show();
                     xAxisName = new String[iArray];
-                    Toast.makeText(getBaseContext(),Integer.toString(xAxisName.length),Toast.LENGTH_SHORT).show(); //2
+                    //Toast.makeText(getBaseContext(),Integer.toString(xAxisName.length),Toast.LENGTH_SHORT).show(); //2
                     for(int i = iArray;i>=1;i = i-1) {
                         Log.d("301259V1", "เข้า loop ค่า i = " + i);
                         barEntries.add(new BarEntry(i, Float.parseFloat(yAxisChart[i - 1])));
@@ -247,7 +266,11 @@ public class LabBarChartActivity extends AppCompatActivity {
 
                     final String[] xNameLabel = xAxisName;
 
-                    /*
+                    for(int i = 0;i<xAxisName.length;i++) {
+                        Log.d("31122559V1", "ค่า xAxisName : " + xAxisName[i]);
+                    }
+
+
                     IAxisValueFormatter valueFormatter = new IAxisValueFormatter() {
                         @Override
                         public String getFormattedValue(float value, AxisBase axis) {
@@ -255,7 +278,7 @@ public class LabBarChartActivity extends AppCompatActivity {
                         }
                     };
 
-                    XAxis xAxis = barChart.getXAxis();
+                    XAxis xAxis = barChart2.getXAxis();
                     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
                     xAxis.setTextSize(9f);
                     xAxis.setTextColor(Color.RED);
@@ -263,13 +286,17 @@ public class LabBarChartActivity extends AppCompatActivity {
                     xAxis.setDrawGridLines(false);
                     xAxis.setGranularity(1f); // minimum axis-step (interval) is 1
                     xAxis.setValueFormatter(valueFormatter);
-                    */
+
+
 
                     BarData data = new BarData(barDataSet);
                     data.setBarWidth(0.7f); // set custom bar width
-                    barChart.setData(data);
-                    barChart.setFitBars(true); // make the x-axis fit exactly all bars
-                    barChart.invalidate(); // refresh
+                    barChart2.setData(data);
+                    barChart2.setFitBars(true); // make the x-axis fit exactly all bars
+                    barChart2.invalidate(); // refresh
+
+                    barChart.setVisibility(View.INVISIBLE);
+                    barChart2.setVisibility(View.VISIBLE);
                 } //elseif
 
 
@@ -315,6 +342,7 @@ public class LabBarChartActivity extends AppCompatActivity {
         spinner = (Spinner) findViewById(R.id.spinner6);
         textViewHeading = (TextView) findViewById(R.id.textView133);
         barChart = (BarChart) findViewById(R.id.chart);
+        barChart2 = (BarChart) findViewById(R.id.chart2);
         textViewTailing = (TextView) findViewById(R.id.textView106);
 
 

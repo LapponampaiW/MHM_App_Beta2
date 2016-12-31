@@ -114,6 +114,13 @@
         android:layout_below="@+id/textView133"
         android:layout_above="@+id/textView108" />
 
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView133"
+        android:layout_above="@+id/textView108" />
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"

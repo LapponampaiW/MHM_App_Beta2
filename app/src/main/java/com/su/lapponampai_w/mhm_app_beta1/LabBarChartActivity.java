@@ -58,6 +58,9 @@ public class LabBarChartActivity extends AppCompatActivity {
     private void setView() {
         barChart.setVisibility(View.INVISIBLE);
         barChart2.setVisibility(View.INVISIBLE);
+        textViewHeading.setText("");
+        textViewHeading.setVisibility(View.INVISIBLE);
+        textViewTailing.setVisibility(View.INVISIBLE);
     }
 
     private void goBackToMain() {
@@ -82,8 +85,15 @@ public class LabBarChartActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 if (strTextSpinnerLab[position].equals(strTextSpinnerLab[0])) {
-
                     //need IsEmpty
+
+                    if (textViewHeading.getText().toString().trim().equals("")) {
+                        // IsEmpty
+                    } else {
+                        ((TextView)view).setText(textViewHeading.getText().toString());
+                    }
+                    //((TextView)view).setText(null); //สำคัญมากได้แล้ว
+
                 } else if (strTextSpinnerLab[position].equals(strTextSpinnerLab[1])) {
 
                     textViewHeading.setText(strTextSpinnerLab[1]);
@@ -249,6 +259,7 @@ public class LabBarChartActivity extends AppCompatActivity {
 
                     barChart.setVisibility(View.VISIBLE);
                     barChart2.setVisibility(View.INVISIBLE);
+                    textViewHeading.setVisibility(View.VISIBLE);
 
                 } else {
 
@@ -297,6 +308,7 @@ public class LabBarChartActivity extends AppCompatActivity {
 
                     barChart.setVisibility(View.INVISIBLE);
                     barChart2.setVisibility(View.VISIBLE);
+                    textViewHeading.setVisibility(View.VISIBLE);
                 } //elseif
 
 

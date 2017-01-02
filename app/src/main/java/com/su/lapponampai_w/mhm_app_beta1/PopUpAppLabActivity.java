@@ -97,6 +97,7 @@ public class PopUpAppLabActivity extends AppCompatActivity implements
                     }
                 } //for
 
+
                 //if (aBooleanTime && !stringDate.equals("") && !aBooleanLabDetail) {
                 if (aBooleanTime && !stringDate.equals("")) {
                     MyManage myManage = new MyManage(PopUpAppLabActivity.this);

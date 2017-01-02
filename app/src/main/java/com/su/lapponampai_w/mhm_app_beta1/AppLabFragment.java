@@ -191,7 +191,8 @@ public class AppLabFragment extends Fragment {
                             MyHelper helper = new MyHelper(view.getContext());
 
                             SQLiteDatabase readSqLiteDatabase = helper.getReadableDatabase();
-                            readSqLiteDatabase.delete("appointmentTABLE", "_id = " + id, null);
+                            readSqLiteDatabase.delete("appointmentTABLE", "_id = " + id, null); //ลบใน id ของ appointmentTABLE
+                            readSqLiteDatabase.delete("alertTABLE", "alert_Lab_Id = " + id, null); //ลบใน alertTABLE
 
 
                             Toast.makeText(getActivity().getBaseContext(),"Delete in appointmentTABLE",Toast.LENGTH_SHORT).show();

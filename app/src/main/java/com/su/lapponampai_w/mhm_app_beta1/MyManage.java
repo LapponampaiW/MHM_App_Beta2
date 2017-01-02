@@ -269,6 +269,15 @@ public class MyManage {
     public static final String alarmReceiverTABLEAfter15Min = "alarmReceiverTABLEAfter15Min";
     private static final String al15column_DateTimeReceiver = "Date_time_receiver_After15Min";
 
+    //alertTABLE
+    public static final String alertTABLE = "alertTABLE";
+    public static final String alertcolumn_id = "_id";
+    public static final String alertcolumn_alert_Type = "alert_Type";
+    public static final String alertcolumn_alert_Lab_id = "alert_Lab_Id";
+    public static final String alertcolumn_alert_Date_Lab = "alert_Date_Lab";
+    public static final String alertcolumn_alert_Detail = "alert_Detail";
+    public static final String alertcolumn_alert_ArrayList = "alert_ArrayList";
+
 
     public MyManage(Context context) {
         helper = new MyHelper(context);
@@ -491,6 +500,26 @@ public class MyManage {
         return writeSqLiteDatabase.insert(noteTABLE, null, contentValues);
 
     }
+
+
+    public long addValueToAlertTABLE(String strAlert_Type,
+                                     String strAlert_Lab_Id,
+                                     String strAlert_Date_Lab,
+                                     String strAlert_Detail,
+                                     String strAlert_ArrayList) {
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(alertcolumn_alert_Type,strAlert_Type);
+        contentValues.put(alertcolumn_alert_Lab_id, strAlert_Lab_Id);
+        contentValues.put(alertcolumn_alert_Date_Lab,strAlert_Date_Lab);
+        contentValues.put(alertcolumn_alert_Detail,strAlert_Detail);
+        contentValues.put(alertcolumn_alert_ArrayList,strAlert_ArrayList);
+
+        return writeSqLiteDatabase.insert(alertTABLE, null, contentValues);
+
+    }
+
+
 
     public String[] readAllnoteTABLE(int intColumn) {
         String[] strREAD = null;

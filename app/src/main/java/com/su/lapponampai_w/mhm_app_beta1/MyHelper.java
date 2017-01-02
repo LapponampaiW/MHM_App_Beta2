@@ -125,6 +125,11 @@ public class MyHelper extends SQLiteOpenHelper {
             ", Sum_id3 Text, Sum_id4 Text, Sum_id5 Text, Sum_id6 Text, Sum_id7 Text" +
             ", Sum_id8 Text, Sum_id9 Text);";
 
+    //Create table alertTABLE
+    private static final String CREATE_alertTABLE = "create table alertTABLE " +
+            "(_id integer primary key, alert_Type Text, alert_Lab_Id Text, " +
+            "alert_Date_Lab Text, alert_Detail Text, alert_ArrayList Text);";
+
     public MyHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
 
@@ -151,6 +156,7 @@ public class MyHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_sumTABLE_alternativeImage);
         db.execSQL(CREATE_alarmReceiverTABLE);
         db.execSQL(CREATE_alarmReceiverTABLEAfter15Min);
+        db.execSQL(CREATE_alertTABLE);
 
     }
 

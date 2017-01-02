@@ -105,6 +105,10 @@ public class PopUpAppLabActivity extends AppCompatActivity implements
                     myManage.addValueToAppointmentTABLE(strCurrentDateTime, stringDate,
                             stringTime, "", stringNote, "Y", s);
 
+                    //020160 เพิ่มค่าเข้าไปใน AlertTABLE
+                    myManage.addValueToAlertTABLE("1", myManage.readAllappointmentTABLE(0)[0], stringDate, "", "");
+
+
                     Intent intent = new Intent(PopUpAppLabActivity.this, AppointmentActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

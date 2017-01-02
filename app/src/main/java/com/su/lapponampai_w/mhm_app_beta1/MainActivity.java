@@ -125,12 +125,111 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         clickTextViewMainDate();
 
+        setAlertTABLE_and_show_bellAlart();
+
         //คลิก ImageButtonAdherence
         //click_ImageButtonAdherence();
 
 
 
     } //Main method
+
+    private void setAlertTABLE_and_show_bellAlart() {
+
+        MyManage myManage = new MyManage(this);
+        MyData myData = new MyData();
+        String[] stringsAdvance_mode = myManage.filter_userTABLE(11);
+
+        if (stringsAdvance_mode[0].equals("Y,Y")) { //Advance Mode
+            String[][] stringsAlertTABLE = {myManage.readAllalertTABLE(0), myManage.readAllalertTABLE(1),
+                    myManage.readAllalertTABLE(2), myManage.readAllalertTABLE(3), myManage.readAllalertTABLE(4),
+                    myManage.readAllalertTABLE(5)};
+
+
+            if (!stringsAlertTABLE[0][0].equals("")) {
+                //เริ่มทำการ
+                Date dateCurrentDay = myData.stringChangetoDateWithOutTime(myData.currentDay());
+                Boolean aBooleanImageView = true;
+                //loop ทุกแถว
+                for(int i =0;i<stringsAlertTABLE[0].length;i++) {
+                    if (stringsAlertTABLE[1][i].equals("C") ||
+                            stringsAlertTABLE[1][i].equals("V") ||
+                            stringsAlertTABLE[1][i].equals("CV")) {
+
+                        Date dateDateLab = myData.stringChangetoDateWithOutTime(stringsAlertTABLE[3][i]);
+                        if (dateCurrentDay.compareTo(dateDateLab) > 0) {
+                            //ลบอันนั้นทิ้งไปเลย
+                            MyHelper helper = new MyHelper(this);
+                            SQLiteDatabase readSqLiteDatabase = helper.getReadableDatabase();
+                            readSqLiteDatabase.delete("alertTABLE", "_id = " + stringsAlertTABLE[0][i], null); //ลบใน alertTABLE อ้างอิง id
+                        } else {
+                         //ทำจริงในนี้แบ่ง alert_Detail column[4] become Array
+                            Boolean aBoolean = true;
+                            Toast.makeText(getBaseContext(),"เข้า else",Toast.LENGTH_SHORT).show();
+                            String[] stringsQ_alert_Detail = stringsAlertTABLE[4][i].split(";");
+                            //We don't know How many Array that be created!!!
+                            int iArray = stringsQ_alert_Detail.length - 1;
+                            int iCountABC = 0;
+                            while (aBoolean) {
+                                //Beginning with เลขมากสุข
+                                String[] stringsQQ = stringsQ_alert_Detail[iArray].split(","); //3 Value (0,1,2)
+                                if (stringsQQ[2].equals("N")) {
+                                    Date dateQQ = myData.stringChangetoDateWithOutTime(stringsQQ[1]);
+                                    String sCountABC = "";
+                                    if (dateCurrentDay.compareTo(dateQQ) >= 0) {
+                                        if (iCountABC == 0) {
+                                            sCountABC = "C";
+                                        } else if (iCountABC == 1) {
+                                            sCountABC = "B";
+                                        } else if (iCountABC == 2) {
+                                            sCountABC = "A";
+                                        }
+
+                                        //Update Data in alert_ArrayList column in alertTABLE
+                                        String sInformation = ""; //_id;A,B,C(stringsQ_alert_Detail position);Information
+                                        if (stringsAlertTABLE[1][i].equals("C")) {
+                                            sInformation = stringsAlertTABLE[0][i] + ";"+ sCountABC + ";" + "เตือนนัดหมายเช๊คค่า CD4";
+                                            myManage.updateAlertTABLE_alert_ArrayList(stringsAlertTABLE[0][i], sInformation);
+                                        } else if(stringsAlertTABLE[1][i].equals("V")) {
+                                            sInformation = stringsAlertTABLE[0][i] + ";"+ sCountABC + ";" + "เตือนนัดหมายเช๊คค่า Viral load";
+                                            myManage.updateAlertTABLE_alert_ArrayList(stringsAlertTABLE[0][i], sInformation);
+                                        } else if(stringsAlertTABLE[1][i].equals("CV")) {
+                                            sInformation = stringsAlertTABLE[0][i] + ";"+ sCountABC + ";" + "เตือนนัดหมายเช๊คค่า CD4,Viral load";
+                                        }
+                                        myManage.updateAlertTABLE_alert_ArrayList(stringsAlertTABLE[0][i], sInformation);
+
+                                        aBoolean = false;
+                                        aBooleanImageView = false;
+                                    }
+                                } else {
+                                    //need IsEmpty
+                                }
+                                iArray = iArray - 1;
+                                iCountABC = iCountABC + 1;
+                                if (iArray < 0) {
+                                    aBoolean = false;
+                                }
+                            } // while statement
+                        }
+                    }
+                } //for
+
+                //String[] stringsAlertTABLE_ArrayList_New = myManage.readAllalertTABLE(5);
+                if (!aBooleanImageView) {
+                    imageView.setVisibility(View.VISIBLE);
+                }
+
+
+
+            } else { //ไม่มีค่าใดๆ ในตาราง alertTABLE
+                imageView.setVisibility(View.INVISIBLE);
+            }
+        } else {
+
+            imageView.setVisibility(View.INVISIBLE);
+        }  //first if
+
+    }
 
     private void receiveIntentAndGoToAnotherActivity() {
 
@@ -1019,7 +1118,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         imageButtonE7.setVisibility(View.INVISIBLE);
         imageButtonE8.setVisibility(View.INVISIBLE);
         imageButtonE9.setVisibility(View.INVISIBLE);
+
         //imageView.setVisibility(View.INVISIBLE);
+
     } //showView
 
     @Override
@@ -1038,6 +1139,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             click_News();
             clickImagepill();
             clickTextViewMainDate();
+            setHeading();
+            setAlertTABLE_and_show_bellAlart();
         } else {
             showView();
             delete_UnnecessaryData_sumTABLE();
@@ -1052,6 +1155,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             clickImagepill();
             clickTextViewMainDate();
             setHeading();
+
+            setAlertTABLE_and_show_bellAlart();
         }
 
 

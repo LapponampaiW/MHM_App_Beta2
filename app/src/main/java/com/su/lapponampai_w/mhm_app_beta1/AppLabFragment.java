@@ -65,7 +65,7 @@ public class AppLabFragment extends Fragment {
 
     private void showListView(View v) {
 
-        MyManage myManage = new MyManage(v.getContext());
+        final MyManage myManage = new MyManage(v.getContext());
         MyData myData = new MyData();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date_Specific = new Date();
@@ -192,9 +192,16 @@ public class AppLabFragment extends Fragment {
 
                             SQLiteDatabase readSqLiteDatabase = helper.getReadableDatabase();
                             readSqLiteDatabase.delete("appointmentTABLE", "_id = " + id, null); //ลบใน id ของ appointmentTABLE
-                            readSqLiteDatabase.delete("alertTABLE", "alert_Lab_Id = " + id, null); //ลบใน alertTABLE
 
-
+                            //find Value in alert_Lab_id[2]
+                            String[] stringsAlert_LabId = myManage.readAllalertTABLE(2);
+                            if (!stringsAlert_LabId[0].equals("")) {
+                                for(int i = 0;i < stringsAlert_LabId.length;i++) {
+                                    if (stringsAlert_LabId[i].equals(id)) {
+                                        readSqLiteDatabase.delete("alertTABLE", "alert_Lab_Id = " + id, null); //ลบใน alertTABLE
+                                    }
+                                }
+                            }
                             Toast.makeText(getActivity().getBaseContext(),"Delete in appointmentTABLE",Toast.LENGTH_SHORT).show();
 
 

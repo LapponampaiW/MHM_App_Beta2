@@ -536,6 +536,30 @@ public class MyManage {
         return strREAD;
     } //readAllnoteTABLE
 
+    public String[] readAllalertTABLE(int intColumn) {
+        String[] strREAD = null;
+        String[] strings_column = {alertcolumn_id, alertcolumn_alert_Type
+                , alertcolumn_alert_Lab_id, alertcolumn_alert_Date_Lab, alertcolumn_alert_Detail
+                , alertcolumn_alert_ArrayList};
+        Cursor cursor = readSqLiteDatabase.query(alertTABLE,strings_column,null,null,null,null, "_id DESC");
+        int iCount = cursor.getCount();
+        if (iCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for (int i = 0; i < cursor.getCount(); i++) {
+                strREAD[i] = cursor.getString(intColumn);
+                cursor.moveToNext();
+            } //for
+            cursor.close();
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+
+
+        return strREAD;
+    }
+
     public long addValueToAppointmentTABLE(String strDateTimeSave, String strAppointment_Date,
                                            String strAppointment_Time, String strAppointment_Doctor,
                                            String strAppointment_Note, String strAppointment_Snooze,
@@ -747,6 +771,12 @@ public class MyManage {
         contentValues.put(column_DateCheck,"");
         contentValues.put(column_TimeCheck,"");
         return writeSqLiteDatabase.update(sum_table,contentValues, "_id = " + str_id,null);
+    }
+
+    public long updateAlertTABLE_alert_ArrayList(String str_id,String str_Information) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(alertcolumn_alert_ArrayList,str_Information);
+        return writeSqLiteDatabase.update(alertTABLE,contentValues, "_id = " + str_id,null);
     }
 
     public long updateAppointmentTABLE_AppointmentSnooze(String str_id,String strText) {

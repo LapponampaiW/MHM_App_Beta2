@@ -89,6 +89,19 @@ public class PopUpAppLabActivity extends AppCompatActivity implements
                     }
                 } //for
 
+                //Create Value of alert_Type in alertTABLE
+                String sAlert_Type = "";
+                if (checkBoxL10.isChecked() && checkBoxL11.isChecked()) { //CD4 && Viral Load
+                    sAlert_Type = "CV";
+                } else if (checkBoxL11.isChecked()) { //Viral Load
+                    sAlert_Type = "V";
+                } else if (checkBoxL10.isChecked()) { //CD4
+                    sAlert_Type = "C";
+                } else {
+                    sAlert_Type = "";
+                }
+
+                //Create Value string of Appointment_Lab in appointmentTABLE
                 String s = "";
                 for(int x =0;x <strings.length;x++) {
                     if (s.equals("")) {
@@ -108,52 +121,46 @@ public class PopUpAppLabActivity extends AppCompatActivity implements
                             stringTime, "", stringNote, "Y", s);
 
                     //020160 เพิ่มค่าเข้าไปใน AlertTABLE
-                    String strCurrentDay = myData.currentDay();
-                    Date dateCurrentDay = myData.stringChangetoDateWithOutTime(strCurrentDay); //Date วันนี้
-                    Date dateValiable = myData.stringChangetoDateWithOutTime(stringDate);
+                    if (!sAlert_Type.equals("")) {
+                        String strCurrentDay = myData.currentDay();
+                        Date dateCurrentDay = myData.stringChangetoDateWithOutTime(strCurrentDay); //Date วันนี้
+                        Date dateValiable = myData.stringChangetoDateWithOutTime(stringDate);
 
-                    //ทำ date ก่อน 7 วัน
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.setTime(dateValiable); //วันที่วันที่ต้องการเปลี่ยน
-                    calendar.add(Calendar.DAY_OF_MONTH, -7); //วันที่ลดลงไป 2 เดือน
-                    Date dateValiable7Day = calendar.getTime();
+                        //ทำ date ก่อน 7 วัน
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.setTime(dateValiable); //วันที่วันที่ต้องการเปลี่ยน
+                        calendar.add(Calendar.DAY_OF_MONTH, -7); //วันที่ลดลงไป 2 เดือน
+                        Date dateValiable7Day = calendar.getTime();
 
-                    //ทำ date ก่อน 1 เดือน
-                    calendar.setTime(dateValiable);
-                    calendar.add(Calendar.MONTH, -1);
-                    Date dateValiable1Month = calendar.getTime();
+                        //ทำ date ก่อน 1 เดือน
+                        calendar.setTime(dateValiable);
+                        calendar.add(Calendar.MONTH, -1);
+                        Date dateValiable1Month = calendar.getTime();
 
-                    //ทำ date ก่อน 2 เดือน
-                    calendar.setTime(dateValiable);
-                    calendar.add(Calendar.MONTH,-2);
-                    Date dateValiable2Month = calendar.getTime();
+                        //ทำ date ก่อน 2 เดือน
+                        calendar.setTime(dateValiable);
+                        calendar.add(Calendar.MONTH,-2);
+                        Date dateValiable2Month = calendar.getTime();
 
 
-                    String sDetail = "";
-                    if (dateCurrentDay.compareTo(dateValiable7Day) >= 0) {
-                        String s7Day = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable7Day);
-                        sDetail = "C," + s7Day + ",N";
-                    } else if (dateCurrentDay.compareTo(dateValiable1Month) >= 0) {
-                        String s7Day = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable7Day);
-                        String s1Month = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable1Month);
-                        sDetail = "B," + s1Month + ",N;C," + s7Day + ",N";
-                    } else {
-                        String s7Day = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable7Day);
-                        String s1Month = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable1Month);
-                        String s2Month = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable2Month);
-                        sDetail = "A," + s2Month + ",N;B," + s1Month + ",N;C," + s7Day + ",N";
+                        String sDetail = "";
+                        if (dateCurrentDay.compareTo(dateValiable7Day) >= 0) {
+                            String s7Day = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable7Day);
+                            sDetail = "C," + s7Day + ",N";
+                        } else if (dateCurrentDay.compareTo(dateValiable1Month) >= 0) {
+                            String s7Day = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable7Day);
+                            String s1Month = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable1Month);
+                            sDetail = "B," + s1Month + ",N;C," + s7Day + ",N";
+                        } else {
+                            String s7Day = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable7Day);
+                            String s1Month = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable1Month);
+                            String s2Month = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable2Month);
+                            sDetail = "A," + s2Month + ",N;B," + s1Month + ",N;C," + s7Day + ",N";
+                        }
+
+                        myManage.addValueToAlertTABLE(sAlert_Type, myManage.readAllappointmentTABLE(0)[0], stringDate, sDetail, "");
                     }
 
-
-
-
-
-
-
-
-
-
-                    myManage.addValueToAlertTABLE("1", myManage.readAllappointmentTABLE(0)[0], stringDate, sDetail, "");
 
 
                     Intent intent = new Intent(PopUpAppLabActivity.this, AppointmentActivity.class);

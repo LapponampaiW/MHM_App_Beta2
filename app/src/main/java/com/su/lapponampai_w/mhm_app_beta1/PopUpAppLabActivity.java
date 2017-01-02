@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class PopUpAppLabActivity extends AppCompatActivity implements
@@ -107,7 +108,52 @@ public class PopUpAppLabActivity extends AppCompatActivity implements
                             stringTime, "", stringNote, "Y", s);
 
                     //020160 เพิ่มค่าเข้าไปใน AlertTABLE
-                    myManage.addValueToAlertTABLE("1", myManage.readAllappointmentTABLE(0)[0], stringDate, "", "");
+                    String strCurrentDay = myData.currentDay();
+                    Date dateCurrentDay = myData.stringChangetoDateWithOutTime(strCurrentDay); //Date วันนี้
+                    Date dateValiable = myData.stringChangetoDateWithOutTime(stringDate);
+
+                    //ทำ date ก่อน 7 วัน
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(dateValiable); //วันที่วันที่ต้องการเปลี่ยน
+                    calendar.add(Calendar.DAY_OF_MONTH, -7); //วันที่ลดลงไป 2 เดือน
+                    Date dateValiable7Day = calendar.getTime();
+
+                    //ทำ date ก่อน 1 เดือน
+                    calendar.setTime(dateValiable);
+                    calendar.add(Calendar.MONTH, -1);
+                    Date dateValiable1Month = calendar.getTime();
+
+                    //ทำ date ก่อน 2 เดือน
+                    calendar.setTime(dateValiable);
+                    calendar.add(Calendar.MONTH,-2);
+                    Date dateValiable2Month = calendar.getTime();
+
+
+                    String sDetail = "";
+                    if (dateCurrentDay.compareTo(dateValiable7Day) >= 0) {
+                        String s7Day = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable7Day);
+                        sDetail = "C," + s7Day + ",N";
+                    } else if (dateCurrentDay.compareTo(dateValiable1Month) >= 0) {
+                        String s7Day = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable7Day);
+                        String s1Month = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable1Month);
+                        sDetail = "B," + s1Month + ",N;C," + s7Day + ",N";
+                    } else {
+                        String s7Day = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable7Day);
+                        String s1Month = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable1Month);
+                        String s2Month = myData.string_ddMMyyyy_ConvertedFromSpecificDate(dateValiable2Month);
+                        sDetail = "A," + s2Month + ",N;B," + s1Month + ",N;C," + s7Day + ",N";
+                    }
+
+
+
+
+
+
+
+
+
+
+                    myManage.addValueToAlertTABLE("1", myManage.readAllappointmentTABLE(0)[0], stringDate, sDetail, "");
 
 
                     Intent intent = new Intent(PopUpAppLabActivity.this, AppointmentActivity.class);

@@ -48,10 +48,12 @@ public class SettingActivity extends AppCompatActivity implements
     Button buttonConnect,buttonSuperUser,buttonNofSave;
     String strAddVN,stringEditText,s1,s2;
     TextView textViewid,textViewAbout,textViewChangePW,textViewSecurity,textViewFinish,
-            textViewNotif_Explain,textViewAppointmentDay,textViewAppointmentTime,textViewUser;
+            textViewNotif_Explain,textViewAppointmentDay,textViewAppointmentTime,
+            textViewUser,textViewAdvanceMode;
     MyManage myManage;
-    Switch aSwitch,aSwitch2;
-    LinearLayout linearLayout,linearLayoutTimesNof,linearLayoutApp2,linearLayoutApp3;
+    Switch aSwitch,aSwitch2,aSwitch3;
+    LinearLayout linearLayout,linearLayoutTimesNof,linearLayoutApp2,linearLayoutApp3,
+            linearLayoutHeading4;
     CheckBox checkBoxDefault, checkBoxCustom,checkBoxSecurityNone,
             checkBoxSecurity1,checkBoxSecurity2,checkBoxNof1,checkBoxNof2;
     EditText editText;
@@ -86,6 +88,9 @@ public class SettingActivity extends AppCompatActivity implements
         //คลิก CheckBok Times_nof
         clickCheckBoxNof();
 
+        //คลิก CheckBok Advance_Mode
+        clickSwitchAdvancdMode();
+
         //คลิก AboutActivity
         clickAboutActivity();
 
@@ -110,6 +115,25 @@ public class SettingActivity extends AppCompatActivity implements
 
     }
 
+    private void clickSwitchAdvancdMode() {
+
+
+
+        aSwitch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (aSwitch3.isChecked()) {
+                    String[] strAdvanceMode = myManage.filter_userTABLE(1);
+                    myManage.update_Advance_mode(strAdvanceMode[0],"Y,Y");
+                } else {
+                    String[] strAdvanceMode = myManage.filter_userTABLE(1);
+                    myManage.update_Advance_mode(strAdvanceMode[0],"Y,N");
+                }
+            }
+        });
+
+    }
+
     private void clickUserTextView() {
 
         textViewUser.setOnClickListener(new View.OnClickListener() {
@@ -117,8 +141,6 @@ public class SettingActivity extends AppCompatActivity implements
             public void onClick(View v) {
                 iUserTimes = iUserTimes + 1;
                 if (iUserTimes >= 10) {
-
-
                         final EditText editText = new EditText(getApplicationContext());
                         editText.setInputType(16);
                         final AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
@@ -136,7 +158,10 @@ public class SettingActivity extends AppCompatActivity implements
 
                                     //241259V1 เปลี่ยน Advance Mode เป็น Y
                                     String[] strings = myManage.readAlluserTABLE(1);
-                                    myManage.update_Advance_mode(strings[0],"Y");
+                                    myManage.update_Advance_mode(strings[0],"Y,Y");
+                                    textViewAdvanceMode.setVisibility(View.VISIBLE);
+                                    linearLayoutHeading4.setVisibility(View.VISIBLE);
+                                    aSwitch3.setChecked(true);
                                 } else {
                                     Toast.makeText(getBaseContext(), "Fail!!!", Toast.LENGTH_LONG).show();
                                 }
@@ -503,6 +528,7 @@ public class SettingActivity extends AppCompatActivity implements
         String[] strNotif = myManage.filter_userTABLE(6); // ดูข้อความ Notification
         String[] strTimeNof = myManage.filter_userTABLE(9); //หา TimeNof ว่าเป็น 1 หรือ 2
         String[] strAppointmentNof = myManage.filter_userTABLE(10); //หา AppointmentNof
+        String[] strAdvanceMode = myManage.filter_userTABLE(11);
         Log.d("061259V1", strTimeNof[0]);
         textViewid.setText("ไอดีผู้ใช้ : ".concat(strUser[0]));
 
@@ -556,6 +582,21 @@ public class SettingActivity extends AppCompatActivity implements
             s1 = queryDateTimeAppointmentRef[0];
             s2 = queryDateTimeAppointmentRef[1];
         }
+
+        //set เกี่ยวกับ Advance Mode
+        if (strAdvanceMode[0].equals("Y,Y")) {
+            linearLayoutHeading4.setVisibility(View.VISIBLE);
+            textViewAdvanceMode.setVisibility(View.VISIBLE);
+            aSwitch3.setChecked(true);
+        } else if (strAdvanceMode[0].equals("Y,N")) {
+            linearLayoutHeading4.setVisibility(View.VISIBLE);
+            textViewAdvanceMode.setVisibility(View.VISIBLE);
+            aSwitch3.setChecked(false);
+        } else {
+            linearLayoutHeading4.setVisibility(View.GONE);
+            textViewAdvanceMode.setVisibility(View.GONE);
+        }
+
 
 
 
@@ -627,7 +668,10 @@ public class SettingActivity extends AppCompatActivity implements
         textViewUser = (TextView) findViewById(R.id.textView173);
         linearLayoutApp2 = (LinearLayout) findViewById(R.id.linApp2);
         linearLayoutApp3 = (LinearLayout) findViewById(R.id.linApp3);
+        textViewAdvanceMode = (TextView) findViewById(R.id.textView229);
+        linearLayoutHeading4 = (LinearLayout) findViewById(R.id.headSettingLayout4);
         aSwitch2 = (Switch) findViewById(R.id.switch2);
+        aSwitch3 = (Switch) findViewById(R.id.switch3);
 
     }
 

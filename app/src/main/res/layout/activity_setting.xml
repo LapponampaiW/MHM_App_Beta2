@@ -323,6 +323,52 @@
                 </LinearLayout>
 
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Advance Mode"
+                    android:id="@+id/textView229"
+                    android:gravity="right"
+                    android:textColor="@android:color/holo_red_light"
+                    android:background="@drawable/my_border_shadow"
+                    android:padding="5dp"
+                    android:layout_marginBottom="@dimen/z2_margin_space"
+                    android:textSize="@dimen/heading4"
+                    android:layout_marginTop="@dimen/z2_margin_smallgap" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/headSettingLayout4"
+                    android:gravity="left"
+                    android:layout_below="@+id/headSettingLayout">
+
+
+                    <TextView
+                        android:text="เปิด/ปิด Advance Mode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView230"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="@dimen/z2_margin_smallgap" />
+
+                    <Switch
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/switch3"
+                        android:textSize="@dimen/heading4"
+                        android:textColor="@android:color/background_dark"
+                        android:switchTextAppearance="@style/TextAppearance.AppCompat"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/z2_margin_smallgap"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_gravity="center_vertical|center_horizontal" />
+
+
+                    </LinearLayout>
+
+
 
             </LinearLayout>
 

@@ -32,7 +32,7 @@ public class LabBarChartActivity extends AppCompatActivity {
 
 
     Spinner spinner;
-    TextView textViewHeading,textViewTailing;
+    TextView textViewHeading,textViewTailing,textViewComment;
     BarChart barChart;
     BarChart barChart2;
 
@@ -50,9 +50,6 @@ public class LabBarChartActivity extends AppCompatActivity {
         goBackToMain();
 
 
-
-
-
     }
 
     private void setView() {
@@ -60,7 +57,8 @@ public class LabBarChartActivity extends AppCompatActivity {
         barChart2.setVisibility(View.INVISIBLE);
         textViewHeading.setText("");
         textViewHeading.setVisibility(View.INVISIBLE);
-        textViewTailing.setVisibility(View.INVISIBLE);
+        textViewComment.setVisibility(View.INVISIBLE);
+
     }
 
     private void goBackToMain() {
@@ -356,6 +354,7 @@ public class LabBarChartActivity extends AppCompatActivity {
         barChart = (BarChart) findViewById(R.id.chart);
         barChart2 = (BarChart) findViewById(R.id.chart2);
         textViewTailing = (TextView) findViewById(R.id.textView106);
+        textViewComment = (TextView) findViewById(R.id.textView132);
 
 
     }

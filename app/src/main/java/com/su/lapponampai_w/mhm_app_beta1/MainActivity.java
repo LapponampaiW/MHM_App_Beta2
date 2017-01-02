@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -78,12 +79,10 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     String strResult_Position, strResult_Main_id, strResult_TimeRef, strResult_Appearance,
             strResult_AmountTablet, strResult_Tradename,strResult_DateTimeCheck,strResult_Sum_id, strAlarmTABLE ,
             strResult_EA,strResult_SkipHold,strResult_DateRef = ""; //clickTakeMedicine
-
     String popUpMaster;
-
     String[] strTextSpinner;
-
     Spinner spinner;
+    ImageView imageView;
 
 
     @Override
@@ -1020,6 +1019,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         imageButtonE7.setVisibility(View.INVISIBLE);
         imageButtonE8.setVisibility(View.INVISIBLE);
         imageButtonE9.setVisibility(View.INVISIBLE);
+        //imageView.setVisibility(View.INVISIBLE);
     } //showView
 
     @Override
@@ -2521,6 +2521,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         tvEvening = (TextView) findViewById(R.id.tvEvening);
         tvBedtime = (TextView) findViewById(R.id.tvBedtime);
         spinner = (Spinner) findViewById(R.id.spinner);
+        imageView = (ImageView) findViewById(R.id.imageView35);
 
     }
 

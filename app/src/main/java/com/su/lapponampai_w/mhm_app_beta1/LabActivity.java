@@ -74,7 +74,7 @@ public class LabActivity extends AppCompatActivity {
 
         MyManage myManage = new MyManage(this);
         String[] strings = myManage.filter_userTABLE(11);
-        if (strings[0].equals("Y")) {
+        if (strings[0].equals("Y,Y")) {
             imageView.setVisibility(View.VISIBLE);
         }
         imageView.setOnClickListener(new View.OnClickListener() {

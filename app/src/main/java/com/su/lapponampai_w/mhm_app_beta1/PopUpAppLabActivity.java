@@ -45,8 +45,6 @@ public class PopUpAppLabActivity extends AppCompatActivity implements
 
         displayMetrics();
 
-
-
         clickSaveCancel();
 
 

@@ -229,6 +229,17 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             imageView.setVisibility(View.INVISIBLE);
         }  //first if
 
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //open AlertActivity
+                startActivity(new Intent(getBaseContext(),AlertActivity.class));
+
+            }
+        });
+
+
+
     }
 
     private void receiveIntentAndGoToAnotherActivity() {

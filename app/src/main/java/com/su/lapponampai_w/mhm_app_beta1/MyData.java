@@ -145,6 +145,18 @@ public class MyData {
         return intsRead;
     }
 
+    public int[] translate_Appearance_Alert(String[] appearance_Alert) {
+        int[] intsRead = new int[appearance_Alert.length];
+
+        for (int i = 0; i < appearance_Alert.length; i++) {
+            if (appearance_Alert[i].equals("A1")) {
+                intsRead[i] = R.drawable.calendar;
+            }
+        }
+
+        return intsRead;
+    }
+
 
     public int[] translate_Appearance(String[] appearance) {
 

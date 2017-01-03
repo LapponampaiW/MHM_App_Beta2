@@ -119,7 +119,8 @@
         <activity android:name=".PopUpLabActivity" />
         <activity android:name=".AppointmentActivity" />
         <activity android:name=".PopUpAppLabActivity" />
-        <activity android:name=".LabBarChartActivity"></activity>
+        <activity android:name=".LabBarChartActivity" />
+        <activity android:name=".AlertActivity"></activity>
     </application>
 
 </manifest>

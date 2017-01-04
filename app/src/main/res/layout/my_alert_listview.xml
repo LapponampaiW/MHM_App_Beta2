@@ -14,7 +14,7 @@
             android:layout_width="@dimen/z1_linearlayout_icon"
             android:layout_height="@dimen/z1_linearlayout_icon"
             android:id="@+id/imageViewAlertAdaptor"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp" />

@@ -779,6 +779,16 @@ public class MyManage {
         return writeSqLiteDatabase.update(alertTABLE,contentValues, "_id = " + str_id,null);
     }
 
+    public long updateAlertTABLE_alert_Detail(String str_id,String str_Detail) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(alertcolumn_alert_Detail,str_Detail);
+        return writeSqLiteDatabase.update(alertTABLE,contentValues, "_id = " + str_id,null);
+    }
+
+
+
+
+
     public long updateAppointmentTABLE_AppointmentSnooze(String str_id,String strText) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(appcolumn_appointment_snooze,strText);

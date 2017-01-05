@@ -217,6 +217,8 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 //String[] stringsAlertTABLE_ArrayList_New = myManage.readAllalertTABLE(5);
                 if (!aBooleanImageView) {
                     imageView.setVisibility(View.VISIBLE);
+                } else {
+                    imageView.setVisibility(View.INVISIBLE);
                 }
 
 

@@ -110,6 +110,7 @@ public class SplashScreen extends AppCompatActivity {
         mySQLiteDataBase.timeTABLEData();
         //myManage.newsTABLEData();
         mySQLiteDataBase.newsTABLEData();
+        mySQLiteDataBase.waringTABLEData();
 
     }  //Main Method
 

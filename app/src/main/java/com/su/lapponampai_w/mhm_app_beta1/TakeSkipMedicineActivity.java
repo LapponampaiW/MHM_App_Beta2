@@ -18,7 +18,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
     //Explicit
     public static Activity activityTSMActivity;
     String string1,string2,string3, string4,string5,string6,string7,stringId,stringDateRef,stringMain_id;
-    TextView textView1,textView2, textView3;
+    TextView textView1,textView2, textView3,textViewWarning;
     TextView textViewB1,textViewB2, textViewB3;
     ImageView imageView;
     int[] intsIndex;
@@ -31,7 +31,8 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
 
         activityTSMActivity = this;
 
-        displayMetrics();
+        //displayMetrics();
+        displayMetrics2();
 
         bindWidget();
 
@@ -39,11 +40,90 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
 
         showView();
 
+        setTextViewWarning();
+
         setTextButton();
 
         clickButton();
     }
 
+    private void displayMetrics2() {
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        int width = displayMetrics.widthPixels;
+        int height = displayMetrics.heightPixels;
+
+        getWindow().setLayout((int) (width*.8),(int) (height*.4));
+    }
+
+    private void setTextViewWarning() {
+        Log.d("060160V1", "เข้า setTextViewWarning");
+        //มี Main_id จะหา.... Med_id
+        //readAll MainTABLE
+        MyManage myManage = new MyManage(this);
+        String[] strings_MainId = myManage.read_mainTABLE_InCluded_DateTimeCanceled(0);
+        String[] strings_MedId = myManage.read_mainTABLE_InCluded_DateTimeCanceled(1);
+        String strMedId = "";
+        Log.d("060160V1", "stringMain_id : " + stringMain_id);
+        for(int i =0;i<strings_MainId.length;i++) {
+            if (stringMain_id.equals(strings_MainId[i])) {
+                strMedId = strings_MedId[i];
+            } //if
+        } //for
+
+        Log.d("060160V1", "strMedId : " + strMedId);
+
+        if (!strMedId.equals("")) {
+            //เอาไปหาคาใน WarningTABLE
+            Log.d("060160V1", "strMedId =! ''");
+            //เอา Med id ไปหา Generic name ใน genericTABLE
+            String[] strings_genericId = myManage.filter_medTABLE_by_id(strMedId);
+            //ได้ทั้งหมดมาละ
+            String sText = "";
+            Boolean aBoolean = true;
+            for(int i =0;i<strings_genericId.length;i++) {
+                if (!strings_genericId[i].equals("1")) {
+                    String[] strings_Warning_Detail = myManage.filter_warningTABLE_by_genericId(strings_genericId[i], 3);
+                    if (!strings_Warning_Detail[0].equals("")) {
+                        aBoolean = false;
+                        if (sText.equals("")) {
+                            sText = strings_Warning_Detail[0];
+                        } else {
+                            sText = sText + "\n" + strings_Warning_Detail[0];
+                        }
+
+                    } //for
+
+                }
+            }
+
+            if (!aBoolean) {
+                textViewWarning.setText(sText);
+                textViewWarning.setVisibility(View.VISIBLE);
+            }
+            //Log.d("060160V1", "strings_Warning_Detail[0] =! ''");
+            //textViewWarning.setText(strings_Warning_Detail[0]);
+
+
+
+
+            /*
+            String[] strings_Warning_Detail = myManage.filter_warningTABLE_by_medId(strMedId, 3);
+            if (!strings_Warning_Detail[0].equals("")) {
+
+                Log.d("060160V1", "strings_Warning_Detail[0] =! ''");
+                textViewWarning.setText(strings_Warning_Detail[0]);
+                textViewWarning.setVisibility(View.VISIBLE);
+
+            }
+            */
+        }
+
+
+
+    } //setTextViewWarning
 
 
     private void clickButton() {
@@ -235,6 +315,8 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         textView2.setText(stextView2);
         textView3.setText(stextView3);
         imageView.setImageResource(intsIndex[0]);
+        textViewWarning.setVisibility(View.GONE);
+
     }
 
     private void bindWidget() {
@@ -245,6 +327,8 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         textViewB1 = (TextView) findViewById(R.id.textView47);
         textViewB2 = (TextView) findViewById(R.id.textView48);
         textViewB3 = (TextView) findViewById(R.id.textView49);
+        textViewWarning = (TextView) findViewById(R.id.textViewTSML3);
+
     }
 
     private void receiveIntent() {

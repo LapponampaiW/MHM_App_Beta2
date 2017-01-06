@@ -84,6 +84,35 @@
                 android:textStyle="normal|bold" />
         </LinearLayout>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="@dimen/z2_margin_bigspace">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:layout_marginLeft="@dimen/z2_margin_smallgap"
+                android:layout_marginTop="@dimen/z2_margin_bigspace"
+                android:layout_marginRight="@dimen/z2_margin_smallgap">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="New Text"
+                    android:id="@+id/textViewTSML3"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="@dimen/heading4"
+                    android:layout_weight="1"
+                    android:textAlignment="gravity"
+                    android:textColor="@android:color/holo_red_dark" />
+            </ScrollView>
+
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

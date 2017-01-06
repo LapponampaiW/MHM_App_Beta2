@@ -600,6 +600,30 @@ public class MyManage {
         return strREAD;
     } //readAlluserTABLE
 
+    public String[] filter_warningTABLE_by_genericId(String str_genericId, int intColumn) {
+        String[] strREAD = null;
+        String[] strings_warningTABLE = {wcolumn_id,wcolumn_med_id,
+                wcolumn_pharmaco_id,wcolumn_warning_Detail};
+        Cursor cursor = readSqLiteDatabase.query(warningTABLE,
+                strings_warningTABLE, "med_Id " + "LIKE '" + str_genericId + "'", null, null, null, null);
+
+        int iCount = cursor.getCount();
+        if (iCount > 0) {
+            cursor.moveToFirst();
+            strREAD = new String[cursor.getCount()];
+            for (int i = 0; i < cursor.getCount(); i++) {
+                strREAD[i] = cursor.getString(intColumn);
+                cursor.moveToNext();
+            } //for
+            cursor.close();
+
+        } else {
+            strREAD = new String[1];
+            strREAD[0] = "";
+        }
+        return strREAD;
+    }
+
 
     public String[] filtersumTABLE_by_DateRef(String dateref, int intColumn) {
         String[] strREAD = null;
@@ -1285,6 +1309,7 @@ public class MyManage {
         }
         return strREAD;
     }
+
 
     //Read mainTABLE ที่ DateTimeCanceled ยังเป็น "" (คือยัง Active อยู่)
     public String[] read_mainTABLE_InCluded_DateTimeCanceled(int intColumn) {
@@ -2339,8 +2364,8 @@ public class MyManage {
         return strread;
     }
 
-    public String[] filter_medTABLE_by_id(String id) {
-        Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, "_id =?", new String[]{String.valueOf(id)}, null, null, null);
+    public String[] filter_medTABLE_by_id(String medId) {
+        Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE, "_id =?", new String[]{String.valueOf(medId)}, null, null, null);
         String[] strREAD = new String[4];
         if (cursor != null) {
             cursor.moveToFirst();

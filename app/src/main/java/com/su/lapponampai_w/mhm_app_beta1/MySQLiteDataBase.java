@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 
+import static com.su.lapponampai_w.mhm_app_beta1.MyManage.alertcolumn_alert_Date_Lab;
 import static com.su.lapponampai_w.mhm_app_beta1.MyManage.column_drugInteractionTABLE;
 import static com.su.lapponampai_w.mhm_app_beta1.MyManage.column_medTABLE;
 import static com.su.lapponampai_w.mhm_app_beta1.MyManage.column_nameGenericTABLE;
@@ -58,7 +59,11 @@ import static com.su.lapponampai_w.mhm_app_beta1.MyManage.tcolumn_end_time;
 import static com.su.lapponampai_w.mhm_app_beta1.MyManage.tcolumn_start_time;
 import static com.su.lapponampai_w.mhm_app_beta1.MyManage.tcolumn_time_interval;
 import static com.su.lapponampai_w.mhm_app_beta1.MyManage.timeTABLE;
-
+import static com.su.lapponampai_w.mhm_app_beta1.MyManage.warningTABLE;
+import static com.su.lapponampai_w.mhm_app_beta1.MyManage.wcolumn_id;
+import static com.su.lapponampai_w.mhm_app_beta1.MyManage.wcolumn_med_id;
+import static com.su.lapponampai_w.mhm_app_beta1.MyManage.wcolumn_pharmaco_id;
+import static com.su.lapponampai_w.mhm_app_beta1.MyManage.wcolumn_warning_Detail;
 
 /**
  * Created by apple on 11/6/16.
@@ -176,6 +181,16 @@ public class MySQLiteDataBase extends AppCompatActivity {
         return addlong;
 
     } //adddrugInteractionTABLEValue
+
+    public long addValueToWaringTABLE(String str_medId,String str_pharmacoId,String str_warning_Detail) {
+        ContentValues contentValues = new ContentValues();
+        long addlong = 0;
+        contentValues.put(wcolumn_med_id,str_medId);
+        contentValues.put(wcolumn_pharmaco_id, str_pharmacoId);
+        contentValues.put(wcolumn_warning_Detail, str_warning_Detail);
+        addlong = writeSqLiteDatabase.insert(warningTABLE, null, contentValues);
+        return addlong;
+    }
 
 
 
@@ -620,6 +635,19 @@ public class MySQLiteDataBase extends AppCompatActivity {
 
         }
     }  //nameGenericTABLEData
+
+    public void waringTABLEData() {
+        String column_TABLE[] = {wcolumn_id, wcolumn_med_id, wcolumn_pharmaco_id, wcolumn_warning_Detail};
+        Cursor cursor = readSqLiteDatabase.query(warningTABLE, column_TABLE, null, null, null, null, null);
+        if (cursor.getCount() == 0) {
+
+            addValueToWaringTABLE("7", "", "ห้าม!!! ใช้ยานี้ร่วมกับยารักษาอาการปวดศีรษะไมเกรน (Cafergot," +
+                    " Bellergal หรือ ergotamine) เพราะอาจทำให้เกิดอาการเส้นเลือดที่ไป" +
+                    "เลี้ยงปลายมือปลายเท้าหดตัวอย่างรุนแรง เกิดเนื้อตายได้ \nมีปัญาหปรึกษาเภสัชกร");
+
+
+        }
+    } //warningTABLEData
 
     public void timeTABLEData() {
         Cursor cursor = readSqLiteDatabase.query(timeTABLE, column_timeTABLE, null, null, null, null, null);

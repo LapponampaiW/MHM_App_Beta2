@@ -130,6 +130,11 @@ public class MyHelper extends SQLiteOpenHelper {
             "(_id integer primary key, alert_Type Text, alert_Lab_Id Text, " +
             "alert_Date_Lab Text, alert_Detail Text, alert_ArrayList Text);";
 
+    //Create table warningTABLE
+    private static final String CREATE_warningTABLE = "create table warningTABLE " +
+            "(_id integer primary key, med_Id Text, pharmaco_Id Text, " +
+            "warning_Detail Text);";
+
     public MyHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
 
@@ -157,6 +162,7 @@ public class MyHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_alarmReceiverTABLE);
         db.execSQL(CREATE_alarmReceiverTABLEAfter15Min);
         db.execSQL(CREATE_alertTABLE);
+        db.execSQL(CREATE_warningTABLE);
 
     }
 

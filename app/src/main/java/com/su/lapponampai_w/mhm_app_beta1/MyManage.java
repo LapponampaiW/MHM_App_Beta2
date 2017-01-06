@@ -278,6 +278,12 @@ public class MyManage {
     public static final String alertcolumn_alert_Detail = "alert_Detail";
     public static final String alertcolumn_alert_ArrayList = "alert_ArrayList";
 
+    //warningTABLE
+    public static final String warningTABLE = "warningTABLE";
+    public static final String wcolumn_id = "_id";
+    public static final String wcolumn_med_id = "med_Id";
+    public static final String wcolumn_pharmaco_id = "pharmaco_Id";
+    public static final String wcolumn_warning_Detail = "warning_Detail";
 
     public MyManage(Context context) {
         helper = new MyHelper(context);

@@ -410,7 +410,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
             }
         } else {
-            Toast.makeText(getBaseContext(), "PopUpMaster == null",Toast.LENGTH_LONG);
+            Toast.makeText(getBaseContext(), "PopUpMaster == null",Toast.LENGTH_LONG).show();
         }
 
     }

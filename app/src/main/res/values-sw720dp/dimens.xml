@@ -6,7 +6,8 @@
     <dimen name="heading1">40sp</dimen>
     <dimen name="heading2">30sp</dimen>
     <dimen name="heading3">20sp</dimen>
-    <dimen name="heading4">100sp</dimen>
+    <dimen name="heading4">15sp</dimen>
+    <dimen name="heading5">16sp</dimen>
     <dimen name="z1_linearlayout_margin_top">50dp</dimen>
     <dimen name="z2_margin_biggap">40dp</dimen>
     <dimen name="z2_margin_smallgap">20dp</dimen>

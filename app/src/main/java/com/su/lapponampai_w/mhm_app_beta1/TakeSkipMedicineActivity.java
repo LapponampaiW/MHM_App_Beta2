@@ -3,6 +3,7 @@ package com.su.lapponampai_w.mhm_app_beta1;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,8 +22,8 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
     String string1,string2,string3, string4,string5,string6,string7,stringId,stringDateRef,stringMain_id;
     TextView textView1,textView2, textView3,textViewWarning;
     TextView textViewB1,textViewB2, textViewB3;
-    LinearLayout linearLayoutWarning;
-    ImageView imageView;
+    LinearLayout linearLayoutWarning,linearLayoutTop,linearLayoutBot;
+    ImageView imageView,imageViewLogo;
     int[] intsIndex;
     String[] stringsIndex;
 
@@ -49,6 +50,28 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         clickButton();
     }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //Toast.makeText(getBaseContext(),"OnPause",Toast.LENGTH_LONG).show();
+        linearLayoutTop.setBackgroundColor(getResources().getColor(R.color.colorGRAY));
+        linearLayoutBot.setBackgroundColor(getResources().getColor(R.color.colorGRAY));
+        imageViewLogo.setImageResource(R.drawable.logo_mhm_bw);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        linearLayoutTop.setBackgroundColor(getResources().getColor(R.color.colorBLUE));
+        linearLayoutBot.setBackgroundColor(getResources().getColor(R.color.colorBLUE));
+        imageViewLogo.setImageResource(R.drawable.logo_mhm);
+
+
+    }
+
+
     private void displayMetrics2() {
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -57,7 +80,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        getWindow().setLayout((int) (width*.8),(int) (height*.5));
+        getWindow().setLayout((int) (width*.8),(int) (height*.46));
     }
 
     private void setTextViewWarning_And_Set_DisplayMetric() {
@@ -335,6 +358,9 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         textViewB3 = (TextView) findViewById(R.id.textView49);
         textViewWarning = (TextView) findViewById(R.id.textViewTSML3);
         linearLayoutWarning = (LinearLayout) findViewById(R.id.linearWarning);
+        linearLayoutTop = (LinearLayout) findViewById(R.id.linearLayout6);
+        linearLayoutBot = (LinearLayout) findViewById(R.id.linBot);
+        imageViewLogo = (ImageView) findViewById(R.id.imageView2);
 
     }
 

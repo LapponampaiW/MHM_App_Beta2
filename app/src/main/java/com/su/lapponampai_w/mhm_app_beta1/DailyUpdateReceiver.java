@@ -566,7 +566,8 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                             //ทำ 13/12/59 ถึงตรงนี้
 
-                            if (dCurrentDateTime.compareTo(d_sumTABLE_DateTimeRef) <= 0) {
+                            //if (dCurrentDateTime.compareTo(d_sumTABLE_DateTimeRef) <= 0) {
+                            if (dCurrentDateTime.compareTo(d_sumTABLE_DateTimeRef) < 0) {
                                 //เริ่ม ใส่ข้อมูล ต้องทำ mymanage เป็น addValue + update + filter
                                 strings_alarmReceiverTABLE_id = myManage.filteralarmReceiverTABLE_by_DateTimereceiver(stringDateTime, 0);
 
@@ -612,7 +613,8 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
 
                             //13/12/59 เพิ่ม Notification เป็น 2 ครั้ง
                             if (strTimeNof[0].equals("2")) {
-                                    if (dCurrentDateTime.compareTo(d_sumTABLE_DateTimeAdd_15Min) <= 0) {
+                                    //if (dCurrentDateTime.compareTo(d_sumTABLE_DateTimeAdd_15Min) <= 0) {
+                                if (dCurrentDateTime.compareTo(d_sumTABLE_DateTimeAdd_15Min) < 0) {
                                         //ดูว่า 15 นาทีก่อนหน้านี้มียาที่ยังไม่ได้กินอยู่หรือไม่จะได้ทำการ Notification หลังจากเวลา
                                         strings_alarmReceiverTABLEAfter15Min_id = myManage.filteralarmReceiverTABLEAfter15Min_by_DateTimereceiver
                                                 (stringDateTimeAfter15Min, 0);

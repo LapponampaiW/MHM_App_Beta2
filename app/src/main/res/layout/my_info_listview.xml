@@ -33,10 +33,11 @@
         android:layout_height="wrap_content"
         android:text="+++คลิกเพื่อดูรายละเอียด+++"
         android:id="@+id/textView43"
-        android:singleLine="true"
         android:gravity="center_horizontal"
         android:textSize="@dimen/heading4"
-        android:textColor="#ec4343" />
+        android:textColor="#ec4343"
+        android:singleLine="false"
+        android:background="@color/colorBackground" />
 
     <TextView
         android:layout_width="match_parent"

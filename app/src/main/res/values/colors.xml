@@ -6,4 +6,6 @@
     <color name="colorHeading">#FF232020</color>
     <color name="colorBackground">#faffe5ca</color>
     <color name="colorBackground2">#50ffd400</color>
+    <color name="colorGRAY">#FFB8B8B8</color>
+    <color name="colorBLUE">#5ba6c9</color>
 </resources>

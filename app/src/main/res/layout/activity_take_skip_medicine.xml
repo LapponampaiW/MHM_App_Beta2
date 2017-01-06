@@ -42,7 +42,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout6"
         android:layout_centerHorizontal="true"
         android:id="@+id/linearLyout7">
@@ -84,34 +84,55 @@
                 android:textStyle="normal|bold" />
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_marginTop="@dimen/z2_margin_bigspace">
+    </LinearLayout>
 
-            <ScrollView
+    <TextView
+        android:text="คำแนะนำพิเศษ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView135"
+        android:layout_weight="1"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_below="@+id/linearLyout7"
+        android:layout_marginTop="@dimen/z2_margin_bigspace"
+        android:layout_marginLeft="@dimen/z2_margin_space" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/linearWarning"
+        android:layout_below="@+id/textView135"
+        android:layout_above="@+id/linBot"
+        android:layout_marginBottom="@dimen/z2_margin_space">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_marginLeft="@dimen/z2_margin_smallgap"
-                android:layout_marginTop="@dimen/z2_margin_bigspace"
-                android:layout_marginRight="@dimen/z2_margin_smallgap">
+                android:layout_marginRight="@dimen/z2_margin_bigspace">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="New Text"
                     android:id="@+id/textViewTSML3"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="@dimen/z2_margin_bigspace"
                     android:textSize="@dimen/heading4"
                     android:layout_weight="1"
                     android:textAlignment="gravity"
-                    android:textColor="@android:color/holo_red_dark" />
-            </ScrollView>
-
-        </LinearLayout>
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="@dimen/z2_margin_space"
+                    android:paddingBottom="@dimen/z2_margin_bigspace" />
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 
@@ -120,7 +141,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#5ba6c9">
+        android:background="#5ba6c9"
+        android:id="@+id/linBot">
 
         <TextView
             android:layout_width="wrap_content"

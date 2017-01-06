@@ -10,6 +10,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
     String string1,string2,string3, string4,string5,string6,string7,stringId,stringDateRef,stringMain_id;
     TextView textView1,textView2, textView3,textViewWarning;
     TextView textViewB1,textViewB2, textViewB3;
+    LinearLayout linearLayoutWarning;
     ImageView imageView;
     int[] intsIndex;
     String[] stringsIndex;
@@ -32,7 +34,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         activityTSMActivity = this;
 
         //displayMetrics();
-        displayMetrics2();
+        //displayMetrics2();
 
         bindWidget();
 
@@ -40,7 +42,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
 
         showView();
 
-        setTextViewWarning();
+        setTextViewWarning_And_Set_DisplayMetric();
 
         setTextButton();
 
@@ -55,10 +57,10 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         int width = displayMetrics.widthPixels;
         int height = displayMetrics.heightPixels;
 
-        getWindow().setLayout((int) (width*.8),(int) (height*.4));
+        getWindow().setLayout((int) (width*.8),(int) (height*.5));
     }
 
-    private void setTextViewWarning() {
+    private void setTextViewWarning_And_Set_DisplayMetric() {
         Log.d("060160V1", "เข้า setTextViewWarning");
         //มี Main_id จะหา.... Med_id
         //readAll MainTABLE
@@ -101,7 +103,11 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
 
             if (!aBoolean) {
                 textViewWarning.setText(sText);
-                textViewWarning.setVisibility(View.VISIBLE);
+                //textViewWarning.setVisibility(View.VISIBLE);
+                linearLayoutWarning.setVisibility(View.VISIBLE);
+                displayMetrics2();
+            } else {
+                displayMetrics();
             }
             //Log.d("060160V1", "strings_Warning_Detail[0] =! ''");
             //textViewWarning.setText(strings_Warning_Detail[0]);
@@ -315,7 +321,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         textView2.setText(stextView2);
         textView3.setText(stextView3);
         imageView.setImageResource(intsIndex[0]);
-        textViewWarning.setVisibility(View.GONE);
+        linearLayoutWarning.setVisibility(View.GONE);
 
     }
 
@@ -328,6 +334,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         textViewB2 = (TextView) findViewById(R.id.textView48);
         textViewB3 = (TextView) findViewById(R.id.textView49);
         textViewWarning = (TextView) findViewById(R.id.textViewTSML3);
+        linearLayoutWarning = (LinearLayout) findViewById(R.id.linearWarning);
 
     }
 

@@ -641,7 +641,7 @@ public class MySQLiteDataBase extends AppCompatActivity {
         Cursor cursor = readSqLiteDatabase.query(warningTABLE, column_TABLE, null, null, null, null, null);
         if (cursor.getCount() == 0) {
 
-            addValueToWaringTABLE("7", "", "ห้าม!!! ใช้ยานี้ร่วมกับยารักษาอาการปวดศีรษะไมเกรน (Cafergot," +
+            addValueToWaringTABLE("7", "", "  - ห้าม!!! ใช้ยานี้ร่วมกับยารักษาอาการปวดศีรษะไมเกรน (Cafergot," +
                     " Bellergal หรือ ergotamine) เพราะอาจทำให้เกิดอาการเส้นเลือดที่ไป" +
                     "เลี้ยงปลายมือปลายเท้าหดตัวอย่างรุนแรง เกิดเนื้อตายได้ \nมีปัญาหปรึกษาเภสัชกร");
 

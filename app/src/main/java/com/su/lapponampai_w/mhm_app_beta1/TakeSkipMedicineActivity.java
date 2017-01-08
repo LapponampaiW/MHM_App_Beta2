@@ -20,7 +20,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
     //Explicit
     public static Activity activityTSMActivity;
     String string1,string2,string3, string4,string5,string6,string7,stringId,stringDateRef,stringMain_id;
-    TextView textView1,textView2, textView3,textViewWarning;
+    TextView textView1,textView2, textView3,textViewWarning,textViewHeadWarning;
     TextView textViewB1,textViewB2, textViewB3;
     LinearLayout linearLayoutWarning,linearLayoutTop,linearLayoutBot;
     ImageView imageView,imageViewLogo;
@@ -126,8 +126,8 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
 
             if (!aBoolean) {
                 textViewWarning.setText(sText);
-                //textViewWarning.setVisibility(View.VISIBLE);
                 linearLayoutWarning.setVisibility(View.VISIBLE);
+                textViewHeadWarning.setVisibility(View.VISIBLE);
                 displayMetrics2();
             } else {
                 displayMetrics();
@@ -345,6 +345,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         textView3.setText(stextView3);
         imageView.setImageResource(intsIndex[0]);
         linearLayoutWarning.setVisibility(View.GONE);
+        textViewHeadWarning.setVisibility(View.GONE);
 
     }
 
@@ -361,6 +362,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         linearLayoutTop = (LinearLayout) findViewById(R.id.linearLayout6);
         linearLayoutBot = (LinearLayout) findViewById(R.id.linBot);
         imageViewLogo = (ImageView) findViewById(R.id.imageView2);
+        textViewHeadWarning = (TextView) findViewById(R.id.textView135);
 
     }
 

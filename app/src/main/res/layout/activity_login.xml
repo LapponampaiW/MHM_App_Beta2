@@ -36,7 +36,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:hint="Username" />
+            android:hint="ขื่อผู้ใช้(Username)" />
 
         <EditText
             android:layout_width="match_parent"
@@ -45,18 +45,18 @@
             android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:hint="Password"
+            android:hint="รหัสผ่าน(Password)"
             android:layout_marginBottom="@dimen/z2_margin_smallgap"
             android:inputType="textPassword" />
 
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Remember Username"
+            android:text="จดจำชื่อผู้ใช้"
             android:id="@+id/checkBox_MemUsername" />
 
         <TextView
-            android:text="Forgot Password"
+            android:text="ลืมรหัสผ่าน"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="click_Forgot"
@@ -66,7 +66,7 @@
 
         <Button
             android:layout_width="match_parent"
-            android:text="LOGIN"
+            android:text="เข้าสู่ระบบ"
             android:id="@+id/buttonLogin"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"

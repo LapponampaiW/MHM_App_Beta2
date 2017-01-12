@@ -64,7 +64,20 @@
         android:layout_height="match_parent"
         android:id="@+id/listViewNewsActivity"
         android:layout_margin="20dp"
-        android:layout_below="@+id/linHeadingNews2" />
+        android:layout_below="@+id/linHeadingNews2"
+        android:layout_above="@+id/textView106" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="กลับหน้าหลัก"
+        android:id="@+id/textView106"
+        android:textSize="24sp"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="#6643ff"
+        android:textColor="#ffffff"
+        android:autoText="false"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true" />
 
     <Spinner
         android:layout_width="63dp"

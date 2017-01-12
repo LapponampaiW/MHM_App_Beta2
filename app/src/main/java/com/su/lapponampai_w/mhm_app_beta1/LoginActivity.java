@@ -196,10 +196,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         if (arrayIndexStringUsername.equals("-555") || arrayIndexStringPassword.equals("-555")) {
-            Toast t = Toast.makeText(LoginActivity.this, "ไม่มี Username หรือ Password (-555)", Toast.LENGTH_SHORT);
+            Toast t = Toast.makeText(LoginActivity.this, "ชื่อผู้ใช้ หรือ รหัสผ่านไม่ถูกต้อง", Toast.LENGTH_SHORT);
             t.show();
         } else if (!arrayIndexStringUsername.equals(arrayIndexStringPassword)) {
-            Toast t = Toast.makeText(LoginActivity.this, "Username ไม่สัมพันธ์กับ password", Toast.LENGTH_SHORT);
+            Toast t = Toast.makeText(LoginActivity.this, "ชื่อผู้ใช้ หรือ รหัสผ่านไม่ถูกต้อง", Toast.LENGTH_SHORT);
             t.show();
         } else if (arrayIndexStringUsername.equals(arrayIndexStringPassword)) {
 

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -49,6 +50,14 @@ public class NewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_news);
 
         activityNewsActivity = this;
+
+        TextView textView = (TextView) findViewById(R.id.textView106);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
 

@@ -34,7 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
         myManage = new MyManage(this);
 
         bindWidget();
-        textView.setText("Hospital Number :\n(optional)");
+        textView.setText("Hospital Number :\n(ถ้ามี)");
 
 
 

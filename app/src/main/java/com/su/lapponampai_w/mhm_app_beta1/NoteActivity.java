@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,7 +23,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class NoteActivity extends AppCompatActivity {
+public class NoteActivity extends AppCompatActivity implements
+        DatePickerDialog.OnDateSetListener{
 
     //Explicit
     TextView textViewCalendar;
@@ -185,6 +188,7 @@ public class NoteActivity extends AppCompatActivity {
 
     private void clickTextViewCalendar() {
 
+        /*
         textViewCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,11 +196,21 @@ public class NoteActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+        */
+        textViewCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(v);
+            }
+        });
+
 
     }  //clickTextViewCalendar
 
-
-
+    private void showDatePickerDialog(View v) {
+        MyDatePickerFragment myDatePickerFragment = new MyDatePickerFragment();
+        myDatePickerFragment.show(getFragmentManager(), "datePicker");
+    }
 
 
     private void bindWidget() {
@@ -209,4 +223,28 @@ public class NoteActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listViewNote);
 
     }  //bindWidget
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+        MyData myData = new MyData();
+        String sSpecificDate = myData.createStringDay(dayOfMonth, monthOfYear + 1, year);
+        String sDate = myData.currentDay();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date_Specific = new Date();
+        Date date_current = new Date();
+
+        try {
+            date_Specific = dateFormat.parse(sSpecificDate);
+            date_current = dateFormat.parse(sDate);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        textViewCalendar.setText(sSpecificDate);
+
+
+    }
 }

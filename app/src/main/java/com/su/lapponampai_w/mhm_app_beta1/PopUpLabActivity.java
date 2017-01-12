@@ -1,5 +1,6 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,7 +21,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class PopUpLabActivity extends AppCompatActivity {
+public class PopUpLabActivity extends AppCompatActivity implements
+        DatePickerDialog.OnDateSetListener{
 
     //Explicit
     TextView textViewCalendar,textViewBP;
@@ -339,6 +342,7 @@ public class PopUpLabActivity extends AppCompatActivity {
 
     private void clickTextViewCalendar() {
 
+        /*
         textViewCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -347,8 +351,22 @@ public class PopUpLabActivity extends AppCompatActivity {
 
             }
         });
+        */
+
+        textViewCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDatePickerDialog(v);
+            }
+        });
+
+
     }
 
+    private void showDatePickerDialog(View v) {
+        MyDatePickerFragment myDatePickerFragment = new MyDatePickerFragment();
+        myDatePickerFragment.show(getFragmentManager(), "datePicker");
+    }
 
 
     private void displayMetrics() {
@@ -381,5 +399,33 @@ public class PopUpLabActivity extends AppCompatActivity {
         editTexts[11] = (EditText) findViewById(R.id.editText12);
         saveButton = (Button) findViewById(R.id.buttonLabSave);
         cancelButton = (Button) findViewById(R.id.buttonLabCancel);
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+        MyData myData = new MyData();
+        String sSpecificDate = myData.createStringDay(dayOfMonth, monthOfYear + 1, year);
+        String sDate = myData.currentDay();
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date_Specific = new Date();
+        Date date_current = new Date();
+
+        try {
+            date_Specific = dateFormat.parse(sSpecificDate);
+            date_current = dateFormat.parse(sDate);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (date_Specific.compareTo(date_current) > 0) {
+            Toast.makeText(getBaseContext(), "ไม่สามารถตั้งวันที่ตรวจแล๊ปมากกว่าวันที่ปัจจุบันได้", Toast.LENGTH_SHORT).show();
+            textViewCalendar.setText("");
+        } else {
+            textViewCalendar.setText(sSpecificDate);
+        }
+
     }
 }

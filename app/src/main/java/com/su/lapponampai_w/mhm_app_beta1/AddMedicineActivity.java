@@ -38,6 +38,8 @@ public class AddMedicineActivity extends AppCompatActivity {
             stringsDosage1, stringsDosage2, stringsDosage3, stringsDosage4, stringsUOM1,
             stringsUOM2, stringsUOM3, stringsUOM4, stringsGeneric2, stringsId;
 
+    TextView textViewBackToMainActivity;
+
     //รับค่าจาก stringUOM2-4
     String[] stringsUOM2t, stringsUOM3t, stringsUOM4t;
 
@@ -76,11 +78,22 @@ public class AddMedicineActivity extends AppCompatActivity {
         //pressbuttonfilterListView1();
         //pressbuttonfilterListView();
 
+        backtoMainActivity();
 
         textChange();
 
         pressbuttonCustom();
 
+
+    }
+
+    private void backtoMainActivity() {
+        textViewBackToMainActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 
@@ -558,6 +571,7 @@ public class AddMedicineActivity extends AppCompatActivity {
         editTextAddTG = (EditText) findViewById(R.id.editText_Add_TG);
         listViewAddTG = (ListView) findViewById(R.id.listView_Add_TG);
         buttonCustom = (Button) findViewById(R.id.buttonCustom);
+        textViewBackToMainActivity = (TextView) findViewById(R.id.textView106);
 
     }
 }

@@ -194,4 +194,9 @@
         </LinearLayout>
 
     </LinearLayout>
+    <Spinner
+        android:layout_width="63dp"
+        android:layout_height="64dp"
+        android:id="@+id/spinnerHeading"
+        android:background="@drawable/btn_menu" />
 </RelativeLayout>

@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +43,10 @@ public class AddCustomMedicine extends AppCompatActivity {
     String[] stringsAppearance;
     EditText editTextTradename, editTextGenericName;
 
+    //Heading
+    Spinner spinner;
+    ImageButton imageAdherence;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +64,15 @@ public class AddCustomMedicine extends AppCompatActivity {
 
         clickButtonCancelOK();
 
+        setHeading();
+
+
+    }
+
+    private void setHeading() {
+
+        MyHeadingDetail myHeadingDetail = new MyHeadingDetail(this);
+        myHeadingDetail.spinnersetup(getBaseContext(),imageAdherence,spinner);
 
     }
 
@@ -210,6 +225,9 @@ public class AddCustomMedicine extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.imageView28);
         editTextTradename = (EditText) findViewById(R.id.editText20);
         editTextGenericName = (EditText) findViewById(R.id.editText21);
+        spinner = (Spinner) findViewById(R.id.spinnerHeading);
+        imageAdherence = (ImageButton) findViewById(R.id.imageButton24);
+
 
     }
 }

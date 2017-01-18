@@ -114,20 +114,28 @@
         <activity
             android:name=".PopUpChangeAppearance"
             android:screenOrientation="portrait" />
-        <activity android:name=".AddCustomMedicine"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".PopUpAppDoctorActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".PopUpLabActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AppointmentActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".PopUpAppLabActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".LabBarChartActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AlertActivity"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".AddCustomMedicine"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PopUpAppDoctorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PopUpLabActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AppointmentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PopUpAppLabActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LabBarChartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AlertActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PopUpPatientAdherenceIntroduction"></activity>
     </application>
 
 </manifest>

@@ -9,15 +9,38 @@
     tools:context="com.su.lapponampai_w.mhm_app_beta1.PatientAdherenceActivity">
 
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="ปฏิทินติดตามการกินยา"
-        android:id="@+id/textView200"
-        android:textSize="@dimen/heading3"
-        android:gravity="center_vertical|center_horizontal"
-        android:background="#b500b8"
-        android:textColor="#ffffff" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/exclamation_mark"
+            android:id="@+id/imageView34"
+            android:layout_weight="7"
+            android:background="#b500b8" />
+
+        <TextView
+            android:text="      "
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/textView134"
+            android:layout_weight="7.9" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="ปฏิทินติดตามการกินยา"
+            android:id="@+id/textView200"
+            android:textSize="@dimen/heading3"
+            android:gravity="center_vertical"
+            android:background="#b500b8"
+            android:textColor="#ffffff"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/z2_margin_smallgap" />
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"

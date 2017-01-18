@@ -1,11 +1,14 @@
 package com.su.lapponampai_w.mhm_app_beta1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,6 +20,7 @@ public class PatientAdherenceActivity extends AppCompatActivity {
     //Explicit
     CalendarView calendarView;
     ListView listView;
+    ImageView imageViewIntroduction;
     MyManage myManage;
     MyData myData;
     String strDateRef;
@@ -48,6 +52,8 @@ public class PatientAdherenceActivity extends AppCompatActivity {
 
         bindWidget();
 
+        clickImageViewIntroduction();
+
         strDateRef = myData.currentDay();
         showListView(strDateRef);
 
@@ -61,6 +67,17 @@ public class PatientAdherenceActivity extends AppCompatActivity {
 
     }
 
+    private void clickImageViewIntroduction() {
+
+        imageViewIntroduction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getBaseContext(),PopUpPatientAdherenceIntroduction.class));
+
+            }
+        });
+    }
 
 
     private void showListView(String strDateRef) {
@@ -381,7 +398,7 @@ public class PatientAdherenceActivity extends AppCompatActivity {
 
         calendarView = (CalendarView) findViewById(R.id.calendarView5);
         listView = (ListView) findViewById(R.id.listViewPatientAdherence);
-
+        imageViewIntroduction = (ImageView) findViewById(R.id.imageView34);
 
 
     }

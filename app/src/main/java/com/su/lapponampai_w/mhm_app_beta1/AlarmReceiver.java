@@ -37,7 +37,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         receiveIntent(intent);
 
-        if (notifID < 50) {
+        if (notifID < 90) {
             if (strNotification[0].equals("Default")) {
                 if (string_DailyUpdateTimeNof.equals("1")) {
                     createNotificationMedicine(context, "MHM Application", "ถึงเวลาแล้วครับ", "MHM Application",string_AlarmTABLEId,string_AlarmTABLEDateTime);
@@ -94,7 +94,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             notificIntent.cancel();
         }
         */
-        for (int x = notifID; x <= 40; x++) {
+        for (int x = notifID; x <= 80; x++) {
             PendingIntent notificIntent = PendingIntent
                     .getActivity(context, notifID, intent, 0); //ให้เปิด MainActivity
             notificIntent.cancel();

@@ -97,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         //เปิดโดยใช้ Password(Intent)
         receiveIntentAndGoToAnotherActivity();
 
-
         //Bind Widget
         bindWidget();
         setHeading();

@@ -56,7 +56,7 @@ public class NoteActivity extends AppCompatActivity implements
 
     private void clickListViewDelete() {
 
-
+        /*
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -96,11 +96,56 @@ public class NoteActivity extends AppCompatActivity implements
                 });
                 builder.show();
 
-
-
-
             }
         });
+        */
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                MyManage myManage = new MyManage(NoteActivity.this);
+                final String[] strings_id = myManage.readAllnoteTABLE(0);
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setCancelable(false);
+                builder.setIcon(R.drawable.logo_mhm);
+                builder.setTitle("ลบข้อมูลบันทึก");
+                builder.setMessage("ยืนยันการลบข้อมูลบันทึก");
+                builder.setNegativeButton("ยกเลิก", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.setPositiveButton("ยืนยัน", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+                        String id = strings_id[position];
+                        SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME,
+                                MODE_PRIVATE, null);
+                        sqLiteDatabase.delete("noteTABLE", "_id = " + id, null);
+
+                        Toast.makeText(NoteActivity.this,"Delete in noteTABLE",Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(NoteActivity.this,NoteActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                        finish();
+
+                    }
+                });
+                builder.show();
+                return true;
+            }
+        });
+
+
+
+
+
 
     } //clickListViewDelete
 

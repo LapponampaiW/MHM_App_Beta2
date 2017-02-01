@@ -18,7 +18,7 @@
             android:background="#b500b8"
             android:textColor="#ffffff"
             android:autoText="false"
-            android:layout_marginTop="@dimen/z2_margin_biggap" />
+            android:layout_marginTop="45dp" />
 
         <LinearLayout
             android:orientation="horizontal"

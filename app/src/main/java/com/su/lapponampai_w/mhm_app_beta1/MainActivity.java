@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         hideUnuse();
 
         //เปิดโดยใช้ Password(Intent)
-        receiveIntentAndGoToAnotherActivity();
+        //receiveIntentAndGoToAnotherActivity();
 
         //Bind Widget
         bindWidget();
@@ -108,6 +108,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         delete_UnnecessaryData_sumTABLE();
 
         displayMedicineByDay(today); //แสดงเม็ดยาบนหน้าจอ
+
+        receiveIntentAndGoToAnotherActivity();
+
         checkDisplay_ERR();
 
         //คลิก เพิ่มเติม
@@ -115,7 +118,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         //คลิก รายการยา
         clickMedicationList();
-
 
 
         click_News();
@@ -306,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                     appointmentDoctorBuilder(sReadAppointment);
                 } //else
             } else if (popUpMaster.equals("AlarmReceiver")) {
-                for (int x = 0; x <= 40; x++) {
+                for (int x = 0; x <= 80; x++) {
                     NotificationManager notificationManager =
                             (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     notificationManager.cancel(x);
@@ -356,7 +358,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         });
                         builder.show();
                     } else {
-                        read_SumId_From_alarmReceiverTABLE();
+                        //read_SumId_From_alarmReceiverTABLE();
+                        checkSumId_And_PopUpTakeMedicine(strAlarmTABLE,sSubstring);
+                        //Toast.makeText(getBaseContext(),strAlarmTABLE,Toast.LENGTH_LONG).show();
                     }
 
                 }
@@ -394,7 +398,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         });
                         builder.show();
                     } else {
-                        read_SumId_From_alarmReceiverTABLE();
+                        //read_SumId_From_alarmReceiverTABLE();
                     }
                 } else if (sGateType.equals("Doctor")) {
 
@@ -411,6 +415,40 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         } else {
             //Toast.makeText(getBaseContext(), "PopUpMaster == null",Toast.LENGTH_LONG).show();
         }
+
+    }
+
+    private void checkSumId_And_PopUpTakeMedicine(String sPackageSumId, String date) {
+
+        String[] stringsKey_SumId = sPackageSumId.split(",");
+
+        MyManage myManage = new MyManage(this);
+        String[] stringsSumId = myManage.filter_sumTABLE__by_Date(date, 0);
+        String[] strings_DateRef = myManage.filter_sumTABLE__by_Date(date, 4);
+        String[] strings_SkipHold = myManage.filter_sumTABLE__by_Date(date, 4);
+        Boolean aBoolean = true;
+
+
+
+        for(int i=0;i<stringsKey_SumId.length;i++) {
+            for(int x=0;x<stringsSumId.length;x++) {
+                if (stringsKey_SumId[i].equals(stringsSumId[x])) {
+                    //มีค่า เช็คว่าต้องทำการ Pop up หรือไม่
+                    if (strings_DateRef[x].equals("") && strings_SkipHold[x].equals("")) {
+                        strResult_Sum_id = stringsSumId[x];
+                        receiveValueToPopUpTakeMedicine();
+                        aBoolean = false;
+
+                    }
+                }
+            }
+        }//for
+
+        if (aBoolean) {
+            Toast.makeText(getBaseContext(),"ท่านได้ทำรายการดังกล่าวแล้ว",Toast.LENGTH_SHORT).show();
+        }
+
+
 
     }
 

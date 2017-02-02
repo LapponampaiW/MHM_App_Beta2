@@ -383,8 +383,8 @@ public class MySQLiteDataBase extends AppCompatActivity {
             addMedTABLEValue("Famvir", "Famciclovir", 66, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "13:00", "18:00", "", "", "", "", "");
             addMedTABLEValue("Levitra", "Vardenafil", 67, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0611", "22:00", "", "", "", "", "", "", "","" );
             addMedTABLEValue("Levitra", "Vardenafil", 67, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0611", "22:00", "", "", "", "", "", "", "","" );
-            addMedTABLEValue("Cialis", "Tedalafil", 68, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0511", "", "22:00", "", "", "", "", "", "", "");
-            addMedTABLEValue("Cialis", "Tedalafil", 68, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0511", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cialis", "Tadalafil", 68, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0511", "", "22:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Cialis", "Tadalafil", 68, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0511", "", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Viagra", "Sildenafil", 69, "50", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1103", "", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Viagra", "Sildenafil", 69, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1103", "", "22:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Sidegra", "Sildenafil", 69, "50", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1103", "", "22:00", "", "", "", "", "", "", "");
@@ -528,6 +528,7 @@ public class MySQLiteDataBase extends AppCompatActivity {
             addMedTABLEValue("Erycin", "Erythromycin", 116, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0915", "", "07:00", "11:00", "17:00", "21:00", "", "", "", "");
             addMedTABLEValue("Stacin", "Erythromycin", 116, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0915", "", "07:00", "11:00", "17:00", "21:00", "", "", "", "");
             addMedTABLEValue("Tomcin", "Erythromycin", 116, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0615", "", "07:00", "11:00", "17:00", "21:00", "", "", "", "");
+            addMedTABLEValue("Hartsorb sublingual", "Isosorbide dinitrate", 117, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0912", "", "08:00", "12:00", "18:00", "", "", "", "", "");
 
         }
 
@@ -606,7 +607,7 @@ public class MySQLiteDataBase extends AppCompatActivity {
             addnameGenericTABLEValue("Warfarin"); //65
             addnameGenericTABLEValue("Famciclovir"); //66
             addnameGenericTABLEValue("Vardenafil"); //67
-            addnameGenericTABLEValue("Tedalafil"); //68
+            addnameGenericTABLEValue("Tadalafil"); //68
             addnameGenericTABLEValue("Sildenafil"); //69
             addnameGenericTABLEValue("Clopidogrel"); //70
             addnameGenericTABLEValue("Aspirin"); //71
@@ -659,6 +660,7 @@ public class MySQLiteDataBase extends AppCompatActivity {
 
 
 
+
         }
     }  //nameGenericTABLEData
 
@@ -707,8 +709,39 @@ public class MySQLiteDataBase extends AppCompatActivity {
         Cursor cursor = readSqLiteDatabase.query(drugInteractionTABLE, column_drugInteractionTABLE, null, null, null, null, null);
 
         if (cursor.getCount() == 0) {
-
+            //Fatal Drug Interaction
+            //Ergotamine(8)
+            adddrugInteractionTABLEValue(8, 110, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(8, 16, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(8, 12, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(8, 20, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
             adddrugInteractionTABLEValue(7, 8, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(8, 116, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(8, 88, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(2, 8, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+
+            //Amiodarone(53)
+            adddrugInteractionTABLEValue(53, 112, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(53, 114, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(53, 114, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(53, 115, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+
+            //Sildenafil(69)
+            adddrugInteractionTABLEValue(69, 94, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(69, 95, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+
+            //Tadalafil(68)
+            adddrugInteractionTABLEValue(68, 94, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(68, 95, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+
+            //Vardenafil(67)
+            adddrugInteractionTABLEValue(67, 94, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(67, 95, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+
+
+
+
+            //Major
             adddrugInteractionTABLEValue(7, 9, "2", "ไม่ควรรับประทานร่วมกัน", 0, 0);
             adddrugInteractionTABLEValue(7, 10, "3", "ควรรับประทานยาห่างกัน", 240, 120);
             adddrugInteractionTABLEValue(7, 21, "2", "ไม่ควรรับประทานร่วมกัน", 0, 0);

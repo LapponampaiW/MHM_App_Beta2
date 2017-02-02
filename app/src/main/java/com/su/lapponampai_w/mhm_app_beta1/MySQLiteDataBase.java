@@ -516,8 +516,15 @@ public class MySQLiteDataBase extends AppCompatActivity {
             addMedTABLEValue("Firide", "Finasteride", 111, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0103", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Propecia", "Finasteride", 111, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img1612", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Firide", "Finasteride", 111, "1", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0104", "", "08:00", "", "", "", "", "", "", "");
-
-
+            addMedTABLEValue("Matcine", "Chlorpromazine", 112, "100", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Matcine", "Chlorpromazine", 112, "50", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Matcine", "Chlorpromazine", 112, "25", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0602", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Pernazine", "Perphenazine", 113, "2", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0604", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Pernazine", "Perphenazine", 113, "4", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0617", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Pernazine", "Perphenazine", 113, "8", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0614", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Stemetil", "Prochlorperazine", 114, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Thiosia", "Thioridazine", 115, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0614", "", "08:00", "13:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Thiosia", "Thioridazine", 115, "25", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0616", "", "08:00", "13:00", "18:00", "", "", "", "", "");
 
 
 
@@ -642,6 +649,10 @@ public class MySQLiteDataBase extends AppCompatActivity {
             addnameGenericTABLEValue("Raltegravir"); //109
             addnameGenericTABLEValue("Nelfinavir"); //110
             addnameGenericTABLEValue("Finasteride"); //111
+            addnameGenericTABLEValue("Chlorpromazine"); //112
+            addnameGenericTABLEValue("Perphenazine"); //113
+            addnameGenericTABLEValue("Prochlorperazine"); //114
+            addnameGenericTABLEValue("Thioridazine"); //115
 
 
 

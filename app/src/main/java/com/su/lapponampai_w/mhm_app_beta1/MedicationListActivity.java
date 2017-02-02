@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -27,6 +28,7 @@ public class MedicationListActivity extends AppCompatActivity {
     public static Activity activityMedicationListActivity;
     private ListView listView;
     private String[] strings_id, strings_tradname,strings_med_id, strings_generic_line, strings_appearance;
+    TextView textViewBackToMainActivity;
     ImageButton imageButtonCalendar;
     MyManage myManage;
 
@@ -48,11 +50,21 @@ public class MedicationListActivity extends AppCompatActivity {
 
         recieveValue_mainTABLE();
 
+        goToMainActivity();
+
 
 
 
     } // Main Method
 
+    private void goToMainActivity() {
+        textViewBackToMainActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
 
 
     @Override
@@ -170,6 +182,8 @@ public class MedicationListActivity extends AppCompatActivity {
 
     private void bindWidget() {
         listView = (ListView) findViewById(R.id.listView_MedicationList);
+        textViewBackToMainActivity = (TextView) findViewById(R.id.textView106);
+
     }
 
     private void setHeading() {

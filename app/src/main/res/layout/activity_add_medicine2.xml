@@ -889,7 +889,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="CANCEL"
+                    android:text="ยกเลิก"
                     android:id="@+id/button3"
                     android:layout_weight="1"
                     android:onClick="clickCancelAddMedicine" />
@@ -897,7 +897,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="SAVE"
+                    android:text="บันทึก"
                     android:id="@+id/button4"
                     android:layout_weight="1"
                     android:onClick="clickSaveAddMedicine" />

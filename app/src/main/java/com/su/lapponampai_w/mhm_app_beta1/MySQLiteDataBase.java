@@ -525,8 +525,9 @@ public class MySQLiteDataBase extends AppCompatActivity {
             addMedTABLEValue("Stemetil", "Prochlorperazine", 114, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0601", "", "08:00", "13:00", "18:00", "", "", "", "", "");
             addMedTABLEValue("Thiosia", "Thioridazine", 115, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0614", "", "08:00", "13:00", "18:00", "", "", "", "", "");
             addMedTABLEValue("Thiosia", "Thioridazine", 115, "25", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0616", "", "08:00", "13:00", "18:00", "", "", "", "", "");
-
-
+            addMedTABLEValue("Erycin", "Erythromycin", 116, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0915", "", "07:00", "11:00", "17:00", "21:00", "", "", "", "");
+            addMedTABLEValue("Stacin", "Erythromycin", 116, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0915", "", "07:00", "11:00", "17:00", "21:00", "", "", "", "");
+            addMedTABLEValue("Tomcin", "Erythromycin", 116, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0615", "", "07:00", "11:00", "17:00", "21:00", "", "", "", "");
 
         }
 
@@ -653,6 +654,7 @@ public class MySQLiteDataBase extends AppCompatActivity {
             addnameGenericTABLEValue("Perphenazine"); //113
             addnameGenericTABLEValue("Prochlorperazine"); //114
             addnameGenericTABLEValue("Thioridazine"); //115
+            addnameGenericTABLEValue("Erythromycin stearate"); //116
 
 
 

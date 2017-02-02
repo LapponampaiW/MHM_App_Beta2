@@ -128,9 +128,10 @@ public class PopUpChangeAppearance extends AppCompatActivity {
                 String[] stringsTotalTablet1 = {"img0101", "img0102", "img0103", "img0104", "img0201",
                         "img0202", "img0203", "img0204", "img0301", "img0302", "img0303", "img0304",
                         "img0309", "img0312", "img0315", "img0501", "img0503", "img0511", "img0601", "img0602",
-                        "img0603", "img0604", "img0607", "img0609", "img0611", "img0612", "img0615","img0616", "img0617",
+                        "img0603", "img0604", "img0607", "img0609", "img0611", "img0612", "img0614",
+                        "img0615","img0616", "img0617",
                         "img0701", "img0702", "img0703", "img0711", "img0712", "img0714", "img0801",
-                        "img0802", "img0803", "img0901", "img0902", "img0903", "img0907", "img0912",
+                        "img0802", "img0803", "img0901", "img0902", "img0903", "img0907", "img0912", "img0915",
                         "img0917", "img1002", "img1101", "img1103", "img1201", "img1301", "img1401"
                         , "img1403", "img1413", "img1501", "img1503", "img1601", "img1612"};
 

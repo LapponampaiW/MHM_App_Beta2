@@ -528,7 +528,13 @@ public class MySQLiteDataBase extends AppCompatActivity {
             addMedTABLEValue("Erycin", "Erythromycin", 116, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0915", "", "07:00", "11:00", "17:00", "21:00", "", "", "", "");
             addMedTABLEValue("Stacin", "Erythromycin", 116, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0915", "", "07:00", "11:00", "17:00", "21:00", "", "", "", "");
             addMedTABLEValue("Tomcin", "Erythromycin", 116, "250", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0615", "", "07:00", "11:00", "17:00", "21:00", "", "", "", "");
-            addMedTABLEValue("Hartsorb sublingual", "Isosorbide dinitrate", 117, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0912", "", "08:00", "12:00", "18:00", "", "", "", "", "");
+            addMedTABLEValue("Cardipine SR", "Nicardipine", 117, "40", "1", 1, null, null, 1, null, null, 1, null, null, "2", 1, "ED:0", "img90101", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Xarelto FC", "Rivaroxaban", 118, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0612", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Xarelto FC", "Rivaroxaban", 118, "15", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0615", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Xarelto FC", "Rivaroxaban", 118, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0616", "", "08:00", "", "", "", "", "", "", "");
+
+
+
 
         }
 
@@ -656,6 +662,8 @@ public class MySQLiteDataBase extends AppCompatActivity {
             addnameGenericTABLEValue("Prochlorperazine"); //114
             addnameGenericTABLEValue("Thioridazine"); //115
             addnameGenericTABLEValue("Erythromycin stearate"); //116
+            addnameGenericTABLEValue("Nicardipine"); //117
+            addnameGenericTABLEValue("Rivaroxaban"); //118
 
 
 

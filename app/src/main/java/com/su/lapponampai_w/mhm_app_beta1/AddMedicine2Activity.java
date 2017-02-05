@@ -1413,6 +1413,8 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                                 stringInteraction2 = strings2[i];
                             }  //เซ็ต stringInteraction2 เป็นตัวหนังสือที่ต่างจาก ตัวแรก
 
+
+                            Log.d("filter_drugInteraction", string2 + "," + strings1[i] + "," + stringInteraction2 + "," + strings5[i]);
                             alertDialogInteraction(string2, strings1[i], stringInteraction2, strings5[i]);
                             Log.d("filter_drugInteraction", "Access via type2");
 
@@ -1437,6 +1439,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                                 stringTimeMedicine1_2 = strings7[i];  //1 ไป 2 ข้างหน้า
                                 stringTimeMedicine2_1 = strings6[i]; // 2 ไป 1 ไปข้างหลัง
                             }
+
                             //ต่อไปจะคำนวณช่วยเวลาที่เกิด Drug Interaction ในกรณีที่จำทานวันเดียวกัน ไม่ได้ดูถึงขนาดว่าคนละวัน ทำไม่ได้ครับ
                             Log.d("filter_drugInteraction","ค่า StringInteractin2 : " + stringInteraction2);
 

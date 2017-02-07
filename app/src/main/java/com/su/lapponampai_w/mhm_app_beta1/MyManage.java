@@ -2583,8 +2583,6 @@ public class MyManage {
                 stringsGeneric3 = new String[cursormainTABLE.getCount()];
                 stringsGeneric4 = new String[cursormainTABLE.getCount()];
 
-
-
                 //mainTABLE
                 if (cursormainTABLE != null) {
                     cursormainTABLE.moveToFirst();
@@ -2604,7 +2602,16 @@ public class MyManage {
                         } //if medTABLE
                         Log.d("checkDrugInteraction", stringsMed_id[x] + stringsGeneric1[x] + stringsGeneric2[x] + stringsGeneric3[x] + stringsGeneric4[x]);
                         cursormainTABLE.moveToNext();
-                    }
+                    }//for
+
+
+
+
+
+
+
+
+
 
 
                     for (int y = 0; y < stringsMed_id.length; y++) {

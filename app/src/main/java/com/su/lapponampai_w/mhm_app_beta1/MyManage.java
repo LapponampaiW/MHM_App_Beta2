@@ -2425,6 +2425,100 @@ public class MyManage {
         return s;
     }
 
+    public String find_Tradename_by_Geniric_Id(String generic_Id) {
+
+
+        //เอาค่าของ main Id ต่างๆ มาก่อน
+        String[] stringsMain_Med_id = readAllMainTABLE_Full(1);
+        String[] stringsMain_Trade_name = readAllMainTABLE_Full(2);
+        String[] stringsMain_Generic_Line = readAllMainTABLE_Full(3);
+
+
+
+        Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE,
+                "Generic_name1 LIKE '" + generic_Id + "'" + " or "
+                        + "Generic_name2 LIKE '" + generic_Id + "'" + " or "
+                        + "Generic_name3 LIKE '" + generic_Id + "'" + " or "
+                        + "Generic_name4 LIKE '" + generic_Id + "'", null, null, null, null);
+
+        cursor.moveToFirst();
+        String sStringLine = "";
+        String[] stringsIndex = new String[cursor.getCount()];
+
+
+        for(int i = 0; i<cursor.getCount(); i++) {
+            stringsIndex[i] = cursor.getString(0);
+            cursor.moveToNext();
+        } //for
+
+        String[] stringsArray_Med_Id_NotDuplicated = new String[1];
+        stringsArray_Med_Id_NotDuplicated[0] = "";
+        Boolean aBoolean;
+        ArrayList<String> med_Id_StringArrayList_mainTABLE = new ArrayList<String>();
+        ArrayList<String> trade_name_StringArrayList_mainTABLE = new ArrayList<String>();
+        ArrayList<String> generic_Line_StringArrayList_mainTABLE = new ArrayList<String>();
+        int iIndex = 0;
+
+        for(int i =0;i < stringsMain_Med_id.length;i++) {
+            aBoolean = true;
+            if (stringsArray_Med_Id_NotDuplicated[0].equals("")) {
+                //correct
+            } else {
+                for(int x =0; x< stringsArray_Med_Id_NotDuplicated.length;x++) {
+                    if (stringsArray_Med_Id_NotDuplicated[x].equals(stringsMain_Med_id[i])) {
+                        aBoolean = false;
+                    }
+                }
+            }
+            if (aBoolean) {
+                //ใส่ข้อมูลลงในนี้
+                med_Id_StringArrayList_mainTABLE.add(stringsMain_Med_id[i]);
+                trade_name_StringArrayList_mainTABLE.add(stringsMain_Trade_name[i]);
+                generic_Line_StringArrayList_mainTABLE.add(stringsMain_Generic_Line[i]);
+                iIndex = iIndex + 1;
+            }
+            stringsArray_Med_Id_NotDuplicated = new String[med_Id_StringArrayList_mainTABLE.size()];
+            stringsArray_Med_Id_NotDuplicated =
+                    med_Id_StringArrayList_mainTABLE.toArray(stringsArray_Med_Id_NotDuplicated);
+
+            for (int a =0;a<stringsArray_Med_Id_NotDuplicated.length;a++) {
+                Log.d("080260V1", "stringsArray_Med_Id_NotDuplicated" + stringsArray_Med_Id_NotDuplicated[a]);
+            }
+
+        }
+
+        String[] stringsArray_trade_name_NotDuplicated = new String[trade_name_StringArrayList_mainTABLE.size()];
+        stringsArray_trade_name_NotDuplicated =
+                trade_name_StringArrayList_mainTABLE.toArray(stringsArray_trade_name_NotDuplicated);
+
+        String[] stringsArray_generic_Line_NotDuplicated = new String[generic_Line_StringArrayList_mainTABLE.size()];
+        stringsArray_generic_Line_NotDuplicated =
+                generic_Line_StringArrayList_mainTABLE.toArray(stringsArray_generic_Line_NotDuplicated);
+
+
+        for(int x = 0;x<stringsArray_Med_Id_NotDuplicated.length;x++) {
+            for(int y = 0;y<stringsIndex.length;y++) {
+                if (stringsArray_Med_Id_NotDuplicated[x].equals(stringsIndex[y])) {
+                    if (sStringLine.equals("")) {
+                        sStringLine = "ยา : " + stringsArray_trade_name_NotDuplicated[x] + " (" + stringsArray_generic_Line_NotDuplicated[x] + ")";
+                    } else {
+                        sStringLine = sStringLine + " , " + stringsArray_trade_name_NotDuplicated[x] + " (" + stringsArray_generic_Line_NotDuplicated[x] + ")";
+                    }
+
+                }
+            }
+        } //for
+
+
+
+
+        cursor.close();
+
+
+        return sStringLine;
+    }
+
+
     public String[] find_id_medTABLE_by_Generic_name(String generic_name) {
 
         Cursor cursor = readSqLiteDatabase.query(medTABLE, column_medTABLE,
@@ -2435,6 +2529,7 @@ public class MyManage {
 
         String[] strREAD_id = null;
         String[] strREAD_Tradename = null;
+
         if (cursor != null) {
             cursor.moveToFirst();
             strREAD_id = new String[cursor.getCount()];
@@ -2445,20 +2540,11 @@ public class MyManage {
                 Cursor cursor1 = readSqLiteDatabase.query(mainTABLE, column_mainTABLE,
                         "Med_id LIKE '" + strREAD_id[i] + "'", null, null, null, null);
                 cursor1.moveToFirst();
+
                 strREAD_Tradename[i] = cursor1.getString(cursor1.getColumnIndex(mcolumn_trade_name));
 
                 cursor.moveToNext();
             }
-
-            /*
-            for(int x = 0; x <cursor.getCount(); x++) {
-                Cursor cursor1 = readSqLiteDatabase.query(mainTABLE, column_mainTABLE,
-                        "Med_id LIKE '" + strREAD_id[x] + "'", null, null, null, null);
-
-                cursor1.moveToFirst();
-                strREAD_Tradename[x] = cursor1.getString(2);
-            }
-            */
 
         } else {
             strREAD_Tradename = null;
@@ -2466,6 +2552,7 @@ public class MyManage {
 
         return strREAD_Tradename;
     }
+    
 
     //Drug Interaction
     public void checkDrugInteraction(String drugname) {

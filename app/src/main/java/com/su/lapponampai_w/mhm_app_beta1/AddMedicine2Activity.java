@@ -3063,21 +3063,27 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         s2 = myManage.findGenerinName_nameGenericTABLE_by_id(s2);
 
 
-        stringGenericName2 = myManage.find_id_medTABLE_by_Generic_name(s3);
+        //stringGenericName2 = myManage.find_id_medTABLE_by_Generic_name(s3);
+
         //ต้องทำการ นับจำนวน stringGenericName2 แล้วทำการ bufferString ให้ได้ค่าของ String ออกมา
         //แล้วเอาไปใส่แทน ใน setMessage
         //สรุปคือ ทำ StringBuilder ในการหา tradename ทั้งหมดที่อยู่ใน mainTABLE เอามาแสดงดูว่าเกิดการตีกันของยา
+
+        /*
         StringBuilder stringBuilder = new StringBuilder("ยา :");
         for (int i = 0; i < stringGenericName2.length; i++) {
             stringBuilder.append(stringGenericName2[i]);
             stringBuilder.append(" ");
         }
+        */
+
+        String sName_of_Drug_Interaction = myManage.find_Tradename_by_Geniric_Id(s3);
 
         myManage.filter_drugInteractionTABLE_Dialog();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(R.drawable.icon_question);
         builder.setTitle("เกิดปฏิกิริยาระหว่างยา (ยาตีกัน)");
-        builder.setMessage("ยา " + s1 + " (" + s2 + ") \nเกิดปฏิกิริยาระหว่างยากับ\n" + stringBuilder + "\nเหตุผล : " + s4);
+        builder.setMessage("ยา " + s1 + " (" + s2 + ") \nเกิดปฏิกิริยาระหว่างยากับ\n\n" + "  " + sName_of_Drug_Interaction + "\n\nคำแนะนำ : " + s4);
         builder.setPositiveButton("ยืนยันการรับประทาน", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

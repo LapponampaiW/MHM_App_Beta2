@@ -2472,9 +2472,9 @@ public class MyManage {
             }
             if (aBoolean) {
                 //ใส่ข้อมูลลงในนี้
-                med_Id_StringArrayList_mainTABLE.add(stringsMain_Med_id[i]);
-                trade_name_StringArrayList_mainTABLE.add(stringsMain_Trade_name[i]);
-                generic_Line_StringArrayList_mainTABLE.add(stringsMain_Generic_Line[i]);
+                med_Id_StringArrayList_mainTABLE.add(iIndex,stringsMain_Med_id[i]);
+                trade_name_StringArrayList_mainTABLE.add(iIndex,stringsMain_Trade_name[i]);
+                generic_Line_StringArrayList_mainTABLE.add(iIndex,stringsMain_Generic_Line[i]);
                 iIndex = iIndex + 1;
             }
             stringsArray_Med_Id_NotDuplicated = new String[med_Id_StringArrayList_mainTABLE.size()];
@@ -2605,15 +2605,6 @@ public class MyManage {
                     }//for
 
 
-
-
-
-
-
-
-
-
-
                     for (int y = 0; y < stringsMed_id.length; y++) {
                         Cursor cursorInteraction = readSqLiteDatabase.query(drugInteractionTABLE, column_drugInteractionTABLE,
                                 "(Medicine1" + " LIKE '" + strREAD[i] + "'" + " and " + "Medicine2" +
@@ -2654,7 +2645,90 @@ public class MyManage {
                 cursormainTABLE.close();
             } //first if
         } //first loop
+
+        //080260 Delete Duplicate
+        deleteDuplicate_drugInteractionTABLE_For_Query();
+
     } //checkDrugInteraction
+
+    private void deleteDuplicate_drugInteractionTABLE_For_Query() {
+
+        Cursor cursor = readSqLiteDatabase.query(drugInteractionTABLE_For_Query, column_drugInteractionTABLE_For_Query, null, null, null, null, "Type_interaction ASC, _id ASC");
+        int intCount = cursor.getCount();
+        if (intCount > 0) {
+            cursor.moveToFirst();
+            String[] strings1 = new String[cursor.getCount()];
+            String[] strings2 = new String[cursor.getCount()];
+            String[] strings3 = new String[cursor.getCount()];
+            String[] strings4 = new String[cursor.getCount()];
+            String[] strings5 = new String[cursor.getCount()];
+            String[] strings6 = new String[cursor.getCount()];
+            String[] strings7 = new String[cursor.getCount()];
+            String[] stringsSum = new String[cursor.getCount()];
+            for(int i =0; i<cursor.getCount();i++) {
+                strings1[i] = cursor.getString(1);
+                strings2[i] = cursor.getString(2);
+                strings3[i] = cursor.getString(3);
+                strings4[i] = cursor.getString(4);
+                strings5[i] = cursor.getString(5);
+                strings6[i] = cursor.getString(6);
+                strings7[i] = cursor.getString(7);
+                stringsSum[i] = strings1[i] + strings2[i] + strings3[i] + strings4[i] +
+                        strings5[i] + strings6[i] + strings7[i];
+                cursor.moveToNext();
+            }
+
+            //ทำการไม่ให้ duplicate โดย ArrayList
+            ArrayList<String> stringArrayListSum = new ArrayList<String>();
+            ArrayList<String> stringArrayListIndex = new ArrayList<>();
+            int iIndex = 0;
+            String[] stringsSum_Final = new String[1];
+            stringsSum_Final[0] = "";
+
+            for(int a = 0;a<stringsSum.length;a++) {
+                Boolean aBooleanAddValue = true;
+                if (stringsSum_Final[0].equals("")) {
+                    //correct
+                } else {
+                    for(int b = 0;b<stringsSum_Final.length;b++) {
+                        if (stringsSum[a].equals(stringsSum_Final[b])) {
+                            aBooleanAddValue = false;
+                        } else {
+                            //correct
+                        }
+                    }
+                }
+                if (aBooleanAddValue) {
+                    stringArrayListSum.add(iIndex,stringsSum[a]);
+                    stringArrayListIndex.add(iIndex, Integer.toString(a));
+                    iIndex = iIndex + 1;
+
+                    stringsSum_Final = new String[stringArrayListSum.size()];
+                    stringsSum_Final =
+                            stringArrayListSum.toArray(stringsSum_Final);
+                }
+            } //for
+
+            String[] stringsIndex = new String[stringArrayListIndex.size()];
+            stringsIndex = stringArrayListIndex.toArray(stringsIndex);
+
+            //ลบข้อมูลใน interactionTABLE_For_Query
+            writeSqLiteDatabase.delete("drugInteractionTABLE_For_Query", null, null);
+
+            //ใส่ข้อมูลเข้าไปใหม่ อย่างไม่ Duplicate
+            for(int i = 0 ; i <stringsIndex.length;i++) {
+                int ii = Integer.parseInt(stringsIndex[i]);
+                addValueTodrugInteractionTABLE_For_Query(Integer.parseInt(strings1[ii]),
+                        Integer.parseInt(strings2[ii]),
+                        Integer.parseInt(strings3[ii]),
+                        strings4[ii],strings5[ii],
+                        Integer.parseInt(strings6[ii]),
+                        Integer.parseInt(strings7[ii]));
+            }
+
+
+        } //if
+    }
 
     //ทำ query drugInteractionTABLE_For_Query
     public String[] filter_drugInteractionTABLE_For_Query(int intColumn) {

@@ -1357,9 +1357,6 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             sqLiteDatabase.delete("drugInteractionTABLE_For_Query", null, null);
 
 
-
-
-
             myManage.checkDrugInteraction(string1);  //Check DrugInteraction จาก Med_id
             //ทำการ add ข้อมูลที่มี DrugInteraction ทั้งหมดเข้าไปในตาราง drugInteractionTABLE_For_Query
             //ถ้ามีค่าเป็น 1 ขึ้นไปแปลว่ามี DrugInteraction แต่ยังไม่รู้ว่า Type ไหน

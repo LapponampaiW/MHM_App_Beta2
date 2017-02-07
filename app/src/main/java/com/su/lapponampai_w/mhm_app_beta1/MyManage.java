@@ -2569,6 +2569,7 @@ public class MyManage {
         String[] stringsGeneric3 = null;
         String[] stringsGeneric4 = null;
 
+
         for (int i = 0; i < 4; i++) {
             if (!strREAD[i].equals("1")) {
                 Log.d("checkDrugInteraction", "strREAD :" + strREAD[i]);
@@ -2581,6 +2582,8 @@ public class MyManage {
                 stringsGeneric2 = new String[cursormainTABLE.getCount()];
                 stringsGeneric3 = new String[cursormainTABLE.getCount()];
                 stringsGeneric4 = new String[cursormainTABLE.getCount()];
+
+
 
                 //mainTABLE
                 if (cursormainTABLE != null) {

@@ -321,17 +321,17 @@ public class SettingActivity extends AppCompatActivity implements
     private void setViewTextViewSecurity1() {
         String sText;
         if (checkBoxSecurityNone.isChecked()) {
-            sText = "คำอธิบาย\nไม่มีการทวนถาม 'รหัสผ่าน' ในทุกกระบวนการภายในแอพพลิเคชั่น";
+            sText = "คำอธิบาย\nไม่มีการทวนถาม 'รหัสผ่าน' ในทุกกระบวนการภายในโปรแกรมประยุกต์";
             textViewSecurity.setText(sText);
         }
 
         if (checkBoxSecurity1.isChecked()) {
-            sText = "คำอธิบาย\nมีการทวนถาม 'รหัสผ่าน' ในทุกกระบวนการภายในแอพพลิเคชั่น ยกเว้นหน้าแรกของการ Log-in";
+            sText = "คำอธิบาย\nมีการทวนถาม 'รหัสผ่าน' มีการทวนถาม 'รหัสผ่าน' ในหน้าแรกการ Login และเมื่อการเข้าโปรแกรมประยุกต์ผ่าน Notification";
             textViewSecurity.setText(sText);
         }
 
         if (checkBoxSecurity2.isChecked()) {
-            sText = "คำอธิบาย\nมีการทวนถาม 'รหัสผ่าน' ในทุกกระบวนการภายในแอพพลิเคชั่น";
+            sText = "คำอธิบาย\nมีการทวนถาม 'รหัสผ่าน' มีการทวนถาม 'รหัสผ่าน' ในหน้าแรกการ Login รวมถึงทุกกระบวนการในโปรแกรมประยุกต์ และเมื่อการเข้าโปรแกรมประยุกต์ผ่าน Notification";
             textViewSecurity.setText(sText);
         }
 

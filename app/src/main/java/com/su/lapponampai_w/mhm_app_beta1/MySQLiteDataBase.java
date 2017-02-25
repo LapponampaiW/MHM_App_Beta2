@@ -532,6 +532,7 @@ public class MySQLiteDataBase extends AppCompatActivity {
             addMedTABLEValue("Xarelto FC", "Rivaroxaban", 118, "10", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0612", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Xarelto FC", "Rivaroxaban", 118, "15", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0615", "", "08:00", "", "", "", "", "", "", "");
             addMedTABLEValue("Xarelto FC", "Rivaroxaban", 118, "20", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0616", "", "08:00", "", "", "", "", "", "", "");
+            addMedTABLEValue("Triflazine", "Trifluoperazine", 119, "5", "1", 1, null, null, 1, null, null, 1, null, null, "1", 1, "ED:0", "img0603", "", "08:00", "13:00", "18:00", "", "", "", "", "");
 
 
 
@@ -664,6 +665,7 @@ public class MySQLiteDataBase extends AppCompatActivity {
             addnameGenericTABLEValue("Erythromycin stearate"); //116
             addnameGenericTABLEValue("Nicardipine"); //117
             addnameGenericTABLEValue("Rivaroxaban"); //118
+            addnameGenericTABLEValue("Trifluoperazine"); //119
 
 
 
@@ -733,6 +735,7 @@ public class MySQLiteDataBase extends AppCompatActivity {
             adddrugInteractionTABLEValue(53, 114, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
             adddrugInteractionTABLEValue(53, 114, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
             adddrugInteractionTABLEValue(53, 115, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
+            adddrugInteractionTABLEValue(53, 119, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);
 
             //Sildenafil(69)
             adddrugInteractionTABLEValue(69, 94, "1", "Fatal DrugInteraction Cannot Take with", 0, 0);

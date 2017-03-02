@@ -387,7 +387,6 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
-
                             }
                         });
                         builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -399,6 +398,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         builder.show();
                     } else {
                         //read_SumId_From_alarmReceiverTABLE();
+                        checkSumId_And_PopUpTakeMedicine(strAlarmTABLE,sSubstring);
                     }
                 } else if (sGateType.equals("Doctor")) {
 

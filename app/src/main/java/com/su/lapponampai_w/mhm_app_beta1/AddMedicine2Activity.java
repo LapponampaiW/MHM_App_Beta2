@@ -1136,7 +1136,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         stringModTradeName = "";
         stringModGenericName = "";
 
-        Toast.makeText(getBaseContext(),string4,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getBaseContext(),string4,Toast.LENGTH_SHORT).show();
 
 
     }
@@ -1420,7 +1420,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                             Log.d("filter_drugInteraction", "type 3 :" + strings0[i] + " :" + strings1[i] +
                                     " :" + strings2[i] + " :" + strings3[i] + " :" + strings4[i] +
                                     " :" + strings5[i] + " :" + strings6[i] + " :" + strings7[i]);
-                            Toast.makeText(getBaseContext(), "ได้ค่า 3", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "ได้ค่า 3", Toast.LENGTH_LONG).show();
                             //ทำแสดง PopUp ค่า drugInteraction ที่ 3
                             //แต่ตอนนี้มีการทานที่บางวันไม่จำเป็นต้องทานด้วย
                             //เอาเป็นว่าเขียน message ในลักษณะ เกิด DrugInteraction ประเภทจำเป็นต้องทานห่างกัน
@@ -2499,7 +2499,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
                                 && dailyUpdateReceiver.checkStartDay.equals("Y")
                                 && dailyUpdateReceiver.checkFinishDay.equals("Y")) {
                             Log.d("UpdatesumTABLE", "ตำแหน่งที่ i addค่าเข้า SumTABLE ได้ : " + i);
-                            Toast.makeText(getBaseContext(), "Addข้อมูลลง sumTABLE : (Y,Y,Y)", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(getBaseContext(), "Addข้อมูลลง sumTABLE : (Y,Y,Y)", Toast.LENGTH_LONG).show();
 
                             //เริ่ม addข้อมูลลง sumTABLE
                             //1 row ของ mainTABLE add ได้หลาย row ของ sumTABLE ตาม T1-T8 (column 12 - 19)
@@ -3046,7 +3046,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         alarmManager.setRepeating(1, myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
         Log.d("UpdatesumTABLE", "ทำ Alarm ขึ้นเองได้แล้ว" + myCalendar1.getTime().toString());
-        Toast.makeText(getBaseContext(),"เริ่มทำการ BroadCAst",Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(),"เริ่มทำการ BroadCAst",Toast.LENGTH_LONG).show();
 
     } //ทำการ BroadCast (checkDailyUpdateReceiver1)
 

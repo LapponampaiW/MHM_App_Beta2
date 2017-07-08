@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                         } else {
                          //ทำจริงในนี้แบ่ง alert_Detail column[4] become Array
                             Boolean aBoolean = true;
-                            Toast.makeText(getBaseContext(),"เข้า else",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getBaseContext(),"เข้า else",Toast.LENGTH_SHORT).show();
                             String[] stringsQ_alert_Detail = stringsAlertTABLE[4][i].split(";");
                             //We don't know How many Array that be created!!!
                             int iArray = stringsQ_alert_Detail.length - 1;

@@ -93,28 +93,28 @@ public class PopUpGate extends AppCompatActivity {
                                 Intent intent = new Intent(PopUpGate.this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.putExtra("PopUpMaster", stringsSendIntent[i]);
-                                Toast.makeText(getBaseContext(),stringsSendIntent[i], Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getBaseContext(),stringsSendIntent[i], Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();
                             } else if (stringsSendIntent[i].equals(string_MedicatinList)) {
                                 Intent intent = new Intent(PopUpGate.this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.putExtra("PopUpMaster", stringsSendIntent[i]);
-                                Toast.makeText(getBaseContext(),stringsSendIntent[i], Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getBaseContext(),stringsSendIntent[i], Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();
                             } else if (stringsSendIntent[i].equals(string_News)) {
                                 Intent intent = new Intent(PopUpGate.this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.putExtra("PopUpMaster", stringsSendIntent[i]);
-                                Toast.makeText(getBaseContext(), stringsSendIntent[i], Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getBaseContext(), stringsSendIntent[i], Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();
                             } else if (stringsSendIntent[i].equals(string_setting)) {
                                 Intent intent = new Intent(PopUpGate.this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.putExtra("PopUpMaster", stringsSendIntent[i]);
-                                Toast.makeText(getBaseContext(), stringsSendIntent[i], Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getBaseContext(), stringsSendIntent[i], Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();
                             } else if (stringsSendIntent[i].equals(string_NotificationGate)) {
@@ -124,7 +124,7 @@ public class PopUpGate extends AppCompatActivity {
                                 intent.putExtra("SumId_AlarmReceiver", string_NotificationGate_Sum_id);
                                 intent.putExtra("SumDateTime_AlarmReceiver", string_SumDateTime_AlarmReceiver);
                                 intent.putExtra("Gate_type", string_GateType);
-                                Toast.makeText(getBaseContext(), stringsSendIntent[i], Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getBaseContext(), stringsSendIntent[i], Toast.LENGTH_SHORT).show();
                                 startActivity(intent);
                                 finish();
                             }

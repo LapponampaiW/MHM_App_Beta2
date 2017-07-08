@@ -231,7 +231,7 @@ public class MedicationDetailActivity extends AppCompatActivity {
 
 
                         if (dateInitial.compareTo(dateCurrent) > 0) { //ยังไม่ถึงวันเริ่มต้น
-                            Toast.makeText(getBaseContext(),"เข้า 1",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getBaseContext(),"เข้า 1",Toast.LENGTH_SHORT).show();
                             strGetDate = "ยังไม่คำนวณ (ยังไม่เริ่มรับประทาน)";
                             textViewOutOfMedicine.setText(strGetDate);
                             /*

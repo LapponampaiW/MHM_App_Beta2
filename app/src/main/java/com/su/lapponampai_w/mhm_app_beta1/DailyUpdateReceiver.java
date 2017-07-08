@@ -142,7 +142,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                         if (dCurrentDay.compareTo(dateAppointment) <= 0 &&
                                 dCurrentDay.compareTo(dateAppointmentMinusRef) >= 0) {
 
-                            Toast.makeText(context,"เตรียมทำ Noti",Toast.LENGTH_LONG).show();
+                            //Toast.makeText(context,"เตรียมทำ Noti",Toast.LENGTH_LONG).show();
 
                             Calendar calendarCurrent = Calendar.getInstance();
                             Calendar myCalendarAlarm = (Calendar) calendarCurrent.clone(); //clone เวลาในเครื่องเข้ามาใช้
@@ -233,7 +233,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                 dailyUpdateReceiver.stringsREAD19, dailyUpdateReceiver.stringsREAD20};
 
         if (dateRef.compareTo(dateFinalProcess) == 0) {
-            Toast.makeText(context, "ได้ค่าเท่ากันของ dateRef กับ dateFinalProcess", Toast.LENGTH_SHORT);
+            //Toast.makeText(context, "ได้ค่าเท่ากันของ dateRef กับ dateFinalProcess", Toast.LENGTH_SHORT);
         }
 
 
@@ -317,7 +317,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                             stringsDate_ED_Ref = myManage.filter_sumTABLE_finding_DateRef_by_MainId_idDESC(stringsReadAll_MainTABLE[0][i]); //เอาค่า Main_id มา
                             stringsSumId_Ref = myManage.filter_sumTABLE_finding_SumId_by_MainId_idDESC(stringsReadAll_MainTABLE[0][i]); //เอาค่าSum_id มา
 
-                            Toast.makeText(context, stringsDate_ED_Ref[0], Toast.LENGTH_LONG).show();
+                            //Toast.makeText(context, stringsDate_ED_Ref[0], Toast.LENGTH_LONG).show();
 
                             //02/12/2559 ทำการตรวจสอบว่าถ้าเป็น ค่าที่ Add จะไม่เกี่ยวข้อง
 
@@ -435,7 +435,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                             && dailyUpdateReceiver.checkStartDay.equals("Y")
                             && dailyUpdateReceiver.checkFinishDay.equals("Y")) {
                         Log.d("UpdatesumTABLE", "ตำแหน่งที่ i addค่าเข้า SumTABLE ได้ : " + i);
-                        Toast.makeText(context, "Addข้อมูลลง sumTABLE : (Y,Y,Y)", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "Addข้อมูลลง sumTABLE : (Y,Y,Y)", Toast.LENGTH_SHORT).show();
 
                         //เริ่ม addข้อมูลลง sumTABLE
                         //1 row ของ mainTABLE add ได้หลาย row ของ sumTABLE ตาม T1-T8 (column 12 - 19)

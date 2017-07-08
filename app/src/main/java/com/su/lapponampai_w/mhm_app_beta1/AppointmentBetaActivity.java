@@ -187,7 +187,7 @@ public class AppointmentBetaActivity extends AppCompatActivity implements
                                 MODE_PRIVATE, null);
                         sqLiteDatabase.delete("appointmentTABLE", "_id = " + id, null);
 
-                        Toast.makeText(AppointmentBetaActivity.this,"Delete in appointmentTABLE",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(AppointmentBetaActivity.this,"Delete in appointmentTABLE",Toast.LENGTH_SHORT).show();
 
 
                         Intent intent = new Intent(AppointmentBetaActivity.this,AppointmentBetaActivity.class);

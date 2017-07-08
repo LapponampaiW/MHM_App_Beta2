@@ -56,11 +56,11 @@ public class ForDoctorActivity extends AppCompatActivity {
                 truePassword = passwordStrings[i];
             }
             if (bolStatus) {
-                Toast.makeText(this, "User False", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "User False", Toast.LENGTH_SHORT).show();
             } else if (passwordString.equals(truePassword)) {
                 startActivity(new Intent(ForDoctorActivity.this, TransferDataActivity.class));
             } else {
-                Toast.makeText(this, "Password False", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Password False", Toast.LENGTH_SHORT).show();
             }
 
         } // for

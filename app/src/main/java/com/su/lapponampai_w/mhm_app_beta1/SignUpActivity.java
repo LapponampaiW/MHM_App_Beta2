@@ -56,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
                 string_rev_Email = editText_Email.getText().toString().trim();
 
                 if (string_rev_Username.equals("") || string_rev_Password.equals("") || string_rev_RePassword.equals("")) {
-                    Toast t = Toast.makeText(SignUpActivity.this, "มีค่าว่าง", Toast.LENGTH_SHORT);
+                    Toast t = Toast.makeText(SignUpActivity.this, "กรุณากรอกข้อมูลให้ครบถ้วน", Toast.LENGTH_SHORT);
                     t.show();
                 } else {
                     if (!string_rev_Password.equals(string_rev_RePassword)) {

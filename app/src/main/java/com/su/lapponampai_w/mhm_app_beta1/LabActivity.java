@@ -143,7 +143,7 @@ public class LabActivity extends AppCompatActivity {
                                 MODE_PRIVATE, null);
                         sqLiteDatabase.delete("LabTABLE", "_id = " + id, null);
 
-                        Toast.makeText(LabActivity.this,"Delete in LabTABLE",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(LabActivity.this,"Delete in LabTABLE",Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(LabActivity.this,LabActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

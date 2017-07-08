@@ -208,7 +208,7 @@ public class SplashScreen extends AppCompatActivity {
                 dailyUpdateReceiver.stringsREAD19, dailyUpdateReceiver.stringsREAD20};
 
         if (dateRef.compareTo(dateFinalProcess) == 0) {
-            Toast.makeText(getBaseContext(), "ได้ค่าเท่ากันของ dateRef กับ dateFinalProcess", Toast.LENGTH_SHORT);
+            //Toast.makeText(getBaseContext(), "ได้ค่าเท่ากันของ dateRef กับ dateFinalProcess", Toast.LENGTH_SHORT);
         }
 
 
@@ -347,7 +347,7 @@ public class SplashScreen extends AppCompatActivity {
                             && dailyUpdateReceiver.checkStartDay.equals("Y")
                             && dailyUpdateReceiver.checkFinishDay.equals("Y")) {
                         Log.d("UpdatesumTABLE", "ตำแหน่งที่ i addค่าเข้า SumTABLE ได้ : " + i);
-                        Toast.makeText(getBaseContext(), "Addข้อมูลลง sumTABLE : (Y,Y,Y)", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getBaseContext(), "Addข้อมูลลง sumTABLE : (Y,Y,Y)", Toast.LENGTH_SHORT).show();
 
                         //เริ่ม addข้อมูลลง sumTABLE
                         //1 row ของ mainTABLE add ได้หลาย row ของ sumTABLE ตาม T1-T8 (column 12 - 19)
@@ -436,7 +436,7 @@ public class SplashScreen extends AppCompatActivity {
                 dailyUpdateReceiver.stringsREAD19, dailyUpdateReceiver.stringsREAD20};
 
         if (dateRef.compareTo(dateFinalProcess) == 0) {
-            Toast.makeText(getBaseContext(), "ได้ค่าเท่ากันของ dateRef กับ dateFinalProcess", Toast.LENGTH_SHORT);
+            //Toast.makeText(getBaseContext(), "ได้ค่าเท่ากันของ dateRef กับ dateFinalProcess", Toast.LENGTH_SHORT);
         }
 
 
@@ -575,7 +575,7 @@ public class SplashScreen extends AppCompatActivity {
                             && dailyUpdateReceiver.checkStartDay.equals("Y")
                             && dailyUpdateReceiver.checkFinishDay.equals("Y")) {
                         Log.d("UpdatesumTABLE", "ตำแหน่งที่ i addค่าเข้า SumTABLE ได้ : " + i);
-                        Toast.makeText(getBaseContext(), "Addข้อมูลลง sumTABLE : (Y,Y,Y)", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getBaseContext(), "Addข้อมูลลง sumTABLE : (Y,Y,Y)", Toast.LENGTH_SHORT).show();
 
                         //เริ่ม addข้อมูลลง sumTABLE
                         //1 row ของ mainTABLE add ได้หลาย row ของ sumTABLE ตาม T1-T8 (column 12 - 19)
@@ -809,7 +809,7 @@ public class SplashScreen extends AppCompatActivity {
                             && dailyUpdateReceiver.checkStartDay.equals("Y")
                             && dailyUpdateReceiver.checkFinishDay.equals("Y")) {
                         Log.d("UpdatesumTABLE", "ตำแหน่งที่ i addค่าเข้า SumTABLE ได้ : " + i);
-                        Toast.makeText(getBaseContext(), "Addข้อมูลลง sumTABLE : (Y,Y,Y)", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getBaseContext(), "Addข้อมูลลง sumTABLE : (Y,Y,Y)", Toast.LENGTH_LONG).show();
 
                         //เริ่ม addข้อมูลลง sumTABLE
                         //1 row ของ mainTABLE add ได้หลาย row ของ sumTABLE ตาม T1-T8 (column 12 - 19)
@@ -961,7 +961,7 @@ public class SplashScreen extends AppCompatActivity {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         alarmManager.set(1,myCalendar1.getTimeInMillis(),pendingIntent);
-        Toast.makeText(context, "....broadcast สำเร็จ....", Toast.LENGTH_LONG).show();
+        //Toast.makeText(context, "....broadcast สำเร็จ....", Toast.LENGTH_LONG).show();
 
 
 
@@ -1017,20 +1017,20 @@ public class SplashScreen extends AppCompatActivity {
 
         if (stringsREAD_mainTABLE[0].equals("")) {
             Log.d("UpdatesumTABLE", "ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver");
-            Toast.makeText(SplashScreen.this,"ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
+            //Toast.makeText(SplashScreen.this,"ไม่มียาใน mainTABLE : ค่าว่าง ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
             return;
         }
         //ดูว่าถ้ามีถ่าแต่ prn ก็ต้องยกเลิก
         else if (strCheckPRN.equals("Y")) {
             Log.d("UpdatesumTABLE", "ยาใน mainTABLE มีแต่ยา PRN : ยุติการ UpdateReceiver");
-            Toast.makeText(SplashScreen.this,"ยาใน mainTABLE มีแต่ยา PRN :ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
+            //Toast.makeText(SplashScreen.this,"ยาใน mainTABLE มีแต่ยา PRN :ยุติการ UpdateReceiver",Toast.LENGTH_LONG).show();
             return;
 
         }
         //ถ้าจะ Test การเอาเข้าให้เอา else if อันนี้ออกไป
         else if(strDateRef.equals("Y")) {
             Log.d("UpdatesumTABLE", "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver");
-            Toast.makeText(SplashScreen.this, "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
+            //Toast.makeText(SplashScreen.this, "มีค่าวันนี้ใน sumTABLE ของวันนี้แล้ว : ยุติการ UpdateReceiver", Toast.LENGTH_LONG).show();
             return;
         } else {
 
@@ -1053,7 +1053,7 @@ public class SplashScreen extends AppCompatActivity {
             AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
             alarmManager.setRepeating(1, myCalendar1.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
-            Toast.makeText(getBaseContext(), "เริ่มทำการ BroadCAst", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getBaseContext(), "เริ่มทำการ BroadCAst", Toast.LENGTH_LONG).show();
 
         }
     } //updatesumTABLE00

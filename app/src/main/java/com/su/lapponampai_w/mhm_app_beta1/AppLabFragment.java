@@ -202,7 +202,7 @@ public class AppLabFragment extends Fragment {
                                     }
                                 }
                             }
-                            Toast.makeText(getActivity().getBaseContext(),"Delete in appointmentTABLE",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity().getBaseContext(),"Delete in appointmentTABLE",Toast.LENGTH_SHORT).show();
 
 
                             Intent intent = new Intent(getActivity().getBaseContext(),AppointmentActivity.class);

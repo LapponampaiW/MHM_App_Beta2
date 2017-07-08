@@ -162,7 +162,7 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (string5.equals("") && string6.equals("")) {
                     myManage.updatesumTABLE_ADD_SkipHold_Now(stringId);
-                    Toast.makeText(getBaseContext(), stringId, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getBaseContext(), stringId, Toast.LENGTH_LONG).show();
 
                     //ลบข้อมูลออก เพราะไม่จำเป็น
                     String[] strings_AddMedicine = myManage.filter_sumTABLE_AddMedicine_by_sum_id(stringId);

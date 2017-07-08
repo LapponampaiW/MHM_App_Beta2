@@ -79,7 +79,7 @@ public class DailyFragment extends Fragment {
 
         Log.d("DailyFragment", strings_Main_id[0]);
         Log.d("DailyFragment", strings_id[0]);
-        Toast.makeText(getActivity(), strings_Main_id[0], Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), strings_Main_id[0], Toast.LENGTH_SHORT).show();
 
         if (!strings_id[0].equals("")) {
 
@@ -283,7 +283,7 @@ public class DailyFragment extends Fragment {
 
                 Log.d("DailyFragment", strings_Main_id[0]);
                 Log.d("DailyFragment", strings_id[0]);
-                Toast.makeText(getActivity(), strings_Main_id[0], Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), strings_Main_id[0], Toast.LENGTH_SHORT).show();
 
                 if (!strings_id[0].equals("")) {
 

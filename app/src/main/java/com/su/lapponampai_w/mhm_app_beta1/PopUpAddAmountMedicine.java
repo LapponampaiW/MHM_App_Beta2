@@ -74,7 +74,7 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
                     String sDate = myData.currentDateTime();
 
                     myManage.addValueTo_addUseTABLE(string_Main_id,"Add",doubleAmountMedicine,sDate);
-                    Toast.makeText(PopUpAddAmountMedicine.this,"addValueTo_addUseTABLE",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(PopUpAddAmountMedicine.this,"addValueTo_addUseTABLE",Toast.LENGTH_SHORT).show();
 
                     // ทำการแทนค่าในเตัว totalAmountTABLE
                     String s = "N";
@@ -93,7 +93,7 @@ public class PopUpAddAmountMedicine extends AppCompatActivity {
                     if (s.equals("N")) {
                         myManage.addValueTo_totalAmountTABLE(string_Main_id, doubleAmountMedicine, sDate);
                     } else if (s.equals("Y")) {
-                        Toast.makeText(PopUpAddAmountMedicine.this,"มีค่า Main_id ของ totalAmountTABLE แล้ว",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(PopUpAddAmountMedicine.this,"มีค่า Main_id ของ totalAmountTABLE แล้ว",Toast.LENGTH_SHORT).show();
                         //ทำการ UPdate
                         doubleAmountMedicine = doubleAmountInitialMedicine + doubleAmountMedicine;
                         String s_AmountMedicine = Double.toString(doubleAmountMedicine);

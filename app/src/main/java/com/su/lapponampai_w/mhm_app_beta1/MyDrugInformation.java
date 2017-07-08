@@ -31,7 +31,7 @@ public class MyDrugInformation {
                     "\n- อาการที่ต้องรีบกลับมาพบแพทย์โดยเร็วที่สุด ห้ามหยุดยาเอง : ผื่นรุนแรง" +
                     "\n- ห้ามรับประทานร่วมกับยาแก้ปวดไมเกรนกลุ่ม ergotamine เช่น Cafergot, Avamigran, " +
                     "Neuramizone และยาแก้ปวดท้อง Cisapride (Cipasid, Cisaride) ";
-            strREAD[3] = "Ya & You ยากับคุณ;http://www.yaandyou.net/index.php/component/drug/?nsetidT=1372&drugname=EFAVIRENZ+TABLETS+600+MG&drugtype=t";
+            strREAD[3] = "Ya & You ยากับคุณ;http://www.yaandyou.net/index_list.php?drugname=EFAVIRENZ";
             strREAD[4] = "AIDSinfo;https://aidsinfo.nih.gov/drugs/269/efavirenz/0/patient";
 
         } else if (med_Id.equals("3")) {
@@ -45,7 +45,7 @@ public class MyDrugInformation {
                     "\n     + ภาวะเลือดเป็นกรด : คลื่นไส้ อาเจียน หายใจเร็ว ใจเต้นเร็ว ความดันต่ำ ช็อค" +
                     "\n\n- อาการที่ต้องรีบกลับมาพบแพทย์โดยเร็วที่สุด ห้ามหยุดยาเอง" +
                     "\n     + ภาวะเลือดเป็นกรด";
-            strREAD[3] = "Ya & You ยากับคุณ;https://www.yaandyou.net/index_list.php?drugname=lamivir";
+            strREAD[3] = "Ya & You ยากับคุณ;http://www.yaandyou.net/index_list.php?drugname=LAMIVUDINE";
             strREAD[4] = "AIDSinfo;http://aidsinfo.nih.gov/drugs/126/lamivudine/0/patient";
 
         } else if (med_Id.equals("4")) {
@@ -186,8 +186,8 @@ public class MyDrugInformation {
                     "\n     + อาการชา ไม่มีความรู้สึกที่ปลายนิ้วมือนิ้วเท้า ปวดเส้นประสาทตามแขนขา" +
                     "\n\n- อาการที่ต้องรีบกลับมาพบแพทย์โดยเร็วที่สุด ห้ามหยุดยาเอง : ตับอ่อนอักเสบ ภาวะเลือดเป็นกรด";
 
-            strREAD[3] = "";
-            strREAD[4] = "AIDSinfo;https://aidsinfo.nih.gov/drugs/426/rilpivirine/0/patient";
+            strREAD[3] = "Ya & You ยากับคุณ;http://www.yaandyou.net/index_list.php?drugname=DIDANOSINE";
+            strREAD[4] = "AIDSinfo;https://aidsinfo.nih.gov/drugs/16/didanosine/0/patient";
         } else if (med_Id.equals("12")) {
             strREAD[0] = "Ritonavir";
             strREAD[1] = "Norvir, Aluvia";
@@ -206,8 +206,8 @@ public class MyDrugInformation {
                     "\n\n- ห้ามรับประทานร่วมกับยาแก้ปวดไมเกรนกลุ่ม ergotamine เช่น Cafergot, Avamigran," +
                     "Neuramizone และยาแก้ปวดท้อง Cisapride (Cipasid, Cisaride) ";
 
-            strREAD[3] = "";
-            strREAD[4] = "AIDSinfo;https://aidsinfo.nih.gov/drugs/426/rilpivirine/0/patient";
+            strREAD[3] = "Ya & You ยากับคุณ;http://www.yaandyou.net/index_list.php?drugname=RITONAVIR";
+            strREAD[4] = "AIDSinfo;https://aidsinfo.nih.gov/drugs/244/ritonavir/0/patient";
         } else {
             strREAD[0] = "";
             strREAD[1] = "";

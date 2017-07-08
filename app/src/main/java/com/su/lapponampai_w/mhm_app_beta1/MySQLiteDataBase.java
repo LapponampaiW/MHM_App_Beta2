@@ -728,9 +728,12 @@ public class MySQLiteDataBase extends AppCompatActivity {
             addNewsTABLEValue("5", "", "N1", "1", "DrugInformationActivity");
             addNewsTABLEValue("6", "", "N1", "1", "DrugInformationActivity");
             addNewsTABLEValue("7", "", "N1", "1", "DrugInformationActivity");
+            addNewsTABLEValue("12", "", "N1", "1", "DrugInformationActivity");
             addNewsTABLEValue("13", "", "N1", "1", "DrugInformationActivity");
             addNewsTABLEValue("14", "", "N1", "1", "DrugInformationActivity");
             addNewsTABLEValue("17", "", "N1", "1", "DrugInformationActivity");
+            addNewsTABLEValue("18", "", "N1", "1", "DrugInformationActivity");
+
 
         }
     } //newsTABLEData

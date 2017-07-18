@@ -616,7 +616,7 @@ public class SettingActivity extends AppCompatActivity implements
             checkBoxSecurityNone.setChecked(false);
             checkBoxSecurity1.setChecked(true);
             checkBoxSecurity2.setChecked(false);
-            textViewSecurity.setText("คำอธิบาย :\nมีการทวนถาม 'รหัสผ่าน' ในทุกกระบวนการภายในแอพพลิเคชั่น ยกเว้นหน้าแรกของการ Log-in");
+            textViewSecurity.setText("คำอธิบาย :\nมีการทวนถาม 'รหัสผ่าน' เฉพาะหน้าแรกเพื่อการ Log-in");
 
         } else {
             checkBoxSecurityNone.setChecked(false);

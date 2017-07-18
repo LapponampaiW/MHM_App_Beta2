@@ -81,8 +81,8 @@ public class SplashScreen extends AppCompatActivity {
 
                 } else {
                     startActivity(new Intent(SplashScreen.this, SignUpActivity.class)); // เดี่ยวต้องเปลี่ยน
-                    Toast t = Toast.makeText(SplashScreen.this, Integer.toString(anInt) , Toast.LENGTH_LONG); //ลบภายหลัง
-                    t.show();
+                    //Toast t = Toast.makeText(SplashScreen.this, Integer.toString(anInt) , Toast.LENGTH_LONG); //ลบภายหลัง
+                    //t.show();
                     finish();
                 }
 

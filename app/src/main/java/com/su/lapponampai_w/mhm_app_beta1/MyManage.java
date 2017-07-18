@@ -311,7 +311,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
-
+        cursor.close();
         return strREAD;
     }
 
@@ -385,7 +385,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
-
+        cursor.close();
         return strREAD;
 
     }
@@ -408,7 +408,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
-
+        cursor.close();
         return strREAD;
 
     }
@@ -431,7 +431,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
-
+        cursor.close();
         return strREAD;
 
     }
@@ -455,7 +455,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
-
+        cursor.close();
         return strREAD;
     }
 
@@ -538,7 +538,7 @@ public class MyManage {
             cursor.moveToNext();
 
         } //for
-
+        cursor.close();
         return strREAD;
     } //readAllnoteTABLE
 
@@ -596,7 +596,7 @@ public class MyManage {
             cursor.moveToNext();
 
         } //for
-
+        cursor.close();
         return strREAD;
     } //readAlluserTABLE
 
@@ -666,7 +666,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
-
+        cursor.close();
         return strREAD;
     }
 
@@ -726,7 +726,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
-
+        cursor.close();
         return strREAD;
     }
 
@@ -787,7 +787,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
-
+        cursor.close();
         return strREAD;
     }
 
@@ -1021,7 +1021,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
-
+        cursor.close();
         return strREAD;
     }
 
@@ -1077,6 +1077,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
+        cursor.close();
         return strREAD;
     }
 
@@ -1096,6 +1097,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
+        cursor.close();
         return strREAD;
     }
 
@@ -1143,6 +1145,7 @@ public class MyManage {
                 }
                 cursor.moveToNext();
             }
+            cursor.close();
         }
         return strREAD;
     }
@@ -1245,8 +1248,8 @@ public class MyManage {
                 }
                 cursor.moveToNext();
             }
+            cursor.close();
         }
-
         return strread;
 
     } //finish readAllmedTABLE
@@ -1283,8 +1286,9 @@ public class MyManage {
                 }
                 cursor.moveToNext();
             }
-
+            cursor.close();
         }
+
         return strREAD;
     }
 
@@ -1307,6 +1311,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
+        cursor.close();
         return strREAD;
     }
 
@@ -1329,6 +1334,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
+        cursor.close();
         return strREAD;
     }
 
@@ -1351,7 +1357,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
-
+        cursor.close();
         return strREAD;
     }
 
@@ -1459,6 +1465,7 @@ public class MyManage {
             strREAD = new String[1];
             strREAD[0] = "";
         }
+        cursor.close();
         return strREAD;
     }
 
@@ -1494,6 +1501,7 @@ public class MyManage {
             } else {
                 strREAD = "False";
             }
+            cursor.close();
         }
 
         return strREAD;
@@ -1591,10 +1599,11 @@ public class MyManage {
                         break;
                 }
                 cursor.moveToNext();
-            }
 
+            }
+            cursor.close();
         }
-        cursor.close();
+
         return strREAD;
 
     } //readAllmainTABLE1
@@ -1996,7 +2005,7 @@ public class MyManage {
         Cursor cursor = readSqLiteDatabase.query(userTABLE, column_userTABLE, null, null, null, null, null);
 
         int i = cursor.getCount();
-
+        cursor.close();
         return i;
     }
 
@@ -2042,7 +2051,7 @@ public class MyManage {
                 }
                 cursor.moveToNext();
             }
-
+            cursor.close();
         }
 
         return strAllFood;
@@ -2099,7 +2108,7 @@ public class MyManage {
         */
 
         writeSqLiteDatabase.update(labTABLE,contentValues, "_id =?", new String[]{String.valueOf(id)});
-
+        cursor.close();
     }
 
     public void canceledStayLogin() {
@@ -2115,7 +2124,7 @@ public class MyManage {
         contentValues.put(ucolumn_Stay, "2");
 
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
-
+        cursor.close();
     }
 
 
@@ -2133,7 +2142,7 @@ public class MyManage {
         contentValues.put(ucolumn_Stay, str_SecurityLevel);
 
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
-
+        cursor.close();
     }
 
     public void update_Last_updated(String username,String str_last_updated) {
@@ -2152,7 +2161,7 @@ public class MyManage {
 
 
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
-
+        cursor.close();
     }
 
     public void update_notification(String username,String str_notification,String str_Criteria) {
@@ -2161,6 +2170,7 @@ public class MyManage {
                 "User =?", new String[]{String.valueOf(username)}, null, null, null);
         cursor.moveToFirst();
         String id = cursor.getString(0);
+
         ContentValues contentValues = new ContentValues();
         if (str_Criteria.equals("1")) { //Notification ==> Y N
             contentValues.put(ucolumn_notification, str_notification);
@@ -2169,6 +2179,7 @@ public class MyManage {
         }
 
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
+        cursor.close();
     }
 
     public void update_New_PW(String username,String str_pw) {
@@ -2185,9 +2196,8 @@ public class MyManage {
         ContentValues contentValues = new ContentValues();
         contentValues.put(ucolumn_Password, str_pw);
 
-
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
-
+        cursor.close();
     }
 
     public void update_Allowed_notification(String username,String str_allowed_notif) {
@@ -2206,7 +2216,7 @@ public class MyManage {
 
 
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
-
+        cursor.close();
     }
 
     public void update_Advance_mode(String username,String str_Advance_mode) {
@@ -2224,7 +2234,7 @@ public class MyManage {
         contentValues.put(ucolumn_Advance_mode, str_Advance_mode);
 
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
-
+        cursor.close();
     }
 
 
@@ -2244,7 +2254,7 @@ public class MyManage {
         contentValues.put(ucolumn_appointment_notif, str_Appointment_notif);
 
         writeSqLiteDatabase.update(userTABLE, contentValues, "_id =?", new String[]{String.valueOf(id)});
-
+        cursor.close();
     }
 
 
@@ -2374,7 +2384,7 @@ public class MyManage {
             strREAD[1] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name2));
             strREAD[2] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name3));
             strREAD[3] = cursor.getString(cursor.getColumnIndex(mcolumn_generic_name4));
-
+            cursor.close();
         } else {
             strREAD = null;
         }
@@ -2404,7 +2414,7 @@ public class MyManage {
             strREAD[13] = cursor.getString(cursor.getColumnIndex(mcolumn_t6));
             strREAD[14] = cursor.getString(cursor.getColumnIndex(mcolumn_t7));
             strREAD[15] = cursor.getString(cursor.getColumnIndex(mcolumn_t8));
-
+            cursor.close();
         } else {
             strREAD = null;
         }
@@ -2545,6 +2555,7 @@ public class MyManage {
 
                 cursor.moveToNext();
             }
+            cursor.close();
 
         } else {
             strREAD_Tradename = null;
@@ -2637,9 +2648,9 @@ public class MyManage {
                                         cursorInteraction.getInt(cursorInteraction.getColumnIndex(dcolumn_timeMedicine2_1)));
                                 cursorInteraction.moveToNext();
                             }
-
+                            cursorInteraction.close();
                         }
-                        cursorInteraction.close();
+
                     }
                 } //for mainTABLE
                 cursormainTABLE.close();
@@ -2677,6 +2688,7 @@ public class MyManage {
                         strings5[i] + strings6[i] + strings7[i];
                 cursor.moveToNext();
             }
+            cursor.close();
 
             //ทำการไม่ให้ duplicate โดย ArrayList
             ArrayList<String> stringArrayListSum = new ArrayList<String>();
@@ -2769,8 +2781,8 @@ public class MyManage {
                 }
                 cursor.moveToNext();
             }
+            cursor.close();
         }
-        cursor.close();
         return strREAD;
     }
 
@@ -2811,6 +2823,7 @@ public class MyManage {
             strread[25] = cursor.getString(cursor.getColumnIndex(mcolumn_t8));
             strread[26] = cursor.getString(cursor.getColumnIndex(mcolumn_amount_tablet));
             strread[27] = cursor.getString(cursor.getColumnIndex(mcolumn_ea));
+            cursor.close();
         }
         return strread;
     }
@@ -2841,6 +2854,7 @@ public class MyManage {
             }
             cursor.moveToNext();
         }
+        cursor.close();
         return strREAD;
     }
 

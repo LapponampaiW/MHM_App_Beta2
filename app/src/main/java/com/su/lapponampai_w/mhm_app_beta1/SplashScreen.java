@@ -88,7 +88,7 @@ public class SplashScreen extends AppCompatActivity {
 
 
             }
-        },2500); // 2 วินาที
+        },4000); // 2 วินาที
 
 
 

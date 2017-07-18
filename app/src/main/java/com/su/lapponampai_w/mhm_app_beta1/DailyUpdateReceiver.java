@@ -49,7 +49,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
     public MyData myData;
     public int notifID = 100;
     public NotificationManager notificationManager;
-    private SQLiteDatabase writeSqLiteDatabase;
+    //private SQLiteDatabase writeSqLiteDatabase;
     String[] strings_alarmReceiverTABLE_id,strings_alarmReceiverTABLEAfter15Min_id;
 
     MyHelper myHelper;
@@ -66,7 +66,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
         myManage = new MyManage(context);
         myData = new MyData();
         myHelper = new MyHelper(context);
-        writeSqLiteDatabase = myHelper.getWritableDatabase();
+        //writeSqLiteDatabase = myHelper.getWritableDatabase();
 
 
         //checkAndAddTabletInPillBox(context);
@@ -492,8 +492,12 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
     private void addDataToBroadcastTABLE(Context context, MyData myData, MyManage myManage) {
 
         //ลบข้อมูลท้งหมดในตาราง alarmReceiverTABLE
-        writeSqLiteDatabase.delete("alarmReceiverTABLE", null, null);
-        writeSqLiteDatabase.delete("alarmReceiverTABLEAfter15Min", null, null);
+        SQLiteDatabase sqLiteDatabase1 = myHelper.getReadableDatabase();
+        sqLiteDatabase1.delete("alarmReceiverTABLE", null, null);
+        sqLiteDatabase1.close();
+        SQLiteDatabase sqLiteDatabase2 = myHelper.getReadableDatabase();
+        sqLiteDatabase2.delete("alarmReceiverTABLEAfter15Min", null, null);
+        sqLiteDatabase2.close();
 
         Intent alertIntent = new Intent(context, AlarmReceiver.class); //1
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE); //2
@@ -682,7 +686,7 @@ public class DailyUpdateReceiver extends BroadcastReceiver {
                                      String[] stringsAlarmId2,
                                      String[] stringsAlarmDateTime2) {
 
-        Intent alertIntent = new Intent(context, AlarmReceiver.class); //1
+        Intent alertIntent = new Intent(context,AlarmReceiver.class); //1
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE); //2
         int a = 0;
 

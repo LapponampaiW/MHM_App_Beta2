@@ -2568,10 +2568,11 @@ public class MyManage {
     //Drug Interaction
     public void checkDrugInteraction(String drugname) {
 
+        Log.d("180131V2", "Drugname = " + drugname);
 
         String[] strREAD = filter_medTABLE_by_id(drugname);
 
-        Log.d("checkDrugInteraction", strREAD[0] + strREAD[1] + strREAD[2] + strREAD[3]);
+        Log.d("180131V2", strREAD[0] + strREAD[1] + strREAD[2] + strREAD[3]);
 
         String[] stringsMed_id = null;
 
@@ -2588,11 +2589,13 @@ public class MyManage {
                 //เอาเฉพาะที่ยัง Active อยู่
                 //Cursor cursormainTABLE = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, null, null, null, null, null);
                 Cursor cursormainTABLE = readSqLiteDatabase.query(mainTABLE, column_mainTABLE, "DateTimeCanceled LIKE ''", null, null, null, null);
+                //มี Check ด้วยว่ายังรับประทานยาอยู่หรือป่าว!!!
                 stringsMed_id = new String[cursormainTABLE.getCount()];
                 stringsGeneric1 = new String[cursormainTABLE.getCount()];
                 stringsGeneric2 = new String[cursormainTABLE.getCount()];
                 stringsGeneric3 = new String[cursormainTABLE.getCount()];
                 stringsGeneric4 = new String[cursormainTABLE.getCount()];
+                //นับจำนวนว่าในตาราง mainTABLE มีจำนวนยาอยู่เท่าไหร่ แล้วเตรียม
 
                 //mainTABLE
                 if (cursormainTABLE != null) {
@@ -2602,18 +2605,22 @@ public class MyManage {
                     for (int x = 0; x < cursormainTABLE.getCount(); x++) {
                         stringsMed_id[x] = cursormainTABLE.getString(cursormainTABLE.getColumnIndex(mcolumn_Med_id));
 
+                        Log.d("180131V2", "in-Loop = " + stringsMed_id[x]);
+                        if (!"0".equals(stringsMed_id[x]) ) {
+                            Cursor cursormedTABLE = readSqLiteDatabase.query(medTABLE, column_medTABLE, "_id =?", new String[]{String.valueOf(stringsMed_id[x])}, null, null, null);
+                            if (cursormedTABLE != null) {
+                                cursormedTABLE.moveToFirst();
+                                stringsGeneric1[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name1));
+                                stringsGeneric2[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name2));
+                                stringsGeneric3[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name3));
+                                stringsGeneric4[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name4));
+                            } //if medTABLE
+                            Log.d("checkDrugInteraction", stringsMed_id[x] + stringsGeneric1[x] + stringsGeneric2[x] + stringsGeneric3[x] + stringsGeneric4[x]);
+                        } //if
 
-                        Cursor cursormedTABLE = readSqLiteDatabase.query(medTABLE, column_medTABLE, "_id =?", new String[]{String.valueOf(stringsMed_id[x])}, null, null, null);
-                        if (cursormedTABLE != null) {
-                            cursormedTABLE.moveToFirst();
-                            stringsGeneric1[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name1));
-                            stringsGeneric2[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name2));
-                            stringsGeneric3[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name3));
-                            stringsGeneric4[x] = cursormedTABLE.getString(cursormedTABLE.getColumnIndex(mcolumn_generic_name4));
-                        } //if medTABLE
-                        Log.d("checkDrugInteraction", stringsMed_id[x] + stringsGeneric1[x] + stringsGeneric2[x] + stringsGeneric3[x] + stringsGeneric4[x]);
                         cursormainTABLE.moveToNext();
                     }//for
+
 
 
                     for (int y = 0; y < stringsMed_id.length; y++) {

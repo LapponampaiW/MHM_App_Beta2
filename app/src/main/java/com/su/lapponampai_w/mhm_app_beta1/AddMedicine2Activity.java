@@ -1332,6 +1332,7 @@ public class AddMedicine2Activity extends AppCompatActivity implements
 
     private void checkDrugInteraction() {
 
+
         if (string1.equals("0")) {
             checkZeroAmountTablet();
         } else {
@@ -1356,10 +1357,13 @@ public class AddMedicine2Activity extends AppCompatActivity implements
             SQLiteDatabase sqLiteDatabase = openOrCreateDatabase(MyHelper.DATABASE_NAME, MODE_PRIVATE, null);
             sqLiteDatabase.delete("drugInteractionTABLE_For_Query", null, null);
 
+            Log.d("180131V1", string1);
 
             myManage.checkDrugInteraction(string1);  //Check DrugInteraction จาก Med_id
             //ทำการ add ข้อมูลที่มี DrugInteraction ทั้งหมดเข้าไปในตาราง drugInteractionTABLE_For_Query
             //ถ้ามีค่าเป็น 1 ขึ้นไปแปลว่ามี DrugInteraction แต่ยังไม่รู้ว่า Type ไหน
+
+
 
             int countRowTABLE_Query = myManage.filter_drugInteractionTABLE_For_Query(0).length;
             Log.d("filter_drugInteraction", Integer.toString(countRowTABLE_Query));

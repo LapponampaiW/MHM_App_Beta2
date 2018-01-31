@@ -153,7 +153,7 @@ public class SettingActivity extends AppCompatActivity implements
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 String s = editText.getText().toString().trim();
-                                if (s.equals("123")) {
+                                if (s.equals("budhosp")) {
                                     Toast.makeText(getBaseContext(), "Success!!!!", Toast.LENGTH_LONG).show();
 
                                     //241259V1 เปลี่ยน Advance Mode เป็น Y

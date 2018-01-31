@@ -1245,7 +1245,9 @@ public class AddMedicine2Activity extends AppCompatActivity implements
         }
 
         Log.d("25July16", "ผ่านClickSaveAddMedication");
-        checkDuplicate();
+
+            checkDuplicate();
+
 
     } //clickSave
 
@@ -1269,64 +1271,66 @@ public class AddMedicine2Activity extends AppCompatActivity implements
     private void checkDuplicate() {
         MyManage myManage = new MyManage(this);
 
-        stringsduplicate = myManage.readAllMainTABLE_string(string1, 0);
-        //check Duplicate ว่ามียาตัวเดียวกันอยู่หรือไม่ถ้ามีใน mainTABLE แล้วจะไม่ยอมให้ save
-        //ให้ไป Delete แล้วเพิ่มข้อมูลเข้าไปใหม่แทน
+        if (!"0".equals(string1)) {
+            stringsduplicate = myManage.readAllMainTABLE_string(string1, 0);
+            //check Duplicate ว่ามียาตัวเดียวกันอยู่หรือไม่ถ้ามีใน mainTABLE แล้วจะไม่ยอมให้ save
+            //ให้ไป Delete แล้วเพิ่มข้อมูลเข้าไปใหม่แทน
 
-        if (stringsduplicate.length > 0) {
-            String[] sAmount_tablet = myManage.readAllMainTABLE_string(string1, 15);
-            Log.d("12345", "sAmount_tablet : " + sAmount_tablet[0]);
-            Log.d("12345", "string15 : " + string15);
-            String[] sT1 = myManage.readAllMainTABLE_string(string1, 7);  //T1
-            String[] sT2 = myManage.readAllMainTABLE_string(string1, 8);  //T2
-            String[] sT3 = myManage.readAllMainTABLE_string(string1, 9);  //T3
-            String[] sT4 = myManage.readAllMainTABLE_string(string1, 10);  //T4
-            String[] sT5 = myManage.readAllMainTABLE_string(string1, 11);  //T5
-            String[] sT6 = myManage.readAllMainTABLE_string(string1, 12);  //T6
-            String[] sT7 = myManage.readAllMainTABLE_string(string1, 13);  //T7
-            String[] sT8 = myManage.readAllMainTABLE_string(string1, 14);  //T8
-            String[] sTTime = {string7,string8,string9,string10,string11,string12,string13,string14};
-            for (int i = 0; i < stringsduplicate.length; i++) {
-                if (sAmount_tablet[i].equals(string15)) {
-                    alertDialogDuplicate();
-                    return;  //แปลว่าหยุดการทำงาน เหมือน End sub ใน VB
-                }
-            }
-
-            for(int x = 0; x<sTTime.length;x++) {
-                for (int y = 0;y<stringsduplicate.length;y++) {
-                    if (sTTime[x].equals(sT1[y]) && !sTTime[x].equals("") && !sT1[y].equals("")) {
+            if (stringsduplicate.length > 0) {
+                String[] sAmount_tablet = myManage.readAllMainTABLE_string(string1, 15);
+                Log.d("12345", "sAmount_tablet : " + sAmount_tablet[0]);
+                Log.d("12345", "string15 : " + string15);
+                String[] sT1 = myManage.readAllMainTABLE_string(string1, 7);  //T1
+                String[] sT2 = myManage.readAllMainTABLE_string(string1, 8);  //T2
+                String[] sT3 = myManage.readAllMainTABLE_string(string1, 9);  //T3
+                String[] sT4 = myManage.readAllMainTABLE_string(string1, 10);  //T4
+                String[] sT5 = myManage.readAllMainTABLE_string(string1, 11);  //T5
+                String[] sT6 = myManage.readAllMainTABLE_string(string1, 12);  //T6
+                String[] sT7 = myManage.readAllMainTABLE_string(string1, 13);  //T7
+                String[] sT8 = myManage.readAllMainTABLE_string(string1, 14);  //T8
+                String[] sTTime = {string7, string8, string9, string10, string11, string12, string13, string14};
+                for (int i = 0; i < stringsduplicate.length; i++) {
+                    if (sAmount_tablet[i].equals(string15)) {
                         alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT2[y]) && !sTTime[x].equals("") && !sT2[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT3[y]) && !sTTime[x].equals("") && !sT3[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT4[y]) && !sTTime[x].equals("") && !sT4[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT5[y]) && !sTTime[x].equals("") && !sT5[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT6[y]) && !sTTime[x].equals("") && !sT6[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT7[y]) && !sTTime[x].equals("") && !sT7[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
-                    } else if (sTTime[x].equals(sT8[y]) && !sTTime[x].equals("") && !sT8[y].equals("")) {
-                        alertDialogDuplicate();
-                        return;
+                        return;  //แปลว่าหยุดการทำงาน เหมือน End sub ใน VB
                     }
                 }
+
+                for (int x = 0; x < sTTime.length; x++) {
+                    for (int y = 0; y < stringsduplicate.length; y++) {
+                        if (sTTime[x].equals(sT1[y]) && !sTTime[x].equals("") && !sT1[y].equals("")) {
+                            alertDialogDuplicate();
+                            return;
+                        } else if (sTTime[x].equals(sT2[y]) && !sTTime[x].equals("") && !sT2[y].equals("")) {
+                            alertDialogDuplicate();
+                            return;
+                        } else if (sTTime[x].equals(sT3[y]) && !sTTime[x].equals("") && !sT3[y].equals("")) {
+                            alertDialogDuplicate();
+                            return;
+                        } else if (sTTime[x].equals(sT4[y]) && !sTTime[x].equals("") && !sT4[y].equals("")) {
+                            alertDialogDuplicate();
+                            return;
+                        } else if (sTTime[x].equals(sT5[y]) && !sTTime[x].equals("") && !sT5[y].equals("")) {
+                            alertDialogDuplicate();
+                            return;
+                        } else if (sTTime[x].equals(sT6[y]) && !sTTime[x].equals("") && !sT6[y].equals("")) {
+                            alertDialogDuplicate();
+                            return;
+                        } else if (sTTime[x].equals(sT7[y]) && !sTTime[x].equals("") && !sT7[y].equals("")) {
+                            alertDialogDuplicate();
+                            return;
+                        } else if (sTTime[x].equals(sT8[y]) && !sTTime[x].equals("") && !sT8[y].equals("")) {
+                            alertDialogDuplicate();
+                            return;
+                        }
+                    }
+                }
+
             }
-
-
+            // ไม่มีค่าอะไร add ข้อมูลเข้าไปได้เลย
+            Log.d("25July16", "ผ่านCheckDuplicate");
         }
-        // ไม่มีค่าอะไร add ข้อมูลเข้าไปได้เลย
-        Log.d("25July16", "ผ่านCheckDuplicate");
+
         checkDrugInteraction();
     }
 

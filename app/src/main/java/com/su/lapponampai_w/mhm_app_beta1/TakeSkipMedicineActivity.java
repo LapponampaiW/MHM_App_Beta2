@@ -88,11 +88,13 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
         //มี Main_id จะหา.... Med_id
         //readAll MainTABLE
         MyManage myManage = new MyManage(this);
-        String[] strings_MainId = myManage.read_mainTABLE_InCluded_DateTimeCanceled(0);
-        String[] strings_MedId = myManage.read_mainTABLE_InCluded_DateTimeCanceled(1);
+        String[] strings_MainId = myManage.read_mainTABLE_InCluded_DateTimeCanceled(0); //เอา MainId
+        String[] strings_MedId = myManage.read_mainTABLE_InCluded_DateTimeCanceled(1); // เอา MedId
+
         String strMedId = "";
         Log.d("060160V1", "stringMain_id : " + stringMain_id);
         for(int i =0;i<strings_MainId.length;i++) {
+            //เข้า loop
             if (stringMain_id.equals(strings_MainId[i])) {
                 strMedId = strings_MedId[i];
             } //if
@@ -100,38 +102,54 @@ public class TakeSkipMedicineActivity extends AppCompatActivity {
 
         Log.d("060160V1", "strMedId : " + strMedId);
 
+
+
         if (!strMedId.equals("")) {
             //เอาไปหาคาใน WarningTABLE
-            Log.d("060160V1", "strMedId =! ''");
-            //เอา Med id ไปหา Generic name ใน genericTABLE
-            String[] strings_genericId = myManage.filter_medTABLE_by_id(strMedId);
-            //ได้ทั้งหมดมาละ
-            String sText = "";
-            Boolean aBoolean = true;
-            for(int i =0;i<strings_genericId.length;i++) {
-                if (!strings_genericId[i].equals("1")) {
-                    String[] strings_Warning_Detail = myManage.filter_warningTABLE_by_genericId(strings_genericId[i], 3);
-                    if (!strings_Warning_Detail[0].equals("")) {
-                        aBoolean = false;
-                        if (sText.equals("")) {
-                            sText = strings_Warning_Detail[0];
-                        } else {
-                            sText = sText + "\n" + strings_Warning_Detail[0];
-                        }
+            Log.d("060160V1", "strMedId =! ''"); //ไม่ใช่ค่าว่าง..... ต้องเพิ่มว่าเป็นเลข 0 ก็ต้องเป็น displayMetric();
 
-                    } //for
+            //เพิ่มตรงนี้
+            if (!"0".equals(strMedId)) {
+                //เอา Med id ไปหา Generic name ใน genericTABLE
+                String[] strings_genericId = myManage.filter_medTABLE_by_id(strMedId);
+                //ได้ทั้งหมดมาละ
+                String sText = "";
+                Boolean aBoolean = true;
+                for (int i = 0; i < strings_genericId.length; i++) {
+                    if (!strings_genericId[i].equals("1")) {
+                        String[] strings_Warning_Detail = myManage.filter_warningTABLE_by_genericId(strings_genericId[i], 3);
+                        if (!strings_Warning_Detail[0].equals("")) {
+                            aBoolean = false;
+                            if (sText.equals("")) {
+                                sText = strings_Warning_Detail[0];
+                            } else {
+                                sText = sText + "\n" + strings_Warning_Detail[0];
+                            }
 
+                        } //for
+
+                    }
                 }
-            }
 
-            if (!aBoolean) {
-                textViewWarning.setText(sText);
-                linearLayoutWarning.setVisibility(View.VISIBLE);
-                textViewHeadWarning.setVisibility(View.VISIBLE);
-                displayMetrics2();
+                if (!aBoolean) {
+                    textViewWarning.setText(sText);
+                    linearLayoutWarning.setVisibility(View.VISIBLE);
+                    textViewHeadWarning.setVisibility(View.VISIBLE);
+                    displayMetrics2();
+                } else {
+                    displayMetrics();
+                }
+
             } else {
                 displayMetrics();
             }
+
+
+
+
+
+
+
             //Log.d("060160V1", "strings_Warning_Detail[0] =! ''");
             //textViewWarning.setText(strings_Warning_Detail[0]);
 
